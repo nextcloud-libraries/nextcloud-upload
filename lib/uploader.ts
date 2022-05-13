@@ -56,14 +56,19 @@ export class Uploader {
 	 * garbage collection
 	 */
 	private getChunk(file: File, start: number, length: number): Promise<Blob> {
+		if (!file.type) {
+			return Promise.reject()
+		}
+
 		// Since we use a global FileReader, we need to only read one chunk at a time
-		return readerLimit(() => new Promise((resolve) => {
+		return readerLimit(() => new Promise((resolve, reject) => {
 			this.reader.onload = () => {
 				if (this.reader.result !== null) {
 					resolve(new Blob([this.reader.result], {
 						type: 'application/octet-stream',
 					}))
 				}
+				reject()
 			}
 			this.reader.readAsArrayBuffer(file.slice(start, start + length))
 		}))
@@ -114,15 +119,15 @@ export class Uploader {
 
 		// eslint-disable-next-line no-async-promise-executor
 		const promise = new PCancelable(async (resolve, reject, onCancel): Promise<Upload> => {
+			// Register cancellation caller
+			onCancel(upload.cancel)
+
 			if (!disabledChunkUpload) {
-				logger.debug('Initializing chunked upload', upload)
+				logger.debug('Initializing chunked upload', { file, upload })
 
 				// Let's initialize a chunk upload
 				const tempUrl = await this.initChunkWorkspace()
 				const chunksQueue: Array<Promise<AxiosResponse>> = []
-
-				// Register cancellation caller
-				onCancel(upload.cancel)
 			
 				// Generate chunks array
 				for (let chunk = 0; chunk <= upload.chunks; chunk++) {
@@ -148,6 +153,7 @@ export class Uploader {
 								Destination: destinationFile,
 							},
 						})
+						.then(() => logger.debug(`Successfully uploaded ${file.name}`, { file, upload }))
 						.then(() => resolve(upload))
 						.catch(() => upload.status = Status.FAILED)
 						.catch(() => reject('Failed assembling the chunks together'))
@@ -163,12 +169,13 @@ export class Uploader {
 				return upload
 			}
 
-			logger.debug('Initializing regular upload', upload)
+			logger.debug('Initializing regular upload', { file, upload })
 
 			// Generating upload limit
 			const blob = await this.getChunk(file, 0, upload.size)
 			const request = limit(() => this.uploadData(destinationFile, blob, upload.token))
 			request
+				.then(() => logger.debug(`Successfully uploaded ${file.name}`, { file, upload }))
 				.then(() => upload.uploaded = upload.size)
 				.then(() => resolve(upload))
 				.catch(() => upload.status = Status.FAILED)
