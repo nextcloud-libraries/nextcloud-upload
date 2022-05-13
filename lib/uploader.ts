@@ -8,15 +8,17 @@ import PLimit from 'p-limit'
 import PCancelable from 'p-cancelable';
 
 const limit = PLimit(3)
+const readerLimit = PLimit(1)
 
 import logger from './logger';
 import { getMaxChunksSize } from './utils'
 
 export class Uploader {
 
-	private _tempWorkspace: string
-	private _destinationUrl: string
-	private _isPublic: boolean
+	private tempWorkspace: string
+	private destinationUrl: string
+	private isPublic: boolean
+	private reader: FileReader;
 
 	// Global upload queue
 	private _queue: Array<Upload> = []
@@ -28,13 +30,15 @@ export class Uploader {
 	 * @param {boolean} isPublic are we in public mode ?
 	 */
 	constructor(isPublic: boolean = false) {
-		this._isPublic = isPublic
-		this._destinationUrl = generateRemoteUrl(`dav/files/${getCurrentUser()?.uid}`)
-		this._tempWorkspace = generateRemoteUrl(`dav/uploads/${getCurrentUser()?.uid}`)
+		this.isPublic = isPublic
+		this.destinationUrl = generateRemoteUrl(`dav/files/${getCurrentUser()?.uid}`)
+		this.tempWorkspace = generateRemoteUrl(`dav/uploads/${getCurrentUser()?.uid}`)
+
+		this.reader = new FileReader();
 
 		logger.debug('Upload workspace initialized', {
-			destinationUrl: this._destinationUrl,
-			tempWorkspace: this._tempWorkspace,
+			destinationUrl: this.destinationUrl,
+			tempWorkspace: this.tempWorkspace,
 			isPublic,
 		})
 	}
@@ -47,11 +51,30 @@ export class Uploader {
 	}
 
 	/**
+	 * Get chunk of the file. Doing this on the fly
+	 * give us a big performance boost and proper
+	 * garbage collection
+	 */
+	private getChunk(file: File, start: number, length: number): Promise<Blob> {
+		// Since we use a global FileReader, we need to only read one chunk at a time
+		return readerLimit(() => new Promise((resolve) => {
+			this.reader.onload = () => {
+				if (this.reader.result !== null) {
+					resolve(new Blob([this.reader.result], {
+						type: 'application/octet-stream',
+					}))
+				}
+			}
+			this.reader.readAsArrayBuffer(file.slice(start, start + length))
+		}))
+	}
+
+	/**
 	 * Create a temporary upload workspace to upload the chunks to
 	 */
 	private async initChunkWorkspace(): Promise<string> {
 		const tempWorkspace = `web-file-upload-${crypto.randomBytes(16).toString('hex')}`
-		const url = `${this._tempWorkspace}/${tempWorkspace}`
+		const url = `${this.tempWorkspace}/${tempWorkspace}`
 		await axios.request({
 			method: 'MKCOL',
 			url,
@@ -63,8 +86,7 @@ export class Uploader {
 	/**
 	 * Upload some data to a given path
 	 */
-	private async uploadData(url: string, getData: () => Buffer|null, cancelToken: CancelToken): Promise<AxiosResponse> {
-		const data = getData()
+	private async uploadData(url: string, data: Blob, cancelToken: CancelToken): Promise<AxiosResponse> {
 		return await axios.request({
 			method: 'PUT',
 			url,
@@ -76,18 +98,18 @@ export class Uploader {
 	/**
 	 * Upload a file to the given path
 	 */
-	upload(path: string, data: Buffer) {
-		const destinationFile = `${this._destinationUrl}/${path.replace(/^\//, '')}`
+	upload(path: string, file: File) {
+		const destinationFile = `${this.destinationUrl}/${path.replace(/^\//, '')}`
 
 		// If manually disabled or if the file is too small
 		// TODO: support chunk uploading in public pages
 		const maxChunkSize = getMaxChunksSize()
 		const disabledChunkUpload = maxChunkSize === 0
-			|| data.byteLength < maxChunkSize
-			|| this._isPublic
+			|| file.size < maxChunkSize
+			|| this.isPublic
 
 
-		const upload = new Upload(destinationFile, !disabledChunkUpload, data.byteLength)
+		const upload = new Upload(destinationFile, !disabledChunkUpload, file.size)
 		this._queue.push(upload)
 
 		// eslint-disable-next-line no-async-promise-executor
@@ -106,7 +128,8 @@ export class Uploader {
 				for (let chunk = 0; chunk <= upload.chunks; chunk++) {
 					const bufferStart = chunk * maxChunkSize
 					const bufferEnd = bufferStart + maxChunkSize
-					const request = limit(() => this.uploadData(`${tempUrl}/${bufferEnd}`, () => data.slice(bufferStart, bufferEnd), upload.token))
+					const blob = await this.getChunk(file, bufferStart, maxChunkSize)
+					const request = limit(() => this.uploadData(`${tempUrl}/${bufferEnd}`, blob, upload.token))
 					request
 						// Update upload progress on chunk completion
 						.then(() => upload.uploaded = upload.uploaded + maxChunkSize)
@@ -143,7 +166,8 @@ export class Uploader {
 			logger.debug('Initializing regular upload', upload)
 
 			// Generating upload limit
-			const request = limit(() => this.uploadData(destinationFile, () => data, upload.token))
+			const blob = await this.getChunk(file, 0, upload.size)
+			const request = limit(() => this.uploadData(destinationFile, blob, upload.token))
 			request
 				.then(() => upload.uploaded = upload.size)
 				.then(() => resolve(upload))

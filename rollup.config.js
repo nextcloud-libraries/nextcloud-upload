@@ -1,6 +1,6 @@
 import typescript from '@rollup/plugin-typescript'
 
-const external = ['crypto-browserify', 'buffer', '@nextcloud/axios', '@nextcloud/router', '@nextcloud/auth', '@nextcloud/logger', 'p-limit']
+const external = ['crypto-browserify', 'buffer', '@nextcloud/axios', '@nextcloud/router', '@nextcloud/auth', '@nextcloud/logger', 'p-cancelable', 'p-limit']
 
 export default [
 	{

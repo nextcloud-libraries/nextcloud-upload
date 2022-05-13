@@ -16,11 +16,11 @@ export function getUploader(): Uploader {
 	return _uploader
 }
 
-export function upload(path: string, data: Buffer): Uploader {
+export function upload(path: string, file: File): Uploader {
 
 	// Init uploader and start uploading
 	_uploader = getUploader()
-	_uploader.upload(path, data)
+	_uploader.upload(path, file)
 
 	return _uploader
 }
