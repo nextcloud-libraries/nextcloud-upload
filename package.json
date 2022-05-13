@@ -1,8 +1,17 @@
 {
-  "name": "nextcloud-upload",
+  "name": "@nextcloud/upload",
   "version": "1.0.0",
   "description": "Nextcloud file upload client",
   "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    "import": "./dist/index.esm.js",
+    "require": "./dist/index.js"
+  },
+  "files": [
+    "dist/"
+  ],
   "author": "John Molakvoæ <skjnldsv@protonmail.com>",
   "license": "AGPL-3.0-or-later",
   "keywords": [
@@ -14,10 +23,12 @@
   ],
   "scripts": {
     "build": "rollup --config rollup.config.js",
-    "dev": "rollup --config rollup.config.js --watch",
+    "dev": "rollup --config rollup.config.js",
+    "watch": "rollup --config rollup.config.js --watch",
     "lint": "eslint --ext .js,.vue src",
     "lint:fix": "eslint --ext .js,.vue src --fix",
-    "test": "jest"
+    "test": "jest",
+    "test:watch": "jest --watchAll"
   },
   "repository": {
     "type": "git",
@@ -47,6 +58,9 @@
     "@nextcloud/axios": "^1.10.0",
     "@nextcloud/logger": "^2.1.0",
     "@nextcloud/router": "^2.0.0",
-    "crypto-browserify": "^3.12.0"
+    "crypto-browserify": "^3.12.0",
+    "p-cancelable": "^4.0.0",
+    "p-limit": "^4.0.0",
+    "p-queue": "^7.2.0"
   }
 }

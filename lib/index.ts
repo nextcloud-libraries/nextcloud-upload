@@ -1,4 +1,4 @@
-import { Uploader } from "./upload"
+import { Uploader } from "./uploader"
 
 declare global {
   interface Window {

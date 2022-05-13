@@ -1,103 +1,92 @@
 import axios from '@nextcloud/axios'
-import { generateRemoteUrl } from '@nextcloud/router'
-import { getCurrentUser } from '@nextcloud/auth'
-import crypto from 'crypto-browserify'
+import { CancelTokenSource, CancelToken } from 'axios'
 
-import logger from './logger'
+import { getMaxChunksSize } from './utils'
+const CancelToken = axios.CancelToken
 
-export class Uploader {
+export enum Status {
+	INITIALIZED = 1,
+	UPLOADING = 2,
+	FINISHED = 3,
+	CANCELLED = 4,
+	FAILED = 5,
+}
+export class Upload {
+	private _path: string
+	private _isChunked: boolean
+	private _chunks: number
+	private _size: number
+    private _uploaded: number
+    private _status: Status
+	private _source: CancelTokenSource
 
-	_tempWorkspace: string
-	_destinationUrl: string
-	_isPublic: boolean
+	constructor(path: string, chunked: boolean = false, size: number) {
+		this._path = path
+		this._isChunked = chunked && getMaxChunksSize() > 0
+		this._chunks = this._isChunked ? Math.floor(size/getMaxChunksSize()) : 1
+		this._size = size
+		this._uploaded = 0
+		this._status = Status.INITIALIZED
+		this._source = CancelToken.source();
+	}
 
-	/**
-	 * Initialize uploader
-	 * 
-	 * @param {boolean} isPublic are we in public mode ?
-	 */
-	constructor(isPublic: boolean = false) {
-		this._isPublic = isPublic
-		this._destinationUrl = generateRemoteUrl(`dav/files/${getCurrentUser()?.uid}`)
-		this._tempWorkspace = generateRemoteUrl(`dav/uploads/${getCurrentUser()?.uid}`)
+	get path(): string {
+		return this._path
+	}
 
-		logger.debug('Upload workspace initialized', {
-			destinationUrl: this._destinationUrl,
-			tempWorkspace: this._tempWorkspace,
-			isPublic,
-		})
+	get isChunked(): boolean {
+		return this._isChunked
+	}
+
+	get chunks(): number {
+		return this._chunks
+	}
+
+	get size(): number {
+		return this._size
+	}
+
+	get uploaded(): number {
+		return this._uploaded
 	}
 
 	/**
-	 * Upload a file to the given path
+	 * Update the uploaded bytes of this upload
 	 */
-	upload(path: string, data: Buffer) {
-		const tempWorkspace = `web-file-upload-${crypto.randomBytes(16).toString('hex')}`
-		const url = `${this._tempWorkspace}/${tempWorkspace}`
-		const destinationFile = `${this._destinationUrl}/${path.replace(/^\//, '')}`
-
-		// If manually disabled or if the file is too small
-		// TODO: support chunk uploading in public pages
-		const maxChunkSize = global.OC?.appConfig?.files?.max_chunk_size || 10 * 1024 * 1024
-		const disabledChunkUpload = global.OC?.appConfig?.files?.max_chunk_size === 0
-			|| data.byteLength < maxChunkSize
-			|| this._isPublic
-
-		const uploadData = async function(url: string, data: Buffer) {
-			await axios.request({
-				method: 'PUT',
-				url,
-				data,
-			})
+	set uploaded(size: number) {
+		if (size >= this._size) {
+			this._status = Status.FINISHED
+			this._uploaded = this._size
+			return
 		}
 
-		// eslint-disable-next-line no-async-promise-executor
-		return new Promise(async (resolve, reject) => {
-			if (!disabledChunkUpload) {
-				logger.debug('Initializing chunked upload', { maxChunkSize, url, destinationFile, byteLength: data.byteLength })
+		this._status = Status.UPLOADING
+		this._uploaded = size
+	}
 
-				// Let's initialize a chunk upload
-				await axios.request({
-					method: 'MKCOL',
-					url,
-				}).catch(() => reject('Failed creating chunked upload directory'))
-			
-				let retries = 0;
-				const maxRetries = 5
-				let bufferOffset = 0
-				// Sending chunks
-				while (bufferOffset < data.byteLength) {
-					try {
-						await uploadData(`${url}/${bufferOffset + maxChunkSize}`, data.slice(bufferOffset, bufferOffset + maxChunkSize))
-						bufferOffset += maxChunkSize
-						retries = 0
-					} catch(error) {
-						retries++
-						if (retries >= maxRetries) {
-							reject(`Failed uploading chunk ${bufferOffset} after ${maxRetries} retries`)
-							break
-						}
-					}
-				}
+	get status(): number {
+		return this._status
+	}
 
-				await axios.request({
-					method: 'MOVE',
-					url: `${url}/.file`,
-					headers: {
-						Destination: destinationFile,
-					},
-				})
-				.then(() => resolve(true))
-				.catch(() => reject('Failed assembling the chunks together'))
+	/**
+	 * Update this upload status
+	 */
+	set status(status: Status) {
+		this._status = status
+	}
 
-				return
-			}
+	/**
+	 * Returns the axios cancel token source
+	 */
+	get token(): CancelToken {
+		return this._source.token
+	}
 
-			logger.debug('Initializing regular upload', { url, destinationFile, byteLength: data.byteLength })
-
-			await uploadData(destinationFile, data)
-			.then(() => resolve(true))
-			.catch(() => reject('Failed uploading the file'))
-		})
+	/**
+	 * Cancel any ongoing requests linked to this upload
+	 */
+	cancel() {
+		this._source.cancel()
+		this._status  = Status.CANCELLED
 	}
 }
