@@ -1,4 +1,4 @@
-import { AxiosResponse, CancelToken } from 'axios'
+import type { AxiosResponse, CancelToken } from 'axios'
 import { generateRemoteUrl } from '@nextcloud/router'
 import { getCurrentUser } from '@nextcloud/auth'
 import axios from '@nextcloud/axios'
@@ -91,12 +91,12 @@ export class Uploader {
 	/**
 	 * Upload some data to a given path
 	 */
-	private async uploadData(url: string, data: Blob, cancelToken: CancelToken): Promise<AxiosResponse> {
+	private async uploadData(url: string, data: Blob, signal: AbortSignal): Promise<AxiosResponse> {
 		return await axios.request({
 			method: 'PUT',
 			url,
 			data,
-			cancelToken
+			signal
 		})
 	}
 
@@ -130,15 +130,28 @@ export class Uploader {
 				const chunksQueue: Array<Promise<AxiosResponse>> = []
 			
 				// Generate chunks array
+				let retries = 0
+				const maxRetries = 2
 				for (let chunk = 0; chunk <= upload.chunks; chunk++) {
 					const bufferStart = chunk * maxChunkSize
 					const bufferEnd = bufferStart + maxChunkSize
 					const blob = await this.getChunk(file, bufferStart, maxChunkSize)
-					const request = limit(() => this.uploadData(`${tempUrl}/${bufferEnd}`, blob, upload.token))
+					const request = limit(() => this.uploadData(`${tempUrl}/${bufferEnd}`, blob, upload.signal))
 					request
 						// Update upload progress on chunk completion
 						.then(() => upload.uploaded = upload.uploaded + maxChunkSize)
-						.catch(() => upload.status = Status.FAILED)
+						.catch(() => {
+							if (retries < maxRetries) {
+								retries++
+								logger.error(`Chunk ${bufferStart} - ${bufferEnd} failed, retrying`)
+								const request = limit(() => this.uploadData(`${tempUrl}/${bufferEnd}`, blob, upload.signal))
+								chunksQueue.push(request)
+								this._queueLimit.push(request)
+								return
+							}
+							upload.status = Status.FAILED
+							logger.warn(`Max retries exceeded. Upload failure`)
+						})
 					chunksQueue.push(request)
 					this._queueLimit.push(request)
 				}
@@ -159,7 +172,7 @@ export class Uploader {
 						.catch(() => reject('Failed assembling the chunks together'))
 					})
 					.catch(() => {
-						// CLeaning up temp directory
+						// Cleaning up temp directory
 						axios.request({
 							method: 'DELETE',
 							url: `${tempUrl}`,
@@ -173,7 +186,7 @@ export class Uploader {
 
 			// Generating upload limit
 			const blob = await this.getChunk(file, 0, upload.size)
-			const request = limit(() => this.uploadData(destinationFile, blob, upload.token))
+			const request = limit(() => this.uploadData(destinationFile, blob, upload.signal))
 			request
 				.then(() => logger.debug(`Successfully uploaded ${file.name}`, { file, upload }))
 				.then(() => upload.uploaded = upload.size)

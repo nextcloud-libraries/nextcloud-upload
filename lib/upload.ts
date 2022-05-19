@@ -1,8 +1,6 @@
 import axios from '@nextcloud/axios'
-import { CancelTokenSource, CancelToken } from 'axios'
 
 import { getMaxChunksSize } from './utils'
-const CancelToken = axios.CancelToken
 
 export enum Status {
 	INITIALIZED = 1,
@@ -18,7 +16,7 @@ export class Upload {
 	private _size: number
     private _uploaded: number
     private _status: Status
-	private _source: CancelTokenSource
+	private _controller: AbortController
 
 	constructor(path: string, chunked: boolean = false, size: number) {
 		this._path = path
@@ -27,7 +25,7 @@ export class Upload {
 		this._size = size
 		this._uploaded = 0
 		this._status = Status.INITIALIZED
-		this._source = CancelToken.source();
+		this._controller =  new AbortController()
 	}
 
 	get path(): string {
@@ -78,15 +76,15 @@ export class Upload {
 	/**
 	 * Returns the axios cancel token source
 	 */
-	get token(): CancelToken {
-		return this._source.token
+	get signal(): AbortSignal {
+		return this._controller.signal
 	}
 
 	/**
 	 * Cancel any ongoing requests linked to this upload
 	 */
 	cancel() {
-		this._source.cancel()
+		this._controller.abort(),
 		this._status  = Status.CANCELLED
 	}
 }
