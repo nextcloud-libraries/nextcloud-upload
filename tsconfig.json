@@ -1,5 +1,6 @@
 {
-  "include": ["./lib/**/*.ts"],
+  "extends": "@vue/tsconfig/tsconfig.json",
+  "include": ["./lib/**/*.ts", "./lib/**/*.ts"],
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
     "moduleResolution": "node",
