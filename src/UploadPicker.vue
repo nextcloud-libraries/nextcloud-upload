@@ -27,8 +27,6 @@
 			</template>
 		</Button>
 
-		{{ uploadManager.stats }}
-
 		<!-- Hidden files picker input -->
 		<input v-show="false"
 			ref="input"
@@ -46,7 +44,7 @@ import Cancel from 'vue-material-design-icons/Cancel.vue'
 import ProgressBar from '@nextcloud/vue/dist/Components/ProgressBar.js'
 import { getUploader } from '../lib/index.ts'
 import { Uploader } from '../lib/uploader.ts'
-import { Status } from '../lib/upload.ts'
+import { Status as UploadStatus } from '../lib/upload.ts'
 import makeEta from 'simple-eta'
 
 /**
@@ -80,32 +78,46 @@ export default {
 
 	data() {
 		return {
-			eta: makeEta({ min: 0, max: 100 }),
+			eta: null,
 			timeLeft: '',
-			uploading: false,
 			uploadManager,
 		}
 	},
 
 	computed: {
 		totalQueueSize() {
-			return this.uploadManager?.stats?.size || 0
+			return this.uploadManager?.info?.size || 0
 		},
 		uploadedQueueSize() {
-			return this.uploadManager?.stats?.progress || 0
+			return this.uploadManager?.info?.progress || 0
+		},
+		uploading() {
+			return this.uploadManager.queue.length > 0
 		},
 		progress() {
 			return Math.round(this.uploadedQueueSize / this.totalQueueSize * 100) || 0
 		},
 		hasFailure() {
-			return this.uploadManager.queue.filter(upload => upload.status === Status.FAILED).length !== 0
+			return this.uploadManager.queue.filter(upload => upload.status === UploadStatus.FAILED).length !== 0
+		},
+		isAssembling() {
+			return this.uploadManager.queue.filter(upload => upload.status === UploadStatus.ASSEMBLING).length !== 0
 		},
 	},
 
 	watch: {
-		progress() {
-			this.eta.report(this.progress)
+		totalQueueSize(size) {
+			this.eta = makeEta({ min: 0, max: size })
+		},
+
+		uploadedQueueSize(size) {
+			this.eta.report(size)
+
 			const estimate = Math.round(this.eta.estimate())
+			if (estimate === Infinity) {
+				this.timeLeft = 'estimating time left'
+				return
+			}
 			if (estimate < 5) {
 				this.timeLeft = 'a few seconds left'
 				return
@@ -137,17 +149,12 @@ export default {
 		 * Start uploading
 		 */
 		async onPick() {
-			this.eta.reset()
 			const files = [...this.$refs.input.files]
-			this.uploading = true
 			const upload = files.map(file => {
-				const upload = uploadManager.upload(file.name, file)
-				upload.then(() => this.eta.report(this.progress))
-				return upload
+				return uploadManager.upload(file.name, file)
 			})
 			this.$refs.form.reset()
 			await Promise.all(upload)
-			this.uploading = false
 		},
 
 		/**
@@ -157,7 +164,6 @@ export default {
 			this.uploadManager.queue.forEach(upload => {
 				upload.cancel()
 			})
-			this.uploading = false
 			this.$refs.form.reset()
 		},
 	},

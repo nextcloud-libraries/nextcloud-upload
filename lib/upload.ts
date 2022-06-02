@@ -3,12 +3,12 @@ import axios from '@nextcloud/axios'
 import { getMaxChunksSize } from './utils'
 
 export enum Status {
-	INITIALIZED = 1,
-	UPLOADING = 2,
-	ASSEMBLING = 3,
-	FINISHED = 4,
-	CANCELLED = 5,
-	FAILED = 6,
+	INITIALIZED = 0,
+	UPLOADING = 1,
+	ASSEMBLING = 2,
+	FINISHED = 3,
+	CANCELLED = 4,
+	FAILED = 5,
 }
 export class Upload {
 	private _path: string
