@@ -54,7 +54,6 @@
     "jest-environment-jsdom": "^28.1.0",
     "rollup": "^2.72.1",
     "rollup-plugin-styles": "^4.0.0",
-    "rollup-plugin-vue": "^6.0.0",
     "rollup-plugin-vue2": "^0.8.1",
     "sass": "^1.51.0",
     "simple-eta": "^3.0.2",
@@ -72,7 +71,6 @@
     "@nextcloud/router": "^2.0.0",
     "buffer": "^6.0.3",
     "crypto-browserify": "^3.12.0",
-    "p-cancelable": "^4.0.0",
     "p-limit": "^4.0.0",
     "p-queue": "^7.2.0"
   }
