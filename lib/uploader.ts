@@ -1,31 +1,33 @@
-import type { AxiosResponse, CancelToken } from 'axios'
+import { CanceledError, type AxiosResponse } from 'axios'
 import { generateRemoteUrl } from '@nextcloud/router'
 import { getCurrentUser } from '@nextcloud/auth'
 import axios from '@nextcloud/axios'
-import crypto from 'crypto-browserify'
-import { Status, Upload } from './upload'
-import PLimit from 'p-limit'
+import { Status as UploadStatus, Upload } from './upload'
 import PCancelable from 'p-cancelable';
+import PQueue from 'p-queue';
 
-const limit = PLimit(3)
-const readerLimit = PLimit(1)
 
 import logger from './logger';
-import { getMaxChunksSize } from './utils'
+import { getMaxChunksSize } from './utils/configUtil'
+import { getChunk, initChunkWorkspace, uploadData } from './utils/uploadUtil'
 
+export enum Status {
+	IDLE = 0,
+	UPLOADING = 1,
+	PAUSED = 2
+}
 export class Uploader {
+	private userRootFolder: string
+	private destinationFolder: string = '/'
 
-	private tempWorkspace: string
-	private destinationUrl: string
 	private isPublic: boolean
-	private reader: FileReader
 
 	// Global upload queue
-	private _queue: Array<Upload> = []
-	private _queueLimit: Array<Promise<any>> = []
-	private _queueSize: number = 0
-	private _queueSpeed: number = 0
-	private _queueProgress: number = 0
+	private uploadQueue: Array<Upload> = []
+	private jobQueue: PQueue = new PQueue({ concurrency: 3 })
+	private queueSize: number = 0
+	private queueProgress: number = 0
+	private queueStatus: Status = Status.IDLE
 
 	/**
 	 * Initialize uploader
@@ -34,112 +36,102 @@ export class Uploader {
 	 */
 	constructor(isPublic: boolean = false) {
 		this.isPublic = isPublic
-		this.destinationUrl = generateRemoteUrl(`dav/files/${getCurrentUser()?.uid}`)
-		this.tempWorkspace = generateRemoteUrl(`dav/uploads/${getCurrentUser()?.uid}`)
-
-		this.reader = new FileReader();
+		this.userRootFolder = generateRemoteUrl(`dav/files/${getCurrentUser()?.uid}`)
 
 		logger.debug('Upload workspace initialized', {
-			destinationUrl: this.destinationUrl,
-			tempWorkspace: this.tempWorkspace,
+			destinationFolder: this.destinationFolder,
+			userRootFolder: this.userRootFolder,
 			isPublic,
+			maxChunksSize: getMaxChunksSize(),
 		})
+	}
+
+	/**
+	 * Get the upload destination path relative to the user root folder
+	 */
+	get destination() {
+		return this.destinationFolder
+	}
+
+	/**
+	 * Set the upload destination path relative to the user root folder
+	 */
+	set destination(path: string) {
+		if (path === '') {
+			path = '/'
+		}
+		if (!path.startsWith('/') ) {
+			path = `/${path}`
+		}
+		this.destinationFolder = path.replace(/\/$/, '')
 	}
 
 	/**
 	 * Get the upload queue
 	 */
 	get queue() {
-		return this._queue
+		return this.uploadQueue
+	}
+
+	private reset() {
+		this.uploadQueue = []
+		this.jobQueue.clear()
+		this.queueSize = 0
+		this.queueProgress = 0
+		this.queueStatus = Status.IDLE
+	}
+
+	/**
+	 * Pause any ongoing upload(s)
+	 */
+	public pause() {
+		this.jobQueue.pause()
+		this.queueStatus = Status.PAUSED
+	}
+
+	/**
+	 * Resume any pending upload(s)
+	 */
+	public start() {
+		this.jobQueue.start()
+		this.queueStatus = Status.UPLOADING
+		this.updateStats()
 	}
 
 	/**
 	 * Get the upload queue stats
 	 */
-	get stats() {
+	get info() {
 		return {
-			size: this._queueSize,
-			speed: this._queueSpeed,
-			progress: this._queueProgress,
+			size: this.queueSize,
+			progress: this.queueProgress,
+			status: this.queueStatus
 		}
 	}
 
 	private updateStats() {
-		const size = this._queue.map(upload => upload.size)
+		const size = this.uploadQueue.map(upload => upload.size)
 			.reduce((partialSum, a) => partialSum + a, 0)
-		const uploaded = this._queue.map(upload => upload.uploaded)
+		const uploaded = this.uploadQueue.map(upload => upload.uploaded)
 			.reduce((partialSum, a) => partialSum + a, 0)
 
-		this._queueSize = size
-		this._queueProgress = uploaded
+		this.queueSize = size
+		this.queueProgress = uploaded
 
-		// this._queue.forEach(upload => {
-		// 	const now = new Date().getTime()
-		// 	const time = (now - upload.startTime) / 1024 / 1024
-		// 	const size = upload.size - upload.uploaded
-		// })
-	}
-
-	/**
-	 * Get chunk of the file. Doing this on the fly
-	 * give us a big performance boost and proper
-	 * garbage collection
-	 */
-	private getChunk(file: File, start: number, length: number): Promise<Blob> {
-		if (!file.type) {
-			return Promise.reject()
+		// If already paused keep it that way
+		if (this.queueStatus === Status.PAUSED) {
+			return
 		}
-
-		// Since we use a global FileReader, we need to only read one chunk at a time
-		return readerLimit(() => new Promise((resolve, reject) => {
-			this.reader.onload = () => {
-				if (this.reader.result !== null) {
-					resolve(new Blob([this.reader.result], {
-						type: 'application/octet-stream',
-					}))
-				}
-				reject()
-			}
-			this.reader.readAsArrayBuffer(file.slice(start, start + length))
-		}))
+		this.queueStatus = this.jobQueue.size > 0
+			? Status.UPLOADING
+			: Status.IDLE
 	}
-
-	/**
-	 * Create a temporary upload workspace to upload the chunks to
-	 */
-	private async initChunkWorkspace(): Promise<string> {
-		const tempWorkspace = `web-file-upload-${crypto.randomBytes(16).toString('hex')}`
-		const url = `${this.tempWorkspace}/${tempWorkspace}`
-		await axios.request({
-			method: 'MKCOL',
-			url,
-		})
-
-		return url
-	}
-
-	/**
-	 * Upload some data to a given path
-	 */
-	private async uploadData(url: string, data: Blob | (() => Promise<Blob>), signal: AbortSignal): Promise<AxiosResponse> {
-		if (typeof data === 'function') {
-			data = await data()
-		}
-
-		return await axios.request({
-			method: 'PUT',
-			url,
-			data,
-			signal,
-			onUploadProgress: () => this.updateStats(),
-		})
-	}
-
+	
 	/**
 	 * Upload a file to the given path
 	 */
 	upload(path: string, file: File) {
-		const destinationFile = `${this.destinationUrl}/${path.replace(/^\//, '')}`
+		const destinationFile = `${this.userRootFolder}${this.destinationFolder}/${path.replace(/^\//, '')}`
 
 		// If manually disabled or if the file is too small
 		// TODO: support chunk uploading in public pages
@@ -150,7 +142,7 @@ export class Uploader {
 
 
 		const upload = new Upload(destinationFile, !disabledChunkUpload, file.size)
-		this._queue.push(upload)
+		this.uploadQueue.push(upload)
 
 		// eslint-disable-next-line no-async-promise-executor
 		const promise = new PCancelable(async (resolve, reject, onCancel): Promise<Upload> => {
@@ -161,8 +153,8 @@ export class Uploader {
 				logger.debug('Initializing chunked upload', { file, upload })
 
 				// Let's initialize a chunk upload
-				const tempUrl = await this.initChunkWorkspace()
-				const chunksQueue: Array<Promise<AxiosResponse>> = []
+				const tempUrl = await initChunkWorkspace()
+				const chunksQueue: Array<Promise<any>> = []
 			
 				// Generate chunks array
 				for (let chunk = 0; chunk < upload.chunks; chunk++) {
@@ -170,63 +162,89 @@ export class Uploader {
 					// Don't go further than the file size
 					const bufferEnd = Math.min(bufferStart + maxChunkSize, upload.size)
 					// Make it a Promise function for better memory management
-					const blob = () => this.getChunk(file, bufferStart, maxChunkSize)
-					const request = limit(() => this.uploadData(`${tempUrl}/${bufferEnd}`, blob, upload.signal))
+					const blob = () => getChunk(file, bufferStart, maxChunkSize)
 
-					request
-						// Update upload progress on chunk completion
-						.then(() => upload.uploaded = upload.uploaded + maxChunkSize)
-						.catch(() => {
-							logger.error(`Chunk ${bufferStart} - ${bufferEnd} uploading failed`)
-							upload.status = Status.FAILED
-						})
-					chunksQueue.push(request)
-					this._queueLimit.push(request)
+					// Init request queue
+					const request = () => {
+						return uploadData(`${tempUrl}/${bufferEnd}`, blob, upload.signal, () => this.updateStats())
+							// Update upload progress on chunk completion
+							.then(() => upload.uploaded = upload.uploaded + maxChunkSize)
+							.catch((error) => {
+								if (!(error instanceof CanceledError)) {
+									logger.error(`Chunk ${bufferStart} - ${bufferEnd} uploading failed`)
+									upload.status = UploadStatus.FAILED
+								}
+								throw error
+							})
+					}
+					chunksQueue.push(this.jobQueue.add(request))
 				}
 
-				// Once all chunks are sent, assemble the final file
-				Promise.all(chunksQueue)
-					.then(() => {
-						this.updateStats()
-						axios.request({
+				try {
+					// Once all chunks are sent, assemble the final file
+					await Promise.all(chunksQueue)
+					this.updateStats()
+
+					await axios.request({
 							method: 'MOVE',
 							url: `${tempUrl}/.file`,
 							headers: {
 								Destination: destinationFile,
 							},
 						})
-						.then(() => upload.status = Status.FINISHED)
-						.then(this.updateStats)
-						.then(() => logger.debug(`Successfully uploaded ${file.name}`, { file, upload }))
-						.then(() => resolve(upload))
-						.catch(() => upload.status = Status.FAILED)
-						.catch(() => reject('Failed assembling the chunks together'))
-					})
-					.catch(() => {
-						// Cleaning up temp directory
-						axios.request({
-							method: 'DELETE',
-							url: `${tempUrl}`,
-						})
-					})
 
-				return upload
+					this.updateStats()
+					upload.status = UploadStatus.FINISHED
+					logger.debug(`Successfully uploaded ${file.name}`, { file, upload })
+					resolve(upload)
+				} catch (error) {
+					if (!(error instanceof CanceledError)) {
+						upload.status = UploadStatus.FAILED
+						reject('Failed assembling the chunks together')
+					} else {
+						upload.status = UploadStatus.FAILED
+						reject('Upload has been cancelled')
+					}
+
+					// Cleaning up temp directory
+					axios.request({
+						method: 'DELETE',
+						url: `${tempUrl}`,
+					})
+				}
+			} else {
+				logger.debug('Initializing regular upload', { file, upload })
+
+				// Generating upload limit
+				const blob = await getChunk(file, 0, upload.size)
+				const request = async () => {
+					try {
+						await uploadData(destinationFile, blob, upload.signal, () => this.updateStats())
+
+						// Update progress
+						upload.uploaded = upload.size
+						this.updateStats()
+
+						// Resolve
+						logger.debug(`Successfully uploaded ${file.name}`, { file, upload })
+						resolve(upload)
+					} catch (error) {
+						if (error instanceof CanceledError) {
+							upload.status = UploadStatus.FAILED
+							reject('Upload has been cancelled')
+							return
+						} 
+						upload.status = UploadStatus.FAILED
+						reject('Failed uploading the file')
+					}
+				}
+				this.jobQueue.add(request)
+				this.updateStats()
 			}
 
-			logger.debug('Initializing regular upload', { file, upload })
-
-			// Generating upload limit
-			const blob = await this.getChunk(file, 0, upload.size)
-			const request = limit(() => this.uploadData(destinationFile, blob, upload.signal))
-			request
-				.then(this.updateStats)
-				.then(() => logger.debug(`Successfully uploaded ${file.name}`, { file, upload }))
-				.then(() => upload.uploaded = upload.size)
-				.then(() => resolve(upload))
-				.catch(() => upload.status = Status.FAILED)
-				.catch(() => reject('Failed uploading the file'))
-
-			this._queueLimit.push(request)
+			// Reset when upload queue is done
+			this.jobQueue.onIdle()
+				.then(() => this.reset())
 			return upload
 		})
 
