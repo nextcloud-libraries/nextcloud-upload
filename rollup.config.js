@@ -14,6 +14,7 @@ const external = [
 	'crypto-browserify',
 	'p-cancelable',
 	'p-limit',
+	'p-queue',
 ]
 
 export default [

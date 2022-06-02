@@ -5,23 +5,27 @@ import { getMaxChunksSize } from './utils'
 export enum Status {
 	INITIALIZED = 1,
 	UPLOADING = 2,
-	FINISHED = 3,
-	CANCELLED = 4,
-	FAILED = 5,
+	ASSEMBLING = 3,
+	FINISHED = 4,
+	CANCELLED = 5,
+	FAILED = 6,
 }
 export class Upload {
 	private _path: string
 	private _isChunked: boolean
 	private _chunks: number
+
 	private _size: number
     private _uploaded: number
+    private _startTime: number = 0
+
     private _status: Status
 	private _controller: AbortController
 
 	constructor(path: string, chunked: boolean = false, size: number) {
 		this._path = path
 		this._isChunked = chunked && getMaxChunksSize() > 0
-		this._chunks = this._isChunked ? Math.floor(size/getMaxChunksSize()) : 1
+		this._chunks = this._isChunked ? Math.ceil(size / getMaxChunksSize()) : 1
 		this._size = size
 		this._uploaded = 0
 		this._status = Status.INITIALIZED
@@ -48,18 +52,27 @@ export class Upload {
 		return this._uploaded
 	}
 
+	get startTime(): number {
+		return this._startTime
+	}
+
 	/**
 	 * Update the uploaded bytes of this upload
 	 */
-	set uploaded(size: number) {
-		if (size >= this._size) {
-			this._status = Status.FINISHED
+	set uploaded(length: number) {
+		if (length >= this._size) {
+			this._status = this._isChunked ? Status.ASSEMBLING : Status.FINISHED
 			this._uploaded = this._size
 			return
 		}
 
 		this._status = Status.UPLOADING
-		this._uploaded = size
+		this._uploaded = length
+
+		// If first progress, let's log the start time
+		if (this._startTime === 0) {
+			this._startTime = new Date().getTime()
+		}
 	}
 
 	get status(): number {

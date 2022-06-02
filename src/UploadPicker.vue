@@ -1,5 +1,5 @@
 <template>
-	<div class="upload-picker">
+	<form ref="form" class="upload-picker">
 		<!-- New button -->
 		<Button :disabled="disabled"
 			@click="onClick">
@@ -9,11 +9,12 @@
 			</template>
 		</Button>
 
-		<ProgressBar v-show="uploading"
-			:error="hasFailure"
-			:value="progress"
-			class="upload-picker__progress"
-			size="medium" />
+		<div v-show="uploading" class="upload-picker__progress">
+			<ProgressBar :error="hasFailure"
+				:value="progress"
+				size="medium" />
+			<p>{{ timeLeft }}</p>
+		</div>
 
 		<!-- Cancel upload button -->
 		<Button v-if="uploading"
@@ -26,6 +27,8 @@
 			</template>
 		</Button>
 
+		{{ uploadManager.stats }}
+
 		<!-- Hidden files picker input -->
 		<input v-show="false"
 			ref="input"
@@ -33,7 +36,7 @@
 			:accept="accept"
 			:multiple="multiple"
 			@change="onPick">
-	</div>
+	</form>
 </template>
 
 <script>
@@ -44,6 +47,7 @@ import ProgressBar from '@nextcloud/vue/dist/Components/ProgressBar.js'
 import { getUploader } from '../lib/index.ts'
 import { Uploader } from '../lib/uploader.ts'
 import { Status } from '../lib/upload.ts'
+import makeEta from 'simple-eta'
 
 /**
  * @type {Uploader}
@@ -76,25 +80,48 @@ export default {
 
 	data() {
 		return {
+			eta: makeEta({ min: 0, max: 100 }),
+			timeLeft: '',
 			uploading: false,
-			queue: uploadManager.queue,
+			uploadManager,
 		}
 	},
 
 	computed: {
 		totalQueueSize() {
-			return this.queue.map(upload => upload.size)
-				.reduce((partialSum, a) => partialSum + a, 0)
+			return this.uploadManager?.stats?.size || 0
 		},
 		uploadedQueueSize() {
-			return this.queue.map(upload => upload.uploaded)
-				.reduce((partialSum, a) => partialSum + a, 0)
+			return this.uploadManager?.stats?.progress || 0
 		},
 		progress() {
 			return Math.round(this.uploadedQueueSize / this.totalQueueSize * 100) || 0
 		},
 		hasFailure() {
-			return this.queue.filter(upload => upload.status === Status.FAILED).length !== 0
+			return this.uploadManager.queue.filter(upload => upload.status === Status.FAILED).length !== 0
+		},
+	},
+
+	watch: {
+		progress() {
+			this.eta.report(this.progress)
+			const estimate = Math.round(this.eta.estimate())
+			if (estimate < 5) {
+				this.timeLeft = 'a few seconds left'
+				return
+			}
+			if (estimate > 60 * 60) {
+				const hours = Math.round(estimate / (60 * 60))
+				const minutes = Math.round(estimate % (60 * 60))
+				this.timeLeft = `${hours} hours and ${minutes} minutes left`
+				return
+			}
+			if (estimate > 60) {
+				const minutes = Math.round(estimate / 60)
+				this.timeLeft = `${minutes} minutes left`
+				return
+			}
+			this.timeLeft = `${estimate} seconds left`
 		},
 	},
 
@@ -110,9 +137,15 @@ export default {
 		 * Start uploading
 		 */
 		async onPick() {
+			this.eta.reset()
 			const files = [...this.$refs.input.files]
 			this.uploading = true
-			const upload = files.map(file => uploadManager.upload(file.name, file))
+			const upload = files.map(file => {
+				const upload = uploadManager.upload(file.name, file)
+				upload.then(() => this.eta.report(this.progress))
+				return upload
+			})
+			this.$refs.form.reset()
 			await Promise.all(upload)
 			this.uploading = false
 		},
@@ -121,10 +154,11 @@ export default {
 		 * Cancel ongoing queue
 		 */
 		onCancel() {
-			this.queue.forEach(upload => {
+			this.uploadManager.queue.forEach(upload => {
 				upload.cancel()
 			})
 			this.uploading = false
+			this.$refs.form.reset()
 		},
 	},
 }
@@ -136,11 +170,15 @@ export default {
 	display: inline-flex;
 	height: 44px;
 	align-items: center;
-	min-width: 200px;
+
+	&__progress {
+		width: 200px
+	}
 
 	&__progress {
 		margin-left: 8px;
-		margin-right: 8px;
+		// Visually more pleasing
+		margin-right: 20px;
 	}
 }
 </style>
