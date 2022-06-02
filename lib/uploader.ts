@@ -1,4 +1,4 @@
-import { AxiosResponse, CancelToken } from 'axios'
+import type { AxiosResponse, CancelToken } from 'axios'
 import { generateRemoteUrl } from '@nextcloud/router'
 import { getCurrentUser } from '@nextcloud/auth'
 import axios from '@nextcloud/axios'
@@ -18,11 +18,14 @@ export class Uploader {
 	private tempWorkspace: string
 	private destinationUrl: string
 	private isPublic: boolean
-	private reader: FileReader;
+	private reader: FileReader
 
 	// Global upload queue
 	private _queue: Array<Upload> = []
 	private _queueLimit: Array<Promise<any>> = []
+	private _queueSize: number = 0
+	private _queueSpeed: number = 0
+	private _queueProgress: number = 0
 
 	/**
 	 * Initialize uploader
@@ -48,6 +51,33 @@ export class Uploader {
 	 */
 	get queue() {
 		return this._queue
+	}
+
+	/**
+	 * Get the upload queue stats
+	 */
+	get stats() {
+		return {
+			size: this._queueSize,
+			speed: this._queueSpeed,
+			progress: this._queueProgress,
+		}
+	}
+
+	private updateStats() {
+		const size = this._queue.map(upload => upload.size)
+			.reduce((partialSum, a) => partialSum + a, 0)
+		const uploaded = this._queue.map(upload => upload.uploaded)
+			.reduce((partialSum, a) => partialSum + a, 0)
+
+		this._queueSize = size
+		this._queueProgress = uploaded
+
+		// this._queue.forEach(upload => {
+		// 	const now = new Date().getTime()
+		// 	const time = (now - upload.startTime) / 1024 / 1024
+		// 	const size = upload.size - upload.uploaded
+		// })
 	}
 
 	/**
@@ -91,12 +121,17 @@ export class Uploader {
 	/**
 	 * Upload some data to a given path
 	 */
-	private async uploadData(url: string, data: Blob, cancelToken: CancelToken): Promise<AxiosResponse> {
+	private async uploadData(url: string, data: Blob | (() => Promise<Blob>), signal: AbortSignal): Promise<AxiosResponse> {
+		if (typeof data === 'function') {
+			data = await data()
+		}
+
 		return await axios.request({
 			method: 'PUT',
 			url,
 			data,
-			cancelToken
+			signal,
+			onUploadProgress: () => this.updateStats(),
 		})
 	}
 
@@ -130,15 +165,21 @@ export class Uploader {
 				const chunksQueue: Array<Promise<AxiosResponse>> = []
 			
 				// Generate chunks array
-				for (let chunk = 0; chunk <= upload.chunks; chunk++) {
+				for (let chunk = 0; chunk < upload.chunks; chunk++) {
 					const bufferStart = chunk * maxChunkSize
-					const bufferEnd = bufferStart + maxChunkSize
-					const blob = await this.getChunk(file, bufferStart, maxChunkSize)
-					const request = limit(() => this.uploadData(`${tempUrl}/${bufferEnd}`, blob, upload.token))
+					// Don't go further than the file size
+					const bufferEnd = Math.min(bufferStart + maxChunkSize, upload.size)
+					// Make it a Promise function for better memory management
+					const blob = () => this.getChunk(file, bufferStart, maxChunkSize)
+					const request = limit(() => this.uploadData(`${tempUrl}/${bufferEnd}`, blob, upload.signal))
+
 					request
 						// Update upload progress on chunk completion
 						.then(() => upload.uploaded = upload.uploaded + maxChunkSize)
-						.catch(() => upload.status = Status.FAILED)
+						.catch(() => {
+							logger.error(`Chunk ${bufferStart} - ${bufferEnd} uploading failed`)
+							upload.status = Status.FAILED
+						})
 					chunksQueue.push(request)
 					this._queueLimit.push(request)
 				}
@@ -146,6 +187,7 @@ export class Uploader {
 				// Once all chunks are sent, assemble the final file
 				Promise.all(chunksQueue)
 					.then(() => {
+						this.updateStats()
 						axios.request({
 							method: 'MOVE',
 							url: `${tempUrl}/.file`,
@@ -153,13 +195,15 @@ export class Uploader {
 								Destination: destinationFile,
 							},
 						})
+						.then(() => upload.status = Status.FINISHED)
+						.then(this.updateStats)
 						.then(() => logger.debug(`Successfully uploaded ${file.name}`, { file, upload }))
 						.then(() => resolve(upload))
 						.catch(() => upload.status = Status.FAILED)
 						.catch(() => reject('Failed assembling the chunks together'))
 					})
 					.catch(() => {
-						// CLeaning up temp directory
+						// Cleaning up temp directory
 						axios.request({
 							method: 'DELETE',
 							url: `${tempUrl}`,
@@ -173,8 +217,9 @@ export class Uploader {
 
 			// Generating upload limit
 			const blob = await this.getChunk(file, 0, upload.size)
-			const request = limit(() => this.uploadData(destinationFile, blob, upload.token))
+			const request = limit(() => this.uploadData(destinationFile, blob, upload.signal))
 			request
+				.then(this.updateStats)
 				.then(() => logger.debug(`Successfully uploaded ${file.name}`, { file, upload }))
 				.then(() => upload.uploaded = upload.size)
 				.then(() => resolve(upload))
@@ -184,7 +229,6 @@ export class Uploader {
 			this._queueLimit.push(request)
 			return upload
 		})
-		
 
 		return promise
 	}

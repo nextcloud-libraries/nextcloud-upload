@@ -1,4 +1,5 @@
 import { Uploader } from "./uploader"
+import UploadPicker from '../src/UploadPicker'
 
 declare global {
   interface Window {
@@ -24,3 +25,5 @@ export function upload(path: string, file: File): Uploader {
 
 	return _uploader
 }
+
+export { UploadPicker }
