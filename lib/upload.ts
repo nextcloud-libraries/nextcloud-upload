@@ -1,6 +1,6 @@
 import axios from '@nextcloud/axios'
 
-import { getMaxChunksSize } from './utils'
+import { getMaxChunksSize } from './utils/configUtil'
 
 export enum Status {
 	INITIALIZED = 0,
