@@ -1,39 +1,36 @@
 # 
 # Translators:
 # Valdnet, 2022
+# Transifex Bot <>, 2022
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Valdnet, 2022\n"
+"Last-Translator: Transifex Bot <>, 2022\n"
 "Language-Team: Polish (https://www.transifex.com/nextcloud/teams/64236/pl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: pl\n"
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
 
-#: src/UploadPicker.vue:184
 msgid "{estimate} seconds left"
 msgstr "Pozostało {estimate} sekund"
 
-#: src/UploadPicker.vue:176
 msgid "{hours} hours and {minutes} minutes left"
 msgstr "Pozostało {hours} godzin i {minutes} minut"
 
-#: src/UploadPicker.vue:181
 msgid "{minutes} minutes left"
 msgstr "Pozostało {minutes} minut"
 
-#: src/UploadPicker.vue:170
 msgid "a few seconds left"
 msgstr "Pozostało kilka sekund"
 
-#: src/UploadPicker.vue:84
+msgid "Add"
+msgstr ""
+
 msgid "Cancel uploads"
 msgstr "Anuluj wysyłanie"
 
-#: src/UploadPicker.vue:166
 msgid "estimating time left"
 msgstr "Szacowanie pozostałego czasu"
 
-#: src/UploadPicker.vue:159
 msgid "paused"
 msgstr "Wstrzymane"
