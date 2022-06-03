@@ -1,9 +1,9 @@
-name: L10n
+name: Transifex
 on: pull_request
 
 jobs:
   auto-approve-merge:
-    if: github.actor == 'Transifex-localization-platform[bot]' || github.actor == 'transifex-integration[bot]'
+    if: github.event.pull_request.user.login == 'transifex-integration[bot]'
     runs-on: ubuntu-latest
 
     steps:
