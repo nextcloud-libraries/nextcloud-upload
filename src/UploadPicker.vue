@@ -1,5 +1,5 @@
 <template>
-	<form ref="form" class="upload-picker">
+	<form ref="form" :class="{'upload-picker--paused': isPaused}" class="upload-picker">
 		<!-- New button -->
 		<Button :disabled="disabled"
 			@click="onClick">
@@ -20,6 +20,7 @@
 		<Button v-if="uploading"
 			class="upload-picker__cancel"
 			type="tertiary"
+			:aria-label="cancelLabel"
 			@click="onCancel">
 			<template #icon>
 				<Cancel title=""
@@ -38,14 +39,16 @@
 </template>
 
 <script>
-import Button from '@nextcloud/vue/dist/Components/Button.js'
-import Plus from 'vue-material-design-icons/Plus.vue'
-import Cancel from 'vue-material-design-icons/Cancel.vue'
-import ProgressBar from '@nextcloud/vue/dist/Components/ProgressBar.js'
 import { getUploader } from '../lib/index.ts'
-import { Uploader } from '../lib/uploader.ts'
-import { Status as UploadStatus } from '../lib/upload.ts'
+import Button from '@nextcloud/vue/dist/Components/Button.js'
+import Cancel from 'vue-material-design-icons/Cancel.vue'
 import makeEta from 'simple-eta'
+import Plus from 'vue-material-design-icons/Plus.vue'
+import ProgressBar from '@nextcloud/vue/dist/Components/ProgressBar.js'
+
+import { Status as UploadStatus } from '../lib/upload.ts'
+import { t } from '../lib/utils/l10n.js'
+import { Uploader, Status } from '../lib/uploader.ts'
 
 /**
  * @type {Uploader}
@@ -78,6 +81,7 @@ export default {
 
 	data() {
 		return {
+			cancelLabel: t('Cancel uploads'),
 			eta: null,
 			timeLeft: '',
 			uploadManager,
@@ -86,10 +90,10 @@ export default {
 
 	computed: {
 		totalQueueSize() {
-			return this.uploadManager?.info?.size || 0
+			return this.uploadManager.info?.size || 0
 		},
 		uploadedQueueSize() {
-			return this.uploadManager?.info?.progress || 0
+			return this.uploadManager.info?.progress || 0
 		},
 		uploading() {
 			return this.uploadManager.queue.length > 0
@@ -103,37 +107,20 @@ export default {
 		isAssembling() {
 			return this.uploadManager.queue.filter(upload => upload.status === UploadStatus.ASSEMBLING).length !== 0
 		},
+		isPaused() {
+			return this.uploadManager.info?.status === Status.PAUSED
+		},
 	},
 
 	watch: {
 		totalQueueSize(size) {
 			this.eta = makeEta({ min: 0, max: size })
+			this.updateStatus()
 		},
 
 		uploadedQueueSize(size) {
 			this.eta.report(size)
-
-			const estimate = Math.round(this.eta.estimate())
-			if (estimate === Infinity) {
-				this.timeLeft = 'estimating time left'
-				return
-			}
-			if (estimate < 5) {
-				this.timeLeft = 'a few seconds left'
-				return
-			}
-			if (estimate > 60 * 60) {
-				const hours = Math.round(estimate / (60 * 60))
-				const minutes = Math.round(estimate % (60 * 60))
-				this.timeLeft = `${hours} hours and ${minutes} minutes left`
-				return
-			}
-			if (estimate > 60) {
-				const minutes = Math.round(estimate / 60)
-				this.timeLeft = `${minutes} minutes left`
-				return
-			}
-			this.timeLeft = `${estimate} seconds left`
+			this.updateStatus()
 		},
 	},
 
@@ -166,25 +153,76 @@ export default {
 			})
 			this.$refs.form.reset()
 		},
+
+		updateStatus() {
+			if (this.isPaused) {
+				this.timeLeft = t('paused')
+				return
+			}
+
+			const estimate = Math.round(this.eta.estimate())
+
+			if (estimate === Infinity) {
+				this.timeLeft = t('estimating time left')
+				return
+			}
+			if (estimate < 5) {
+				this.timeLeft = t('a few seconds left')
+				return
+			}
+			if (estimate > 60 * 60) {
+				const hours = Math.round(estimate / (60 * 60))
+				const minutes = Math.round(estimate % (60 * 60))
+				this.timeLeft = t('{hours} hours and {minutes} minutes left', { hours, minutes })
+				return
+			}
+			if (estimate > 60) {
+				const minutes = Math.round(estimate / 60)
+				this.timeLeft = t('{minutes} minutes left', { minutes })
+				return
+			}
+			this.timeLeft = t('{estimate} seconds left', { estimate })
+		},
 	},
 }
 </script>
 
 <style lang="scss" scoped>
 .upload-picker {
-	margin: 200px;
 	display: inline-flex;
-	height: 44px;
 	align-items: center;
+	height: 44px;
+	margin: 200px;
 
 	&__progress {
-		width: 200px
+		width: 200px;
 	}
 
 	&__progress {
-		margin-left: 8px;
 		// Visually more pleasing
 		margin-right: 20px;
+		margin-left: 8px;
+		// Align progress/text separation with the middle
+		margin-top: 6px;
+	}
+
+	&--paused &__progress {
+		animation: breathing 3s ease-out infinite normal;
+	}
+}
+
+@keyframes breathing {
+	0% {
+		opacity: .5;
+	}
+	25% {
+		opacity: 1;
+	}
+	60% {
+		opacity: .5;
+	}
+	100% {
+		opacity: .5;
 	}
 }
 </style>

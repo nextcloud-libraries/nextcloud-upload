@@ -1,0 +1,34 @@
+name: L10n
+on: pull_request
+
+jobs:
+  l10n-extract-check:
+    runs-on: ubuntu-latest
+
+    name: Pot check
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Read package.json node and npm engines version
+        uses: skjnldsv/read-package-engines-version-actions@v1.2
+        id: versions
+        with:
+          fallbackNode: '^12'
+          fallbackNpm: '^6'
+
+      - name: Set up node ${{ steps.versions.outputs.nodeVersion }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ steps.versions.outputs.nodeVersion }}
+
+      - name: Set up npm ${{ steps.versions.outputs.npmVersion }}
+        run: npm i -g npm@"${{ steps.versions.outputs.npmVersion }}"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Extract l10n files
+        run: npm run l10n:extract
+
+      - name: Check l10n file changes
+        run: bash -c "[[ ! \"`git status --porcelain l10n`\" ]] || ( echo 'Uncommited l10n changes. Run \`npm run l10n:extract\`.' && exit 1 )"
