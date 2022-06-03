@@ -7,6 +7,7 @@
 				<Plus title=""
 					:size="20" />
 			</template>
+			{{ uploadLabel }}
 		</Button>
 
 		<div v-show="uploading" class="upload-picker__progress">
@@ -82,6 +83,7 @@ export default {
 	data() {
 		return {
 			cancelLabel: t('Cancel uploads'),
+			uploadLabel: t('Add'),
 			eta: null,
 			timeLeft: '',
 			uploadManager,
