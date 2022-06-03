@@ -197,15 +197,15 @@ export default {
 
 	&__progress {
 		width: 200px;
+		// Align progress/text separation with the middle
+		margin-top: 8px;
 		// Visually more pleasing
 		margin-right: 20px;
 		margin-left: 8px;
-		// Align progress/text separation with the middle
-		margin-top: 6px;
 
 		p {
-			white-space: nowrap;
 			overflow: hidden;
+			white-space: nowrap;
 			text-overflow: ellipsis;
 		}
 	}
@@ -229,4 +229,5 @@ export default {
 		opacity: .5;
 	}
 }
+
 </style>
