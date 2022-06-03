@@ -1,0 +1,39 @@
+# 
+# Translators:
+# Florin Baras, 2022
+# 
+msgid ""
+msgstr ""
+"Last-Translator: Florin Baras, 2022\n"
+"Language-Team: Spanish (https://www.transifex.com/nextcloud/teams/64236/es/)\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: es\n"
+"Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
+
+#: src/UploadPicker.vue:184
+msgid "{estimate} seconds left"
+msgstr "{estimate} segundos restantes"
+
+#: src/UploadPicker.vue:176
+msgid "{hours} hours and {minutes} minutes left"
+msgstr "{hours} horas y {minutes} minutos restantes"
+
+#: src/UploadPicker.vue:181
+msgid "{minutes} minutes left"
+msgstr "{minutes} minutos restantes"
+
+#: src/UploadPicker.vue:170
+msgid "a few seconds left"
+msgstr "quedan unos segundos"
+
+#: src/UploadPicker.vue:84
+msgid "Cancel uploads"
+msgstr "Cancelar subidas"
+
+#: src/UploadPicker.vue:166
+msgid "estimating time left"
+msgstr "estimación del tiempo restante"
+
+#: src/UploadPicker.vue:159
+msgid "paused"
+msgstr "pausado"
