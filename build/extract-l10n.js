@@ -18,5 +18,11 @@ extractor
 	.parseFilesGlob('./lib/**/*.@(ts|js|vue)')
 	.parseFilesGlob('./src/**/*.@(ts|js|vue)')
 
+// https://github.com/lukasgeiter/gettext-extractor/issues/27
+// clean file references
+extractor.getMessages().forEach((msg) => {
+	msg.references = []
+})
+
 extractor.savePotFile('./l10n/messages.pot')
 extractor.printStats()
