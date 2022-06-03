@@ -137,11 +137,10 @@ export default {
 		 */
 		async onPick() {
 			const files = [...this.$refs.input.files]
-			const upload = files.map(file => {
-				return uploadManager.upload(file.name, file)
+			files.forEach(file => {
+				uploadManager.upload(file.name, file)
 			})
 			this.$refs.form.reset()
-			await Promise.all(upload)
 		},
 
 		/**

@@ -1,33 +1,34 @@
-import { CanceledError, type AxiosResponse } from 'axios'
+import { CanceledError } from 'axios'
 import { generateRemoteUrl } from '@nextcloud/router'
 import { getCurrentUser } from '@nextcloud/auth'
 import axios from '@nextcloud/axios'
-import { Status as UploadStatus, Upload } from './upload'
 import PCancelable from 'p-cancelable';
 import PQueue from 'p-queue';
 
 
-import logger from './logger';
-import { getMaxChunksSize } from './utils/configUtil'
 import { getChunk, initChunkWorkspace, uploadData } from './utils/uploadUtil'
+import { getMaxChunksSize } from './utils/configUtil'
+import { Status as UploadStatus, Upload } from './upload'
+import logger from './utils/logger';
 
 export enum Status {
 	IDLE = 0,
 	UPLOADING = 1,
 	PAUSED = 2
 }
-export class Uploader {
-	private userRootFolder: string
-	private destinationFolder: string = '/'
 
-	private isPublic: boolean
+export class Uploader {
+	private _userRootFolder: string
+	private _destinationFolder: string = '/'
+
+	private _isPublic: boolean
 
 	// Global upload queue
-	private uploadQueue: Array<Upload> = []
-	private jobQueue: PQueue = new PQueue({ concurrency: 3 })
-	private queueSize: number = 0
-	private queueProgress: number = 0
-	private queueStatus: Status = Status.IDLE
+	private _uploadQueue: Array<Upload> = []
+	private _jobQueue: PQueue = new PQueue({ concurrency: 3 })
+	private _queueSize: number = 0
+	private _queueProgress: number = 0
+	private _queueStatus: Status = Status.IDLE
 
 	/**
 	 * Initialize uploader
@@ -35,12 +36,12 @@ export class Uploader {
 	 * @param {boolean} isPublic are we in public mode ?
 	 */
 	constructor(isPublic: boolean = false) {
-		this.isPublic = isPublic
-		this.userRootFolder = generateRemoteUrl(`dav/files/${getCurrentUser()?.uid}`)
+		this._isPublic = isPublic
+		this._userRootFolder = generateRemoteUrl(`dav/files/${getCurrentUser()?.uid}`)
 
 		logger.debug('Upload workspace initialized', {
-			destinationFolder: this.destinationFolder,
-			userRootFolder: this.userRootFolder,
+			destinationFolder: this._destinationFolder,
+			userRootFolder: this._userRootFolder,
 			isPublic,
 			maxChunksSize: getMaxChunksSize(),
 		})
@@ -50,7 +51,7 @@ export class Uploader {
 	 * Get the upload destination path relative to the user root folder
 	 */
 	get destination() {
-		return this.destinationFolder
+		return this._destinationFolder
 	}
 
 	/**
@@ -63,38 +64,38 @@ export class Uploader {
 		if (!path.startsWith('/') ) {
 			path = `/${path}`
 		}
-		this.destinationFolder = path.replace(/\/$/, '')
+		this._destinationFolder = path.replace(/\/$/, '')
 	}
 
 	/**
 	 * Get the upload queue
 	 */
 	get queue() {
-		return this.uploadQueue
+		return this._uploadQueue
 	}
 
 	private reset() {
-		this.uploadQueue = []
-		this.jobQueue.clear()
-		this.queueSize = 0
-		this.queueProgress = 0
-		this.queueStatus = Status.IDLE
+		this._uploadQueue = []
+		this._jobQueue.clear()
+		this._queueSize = 0
+		this._queueProgress = 0
+		this._queueStatus = Status.IDLE
 	}
 
 	/**
 	 * Pause any ongoing upload(s)
 	 */
 	public pause() {
-		this.jobQueue.pause()
-		this.queueStatus = Status.PAUSED
+		this._jobQueue.pause()
+		this._queueStatus = Status.PAUSED
 	}
 
 	/**
 	 * Resume any pending upload(s)
 	 */
 	public start() {
-		this.jobQueue.start()
-		this.queueStatus = Status.UPLOADING
+		this._jobQueue.start()
+		this._queueStatus = Status.UPLOADING
 		this.updateStats()
 	}
 
@@ -103,26 +104,26 @@ export class Uploader {
 	 */
 	get info() {
 		return {
-			size: this.queueSize,
-			progress: this.queueProgress,
-			status: this.queueStatus
+			size: this._queueSize,
+			progress: this._queueProgress,
+			status: this._queueStatus
 		}
 	}
 
 	private updateStats() {
-		const size = this.uploadQueue.map(upload => upload.size)
+		const size = this._uploadQueue.map(upload => upload.size)
 			.reduce((partialSum, a) => partialSum + a, 0)
-		const uploaded = this.uploadQueue.map(upload => upload.uploaded)
+		const uploaded = this._uploadQueue.map(upload => upload.uploaded)
 			.reduce((partialSum, a) => partialSum + a, 0)
 
-		this.queueSize = size
-		this.queueProgress = uploaded
+		this._queueSize = size
+		this._queueProgress = uploaded
 
 		// If already paused keep it that way
-		if (this.queueStatus === Status.PAUSED) {
+		if (this._queueStatus === Status.PAUSED) {
 			return
 		}
-		this.queueStatus = this.jobQueue.size > 0
+		this._queueStatus = this._jobQueue.size > 0
 			? Status.UPLOADING
 			: Status.IDLE
 	}
@@ -131,18 +132,19 @@ export class Uploader {
 	 * Upload a file to the given path
 	 */
 	upload(path: string, file: File) {
-		const destinationFile = `${this.userRootFolder}${this.destinationFolder}/${path.replace(/^\//, '')}`
+		const destinationFolder = this._destinationFolder === '/' ? '' : this._destinationFolder
+		const destinationFile = `${this._userRootFolder}${destinationFolder}/${path.replace(/^\//, '')}`
 
 		// If manually disabled or if the file is too small
 		// TODO: support chunk uploading in public pages
 		const maxChunkSize = getMaxChunksSize()
 		const disabledChunkUpload = maxChunkSize === 0
 			|| file.size < maxChunkSize
-			|| this.isPublic
+			|| this._isPublic
 
 
 		const upload = new Upload(destinationFile, !disabledChunkUpload, file.size)
-		this.uploadQueue.push(upload)
+		this._uploadQueue.push(upload)
 
 		// eslint-disable-next-line no-async-promise-executor
 		const promise = new PCancelable(async (resolve, reject, onCancel): Promise<Upload> => {
@@ -177,7 +179,7 @@ export class Uploader {
 								throw error
 							})
 					}
-					chunksQueue.push(this.jobQueue.add(request))
+					chunksQueue.push(this._jobQueue.add(request))
 				}
 
 				try {
@@ -238,12 +240,12 @@ export class Uploader {
 						reject('Failed uploading the file')
 					}
 				}
-				this.jobQueue.add(request)
+				this._jobQueue.add(request)
 				this.updateStats()
 			}
 
 			// Reset when upload queue is done
-			this.jobQueue.onIdle()
+			this._jobQueue.onIdle()
 				.then(() => this.reset())
 			return upload
 		})
