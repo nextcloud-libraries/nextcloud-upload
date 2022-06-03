@@ -54,7 +54,6 @@
     "jest-environment-jsdom": "^28.1.0",
     "rollup": "^2.72.1",
     "rollup-plugin-styles": "^4.0.0",
-    "rollup-plugin-vue": "^6.0.0",
     "rollup-plugin-vue2": "^0.8.1",
     "sass": "^1.51.0",
     "simple-eta": "^3.0.2",
