@@ -1,5 +1,5 @@
 <template>
-	<form ref="form" :class="{'upload-picker--paused': isPaused}" class="upload-picker">
+	<form ref="form" :class="{'upload-picker--uploading': isUploading, 'upload-picker--paused': isPaused}" class="upload-picker">
 		<!-- New button -->
 		<Button :disabled="disabled"
 			@click="onClick">
@@ -10,7 +10,8 @@
 			{{ uploadLabel }}
 		</Button>
 
-		<div v-show="uploading" class="upload-picker__progress">
+		<!-- Progressbar and status, hidden by css -->
+		<div class="upload-picker__progress">
 			<ProgressBar :error="hasFailure"
 				:value="progress"
 				size="medium" />
@@ -18,7 +19,7 @@
 		</div>
 
 		<!-- Cancel upload button -->
-		<Button v-if="uploading"
+		<Button v-if="isUploading"
 			class="upload-picker__cancel"
 			type="tertiary"
 			:aria-label="cancelLabel"
@@ -97,14 +98,14 @@ export default {
 		uploadedQueueSize() {
 			return this.uploadManager.info?.progress || 0
 		},
-		uploading() {
-			return this.uploadManager.queue.length > 0
-		},
 		progress() {
 			return Math.round(this.uploadedQueueSize / this.totalQueueSize * 100) || 0
 		},
 		hasFailure() {
 			return this.uploadManager.queue.filter(upload => upload.status === UploadStatus.FAILED).length !== 0
+		},
+		isUploading() {
+			return this.uploadManager.queue.length > 0
 		},
 		isAssembling() {
 			return this.uploadManager.queue.filter(upload => upload.status === UploadStatus.ASSEMBLING).length !== 0
@@ -189,15 +190,20 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+$progress-width: 200px;
+
 .upload-picker {
 	display: inline-flex;
 	align-items: center;
 	height: 44px;
-	// TODO: remove margin
-	margin: 200px;
+	margin: 200px; // TODO: remove margin
 
 	&__progress {
-		width: 200px;
+		width: $progress-width;
+		// Animate show/hide
+		max-width: 0;
+		transition: max-width var(--animation-quick) ease-in-out;
+
 		// Align progress/text separation with the middle
 		margin-top: 8px;
 		// Visually more pleasing
@@ -209,6 +215,10 @@ export default {
 			white-space: nowrap;
 			text-overflow: ellipsis;
 		}
+	}
+
+	&--uploading &__progress {
+		max-width: $progress-width;
 	}
 
 	&--paused &__progress {
