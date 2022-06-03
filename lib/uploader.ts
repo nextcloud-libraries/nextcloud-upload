@@ -145,6 +145,7 @@ export class Uploader {
 
 		const upload = new Upload(destinationFile, !disabledChunkUpload, file.size)
 		this._uploadQueue.push(upload)
+		this.updateStats()
 
 		// eslint-disable-next-line no-async-promise-executor
 		const promise = new PCancelable(async (resolve, reject, onCancel): Promise<Upload> => {
