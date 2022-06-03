@@ -1,8 +1,11 @@
 import { nodeResolve } from '@rollup/plugin-node-resolve'
 import commonjs from '@rollup/plugin-commonjs'
+import fs from 'fs'
+import gettextParser from 'gettext-parser'
+import injectProcessEnv from 'rollup-plugin-inject-process-env'
 import styles from 'rollup-plugin-styles'
 import typescript from '@rollup/plugin-typescript'
-import vue from 'rollup-plugin-vue2';
+import vue from 'rollup-plugin-vue2'
 
 const external = [
 	'@nextcloud/auth',
@@ -17,6 +20,21 @@ const external = [
 	'p-queue',
 ]
 
+const translations = fs
+	.readdirSync('./l10n')
+	.filter(name => name !== 'messages.pot' && name.endsWith('.pot'))
+	.map(file => {
+		const path = './l10n/' + file
+		const locale = file.slice(0, -'.pot'.length)
+
+		const po = fs.readFileSync(path)
+		const json = gettextParser.po.parse(po)
+		return {
+			locale,
+			json,
+		}
+	})
+
 export default [
 	{
 		input: './lib/index.ts',
@@ -30,6 +48,9 @@ export default [
 			}),
 			commonjs(),
 			styles(),
+			injectProcessEnv({
+				TRANSLATIONS: translations,
+			}),
 		],
 		output: [
 			{
@@ -48,6 +69,9 @@ export default [
 			typescript(),
 			commonjs(),
 			styles(),
+			injectProcessEnv({
+				TRANSLATIONS: translations,
+			}),
 		],
 		output: [
 			{

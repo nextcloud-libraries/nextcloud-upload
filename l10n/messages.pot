@@ -1,0 +1,31 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+
+#: src/UploadPicker.vue:183
+msgid "{estimate} seconds left"
+msgstr ""
+
+#: src/UploadPicker.vue:175
+msgid "{hours} hours and {minutes} minutes left"
+msgstr ""
+
+#: src/UploadPicker.vue:180
+msgid "{minutes} minutes left"
+msgstr ""
+
+#: src/UploadPicker.vue:169
+msgid "a few seconds left"
+msgstr ""
+
+#: src/UploadPicker.vue:83
+msgid "Cancel uploads"
+msgstr ""
+
+#: src/UploadPicker.vue:165
+msgid "estimating time left"
+msgstr ""
+
+#: src/UploadPicker.vue:158
+msgid "paused"
+msgstr ""

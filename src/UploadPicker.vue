@@ -20,6 +20,7 @@
 		<Button v-if="uploading"
 			class="upload-picker__cancel"
 			type="tertiary"
+			:aria-label="cancelLabel"
 			@click="onCancel">
 			<template #icon>
 				<Cancel title=""
@@ -38,14 +39,16 @@
 </template>
 
 <script>
-import Button from '@nextcloud/vue/dist/Components/Button.js'
-import Plus from 'vue-material-design-icons/Plus.vue'
-import Cancel from 'vue-material-design-icons/Cancel.vue'
-import ProgressBar from '@nextcloud/vue/dist/Components/ProgressBar.js'
 import { getUploader } from '../lib/index.ts'
-import { Uploader, Status } from '../lib/uploader.ts'
-import { Status as UploadStatus } from '../lib/upload.ts'
+import Button from '@nextcloud/vue/dist/Components/Button.js'
+import Cancel from 'vue-material-design-icons/Cancel.vue'
 import makeEta from 'simple-eta'
+import Plus from 'vue-material-design-icons/Plus.vue'
+import ProgressBar from '@nextcloud/vue/dist/Components/ProgressBar.js'
+
+import { Status as UploadStatus } from '../lib/upload.ts'
+import { t } from '../lib/utils/l10n.js'
+import { Uploader, Status } from '../lib/uploader.ts'
 
 /**
  * @type {Uploader}
@@ -78,6 +81,7 @@ export default {
 
 	data() {
 		return {
+			cancelLabel: t('Cancel uploads'),
 			eta: null,
 			timeLeft: '',
 			uploadManager,
@@ -152,33 +156,33 @@ export default {
 
 		updateStatus() {
 			if (this.isPaused) {
-				this.timeLeft = 'paused'
+				this.timeLeft = t('paused')
 				return
 			}
 
 			const estimate = Math.round(this.eta.estimate())
 
 			if (estimate === Infinity) {
-				this.timeLeft = 'estimating time left'
+				this.timeLeft = t('estimating time left')
 				return
 			}
 			if (estimate < 5) {
-				this.timeLeft = 'a few seconds left'
+				this.timeLeft = t('a few seconds left')
 				return
 			}
 			if (estimate > 60 * 60) {
 				const hours = Math.round(estimate / (60 * 60))
 				const minutes = Math.round(estimate % (60 * 60))
-				this.timeLeft = `${hours} hours and ${minutes} minutes left`
+				this.timeLeft = t('{hours} hours and {minutes} minutes left', { hours, minutes })
 				return
 			}
 			if (estimate > 60) {
 				const minutes = Math.round(estimate / 60)
-				this.timeLeft = `${minutes} minutes left`
+				this.timeLeft = t('{minutes} minutes left', { minutes })
 				return
 			}
-			this.timeLeft = `${estimate} seconds left`
-		}
+			this.timeLeft = t('{estimate} seconds left', { estimate })
+		},
 	},
 }
 </script>
@@ -211,18 +215,14 @@ export default {
 	0% {
 		opacity: .5;
 	}
-
 	25% {
 		opacity: 1;
 	}
-
 	60% {
 		opacity: .5;
 	}
-
 	100% {
 		opacity: .5;
 	}
 }
-
 </style>
