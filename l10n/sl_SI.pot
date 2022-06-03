@@ -1,0 +1,43 @@
+# 
+# Translators:
+# Transifex Bot <>, 2022
+# 
+msgid ""
+msgstr ""
+"Last-Translator: Transifex Bot <>, 2022\n"
+"Language-Team: Slovenian (Slovenia) (https://www.transifex.com/nextcloud/teams/64236/sl_SI/)\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: sl_SI\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+
+#: src/UploadPicker.vue:185
+msgid "{estimate} seconds left"
+msgstr ""
+
+#: src/UploadPicker.vue:177
+msgid "{hours} hours and {minutes} minutes left"
+msgstr ""
+
+#: src/UploadPicker.vue:182
+msgid "{minutes} minutes left"
+msgstr ""
+
+#: src/UploadPicker.vue:171
+msgid "a few seconds left"
+msgstr ""
+
+#: src/UploadPicker.vue:86
+msgid "Add"
+msgstr ""
+
+#: src/UploadPicker.vue:85
+msgid "Cancel uploads"
+msgstr ""
+
+#: src/UploadPicker.vue:167
+msgid "estimating time left"
+msgstr ""
+
+#: src/UploadPicker.vue:160
+msgid "paused"
+msgstr ""
