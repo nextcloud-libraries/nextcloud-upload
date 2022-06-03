@@ -1,0 +1,39 @@
+# 
+# Translators:
+# Transifex Bot <>, 2022
+# 
+msgid ""
+msgstr ""
+"Last-Translator: Transifex Bot <>, 2022\n"
+"Language-Team: Turkmen (https://www.transifex.com/nextcloud/teams/64236/tk/)\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: tk\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: src/UploadPicker.vue:184
+msgid "{estimate} seconds left"
+msgstr ""
+
+#: src/UploadPicker.vue:176
+msgid "{hours} hours and {minutes} minutes left"
+msgstr ""
+
+#: src/UploadPicker.vue:181
+msgid "{minutes} minutes left"
+msgstr ""
+
+#: src/UploadPicker.vue:170
+msgid "a few seconds left"
+msgstr ""
+
+#: src/UploadPicker.vue:84
+msgid "Cancel uploads"
+msgstr ""
+
+#: src/UploadPicker.vue:166
+msgid "estimating time left"
+msgstr ""
+
+#: src/UploadPicker.vue:159
+msgid "paused"
+msgstr ""
