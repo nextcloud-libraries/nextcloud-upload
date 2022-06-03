@@ -1,0 +1,39 @@
+# 
+# Translators:
+# Transifex Bot <>, 2022
+# 
+msgid ""
+msgstr ""
+"Last-Translator: Transifex Bot <>, 2022\n"
+"Language-Team: Arabic (Saudi Arabia) (https://www.transifex.com/nextcloud/teams/64236/ar_SA/)\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: ar_SA\n"
+"Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5);\n"
+
+#: src/UploadPicker.vue:184
+msgid "{estimate} seconds left"
+msgstr ""
+
+#: src/UploadPicker.vue:176
+msgid "{hours} hours and {minutes} minutes left"
+msgstr ""
+
+#: src/UploadPicker.vue:181
+msgid "{minutes} minutes left"
+msgstr ""
+
+#: src/UploadPicker.vue:170
+msgid "a few seconds left"
+msgstr ""
+
+#: src/UploadPicker.vue:84
+msgid "Cancel uploads"
+msgstr ""
+
+#: src/UploadPicker.vue:166
+msgid "estimating time left"
+msgstr ""
+
+#: src/UploadPicker.vue:159
+msgid "paused"
+msgstr ""
