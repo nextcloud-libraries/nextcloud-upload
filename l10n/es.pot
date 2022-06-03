@@ -11,34 +11,26 @@ msgstr ""
 "Language: es\n"
 "Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
-#: src/UploadPicker.vue:185
 msgid "{estimate} seconds left"
 msgstr "{estimate} segundos restantes"
 
-#: src/UploadPicker.vue:177
 msgid "{hours} hours and {minutes} minutes left"
 msgstr "{hours} horas y {minutes} minutos restantes"
 
-#: src/UploadPicker.vue:182
 msgid "{minutes} minutes left"
 msgstr "{minutes} minutos restantes"
 
-#: src/UploadPicker.vue:171
 msgid "a few seconds left"
 msgstr "quedan unos segundos"
 
-#: src/UploadPicker.vue:86
 msgid "Add"
 msgstr ""
 
-#: src/UploadPicker.vue:85
 msgid "Cancel uploads"
 msgstr "Cancelar subidas"
 
-#: src/UploadPicker.vue:167
 msgid "estimating time left"
 msgstr "estimación del tiempo restante"
 
-#: src/UploadPicker.vue:160
 msgid "paused"
 msgstr "pausado"
