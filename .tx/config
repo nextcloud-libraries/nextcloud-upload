@@ -1,0 +1,8 @@
+[main]
+host = https://www.transifex.com
+
+[nextcloud/nextcloud-upload-library]
+file_filter = l10n/<lang>.pot
+source_file = l10n/messages.pot
+source_lang = en
+type = PO
