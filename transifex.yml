@@ -1,8 +1,6 @@
 filters:
   - filter_type: file
-    # all supported i18n types: https://docs.transifex.com/formats
     file_format: PO
     source_language: en
     source_file: l10n/messages.pot
-    # path expression to translation files, must contain <lang> placeholder
     translation_files_expression: l10n/<lang>.pot
