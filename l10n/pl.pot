@@ -24,7 +24,7 @@ msgstr "Pozostało {minutes} minut"
 
 #: src/UploadPicker.vue:170
 msgid "a few seconds left"
-msgstr "zostało kilka sekund"
+msgstr "pozostało kilka sekund"
 
 #: src/UploadPicker.vue:84
 msgid "Cancel uploads"
