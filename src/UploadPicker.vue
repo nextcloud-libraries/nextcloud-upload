@@ -192,18 +192,22 @@ export default {
 	display: inline-flex;
 	align-items: center;
 	height: 44px;
+	// TODO: remove margin
 	margin: 200px;
 
 	&__progress {
 		width: 200px;
-	}
-
-	&__progress {
 		// Visually more pleasing
 		margin-right: 20px;
 		margin-left: 8px;
 		// Align progress/text separation with the middle
 		margin-top: 6px;
+
+		p {
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
 	}
 
 	&--paused &__progress {
