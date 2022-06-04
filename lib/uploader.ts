@@ -6,8 +6,8 @@ import PCancelable from 'p-cancelable';
 import PQueue from 'p-queue';
 
 
-import { getChunk, initChunkWorkspace, uploadData } from './utils/uploadUtil'
-import { getMaxChunksSize } from './utils/configUtil'
+import { getChunk, initChunkWorkspace, uploadData } from './utils/upload'
+import { getMaxChunksSize } from './utils/config'
 import { Status as UploadStatus, Upload } from './upload'
 import logger from './utils/logger';
 

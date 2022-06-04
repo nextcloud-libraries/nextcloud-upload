@@ -4,33 +4,40 @@ on:
   pull_request:
   push:
     branches:
-      - 'master'
+      - main
+      - master
+      - stable*
 
 jobs:
   test:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node: [ 14, 16, 18 ]
-    name: Test Node v${{ matrix.node }}
+        node-version: [ 14, 16, 18 ]
+
+    name: test
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Set up node ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node }}
-          cache: 'npm'
-      - name: install dependencies
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install dependencies
         run: npm ci
-      - name: build package
-        run: npm run build
-      - name: run tests
-        run: npm run test
+
+      - name: Test
+        run: npm run test --if-present
 
   summary:
     runs-on: ubuntu-latest
     needs: test
     if: always()
+
     name: test-summary
     steps:
       - name: Summary status
         run: if ${{ needs.test.result != 'success' && needs.test.result != 'skipped' }}; then exit 1; fi
+
