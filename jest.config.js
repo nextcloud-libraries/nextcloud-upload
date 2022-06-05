@@ -4,7 +4,7 @@ module.exports = {
 	preset: 'ts-jest/presets/js-with-ts',
 	globals: {
 		'ts-jest': {
-			tsconfig: 'tests/tsconfig.json',
+			tsconfig: '__tests__/tsconfig.json',
 		},
 	},
 	transformIgnorePatterns: [
