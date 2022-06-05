@@ -1,4 +1,4 @@
-import { getChunk, initChunkWorkspace } from '../../lib/utils/upload'
+import { getChunk, initChunkWorkspace, uploadData } from '../../lib/utils/upload'
 import axios from '@nextcloud/axios';
 
 describe('Get chunk from file', () => {
@@ -32,7 +32,6 @@ describe('Get chunk from file', () => {
 	})
 })
 
-
 describe('Initialize chunks upload temporary workspace', () => {
 	test('Init random workspace', async () => {
 		jest.spyOn(axios, 'request')
@@ -48,3 +47,58 @@ describe('Initialize chunks upload temporary workspace', () => {
 		})
 	})
 })
+
+describe('Upload data', () => {
+	test('Upload data stream', async () => {
+		jest.spyOn(axios, 'request')
+		const url = 'https://cloud.domain.com/remote.php/dav/files/test/image.jpg'
+		const blob = new Blob([new ArrayBuffer(50 * 1024 * 1024)])
+		const signal =  new AbortController().signal
+		const onUploadProgress = jest.fn()
+		await uploadData(url, blob, signal, onUploadProgress)
+
+		expect(axios.request).toHaveBeenCalledTimes(1)
+		expect(axios.request).toHaveBeenCalledWith({
+			method: 'PUT',
+			url,
+			data: blob,
+			signal,
+			onUploadProgress,
+		})
+	})
+	test('Upload async data stream', async () => {
+		jest.spyOn(axios, 'request')
+
+		const url = 'https://cloud.domain.com/remote.php/dav/files/test/image.jpg'
+		const blob = new Blob([new ArrayBuffer(50 * 1024 * 1024)])
+		const data = jest.fn(async () => blob)
+		const signal =  new AbortController().signal
+		const onUploadProgress = jest.fn()
+
+		await uploadData(url, data, signal, onUploadProgress)
+
+		expect(axios.request).toHaveBeenCalledTimes(1)
+		expect(data).toHaveBeenCalledTimes(1)
+		expect(axios.request).toHaveBeenCalledWith({
+			method: 'PUT',
+			url,
+			data: blob,
+			signal,
+			onUploadProgress,
+		})
+	})
+})
+
+// export const uploadData = async function(url: string, data: Blob | (() => Promise<Blob>), signal: AbortSignal, onUploadProgress = () => {}): Promise<AxiosResponse> {
+// 	if (typeof data === 'function') {
+// 		data = await data()
+// 	}
+
+// 	return await axios.request({
+// 		method: 'PUT',
+// 		url,
+// 		data,
+// 		signal,
+// 		onUploadProgress,
+// 	})
+// }
