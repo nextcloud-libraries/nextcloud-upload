@@ -10,14 +10,12 @@ msgstr ""
 "Language: fr\n"
 "Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
-msgid "{estimate} seconds left"
-msgstr "{estimate} secondes restantes"
+msgid "{seconds} seconds left"
+msgstr "{seconds} secondes restantes"
 
-msgid "{hours} hours and {minutes} minutes left"
-msgstr "{hours} heures et {minutes} minutes restantes"
-
-msgid "{minutes} minutes left"
-msgstr "{minutes} minutes restantes"
+#. time has the format 00:00:00
+msgid "{time} left"
+msgstr "{time} restant"
 
 msgid "a few seconds left"
 msgstr "quelques secondes restantes"
