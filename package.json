@@ -27,10 +27,11 @@
     "build": "rollup --config rollup.config.js",
     "dev": "echo 'No dev build available, production only' && npm run build",
     "watch": "rollup --config rollup.config.js --watch",
-    "lint": "eslint --ext .js,.vue src",
-    "lint:fix": "eslint --ext .js,.vue src --fix",
+    "lint": "eslint --ext .js,.vue lib",
+    "lint:fix": "eslint --ext .js,.vue lib --fix",
     "test": "jest",
     "test:watch": "jest --watchAll --verbose true",
+    "test:coverage": "jest --coverage",
     "l10n:extract": "node build/extract-l10n.js"
   },
   "repository": {
