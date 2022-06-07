@@ -1,4 +1,5 @@
 import { nodeResolve } from '@rollup/plugin-node-resolve'
+import clean from '@rollup-extras/plugin-clean';
 import commonjs from '@rollup/plugin-commonjs'
 import fs from 'fs'
 import gettextParser from 'gettext-parser'
@@ -35,50 +36,36 @@ const translations = fs
 		}
 	})
 
+const config = output => ({
+	input: './lib/index.ts',
+	external,
+	plugins: [
+		nodeResolve(),
+		vue(),
+		typescript({
+			compilerOptions: output.format === 'cjs'
+				? { target: 'es5' }
+				: {},
+		}),
+		commonjs(),
+		styles(),
+		injectProcessEnv({
+			TRANSLATIONS: translations,
+		}),
+		clean(),
+	],
+	output: [output],
+})
+
 export default [
 	{
-		input: './lib/index.ts',
-		external,
-		plugins: [
-			nodeResolve(),
-			vue(),
-			typescript({
-				tsconfig: './tsconfig.json',
-				compilerOptions: { target: 'es5' },
-			}),
-			commonjs(),
-			styles(),
-			injectProcessEnv({
-				TRANSLATIONS: translations,
-			}),
-		],
-		output: [
-			{
-				dir: 'dist',
-				format: 'cjs',
-				sourcemap: true,
-			},
-		],
+		dir: 'dist',
+		format: 'cjs',
+		sourcemap: true,
 	},
 	{
-		input: 'lib/index.ts',
-		external,
-		plugins: [
-			nodeResolve(),
-			vue(),
-			typescript(),
-			commonjs(),
-			styles(),
-			injectProcessEnv({
-				TRANSLATIONS: translations,
-			}),
-		],
-		output: [
-			{
-				file: 'dist/index.esm.js',
-				format: 'esm',
-				sourcemap: true,
-			},
-		],
+		file: 'dist/index.esm.js',
+		format: 'esm',
+		sourcemap: true,
 	},
-]
+].map(config)
