@@ -1,10 +1,15 @@
 import { getGettextBuilder } from '@nextcloud/l10n/dist/gettext'
 
+type Translation = {
+	locale: string;
+	json: object;
+}
+
 const gtBuilder = getGettextBuilder()
 	.detectLocale()
 
-process.env.TRANSLATIONS
-	.map(data => gtBuilder.addTranslation(data.locale, data.json))
+const translations = (process.env.TRANSLATIONS as unknown as Array<Translation>)
+translations.forEach(data => gtBuilder.addTranslation(data.locale, data.json))
 
 const gt = gtBuilder.build()
 

@@ -49,7 +49,7 @@ import Plus from 'vue-material-design-icons/Plus.vue'
 import ProgressBar from '@nextcloud/vue/dist/Components/ProgressBar.js'
 
 import { Status as UploadStatus } from '../upload.ts'
-import { t } from '../utils/l10n.js'
+import { t } from '../utils/l10n.ts'
 import { Uploader, Status } from '../uploader.ts'
 
 /**
