@@ -1,5 +1,5 @@
-import { Uploader } from "./uploader"
-import UploadPicker from '../src/UploadPicker'
+import { Uploader } from './uploader'
+import UploadPicker from './components/UploadPicker'
 
 declare global {
   interface Window {

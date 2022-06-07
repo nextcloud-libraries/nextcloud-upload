@@ -41,16 +41,16 @@
 </template>
 
 <script>
-import { getUploader } from '../lib/index.ts'
+import { getUploader } from '../index.ts'
 import Button from '@nextcloud/vue/dist/Components/Button.js'
 import Cancel from 'vue-material-design-icons/Cancel.vue'
 import makeEta from 'simple-eta'
 import Plus from 'vue-material-design-icons/Plus.vue'
 import ProgressBar from '@nextcloud/vue/dist/Components/ProgressBar.js'
 
-import { Status as UploadStatus } from '../lib/upload.ts'
-import { t } from '../lib/utils/l10n.js'
-import { Uploader, Status } from '../lib/uploader.ts'
+import { Status as UploadStatus } from '../upload.ts'
+import { t } from '../utils/l10n.js'
+import { Uploader, Status } from '../uploader.ts'
 
 /**
  * @type {Uploader}
