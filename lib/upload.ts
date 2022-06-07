@@ -23,9 +23,10 @@ export class Upload {
 	private _controller: AbortController
 
 	constructor(path: string, chunked: boolean = false, size: number) {
+		const chunks = getMaxChunksSize() > 0 ? Math.ceil(size / getMaxChunksSize()) : 1
 		this._path = path
-		this._isChunked = chunked && getMaxChunksSize() > 0
-		this._chunks = this._isChunked ? Math.ceil(size / getMaxChunksSize()) : 1
+		this._isChunked = chunked && getMaxChunksSize() > 0 && chunks > 1
+		this._chunks = this._isChunked ? chunks : 1
 		this._size = size
 		this._uploaded = 0
 		this._status = Status.INITIALIZED
