@@ -89,4 +89,26 @@ describe('Upload data', () => {
 			onUploadProgress,
 		})
 	})
+
+	test('Upload cancellation', async () => {
+		jest.spyOn(axios, 'request')
+
+		const url = 'https://cloud.domain.com/remote.php/dav/files/test/image.jpg'
+		const blob = new Blob([new ArrayBuffer(50 * 1024 * 1024)])
+		const data = jest.fn(async () => blob)
+		const controller =  new AbortController()
+		const onUploadProgress = jest.fn()
+		jest.spyOn(controller, 'abort')
+
+		// Cancel after 200ms
+		setTimeout(() => controller.abort(), 400)
+		try {
+			await uploadData(url, data, controller.signal, onUploadProgress)
+		} catch (error) {
+			expect(onUploadProgress).toHaveBeenCalledTimes(1)
+			expect(axios.request).toHaveBeenCalledTimes(1)
+			expect(controller.abort).toHaveBeenCalledTimes(1)
+			expect((error as Error).name).toBe('AbortError')
+		}
+	})
 })
