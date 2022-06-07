@@ -2,13 +2,11 @@ msgid ""
 msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 
-msgid "{estimate} seconds left"
+msgid "{seconds} seconds left"
 msgstr ""
 
-msgid "{hours} hours and {minutes} minutes left"
-msgstr ""
-
-msgid "{minutes} minutes left"
+#. time has the format 00:00:00
+msgid "{time} left"
 msgstr ""
 
 msgid "a few seconds left"

@@ -168,22 +168,18 @@ export default {
 				this.timeLeft = t('estimating time left')
 				return
 			}
-			if (estimate < 5) {
+			if (estimate < 10) {
 				this.timeLeft = t('a few seconds left')
 				return
 			}
-			if (estimate > 60 * 60) {
-				const hours = Math.round(estimate / (60 * 60))
-				const minutes = Math.round(estimate % (60 * 60))
-				this.timeLeft = t('{hours} hours and {minutes} minutes left', { hours, minutes })
-				return
-			}
 			if (estimate > 60) {
-				const minutes = Math.round(estimate / 60)
-				this.timeLeft = t('{minutes} minutes left', { minutes })
+				const date = new Date(0)
+				date.setSeconds(estimate)
+				const time = date.toISOString().slice(11, 11 + 8)
+				this.timeLeft = t('{time} left', { time }) // TRANSLATORS time has the format 00:00:00
 				return
 			}
-			this.timeLeft = t('{estimate} seconds left', { estimate })
+			this.timeLeft = t('{seconds} seconds left', { seconds: estimate })
 		},
 	},
 }
