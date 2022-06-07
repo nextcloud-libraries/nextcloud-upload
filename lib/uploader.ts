@@ -2,14 +2,13 @@ import { CanceledError } from 'axios'
 import { generateRemoteUrl } from '@nextcloud/router'
 import { getCurrentUser } from '@nextcloud/auth'
 import axios from '@nextcloud/axios'
-import PCancelable from 'p-cancelable';
-import PQueue from 'p-queue';
-
+import PCancelable from 'p-cancelable'
+import PQueue from 'p-queue'
 
 import { getChunk, initChunkWorkspace, uploadData } from './utils/upload'
 import { getMaxChunksSize } from './utils/config'
 import { Status as UploadStatus, Upload } from './upload'
-import logger from './utils/logger';
+import logger from './utils/logger'
 
 export enum Status {
 	IDLE = 0,
@@ -18,6 +17,7 @@ export enum Status {
 }
 
 export class Uploader {
+
 	private _userRootFolder: string
 	private _destinationFolder: string = '/'
 
@@ -32,7 +32,7 @@ export class Uploader {
 
 	/**
 	 * Initialize uploader
-	 * 
+	 *
 	 * @param {boolean} isPublic are we in public mode ?
 	 */
 	constructor(isPublic: boolean = false) {
@@ -61,7 +61,7 @@ export class Uploader {
 		if (path === '') {
 			path = '/'
 		}
-		if (!path.startsWith('/') ) {
+		if (!path.startsWith('/')) {
 			path = `/${path}`
 		}
 		this._destinationFolder = path.replace(/\/$/, '')
@@ -106,7 +106,7 @@ export class Uploader {
 		return {
 			size: this._queueSize,
 			progress: this._queueProgress,
-			status: this._queueStatus
+			status: this._queueStatus,
 		}
 	}
 
@@ -127,7 +127,7 @@ export class Uploader {
 			? Status.UPLOADING
 			: Status.IDLE
 	}
-	
+
 	/**
 	 * Upload a file to the given path
 	 */
@@ -141,7 +141,6 @@ export class Uploader {
 		const disabledChunkUpload = maxChunkSize === 0
 			|| file.size < maxChunkSize
 			|| this._isPublic
-
 
 		const upload = new Upload(destinationFile, !disabledChunkUpload, file.size)
 		this._uploadQueue.push(upload)
@@ -158,7 +157,7 @@ export class Uploader {
 				// Let's initialize a chunk upload
 				const tempUrl = await initChunkWorkspace()
 				const chunksQueue: Array<Promise<any>> = []
-			
+
 				// Generate chunks array
 				for (let chunk = 0; chunk < upload.chunks; chunk++) {
 					const bufferStart = chunk * maxChunkSize
@@ -171,7 +170,7 @@ export class Uploader {
 					const request = () => {
 						return uploadData(`${tempUrl}/${bufferEnd}`, blob, upload.signal, () => this.updateStats())
 							// Update upload progress on chunk completion
-							.then(() => upload.uploaded = upload.uploaded + maxChunkSize)
+							.then(() => { upload.uploaded = upload.uploaded + maxChunkSize })
 							.catch((error) => {
 								if (!(error instanceof CanceledError)) {
 									logger.error(`Chunk ${bufferStart} - ${bufferEnd} uploading failed`)
@@ -189,12 +188,12 @@ export class Uploader {
 					this.updateStats()
 
 					await axios.request({
-							method: 'MOVE',
-							url: `${tempUrl}/.file`,
-							headers: {
-								Destination: destinationFile,
-							},
-						})
+						method: 'MOVE',
+						url: `${tempUrl}/.file`,
+						headers: {
+							Destination: destinationFile,
+						},
+					})
 
 					this.updateStats()
 					upload.status = UploadStatus.FINISHED
@@ -236,7 +235,7 @@ export class Uploader {
 							upload.status = UploadStatus.FAILED
 							reject('Upload has been cancelled')
 							return
-						} 
+						}
 						upload.status = UploadStatus.FAILED
 						reject('Failed uploading the file')
 					}
@@ -253,4 +252,5 @@ export class Uploader {
 
 		return promise
 	}
+
 }

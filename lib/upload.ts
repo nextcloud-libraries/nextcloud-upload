@@ -1,5 +1,3 @@
-import axios from '@nextcloud/axios'
-
 import { getMaxChunksSize } from './utils/config'
 
 export enum Status {
@@ -11,6 +9,7 @@ export enum Status {
 	FAILED = 5,
 }
 export class Upload {
+
 	private _path: string
 	private _isChunked: boolean
 	private _chunks: number
@@ -103,4 +102,5 @@ export class Upload {
 		this._controller.abort()
 		this._status = Status.CANCELLED
 	}
+
 }

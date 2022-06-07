@@ -43,12 +43,11 @@ export const getChunk = function(file: File, start: number, length: number): Pro
 					type: 'application/octet-stream',
 				}))
 			}
-			reject()
+			reject(new Error('Error while reading the file'))
 		}
 		reader.readAsArrayBuffer(file.slice(start, start + length))
 	}))
 }
-
 
 /**
  * Create a temporary upload workspace to upload the chunks to
