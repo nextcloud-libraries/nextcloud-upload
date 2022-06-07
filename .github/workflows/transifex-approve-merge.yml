@@ -7,10 +7,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Github actions bot approve
       - uses: hmarr/auto-approve-action@v2
         with:
           github-token: ${{ secrets.COMMAND_BOT_PAT }}
 
+      # Nextcloud bot merge
       - uses: pascalgn/automerge-action@v0.15.3
         env:
           MERGE_DELETE_BRANCH: true
