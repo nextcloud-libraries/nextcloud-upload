@@ -57,6 +57,7 @@ describe('Upload data', () => {
 		const onUploadProgress = jest.fn()
 		await uploadData(url, blob, signal, onUploadProgress)
 
+		expect(onUploadProgress).toHaveBeenCalledTimes(1)
 		expect(axios.request).toHaveBeenCalledTimes(1)
 		expect(axios.request).toHaveBeenCalledWith({
 			method: 'PUT',
@@ -77,6 +78,7 @@ describe('Upload data', () => {
 
 		await uploadData(url, data, signal, onUploadProgress)
 
+		expect(onUploadProgress).toHaveBeenCalledTimes(1)
 		expect(axios.request).toHaveBeenCalledTimes(1)
 		expect(data).toHaveBeenCalledTimes(1)
 		expect(axios.request).toHaveBeenCalledWith({
@@ -88,17 +90,3 @@ describe('Upload data', () => {
 		})
 	})
 })
-
-// export const uploadData = async function(url: string, data: Blob | (() => Promise<Blob>), signal: AbortSignal, onUploadProgress = () => {}): Promise<AxiosResponse> {
-// 	if (typeof data === 'function') {
-// 		data = await data()
-// 	}
-
-// 	return await axios.request({
-// 		method: 'PUT',
-// 		url,
-// 		data,
-// 		signal,
-// 		onUploadProgress,
-// 	})
-// }
