@@ -1,14 +1,39 @@
 <template>
 	<form ref="form" :class="{'upload-picker--uploading': isUploading, 'upload-picker--paused': isPaused}" class="upload-picker">
 		<!-- New button -->
-		<Button :disabled="disabled"
+		<Button v-if="newFileMenuEntries.length === 0"
+			:disabled="disabled"
 			@click="onClick">
 			<template #icon>
-				<Plus title=""
-					:size="20" />
+				<Plus title="" :size="20" decorative />
 			</template>
-			{{ uploadLabel }}
+			{{ addLabel }}
 		</Button>
+
+		<!-- New file menu -->
+		<Actions v-else :menu-title="addLabel">
+			<template #icon>
+				<Plus title="" :size="20" decorative />
+			</template>
+			<ActionButton @click="onClick">
+				<template #icon>
+					<Upload title="" :size="20" decorative />
+				</template>
+				{{ uploadLabel }}
+			</ActionButton>
+
+			<!-- Custom new file entries -->
+			<ActionButton v-for="entry in newFileMenuEntries"
+				:key="entry.id"
+				:icon="entry.iconClass"
+				class="upload-picker__menu-entry"
+				@click="entry.handler">
+				<template #icon>
+					<ActionIcon :svg="entry.iconSvgInline" />
+				</template>
+				{{ entry.displayName }}
+			</ActionButton>
+		</Actions>
 
 		<!-- Progressbar and status, hidden by css -->
 		<div class="upload-picker__progress">
@@ -42,8 +67,11 @@
 
 <script>
 import { getUploader } from '../index.ts'
+import Actions from '@nextcloud/vue/dist/Components/Actions.js'
+import ActionButton from '@nextcloud/vue/dist/Components/ActionButton.js'
 import Button from '@nextcloud/vue/dist/Components/Button.js'
 import Cancel from 'vue-material-design-icons/Cancel.vue'
+import Upload from 'vue-material-design-icons/Upload.vue'
 import makeEta from 'simple-eta'
 import Plus from 'vue-material-design-icons/Plus.vue'
 import ProgressBar from '@nextcloud/vue/dist/Components/ProgressBar.js'
@@ -51,6 +79,10 @@ import ProgressBar from '@nextcloud/vue/dist/Components/ProgressBar.js'
 import { Status as UploadStatus } from '../upload.ts'
 import { t } from '../utils/l10n.ts'
 import { Uploader, Status } from '../uploader.ts'
+import ActionIcon from './ActionIcon.vue'
+
+// eslint-disable-next-line import/no-absolute-path
+import { getNewFileMenuEntries } from '/home/admin/git/nextcloud-files'
 
 /**
  * @type {Uploader}
@@ -60,10 +92,14 @@ const uploadManager = getUploader()
 export default {
 	name: 'UploadPicker',
 	components: {
+		ActionButton,
+		ActionIcon,
+		Actions,
 		Button,
 		Cancel,
 		Plus,
 		ProgressBar,
+		Upload,
 	},
 
 	props: {
@@ -83,10 +119,14 @@ export default {
 
 	data() {
 		return {
+			addLabel: t('Add'),
 			cancelLabel: t('Cancel uploads'),
-			uploadLabel: t('Add'),
+			uploadLabel: t('Upload files'),
+
 			eta: null,
 			timeLeft: '',
+
+			newFileMenuEntries: getNewFileMenuEntries(),
 			uploadManager,
 		}
 	},
