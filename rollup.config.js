@@ -1,5 +1,5 @@
 import { nodeResolve } from '@rollup/plugin-node-resolve'
-import clean from '@rollup-extras/plugin-clean';
+import clean from '@rollup-extras/plugin-clean'
 import commonjs from '@rollup/plugin-commonjs'
 import fs from 'fs'
 import gettextParser from 'gettext-parser'
@@ -9,6 +9,7 @@ import typescript from '@rollup/plugin-typescript'
 import vue from 'rollup-plugin-vue2'
 
 const external = [
+	'@mattkrick/sanitize-svg',
 	'@nextcloud/auth',
 	'@nextcloud/axios',
 	'@nextcloud/logger',
