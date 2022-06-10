@@ -1,35 +1,33 @@
 # 
 # Translators:
-# Transifex Bot <>, 2022
+# Mario Siegmann <mario_siegmann@web.de>, 2022
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Transifex Bot <>, 2022\n"
+"Last-Translator: Mario Siegmann <mario_siegmann@web.de>, 2022\n"
 "Language-Team: German (Germany) (https://www.transifex.com/nextcloud/teams/64236/de_DE/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: de_DE\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgid "{estimate} seconds left"
-msgstr ""
+msgid "{seconds} seconds left"
+msgstr "{seconds} Sekunden verbleibend"
 
-msgid "{hours} hours and {minutes} minutes left"
-msgstr ""
-
-msgid "{minutes} minutes left"
-msgstr ""
+#. time has the format 00:00:00
+msgid "{time} left"
+msgstr "{time} verbleibend"
 
 msgid "a few seconds left"
-msgstr ""
+msgstr "ein paar Sekunden verbleibend"
 
 msgid "Add"
-msgstr ""
+msgstr "Hinzufügen"
 
 msgid "Cancel uploads"
-msgstr ""
+msgstr "Hochladen abbrechen"
 
 msgid "estimating time left"
-msgstr ""
+msgstr "Geschätzte verbleibende Zeit"
 
 msgid "paused"
-msgstr ""
+msgstr "Pausiert"
