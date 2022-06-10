@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head data-user="user" data-user-displayname="User">
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+		<title>Components App</title>
+
+		<!-- Nextcloud customizations -->
+		<link href="https://gitcdn.link/cdn/nextcloud/server/master/apps/theming/css/default.css" rel="stylesheet" />
+		<script type="text/javascript">
+			window.OC = {
+				webroot: '',
+				config: {},
+				coreApps: [],
+				isUserAdmin: () => false
+			};
+		</script>
+	</head>
+	<body>
+		<div id="__cy_root"></div>
+	</body>
+</html>

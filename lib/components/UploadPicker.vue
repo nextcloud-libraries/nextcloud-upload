@@ -102,13 +102,13 @@ export default {
 			return Math.round(this.uploadedQueueSize / this.totalQueueSize * 100) || 0
 		},
 		hasFailure() {
-			return this.uploadManager.queue.filter(upload => upload.status === UploadStatus.FAILED).length !== 0
+			return this.uploadManager.queue?.filter(upload => upload.status === UploadStatus.FAILED).length !== 0
 		},
 		isUploading() {
-			return this.uploadManager.queue.length > 0
+			return this.uploadManager.queue?.length > 0
 		},
 		isAssembling() {
-			return this.uploadManager.queue.filter(upload => upload.status === UploadStatus.ASSEMBLING).length !== 0
+			return this.uploadManager.queue?.filter(upload => upload.status === UploadStatus.ASSEMBLING).length !== 0
 		},
 		isPaused() {
 			return this.uploadManager.info?.status === Status.PAUSED
@@ -192,7 +192,6 @@ $progress-width: 200px;
 	display: inline-flex;
 	align-items: center;
 	height: 44px;
-	margin: 200px; // TODO: remove margin
 
 	&__progress {
 		width: $progress-width;
