@@ -1,35 +1,33 @@
 # 
 # Translators:
-# Transifex Bot <>, 2022
+# Marc Riera <marcriera@softcatala.org>, 2022
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Transifex Bot <>, 2022\n"
+"Last-Translator: Marc Riera <marcriera@softcatala.org>, 2022\n"
 "Language-Team: Catalan (https://www.transifex.com/nextcloud/teams/64236/ca/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: ca\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgid "{estimate} seconds left"
-msgstr ""
+msgid "{seconds} seconds left"
+msgstr "Queden {seconds} segons"
 
-msgid "{hours} hours and {minutes} minutes left"
-msgstr ""
-
-msgid "{minutes} minutes left"
-msgstr ""
+#. time has the format 00:00:00
+msgid "{time} left"
+msgstr "Queden {time}"
 
 msgid "a few seconds left"
-msgstr ""
+msgstr "Queden uns segons"
 
 msgid "Add"
-msgstr ""
+msgstr "Afegeix"
 
 msgid "Cancel uploads"
-msgstr ""
+msgstr "Cancel·la les pujades"
 
 msgid "estimating time left"
-msgstr ""
+msgstr "S'està estimant el temps restant"
 
 msgid "paused"
-msgstr ""
+msgstr "En pausa"
