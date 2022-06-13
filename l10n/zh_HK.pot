@@ -1,35 +1,33 @@
 # 
 # Translators:
-# Transifex Bot <>, 2022
+# Café Tango, 2022
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Transifex Bot <>, 2022\n"
+"Last-Translator: Café Tango, 2022\n"
 "Language-Team: Chinese (Hong Kong) (https://www.transifex.com/nextcloud/teams/64236/zh_HK/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: zh_HK\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-msgid "{estimate} seconds left"
-msgstr ""
+msgid "{seconds} seconds left"
+msgstr "剩餘 {seconds} 秒"
 
-msgid "{hours} hours and {minutes} minutes left"
-msgstr ""
-
-msgid "{minutes} minutes left"
-msgstr ""
+#. time has the format 00:00:00
+msgid "{time} left"
+msgstr "剩餘 {time}"
 
 msgid "a few seconds left"
-msgstr ""
+msgstr "還剩幾秒"
 
 msgid "Add"
-msgstr ""
+msgstr "添加"
 
 msgid "Cancel uploads"
-msgstr ""
+msgstr "取消上傳"
 
 msgid "estimating time left"
-msgstr ""
+msgstr "估計剩餘時間"
 
 msgid "paused"
-msgstr ""
+msgstr "已暫停"
