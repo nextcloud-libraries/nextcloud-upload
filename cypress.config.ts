@@ -12,6 +12,7 @@ webpackConfig.module.rules = Object.values(webpackRules)
 delete webpackConfig.output
 
 export default defineConfig({
+	projectId: 'v24ts6',
 	component: {
 		devServer: {
 			framework: 'vue',
