@@ -66,23 +66,24 @@
 </template>
 
 <script>
+import { getNewFileMenuEntries } from '@nextcloud/files'
 import { getUploader } from '../index.ts'
-import Actions from '@nextcloud/vue/dist/Components/Actions.js'
-import ActionButton from '@nextcloud/vue/dist/Components/ActionButton.js'
-import Button from '@nextcloud/vue/dist/Components/Button.js'
-import Cancel from 'vue-material-design-icons/Cancel.vue'
-import Upload from 'vue-material-design-icons/Upload.vue'
 import makeEta from 'simple-eta'
-import Plus from 'vue-material-design-icons/Plus.vue'
+
+import ActionButton from '@nextcloud/vue/dist/Components/ActionButton.js'
+import Actions from '@nextcloud/vue/dist/Components/Actions.js'
+import Button from '@nextcloud/vue/dist/Components/Button.js'
 import ProgressBar from '@nextcloud/vue/dist/Components/ProgressBar.js'
+
+import Cancel from 'vue-material-design-icons/Cancel.vue'
+import Plus from 'vue-material-design-icons/Plus.vue'
+import Upload from 'vue-material-design-icons/Upload.vue'
 
 import { Status as UploadStatus } from '../upload.ts'
 import { t } from '../utils/l10n.ts'
 import { Uploader, Status } from '../uploader.ts'
 import ActionIcon from './ActionIcon.vue'
 
-// eslint-disable-next-line import/no-absolute-path
-import { getNewFileMenuEntries } from '/home/admin/git/nextcloud-files'
 
 /**
  * @type {Uploader}
