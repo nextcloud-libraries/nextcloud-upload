@@ -9,17 +9,20 @@ import typescript from '@rollup/plugin-typescript'
 import vue from 'rollup-plugin-vue2'
 
 const external = [
-	'@mattkrick/sanitize-svg',
 	'@nextcloud/auth',
 	'@nextcloud/axios',
+	'@nextcloud/files',
 	'@nextcloud/logger',
 	'@nextcloud/router',
+	'@nextcloud/vue',
+	'@skjnldsv/sanitize-svg',
 	'axios',
 	'buffer',
 	'crypto-browserify',
 	'p-cancelable',
 	'p-limit',
 	'p-queue',
+	'vue-material-design-icons',
 ]
 
 const translations = fs
