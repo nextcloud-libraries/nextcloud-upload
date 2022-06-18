@@ -1,5 +1,6 @@
 <script>
-import sanitizeSVG from '@mattkrick/sanitize-svg'
+import { sanitizeSVG } from '@skjnldsv/sanitize-svg'
+
 export default {
 	props: {
 		svg: {
