@@ -1,35 +1,33 @@
 # 
 # Translators:
-# Transifex Bot <>, 2022
+# Unai Tolosa Pontesta <utolosa002@gmail.com>, 2022
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Transifex Bot <>, 2022\n"
+"Last-Translator: Unai Tolosa Pontesta <utolosa002@gmail.com>, 2022\n"
 "Language-Team: Basque (https://www.transifex.com/nextcloud/teams/64236/eu/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: eu\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgid "{estimate} seconds left"
-msgstr ""
+msgid "{seconds} seconds left"
+msgstr "{seconds} segundo geratzen dira"
 
-msgid "{hours} hours and {minutes} minutes left"
-msgstr ""
-
-msgid "{minutes} minutes left"
-msgstr ""
+#. time has the format 00:00:00
+msgid "{time} left"
+msgstr "{time} geratzen da"
 
 msgid "a few seconds left"
-msgstr ""
+msgstr "segundo batzuk geratzen dira"
 
 msgid "Add"
-msgstr ""
+msgstr "Gehitu"
 
 msgid "Cancel uploads"
-msgstr ""
+msgstr "Ezeztatu igoerak"
 
 msgid "estimating time left"
-msgstr ""
+msgstr "kalkulatutako geratzen den denbora"
 
 msgid "paused"
-msgstr ""
+msgstr "geldituta"
