@@ -1,8 +1,12 @@
 <template>
-	<form ref="form" :class="{'upload-picker--uploading': isUploading, 'upload-picker--paused': isPaused}" class="upload-picker">
+	<form ref="form"
+		:class="{'upload-picker--uploading': isUploading, 'upload-picker--paused': isPaused}"
+		class="upload-picker"
+		data-upload-picker>
 		<!-- New button -->
 		<Button v-if="newFileMenuEntries.length === 0"
 			:disabled="disabled"
+			data-upload-picker-add
 			@click="onClick">
 			<template #icon>
 				<Plus title="" :size="20" decorative />
@@ -15,7 +19,7 @@
 			<template #icon>
 				<Plus title="" :size="20" decorative />
 			</template>
-			<ActionButton @click="onClick">
+			<ActionButton data-upload-picker-add @click="onClick">
 				<template #icon>
 					<Upload title="" :size="20" decorative />
 				</template>
@@ -48,6 +52,7 @@
 			class="upload-picker__cancel"
 			type="tertiary"
 			:aria-label="cancelLabel"
+			data-upload-picker-cancel
 			@click="onCancel">
 			<template #icon>
 				<Cancel title=""
@@ -61,6 +66,7 @@
 			type="file"
 			:accept="accept"
 			:multiple="multiple"
+			data-upload-picker-input
 			@change="onPick">
 	</form>
 </template>
@@ -84,10 +90,7 @@ import { t } from '../utils/l10n.ts'
 import { Uploader, Status } from '../uploader.ts'
 import ActionIcon from './ActionIcon.vue'
 
-
-/**
- * @type {Uploader}
- */
+/** @type {Uploader} */
 const uploadManager = getUploader()
 
 export default {
