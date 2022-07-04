@@ -53,7 +53,7 @@
     "@nextcloud/babel-config": "^1.0.0",
     "@nextcloud/eslint-config": "^8.0.0",
     "@nextcloud/vue": "^5.3.1",
-    "@nextcloud/webpack-vue-config": "^5.1.0",
+    "@nextcloud/webpack-vue-config": "^5.2.1",
     "@rollup-extras/plugin-clean": "^1.2.4",
     "@rollup/plugin-commonjs": "^22.0.1",
     "@rollup/plugin-node-resolve": "^13.3.0",
