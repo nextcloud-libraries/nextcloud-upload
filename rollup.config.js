@@ -1,5 +1,5 @@
 import { nodeResolve } from '@rollup/plugin-node-resolve'
-import clean from '@rollup-extras/plugin-clean';
+import clean from '@rollup-extras/plugin-clean'
 import commonjs from '@rollup/plugin-commonjs'
 import fs from 'fs'
 import gettextParser from 'gettext-parser'
@@ -11,14 +11,18 @@ import vue from 'rollup-plugin-vue2'
 const external = [
 	'@nextcloud/auth',
 	'@nextcloud/axios',
+	'@nextcloud/files',
 	'@nextcloud/logger',
 	'@nextcloud/router',
+	'@nextcloud/vue',
+	'@skjnldsv/sanitize-svg',
 	'axios',
 	'buffer',
 	'crypto-browserify',
 	'p-cancelable',
 	'p-limit',
 	'p-queue',
+	'vue-material-design-icons',
 ]
 
 const translations = fs
