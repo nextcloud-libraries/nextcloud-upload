@@ -31,3 +31,6 @@ msgstr "Geschätzte verbleibende Zeit"
 
 msgid "paused"
 msgstr "Pausiert"
+
+msgid "Upload files"
+msgstr "Dateien hochladen"
