@@ -9,7 +9,7 @@ declare global {
   }
 }
 
-let _uploader: Uploader
+var _uploader: Uploader
 
 /**
  * Get an Uploader instance
