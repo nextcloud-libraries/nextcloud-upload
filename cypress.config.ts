@@ -24,6 +24,9 @@ webpackConfig.resolve.extensions = ['.ts', '.tsx', '.js', '.jsx', '.cjs', '.vue'
 export default defineConfig({
 	projectId: 'v24ts6',
 
+	// faster video processing
+	videoCompression: false,
+
 	component: {
 		devServer: {
 			framework: 'vue',
