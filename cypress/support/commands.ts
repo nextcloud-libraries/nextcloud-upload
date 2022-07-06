@@ -9,9 +9,3 @@
 // https://on.cypress.io/custom-commands
 // ***********************************************
 import 'cypress-file-upload'
-
-import { mount } from '@cypress/vue2'
-
-Cypress.Commands.add('mount', (component, optionsOrProps = {}) => {
-	mount(component, optionsOrProps)
-})
