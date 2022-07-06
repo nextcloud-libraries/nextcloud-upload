@@ -1,18 +1,29 @@
+// Making sure we're forcing the development mode
+process.env.NODE_ENV = 'development'
+
 import { defineConfig } from 'cypress'
 import webpackConfig from '@nextcloud/webpack-vue-config'
 import webpackRules from '@nextcloud/webpack-vue-config/rules'
 
-// Remove babel js loader and let cypress use its own
-// Babel was creating issues with the testing, we don't actually need it
-// But having one babel.config.js is impacting cypress
-delete webpackRules.RULE_JS
+webpackRules.RULE_TS = {
+	test: /\.ts$/,
+	use: [{
+		loader: 'ts-loader',
+		options: {
+			// skip typechecking for speed
+			transpileOnly: true,
+		},
+	}],
+}
 webpackConfig.module.rules = Object.values(webpackRules)
 
 // Cypress handle its own output
 delete webpackConfig.output
+webpackConfig.resolve.extensions = ['.ts', '.tsx', '.js', '.jsx', '.cjs', '.vue']
 
 export default defineConfig({
 	projectId: 'v24ts6',
+
 	component: {
 		devServer: {
 			framework: 'vue',
