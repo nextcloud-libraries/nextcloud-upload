@@ -1,11 +1,12 @@
 # 
 # Translators:
 # Leonardo Colman <leonardo.dev@colman.com.br>, 2022
-# Jeann Wilson <wjeann@gmail.com>, 2022
+# Jeann Cavalcante <wjeann@gmail.com>, 2022
+# Flávio Veras <flaviove@gmail.com>, 2022
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Jeann Wilson <wjeann@gmail.com>, 2022\n"
+"Last-Translator: Flávio Veras <flaviove@gmail.com>, 2022\n"
 "Language-Team: Portuguese (Brazil) (https://www.transifex.com/nextcloud/teams/64236/pt_BR/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: pt_BR\n"
@@ -32,3 +33,6 @@ msgstr "estimando tempo restante"
 
 msgid "paused"
 msgstr "pausado"
+
+msgid "Upload files"
+msgstr "Enviar arquivos"
