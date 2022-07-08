@@ -31,3 +31,6 @@ msgstr "Szacowanie pozostałego czasu"
 
 msgid "paused"
 msgstr "Wstrzymane"
+
+msgid "Upload files"
+msgstr "Wyślij pliki"
