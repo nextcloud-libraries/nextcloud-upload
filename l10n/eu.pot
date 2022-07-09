@@ -31,3 +31,6 @@ msgstr "kalkulatutako geratzen den denbora"
 
 msgid "paused"
 msgstr "geldituta"
+
+msgid "Upload files"
+msgstr "Igo fitxategiak"
