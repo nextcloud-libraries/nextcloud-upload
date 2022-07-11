@@ -1,30 +1,29 @@
 # 
 # Translators:
 # Florin Baras, 2022
-# Transifex Bot <>, 2022
+# Hecbert Gonzalez, 2022
+# Next Cloud <nextcloud.translator.es@cgj.es>, 2022
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Transifex Bot <>, 2022\n"
+"Last-Translator: Next Cloud <nextcloud.translator.es@cgj.es>, 2022\n"
 "Language-Team: Spanish (https://www.transifex.com/nextcloud/teams/64236/es/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: es\n"
 "Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
-msgid "{estimate} seconds left"
-msgstr "{estimate} segundos restantes"
+msgid "{seconds} seconds left"
+msgstr "{seconds} segundos restantes"
 
-msgid "{hours} hours and {minutes} minutes left"
-msgstr "{hours} horas y {minutes} minutos restantes"
-
-msgid "{minutes} minutes left"
-msgstr "{minutes} minutos restantes"
+#. time has the format 00:00:00
+msgid "{time} left"
+msgstr "{time} restante"
 
 msgid "a few seconds left"
 msgstr "quedan unos segundos"
 
 msgid "Add"
-msgstr ""
+msgstr "Añadir"
 
 msgid "Cancel uploads"
 msgstr "Cancelar subidas"
@@ -34,3 +33,6 @@ msgstr "estimación del tiempo restante"
 
 msgid "paused"
 msgstr "pausado"
+
+msgid "Upload files"
+msgstr "Subir archivos"
