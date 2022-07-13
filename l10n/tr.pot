@@ -31,3 +31,6 @@ msgstr "öngörülen kalan süre"
 
 msgid "paused"
 msgstr "duraklatıldı"
+
+msgid "Upload files"
+msgstr "Dosyaları yükle"
