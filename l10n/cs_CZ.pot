@@ -31,3 +31,6 @@ msgstr "odhadovaný zbývající čas"
 
 msgid "paused"
 msgstr "pozastaveno"
+
+msgid "Upload files"
+msgstr "Nahrát soubory"
