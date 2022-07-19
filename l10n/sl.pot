@@ -1,35 +1,36 @@
 # 
 # Translators:
-# Transifex Bot <>, 2022
+# Matej Urbančič <>, 2022
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Transifex Bot <>, 2022\n"
+"Last-Translator: Matej Urbančič <>, 2022\n"
 "Language-Team: Slovenian (https://www.transifex.com/nextcloud/teams/64236/sl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: sl\n"
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
 
-msgid "{estimate} seconds left"
-msgstr ""
+msgid "{seconds} seconds left"
+msgstr "še {seconds} sekund"
 
-msgid "{hours} hours and {minutes} minutes left"
-msgstr ""
-
-msgid "{minutes} minutes left"
-msgstr ""
+#. time has the format 00:00:00
+msgid "{time} left"
+msgstr "še {time}"
 
 msgid "a few seconds left"
-msgstr ""
+msgstr "še nekaj sekund"
 
 msgid "Add"
-msgstr ""
+msgstr "Dodaj"
 
 msgid "Cancel uploads"
-msgstr ""
+msgstr "Prekliči pošiljanje"
 
 msgid "estimating time left"
-msgstr ""
+msgstr "ocenjen čas do konca"
 
 msgid "paused"
-msgstr ""
+msgstr "v premoru"
+
+msgid "Upload files"
+msgstr "Pošlji datoteke"
