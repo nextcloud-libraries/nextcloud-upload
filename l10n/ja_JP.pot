@@ -1,10 +1,11 @@
 # 
 # Translators:
 # T.S, 2022
+# かたかめ, 2022
 # 
 msgid ""
 msgstr ""
-"Last-Translator: T.S, 2022\n"
+"Last-Translator: かたかめ, 2022\n"
 "Language-Team: Japanese (Japan) (https://www.transifex.com/nextcloud/teams/64236/ja_JP/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: ja_JP\n"
@@ -31,3 +32,6 @@ msgstr "概算残り時間"
 
 msgid "paused"
 msgstr "一時停止中"
+
+msgid "Upload files"
+msgstr "ファイルをアップデート"
