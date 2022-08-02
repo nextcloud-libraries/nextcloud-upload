@@ -1,35 +1,36 @@
 # 
 # Translators:
-# Transifex Bot <>, 2022
+# Phongpanot Phairat <ppnplus@protonmail.com>, 2022
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Transifex Bot <>, 2022\n"
+"Last-Translator: Phongpanot Phairat <ppnplus@protonmail.com>, 2022\n"
 "Language-Team: Thai (Thailand) (https://www.transifex.com/nextcloud/teams/64236/th_TH/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: th_TH\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-msgid "{estimate} seconds left"
-msgstr ""
+msgid "{seconds} seconds left"
+msgstr "เหลืออีก {seconds} วินาที"
 
-msgid "{hours} hours and {minutes} minutes left"
-msgstr ""
-
-msgid "{minutes} minutes left"
-msgstr ""
+#. time has the format 00:00:00
+msgid "{time} left"
+msgstr "เหลืออีก {time}"
 
 msgid "a few seconds left"
-msgstr ""
+msgstr "เหลืออีกไม่กี่วินาที"
 
 msgid "Add"
-msgstr ""
+msgstr "เพิ่ม"
 
 msgid "Cancel uploads"
-msgstr ""
+msgstr "ยกเลิกการอัปโหลด"
 
 msgid "estimating time left"
-msgstr ""
+msgstr "กำลังคำนวณเวลาที่เหลือ"
 
 msgid "paused"
-msgstr ""
+msgstr "หยุดชั่วคราว"
+
+msgid "Upload files"
+msgstr "อัปโหลดไฟล์"
