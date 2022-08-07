@@ -1,10 +1,11 @@
 # 
 # Translators:
 # Marc Riera <marcriera@softcatala.org>, 2022
+# Toni Hermoso Pulido <toniher@softcatala.cat>, 2022
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Marc Riera <marcriera@softcatala.org>, 2022\n"
+"Last-Translator: Toni Hermoso Pulido <toniher@softcatala.cat>, 2022\n"
 "Language-Team: Catalan (https://www.transifex.com/nextcloud/teams/64236/ca/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: ca\n"
@@ -31,3 +32,6 @@ msgstr "S'està estimant el temps restant"
 
 msgid "paused"
 msgstr "En pausa"
+
+msgid "Upload files"
+msgstr "Puja els fitxers"
