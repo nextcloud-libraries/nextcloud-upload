@@ -1,35 +1,36 @@
 # 
 # Translators:
-# Transifex Bot <>, 2022
+# Matias Iglesias, 2022
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Transifex Bot <>, 2022\n"
+"Last-Translator: Matias Iglesias, 2022\n"
 "Language-Team: Spanish (Argentina) (https://www.transifex.com/nextcloud/teams/64236/es_AR/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: es_AR\n"
 "Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
-msgid "{estimate} seconds left"
-msgstr ""
+msgid "{seconds} seconds left"
+msgstr "{seconds} segundos restantes"
 
-msgid "{hours} hours and {minutes} minutes left"
-msgstr ""
-
-msgid "{minutes} minutes left"
-msgstr ""
+#. time has the format 00:00:00
+msgid "{time} left"
+msgstr "{time} restante"
 
 msgid "a few seconds left"
-msgstr ""
+msgstr "quedan unos segundos"
 
 msgid "Add"
-msgstr ""
+msgstr "Añadir"
 
 msgid "Cancel uploads"
-msgstr ""
+msgstr "Cancelar subidas"
 
 msgid "estimating time left"
-msgstr ""
+msgstr "estimando tiempo restante"
 
 msgid "paused"
-msgstr ""
+msgstr "pausado"
+
+msgid "Upload files"
+msgstr "Subir archivos"
