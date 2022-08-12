@@ -1,35 +1,36 @@
 # 
 # Translators:
-# Transifex Bot <>, 2022
+# Andi Chandler <andi@gowling.com>, 2022
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Transifex Bot <>, 2022\n"
+"Last-Translator: Andi Chandler <andi@gowling.com>, 2022\n"
 "Language-Team: English (United Kingdom) (https://www.transifex.com/nextcloud/teams/64236/en_GB/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: en_GB\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgid "{estimate} seconds left"
-msgstr ""
+msgid "{seconds} seconds left"
+msgstr "{seconds} seconds left"
 
-msgid "{hours} hours and {minutes} minutes left"
-msgstr ""
-
-msgid "{minutes} minutes left"
-msgstr ""
+#. time has the format 00:00:00
+msgid "{time} left"
+msgstr "{time} left"
 
 msgid "a few seconds left"
-msgstr ""
+msgstr "a few seconds left"
 
 msgid "Add"
-msgstr ""
+msgstr "Add"
 
 msgid "Cancel uploads"
-msgstr ""
+msgstr "Cancel uploads"
 
 msgid "estimating time left"
-msgstr ""
+msgstr "estimating time left"
 
 msgid "paused"
-msgstr ""
+msgstr "paused"
+
+msgid "Upload files"
+msgstr "Upload files"
