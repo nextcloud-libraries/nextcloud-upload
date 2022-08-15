@@ -1,10 +1,11 @@
 # 
 # Translators:
 # Алексей Хрусталёв, 2022
+# Тёма Лапин, 2022
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Алексей Хрусталёв, 2022\n"
+"Last-Translator: Тёма Лапин, 2022\n"
 "Language-Team: Russian (https://www.transifex.com/nextcloud/teams/64236/ru/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: ru\n"
@@ -30,7 +31,7 @@ msgid "estimating time left"
 msgstr "оценка оставшегося времени"
 
 msgid "paused"
-msgstr "приостановлено"
+msgstr "Приостановлено"
 
 msgid "Upload files"
 msgstr "Загрузка файлов"
