@@ -64,7 +64,7 @@
     "cypress": "^10.3.0",
     "cypress-file-upload": "^5.0.8",
     "gettext-extractor": "^3.5.4",
-    "gettext-parser": "^5.1.2",
+    "gettext-parser": "^6.0.0",
     "jest": "^28.1.2",
     "jest-environment-jsdom": "^28.1.2",
     "rollup": "^2.75.7",
