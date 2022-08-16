@@ -1,35 +1,36 @@
 # 
 # Translators:
-# Transifex Bot <>, 2022
+# Jiri Grönroos <jiri.gronroos@iki.fi>, 2022
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Transifex Bot <>, 2022\n"
+"Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>, 2022\n"
 "Language-Team: Finnish (Finland) (https://www.transifex.com/nextcloud/teams/64236/fi_FI/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: fi_FI\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgid "{estimate} seconds left"
-msgstr ""
+msgid "{seconds} seconds left"
+msgstr "{seconds} sekuntia jäljellä"
 
-msgid "{hours} hours and {minutes} minutes left"
-msgstr ""
-
-msgid "{minutes} minutes left"
-msgstr ""
+#. time has the format 00:00:00
+msgid "{time} left"
+msgstr "{time} jäljellä"
 
 msgid "a few seconds left"
-msgstr ""
+msgstr "muutama sekunti jäljellä"
 
 msgid "Add"
-msgstr ""
+msgstr "Lisää"
 
 msgid "Cancel uploads"
-msgstr ""
+msgstr "Peruuta lähetykset"
 
 msgid "estimating time left"
-msgstr ""
+msgstr "arvioidaan jäljellä olevaa aikaa"
 
 msgid "paused"
-msgstr ""
+msgstr "keskeytetty"
+
+msgid "Upload files"
+msgstr "Lähetä tiedostoja"
