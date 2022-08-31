@@ -58,9 +58,11 @@ export class Uploader {
 	 * Set the upload destination path relative to the user root folder
 	 */
 	set destination(path: string) {
-		if (path === '') {
-			path = '/'
+		if (typeof path !== 'string' || path === '') {
+			this._destinationFolder = '/'
+			return
 		}
+
 		if (!path.startsWith('/')) {
 			path = `/${path}`
 		}
@@ -134,6 +136,8 @@ export class Uploader {
 	upload(destinationPath: string, file: File) {
 		const destinationFolder = this._destinationFolder === '/' ? '' : this._destinationFolder
 		const destinationFile = `${this._userRootFolder}${destinationFolder}/${destinationPath.replace(/^\//, '')}`
+
+		logger.debug(`Uploading ${file.name} to ${destinationFile}`)
 
 		// If manually disabled or if the file is too small
 		// TODO: support chunk uploading in public pages

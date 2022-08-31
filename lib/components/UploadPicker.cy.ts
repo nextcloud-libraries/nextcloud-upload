@@ -3,7 +3,6 @@
 import { UploadPicker } from '../../dist/index.js'
 
 describe('UploadPicker rendering', () => {
-
 	it('Renders default UploadPicker', () => {
 		cy.mount(UploadPicker)
 		cy.get('form').should('have.class', 'upload-picker')
@@ -91,6 +90,59 @@ describe('UploadPicker valid uploads', () => {
 		cy.get('form .upload-picker__progress').as('progress').should('not.be.visible')
 		cy.wait('@upload').then(() => {
 			cy.get('@progress').children('progress').should('not.have.value', '0')
+		})
+	})
+})
+
+describe('Destination management', () => {
+	const propsData = {
+		destination: '/',
+	}
+
+	it('Upload then changes the destination', () => {
+		// Mount picker
+		cy.mount(UploadPicker, { propsData })
+
+
+		// Check and init aliases
+		cy.get('form input[type="file"]').as('input').should('exist')
+		cy.get('form .upload-picker__progress').as('progress').should('exist')
+
+		// Intercept single upload
+		cy.intercept('PUT', '/remote.php/dav/files/*/**', {
+			statusCode: 201,
+		}).as('upload')
+
+		cy.get('@input').attachFile({
+			// Fake file of 5 MB
+			fileContent: new Blob([new ArrayBuffer(5 * 1024 * 1024)]),
+			fileName: 'image.jpg',
+			mimeType: 'image/jpeg',
+			encoding: 'utf8',
+			lastModified: new Date().getTime(),
+		})
+
+		cy.wait('@upload').then((upload) => {
+			expect(upload.request.url).to.have.string('/remote.php/dav/files/user/image.jpg')
+		})
+
+		cy.get('@component').then(component => {
+			component.setDestination('/Photos')
+			// Wait for prop propagation
+			expect(component.uploadManager.destination).to.equal('/Photos')
+		})
+
+		cy.get('@input').attachFile({
+			// Fake file of 5 MB
+			fileContent: new Blob([new ArrayBuffer(5 * 1024 * 1024)]),
+			fileName: 'image.jpg',
+			mimeType: 'image/jpeg',
+			encoding: 'utf8',
+			lastModified: new Date().getTime(),
+		})
+
+		cy.wait('@upload').then((upload) => {
+			expect(upload.request.url).to.have.string('/remote.php/dav/files/user/Photos/image.jpg')
 		})
 	})
 })
