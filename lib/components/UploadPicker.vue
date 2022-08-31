@@ -264,9 +264,6 @@ $progress-width: 200px;
 
 		// Align progress/text separation with the middle
 		margin-top: 8px;
-		// Visually more pleasing
-		margin-right: 20px;
-		margin-left: 8px;
 
 		p {
 			overflow: hidden;
@@ -277,6 +274,10 @@ $progress-width: 200px;
 
 	&--uploading &__progress {
 		max-width: $progress-width;
+
+		// Visually more pleasing
+		margin-right: 20px;
+		margin-left: 8px;
 	}
 
 	&--paused &__progress {
