@@ -89,6 +89,7 @@ import { Status as UploadStatus } from '../upload.ts'
 import { t } from '../utils/l10n.ts'
 import { Uploader, Status } from '../uploader.ts'
 import ActionIcon from './ActionIcon.vue'
+import logger from '../utils/logger'
 
 /** @type {Uploader} */
 const uploadManager = getUploader()
@@ -118,6 +119,10 @@ export default {
 		multiple: {
 			type: Boolean,
 			default: false,
+		},
+		destination: {
+			type: String,
+			default: '/',
 		},
 	},
 
@@ -169,6 +174,15 @@ export default {
 			this.eta.report(size)
 			this.updateStatus()
 		},
+
+		destination(destination) {
+			this.setDestination(destination)
+		}
+	},
+
+	beforeMount() {
+		this.setDestination(this.destination)
+		logger.debug(`UploadPicker initialised`)
 	},
 
 	methods: {
@@ -225,6 +239,11 @@ export default {
 			}
 			this.timeLeft = t('{seconds} seconds left', { seconds: estimate })
 		},
+
+		setDestination(destination) {
+			logger.debug(`Destination path set to ${destination}`)
+			this.uploadManager.destination = destination
+		}
 	},
 }
 </script>
