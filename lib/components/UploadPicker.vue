@@ -4,7 +4,7 @@
 		class="upload-picker"
 		data-upload-picker>
 		<!-- New button -->
-		<Button v-if="newFileMenuEntries.length === 0"
+		<NcButton v-if="newFileMenuEntries.length === 0"
 			:disabled="disabled"
 			data-upload-picker-add
 			@click="onClick">
@@ -12,7 +12,7 @@
 				<Plus title="" :size="20" decorative />
 			</template>
 			{{ addLabel }}
-		</Button>
+		</NcButton>
 
 		<!-- New file menu -->
 		<Actions v-else :menu-title="addLabel">
@@ -48,7 +48,7 @@
 		</div>
 
 		<!-- Cancel upload button -->
-		<Button v-if="isUploading"
+		<NcButton v-if="isUploading"
 			class="upload-picker__cancel"
 			type="tertiary"
 			:aria-label="cancelLabel"
@@ -58,7 +58,7 @@
 				<Cancel title=""
 					:size="20" />
 			</template>
-		</Button>
+		</NcButton>
 
 		<!-- Hidden files picker input -->
 		<input v-show="false"
@@ -78,7 +78,7 @@ import makeEta from 'simple-eta'
 
 import ActionButton from '@nextcloud/vue/dist/Components/ActionButton.js'
 import Actions from '@nextcloud/vue/dist/Components/Actions.js'
-import Button from '@nextcloud/vue/dist/Components/Button.js'
+import NcButton from '@nextcloud/vue/dist/Components/Button.js'
 import ProgressBar from '@nextcloud/vue/dist/Components/ProgressBar.js'
 
 import Cancel from 'vue-material-design-icons/Cancel.vue'
@@ -89,7 +89,7 @@ import { Status as UploadStatus } from '../upload.ts'
 import { t } from '../utils/l10n.ts'
 import { Uploader, Status } from '../uploader.ts'
 import ActionIcon from './ActionIcon.vue'
-import logger from '../utils/logger'
+import logger from '../utils/logger.ts'
 
 /** @type {Uploader} */
 const uploadManager = getUploader()
@@ -100,7 +100,7 @@ export default {
 		ActionButton,
 		ActionIcon,
 		Actions,
-		Button,
+		NcButton,
 		Cancel,
 		Plus,
 		ProgressBar,
@@ -150,14 +150,19 @@ export default {
 		progress() {
 			return Math.round(this.uploadedQueueSize / this.totalQueueSize * 100) || 0
 		},
+
+		queue() {
+			return this.uploadManager.queue
+		},
+
 		hasFailure() {
-			return this.uploadManager.queue?.filter(upload => upload.status === UploadStatus.FAILED).length !== 0
+			return this.queue?.filter(upload => upload.status === UploadStatus.FAILED).length !== 0
 		},
 		isUploading() {
-			return this.uploadManager.queue?.length > 0
+			return this.queue?.length > 0
 		},
 		isAssembling() {
-			return this.uploadManager.queue?.filter(upload => upload.status === UploadStatus.ASSEMBLING).length !== 0
+			return this.queue?.filter(upload => upload.status === UploadStatus.ASSEMBLING).length !== 0
 		},
 		isPaused() {
 			return this.uploadManager.info?.status === Status.PAUSED
@@ -177,12 +182,32 @@ export default {
 
 		destination(destination) {
 			this.setDestination(destination)
-		}
+		},
+
+		queue(queue, oldQueue) {
+			if (queue.length < oldQueue.length) {
+				this.$emit('uploaded', oldQueue.filter(upload => !queue.includes(upload)))
+			}
+		},
+
+		hasFailure(hasFailure) {
+			if (hasFailure) {
+				this.$emit('failed', this.queue)
+			}
+		},
+
+		isPaused(isPaused) {
+			if (isPaused) {
+				this.$emit('paused', this.queue)
+			} else {
+				this.$emit('resumed', this.queue)
+			}
+		},
 	},
 
 	beforeMount() {
 		this.setDestination(this.destination)
-		logger.debug(`UploadPicker initialised`)
+		logger.debug('UploadPicker initialised')
 	},
 
 	methods: {
@@ -243,7 +268,7 @@ export default {
 		setDestination(destination) {
 			logger.debug(`Destination path set to ${destination}`)
 			this.uploadManager.destination = destination
-		}
+		},
 	},
 }
 </script>
