@@ -21,6 +21,9 @@ export default {
 
 	methods: {
 		async sanitizeSVG() {
+			if (!this.svg) {
+				return
+			}
 			this.cleanSvg = await sanitizeSVG(this.svg)
 		},
 	},

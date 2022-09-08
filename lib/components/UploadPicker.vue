@@ -124,6 +124,10 @@ export default {
 			type: String,
 			default: '/',
 		},
+		context: {
+			type: Object,
+			default: undefined,
+		},
 	},
 
 	data() {
@@ -135,7 +139,7 @@ export default {
 			eta: null,
 			timeLeft: '',
 
-			newFileMenuEntries: getNewFileMenuEntries(),
+			newFileMenuEntries: getNewFileMenuEntries(this.context),
 			uploadManager,
 		}
 	},
@@ -170,6 +174,15 @@ export default {
 	},
 
 	watch: {
+		/**
+		 * If the context change, we need to refresh the menu
+		 *
+		 * @param {FileInfo} context the current NewFileMenu context
+		 */
+		context(context) {
+			this.setContext(context)
+		},
+
 		totalQueueSize(size) {
 			this.eta = makeEta({ min: 0, max: size })
 			this.updateStatus()
@@ -207,6 +220,7 @@ export default {
 
 	beforeMount() {
 		this.setDestination(this.destination)
+		this.setContext(this.context)
 		logger.debug('UploadPicker initialised')
 	},
 
@@ -268,6 +282,11 @@ export default {
 		setDestination(destination) {
 			logger.debug(`Destination path set to ${destination}`)
 			this.uploadManager.destination = destination
+		},
+
+		setContext(context) {
+			logger.debug('Context changed to', context);
+			this.newFileMenuEntries = getNewFileMenuEntries(context)
 		},
 	},
 }

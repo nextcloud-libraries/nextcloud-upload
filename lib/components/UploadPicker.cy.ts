@@ -1,5 +1,6 @@
 // dist file might not be built when running eslint only
-// eslint-disable-next-line import/no-unresolved,node/no-missing-import
+// eslint-disable-next-line import/no-unresolved,n/no-missing-import
+import { addNewFileMenuEntry } from '@nextcloud/files'
 import { UploadPicker } from '../../dist/index.js'
 
 describe('UploadPicker rendering', () => {
@@ -7,6 +8,91 @@ describe('UploadPicker rendering', () => {
 		cy.mount(UploadPicker)
 		cy.get('form').should('have.class', 'upload-picker')
 		cy.get('form input[type="file"]').should('exist')
+		cy.screenshot()
+	})
+})
+
+describe('NewFileMenu handling', () => {
+	const propsData = {
+		context: {
+			basename: 'Folder',
+			etag: '63071eedd82fe',
+			fileid: '56',
+			filename: '/Folder',
+			hasPreview: false,
+			lastmod: 1661410576,
+			mime: 'httpd/unix-directory',
+			month: '197001',
+			permissions: 'CKGWDR',
+			showShared: false,
+			size: 2610077102,
+			timestamp: 1661410,
+			type: 'dir',
+		},
+	}
+	const entry = {
+		id: 'empty-file',
+		displayName: 'Create empty file',
+		templateName: 'New file',
+		iconClass: 'icon-file',
+		if: fileInfo => fileInfo.permissions.includes('CK'),
+		handler() {},
+	}
+
+	before(() => {
+		cy.spy(entry, 'handler')
+		addNewFileMenuEntry(entry)
+	})
+
+	it('Open the New File Menu', () => {
+		// Mount picker
+		cy.mount(UploadPicker, { propsData })
+
+		// Check and init aliases
+		cy.get('form input[type="file"]').as('input').should('exist')
+		cy.get('form .upload-picker__progress').as('progress').should('exist')
+		cy.get('form .action-item__menutoggle').as('menuButton').should('exist')
+
+		cy.get('@menuButton').click()
+		cy.get('[data-upload-picker-add]').should('have.length', 1)
+		cy.get('.upload-picker__menu-entry').should('have.length', 1)
+
+		cy.screenshot()
+
+		cy.get('.upload-picker__menu-entry')
+			.click()
+			.then(() => {
+				expect(entry.handler).to.be.called
+				cy.screenshot()
+			})
+	})
+
+	it('Changes the context', () => {
+		// Mount picker
+		cy.mount(UploadPicker, { propsData })
+
+		// Check and init aliases
+		cy.get('form input[type="file"]').as('input').should('exist')
+		cy.get('form .upload-picker__progress').as('progress').should('exist')
+		cy.get('form .action-item__menutoggle').as('menuButton').should('exist')
+
+		cy.get('@menuButton').click()
+		cy.get('[data-upload-picker-add]').should('have.length', 1)
+		cy.get('.upload-picker__menu-entry').should('have.length', 1)
+		cy.screenshot()
+
+		// Close menu
+		cy.get('body').click()
+		cy.get('[data-upload-picker-add]').should('not.exist')
+		cy.get('.upload-picker__menu-entry').should('not.exist')
+
+		cy.get('@component').then(component => {
+			component.setContext(Object.assign({}, propsData.context, { permissions: 'GR' }))
+		})
+		cy.get('form .action-item__menutoggle').as('menuButton').should('not.exist')
+		cy.get('[data-upload-picker-add]').should('have.length', 1)
+		cy.get('.upload-picker__menu-entry').should('not.exist')
+		cy.screenshot()
 	})
 })
 
@@ -65,6 +151,7 @@ describe('UploadPicker valid uploads', () => {
 		cy.wait('@chunks').then(() => {
 			cy.get('form .upload-picker__progress').as('progress').should('be.visible')
 			cy.get('@progress').children('progress').should('not.have.value', '0')
+			cy.screenshot()
 		})
 		cy.wait('@assembly', { timeout: 60000 }).then(() => {
 			cy.get('form .upload-picker__progress').as('progress').should('not.be.visible')
@@ -102,7 +189,6 @@ describe('Destination management', () => {
 	it('Upload then changes the destination', () => {
 		// Mount picker
 		cy.mount(UploadPicker, { propsData })
-
 
 		// Check and init aliases
 		cy.get('form input[type="file"]').as('input').should('exist')
