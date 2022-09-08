@@ -191,7 +191,7 @@ export class Uploader {
 					await Promise.all(chunksQueue)
 					this.updateStats()
 
-					await axios.request({
+					upload.response = await axios.request({
 						method: 'MOVE',
 						url: `${tempUrl}/.file`,
 						headers: {
@@ -225,7 +225,7 @@ export class Uploader {
 				const blob = await getChunk(file, 0, upload.size)
 				const request = async () => {
 					try {
-						await uploadData(destinationFile, blob, upload.signal, () => this.updateStats())
+						upload.response = await uploadData(destinationFile, blob, upload.signal, () => this.updateStats())
 
 						// Update progress
 						upload.uploaded = upload.size

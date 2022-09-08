@@ -1,4 +1,5 @@
 import { getMaxChunksSize } from './utils/config'
+import type { AxiosResponse } from 'axios'
 
 export enum Status {
 	INITIALIZED = 0,
@@ -15,11 +16,12 @@ export class Upload {
 	private _chunks: number
 
 	private _size: number
-	private _uploaded: number
+	private _uploaded: number = 0
 	private _startTime: number = 0
 
-	private _status: Status
+	private _status: Status = Status.INITIALIZED
 	private _controller: AbortController
+	private _response: AxiosResponse|null = null
 
 	constructor(path: string, chunked: boolean = false, size: number) {
 		const chunks = getMaxChunksSize() > 0 ? Math.ceil(size / getMaxChunksSize()) : 1
@@ -27,8 +29,6 @@ export class Upload {
 		this._isChunked = chunked && getMaxChunksSize() > 0 && chunks > 1
 		this._chunks = this._isChunked ? chunks : 1
 		this._size = size
-		this._uploaded = 0
-		this._status = Status.INITIALIZED
 		this._controller = new AbortController()
 	}
 
@@ -54,6 +54,15 @@ export class Upload {
 
 	get startTime(): number {
 		return this._startTime
+	}
+
+	set response(response: AxiosResponse|null) {
+		this._response = response
+	}
+
+
+	get response(): AxiosResponse|null {
+		return this._response
 	}
 
 	/**
