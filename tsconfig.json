@@ -1,6 +1,7 @@
 {
   "extends": "@vue/tsconfig/tsconfig.json",
-  "include": ["./lib/**/*.ts", "./cypress/**/*.ts"],
+  "include": ["./lib/**/*.ts"],
+  "exclude": ["./lib/**/*.cy.ts"],
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
     "moduleResolution": "node",
