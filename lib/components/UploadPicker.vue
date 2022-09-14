@@ -122,7 +122,11 @@ export default {
 		},
 		destination: {
 			type: String,
-			default: '/',
+			default: null,
+		},
+		root: {
+			type: String,
+			default: null,
 		},
 		context: {
 			type: Object,
@@ -197,6 +201,10 @@ export default {
 			this.setDestination(destination)
 		},
 
+		root(path) {
+			this.setRoot(path)
+		},
+
 		queue(queue, oldQueue) {
 			if (queue.length < oldQueue.length) {
 				this.$emit('uploaded', oldQueue.filter(upload => !queue.includes(upload)))
@@ -219,7 +227,13 @@ export default {
 	},
 
 	beforeMount() {
-		this.setDestination(this.destination)
+		if (this.destination) {
+			this.setDestination(this.destination)
+		}
+		if (this.root) {
+			this.setRoot(this.root)
+		}
+
 		this.setContext(this.context)
 		logger.debug('UploadPicker initialised')
 	},
@@ -282,6 +296,11 @@ export default {
 		setDestination(destination) {
 			logger.debug(`Destination path set to ${destination}`)
 			this.uploadManager.destination = destination
+		},
+
+		setRoot(path) {
+			logger.debug(`Root path set to ${path}`)
+			this.uploadManager.root = path
 		},
 
 		setContext(context) {

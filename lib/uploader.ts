@@ -18,8 +18,9 @@ export enum Status {
 
 export class Uploader {
 
-	private _userRootFolder: string
-	private _destinationFolder: string = '/'
+	// Initialized via setter in the constructor
+	private rootFolder!: string
+	private destinationFolder!: string
 
 	private _isPublic: boolean
 
@@ -34,39 +35,75 @@ export class Uploader {
 	 * Initialize uploader
 	 *
 	 * @param {boolean} isPublic are we in public mode ?
+	 * @param {string} rootFolder the operation root folder
+	 * @param {string} destinationFolder the context folder to operate, relative to the root folder
 	 */
-	constructor(isPublic: boolean = false) {
+	constructor(
+		isPublic: boolean = false,
+		rootFolder = `dav/files/${getCurrentUser()?.uid}`,
+		destinationFolder = '/'
+	) {
 		this._isPublic = isPublic
-		this._userRootFolder = generateRemoteUrl(`dav/files/${getCurrentUser()?.uid}`)
+		this.root = rootFolder
+		this.destination = destinationFolder
 
 		logger.debug('Upload workspace initialized', {
-			destinationFolder: this._destinationFolder,
-			userRootFolder: this._userRootFolder,
+			destinationFolder: this.destination,
+			rootFolder: this.root,
 			isPublic,
 			maxChunksSize: getMaxChunksSize(),
 		})
 	}
 
 	/**
-	 * Get the upload destination path relative to the user root folder
+	 * Get the upload destination path relative to the root folder
 	 */
 	get destination() {
-		return this._destinationFolder
+		return this.destinationFolder
 	}
 
 	/**
-	 * Set the upload destination path relative to the user root folder
+	 * Set the upload destination path relative to the root folder
 	 */
 	set destination(path: string) {
 		if (typeof path !== 'string' || path === '') {
-			this._destinationFolder = '/'
+			this.destinationFolder = '/'
 			return
 		}
 
 		if (!path.startsWith('/')) {
 			path = `/${path}`
 		}
-		this._destinationFolder = path.replace(/\/$/, '')
+		this.destinationFolder = path.replace(/\/$/, '')
+	}
+
+	/**
+	 * Get the root folder
+	 */
+	get root() {
+		return this.rootFolder
+	}
+
+	/**
+	 * Set the root folder
+	 *
+	 * @param {string} path should be the remoteUrl path.
+	 * This method uses the generateRemoteUrl method
+	 */
+	set root(path: string) {
+		if (typeof path !== 'string' || path === '') {
+			this.rootFolder = generateRemoteUrl(`dav/files/${getCurrentUser()?.uid}`)
+			return
+		}
+
+		if (path.startsWith('http')) {
+			throw new Error('The path should be a remote url string. E.g `dav/files/admin`.')
+		}
+
+		if (path.startsWith('/')) {
+			path = path.slice(1)
+		}
+		this.rootFolder = generateRemoteUrl(path)
 	}
 
 	/**
@@ -134,8 +171,8 @@ export class Uploader {
 	 * Upload a file to the given path
 	 */
 	upload(destinationPath: string, file: File) {
-		const destinationFolder = this._destinationFolder === '/' ? '' : this._destinationFolder
-		const destinationFile = `${this._userRootFolder}${destinationFolder}/${destinationPath.replace(/^\//, '')}`
+		const destinationFolder = this.destinationFolder === '/' ? '' : this.destinationFolder
+		const destinationFile = `${this.rootFolder}${destinationFolder}/${destinationPath.replace(/^\//, '')}`
 
 		logger.debug(`Uploading ${file.name} to ${destinationFile}`)
 

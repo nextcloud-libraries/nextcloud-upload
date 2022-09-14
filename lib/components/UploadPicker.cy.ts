@@ -232,3 +232,62 @@ describe('Destination management', () => {
 		})
 	})
 })
+
+describe('Root management', () => {
+	const propsData = {
+		root: null,
+		destination: '/',
+	}
+
+	it('Upload then changes the root', () => {
+		// Mount picker
+		cy.mount(UploadPicker, { propsData })
+
+		// Check and init aliases
+		cy.get('form input[type="file"]').as('input').should('exist')
+		cy.get('form .upload-picker__progress').as('progress').should('exist')
+
+		// Intercept single upload
+		cy.intercept('PUT', '/remote.php/dav/files/*/**', {
+			statusCode: 201,
+		}).as('upload')
+
+		cy.get('@input').attachFile({
+			// Fake file of 5 MB
+			fileContent: new Blob([new ArrayBuffer(5 * 1024 * 1024)]),
+			fileName: 'image.jpg',
+			mimeType: 'image/jpeg',
+			encoding: 'utf8',
+			lastModified: new Date().getTime(),
+		})
+
+		cy.wait('@upload').then((upload) => {
+			expect(upload.request.url).to.have.string('/remote.php/dav/files/user/image.jpg')
+		})
+
+		cy.get('@component').then(component => {
+			component.setRoot('dav/photos/admin/albums')
+			component.setDestination('/2022 Summer Vacations')
+			// Wait for prop propagation
+			expect(component.uploadManager.root).to.match(/dav\/photos\/admin\/albums$/i)
+		})
+
+		// Intercept single upload
+		cy.intercept('PUT', '/remote.php/dav/photos/admin/albums/*/*', {
+			statusCode: 201,
+		}).as('upload')
+
+		cy.get('@input').attachFile({
+			// Fake file of 5 MB
+			fileContent: new Blob([new ArrayBuffer(5 * 1024 * 1024)]),
+			fileName: 'image.jpg',
+			mimeType: 'image/jpeg',
+			encoding: 'utf8',
+			lastModified: new Date().getTime(),
+		})
+
+		cy.wait('@upload').then((upload) => {
+			expect(upload.request.url).to.have.string('/remote.php/dav/photos/admin/albums/2022%20Summer%20Vacations/image.jpg')
+		})
+	})
+})
