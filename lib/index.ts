@@ -1,7 +1,7 @@
 import { Uploader } from './uploader'
 import UploadPicker from './components/UploadPicker.js'
 export { Status as UploaderStatus } from './uploader'
-export { Status as UploadStatus } from './upload'
+export { Upload, Status as UploadStatus } from './upload'
 
 declare global {
   interface Window {
