@@ -8,7 +8,6 @@ describe('UploadPicker rendering', () => {
 		cy.mount(UploadPicker)
 		cy.get('form').should('have.class', 'upload-picker')
 		cy.get('form input[type="file"]').should('exist')
-		cy.screenshot()
 	})
 })
 
@@ -35,7 +34,7 @@ describe('NewFileMenu handling', () => {
 		displayName: 'Create empty file',
 		templateName: 'New file',
 		iconClass: 'icon-file',
-		if: fileInfo => fileInfo.permissions.includes('CK'),
+		if: (fileInfo) => fileInfo.permissions.includes('CK'),
 		handler() {},
 	}
 
@@ -51,19 +50,18 @@ describe('NewFileMenu handling', () => {
 		// Check and init aliases
 		cy.get('form input[type="file"]').as('input').should('exist')
 		cy.get('form .upload-picker__progress').as('progress').should('exist')
-		cy.get('form .action-item__menutoggle').as('menuButton').should('exist')
+		cy.get('form .action-item__menutoggle')
+			.as('menuButton')
+			.should('exist')
 
 		cy.get('@menuButton').click()
 		cy.get('[data-upload-picker-add]').should('have.length', 1)
 		cy.get('.upload-picker__menu-entry').should('have.length', 1)
 
-		cy.screenshot()
-
 		cy.get('.upload-picker__menu-entry')
 			.click()
 			.then(() => {
 				expect(entry.handler).to.be.called
-				cy.screenshot()
 			})
 	})
 
@@ -74,25 +72,29 @@ describe('NewFileMenu handling', () => {
 		// Check and init aliases
 		cy.get('form input[type="file"]').as('input').should('exist')
 		cy.get('form .upload-picker__progress').as('progress').should('exist')
-		cy.get('form .action-item__menutoggle').as('menuButton').should('exist')
+		cy.get('form .action-item__menutoggle')
+			.as('menuButton')
+			.should('exist')
 
 		cy.get('@menuButton').click()
 		cy.get('[data-upload-picker-add]').should('have.length', 1)
 		cy.get('.upload-picker__menu-entry').should('have.length', 1)
-		cy.screenshot()
 
 		// Close menu
 		cy.get('body').click()
-		cy.get('[data-upload-picker-add]').should('not.exist')
-		cy.get('.upload-picker__menu-entry').should('not.exist')
+		cy.get('[data-upload-picker-add]').should('not.be.visible')
+		cy.get('.upload-picker__menu-entry').should('not.be.visible')
 
-		cy.get('@component').then(component => {
-			component.setContext(Object.assign({}, propsData.context, { permissions: 'GR' }))
+		cy.get('@component').then((component) => {
+			component.setContext(
+				Object.assign({}, propsData.context, { permissions: 'GR' })
+			)
 		})
-		cy.get('form .action-item__menutoggle').as('menuButton').should('not.exist')
+		cy.get('form .action-item__menutoggle')
+			.as('menuButton')
+			.should('not.exist')
 		cy.get('[data-upload-picker-add]').should('have.length', 1)
 		cy.get('.upload-picker__menu-entry').should('not.exist')
-		cy.screenshot()
 	})
 })
 
@@ -119,7 +121,7 @@ describe('UploadPicker valid uploads', () => {
 		cy.intercept({
 			method: 'PUT',
 			url: '/remote.php/dav/uploads/*/web-file-upload*/*',
-		}, req => {
+		}, (req) => {
 			chunksRequestsSpy()
 			req.reply({
 				statusCode: 201,
@@ -127,7 +129,7 @@ describe('UploadPicker valid uploads', () => {
 		}).as('chunks')
 
 		// Intercept final assembly request
-		cy.intercept('MOVE', '/remote.php/dav/uploads/*/web-file-upload*/.file', req => {
+		cy.intercept('MOVE', '/remote.php/dav/uploads/*/web-file-upload*/.file', (req) => {
 			req.reply({
 				statusCode: 204,
 				// Fake assembling chunks
@@ -146,15 +148,22 @@ describe('UploadPicker valid uploads', () => {
 		})
 
 		cy.wait('@init').then(() => {
-			cy.get('form .upload-picker__progress').as('progress').should('be.visible')
+			cy.get('form .upload-picker__progress')
+				.as('progress')
+				.should('be.visible')
 		})
 		cy.wait('@chunks').then(() => {
-			cy.get('form .upload-picker__progress').as('progress').should('be.visible')
-			cy.get('@progress').children('progress').should('not.have.value', '0')
-			cy.screenshot()
+			cy.get('form .upload-picker__progress')
+				.as('progress')
+				.should('be.visible')
+			cy.get('@progress')
+				.children('progress')
+				.should('not.have.value', '0')
 		})
 		cy.wait('@assembly', { timeout: 60000 }).then(() => {
-			cy.get('form .upload-picker__progress').as('progress').should('not.be.visible')
+			cy.get('form .upload-picker__progress')
+				.as('progress')
+				.should('not.be.visible')
 			expect(chunksRequestsSpy).to.have.always.been.callCount(26)
 		})
 	})
@@ -174,9 +183,13 @@ describe('UploadPicker valid uploads', () => {
 			lastModified: new Date().getTime(),
 		})
 
-		cy.get('form .upload-picker__progress').as('progress').should('not.be.visible')
+		cy.get('form .upload-picker__progress')
+			.as('progress')
+			.should('not.be.visible')
 		cy.wait('@upload').then(() => {
-			cy.get('@progress').children('progress').should('not.have.value', '0')
+			cy.get('@progress')
+				.children('progress')
+				.should('not.have.value', '0')
 		})
 	})
 })
@@ -209,10 +222,12 @@ describe('Destination management', () => {
 		})
 
 		cy.wait('@upload').then((upload) => {
-			expect(upload.request.url).to.have.string('/remote.php/dav/files/user/image.jpg')
+			expect(upload.request.url).to.have.string(
+				'/remote.php/dav/files/user/image.jpg'
+			)
 		})
 
-		cy.get('@component').then(component => {
+		cy.get('@component').then((component) => {
 			component.setDestination('/Photos')
 			// Wait for prop propagation
 			expect(component.uploadManager.destination).to.equal('/Photos')
@@ -228,7 +243,9 @@ describe('Destination management', () => {
 		})
 
 		cy.wait('@upload').then((upload) => {
-			expect(upload.request.url).to.have.string('/remote.php/dav/files/user/Photos/image.jpg')
+			expect(upload.request.url).to.have.string(
+				'/remote.php/dav/files/user/Photos/image.jpg'
+			)
 		})
 	})
 })
@@ -262,14 +279,18 @@ describe('Root management', () => {
 		})
 
 		cy.wait('@upload').then((upload) => {
-			expect(upload.request.url).to.have.string('/remote.php/dav/files/user/image.jpg')
+			expect(upload.request.url).to.have.string(
+				'/remote.php/dav/files/user/image.jpg'
+			)
 		})
 
-		cy.get('@component').then(component => {
+		cy.get('@component').then((component) => {
 			component.setRoot('dav/photos/admin/albums')
 			component.setDestination('/2022 Summer Vacations')
 			// Wait for prop propagation
-			expect(component.uploadManager.root).to.match(/dav\/photos\/admin\/albums$/i)
+			expect(component.uploadManager.root).to.match(
+				/dav\/photos\/admin\/albums$/i
+			)
 		})
 
 		// Intercept single upload
@@ -287,7 +308,9 @@ describe('Root management', () => {
 		})
 
 		cy.wait('@upload').then((upload) => {
-			expect(upload.request.url).to.have.string('/remote.php/dav/photos/admin/albums/2022%20Summer%20Vacations/image.jpg')
+			expect(upload.request.url).to.have.string(
+				'/remote.php/dav/photos/admin/albums/2022%20Summer%20Vacations/image.jpg'
+			)
 		})
 	})
 })
