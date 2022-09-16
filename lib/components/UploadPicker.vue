@@ -227,12 +227,8 @@ export default {
 	},
 
 	beforeMount() {
-		if (this.destination) {
-			this.setDestination(this.destination)
-		}
-		if (this.root) {
-			this.setRoot(this.root)
-		}
+		this.setDestination(this.destination)
+		this.setRoot(this.root)
 
 		this.setContext(this.context)
 		logger.debug('UploadPicker initialised')
