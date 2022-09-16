@@ -1,10 +1,11 @@
 # 
 # Translators:
 # Pin-Hsien Lee, 2022
+# Tragic Life, 2022
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Pin-Hsien Lee, 2022\n"
+"Last-Translator: Tragic Life, 2022\n"
 "Language-Team: Chinese (Taiwan) (https://www.transifex.com/nextcloud/teams/64236/zh_TW/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: zh_TW\n"
@@ -21,7 +22,7 @@ msgid "a few seconds left"
 msgstr "還剩幾秒"
 
 msgid "Add"
-msgstr "添加"
+msgstr "新增"
 
 msgid "Cancel uploads"
 msgstr "取消上傳"
