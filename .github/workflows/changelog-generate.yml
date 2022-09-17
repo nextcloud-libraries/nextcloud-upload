@@ -9,6 +9,7 @@ jobs:
   build:
     name: Auto generation
     runs-on: ubuntu-latest
+    if: github.actor != 'dependabot[bot]'
     steps:
       - name: Check-out
         uses: actions/checkout@v2
