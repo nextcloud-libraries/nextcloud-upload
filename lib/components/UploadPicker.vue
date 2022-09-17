@@ -15,19 +15,19 @@
 		</NcButton>
 
 		<!-- New file menu -->
-		<Actions v-else :menu-title="addLabel">
+		<NcActions v-else :menu-title="addLabel">
 			<template #icon>
 				<Plus title="" :size="20" decorative />
 			</template>
-			<ActionButton data-upload-picker-add @click="onClick">
+			<NcActionButton data-upload-picker-add @click="onClick">
 				<template #icon>
 					<Upload title="" :size="20" decorative />
 				</template>
 				{{ uploadLabel }}
-			</ActionButton>
+			</NcActionButton>
 
 			<!-- Custom new file entries -->
-			<ActionButton v-for="entry in newFileMenuEntries"
+			<NcActionButton v-for="entry in newFileMenuEntries"
 				:key="entry.id"
 				:icon="entry.iconClass"
 				class="upload-picker__menu-entry"
@@ -36,12 +36,12 @@
 					<ActionIcon :svg="entry.iconSvgInline" />
 				</template>
 				{{ entry.displayName }}
-			</ActionButton>
-		</Actions>
+			</NcActionButton>
+		</NcActions>
 
 		<!-- Progressbar and status, hidden by css -->
 		<div class="upload-picker__progress">
-			<ProgressBar :error="hasFailure"
+			<NcProgressBar :error="hasFailure"
 				:value="progress"
 				size="medium" />
 			<p>{{ timeLeft }}</p>
@@ -76,10 +76,10 @@ import { getNewFileMenuEntries } from '@nextcloud/files'
 import { getUploader } from '../index.ts'
 import makeEta from 'simple-eta'
 
-import ActionButton from '@nextcloud/vue/dist/Components/ActionButton.js'
-import Actions from '@nextcloud/vue/dist/Components/Actions.js'
-import NcButton from '@nextcloud/vue/dist/Components/Button.js'
-import ProgressBar from '@nextcloud/vue/dist/Components/ProgressBar.js'
+import NcActionButton from '@nextcloud/vue/dist/Components/NcActionButton.js'
+import NcActions from '@nextcloud/vue/dist/Components/NcActions.js'
+import NcButton from '@nextcloud/vue/dist/Components/NcButton.js'
+import NcProgressBar from '@nextcloud/vue/dist/Components/NcProgressBar.js'
 
 import Cancel from 'vue-material-design-icons/Cancel.vue'
 import Plus from 'vue-material-design-icons/Plus.vue'
@@ -97,13 +97,13 @@ const uploadManager = getUploader()
 export default {
 	name: 'UploadPicker',
 	components: {
-		ActionButton,
+		NcActionButton,
 		ActionIcon,
-		Actions,
+		NcActions,
 		NcButton,
 		Cancel,
 		Plus,
-		ProgressBar,
+		NcProgressBar,
 		Upload,
 	},
 
@@ -300,7 +300,7 @@ export default {
 		},
 
 		setContext(context) {
-			logger.debug('Context changed to', context);
+			logger.debug('Context changed to', context)
 			this.newFileMenuEntries = getNewFileMenuEntries(context)
 		},
 	},
