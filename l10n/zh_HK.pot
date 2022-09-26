@@ -31,3 +31,6 @@ msgstr "估計剩餘時間"
 
 msgid "paused"
 msgstr "已暫停"
+
+msgid "Upload files"
+msgstr "上傳檔案"
