@@ -1,35 +1,36 @@
 # 
 # Translators:
-# Transifex Bot <>, 2022
+# Nik Pap, 2022
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Transifex Bot <>, 2022\n"
+"Last-Translator: Nik Pap, 2022\n"
 "Language-Team: Greek (https://www.transifex.com/nextcloud/teams/64236/el/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: el\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgid "{estimate} seconds left"
-msgstr ""
+msgid "{seconds} seconds left"
+msgstr "απομένουν {seconds} δευτερόλεπτα"
 
-msgid "{hours} hours and {minutes} minutes left"
-msgstr ""
-
-msgid "{minutes} minutes left"
-msgstr ""
+#. time has the format 00:00:00
+msgid "{time} left"
+msgstr "απομένουν {time}"
 
 msgid "a few seconds left"
-msgstr ""
+msgstr "απομένουν λίγα δευτερόλεπτα"
 
 msgid "Add"
-msgstr ""
+msgstr "Προσθήκη"
 
 msgid "Cancel uploads"
-msgstr ""
+msgstr "Ακύρωση μεταφορτώσεων"
 
 msgid "estimating time left"
-msgstr ""
+msgstr "εκτίμηση του χρόνου που απομένει"
 
 msgid "paused"
-msgstr ""
+msgstr "σε παύση"
+
+msgid "Upload files"
+msgstr "Μεταφόρτωση αρχείων"
