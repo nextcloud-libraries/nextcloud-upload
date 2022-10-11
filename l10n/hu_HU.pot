@@ -1,10 +1,11 @@
 # 
 # Translators:
 # Balázs Meskó <meskobalazs@mailbox.org>, 2022
+# Balázs Úr, 2022
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>, 2022\n"
+"Last-Translator: Balázs Úr, 2022\n"
 "Language-Team: Hungarian (Hungary) (https://www.transifex.com/nextcloud/teams/64236/hu_HU/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: hu_HU\n"
@@ -31,3 +32,6 @@ msgstr "hátralévő idő becslése"
 
 msgid "paused"
 msgstr "szüneteltetve"
+
+msgid "Upload files"
+msgstr "Fájlok feltöltése"
