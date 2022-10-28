@@ -1,35 +1,36 @@
 # 
 # Translators:
-# Transifex Bot <>, 2022
+# Brandon Han, 2022
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Transifex Bot <>, 2022\n"
+"Last-Translator: Brandon Han, 2022\n"
 "Language-Team: Korean (https://www.transifex.com/nextcloud/teams/64236/ko/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: ko\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-msgid "{estimate} seconds left"
-msgstr ""
+msgid "{seconds} seconds left"
+msgstr "{seconds} 남음"
 
-msgid "{hours} hours and {minutes} minutes left"
-msgstr ""
-
-msgid "{minutes} minutes left"
-msgstr ""
+#. time has the format 00:00:00
+msgid "{time} left"
+msgstr "{time} 남음"
 
 msgid "a few seconds left"
-msgstr ""
+msgstr "곧 완료"
 
 msgid "Add"
-msgstr ""
+msgstr "추가"
 
 msgid "Cancel uploads"
-msgstr ""
+msgstr "업로드 취소"
 
 msgid "estimating time left"
-msgstr ""
+msgstr "남은 시간 계산중"
 
 msgid "paused"
-msgstr ""
+msgstr "일시정지됨"
+
+msgid "Upload files"
+msgstr "파일 업로드"
