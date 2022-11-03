@@ -1,35 +1,36 @@
 # 
 # Translators:
-# Transifex Bot <>, 2022
+# Max Bäckström, 2022
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Transifex Bot <>, 2022\n"
+"Last-Translator: Max Bäckström, 2022\n"
 "Language-Team: Swedish (https://www.transifex.com/nextcloud/teams/64236/sv/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: sv\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgid "{estimate} seconds left"
-msgstr ""
+msgid "{seconds} seconds left"
+msgstr "{seconds} sekunder kvarstår"
 
-msgid "{hours} hours and {minutes} minutes left"
-msgstr ""
-
-msgid "{minutes} minutes left"
-msgstr ""
+#. time has the format 00:00:00
+msgid "{time} left"
+msgstr "{time} kvarstår"
 
 msgid "a few seconds left"
-msgstr ""
+msgstr "några sekunder kvar"
 
 msgid "Add"
-msgstr ""
+msgstr "Lägg till"
 
 msgid "Cancel uploads"
-msgstr ""
+msgstr "Avbryt uppladdningar"
 
 msgid "estimating time left"
-msgstr ""
+msgstr "uppskattar kvarstående tid"
 
 msgid "paused"
-msgstr ""
+msgstr "pausad"
+
+msgid "Upload files"
+msgstr "Ladda upp filer"
