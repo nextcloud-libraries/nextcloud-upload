@@ -1,10 +1,11 @@
 # 
 # Translators:
 # Jack Frost, 2022
+# yue wang, 2022
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Jack Frost, 2022\n"
+"Last-Translator: yue wang, 2022\n"
 "Language-Team: Chinese (China) (https://www.transifex.com/nextcloud/teams/64236/zh_CN/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: zh_CN\n"
@@ -31,3 +32,6 @@ msgstr "估计剩余时间"
 
 msgid "paused"
 msgstr "已暂停"
+
+msgid "Upload files"
+msgstr "上传文件"
