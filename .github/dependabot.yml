@@ -13,12 +13,11 @@ updates:
     labels:
       - 3. to review
       - dependencies
+
   - package-ecosystem: github-actions
     directory: /
     schedule:
-      interval: weekly
-      day: saturday
-      time: '03:00'
+      interval: daily
       timezone: Europe/Paris
     open-pull-requests-limit: 10
     labels:
