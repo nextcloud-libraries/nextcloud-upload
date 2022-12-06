@@ -61,7 +61,7 @@
     "@rollup/plugin-typescript": "^9.0.1",
     "@types/jest": "^28.1.8",
     "@vue/tsconfig": "^0.1.3",
-    "cypress": "^11.0.1",
+    "cypress": "^12.0.0",
     "cypress-file-upload": "^5.0.8",
     "gettext-extractor": "^3.5.4",
     "gettext-parser": "^6.0.0",
