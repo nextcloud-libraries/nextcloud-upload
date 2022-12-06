@@ -2,15 +2,25 @@
 # package ecosystems to update and where the package manifests are located.
 # Please see the documentation for all configuration options:
 # https://help.github.com/github/administering-a-repository/configuration-options-for-dependency-updates
-
 version: 2
 updates:
   - package-ecosystem: npm
-    directory: "/"
+    directory: /
     schedule:
       interval: daily
       timezone: Europe/Paris
     open-pull-requests-limit: 10
     labels:
-    - 3. to review
-    - dependencies
+      - 3. to review
+      - dependencies
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: saturday
+      time: '03:00'
+      timezone: Europe/Paris
+    open-pull-requests-limit: 10
+    labels:
+      - 3. to review
+      - dependencies
