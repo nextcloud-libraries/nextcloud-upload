@@ -1,11 +1,11 @@
 # 
 # Translators:
 # John Molakvoæ <skjnldsv@protonmail.com>, 2022
-# Thomas CLAIR, 2022
+# Jérôme Herbinet, 2022
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Thomas CLAIR, 2022\n"
+"Last-Translator: Jérôme Herbinet, 2022\n"
 "Language-Team: French (https://www.transifex.com/nextcloud/teams/64236/fr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: fr\n"
@@ -34,4 +34,4 @@ msgid "paused"
 msgstr "en pause"
 
 msgid "Upload files"
-msgstr "Envoyer des fichiers"
+msgstr "Téléverser des fichiers"
