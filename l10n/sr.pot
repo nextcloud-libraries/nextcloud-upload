@@ -1,30 +1,31 @@
 # 
 # Translators:
 # aleksandar jevtic, 2022
+# Иван Пешић, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: aleksandar jevtic, 2022\n"
+"Last-Translator: Иван Пешић, 2023\n"
 "Language-Team: Serbian (https://www.transifex.com/nextcloud/teams/64236/sr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: sr\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 msgid "{seconds} seconds left"
-msgstr "{seconds} sekundi preostalo"
+msgstr "преостало је {seconds} секунди"
 
 #. time has the format 00:00:00
 msgid "{time} left"
-msgstr "{time} preostalo"
+msgstr "{time} преостало"
 
 msgid "a few seconds left"
-msgstr "preostalo je nekoliko sekundi"
+msgstr "простало је неколико секунди"
 
 msgid "Add"
-msgstr "Dodaj"
+msgstr "Додај"
 
 msgid "Cancel uploads"
-msgstr "Obustavi otpremanja"
+msgstr "Обустави отпремања"
 
 msgid "estimating time left"
 msgstr "procena preostalog vremena"
