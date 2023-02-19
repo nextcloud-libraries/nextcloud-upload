@@ -1,35 +1,36 @@
 # 
 # Translators:
-# Transifex Bot <>, 2022
+# blakduk, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Transifex Bot <>, 2022\n"
+"Last-Translator: blakduk, 2023\n"
 "Language-Team: Vietnamese (https://www.transifex.com/nextcloud/teams/64236/vi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: vi\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-msgid "{estimate} seconds left"
-msgstr ""
+msgid "{seconds} seconds left"
+msgstr "Còn {second} giây"
 
-msgid "{hours} hours and {minutes} minutes left"
-msgstr ""
-
-msgid "{minutes} minutes left"
-msgstr ""
+#. time has the format 00:00:00
+msgid "{time} left"
+msgstr "Còn lại {time}"
 
 msgid "a few seconds left"
-msgstr ""
+msgstr "Còn lại một vài giây"
 
 msgid "Add"
-msgstr ""
+msgstr "Thêm"
 
 msgid "Cancel uploads"
-msgstr ""
+msgstr "Huỷ tải lên"
 
 msgid "estimating time left"
-msgstr ""
+msgstr "Thời gian còn lại dự kiến"
 
 msgid "paused"
-msgstr ""
+msgstr "đã tạm dừng"
+
+msgid "Upload files"
+msgstr "Tập tin tải lên"
