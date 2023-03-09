@@ -1,35 +1,36 @@
 # 
 # Translators:
-# Transifex Bot <>, 2022
+# Ali, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Transifex Bot <>, 2022\n"
+"Last-Translator: Ali, 2023\n"
 "Language-Team: Arabic (https://www.transifex.com/nextcloud/teams/64236/ar/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: ar\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
 
-msgid "{estimate} seconds left"
-msgstr ""
+msgid "{seconds} seconds left"
+msgstr "{seconds} ثانية متبقية"
 
-msgid "{hours} hours and {minutes} minutes left"
-msgstr ""
-
-msgid "{minutes} minutes left"
-msgstr ""
+#. time has the format 00:00:00
+msgid "{time} left"
+msgstr "{time} متبقية"
 
 msgid "a few seconds left"
-msgstr ""
+msgstr "المتبقي بضعة ثوانٍ"
 
 msgid "Add"
-msgstr ""
+msgstr "أضف"
 
 msgid "Cancel uploads"
-msgstr ""
+msgstr "إلغ عملية الرفع"
 
 msgid "estimating time left"
-msgstr ""
+msgstr "تقدير الزمن المتبقي"
 
 msgid "paused"
-msgstr ""
+msgstr "متوقف مؤقّتاً"
+
+msgid "Upload files"
+msgstr "رفع ملفات"
