@@ -3,13 +3,7 @@ import UploadPicker from './components/UploadPicker.js'
 export { Status as UploaderStatus } from './uploader'
 export { Upload, Status as UploadStatus } from './upload'
 
-declare global {
-  interface Window {
-    OC: any;
-  }
-}
-
-var _uploader: Uploader
+let _uploader: Uploader
 
 /**
  * Get an Uploader instance

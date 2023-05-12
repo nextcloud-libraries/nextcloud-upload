@@ -8,12 +8,18 @@ import PLimit from 'p-limit'
 const readerLimit = PLimit(1)
 const reader = new FileReader()
 
+type UploadData = Blob | (() => Promise<Blob>)
+
 /**
  * Upload some data to a given path
  */
-export const uploadData = async function(url: string, data: Blob | (() => Promise<Blob>), signal: AbortSignal, onUploadProgress = () => {}): Promise<AxiosResponse> {
-	if (typeof data === 'function') {
-		data = await data()
+export const uploadData = async function(url: string, uploadData: UploadData, signal: AbortSignal, onUploadProgress = () => {}): Promise<AxiosResponse> {
+	let data: Blob
+
+	if (uploadData instanceof Blob) {
+		data = uploadData
+	} else {
+		data = await uploadData()
 	}
 
 	return await axios.request({

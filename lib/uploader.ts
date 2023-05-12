@@ -27,8 +27,8 @@ export class Uploader {
 	// Global upload queue
 	private _uploadQueue: Array<Upload> = []
 	private _jobQueue: PQueue = new PQueue({ concurrency: 3 })
-	private _queueSize: number = 0
-	private _queueProgress: number = 0
+	private _queueSize = 0
+	private _queueProgress = 0
 	private _queueStatus: Status = Status.IDLE
 
 	/**
@@ -39,7 +39,7 @@ export class Uploader {
 	 * @param {string} destinationFolder the context folder to operate, relative to the root folder
 	 */
 	constructor(
-		isPublic: boolean = false,
+		isPublic = false,
 		rootFolder = `dav/files/${getCurrentUser()?.uid}`,
 		destinationFolder = '/'
 	) {
