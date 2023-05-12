@@ -4,7 +4,7 @@ import commonjs from '@rollup/plugin-commonjs'
 import fs from 'fs'
 import gettextParser from 'gettext-parser'
 import injectProcessEnv from 'rollup-plugin-inject-process-env'
-import styles from 'rollup-plugin-styles'
+import styles from '@ironkinoko/rollup-plugin-styles'
 import typescript from '@rollup/plugin-typescript'
 import vue from 'rollup-plugin-vue2'
 
