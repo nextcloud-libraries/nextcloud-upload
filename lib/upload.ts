@@ -1,4 +1,4 @@
-import { getMaxChunksSize } from './utils/config'
+import { getMaxChunksSize } from './utils/config.js'
 import type { AxiosResponse } from 'axios'
 
 export enum Status {

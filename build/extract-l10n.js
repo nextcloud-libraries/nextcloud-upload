@@ -1,4 +1,4 @@
-const { GettextExtractor, JsExtractors } = require('gettext-extractor')
+import { GettextExtractor, JsExtractors } from 'gettext-extractor'
 
 const extractor = new GettextExtractor()
 extractor

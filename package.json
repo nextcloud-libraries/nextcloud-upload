@@ -2,13 +2,15 @@
   "name": "@nextcloud/upload",
   "version": "1.0.0-beta.8",
   "description": "Nextcloud file upload client",
-  "main": "dist/index.js",
-  "module": "dist/index.esm.js",
+  "type": "module",
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
   "types": "dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/index.esm.js",
-      "require": "./dist/index.js"
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
     }
   },
   "files": [
@@ -24,14 +26,14 @@
     "chunk"
   ],
   "scripts": {
-    "build": "rollup --config rollup.config.mjs",
+    "build": "rollup --config rollup.config.js",
     "build:doc": "typedoc --out dist/doc lib && touch dist/doc/.nojekyll",
     "dev": "echo 'No dev build available, production only' && npm run build",
-    "watch": "rollup --config rollup.config.mjs --watch",
+    "watch": "rollup --config rollup.config.js --watch",
     "lint": "eslint --ext .js,.vue",
     "lint:fix": "eslint --ext .js,.vue --fix",
-    "test": "jest",
-    "test:watch": "jest --watchAll --verbose true",
+    "test": "NODE_OPTIONS=--experimental-vm-modules npx jest",
+    "test:watch": "NODE_OPTIONS=--experimental-vm-modules npx jest --watchAll --verbose true",
     "test:coverage": "jest --coverage",
     "cypress": "cypress run --component",
     "cypress:gui": "cypress open --component",

@@ -5,10 +5,10 @@ import axios from '@nextcloud/axios'
 import PCancelable from 'p-cancelable'
 import PQueue from 'p-queue'
 
-import { getChunk, initChunkWorkspace, uploadData } from './utils/upload'
-import { getMaxChunksSize } from './utils/config'
-import { Status as UploadStatus, Upload } from './upload'
-import logger from './utils/logger'
+import { getChunk, initChunkWorkspace, uploadData } from './utils/upload.js'
+import { getMaxChunksSize } from './utils/config.js'
+import { Status as UploadStatus, Upload } from './upload.js'
+import logger from './utils/logger.js'
 
 export enum Status {
 	IDLE = 0,

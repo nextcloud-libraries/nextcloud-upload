@@ -48,7 +48,7 @@ const config = output => ({
 		vue(),
 		typescript({
 			compilerOptions: output.format === 'cjs'
-				? { target: 'es5' }
+				? { target: 'es5', declaration: false }
 				: {},
 		}),
 		commonjs(),
@@ -64,12 +64,12 @@ const config = output => ({
 export default [
 	{
 		dir: 'dist',
-		format: 'cjs',
-		sourcemap: true,
-	},
-	{
-		file: 'dist/index.esm.js',
 		format: 'esm',
 		sourcemap: true,
 	},
+	{
+                file: 'dist/index.cjs',
+                format: 'cjs',
+                sourcemap: true,
+        },
 ].map(config)
