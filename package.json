@@ -34,7 +34,7 @@
     "lint:fix": "eslint --ext .js,.vue --fix",
     "test": "NODE_OPTIONS=--experimental-vm-modules npx jest",
     "test:watch": "NODE_OPTIONS=--experimental-vm-modules npx jest --watchAll --verbose true",
-    "test:coverage": "jest --coverage",
+    "test:coverage": "NODE_OPTIONS=--experimental-vm-modules npx jest --coverage",
     "cypress": "cypress run --component",
     "cypress:gui": "cypress open --component",
     "l10n:extract": "node build/extract-l10n.js"
@@ -54,6 +54,7 @@
   "devDependencies": {
     "@cypress/vue2": "^2.0.0",
     "@ironkinoko/rollup-plugin-styles": "^4.0.3",
+    "@jest/globals": "^29.5.0",
     "@nextcloud/babel-config": "^1.0.0",
     "@nextcloud/eslint-config": "^8.3.0-beta.0",
     "@nextcloud/vue": "^7.11.4",

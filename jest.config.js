@@ -10,6 +10,9 @@ export default {
 			tsconfig: '__tests__/tsconfig.json',
 		},
 	},
+	moduleNameMapper: {
+		'^(\\.{1,2}/.*)\\.js$': '$1',
+	},
 	transformIgnorePatterns: [
 		'node_modules/(?!(p-limit|yocto-queue)/)',
 	],

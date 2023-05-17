@@ -1,5 +1,6 @@
-import { getChunk, initChunkWorkspace, uploadData } from '../../lib/utils/upload'
+import { getChunk, initChunkWorkspace, uploadData } from '../../lib/utils/upload.js'
 import axios from '@nextcloud/axios';
+import { jest } from '@jest/globals'
 
 describe('Get chunk from file', () => {
 	test('Chunking a valid file', async () => {
