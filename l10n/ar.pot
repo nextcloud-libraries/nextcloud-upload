@@ -25,7 +25,7 @@ msgid "Add"
 msgstr "أضف"
 
 msgid "Cancel uploads"
-msgstr "إلغ عملية الرفع"
+msgstr "إلغاء عمليات رفع الملفات"
 
 msgid "estimating time left"
 msgstr "تقدير الزمن المتبقي"
