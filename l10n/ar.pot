@@ -28,7 +28,7 @@ msgid "Cancel uploads"
 msgstr "إلغاء عمليات رفع الملفات"
 
 msgid "estimating time left"
-msgstr "تقدير الزمن المتبقي"
+msgstr "تقدير الوقت المتبقي"
 
 msgid "paused"
 msgstr "متوقف مؤقّتاً"
