@@ -1,11 +1,12 @@
 # 
 # Translators:
 # Ali, 2023
+# Abo Khalid <myomv100@gmail.com>, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Ali, 2023\n"
-"Language-Team: Arabic (https://www.transifex.com/nextcloud/teams/64236/ar/)\n"
+"Last-Translator: Abo Khalid <myomv100@gmail.com>, 2023\n"
+"Language-Team: Arabic (https://app.transifex.com/nextcloud/teams/64236/ar/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: ar\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
@@ -18,7 +19,7 @@ msgid "{time} left"
 msgstr "{time} متبقية"
 
 msgid "a few seconds left"
-msgstr "المتبقي بضعة ثوانٍ"
+msgstr "متبقي بضع ثوانٍ"
 
 msgid "Add"
 msgstr "أضف"
