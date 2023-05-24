@@ -73,7 +73,7 @@
 
 <script>
 import { getNewFileMenuEntries } from '@nextcloud/files'
-import { getUploader } from '../index.ts'
+import { getUploader } from '../index.js'
 import makeEta from 'simple-eta'
 
 import NcActionButton from '@nextcloud/vue/dist/Components/NcActionButton.js'
@@ -85,13 +85,12 @@ import Cancel from 'vue-material-design-icons/Cancel.vue'
 import Plus from 'vue-material-design-icons/Plus.vue'
 import Upload from 'vue-material-design-icons/Upload.vue'
 
-import { Status as UploadStatus } from '../upload.ts'
-import { t } from '../utils/l10n.ts'
-import { Uploader, Status } from '../uploader.ts'
+import { Status as UploadStatus } from '../upload.js'
+import { t } from '../utils/l10n.js'
+import { Uploader, Status } from '../uploader.js'
 import ActionIcon from './ActionIcon.vue'
-import logger from '../utils/logger.ts'
+import logger from '../utils/logger.js'
 
-/** @type {Uploader} */
 const uploadManager = getUploader()
 
 export default {

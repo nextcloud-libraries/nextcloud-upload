@@ -1,5 +1,16 @@
-import { getChunk, initChunkWorkspace, uploadData } from '../../lib/utils/upload'
+import { getChunk, initChunkWorkspace, uploadData } from '../../lib/utils/upload.js'
 import axios from '@nextcloud/axios';
+import { jest } from '@jest/globals'
+
+const axiosMock: jest.Mock<axios> | typeof axios = axios
+
+beforeAll(() => {
+	jest.mock("axios", jest.fn())
+})
+afterAll(() => {
+	jest.unmock("axios")
+})
+
 
 describe('Get chunk from file', () => {
 	test('Chunking a valid file', async () => {
@@ -34,14 +45,24 @@ describe('Get chunk from file', () => {
 
 describe('Initialize chunks upload temporary workspace', () => {
 	test('Init random workspace', async () => {
-		jest.spyOn(axios, 'request')
-		const url = await initChunkWorkspace()
+		axiosMock.request = jest.fn((config: any) => Promise.resolve(config?.onUploadProgress?.()))
 
+		// mock the current location for our assert on the URL
+		Object.defineProperty(window, "location", {
+			value: new URL("https://cloud.domain.com"),
+			configurable: true,
+		});
+
+		// mock the current user
+		document.head.setAttribute('data-user', 'test')
+
+		const url = await initChunkWorkspace()
+		
 		expect(url.startsWith('https://cloud.domain.com/remote.php/dav/uploads/test/web-file-upload-')).toBe(true)
 		expect(url.length).toEqual('https://cloud.domain.com/remote.php/dav/uploads/test/web-file-upload-3ec6b932e672fd7c1d8430b0f8457b07'.length)
 
-		expect(axios.request).toHaveBeenCalledTimes(1)
-		expect(axios.request).toHaveBeenCalledWith({
+		expect(axiosMock.request).toHaveBeenCalledTimes(1)
+		expect(axiosMock.request).toHaveBeenCalledWith({
 			method: 'MKCOL',
 			url,
 		})
@@ -50,7 +71,8 @@ describe('Initialize chunks upload temporary workspace', () => {
 
 describe('Upload data', () => {
 	test('Upload data stream', async () => {
-		jest.spyOn(axios, 'request')
+		axiosMock.request = jest.fn((config: any) => Promise.resolve(config?.onUploadProgress()))
+
 		const url = 'https://cloud.domain.com/remote.php/dav/files/test/image.jpg'
 		const blob = new Blob([new ArrayBuffer(50 * 1024 * 1024)])
 		const signal =  new AbortController().signal
@@ -58,8 +80,8 @@ describe('Upload data', () => {
 		await uploadData(url, blob, signal, onUploadProgress)
 
 		expect(onUploadProgress).toHaveBeenCalledTimes(1)
-		expect(axios.request).toHaveBeenCalledTimes(1)
-		expect(axios.request).toHaveBeenCalledWith({
+		expect(axiosMock.request).toHaveBeenCalledTimes(1)
+		expect(axiosMock.request).toHaveBeenCalledWith({
 			method: 'PUT',
 			url,
 			data: blob,
@@ -68,7 +90,7 @@ describe('Upload data', () => {
 		})
 	})
 	test('Upload async data stream', async () => {
-		jest.spyOn(axios, 'request')
+		axiosMock.request = jest.fn((config: any) => Promise.resolve(config?.onUploadProgress()))
 
 		const url = 'https://cloud.domain.com/remote.php/dav/files/test/image.jpg'
 		const blob = new Blob([new ArrayBuffer(50 * 1024 * 1024)])
@@ -79,9 +101,9 @@ describe('Upload data', () => {
 		await uploadData(url, data, signal, onUploadProgress)
 
 		expect(onUploadProgress).toHaveBeenCalledTimes(1)
-		expect(axios.request).toHaveBeenCalledTimes(1)
+		expect(axiosMock.request).toHaveBeenCalledTimes(1)
 		expect(data).toHaveBeenCalledTimes(1)
-		expect(axios.request).toHaveBeenCalledWith({
+		expect(axiosMock.request).toHaveBeenCalledWith({
 			method: 'PUT',
 			url,
 			data: blob,
@@ -91,7 +113,7 @@ describe('Upload data', () => {
 	})
 
 	test('Upload cancellation', async () => {
-		jest.spyOn(axios, 'request')
+		axiosMock.request = jest.fn((config: any) => Promise.resolve(config?.onUploadProgress()))
 
 		const url = 'https://cloud.domain.com/remote.php/dav/files/test/image.jpg'
 		const blob = new Blob([new ArrayBuffer(50 * 1024 * 1024)])
@@ -106,7 +128,7 @@ describe('Upload data', () => {
 			await uploadData(url, data, controller.signal, onUploadProgress)
 		} catch (error) {
 			expect(onUploadProgress).toHaveBeenCalledTimes(1)
-			expect(axios.request).toHaveBeenCalledTimes(1)
+			expect(axiosMock.request).toHaveBeenCalledTimes(1)
 			expect(controller.abort).toHaveBeenCalledTimes(1)
 			expect((error as Error).name).toBe('AbortError')
 		}

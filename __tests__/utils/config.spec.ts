@@ -1,4 +1,4 @@
-import { getMaxChunksSize } from '../../lib/utils/config'
+import { getMaxChunksSize } from '../../lib/utils/config.js'
 
 describe('Max chunk size tests', () => {
 	test('Returning valid config', () => {

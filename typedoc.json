@@ -1,0 +1,9 @@
+{
+    "$schema": "https://typedoc.org/schema.json",
+    "entryPoints": ["./lib/index.ts"],
+    "out": "dist/doc",
+    "excludePrivate": true,
+    "navigationLinks": {
+        "GitHub": "https://github.com/nextcloud/nextcloud-upload/"
+    }
+}

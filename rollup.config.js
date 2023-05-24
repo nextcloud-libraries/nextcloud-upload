@@ -4,7 +4,7 @@ import commonjs from '@rollup/plugin-commonjs'
 import fs from 'fs'
 import gettextParser from 'gettext-parser'
 import injectProcessEnv from 'rollup-plugin-inject-process-env'
-import styles from 'rollup-plugin-styles'
+import styles from '@ironkinoko/rollup-plugin-styles'
 import typescript from '@rollup/plugin-typescript'
 import vue from 'rollup-plugin-vue2'
 
@@ -48,7 +48,7 @@ const config = output => ({
 		vue(),
 		typescript({
 			compilerOptions: output.format === 'cjs'
-				? { target: 'es5' }
+				? { target: 'es5', declaration: false }
 				: {},
 		}),
 		commonjs(),
@@ -64,12 +64,12 @@ const config = output => ({
 export default [
 	{
 		dir: 'dist',
-		format: 'cjs',
-		sourcemap: true,
-	},
-	{
-		file: 'dist/index.esm.js',
 		format: 'esm',
 		sourcemap: true,
 	},
+	{
+                file: 'dist/index.cjs',
+                format: 'cjs',
+                sourcemap: true,
+        },
 ].map(config)

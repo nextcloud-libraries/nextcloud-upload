@@ -1,15 +1,9 @@
-import { Uploader } from './uploader'
-import UploadPicker from './components/UploadPicker.js'
-export { Status as UploaderStatus } from './uploader'
-export { Upload, Status as UploadStatus } from './upload'
+import { Uploader } from './uploader.js'
+import UploadPicker from './components/UploadPicker.vue'
+export { Status as UploaderStatus } from './uploader.js'
+export { Upload, Status as UploadStatus } from './upload.js'
 
-declare global {
-  interface Window {
-    OC: any;
-  }
-}
-
-var _uploader: Uploader
+let _uploader: Uploader
 
 /**
  * Get an Uploader instance

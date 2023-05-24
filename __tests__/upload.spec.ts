@@ -1,4 +1,5 @@
-import { Status, Upload } from '../lib/upload'
+import { Status, Upload } from '../lib/upload.js'
+import { jest } from '@jest/globals'
 
 describe('Constructor checks', () => {
 	test('Classic upload', () => {
