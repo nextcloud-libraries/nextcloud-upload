@@ -1,35 +1,36 @@
 # 
 # Translators:
-# Transifex Bot <>, 2022
+# Xosé, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Transifex Bot <>, 2022\n"
-"Language-Team: Galician (https://www.transifex.com/nextcloud/teams/64236/gl/)\n"
+"Last-Translator: Xosé, 2023\n"
+"Language-Team: Galician (https://app.transifex.com/nextcloud/teams/64236/gl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: gl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgid "{estimate} seconds left"
-msgstr ""
+msgid "{seconds} seconds left"
+msgstr "faltan {seconds} segundos"
 
-msgid "{hours} hours and {minutes} minutes left"
-msgstr ""
-
-msgid "{minutes} minutes left"
-msgstr ""
+#. time has the format 00:00:00
+msgid "{time} left"
+msgstr "falta {time}"
 
 msgid "a few seconds left"
-msgstr ""
+msgstr "faltan uns segundos"
 
 msgid "Add"
-msgstr ""
+msgstr "Engadir"
 
 msgid "Cancel uploads"
-msgstr ""
+msgstr "Cancelar envíos"
 
 msgid "estimating time left"
-msgstr ""
+msgstr "calculando canto tempo falta"
 
 msgid "paused"
-msgstr ""
+msgstr "detido"
+
+msgid "Upload files"
+msgstr "Enviar ficheiros"
