@@ -76,10 +76,10 @@
     "rollup-plugin-vue2": "^0.8.1",
     "sass": "^1.54.6",
     "ts-jest": "^29.1.0",
-    "ts-loader": "^9.4.2",
-    "tslib": "^2.5.0",
-    "typedoc": "^0.24.7",
-    "typescript": "^5.0.4",
+    "ts-loader": "^9.4.3",
+    "tslib": "^2.5.3",
+    "typedoc": "^0.24.8",
+    "typescript": "^5.1.3",
     "vue-template-compiler": "^2.7.10"
   },
   "dependencies": {
