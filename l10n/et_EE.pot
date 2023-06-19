@@ -1,11 +1,12 @@
 # 
 # Translators:
 # Mait R, 2022
+# Taavo Roos, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Mait R, 2022\n"
-"Language-Team: Estonian (Estonia) (https://www.transifex.com/nextcloud/teams/64236/et_EE/)\n"
+"Last-Translator: Taavo Roos, 2023\n"
+"Language-Team: Estonian (Estonia) (https://app.transifex.com/nextcloud/teams/64236/et_EE/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: et_EE\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -31,3 +32,6 @@ msgstr "hinnanguline järelejäänud aeg"
 
 msgid "paused"
 msgstr "pausil"
+
+msgid "Upload files"
+msgstr "Lae failid üles"
