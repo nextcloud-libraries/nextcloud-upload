@@ -3,7 +3,7 @@ import UploadPicker from './components/UploadPicker.vue'
 export { Status as UploaderStatus } from './uploader.js'
 export { Upload, Status as UploadStatus } from './upload.js'
 
-let _uploader: Uploader
+let _uploader: Uploader | null = null
 
 /**
  * Get an Uploader instance
