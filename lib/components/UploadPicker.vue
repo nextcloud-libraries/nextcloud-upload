@@ -87,11 +87,9 @@ import Upload from 'vue-material-design-icons/Upload.vue'
 
 import { Status as UploadStatus } from '../upload.js'
 import { t } from '../utils/l10n.js'
-import { Uploader, Status } from '../uploader.js'
+import { Status } from '../uploader.js'
 import ActionIcon from './ActionIcon.vue'
 import logger from '../utils/logger.js'
-
-const uploadManager = getUploader()
 
 export default {
 	name: 'UploadPicker',
@@ -143,7 +141,7 @@ export default {
 			timeLeft: '',
 
 			newFileMenuEntries: getNewFileMenuEntries(this.context),
-			uploadManager,
+			uploadManager: getUploader(),
 		}
 	},
 
@@ -247,7 +245,7 @@ export default {
 		async onPick() {
 			const files = [...this.$refs.input.files]
 			files.forEach(file => {
-				uploadManager.upload(file.name, file)
+				this.uploadManager.upload(file.name, file)
 			})
 			this.$refs.form.reset()
 		},
