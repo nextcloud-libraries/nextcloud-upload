@@ -5,10 +5,10 @@
   "exclude": ["./dist", "./lib/**/*.cy.ts", "./tests"],
   "compilerOptions": {
       "target": "ES2019", // ES2020 requires Safari 13+
-      "module": "ES2020",
+      "module": "ESNext",
       "declaration": true,
       "esModuleInterop": true,
-      "moduleResolution": "node16",
+      "moduleResolution": "Bundler",
       "noImplicitAny": false,
       "outDir": "./dist",
       "strict": true,

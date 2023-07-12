@@ -2,7 +2,7 @@ import { getChunk, initChunkWorkspace, uploadData } from '../../lib/utils/upload
 import axios from '@nextcloud/axios';
 import { jest } from '@jest/globals'
 
-const axiosMock: jest.Mock<axios> | typeof axios = axios
+const axiosMock: jest.Mock<typeof axios> | typeof axios = axios
 
 beforeAll(() => {
 	jest.mock("axios", jest.fn())
