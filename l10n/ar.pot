@@ -31,7 +31,7 @@ msgid "estimating time left"
 msgstr "تقدير الوقت المتبقي"
 
 msgid "paused"
-msgstr "متوقف مؤقتاً"
+msgstr "مُجمَّد"
 
 msgid "Upload files"
 msgstr "رفع ملفات"
