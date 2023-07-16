@@ -1,11 +1,11 @@
 # 
 # Translators:
-# Ali, 2023
-# Abo Khalid <myomv100@gmail.com>, 2023
+# omv nas <myomv100@gmail.com>, 2023
+# Ali <alimahwer@yahoo.com>, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Abo Khalid <myomv100@gmail.com>, 2023\n"
+"Last-Translator: Ali <alimahwer@yahoo.com>, 2023\n"
 "Language-Team: Arabic (https://app.transifex.com/nextcloud/teams/64236/ar/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: ar\n"
@@ -19,7 +19,7 @@ msgid "{time} left"
 msgstr "{time} متبقية"
 
 msgid "a few seconds left"
-msgstr "متبقي بضع ثوانٍ"
+msgstr "باقٍ بضعُ ثوانٍ"
 
 msgid "Add"
 msgstr "أضف"
@@ -31,7 +31,7 @@ msgid "estimating time left"
 msgstr "تقدير الوقت المتبقي"
 
 msgid "paused"
-msgstr "متوقف مؤقتاً"
+msgstr "مُجمَّد"
 
 msgid "Upload files"
 msgstr "رفع ملفات"
