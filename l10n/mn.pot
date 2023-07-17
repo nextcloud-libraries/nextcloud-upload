@@ -1,35 +1,36 @@
 # 
 # Translators:
-# Transifex Bot <>, 2022
+# BATKHUYAG Ganbold, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Transifex Bot <>, 2022\n"
-"Language-Team: Mongolian (https://www.transifex.com/nextcloud/teams/64236/mn/)\n"
+"Last-Translator: BATKHUYAG Ganbold, 2023\n"
+"Language-Team: Mongolian (https://app.transifex.com/nextcloud/teams/64236/mn/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: mn\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgid "{estimate} seconds left"
-msgstr ""
+msgid "{seconds} seconds left"
+msgstr "{seconds} секунд үлдсэн"
 
-msgid "{hours} hours and {minutes} minutes left"
-msgstr ""
-
-msgid "{minutes} minutes left"
-msgstr ""
+#. time has the format 00:00:00
+msgid "{time} left"
+msgstr "{time} үлдсэн"
 
 msgid "a few seconds left"
-msgstr ""
+msgstr "хэдхэн секунд үлдсэн"
 
 msgid "Add"
-msgstr ""
+msgstr "Нэмэх"
 
 msgid "Cancel uploads"
-msgstr ""
+msgstr "Илгээлтийг цуцлах"
 
 msgid "estimating time left"
-msgstr ""
+msgstr "Үлдсэн хугацааг тооцоолж байна"
 
 msgid "paused"
-msgstr ""
+msgstr "түр зогсоосон"
+
+msgid "Upload files"
+msgstr "Файл илгээх"
