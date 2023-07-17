@@ -1,35 +1,36 @@
 # 
 # Translators:
-# Transifex Bot <>, 2022
+# Fatemeh Komeily, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Transifex Bot <>, 2022\n"
-"Language-Team: Persian (https://www.transifex.com/nextcloud/teams/64236/fa/)\n"
+"Last-Translator: Fatemeh Komeily, 2023\n"
+"Language-Team: Persian (https://app.transifex.com/nextcloud/teams/64236/fa/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: fa\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-msgid "{estimate} seconds left"
-msgstr ""
+msgid "{seconds} seconds left"
+msgstr "ثانیه های مانده"
 
-msgid "{hours} hours and {minutes} minutes left"
-msgstr ""
-
-msgid "{minutes} minutes left"
-msgstr ""
+#. time has the format 00:00:00
+msgid "{time} left"
+msgstr "باقی مانده"
 
 msgid "a few seconds left"
-msgstr ""
+msgstr "چند ثانیه مانده"
 
 msgid "Add"
-msgstr ""
+msgstr "اضافه کردن"
 
 msgid "Cancel uploads"
-msgstr ""
+msgstr "کنسل کردن فایل های اپلود شده"
 
 msgid "estimating time left"
-msgstr ""
+msgstr "تخمین زمان باقی مانده"
 
 msgid "paused"
-msgstr ""
+msgstr "مکث کردن"
+
+msgid "Upload files"
+msgstr "بارگذاری فایل ها"
