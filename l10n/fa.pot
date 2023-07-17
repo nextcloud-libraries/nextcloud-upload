@@ -11,7 +11,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 msgid "{seconds} seconds left"
-msgstr "ثانیه های مانده"
+msgstr "ثانیه های باقی مانده"
 
 #. time has the format 00:00:00
 msgid "{time} left"
