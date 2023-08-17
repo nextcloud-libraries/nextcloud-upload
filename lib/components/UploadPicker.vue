@@ -4,7 +4,7 @@
 		class="upload-picker"
 		data-upload-picker>
 		<!-- New button -->
-		<NcButton v-if="newFileMenuEntries.length === 0"
+		<NcButton v-if="newFileMenuEntries && newFileMenuEntries.length === 0"
 			:disabled="disabled"
 			data-upload-picker-add
 			@click="onClick">
@@ -33,7 +33,7 @@
 				class="upload-picker__menu-entry"
 				@click="entry.handler">
 				<template #icon>
-					<ActionIcon :svg="entry.iconSvgInline" />
+					<NcIconSvgWrapper :svg="entry.iconSvgInline" />
 				</template>
 				{{ entry.displayName }}
 			</NcActionButton>
@@ -72,13 +72,14 @@
 </template>
 
 <script>
-import { getNewFileMenuEntries } from '@nextcloud/files'
+import { getNewFileMenuEntries, Folder } from '@nextcloud/files'
 import { getUploader } from '../index.js'
 import makeEta from 'simple-eta'
 
 import NcActionButton from '@nextcloud/vue/dist/Components/NcActionButton.js'
 import NcActions from '@nextcloud/vue/dist/Components/NcActions.js'
 import NcButton from '@nextcloud/vue/dist/Components/NcButton.js'
+import NcIconSvgWrapper from '@nextcloud/vue/dist/Components/NcIconSvgWrapper.js'
 import NcProgressBar from '@nextcloud/vue/dist/Components/NcProgressBar.js'
 
 import Cancel from 'vue-material-design-icons/Cancel.vue'
@@ -86,21 +87,20 @@ import Plus from 'vue-material-design-icons/Plus.vue'
 import Upload from 'vue-material-design-icons/Upload.vue'
 
 import { Status as UploadStatus } from '../upload.js'
-import { t } from '../utils/l10n.js'
-import { Status } from '../uploader.js'
-import ActionIcon from './ActionIcon.vue'
-import logger from '../utils/logger.js'
+import { t } from '../utils/l10n.ts'
+import { Status } from '../uploader.ts'
+import logger from '../utils/logger.ts'
 
 export default {
 	name: 'UploadPicker',
 	components: {
+		Cancel,
 		NcActionButton,
-		ActionIcon,
 		NcActions,
 		NcButton,
-		Cancel,
-		Plus,
+		NcIconSvgWrapper,
 		NcProgressBar,
+		Plus,
 		Upload,
 	},
 
@@ -118,15 +118,7 @@ export default {
 			default: false,
 		},
 		destination: {
-			type: String,
-			default: null,
-		},
-		root: {
-			type: String,
-			default: null,
-		},
-		context: {
-			type: Object,
+			type: Folder,
 			default: undefined,
 		},
 	},
@@ -140,7 +132,7 @@ export default {
 			eta: null,
 			timeLeft: '',
 
-			newFileMenuEntries: getNewFileMenuEntries(this.context),
+			newFileMenuEntries: [],
 			uploadManager: getUploader(),
 		}
 	},
@@ -176,12 +168,12 @@ export default {
 
 	watch: {
 		/**
-		 * If the context change, we need to refresh the menu
+		 * If the destination change, we need to refresh the menu
 		 *
-		 * @param {FileInfo} context the current NewFileMenu context
+		 * @param {FileInfo} destination the current NewFileMenu destination
 		 */
-		context(context) {
-			this.setContext(context)
+		destination(destination) {
+			this.setDestination(destination)
 		},
 
 		totalQueueSize(size) {
@@ -192,14 +184,6 @@ export default {
 		uploadedQueueSize(size) {
 			this.eta.report(size)
 			this.updateStatus()
-		},
-
-		destination(destination) {
-			this.setDestination(destination)
-		},
-
-		root(path) {
-			this.setRoot(path)
 		},
 
 		queue(queue, oldQueue) {
@@ -224,10 +208,10 @@ export default {
 	},
 
 	beforeMount() {
-		this.setDestination(this.destination)
-		this.setRoot(this.root)
-
-		this.setContext(this.context)
+		// Prevent init with wrong destination
+		if (this.destination) {
+			this.setDestination(this.destination)
+		}
 		logger.debug('UploadPicker initialised')
 	},
 
@@ -287,18 +271,14 @@ export default {
 		},
 
 		setDestination(destination) {
-			logger.debug(`Destination path set to ${destination}`)
+			if (!this.destination) {
+				logger.debug('Invalid destination')
+				return
+			}
+
+			logger.debug(`Destination set to ${destination}`)
 			this.uploadManager.destination = destination
-		},
-
-		setRoot(path) {
-			logger.debug(`Root path set to ${path}`)
-			this.uploadManager.root = path
-		},
-
-		setContext(context) {
-			logger.debug('Context changed to', context)
-			this.newFileMenuEntries = getNewFileMenuEntries(context)
+			this.newFileMenuEntries = getNewFileMenuEntries(destination)
 		},
 	},
 }

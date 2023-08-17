@@ -1,7 +1,8 @@
 // dist file might not be built when running eslint only
 // eslint-disable-next-line import/no-unresolved,n/no-missing-import
-import { addNewFileMenuEntry } from '@nextcloud/files'
+import { Folder, Permission, addNewFileMenuEntry, Entry } from '@nextcloud/files'
 import { UploadPicker } from '../../dist/index.js'
+import { generateRemoteUrl } from '@nextcloud/router'
 
 describe('UploadPicker rendering', () => {
 	it('Renders default UploadPicker', () => {
@@ -13,30 +14,22 @@ describe('UploadPicker rendering', () => {
 
 describe('NewFileMenu handling', () => {
 	const propsData = {
-		context: {
-			basename: 'Folder',
-			etag: '63071eedd82fe',
-			fileid: '56',
-			filename: '/Folder',
-			hasPreview: false,
-			lastmod: 1661410576,
-			mime: 'httpd/unix-directory',
-			month: '197001',
-			permissions: 'CKGWDR',
-			showShared: false,
-			size: 2610077102,
-			timestamp: 1661410,
-			type: 'dir',
-		},
+		destination: new Folder({
+			id: 56,
+			owner: 'user',
+			source: generateRemoteUrl('dav/files/user/Folder'),
+			permissions: Permission.ALL,
+			root: '/files/user',
+		}),
 	}
 	const entry = {
 		id: 'empty-file',
 		displayName: 'Create empty file',
 		templateName: 'New file',
 		iconClass: 'icon-file',
-		if: (fileInfo) => fileInfo.permissions.includes('CK'),
+		if: (folder: Folder) => (folder.permissions & Permission.CREATE) !== 0,
 		handler() {},
-	}
+	} as Entry
 
 	before(() => {
 		cy.spy(entry, 'handler')
@@ -86,9 +79,13 @@ describe('NewFileMenu handling', () => {
 		cy.get('.upload-picker__menu-entry').should('not.be.visible')
 
 		cy.get('@component').then((component) => {
-			component.setContext(
-				Object.assign({}, propsData.context, { permissions: 'GR' })
-			)
+			component.setDestination(new Folder({
+				id: 56,
+				owner: 'user',
+				source: generateRemoteUrl('dav/files/user/Folder'),
+				permissions: Permission.NONE,
+				root: '/files/user',
+			}))
 		})
 		cy.get('form .action-item__menutoggle')
 			.as('menuButton')
@@ -100,8 +97,20 @@ describe('NewFileMenu handling', () => {
 
 describe('UploadPicker valid uploads', () => {
 	beforeEach(() => {
+		// Make sure we reset the destination
+		// so other tests do not interfere
+		const propsData = {
+			destination: new Folder({
+				id: 56,
+				owner: 'user',
+				source: generateRemoteUrl('dav/files/user'),
+				permissions: Permission.ALL,
+				root: '/files/user',
+			}),
+		}
+
 		// Mount picker
-		cy.mount(UploadPicker).as('uploadPicker')
+		cy.mount(UploadPicker, { propsData }).as('uploadPicker')
 
 		// Check and init aliases
 		cy.get('form input[type="file"]').as('input').should('exist')
@@ -196,7 +205,13 @@ describe('UploadPicker valid uploads', () => {
 
 describe('Destination management', () => {
 	const propsData = {
-		destination: '/',
+		destination: new Folder({
+			id: 56,
+			owner: 'user',
+			source: generateRemoteUrl('dav/files/user'),
+			permissions: Permission.ALL,
+			root: '/files/user',
+		}),
 	}
 
 	it('Upload then changes the destination', () => {
@@ -228,9 +243,15 @@ describe('Destination management', () => {
 		})
 
 		cy.get('@component').then((component) => {
-			component.setDestination('/Photos')
+			component.setDestination(new Folder({
+				id: 56,
+				owner: 'user',
+				source: generateRemoteUrl('dav/files/user/Photos'),
+				permissions: Permission.ALL,
+				root: '/files/user',
+			}))
 			// Wait for prop propagation
-			expect(component.uploadManager.destination).to.equal('/Photos')
+			expect(component.uploadManager.root).to.have.string('/remote.php/dav/files/user/Photos')
 		})
 
 		cy.get('@input').attachFile({
@@ -253,7 +274,13 @@ describe('Destination management', () => {
 describe('Root management', () => {
 	const propsData = {
 		root: null,
-		destination: '/',
+		destination: new Folder({
+			id: 56,
+			owner: 'user',
+			source: generateRemoteUrl('dav/files/user'),
+			permissions: Permission.ALL,
+			root: '/files/user',
+		}),
 	}
 
 	it('Upload then changes the root', () => {
@@ -280,21 +307,24 @@ describe('Root management', () => {
 
 		cy.wait('@upload').then((upload) => {
 			expect(upload.request.url).to.have.string(
-				'/remote.php/dav/files/user/image.jpg'
+				'/remote.php/dav/files/user/image.jpg',
 			)
 		})
 
 		cy.get('@component').then((component) => {
-			component.setRoot('dav/photos/admin/albums')
-			component.setDestination('/2022 Summer Vacations')
+			component.setDestination(new Folder({
+				id: 56,
+				owner: 'user',
+				source: generateRemoteUrl('dav/photos/user/albums/2022 Summer Vacations'),
+				permissions: Permission.ALL,
+				root: '/photos/user',
+			}))
 			// Wait for prop propagation
-			expect(component.uploadManager.root).to.match(
-				/dav\/photos\/admin\/albums$/i
-			)
+			expect(component.uploadManager.root).to.have.string('/remote.php/dav/photos/user/albums/2022 Summer Vacations')
 		})
 
 		// Intercept single upload
-		cy.intercept('PUT', '/remote.php/dav/photos/admin/albums/*/*', {
+		cy.intercept('PUT', '/remote.php/dav/photos/user/albums/*/*', {
 			statusCode: 201,
 		}).as('upload')
 
@@ -309,7 +339,7 @@ describe('Root management', () => {
 
 		cy.wait('@upload').then((upload) => {
 			expect(upload.request.url).to.have.string(
-				'/remote.php/dav/photos/admin/albums/2022%20Summer%20Vacations/image.jpg'
+				'/remote.php/dav/photos/user/albums/2022%20Summer%20Vacations/image.jpg',
 			)
 		})
 	})
