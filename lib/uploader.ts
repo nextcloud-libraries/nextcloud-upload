@@ -1,6 +1,7 @@
 import { CanceledError } from 'axios'
 import { generateRemoteUrl } from '@nextcloud/router'
 import { getCurrentUser } from '@nextcloud/auth'
+import { Folder, Permission } from '@nextcloud/files'
 import axios from '@nextcloud/axios'
 import PCancelable from 'p-cancelable'
 import PQueue from 'p-queue'
@@ -19,9 +20,7 @@ export enum Status {
 export class Uploader {
 
 	// Initialized via setter in the constructor
-	private rootFolder!: string
-	private destinationFolder!: string
-
+	private _destinationFolder!: Folder
 	private _isPublic: boolean
 
 	// Global upload queue
@@ -35,16 +34,28 @@ export class Uploader {
 	 * Initialize uploader
 	 *
 	 * @param {boolean} isPublic are we in public mode ?
-	 * @param {string} rootFolder the operation root folder
-	 * @param {string} destinationFolder the context folder to operate, relative to the root folder
+	 * @param {Folder} destinationFolder the context folder to operate, relative to the root folder
 	 */
 	constructor(
 		isPublic = false,
-		rootFolder = `dav/files/${getCurrentUser()?.uid}`,
-		destinationFolder = '/'
+		destinationFolder?: Folder,
 	) {
 		this._isPublic = isPublic
-		this.root = rootFolder
+
+		if (!destinationFolder) {
+			const owner = getCurrentUser()?.uid
+			const source = generateRemoteUrl(`dav/files/${owner}`)
+			if (!owner) {
+				throw new Error('User is not logged in')
+			}
+			destinationFolder = new Folder({
+				id: 0,
+				owner,
+				permissions: Permission.ALL,
+				root: `/files/${owner}`,
+				source,
+			})
+		}
 		this.destination = destinationFolder
 
 		logger.debug('Upload workspace initialized', {
@@ -58,52 +69,25 @@ export class Uploader {
 	/**
 	 * Get the upload destination path relative to the root folder
 	 */
-	get destination() {
-		return this.destinationFolder
+	get destination(): Folder {
+		return this._destinationFolder
 	}
 
 	/**
 	 * Set the upload destination path relative to the root folder
 	 */
-	set destination(path: string) {
-		if (typeof path !== 'string' || path === '') {
-			this.destinationFolder = '/'
-			return
+	set destination(folder: Folder) {
+		if (!(folder instanceof Folder)) {
+			throw new Error('Invalid destination folder')
 		}
-
-		if (!path.startsWith('/')) {
-			path = `/${path}`
-		}
-		this.destinationFolder = path.replace(/\/$/, '')
+		this._destinationFolder = folder
 	}
 
 	/**
 	 * Get the root folder
 	 */
 	get root() {
-		return this.rootFolder
-	}
-
-	/**
-	 * Set the root folder
-	 *
-	 * @param {string} path should be the remoteUrl path.
-	 * This method uses the generateRemoteUrl method
-	 */
-	set root(path: string) {
-		if (typeof path !== 'string' || path === '') {
-			this.rootFolder = generateRemoteUrl(`dav/files/${getCurrentUser()?.uid}`)
-			return
-		}
-
-		if (path.startsWith('http')) {
-			throw new Error('The path should be a remote url string. E.g `dav/files/admin`.')
-		}
-
-		if (path.startsWith('/')) {
-			path = path.slice(1)
-		}
-		this.rootFolder = generateRemoteUrl(path)
+		return this._destinationFolder.source
 	}
 
 	/**
@@ -169,10 +153,11 @@ export class Uploader {
 
 	/**
 	 * Upload a file to the given path
+	 * @param {string} destinationPath the destination path relative to the root folder. e.g. /foo/bar.txt
+	 * @param {File} file the file to upload
 	 */
 	upload(destinationPath: string, file: File) {
-		const destinationFolder = this.destinationFolder === '/' ? '' : this.destinationFolder
-		const destinationFile = `${this.rootFolder}${destinationFolder}/${destinationPath.replace(/^\//, '')}`
+		const destinationFile = `${this.root}/${destinationPath.replace(/^\//, '')}`
 
 		logger.debug(`Uploading ${file.name} to ${destinationFile}`)
 
@@ -278,6 +263,7 @@ export class Uploader {
 							return
 						}
 						upload.status = UploadStatus.FAILED
+						logger.error(`Failed uploading ${file.name}`, { error, file, upload })
 						reject('Failed uploading the file')
 					}
 				}

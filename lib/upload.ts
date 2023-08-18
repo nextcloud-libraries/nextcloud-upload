@@ -11,21 +11,21 @@ export enum Status {
 }
 export class Upload {
 
-	private _path: string
+	private _source: string
 	private _isChunked: boolean
 	private _chunks: number
 
 	private _size: number
-	private _uploaded: number = 0
-	private _startTime: number = 0
+	private _uploaded = 0
+	private _startTime = 0
 
 	private _status: Status = Status.INITIALIZED
 	private _controller: AbortController
 	private _response: AxiosResponse|null = null
 
-	constructor(path: string, chunked: boolean = false, size: number) {
+	constructor(source: string, chunked = false, size: number) {
 		const chunks = getMaxChunksSize() > 0 ? Math.ceil(size / getMaxChunksSize()) : 1
-		this._path = path
+		this._source = source
 		this._isChunked = chunked && getMaxChunksSize() > 0 && chunks > 1
 		this._chunks = this._isChunked ? chunks : 1
 		this._size = size
@@ -33,7 +33,11 @@ export class Upload {
 	}
 
 	get path(): string {
-		return this._path
+		return this._source
+	}
+
+	get source(): string {
+		return this._source
 	}
 
 	get isChunked(): boolean {
@@ -48,10 +52,6 @@ export class Upload {
 		return this._size
 	}
 
-	get uploaded(): number {
-		return this._uploaded
-	}
-
 	get startTime(): number {
 		return this._startTime
 	}
@@ -60,9 +60,12 @@ export class Upload {
 		this._response = response
 	}
 
-
 	get response(): AxiosResponse|null {
 		return this._response
+	}
+
+	get uploaded(): number {
+		return this._uploaded
 	}
 
 	/**

@@ -15,7 +15,6 @@ const external = [
 	'@nextcloud/logger',
 	'@nextcloud/router',
 	'@nextcloud/vue',
-	'@skjnldsv/sanitize-svg',
 	'axios',
 	'buffer',
 	'crypto-browserify',
