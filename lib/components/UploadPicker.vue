@@ -31,7 +31,7 @@
 				:key="entry.id"
 				:icon="entry.iconClass"
 				class="upload-picker__menu-entry"
-				@click="entry.handler">
+				@click="entry.handler(destination)">
 				<template #icon>
 					<NcIconSvgWrapper :svg="entry.iconSvgInline" />
 				</template>
@@ -73,7 +73,6 @@
 
 <script>
 import { getNewFileMenuEntries, Folder } from '@nextcloud/files'
-import { getUploader } from '../index.js'
 import makeEta from 'simple-eta'
 
 import NcActionButton from '@nextcloud/vue/dist/Components/NcActionButton.js'
@@ -86,9 +85,10 @@ import Cancel from 'vue-material-design-icons/Cancel.vue'
 import Plus from 'vue-material-design-icons/Plus.vue'
 import Upload from 'vue-material-design-icons/Upload.vue'
 
+import { getUploader } from '../index.js'
+import { Status } from '../uploader.ts'
 import { Status as UploadStatus } from '../upload.js'
 import { t } from '../utils/l10n.ts'
-import { Status } from '../uploader.ts'
 import logger from '../utils/logger.ts'
 
 export default {
