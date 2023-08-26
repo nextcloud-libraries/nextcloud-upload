@@ -4,10 +4,11 @@ import { jest } from '@jest/globals'
 describe('Constructor checks', () => {
 	test('Classic upload', () => {
 		// Setting max chunk size to 10MB
-		Object.assign(global, {OC: {appConfig: {files: { max_chunk_size: 10 * 1024 * 1024 }}}})
-		const upload = new Upload('/image.jpg', true, 10 * 1024 * 1024)
+		Object.assign(global, { OC: { appConfig: { files: { max_chunk_size: 10 * 1024 * 1024 } } } })
+		const file = new File([''], 'image.jpg', { type: 'image/jpeg' })
+		const upload = new Upload('http://domain.com/remote.php/dav/files/user/image.jpg', true, 10 * 1024 * 1024, file)
 
-		expect(upload.path).toBe('/image.jpg')
+		expect(upload.source).toBe('http://domain.com/remote.php/dav/files/user/image.jpg')
 		expect(upload.isChunked).toBe(false)
 		expect(upload.chunks).toBe(1)
 		expect(upload.size).toBe(10 * 1024 * 1024)
@@ -16,11 +17,13 @@ describe('Constructor checks', () => {
 	})
 
 	test('Disabled chunking', () => {
-		// Setting max chunk size to 10MB
-		Object.assign(global, {OC: {appConfig: {files: { max_chunk_size: 0 }}}})
-		const upload = new Upload('/image.jpg', true, 10 * 1024 * 1024)
+		// Setting max chunk size to 0MB
+		Object.assign(global, { OC: { appConfig: { files: { max_chunk_size: 0 } } } })
+		const file = new File([''], 'image.jpg', { type: 'image/jpeg' })
+		const upload = new Upload('http://domain.com/remote.php/dav/files/user/image.jpg', true, 10 * 1024 * 1024, file)
 
-		expect(upload.path).toBe('/image.jpg')
+		expect(upload.source).toBe('http://domain.com/remote.php/dav/files/user/image.jpg')
+		expect(upload.file).toBe(file)
 		expect(upload.isChunked).toBe(false)
 		expect(upload.chunks).toBe(1)
 		expect(upload.size).toBe(10 * 1024 * 1024)
@@ -32,40 +35,44 @@ describe('Constructor checks', () => {
 describe('Upload chunks config', () => {
 	test('150MB file with 15MB chunk', () => {
 		// Setting max chunk size to 15MB
-		Object.assign(global, {OC: {appConfig: {files: { max_chunk_size: 15 * 1024 * 1024 }}}})
+		Object.assign(global, { OC: { appConfig: { files: { max_chunk_size: 15 * 1024 * 1024 } } } })
 
 		// File is 150MB
-		const upload = new Upload('/image.jpg', true, 150 * 1024 * 1024)
+		const file = new File([''], 'image.jpg', { type: 'image/jpeg' })
+		const upload = new Upload('http://domain.com/remote.php/dav/files/user/image.jpg', true, 150 * 1024 * 1024, file)
 		expect(upload.chunks).toBe(10)
 		expect(upload.isChunked).toBe(true)
 	})
 
 	test('151MB file with 15MB chunk', () => {
 		// Setting max chunk size to 15MB
-		Object.assign(global, {OC: {appConfig: {files: { max_chunk_size: 15 * 1024 * 1024 }}}})
+		Object.assign(global, { OC: { appConfig: { files: { max_chunk_size: 15 * 1024 * 1024 } } } })
 
 		// File is 150MB
-		const upload = new Upload('/image.jpg', true, 151 * 1024 * 1024)
+		const file = new File([''], 'image.jpg', { type: 'image/jpeg' })
+		const upload = new Upload('http://domain.com/remote.php/dav/files/user/image.jpg', true, 151 * 1024 * 1024, file)
 		expect(upload.chunks).toBe(11)
 		expect(upload.isChunked).toBe(true)
 	})
 
 	test('1GB file with 15MB chunk and manually disabled chunk', () => {
 		// Setting max chunk size to 15MB
-		Object.assign(global, {OC: {appConfig: {files: { max_chunk_size: 15 * 1024 * 1024 }}}})
+		Object.assign(global, { OC: { appConfig: { files: { max_chunk_size: 15 * 1024 * 1024 } } } })
 
 		// File is 150MB
-		const upload = new Upload('/image.jpg', false, 1024 * 1024 * 1024)
+		const file = new File([''], 'image.jpg', { type: 'image/jpeg' })
+		const upload = new Upload('http://domain.com/remote.php/dav/files/user/image.jpg', false, 1024 * 1024 * 1024, file)
 		expect(upload.chunks).toBe(1)
 		expect(upload.isChunked).toBe(false)
 	})
 
 	test('1GB file with globally disabled chunking', () => {
-		// Setting max chunk size to 15MB
-		Object.assign(global, {OC: {appConfig: {files: { max_chunk_size: 0 }}}})
+		// Setting max chunk size to 0
+		Object.assign(global, { OC: { appConfig: { files: { max_chunk_size: 0 } } } })
 
 		// File is 150MB
-		const upload = new Upload('/image.jpg', true, 1024 * 1024 * 1024)
+		const file = new File([''], 'image.jpg', { type: 'image/jpeg' })
+		const upload = new Upload('http://domain.com/remote.php/dav/files/user/image.jpg', true, 1024 * 1024 * 1024, file)
 		expect(upload.chunks).toBe(1)
 		expect(upload.isChunked).toBe(false)
 	})
@@ -73,9 +80,11 @@ describe('Upload chunks config', () => {
 
 describe('Uploading states', () => {
 	test('Chunking upload', () => {
-		Object.assign(global, {OC: {appConfig: {files: { max_chunk_size: 10 * 1024 * 1024 }}}})
+		// Setting max chunk size to 10MB
+		Object.assign(global, { OC: { appConfig: { files: { max_chunk_size: 10 * 1024 * 1024 } } } })
 
-		const upload = new Upload('/image.jpg', true, 150 * 1024 * 1024)
+		const file = new File([''], 'image.jpg', { type: 'image/jpeg' })
+		const upload = new Upload('http://domain.com/remote.php/dav/files/user/image.jpg', true, 150 * 1024 * 1024, file)
 		expect(upload.uploaded).toBe(0)
 		expect(upload.chunks).toBe(15)
 		expect(upload.isChunked).toBe(true)
@@ -96,9 +105,11 @@ describe('Uploading states', () => {
 	})
 
 	test('Disabled chunking upload', () => {
-		Object.assign(global, {OC: {appConfig: {files: { max_chunk_size: 0 }}}})
+		// Setting max chunk size to 0MB
+		Object.assign(global, { OC: { appConfig: { files: { max_chunk_size: 0 } } } })
 
-		const upload = new Upload('/image.jpg', true, 150 * 1024 * 1024)
+		const file = new File([''], 'image.jpg', { type: 'image/jpeg' })
+		const upload = new Upload('http://domain.com/remote.php/dav/files/user/image.jpg', true, 150 * 1024 * 1024, file)
 		expect(upload.uploaded).toBe(0)
 		expect(upload.chunks).toBe(1)
 		expect(upload.isChunked).toBe(false)
@@ -119,10 +130,11 @@ describe('Uploading states', () => {
 describe('Cancellation', () => {
 	test('Classic upload', () => {
 		// 150MB chunks
-		Object.assign(global, {OC: {appConfig: {files: { max_chunk_size: 150 * 1024 * 1024 }}}})
+		Object.assign(global, { OC: { appConfig: { files: { max_chunk_size: 150 * 1024 * 1024 } } } })
 
 		const controller = new AbortController()
-		const upload = new Upload('/image.jpg', true, 10 * 1024 * 1024)
+		const file = new File([''], 'image.jpg', { type: 'image/jpeg' })
+		const upload = new Upload('http://domain.com/remote.php/dav/files/user/image.jpg', true, 10 * 1024 * 1024, file)
 
 		// Mock controller and spy on abort
 		upload['_controller'] = controller
@@ -141,10 +153,12 @@ describe('Cancellation', () => {
 	})
 
 	test('Chunking upload', () => {
-		Object.assign(global, {OC: {appConfig: {files: { max_chunk_size: 10 * 1024 * 1024 }}}})
+		// Setting max chunk size to 10MB
+		Object.assign(global, { OC: { appConfig: { files: { max_chunk_size: 10 * 1024 * 1024 } } } })
 
 		const controller = new AbortController()
-		const upload = new Upload('/image.jpg', true, 150 * 1024 * 1024)
+		const file = new File([''], 'image.jpg', { type: 'image/jpeg' })
+		const upload = new Upload('http://domain.com/remote.php/dav/files/user/image.jpg', true, 150 * 1024 * 1024, file)
 
 		// Mock controller and spy on abort
 		upload['_controller'] = controller

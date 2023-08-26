@@ -30,6 +30,8 @@ export class Uploader {
 	private _queueProgress = 0
 	private _queueStatus: Status = Status.IDLE
 
+	private _notifiers: Array<(upload: Upload) => void> = []
+
 	/**
 	 * Initialize uploader
 	 *
@@ -59,8 +61,8 @@ export class Uploader {
 		this.destination = destinationFolder
 
 		logger.debug('Upload workspace initialized', {
-			destinationFolder: this.destination,
-			rootFolder: this.root,
+			destination: this.destination,
+			root: this.root,
 			isPublic,
 			maxChunksSize: getMaxChunksSize(),
 		})
@@ -98,7 +100,8 @@ export class Uploader {
 	}
 
 	private reset() {
-		this._uploadQueue = []
+		// Reset upload queue but keep the reference
+		this._uploadQueue.splice(0, this._uploadQueue.length)
 		this._jobQueue.clear()
 		this._queueSize = 0
 		this._queueProgress = 0
@@ -151,6 +154,10 @@ export class Uploader {
 			: Status.IDLE
 	}
 
+	addNotifier(notifier: (upload: Upload) => void) {
+		this._notifiers.push(notifier)
+	}
+
 	/**
 	 * Upload a file to the given path
 	 * @param {string} destinationPath the destination path relative to the root folder. e.g. /foo/bar.txt
@@ -168,7 +175,7 @@ export class Uploader {
 			|| file.size < maxChunkSize
 			|| this._isPublic
 
-		const upload = new Upload(destinationFile, !disabledChunkUpload, file.size)
+		const upload = new Upload(destinationFile, !disabledChunkUpload, file.size, file)
 		this._uploadQueue.push(upload)
 		this.updateStats()
 
@@ -240,6 +247,13 @@ export class Uploader {
 						url: `${tempUrl}`,
 					})
 				}
+
+				// Notify listeners of the upload completion
+				this._notifiers.forEach(notifier => {
+					try {
+						notifier(upload)
+					} catch (error) {}
+				})
 			} else {
 				logger.debug('Initializing regular upload', { file, upload })
 
@@ -266,6 +280,13 @@ export class Uploader {
 						logger.error(`Failed uploading ${file.name}`, { error, file, upload })
 						reject('Failed uploading the file')
 					}
+
+					// Notify listeners of the upload completion
+					this._notifiers.forEach(notifier => {
+						try {
+							notifier(upload)
+						} catch (error) {}
+					})
 				}
 				this._jobQueue.add(request)
 				this.updateStats()

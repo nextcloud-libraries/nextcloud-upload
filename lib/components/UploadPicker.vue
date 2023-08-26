@@ -19,7 +19,7 @@
 			<template #icon>
 				<Plus title="" :size="20" decorative />
 			</template>
-			<NcActionButton data-upload-picker-add @click="onClick">
+			<NcActionButton data-upload-picker-add :close-after-click="true" @click="onClick">
 				<template #icon>
 					<Upload title="" :size="20" decorative />
 				</template>
@@ -30,6 +30,7 @@
 			<NcActionButton v-for="entry in newFileMenuEntries"
 				:key="entry.id"
 				:icon="entry.iconClass"
+				:close-after-click="true"
 				class="upload-picker__menu-entry"
 				@click="entry.handler(destination)">
 				<template #icon>
@@ -167,11 +168,6 @@ export default {
 	},
 
 	watch: {
-		/**
-		 * If the destination change, we need to refresh the menu
-		 *
-		 * @param {FileInfo} destination the current NewFileMenu destination
-		 */
 		destination(destination) {
 			this.setDestination(destination)
 		},
@@ -182,20 +178,8 @@ export default {
 		},
 
 		uploadedQueueSize(size) {
-			this.eta.report(size)
+			this.eta?.report?.(size)
 			this.updateStatus()
-		},
-
-		queue(queue, oldQueue) {
-			if (queue.length < oldQueue.length) {
-				this.$emit('uploaded', oldQueue.filter(upload => !queue.includes(upload)))
-			}
-		},
-
-		hasFailure(hasFailure) {
-			if (hasFailure) {
-				this.$emit('failed', this.queue)
-			}
 		},
 
 		isPaused(isPaused) {
@@ -212,6 +196,10 @@ export default {
 		if (this.destination) {
 			this.setDestination(this.destination)
 		}
+
+		// Update data on upload progress
+		this.uploadManager.addNotifier(this.onUploadCompletion)
+
 		logger.debug('UploadPicker initialised')
 	},
 
@@ -276,9 +264,19 @@ export default {
 				return
 			}
 
-			logger.debug(`Destination set to ${destination}`)
+			logger.debug('Destination set', { destination })
 			this.uploadManager.destination = destination
+
+			// If the destination change, we need to refresh the menu
 			this.newFileMenuEntries = getNewFileMenuEntries(destination)
+		},
+
+		onUploadCompletion(upload) {
+			if (upload.status === UploadStatus.FAILED) {
+				this.$emit('failed', upload)
+			} else {
+				this.$emit('uploaded', upload)
+			}
 		},
 	},
 }

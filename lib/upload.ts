@@ -12,6 +12,7 @@ export enum Status {
 export class Upload {
 
 	private _source: string
+	private _file: File
 	private _isChunked: boolean
 	private _chunks: number
 
@@ -23,21 +24,22 @@ export class Upload {
 	private _controller: AbortController
 	private _response: AxiosResponse|null = null
 
-	constructor(source: string, chunked = false, size: number) {
+	constructor(source: string, chunked = false, size: number, file: File) {
 		const chunks = getMaxChunksSize() > 0 ? Math.ceil(size / getMaxChunksSize()) : 1
 		this._source = source
 		this._isChunked = chunked && getMaxChunksSize() > 0 && chunks > 1
 		this._chunks = this._isChunked ? chunks : 1
 		this._size = size
+		this._file = file
 		this._controller = new AbortController()
-	}
-
-	get path(): string {
-		return this._source
 	}
 
 	get source(): string {
 		return this._source
+	}
+
+	get file(): File {
+		return this._file
 	}
 
 	get isChunked(): boolean {
