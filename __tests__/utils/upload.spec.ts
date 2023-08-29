@@ -1,23 +1,23 @@
-import { getChunk, initChunkWorkspace, uploadData } from '../../lib/utils/upload.js'
-import axios from '@nextcloud/axios';
-import { jest } from '@jest/globals'
+import { beforeAll, afterAll, describe, expect, test, vi } from 'vitest'
+import axios from '@nextcloud/axios'
 
-const axiosMock: jest.Mock<typeof axios> | typeof axios = axios
+import { getChunk, initChunkWorkspace, uploadData } from '../../lib/utils/upload.js'
+
+const axiosMock: vi.Mock<typeof axios> | typeof axios = axios
 
 beforeAll(() => {
-	jest.mock("axios", jest.fn())
+	vi.mock('axios', vi.fn())
 })
 afterAll(() => {
-	jest.unmock("axios")
+	vi.unmock('axios')
 })
-
 
 describe('Get chunk from file', () => {
 	test('Chunking a valid file', async () => {
 		const blob = new Blob([new ArrayBuffer(5 * 1024 * 1024)])
 		const file = new File([blob as BlobPart], 'image.jpg', {
 			type: 'image/jpeg',
-			lastModified:new Date().getTime()
+			lastModified: new Date().getTime(),
 		})
 
 		const chunk = await getChunk(file, 0, 10 * 1024 * 1024)
@@ -28,7 +28,7 @@ describe('Get chunk from file', () => {
 		const blob = new Blob([new ArrayBuffer(50 * 1024 * 1024)])
 		const file = new File([blob as BlobPart], 'image.jpg', {
 			type: 'image/jpeg',
-			lastModified:new Date().getTime()
+			lastModified: new Date().getTime(),
 		})
 
 		const chunk = await getChunk(file, 0, 10 * 1024 * 1024)
@@ -45,19 +45,19 @@ describe('Get chunk from file', () => {
 
 describe('Initialize chunks upload temporary workspace', () => {
 	test('Init random workspace', async () => {
-		axiosMock.request = jest.fn((config: any) => Promise.resolve(config?.onUploadProgress?.()))
+		axiosMock.request = vi.fn((config: any) => Promise.resolve(config?.onUploadProgress?.()))
 
 		// mock the current location for our assert on the URL
-		Object.defineProperty(window, "location", {
-			value: new URL("https://cloud.domain.com"),
+		Object.defineProperty(window, 'location', {
+			value: new URL('https://cloud.domain.com'),
 			configurable: true,
-		});
+		})
 
 		// mock the current user
 		document.head.setAttribute('data-user', 'test')
 
 		const url = await initChunkWorkspace()
-		
+
 		expect(url.startsWith('https://cloud.domain.com/remote.php/dav/uploads/test/web-file-upload-')).toBe(true)
 		expect(url.length).toEqual('https://cloud.domain.com/remote.php/dav/uploads/test/web-file-upload-3ec6b932e672fd7c1d8430b0f8457b07'.length)
 
@@ -71,12 +71,12 @@ describe('Initialize chunks upload temporary workspace', () => {
 
 describe('Upload data', () => {
 	test('Upload data stream', async () => {
-		axiosMock.request = jest.fn((config: any) => Promise.resolve(config?.onUploadProgress()))
+		axiosMock.request = vi.fn((config: any) => Promise.resolve(config?.onUploadProgress()))
 
 		const url = 'https://cloud.domain.com/remote.php/dav/files/test/image.jpg'
 		const blob = new Blob([new ArrayBuffer(50 * 1024 * 1024)])
-		const signal =  new AbortController().signal
-		const onUploadProgress = jest.fn()
+		const signal = new AbortController().signal
+		const onUploadProgress = vi.fn()
 		await uploadData(url, blob, signal, onUploadProgress)
 
 		expect(onUploadProgress).toHaveBeenCalledTimes(1)
@@ -90,13 +90,13 @@ describe('Upload data', () => {
 		})
 	})
 	test('Upload async data stream', async () => {
-		axiosMock.request = jest.fn((config: any) => Promise.resolve(config?.onUploadProgress()))
+		axiosMock.request = vi.fn((config: any) => Promise.resolve(config?.onUploadProgress()))
 
 		const url = 'https://cloud.domain.com/remote.php/dav/files/test/image.jpg'
 		const blob = new Blob([new ArrayBuffer(50 * 1024 * 1024)])
-		const data = jest.fn(async () => blob)
-		const signal =  new AbortController().signal
-		const onUploadProgress = jest.fn()
+		const data = vi.fn(async () => blob)
+		const signal = new AbortController().signal
+		const onUploadProgress = vi.fn()
 
 		await uploadData(url, data, signal, onUploadProgress)
 
@@ -113,14 +113,14 @@ describe('Upload data', () => {
 	})
 
 	test('Upload cancellation', async () => {
-		axiosMock.request = jest.fn((config: any) => Promise.resolve(config?.onUploadProgress()))
+		axiosMock.request = vi.fn((config: any) => Promise.resolve(config?.onUploadProgress()))
 
 		const url = 'https://cloud.domain.com/remote.php/dav/files/test/image.jpg'
 		const blob = new Blob([new ArrayBuffer(50 * 1024 * 1024)])
-		const data = jest.fn(async () => blob)
-		const controller =  new AbortController()
-		const onUploadProgress = jest.fn()
-		jest.spyOn(controller, 'abort')
+		const data = vi.fn(async () => blob)
+		const controller = new AbortController()
+		const onUploadProgress = vi.fn()
+		vi.spyOn(controller, 'abort')
 
 		// Cancel after 200ms
 		setTimeout(() => controller.abort(), 400)
