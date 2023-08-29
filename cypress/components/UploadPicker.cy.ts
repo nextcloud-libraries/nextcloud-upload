@@ -1,7 +1,8 @@
+/* eslint-disable no-unused-expressions */
 // dist file might not be built when running eslint only
 // eslint-disable-next-line import/no-unresolved,n/no-missing-import
 import { Folder, Permission, addNewFileMenuEntry, Entry } from '@nextcloud/files'
-import { UploadPicker } from '../../dist/index.js'
+import { UploadPicker, getUploader } from '../../dist/index.js'
 import { generateRemoteUrl } from '@nextcloud/router'
 
 describe('UploadPicker rendering', () => {
@@ -341,6 +342,104 @@ describe('Root management', () => {
 			expect(upload.request.url).to.have.string(
 				'/remote.php/dav/photos/user/albums/2022%20Summer%20Vacations/image.jpg',
 			)
+		})
+	})
+})
+
+describe.only('UploadPicker notify testing', () => {
+	const listeners = {
+		uploaded: () => {},
+		failed: () => {},
+	}
+
+	beforeEach(() => {
+		// Make sure we reset the destination
+		// so other tests do not interfere
+		const propsData = {
+			destination: new Folder({
+				id: 56,
+				owner: 'user',
+				source: generateRemoteUrl('dav/files/user'),
+				permissions: Permission.ALL,
+				root: '/files/user',
+			}),
+		}
+
+		cy.spy(listeners, 'uploaded')
+		cy.spy(listeners, 'failed')
+
+		// Mount picker
+		cy.mount(UploadPicker, {
+			propsData,
+			listeners,
+		}).as('uploadPicker')
+
+		// Check and init aliases
+		cy.get('form input[type="file"]').as('input').should('exist')
+		cy.get('form .upload-picker__progress').as('progress').should('exist')
+	})
+
+	it('Uploads a file without chunking', () => {
+		const notify = cy.spy()
+		const uploader = getUploader()
+		uploader.addNotifier(notify)
+
+		// Intercept single upload
+		cy.intercept('PUT', '/remote.php/dav/files/*/*', {
+			statusCode: 201,
+		}).as('upload')
+
+		cy.get('@input').attachFile({
+			// Fake file of 5 MB
+			fileContent: new Blob([new ArrayBuffer(5 * 1024 * 1024)]),
+			fileName: 'image.jpg',
+			mimeType: 'image/jpeg',
+			encoding: 'utf8',
+			lastModified: new Date().getTime(),
+		})
+
+		cy.get('form .upload-picker__progress')
+			.as('progress')
+			.should('not.be.visible')
+		cy.wait('@upload').then(() => {
+			cy.get('@progress')
+				.children('progress')
+				.should('not.have.value', '0')
+			expect(notify).to.be.calledOnce
+			expect(listeners.uploaded).to.be.calledOnce
+			expect(listeners.failed).to.not.be.called
+		})
+	})
+
+	it('Fails a file without chunking', () => {
+		const notify = cy.spy()
+		const uploader = getUploader()
+		uploader.addNotifier(notify)
+
+		// Intercept single upload
+		cy.intercept('PUT', '/remote.php/dav/files/*/*', {
+			statusCode: 403,
+		}).as('upload')
+
+		cy.get('@input').attachFile({
+			// Fake file of 5 MB
+			fileContent: new Blob([new ArrayBuffer(5 * 1024 * 1024)]),
+			fileName: 'image.jpg',
+			mimeType: 'image/jpeg',
+			encoding: 'utf8',
+			lastModified: new Date().getTime(),
+		})
+
+		cy.get('form .upload-picker__progress')
+			.as('progress')
+			.should('not.be.visible')
+		cy.wait('@upload').then(() => {
+			cy.get('@progress')
+				.children('progress')
+				.should('not.have.value', '0')
+			expect(notify).to.be.calledOnce
+			expect(listeners.uploaded).to.not.be.called
+			expect(listeners.failed).to.be.calledOnce
 		})
 	})
 })

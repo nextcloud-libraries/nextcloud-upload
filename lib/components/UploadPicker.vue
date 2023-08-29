@@ -218,6 +218,9 @@ export default {
 			const files = [...this.$refs.input.files]
 			files.forEach(file => {
 				this.uploadManager.upload(file.name, file)
+					.catch(() => {
+						// Ignore errors, they are handled by the upload manager
+					})
 			})
 			this.$refs.form.reset()
 		},
