@@ -2,10 +2,20 @@ msgid ""
 msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 
+msgid "{count} file conflict"
+msgid_plural "{count} files conflict"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "{count} file conflict in {dirname}"
+msgid_plural "{count} file conflicts in {dirname}"
+msgstr[0] ""
+msgstr[1] ""
+
 msgid "{seconds} seconds left"
 msgstr ""
 
-#. time has the format 00:00:00
+#. TRANSLATORS time has the format 00:00:00
 msgid "{time} left"
 msgstr ""
 
@@ -18,11 +28,52 @@ msgstr ""
 msgid "Cancel uploads"
 msgstr ""
 
+msgid "Continue"
+msgstr ""
+
 msgid "estimating time left"
+msgstr ""
+
+msgid "Existing version"
+msgstr ""
+
+msgid "If you select both versions, the copied file will have a number added to its name."
+msgstr ""
+
+msgid "Last modified date unknown"
+msgstr ""
+
+msgid "New version"
 msgstr ""
 
 msgid "paused"
 msgstr ""
 
+msgid "Select all checkboxes"
+msgstr ""
+
+msgid "Select all existing files"
+msgstr ""
+
+msgid "Select all new files"
+msgstr ""
+
+msgid "Skip this file"
+msgid_plural "Skip {count} files"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Unknown size"
+msgstr ""
+
+msgid "Upload cancelled"
+msgstr ""
+
 msgid "Upload files"
+msgstr ""
+
+msgid "Which files do you want to keep?"
+msgstr ""
+
+msgid "You need to select at least one version of each file to continue."
 msgstr ""
