@@ -1,5 +1,5 @@
+import { describe, expect, test, vi } from 'vitest'
 import { Status, Upload } from '../lib/upload.js'
-import { jest } from '@jest/globals'
 
 describe('Constructor checks', () => {
 	test('Classic upload', () => {
@@ -138,7 +138,7 @@ describe('Cancellation', () => {
 
 		// Mock controller and spy on abort
 		upload['_controller'] = controller
-		jest.spyOn(controller, 'abort')
+		vi.spyOn(controller, 'abort')
 
 		expect(upload.signal).toBeInstanceOf(AbortSignal)
 		expect(upload.chunks).toBe(1)
@@ -162,7 +162,7 @@ describe('Cancellation', () => {
 
 		// Mock controller and spy on abort
 		upload['_controller'] = controller
-		jest.spyOn(controller, 'abort')
+		vi.spyOn(controller, 'abort')
 
 		expect(upload.signal).toBeInstanceOf(AbortSignal)
 		expect(upload.chunks).toBe(15)

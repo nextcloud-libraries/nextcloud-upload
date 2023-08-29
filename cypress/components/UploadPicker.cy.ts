@@ -2,7 +2,7 @@
 // dist file might not be built when running eslint only
 // eslint-disable-next-line import/no-unresolved,n/no-missing-import
 import { Folder, Permission, addNewFileMenuEntry, Entry } from '@nextcloud/files'
-import { UploadPicker, getUploader } from '../../dist/index.js'
+import { UploadPicker, getUploader } from '../../dist/index.mjs'
 import { generateRemoteUrl } from '@nextcloud/router'
 
 describe('UploadPicker rendering', () => {

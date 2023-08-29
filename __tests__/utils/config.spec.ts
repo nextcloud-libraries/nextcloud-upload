@@ -1,3 +1,4 @@
+import { describe, expect, test } from 'vitest'
 import { getMaxChunksSize } from '../../lib/utils/config.js'
 
 describe('Max chunk size tests', () => {

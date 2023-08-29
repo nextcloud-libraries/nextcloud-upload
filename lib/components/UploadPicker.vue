@@ -86,9 +86,9 @@ import Cancel from 'vue-material-design-icons/Cancel.vue'
 import Plus from 'vue-material-design-icons/Plus.vue'
 import Upload from 'vue-material-design-icons/Upload.vue'
 
-import { getUploader } from '../index.js'
+import { getUploader } from '../index.ts'
 import { Status } from '../uploader.ts'
-import { Status as UploadStatus } from '../upload.js'
+import { Status as UploadStatus } from '../upload.ts'
 import { t } from '../utils/l10n.ts'
 import logger from '../utils/logger.ts'
 
