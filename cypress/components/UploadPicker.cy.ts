@@ -346,7 +346,7 @@ describe('Root management', () => {
 	})
 })
 
-describe.only('UploadPicker notify testing', () => {
+describe('UploadPicker notify testing', () => {
 	const listeners = {
 		uploaded: () => {},
 		failed: () => {},

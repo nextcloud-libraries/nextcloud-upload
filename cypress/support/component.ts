@@ -37,10 +37,12 @@ Cypress.Commands.add('mount', (component, optionsOrProps) => {
 
 	// Override the mounted method to expose
 	// the component instance to cypress
-	component.mounted = function() {
-		instance = this
-		if (oldMounted) {
-			oldMounted()
+	if (component) {
+		component.mounted = function() {
+			instance = this
+			if (oldMounted) {
+				oldMounted()
+			}
 		}
 	}
 
