@@ -1,10 +1,18 @@
-import { Uploader } from './uploader.js'
+import type { Node } from '@nextcloud/files'
+
+import { Uploader } from './uploader'
 import UploadPicker from './components/UploadPicker.vue'
-export { Status as UploaderStatus } from './uploader.js'
-export { Upload, Status as UploadStatus } from './upload.js'
+
+export type { Uploader } from './uploader'
+export { Status as UploaderStatus } from './uploader'
+export { Upload, Status as UploadStatus } from './upload'
 
 let _uploader: Uploader | null = null
 
+export type ConflictResolutionResult = {
+	selected: File[],
+	renamed: File[],
+}
 /**
  * Get an Uploader instance
  */
@@ -32,6 +40,47 @@ export function upload(destinationPath: string, file: File): Uploader {
 	uploader.upload(destinationPath, file)
 
 	return uploader
+}
+
+/**
+ * Open the conflict resolver
+ * @param {string} dirname the directory name
+ * @param {(File|Node)[]} files the incoming files
+ * @param {Node[]} conflicts the existing files
+ * @return {Promise<ConflictResolutionResult>} the selected and renamed files
+ */
+export async function openConflictPicker(dirname: string, files: (File|Node)[], conflicts: Node[]): Promise<ConflictResolutionResult> {
+	const { default: ConflictPicker } = await import('./components/ConflictPicker.vue')
+	return new Promise((resolve, reject) => {
+		const picker = new ConflictPicker({
+			propsData: {
+				dirname,
+				files,
+				conflicts,
+			},
+		})
+
+		// Add listeners
+		picker.$on('submit', (results: ConflictResolutionResult) => {
+			// Return the results
+			resolve(results)
+
+			// Destroy the component
+			picker.$destroy()
+			picker.$el?.parentNode?.removeChild(picker.$el)
+		})
+		picker.$on('cancel', () => {
+			reject(new Error('Canceled'))
+
+			// Destroy the component
+			picker.$destroy()
+			picker.$el?.parentNode?.removeChild(picker.$el)
+		})
+
+		// Mount the component
+		picker.$mount()
+		document.body.appendChild(picker.$el)
+	})
 }
 
 /** UploadPicker vue component */

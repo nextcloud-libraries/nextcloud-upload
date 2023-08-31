@@ -79,7 +79,7 @@ export class Uploader {
 	 * Set the upload destination path relative to the root folder
 	 */
 	set destination(folder: Folder) {
-		if (!(folder instanceof Folder)) {
+		if (!folder) {
 			throw new Error('Invalid destination folder')
 		}
 		this._destinationFolder = folder

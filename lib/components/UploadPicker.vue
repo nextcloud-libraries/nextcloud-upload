@@ -1,12 +1,13 @@
 <template>
-	<form ref="form"
+	<form v-if="destination"
+		ref="form"
 		:class="{'upload-picker--uploading': isUploading, 'upload-picker--paused': isPaused}"
 		class="upload-picker"
-		data-upload-picker>
+		data-cy-upload-picker>
 		<!-- New button -->
 		<NcButton v-if="newFileMenuEntries && newFileMenuEntries.length === 0"
 			:disabled="disabled"
-			data-upload-picker-add
+			data-cy-upload-picker-add
 			@click="onClick">
 			<template #icon>
 				<Plus title="" :size="20" decorative />
@@ -19,7 +20,7 @@
 			<template #icon>
 				<Plus title="" :size="20" decorative />
 			</template>
-			<NcActionButton data-upload-picker-add :close-after-click="true" @click="onClick">
+			<NcActionButton data-cy-upload-picker-add :close-after-click="true" @click="onClick">
 				<template #icon>
 					<Upload title="" :size="20" decorative />
 				</template>
@@ -32,7 +33,7 @@
 				:icon="entry.iconClass"
 				:close-after-click="true"
 				class="upload-picker__menu-entry"
-				@click="entry.handler(destination)">
+				@click="entry.handler(destination, content)">
 				<template #icon>
 					<NcIconSvgWrapper :svg="entry.iconSvgInline" />
 				</template>
@@ -53,7 +54,7 @@
 			class="upload-picker__cancel"
 			type="tertiary"
 			:aria-label="cancelLabel"
-			data-upload-picker-cancel
+			data-cy-upload-picker-cancel
 			@click="onCancel">
 			<template #icon>
 				<Cancel title=""
@@ -65,16 +66,20 @@
 		<input v-show="false"
 			ref="input"
 			type="file"
-			:accept="accept"
+			:accept="accept?.join?.(', ')"
 			:multiple="multiple"
-			data-upload-picker-input
+			data-cy-upload-picker-input
 			@change="onPick">
 	</form>
 </template>
 
-<script>
+<script lang="ts">
+import type { Entry, Node } from '@nextcloud/files'
+
 import { getNewFileMenuEntries, Folder } from '@nextcloud/files'
+import { showError } from '@nextcloud/dialogs'
 import makeEta from 'simple-eta'
+import Vue from 'vue'
 
 import NcActionButton from '@nextcloud/vue/dist/Components/NcActionButton.js'
 import NcActions from '@nextcloud/vue/dist/Components/NcActions.js'
@@ -86,13 +91,13 @@ import Cancel from 'vue-material-design-icons/Cancel.vue'
 import Plus from 'vue-material-design-icons/Plus.vue'
 import Upload from 'vue-material-design-icons/Upload.vue'
 
-import { getUploader } from '../index.ts'
+import { getUploader, openConflictPicker } from '../index.ts'
 import { Status } from '../uploader.ts'
 import { Status as UploadStatus } from '../upload.ts'
 import { t } from '../utils/l10n.ts'
 import logger from '../utils/logger.ts'
 
-export default {
+export default Vue.extend({
 	name: 'UploadPicker',
 	components: {
 		Cancel,
@@ -107,7 +112,7 @@ export default {
 
 	props: {
 		accept: {
-			type: Array,
+			type: Array as () => string[],
 			default: null,
 		},
 		disabled: {
@@ -122,6 +127,13 @@ export default {
 			type: Folder,
 			default: undefined,
 		},
+		/**
+		 * List of file present in the destination folder
+		 */
+		content: {
+			type: Array as () => Node[],
+			default: () => [],
+		},
 	},
 
 	data() {
@@ -133,7 +145,7 @@ export default {
 			eta: null,
 			timeLeft: '',
 
-			newFileMenuEntries: [],
+			newFileMenuEntries: [] as Entry[],
 			uploadManager: getUploader(),
 		}
 	},
@@ -215,7 +227,36 @@ export default {
 		 * Start uploading
 		 */
 		async onPick() {
-			const files = [...this.$refs.input.files]
+			let files = [...this.$refs.input.files] as File[]
+
+			// Detect conflicts
+			const conflicts = this.content.filter((node: Node) => {
+				return files.some((file: File) => node.basename === file.name)
+			}) as Node[]
+
+			// Resolve conflicts
+			if (conflicts.length > 0) {
+				// List of incoming files that are in conflict
+				const compareFiles = conflicts.map((node: Node) => {
+					return files.find((file: File) => node.basename === file.name)
+				}).filter(Boolean) as File[]
+
+				// List of incoming files that are NOT in conflict
+				const uploads = files.filter((file: File) => {
+					return !compareFiles.includes(file)
+				})
+
+				try {
+					// Let the user choose what to do with the conflicting files
+					const { selected, renamed } = await openConflictPicker(this.destination.dirname, compareFiles, conflicts)
+					files = [...uploads, ...selected, ...renamed]
+				} catch (error) {
+					// User cancelled
+					showError(t('Upload cancelled'))
+					return
+				}
+			}
+
 			files.forEach(file => {
 				this.uploadManager.upload(file.name, file)
 					.catch(() => {
@@ -282,7 +323,7 @@ export default {
 			}
 		},
 	},
-}
+})
 </script>
 
 <style lang="scss" scoped>
