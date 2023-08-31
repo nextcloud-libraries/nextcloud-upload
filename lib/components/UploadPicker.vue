@@ -248,7 +248,7 @@ export default Vue.extend({
 
 				try {
 					// Let the user choose what to do with the conflicting files
-					const { selected, renamed } = await openConflictPicker(this.destination.dirname, compareFiles, conflicts)
+					const { selected, renamed } = await openConflictPicker(this.destination.dirname, compareFiles, conflicts, this.content)
 					files = [...uploads, ...selected, ...renamed]
 				} catch (error) {
 					// User cancelled

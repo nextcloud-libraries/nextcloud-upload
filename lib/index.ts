@@ -10,8 +10,8 @@ export { Upload, Status as UploadStatus } from './upload'
 let _uploader: Uploader | null = null
 
 export type ConflictResolutionResult = {
-	selected: File[],
-	renamed: File[],
+	selected: (File|Node)[],
+	renamed: (File|Node)[],
 }
 /**
  * Get an Uploader instance
@@ -46,10 +46,11 @@ export function upload(destinationPath: string, file: File): Uploader {
  * Open the conflict resolver
  * @param {string} dirname the directory name
  * @param {(File|Node)[]} files the incoming files
- * @param {Node[]} conflicts the existing files
+ * @param {Node[]} conflicts the conflicting files that already exists in the directory
+ * @param {Node[]} content all the existing files in the directory
  * @return {Promise<ConflictResolutionResult>} the selected and renamed files
  */
-export async function openConflictPicker(dirname: string, files: (File|Node)[], conflicts: Node[]): Promise<ConflictResolutionResult> {
+export async function openConflictPicker(dirname: string, files: (File|Node)[], conflicts: Node[], content: Node[] = conflicts): Promise<ConflictResolutionResult> {
 	const { default: ConflictPicker } = await import('./components/ConflictPicker.vue')
 	return new Promise((resolve, reject) => {
 		const picker = new ConflictPicker({
@@ -57,6 +58,7 @@ export async function openConflictPicker(dirname: string, files: (File|Node)[], 
 				dirname,
 				files,
 				conflicts,
+				content,
 			},
 		})
 

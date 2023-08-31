@@ -71,20 +71,22 @@
 </template>
 
 <script lang="ts">
+import type { ConflictResolutionResult } from '../index.ts'
+
+import { basename, extname } from 'path'
 import { Node } from '@nextcloud/files'
 import { showError } from '@nextcloud/dialogs'
+import Vue from 'vue'
+
 import NcButton from '@nextcloud/vue/dist/Components/NcButton.js'
 import NcCheckboxRadioSwitch from '@nextcloud/vue/dist/Components/NcCheckboxRadioSwitch.js'
 import NcModal from '@nextcloud/vue/dist/Components/NcModal.js'
-import Vue from 'vue'
-
 import ArrowRight from 'vue-material-design-icons/ArrowRight.vue'
 import Close from 'vue-material-design-icons/Close.vue'
 
 import { n, t } from '../utils/l10n.ts'
 import logger from '../utils/logger.ts'
 import NodesPicker from './NodesPicker.vue'
-import { basename, extname } from 'path'
 
 export default Vue.extend({
 	name: 'ConflictPicker',
@@ -105,11 +107,18 @@ export default Vue.extend({
 			default: '',
 		},
 
+		/** All the existing files in the current directory */
+		content: {
+			type: Array as () => Node[],
+			required: true,
+		},
+
 		/** Existing files to be replaced */
 		conflicts: {
 			type: Array as () => Node[],
 			required: true,
 		},
+
 		/** New files being moved/uploaded */
 		files: {
 			type: Array as () => (Node|File)[],
@@ -222,7 +231,7 @@ export default Vue.extend({
 			this.$emit('submit', {
 				selected: [],
 				renamed: [],
-			})
+			} as ConflictResolutionResult)
 		},
 
 		onSubmit() {
@@ -237,7 +246,7 @@ export default Vue.extend({
 			}
 
 			const selectedOldNames = this.oldSelected.map((node: Node) => node.basename) as string[]
-			const directoryContent = this.conflicts.map((node: Node) => node.basename) as string[]
+			const directoryContent = this.content.map((node: Node) => node.basename) as string[]
 
 			// Files that got selected twice (new and old) gets renamed
 			const renamed = [] as (File|Node)[]
@@ -273,7 +282,7 @@ export default Vue.extend({
 			this.$emit('submit', {
 				selected,
 				renamed,
-			})
+			} as ConflictResolutionResult)
 		},
 
 		/**
