@@ -1,14 +1,15 @@
 import type { Node } from '@nextcloud/files'
 
-import { Uploader } from './uploader.js'
+import { Uploader } from './uploader'
 import UploadPicker from './components/UploadPicker.vue'
 
-export { Status as UploaderStatus } from './uploader.js'
-export { Upload, Status as UploadStatus } from './upload.js'
+export type { Uploader } from './uploader'
+export { Status as UploaderStatus } from './uploader'
+export { Upload, Status as UploadStatus } from './upload'
 
 let _uploader: Uploader | null = null
 
-type ConflictResolutionResult = {
+export type ConflictResolutionResult = {
 	selected: File[],
 	renamed: File[],
 }
