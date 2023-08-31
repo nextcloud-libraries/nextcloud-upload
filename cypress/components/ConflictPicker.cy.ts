@@ -14,6 +14,13 @@ describe('ConflictPicker rendering', () => {
 		})
 	})
 
+	afterEach(() => {
+		// Make sure we clear the body
+		cy.window().then((win) => {
+			win.document.body.innerHTML = '<div data-cy-root></div>'
+		})
+	})
+
 	it('Renders default ConflictPicker', () => {
 		const oldImage = new NcFile({
 			id: 1,
@@ -29,8 +36,8 @@ describe('ConflictPicker rendering', () => {
 		})
 
 		cy.get('[data-cy-conflict-picker]').should('exist')
+		cy.get('[data-cy-conflict-picker] h2').should('have.text', '1 file conflict in Pictures')
 		cy.get('[data-cy-conflict-picker-form]').should('be.visible')
-		cy.get('[data-cy-conflict-picker-form] h2').should('have.text', '1 file conflict in Pictures')
 
 		cy.get('[data-cy-conflict-picker-fieldset]').should('have.length', 2)
 		cy.get('[data-cy-conflict-picker-fieldset="all"]').should('exist')
@@ -47,12 +54,19 @@ describe('ConflictPicker rendering', () => {
 describe('ConflictPicker resolving', () => {
 	let images: File[] = []
 
-	beforeEach(() => {
+	before(() => {
 		images = []
 		cy.fixture('image.jpg', 'binary').then((content) => {
 			content = Uint8Array.from(content, x => x.charCodeAt(0))
 			images.push(new File([content], 'image1.jpg', { type: 'image/jpeg' }))
 			images.push(new File([content], 'image2.jpg', { type: 'image/jpeg' }))
+		})
+	})
+
+	afterEach(() => {
+		// Make sure we clear the body
+		cy.window().then((win) => {
+			win.document.body.innerHTML = '<div data-cy-root></div>'
 		})
 	})
 

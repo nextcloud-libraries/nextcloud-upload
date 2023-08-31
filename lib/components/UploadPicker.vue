@@ -3,11 +3,11 @@
 		ref="form"
 		:class="{'upload-picker--uploading': isUploading, 'upload-picker--paused': isPaused}"
 		class="upload-picker"
-		data-upload-picker>
+		data-cy-upload-picker>
 		<!-- New button -->
 		<NcButton v-if="newFileMenuEntries && newFileMenuEntries.length === 0"
 			:disabled="disabled"
-			data-upload-picker-add
+			data-cy-upload-picker-add
 			@click="onClick">
 			<template #icon>
 				<Plus title="" :size="20" decorative />
@@ -20,7 +20,7 @@
 			<template #icon>
 				<Plus title="" :size="20" decorative />
 			</template>
-			<NcActionButton data-upload-picker-add :close-after-click="true" @click="onClick">
+			<NcActionButton data-cy-upload-picker-add :close-after-click="true" @click="onClick">
 				<template #icon>
 					<Upload title="" :size="20" decorative />
 				</template>
@@ -54,7 +54,7 @@
 			class="upload-picker__cancel"
 			type="tertiary"
 			:aria-label="cancelLabel"
-			data-upload-picker-cancel
+			data-cy-upload-picker-cancel
 			@click="onCancel">
 			<template #icon>
 				<Cancel title=""
@@ -68,7 +68,7 @@
 			type="file"
 			:accept="accept?.join?.(', ')"
 			:multiple="multiple"
-			data-upload-picker-input
+			data-cy-upload-picker-input
 			@change="onPick">
 	</form>
 </template>

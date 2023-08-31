@@ -52,7 +52,7 @@
   },
   "homepage": "https://github.com/skjnldsv/nextcloud-upload",
   "devDependencies": {
-    "@cypress/vue2": "^2.0.0",
+    "@cypress/vue2": "^2.0.1",
     "@ironkinoko/rollup-plugin-styles": "^4.0.3",
     "@jest/globals": "^29.5.0",
     "@nextcloud/babel-config": "^1.0.0",

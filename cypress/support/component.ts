@@ -12,10 +12,12 @@
 // You can read more here:
 // https://on.cypress.io/configuration
 // ***********************************************************
+/* eslint-disable @typescript-eslint/no-namespace */
+/* eslint-disable @typescript-eslint/no-this-alias */
 
 import './commands'
 
-import { mount } from 'cypress/vue2'
+import { mount } from '@cypress/vue2'
 
 // Augment the Cypress namespace to include type definitions for
 // your custom command.
@@ -33,18 +35,15 @@ declare global {
 // cy.mount(MyComponent)
 Cypress.Commands.add('mount', (component, optionsOrProps) => {
 	let instance = null
-	const oldMounted = component?.mounted || false
 
-	// Override the mounted method to expose
-	// the component instance to cypress
-	if (component) {
-		component.mounted = function() {
-			instance = this
-			if (oldMounted) {
-				oldMounted()
-			}
-		}
+	// Add our mounted method to exposethe component instance to cypress
+	if (!component?.options?.mounted) {
+		component.options.mounted = []
 	}
+
+	component.options.mounted.push(function() {
+		instance = this
+	})
 
 	// Expose the component with cy.get('@component')
 	return mount(component, optionsOrProps).then(() => {

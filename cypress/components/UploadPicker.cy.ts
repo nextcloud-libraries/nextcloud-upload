@@ -6,10 +6,32 @@ import { UploadPicker, getUploader } from '../../dist/index.mjs'
 import { generateRemoteUrl } from '@nextcloud/router'
 
 describe('UploadPicker rendering', () => {
+	afterEach(() => {
+		// Make sure we clear the body
+		cy.window().then((win) => {
+			win.document.body.innerHTML = '<div data-cy-root></div>'
+		})
+	})
+
 	it('Renders default UploadPicker', () => {
+		const propsData = {
+			destination: new Folder({
+				id: 56,
+				owner: 'user',
+				source: generateRemoteUrl('dav/files/user/Folder'),
+				permissions: Permission.ALL,
+				root: '/files/user',
+			}),
+		}
+		cy.mount(UploadPicker, { propsData })
+		cy.get('[data-cy-upload-picker]').should('be.visible')
+		cy.get('[data-cy-upload-picker] [data-cy-upload-picker-input]').should('exist')
+	})
+
+	it('Does NOT render without a destination', () => {
 		cy.mount(UploadPicker)
-		cy.get('form').should('have.class', 'upload-picker')
-		cy.get('form input[type="file"]').should('exist')
+		cy.get('[data-cy-upload-picker]').should('not.exist')
+		cy.get('[data-cy-upload-picker] [data-cy-upload-picker-input]').should('not.exist')
 	})
 })
 
@@ -37,19 +59,26 @@ describe('NewFileMenu handling', () => {
 		addNewFileMenuEntry(entry)
 	})
 
+	afterEach(() => {
+		// Make sure we clear the body
+		cy.window().then((win) => {
+			win.document.body.innerHTML = '<div data-cy-root></div>'
+		})
+	})
+
 	it('Open the New File Menu', () => {
 		// Mount picker
 		cy.mount(UploadPicker, { propsData })
 
 		// Check and init aliases
-		cy.get('form input[type="file"]').as('input').should('exist')
-		cy.get('form .upload-picker__progress').as('progress').should('exist')
-		cy.get('form .action-item__menutoggle')
+		cy.get('[data-cy-upload-picker] [data-cy-upload-picker-input]').as('input').should('exist')
+		cy.get('[data-cy-upload-picker] .upload-picker__progress').as('progress').should('exist')
+		cy.get('[data-cy-upload-picker] .action-item__menutoggle')
 			.as('menuButton')
 			.should('exist')
 
 		cy.get('@menuButton').click()
-		cy.get('[data-upload-picker-add]').should('have.length', 1)
+		cy.get('[data-cy-upload-picker-add]').should('have.length', 1)
 		cy.get('.upload-picker__menu-entry').should('have.length', 1)
 
 		cy.get('.upload-picker__menu-entry')
@@ -64,19 +93,19 @@ describe('NewFileMenu handling', () => {
 		cy.mount(UploadPicker, { propsData })
 
 		// Check and init aliases
-		cy.get('form input[type="file"]').as('input').should('exist')
-		cy.get('form .upload-picker__progress').as('progress').should('exist')
-		cy.get('form .action-item__menutoggle')
+		cy.get('[data-cy-upload-picker] [data-cy-upload-picker-input]').as('input').should('exist')
+		cy.get('[data-cy-upload-picker] .upload-picker__progress').as('progress').should('exist')
+		cy.get('[data-cy-upload-picker] .action-item__menutoggle')
 			.as('menuButton')
 			.should('exist')
 
 		cy.get('@menuButton').click()
-		cy.get('[data-upload-picker-add]').should('have.length', 1)
+		cy.get('[data-cy-upload-picker-add]').should('have.length', 1)
 		cy.get('.upload-picker__menu-entry').should('have.length', 1)
 
 		// Close menu
 		cy.get('body').click()
-		cy.get('[data-upload-picker-add]').should('not.be.visible')
+		cy.get('[data-cy-upload-picker-add]').should('not.be.visible')
 		cy.get('.upload-picker__menu-entry').should('not.be.visible')
 
 		cy.get('@component').then((component) => {
@@ -88,10 +117,10 @@ describe('NewFileMenu handling', () => {
 				root: '/files/user',
 			}))
 		})
-		cy.get('form .action-item__menutoggle')
+		cy.get('[data-cy-upload-picker] .action-item__menutoggle')
 			.as('menuButton')
 			.should('not.exist')
-		cy.get('[data-upload-picker-add]').should('have.length', 1)
+		cy.get('[data-cy-upload-picker-add]').should('have.length', 1)
 		cy.get('.upload-picker__menu-entry').should('not.exist')
 	})
 })
@@ -114,8 +143,15 @@ describe('UploadPicker valid uploads', () => {
 		cy.mount(UploadPicker, { propsData }).as('uploadPicker')
 
 		// Check and init aliases
-		cy.get('form input[type="file"]').as('input').should('exist')
-		cy.get('form .upload-picker__progress').as('progress').should('exist')
+		cy.get('[data-cy-upload-picker] [data-cy-upload-picker-input]').as('input').should('exist')
+		cy.get('[data-cy-upload-picker] .upload-picker__progress').as('progress').should('exist')
+	})
+
+	afterEach(() => {
+		// Make sure we clear the body
+		cy.window().then((win) => {
+			win.document.body.innerHTML = '<div data-cy-root></div>'
+		})
 	})
 
 	it('Uploads a file with chunking', () => {
@@ -158,12 +194,12 @@ describe('UploadPicker valid uploads', () => {
 		})
 
 		cy.wait('@init').then(() => {
-			cy.get('form .upload-picker__progress')
+			cy.get('[data-cy-upload-picker] .upload-picker__progress')
 				.as('progress')
 				.should('be.visible')
 		})
 		cy.wait('@chunks').then(() => {
-			cy.get('form .upload-picker__progress')
+			cy.get('[data-cy-upload-picker] .upload-picker__progress')
 				.as('progress')
 				.should('be.visible')
 			cy.get('@progress')
@@ -171,7 +207,7 @@ describe('UploadPicker valid uploads', () => {
 				.should('not.have.value', '0')
 		})
 		cy.wait('@assembly', { timeout: 60000 }).then(() => {
-			cy.get('form .upload-picker__progress')
+			cy.get('[data-cy-upload-picker] .upload-picker__progress')
 				.as('progress')
 				.should('not.be.visible')
 			expect(chunksRequestsSpy).to.have.always.been.callCount(26)
@@ -193,7 +229,7 @@ describe('UploadPicker valid uploads', () => {
 			lastModified: new Date().getTime(),
 		})
 
-		cy.get('form .upload-picker__progress')
+		cy.get('[data-cy-upload-picker] .upload-picker__progress')
 			.as('progress')
 			.should('not.be.visible')
 		cy.wait('@upload').then(() => {
@@ -215,13 +251,20 @@ describe('Destination management', () => {
 		}),
 	}
 
+	afterEach(() => {
+		// Make sure we clear the body
+		cy.window().then((win) => {
+			win.document.body.innerHTML = '<div data-cy-root></div>'
+		})
+	})
+
 	it('Upload then changes the destination', () => {
 		// Mount picker
 		cy.mount(UploadPicker, { propsData })
 
 		// Check and init aliases
-		cy.get('form input[type="file"]').as('input').should('exist')
-		cy.get('form .upload-picker__progress').as('progress').should('exist')
+		cy.get('[data-cy-upload-picker] [data-cy-upload-picker-input]').as('input').should('exist')
+		cy.get('[data-cy-upload-picker] .upload-picker__progress').as('progress').should('exist')
 
 		// Intercept single upload
 		cy.intercept('PUT', '/remote.php/dav/files/*/**', {
@@ -284,13 +327,20 @@ describe('Root management', () => {
 		}),
 	}
 
+	afterEach(() => {
+		// Make sure we clear the body
+		cy.window().then((win) => {
+			win.document.body.innerHTML = '<div data-cy-root></div>'
+		})
+	})
+
 	it('Upload then changes the root', () => {
 		// Mount picker
 		cy.mount(UploadPicker, { propsData })
 
 		// Check and init aliases
-		cy.get('form input[type="file"]').as('input').should('exist')
-		cy.get('form .upload-picker__progress').as('progress').should('exist')
+		cy.get('[data-cy-upload-picker] [data-cy-upload-picker-input]').as('input').should('exist')
+		cy.get('[data-cy-upload-picker] .upload-picker__progress').as('progress').should('exist')
 
 		// Intercept single upload
 		cy.intercept('PUT', '/remote.php/dav/files/*/**', {
@@ -375,8 +425,15 @@ describe('UploadPicker notify testing', () => {
 		}).as('uploadPicker')
 
 		// Check and init aliases
-		cy.get('form input[type="file"]').as('input').should('exist')
-		cy.get('form .upload-picker__progress').as('progress').should('exist')
+		cy.get('[data-cy-upload-picker] [data-cy-upload-picker-input]').as('input').should('exist')
+		cy.get('[data-cy-upload-picker] .upload-picker__progress').as('progress').should('exist')
+	})
+
+	afterEach(() => {
+		// Make sure we clear the body
+		cy.window().then((win) => {
+			win.document.body.innerHTML = '<div data-cy-root></div>'
+		})
 	})
 
 	it('Uploads a file without chunking', () => {
@@ -398,7 +455,7 @@ describe('UploadPicker notify testing', () => {
 			lastModified: new Date().getTime(),
 		})
 
-		cy.get('form .upload-picker__progress')
+		cy.get('[data-cy-upload-picker] .upload-picker__progress')
 			.as('progress')
 			.should('not.be.visible')
 		cy.wait('@upload').then(() => {
@@ -430,7 +487,7 @@ describe('UploadPicker notify testing', () => {
 			lastModified: new Date().getTime(),
 		})
 
-		cy.get('form .upload-picker__progress')
+		cy.get('[data-cy-upload-picker] .upload-picker__progress')
 			.as('progress')
 			.should('not.be.visible')
 		cy.wait('@upload').then(() => {
