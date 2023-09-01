@@ -2,7 +2,6 @@ import type { AxiosResponse } from 'axios'
 import { generateRemoteUrl } from '@nextcloud/router'
 import { getCurrentUser } from '@nextcloud/auth'
 import axios from '@nextcloud/axios'
-import crypto from 'crypto-browserify'
 import PLimit from 'p-limit'
 
 const readerLimit = PLimit(1)
@@ -60,7 +59,8 @@ export const getChunk = function(file: File, start: number, length: number): Pro
  */
 export const initChunkWorkspace = async function(): Promise<string> {
 	const chunksWorkspace = generateRemoteUrl(`dav/uploads/${getCurrentUser()?.uid}`)
-	const tempWorkspace = `web-file-upload-${crypto.randomBytes(16).toString('hex')}`
+	const hash = [...Array(16)].map(() => Math.floor(Math.random() * 16).toString(16)).join('')
+	const tempWorkspace = `web-file-upload-${hash}`
 	const url = `${chunksWorkspace}/${tempWorkspace}`
 
 	await axios.request({

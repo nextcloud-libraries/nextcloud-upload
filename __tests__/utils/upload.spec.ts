@@ -59,7 +59,7 @@ describe('Initialize chunks upload temporary workspace', () => {
 		const url = await initChunkWorkspace()
 
 		expect(url.startsWith('https://cloud.domain.com/remote.php/dav/uploads/test/web-file-upload-')).toBe(true)
-		expect(url.length).toEqual('https://cloud.domain.com/remote.php/dav/uploads/test/web-file-upload-3ec6b932e672fd7c1d8430b0f8457b07'.length)
+		expect(url.length).toEqual('https://cloud.domain.com/remote.php/dav/uploads/test/web-file-upload-123456789abcdefg'.length)
 
 		expect(axiosMock.request).toHaveBeenCalledTimes(1)
 		expect(axiosMock.request).toHaveBeenCalledWith({

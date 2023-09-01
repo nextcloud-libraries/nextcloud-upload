@@ -1,6 +1,8 @@
 /* eslint-disable no-unused-expressions */
 // dist file might not be built when running eslint only
 // eslint-disable-next-line import/no-unresolved,n/no-missing-import
+import type { ConflictResolutionResult } from '../../lib'
+
 import { File as NcFile } from '@nextcloud/files'
 import { openConflictPicker } from '../../dist/index.mjs'
 
@@ -95,7 +97,7 @@ describe('ConflictPicker resolving', () => {
 		cy.get('[data-cy-conflict-picker-input-incoming="all"] input').check({ force: true })
 		cy.get('[data-cy-conflict-picker-submit]').click()
 
-		promise.then((results) => {
+		promise.then((results: ConflictResolutionResult) => {
 			expect(results.selected).to.deep.equal(images)
 			expect(results.renamed).to.have.length(0)
 
@@ -128,7 +130,7 @@ describe('ConflictPicker resolving', () => {
 		cy.get('[data-cy-conflict-picker-input-existing="all"] input').check({ force: true })
 		cy.get('[data-cy-conflict-picker-submit]').click()
 
-		promise.then((results) => {
+		promise.then((results: ConflictResolutionResult) => {
 			expect(results.selected).to.have.length(0)
 			expect(results.renamed).to.have.length(0)
 
@@ -163,7 +165,7 @@ describe('ConflictPicker resolving', () => {
 		cy.get('[data-cy-conflict-picker-submit]').click()
 
 		// We only return the files to handle
-		promise.then((results) => {
+		promise.then((results: ConflictResolutionResult) => {
 			expect(results.selected).to.deep.equal([images[0]])
 			expect(results.renamed).to.have.length(0)
 
@@ -197,7 +199,7 @@ describe('ConflictPicker resolving', () => {
 		cy.get('[data-cy-conflict-picker-input-existing="all"] input').check({ force: true })
 		cy.get('[data-cy-conflict-picker-submit]').click()
 
-		promise.then((results) => {
+		promise.then((results: ConflictResolutionResult) => {
 			expect(results.selected).to.have.length(0)
 			expect(results.renamed).to.have.length(2)
 			expect(results.renamed[0].name).to.equal('image1 (1).jpg')
@@ -231,7 +233,7 @@ describe('ConflictPicker resolving', () => {
 		cy.get('[data-cy-conflict-picker-fieldset]').should('have.length', 3)
 		cy.get('[data-cy-conflict-picker-skip]').click()
 
-		promise.then((results) => {
+		promise.then((results: ConflictResolutionResult) => {
 			expect(results.selected).to.have.length(0)
 			expect(results.renamed).to.have.length(0)
 

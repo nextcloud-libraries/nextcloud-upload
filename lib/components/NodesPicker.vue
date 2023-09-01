@@ -10,7 +10,11 @@
 			<span class="node-picker node-picker--incoming">
 				<!-- Icon or preview -->
 				<FileSvg v-if="!incomingPreview" class="node-picker__icon" :size="48" />
-				<span v-else class="node-picker__preview" :style="incomingPreviewStyle" />
+				<img v-else
+					class="node-picker__preview"
+					:src="incomingPreview"
+					:alt="t('Preview image')"
+					loading="lazy">
 
 				<!-- Description -->
 				<span class="node-picker__desc">
@@ -29,7 +33,11 @@
 			<span class="node-picker node-picker--existing">
 				<!-- Icon or preview -->
 				<FileSvg v-if="!existingPreview" class="node-picker__icon" :size="48" />
-				<span v-else class="node-picker__preview" :style="existingPreviewStyle" />
+				<img v-else
+					class="node-picker__preview"
+					:src="existingPreview"
+					:alt="t('Preview image')"
+					loading="lazy">
 
 				<!-- Description -->
 				<span class="node-picker__desc">
@@ -43,14 +51,19 @@
 </template>
 
 <script lang="ts">
-import { Node, File as NcFile, Folder, formatFileSize, FileType } from '@nextcloud/files'
+import type { PropType } from 'vue'
+
+import { File as NcFile, Folder, formatFileSize, FileType, Node } from '@nextcloud/files'
+import { generateUrl } from '@nextcloud/router'
 import moment from 'moment'
-import NcCheckboxRadioSwitch from '@nextcloud/vue/dist/Components/NcCheckboxRadioSwitch.js'
-import FileSvg from 'vue-material-design-icons/File.vue'
 import Vue from 'vue'
 
+import FileSvg from 'vue-material-design-icons/File.vue'
+import NcCheckboxRadioSwitch from '@nextcloud/vue/dist/Components/NcCheckboxRadioSwitch.js'
+
 import { t } from '../utils/l10n.ts'
-import { generateUrl } from '@nextcloud/router'
+
+const PREVIEW_SIZE = 64
 
 export default Vue.extend({
 	name: 'NodesPicker',
@@ -70,11 +83,11 @@ export default Vue.extend({
 			required: true,
 		},
 		newSelected: {
-			type: Array,
+			type: Array as PropType<(File|Node)[]>,
 			required: true,
 		},
 		oldSelected: {
-			type: Array,
+			type: Array as PropType<Node[]>,
 			required: true,
 		},
 	},
@@ -106,16 +119,6 @@ export default Vue.extend({
 		existingPreview() {
 			return this.previewUrl(this.existing)
 		},
-		incomingPreviewStyle() {
-			return {
-				backgroundImage: `url(${this.incomingPreview})`,
-			}
-		},
-		existingPreviewStyle() {
-			return {
-				backgroundImage: `url(${this.existingPreview})`,
-			}
-		},
 	},
 
 	methods: {
@@ -136,8 +139,8 @@ export default Vue.extend({
 		},
 		previewUrl(node: File|Node) {
 			if (node instanceof File) {
-				this.previewImage(node).then((url: URL) => {
-					this.asyncPreview = url.href
+				this.previewImage(node).then((url: string) => {
+					this.asyncPreview = url
 				})
 				return
 			}
@@ -154,8 +157,8 @@ export default Vue.extend({
 				const url = new URL(window.location.origin + previewUrl)
 
 				// Request tiny previews
-				url.searchParams.set('x', '64')
-				url.searchParams.set('y', '64')
+				url.searchParams.set('x', PREVIEW_SIZE.toString())
+				url.searchParams.set('y', PREVIEW_SIZE.toString())
 				url.searchParams.set('mimeFallback', 'true')
 				return url.href
 			} catch (e) {
@@ -189,18 +192,21 @@ export default Vue.extend({
 		 * Get the preview Image of a file
 		 * @param file the soon-to-be-uploaded File
 		 */
-		async previewImage(file: File): Promise<URL|null> {
+		async previewImage(file: File): Promise<string|null> {
 			return new Promise((resolve) => {
 				if (file.type.startsWith('image/')) {
 					const reader = new FileReader()
-					reader.onload = function(e) {
-						if (typeof e?.target?.result === 'string') {
-							resolve(new URL(e.target.result))
+					reader.onload = async (e) => {
+						const result = e?.target?.result
+						if (result instanceof ArrayBuffer) {
+							const blob = new Blob([result], { type: file.type })
+							const url = URL.createObjectURL(blob)
+							resolve(url)
 							return
 						}
 						resolve(null)
 					}
-					reader.readAsDataURL(file)
+					reader.readAsArrayBuffer(file)
 				}
 			})
 		},
