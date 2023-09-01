@@ -8,8 +8,11 @@
     "lib": ["DOM", "ESNext"],
     "outDir": "./dist",
     "rootDir": "lib/",
-    "sourceMap": true,
+    "sourceMap": true
   },
+  "include": [
+    "lib"
+  ],
   "exclude": [
     "build",
     "dist",

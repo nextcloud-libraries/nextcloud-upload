@@ -4,7 +4,7 @@ import { Status, Upload } from '../lib/upload.js'
 describe('Constructor checks', () => {
 	test('Classic upload', () => {
 		// Setting max chunk size to 10MB
-		Object.assign(global, { OC: { appConfig: { files: { max_chunk_size: 10 * 1024 * 1024 } } } })
+		Object.assign(window, { OC: { appConfig: { files: { max_chunk_size: 10 * 1024 * 1024 } } } })
 		const file = new File([''], 'image.jpg', { type: 'image/jpeg' })
 		const upload = new Upload('http://domain.com/remote.php/dav/files/user/image.jpg', true, 10 * 1024 * 1024, file)
 
@@ -18,7 +18,7 @@ describe('Constructor checks', () => {
 
 	test('Disabled chunking', () => {
 		// Setting max chunk size to 0MB
-		Object.assign(global, { OC: { appConfig: { files: { max_chunk_size: 0 } } } })
+		Object.assign(window, { OC: { appConfig: { files: { max_chunk_size: 0 } } } })
 		const file = new File([''], 'image.jpg', { type: 'image/jpeg' })
 		const upload = new Upload('http://domain.com/remote.php/dav/files/user/image.jpg', true, 10 * 1024 * 1024, file)
 
@@ -35,7 +35,7 @@ describe('Constructor checks', () => {
 describe('Upload chunks config', () => {
 	test('150MB file with 15MB chunk', () => {
 		// Setting max chunk size to 15MB
-		Object.assign(global, { OC: { appConfig: { files: { max_chunk_size: 15 * 1024 * 1024 } } } })
+		Object.assign(window, { OC: { appConfig: { files: { max_chunk_size: 15 * 1024 * 1024 } } } })
 
 		// File is 150MB
 		const file = new File([''], 'image.jpg', { type: 'image/jpeg' })
@@ -46,7 +46,7 @@ describe('Upload chunks config', () => {
 
 	test('151MB file with 15MB chunk', () => {
 		// Setting max chunk size to 15MB
-		Object.assign(global, { OC: { appConfig: { files: { max_chunk_size: 15 * 1024 * 1024 } } } })
+		Object.assign(window, { OC: { appConfig: { files: { max_chunk_size: 15 * 1024 * 1024 } } } })
 
 		// File is 150MB
 		const file = new File([''], 'image.jpg', { type: 'image/jpeg' })
@@ -57,7 +57,7 @@ describe('Upload chunks config', () => {
 
 	test('1GB file with 15MB chunk and manually disabled chunk', () => {
 		// Setting max chunk size to 15MB
-		Object.assign(global, { OC: { appConfig: { files: { max_chunk_size: 15 * 1024 * 1024 } } } })
+		Object.assign(window, { OC: { appConfig: { files: { max_chunk_size: 15 * 1024 * 1024 } } } })
 
 		// File is 150MB
 		const file = new File([''], 'image.jpg', { type: 'image/jpeg' })
@@ -68,7 +68,7 @@ describe('Upload chunks config', () => {
 
 	test('1GB file with globally disabled chunking', () => {
 		// Setting max chunk size to 0
-		Object.assign(global, { OC: { appConfig: { files: { max_chunk_size: 0 } } } })
+		Object.assign(window, { OC: { appConfig: { files: { max_chunk_size: 0 } } } })
 
 		// File is 150MB
 		const file = new File([''], 'image.jpg', { type: 'image/jpeg' })
@@ -81,7 +81,7 @@ describe('Upload chunks config', () => {
 describe('Uploading states', () => {
 	test('Chunking upload', () => {
 		// Setting max chunk size to 10MB
-		Object.assign(global, { OC: { appConfig: { files: { max_chunk_size: 10 * 1024 * 1024 } } } })
+		Object.assign(window, { OC: { appConfig: { files: { max_chunk_size: 10 * 1024 * 1024 } } } })
 
 		const file = new File([''], 'image.jpg', { type: 'image/jpeg' })
 		const upload = new Upload('http://domain.com/remote.php/dav/files/user/image.jpg', true, 150 * 1024 * 1024, file)
@@ -106,7 +106,7 @@ describe('Uploading states', () => {
 
 	test('Disabled chunking upload', () => {
 		// Setting max chunk size to 0MB
-		Object.assign(global, { OC: { appConfig: { files: { max_chunk_size: 0 } } } })
+		Object.assign(window, { OC: { appConfig: { files: { max_chunk_size: 0 } } } })
 
 		const file = new File([''], 'image.jpg', { type: 'image/jpeg' })
 		const upload = new Upload('http://domain.com/remote.php/dav/files/user/image.jpg', true, 150 * 1024 * 1024, file)
@@ -130,7 +130,7 @@ describe('Uploading states', () => {
 describe('Cancellation', () => {
 	test('Classic upload', () => {
 		// 150MB chunks
-		Object.assign(global, { OC: { appConfig: { files: { max_chunk_size: 150 * 1024 * 1024 } } } })
+		Object.assign(window, { OC: { appConfig: { files: { max_chunk_size: 150 * 1024 * 1024 } } } })
 
 		const controller = new AbortController()
 		const file = new File([''], 'image.jpg', { type: 'image/jpeg' })
@@ -154,7 +154,7 @@ describe('Cancellation', () => {
 
 	test('Chunking upload', () => {
 		// Setting max chunk size to 10MB
-		Object.assign(global, { OC: { appConfig: { files: { max_chunk_size: 10 * 1024 * 1024 } } } })
+		Object.assign(window, { OC: { appConfig: { files: { max_chunk_size: 10 * 1024 * 1024 } } } })
 
 		const controller = new AbortController()
 		const file = new File([''], 'image.jpg', { type: 'image/jpeg' })
