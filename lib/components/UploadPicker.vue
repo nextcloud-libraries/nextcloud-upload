@@ -75,6 +75,7 @@
 
 <script lang="ts">
 import type { Entry, Node } from '@nextcloud/files'
+import type { PropType } from 'vue'
 
 import { getNewFileMenuEntries, Folder } from '@nextcloud/files'
 import { showError } from '@nextcloud/dialogs'
@@ -91,7 +92,7 @@ import Cancel from 'vue-material-design-icons/Cancel.vue'
 import Plus from 'vue-material-design-icons/Plus.vue'
 import Upload from 'vue-material-design-icons/Upload.vue'
 
-import { getUploader, openConflictPicker } from '../index.ts'
+import { getUploader, openConflictPicker, hasConflict } from '../index.ts'
 import { Status } from '../uploader.ts'
 import { Status as UploadStatus } from '../upload.ts'
 import { t } from '../utils/l10n.ts'
@@ -112,7 +113,7 @@ export default Vue.extend({
 
 	props: {
 		accept: {
-			type: Array as () => string[],
+			type: Array as PropType<string[]>,
 			default: null,
 		},
 		disabled: {
@@ -131,7 +132,7 @@ export default Vue.extend({
 		 * List of file present in the destination folder
 		 */
 		content: {
-			type: Array as () => Node[],
+			type: Array as PropType<Node[]>,
 			default: () => [],
 		},
 	},
@@ -229,26 +230,21 @@ export default Vue.extend({
 		async onPick() {
 			let files = [...this.$refs.input.files] as File[]
 
-			// Detect conflicts
-			const conflicts = this.content.filter((node: Node) => {
-				return files.some((file: File) => node.basename === file.name)
-			}) as Node[]
-
-			// Resolve conflicts
-			if (conflicts.length > 0) {
+			// Detect and resolve conflicts
+			if (hasConflict(files, this.content)) {
 				// List of incoming files that are in conflict
-				const compareFiles = conflicts.map((node: Node) => {
-					return files.find((file: File) => node.basename === file.name)
+				const conflicts = files.filter((file: File) => {
+					return this.content.find((node: Node) => node.basename === file.name)
 				}).filter(Boolean) as File[]
 
 				// List of incoming files that are NOT in conflict
 				const uploads = files.filter((file: File) => {
-					return !compareFiles.includes(file)
+					return !conflicts.includes(file)
 				})
 
 				try {
 					// Let the user choose what to do with the conflicting files
-					const { selected, renamed } = await openConflictPicker(this.destination.dirname, compareFiles, conflicts, this.content)
+					const { selected, renamed } = await openConflictPicker(this.destination.basename, conflicts, this.content)
 					files = [...uploads, ...selected, ...renamed]
 				} catch (error) {
 					// User cancelled

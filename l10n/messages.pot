@@ -49,6 +49,9 @@ msgstr ""
 msgid "paused"
 msgstr ""
 
+msgid "Preview image"
+msgstr ""
+
 msgid "Select all checkboxes"
 msgstr ""
 
