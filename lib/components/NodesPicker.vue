@@ -10,7 +10,11 @@
 			<span class="node-picker node-picker--incoming">
 				<!-- Icon or preview -->
 				<FileSvg v-if="!incomingPreview" class="node-picker__icon" :size="48" />
-				<span v-else class="node-picker__preview" :style="incomingPreviewStyle" />
+				<img v-else
+					class="node-picker__preview"
+					:src="incomingPreview"
+					:alt="t('Preview image')"
+					loading="lazy">
 
 				<!-- Description -->
 				<span class="node-picker__desc">
@@ -29,7 +33,11 @@
 			<span class="node-picker node-picker--existing">
 				<!-- Icon or preview -->
 				<FileSvg v-if="!existingPreview" class="node-picker__icon" :size="48" />
-				<span v-else class="node-picker__preview" :style="existingPreviewStyle" />
+				<img v-else
+					class="node-picker__preview"
+					:src="existingPreview"
+					:alt="t('Preview image')"
+					loading="lazy">
 
 				<!-- Description -->
 				<span class="node-picker__desc">
@@ -43,14 +51,21 @@
 </template>
 
 <script lang="ts">
-import { Node, File as NcFile, Folder, formatFileSize, FileType } from '@nextcloud/files'
+import type { PropType } from 'vue'
+
+import { File as NcFile, Folder, formatFileSize, FileType, Node } from '@nextcloud/files'
+import { generateUrl } from '@nextcloud/router'
 import moment from 'moment'
-import NcCheckboxRadioSwitch from '@nextcloud/vue/dist/Components/NcCheckboxRadioSwitch.js'
-import FileSvg from 'vue-material-design-icons/File.vue'
 import Vue from 'vue'
 
+import FileSvg from 'vue-material-design-icons/File.vue'
+import NcCheckboxRadioSwitch from '@nextcloud/vue/dist/Components/NcCheckboxRadioSwitch.js'
+
 import { t } from '../utils/l10n.ts'
-import { generateUrl } from '@nextcloud/router'
+
+const PREVIEW_SIZE = 64
+
+const timings = [] as number[]
 
 export default Vue.extend({
 	name: 'NodesPicker',
@@ -70,11 +85,11 @@ export default Vue.extend({
 			required: true,
 		},
 		newSelected: {
-			type: Array,
+			type: Array as PropType<(File|Node)[]>,
 			required: true,
 		},
 		oldSelected: {
-			type: Array,
+			type: Array as PropType<Node[]>,
 			required: true,
 		},
 	},
@@ -106,16 +121,6 @@ export default Vue.extend({
 		existingPreview() {
 			return this.previewUrl(this.existing)
 		},
-		incomingPreviewStyle() {
-			return {
-				backgroundImage: `url(${this.incomingPreview})`,
-			}
-		},
-		existingPreviewStyle() {
-			return {
-				backgroundImage: `url(${this.existingPreview})`,
-			}
-		},
 	},
 
 	methods: {
@@ -136,8 +141,10 @@ export default Vue.extend({
 		},
 		previewUrl(node: File|Node) {
 			if (node instanceof File) {
-				this.previewImage(node).then((url: URL) => {
-					this.asyncPreview = url.href
+				this.previewImage(node).then((url: string) => {
+					const avg = timings.reduce((a, b) => a + b, 0) / timings.length
+					console.debug(`Generating previewImage took ${avg} milliseconds.`)
+					this.asyncPreview = url
 				})
 				return
 			}
@@ -154,8 +161,8 @@ export default Vue.extend({
 				const url = new URL(window.location.origin + previewUrl)
 
 				// Request tiny previews
-				url.searchParams.set('x', '64')
-				url.searchParams.set('y', '64')
+				url.searchParams.set('x', PREVIEW_SIZE.toString())
+				url.searchParams.set('y', PREVIEW_SIZE.toString())
 				url.searchParams.set('mimeFallback', 'true')
 				return url.href
 			} catch (e) {
@@ -189,18 +196,69 @@ export default Vue.extend({
 		 * Get the preview Image of a file
 		 * @param file the soon-to-be-uploaded File
 		 */
-		async previewImage(file: File): Promise<URL|null> {
+		async previewImage(file: File): Promise<string|null> {
 			return new Promise((resolve) => {
 				if (file.type.startsWith('image/')) {
 					const reader = new FileReader()
-					reader.onload = function(e) {
-						if (typeof e?.target?.result === 'string') {
-							resolve(new URL(e.target.result))
+					reader.onload = async (e) => {
+						const result = e?.target?.result
+						const t0 = performance.now()
+						if (typeof result === 'string') {
+							const img = document.createElement('img')
+							img.onload = async () => {
+								const url = await this.resizeImageWithCanvas(img)
+
+								const t1 = performance.now()
+								timings.push(t1 - t0)
+
+								resolve(url)
+							}
+							img.onerror = () => {
+								resolve(null)
+							}
+							img.src = result
+							return
+						}
+						if (result instanceof ArrayBuffer) {
+							const blob = new Blob([result], { type: file.type })
+							const url = URL.createObjectURL(blob)
+
+							const t1 = performance.now()
+							timings.push(t1 - t0)
+
+							resolve(url)
 							return
 						}
 						resolve(null)
 					}
-					reader.readAsDataURL(file)
+					reader.readAsArrayBuffer(file)
+				}
+			})
+		},
+
+		async resizeImageWithCanvas(image: HTMLImageElement): Promise<string|null> {
+			return new Promise((resolve) => {
+				const width = image.width
+				const height = image.height
+
+				// Calc scale up factor
+				const f = height < width ? PREVIEW_SIZE / height : PREVIEW_SIZE / width
+
+				try {
+					// Create your canvas
+					const canvas = document.createElement('canvas')
+					canvas.height = canvas.width = PREVIEW_SIZE
+					const ctx = canvas.getContext('2d')
+					const posX = (width * f - PREVIEW_SIZE) / 2 * -1
+					const posY = (height * f - PREVIEW_SIZE) / 2 * -1
+					ctx.drawImage(image, posX, posY, width * f, height * f)
+
+					canvas.toBlob((blob) => {
+						const url = URL.createObjectURL(blob)
+						resolve(url)
+					})
+				} catch (e) {
+					resolve(null)
 				}
 			})
 		},

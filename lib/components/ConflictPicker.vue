@@ -38,11 +38,11 @@
 			</fieldset>
 
 			<!-- Files loop -->
-			<NodesPicker v-for="(node, index) in conflicts"
+			<NodesPicker v-for="(node, index) in files"
 				ref="nodesPicker"
 				:key="node.fileid"
-				:incoming="files[index]"
-				:existing="conflicts[index]"
+				:incoming="conflicts[index]"
+				:existing="files[index]"
 				:new-selected.sync="newSelected"
 				:old-selected.sync="oldSelected" />
 		</form>
@@ -72,6 +72,7 @@
 
 <script lang="ts">
 import type { ConflictResolutionResult } from '../index.ts'
+import type { PropType } from 'vue'
 
 import { basename, extname } from 'path'
 import { Node } from '@nextcloud/files'
@@ -87,6 +88,8 @@ import Close from 'vue-material-design-icons/Close.vue'
 import { n, t } from '../utils/l10n.ts'
 import logger from '../utils/logger.ts'
 import NodesPicker from './NodesPicker.vue'
+
+export type NodesPickerRef = InstanceType<typeof NodesPicker>
 
 export default Vue.extend({
 	name: 'ConflictPicker',
@@ -109,28 +112,25 @@ export default Vue.extend({
 
 		/** All the existing files in the current directory */
 		content: {
-			type: Array as () => Node[],
-			required: true,
-		},
-
-		/** Existing files to be replaced */
-		conflicts: {
-			type: Array as () => Node[],
+			type: Array as PropType<Node[]>,
 			required: true,
 		},
 
 		/** New files being moved/uploaded */
-		files: {
-			type: Array as () => (Node|File)[],
+		conflicts: {
+			type: Array as PropType<(Node|File)[]>,
 			required: true,
 		},
 	},
 
 	data() {
 		return {
+			// computed list of conflicting files already present in the directory
+			files: [] as Node[],
+
 			opened: true,
 			blockedTitle: t('You need to select at least one version of each file to continue.'),
-			newSelected: [] as Node[],
+			newSelected: [] as (Node|File)[],
 			oldSelected: [] as Node[],
 		}
 	},
@@ -138,16 +138,16 @@ export default Vue.extend({
 	computed: {
 		name() {
 			if (this?.dirname?.trim?.() !== '') {
-				return n('{count} file conflict in {dirname}', '{count} file conflicts in {dirname}', this.files.length, {
-					count: this.files.length,
+				return n('{count} file conflict in {dirname}', '{count} file conflicts in {dirname}', this.conflicts.length, {
+					count: this.conflicts.length,
 					dirname: this.dirname,
 				})
 			}
-			return n('{count} file conflict', '{count} files conflict', this.files.length, { count: this.files.length })
+			return n('{count} file conflict', '{count} files conflict', this.conflicts.length, { count: this.conflicts.length })
 		},
 
 		skipButtonLabel() {
-			return n('Skip this file', 'Skip {count} files', this.files.length, { count: this.files.length })
+			return n('Skip this file', 'Skip {count} files', this.conflicts.length, { count: this.conflicts.length })
 		},
 
 		// Select all incoming files
@@ -164,7 +164,7 @@ export default Vue.extend({
 		},
 
 		isAllNewSelected() {
-			return this.newSelected.length === this.files.length
+			return this.newSelected.length === this.conflicts.length
 		},
 		isNoneNewSelected() {
 			return this.newSelected.length === 0
@@ -187,7 +187,7 @@ export default Vue.extend({
 		},
 
 		isAllOldSelected() {
-			return this.oldSelected.length === this.conflicts.length
+			return this.oldSelected.length === this.files.length
 		},
 		isNoneOldSelected() {
 			return this.oldSelected.length === 0
@@ -203,26 +203,35 @@ export default Vue.extend({
 			}
 			// If we're in an intermediate state, we need to check
 			// if all files have at least one version selected.
-			return this.$refs?.nodesPicker?.every?.(picker => picker.isEnoughSelected)
+			return (this.$refs?.nodesPicker as NodesPickerRef[])?.every?.(picker => picker.isEnoughSelected)
 		},
 	},
 
 	beforeMount() {
-		if (this.files.length === 0 || this.conflicts.length === 0) {
-			this.onCancel()
-			throw new Error('ConflictPicker: files and conflicts must not be empty')
+		// Using map keep the same order
+		this.files = this.conflicts.map((conflict: File|Node) => {
+			const name = (conflict instanceof File) ? conflict.name : conflict.basename
+			return this.content.find((node: Node) => node.basename === name)
+		}).filter(Boolean) as Node[]
+		logger.debug('ConflictPicker initialised', { files: this.files, conflicts: this.conflicts, content: this.content })
+
+		if (this.conflicts.length === 0 || this.files.length === 0) {
+			const error = new Error('ConflictPicker: files and conflicts must not be empty')
+			this.onCancel(error)
+			throw error
 		}
 
-		if (this.files.length !== this.conflicts.length) {
-			this.onCancel()
-			throw new Error('ConflictPicker: files and conflicts must have the same length')
+		if (this.conflicts.length !== this.files.length) {
+			const error = new Error('ConflictPicker: files and conflicts must have the same length')
+			this.onCancel(error)
+			throw error
 		}
 	},
 
 	methods: {
-		onCancel() {
+		onCancel(error?: Error) {
 			this.opened = false
-			this.$emit('cancel')
+			this.$emit('cancel', error)
 		},
 
 		onSkip() {
@@ -288,9 +297,9 @@ export default Vue.extend({
 		/**
 		 * Get a unique name for a file based
 		 * on the existing directory content.
-		 * @param name The original file name with extension
-		 * @param names The existing directory content names
-		 * @return A unique name
+		 * @param {string} name The original file name with extension
+		 * @param {string} names The existing directory content names
+		 * @return {string} A unique name
 		 * TODO: migrate to @nextcloud/files
 		 */
 		getUniqueName(name: string, names: string[]): string {
@@ -322,20 +331,20 @@ export default Vue.extend({
 			}
 		},
 
-		onSelectAllNew(selected) {
+		onSelectAllNew(selected: boolean) {
 			if (selected) {
 				logger.debug('Selected all new files')
-				this.newSelected = this.files
+				this.newSelected = this.conflicts
 			} else {
 				logger.debug('Cleared new selection')
 				this.newSelected = []
 			}
 		},
 
-		onSelectAllOld(selected) {
+		onSelectAllOld(selected: boolean) {
 			if (selected) {
 				logger.debug('Selected all existing files')
-				this.oldSelected = this.conflicts
+				this.oldSelected = this.files
 			} else {
 				logger.debug('Cleared old selection')
 				this.oldSelected = []

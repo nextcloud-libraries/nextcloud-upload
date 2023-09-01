@@ -1,0 +1,10 @@
+{
+	"extends": [
+		"@tsconfig/cypress/tsconfig.json",
+		"../tsconfig.json"
+	],
+	"include": ["./**/*.ts"],
+	"compilerOptions": {
+		"types": ["cypress"]
+	}
+}

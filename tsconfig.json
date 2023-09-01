@@ -1,20 +1,21 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
   "extends": "@vue/tsconfig",
-  "include": ["./lib/**/*.ts"],
-  "exclude": ["./dist", "./lib/**/*.cy.ts", "./tests"],
   "compilerOptions": {
-      "target": "ES2019", // ES2020 requires Safari 13+
-      "module": "ESNext",
-      "declaration": true,
-      "esModuleInterop": true,
-      "moduleResolution": "Bundler",
-      "noImplicitAny": false,
-      "outDir": "./dist",
-      "strict": true,
-      "lib": [
-          "es6",
-          "dom"
-      ]
+    "allowSyntheticDefaultImports": true,
+    "declaration": true,
+    "esModuleInterop": true,
+    "lib": ["DOM", "ESNext"],
+    "outDir": "./dist",
+    "rootDir": "lib/",
+    "sourceMap": true,
+  },
+  "exclude": [
+    "build",
+    "dist",
+    "node_modules"
+  ],
+  "vueCompilerOptions": {
+    "target": 2.7
   }
 }
