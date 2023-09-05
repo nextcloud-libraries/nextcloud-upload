@@ -25,7 +25,7 @@ export class Upload {
 	private _response: AxiosResponse|null = null
 
 	constructor(source: string, chunked = false, size: number, file: File) {
-		const chunks = getMaxChunksSize() > 0 ? Math.ceil(size / getMaxChunksSize()) : 1
+		const chunks = Math.min(getMaxChunksSize() > 0 ? Math.ceil(size / getMaxChunksSize()) : 1, 10000)
 		this._source = source
 		this._isChunked = chunked && getMaxChunksSize() > 0 && chunks > 1
 		this._chunks = this._isChunked ? chunks : 1

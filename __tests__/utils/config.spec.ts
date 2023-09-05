@@ -7,6 +7,16 @@ describe('Max chunk size tests', () => {
 		expect(getMaxChunksSize()).toBe(15 * 1024 * 1024)
 	})
 
+	test('Returning valid config for chunking v2 minimum size', () => {
+		Object.assign(window, {OC: {appConfig: {files: { max_chunk_size: 4 * 1024 * 1024 }}}})
+		expect(getMaxChunksSize()).toBe(5 * 1024 * 1024)
+	})
+
+	test('Returning valid config for chunking v2 maximum chunk count', () => {
+		Object.assign(window, {OC: {appConfig: {files: { max_chunk_size: 5 * 1024 * 1024 }}}})
+		expect(getMaxChunksSize(50 * 1024 * 1024 * 10000)).toBe(5 * 1024 * 1024 * 10)
+	})
+
 	test('Returning disabled chunking config', () => {
 		Object.assign(window, {OC: {appConfig: {files: { max_chunk_size: 0 }}}})
 		expect(getMaxChunksSize()).toBe(0)
