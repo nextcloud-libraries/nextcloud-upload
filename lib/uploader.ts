@@ -170,7 +170,7 @@ export class Uploader {
 
 		// If manually disabled or if the file is too small
 		// TODO: support chunk uploading in public pages
-		const maxChunkSize = getMaxChunksSize()
+		const maxChunkSize = getMaxChunksSize(file.size)
 		const disabledChunkUpload = maxChunkSize === 0
 			|| file.size < maxChunkSize
 			|| this._isPublic
@@ -188,7 +188,7 @@ export class Uploader {
 				logger.debug('Initializing chunked upload', { file, upload })
 
 				// Let's initialize a chunk upload
-				const tempUrl = await initChunkWorkspace()
+				const tempUrl = await initChunkWorkspace(destinationFile)
 				const chunksQueue: Array<Promise<any>> = []
 
 				// Generate chunks array
@@ -201,12 +201,12 @@ export class Uploader {
 
 					// Init request queue
 					const request = () => {
-						return uploadData(`${tempUrl}/${bufferEnd}`, blob, upload.signal, () => this.updateStats())
+						return uploadData(`${tempUrl}/${chunk+1}`, blob, upload.signal, () => this.updateStats(), destinationFile)
 							// Update upload progress on chunk completion
 							.then(() => { upload.uploaded = upload.uploaded + maxChunkSize })
 							.catch((error) => {
 								if (!(error instanceof CanceledError)) {
-									logger.error(`Chunk ${bufferStart} - ${bufferEnd} uploading failed`)
+									logger.error(`Chunk ${chunk+1} ${bufferStart} - ${bufferEnd} uploading failed`)
 									upload.status = UploadStatus.FAILED
 								}
 								throw error

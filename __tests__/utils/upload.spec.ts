@@ -67,6 +67,33 @@ describe('Initialize chunks upload temporary workspace', () => {
 			url,
 		})
 	})
+
+	test('Init random workspace for file destination', async () => {
+		axiosMock.request = vi.fn((config: any) => Promise.resolve(config?.onUploadProgress?.()))
+
+		// mock the current location for our assert on the URL
+		Object.defineProperty(window, 'location', {
+			value: new URL('https://cloud.domain.com'),
+			configurable: true,
+		})
+
+		// mock the current user
+		document.head.setAttribute('data-user', 'test')
+
+		const url = await initChunkWorkspace('https://cloud.domain.com/remote.php/dav/files/test/image.jpg')
+
+		expect(url.startsWith('https://cloud.domain.com/remote.php/dav/uploads/test/web-file-upload-')).toBe(true)
+		expect(url.length).toEqual('https://cloud.domain.com/remote.php/dav/uploads/test/web-file-upload-123456789abcdefg'.length)
+
+		expect(axiosMock.request).toHaveBeenCalledTimes(1)
+		expect(axiosMock.request).toHaveBeenCalledWith({
+			method: 'MKCOL',
+			url,
+			headers: {
+				Destination: 'https://cloud.domain.com/remote.php/dav/files/test/image.jpg',
+			},
+		})
+	})
 })
 
 describe('Upload data', () => {
@@ -109,6 +136,29 @@ describe('Upload data', () => {
 			data: blob,
 			signal,
 			onUploadProgress,
+		})
+	})
+
+	test('Upload data stream with destination', async () => {
+		axiosMock.request = vi.fn((config: any) => Promise.resolve(config?.onUploadProgress()))
+
+		const url = 'https://cloud.domain.com/remote.php/dav/files/test/image.jpg'
+		const blob = new Blob([new ArrayBuffer(50 * 1024 * 1024)])
+		const signal = new AbortController().signal
+		const onUploadProgress = vi.fn()
+		await uploadData(url, blob, signal, onUploadProgress, url)
+
+		expect(onUploadProgress).toHaveBeenCalledTimes(1)
+		expect(axiosMock.request).toHaveBeenCalledTimes(1)
+		expect(axiosMock.request).toHaveBeenCalledWith({
+			method: 'PUT',
+			url,
+			data: blob,
+			signal,
+			onUploadProgress,
+			headers: {
+				Destination: url,
+			},
 		})
 	})
 
