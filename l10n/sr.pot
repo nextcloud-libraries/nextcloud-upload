@@ -1,19 +1,32 @@
 # 
 # Translators:
+# John Molakvoæ <skjnldsv@protonmail.com>, 2023
 # Иван Пешић, 2023
 # 
 msgid ""
 msgstr ""
 "Last-Translator: Иван Пешић, 2023\n"
-"Language-Team: Serbian (https://www.transifex.com/nextcloud/teams/64236/sr/)\n"
+"Language-Team: Serbian (https://app.transifex.com/nextcloud/teams/64236/sr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: sr\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
+msgid "{count} file conflict"
+msgid_plural "{count} files conflict"
+msgstr[0] "{count} фајл конфликт"
+msgstr[1] "{count} фајл конфликта"
+msgstr[2] "{count} фајл конфликта"
+
+msgid "{count} file conflict in {dirname}"
+msgid_plural "{count} file conflicts in {dirname}"
+msgstr[0] "{count} фајл конфликт у {dirname}"
+msgstr[1] "{count} фајл конфликта у {dirname}"
+msgstr[2] "{count} фајл конфликта у {dirname}"
+
 msgid "{seconds} seconds left"
 msgstr "преостало је {seconds} секунди"
 
-#. time has the format 00:00:00
+#. TRANSLATORS time has the format 00:00:00
 msgid "{time} left"
 msgstr "{time} преостало"
 
@@ -26,11 +39,58 @@ msgstr "Додај"
 msgid "Cancel uploads"
 msgstr "Обустави отпремања"
 
+msgid "Continue"
+msgstr "Настави"
+
 msgid "estimating time left"
 msgstr "процена преосталог времена"
+
+msgid "Existing version"
+msgstr "Постојећа верзија"
+
+msgid ""
+"If you select both versions, the copied file will have a number added to its"
+" name."
+msgstr "Ако изаберете обе верзије, на име копираног фајла ће се додати број."
+
+msgid "Last modified date unknown"
+msgstr "Није познат датум последње измене"
+
+msgid "New version"
+msgstr "Нова верзија"
 
 msgid "paused"
 msgstr "паузирано"
 
+msgid "Preview image"
+msgstr "Слика прегледа"
+
+msgid "Select all checkboxes"
+msgstr "Штиклирај сва поља за штиклирање"
+
+msgid "Select all existing files"
+msgstr "Изабери све постојеће фајлове"
+
+msgid "Select all new files"
+msgstr "Изабери све нове фајлове"
+
+msgid "Skip this file"
+msgid_plural "Skip {count} files"
+msgstr[0] "Прескочи овај фајл"
+msgstr[1] "Прескочи {count} фајла"
+msgstr[2] "Прескочи {count} фајлова"
+
+msgid "Unknown size"
+msgstr "Непозната величина"
+
+msgid "Upload cancelled"
+msgstr "Отпремање је отказано"
+
 msgid "Upload files"
 msgstr "Отпреми фајлове"
+
+msgid "Which files do you want to keep?"
+msgstr "Које фајлове желите да задржите?"
+
+msgid "You need to select at least one version of each file to continue."
+msgstr "Морате да изаберете барем једну верзију сваког фајла да наставите."
