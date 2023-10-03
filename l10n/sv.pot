@@ -1,19 +1,30 @@
 # 
 # Translators:
-# Max Bäckström, 2022
+# John Molakvoæ <skjnldsv@protonmail.com>, 2023
+# Magnus Höglund, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Max Bäckström, 2022\n"
-"Language-Team: Swedish (https://www.transifex.com/nextcloud/teams/64236/sv/)\n"
+"Last-Translator: Magnus Höglund, 2023\n"
+"Language-Team: Swedish (https://app.transifex.com/nextcloud/teams/64236/sv/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: sv\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+msgid "{count} file conflict"
+msgid_plural "{count} files conflict"
+msgstr[0] "{count} filkonflikt"
+msgstr[1] "{count} filkonflikter"
+
+msgid "{count} file conflict in {dirname}"
+msgid_plural "{count} file conflicts in {dirname}"
+msgstr[0] "{count} filkonflikt i {dirname}"
+msgstr[1] "{count} filkonflikter i {dirname}"
+
 msgid "{seconds} seconds left"
 msgstr "{seconds} sekunder kvarstår"
 
-#. time has the format 00:00:00
+#. TRANSLATORS time has the format 00:00:00
 msgid "{time} left"
 msgstr "{time} kvarstår"
 
@@ -26,11 +37,59 @@ msgstr "Lägg till"
 msgid "Cancel uploads"
 msgstr "Avbryt uppladdningar"
 
+msgid "Continue"
+msgstr "Fortsätt"
+
 msgid "estimating time left"
 msgstr "uppskattar kvarstående tid"
+
+msgid "Existing version"
+msgstr "Nuvarande version"
+
+msgid ""
+"If you select both versions, the copied file will have a number added to its"
+" name."
+msgstr ""
+"Om du väljer båda versionerna kommer den kopierade filen att få ett nummer "
+"tillagt  i namnet."
+
+msgid "Last modified date unknown"
+msgstr "Senaste ändringsdatum okänt"
+
+msgid "New version"
+msgstr "Ny version"
 
 msgid "paused"
 msgstr "pausad"
 
+msgid "Preview image"
+msgstr "Förhandsgranska bild"
+
+msgid "Select all checkboxes"
+msgstr "Markera alla kryssrutor"
+
+msgid "Select all existing files"
+msgstr "Välj alla befintliga filer"
+
+msgid "Select all new files"
+msgstr "Välj alla nya filer"
+
+msgid "Skip this file"
+msgid_plural "Skip {count} files"
+msgstr[0] "Hoppa över denna fil"
+msgstr[1] "Hoppa över {count} filer"
+
+msgid "Unknown size"
+msgstr "Okänd storlek"
+
+msgid "Upload cancelled"
+msgstr "Uppladdningen avbröts"
+
 msgid "Upload files"
 msgstr "Ladda upp filer"
+
+msgid "Which files do you want to keep?"
+msgstr "Vilka filer vill du behålla?"
+
+msgid "You need to select at least one version of each file to continue."
+msgstr "Du måste välja minst en version av varje fil för att fortsätta."
