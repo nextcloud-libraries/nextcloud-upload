@@ -1,21 +1,32 @@
 # 
 # Translators:
-# Florin Baras, 2022
-# Hecbert Gonzalez, 2022
-# Next Cloud <nextcloud.translator.es@cgj.es>, 2022
+# John Molakvoæ <skjnldsv@protonmail.com>, 2023
+# FranciscoFJ <dev-ooo@satel-sa.com>, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Next Cloud <nextcloud.translator.es@cgj.es>, 2022\n"
-"Language-Team: Spanish (https://www.transifex.com/nextcloud/teams/64236/es/)\n"
+"Last-Translator: FranciscoFJ <dev-ooo@satel-sa.com>, 2023\n"
+"Language-Team: Spanish (https://app.transifex.com/nextcloud/teams/64236/es/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: es\n"
 "Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
+msgid "{count} file conflict"
+msgid_plural "{count} files conflict"
+msgstr[0] "{count} archivo en conflicto"
+msgstr[1] "{count} archivos en conflicto"
+msgstr[2] "{count} archivos en conflicto"
+
+msgid "{count} file conflict in {dirname}"
+msgid_plural "{count} file conflicts in {dirname}"
+msgstr[0] "{count} archivo en conflicto en {dirname}"
+msgstr[1] "{count} archivos en conflicto en {dirname}"
+msgstr[2] "{count} archivos en conflicto en {dirname}"
+
 msgid "{seconds} seconds left"
 msgstr "{seconds} segundos restantes"
 
-#. time has the format 00:00:00
+#. TRANSLATORS time has the format 00:00:00
 msgid "{time} left"
 msgstr "{time} restante"
 
@@ -28,11 +39,60 @@ msgstr "Añadir"
 msgid "Cancel uploads"
 msgstr "Cancelar subidas"
 
+msgid "Continue"
+msgstr "Continuar"
+
 msgid "estimating time left"
 msgstr "estimación del tiempo restante"
+
+msgid "Existing version"
+msgstr "Versión existente"
+
+msgid ""
+"If you select both versions, the copied file will have a number added to its"
+" name."
+msgstr ""
+"Si selecciona ambas versiones, al archivo copiado se le añadirá un número en"
+" el nombre."
+
+msgid "Last modified date unknown"
+msgstr "Última fecha de modificación desconocida"
+
+msgid "New version"
+msgstr "Nueva versión"
 
 msgid "paused"
 msgstr "pausado"
 
+msgid "Preview image"
+msgstr "Previsualizar imagen"
+
+msgid "Select all checkboxes"
+msgstr "Seleccionar todas las casillas de verificación"
+
+msgid "Select all existing files"
+msgstr "Seleccionar todos los archivos existentes"
+
+msgid "Select all new files"
+msgstr "Seleccionar todos los archivos nuevos"
+
+msgid "Skip this file"
+msgid_plural "Skip {count} files"
+msgstr[0] "Saltar este archivo"
+msgstr[1] "Saltar {count} archivos"
+msgstr[2] "Saltar {count} archivos"
+
+msgid "Unknown size"
+msgstr "Tamaño desconocido"
+
+msgid "Upload cancelled"
+msgstr "Subida cancelada"
+
 msgid "Upload files"
 msgstr "Subir archivos"
+
+msgid "Which files do you want to keep?"
+msgstr "¿Qué archivos desea conservar?"
+
+msgid "You need to select at least one version of each file to continue."
+msgstr "Debe seleccionar al menos una versión de cada archivo para continuar."
