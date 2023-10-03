@@ -1,6 +1,6 @@
 # 
 # Translators:
-# omv nas <myomv100@gmail.com>, 2023
+# John Molakvoæ <skjnldsv@protonmail.com>, 2023
 # Ali <alimahwer@yahoo.com>, 2023
 # 
 msgid ""
@@ -11,10 +11,28 @@ msgstr ""
 "Language: ar\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
 
+msgid "{count} file conflict"
+msgid_plural "{count} files conflict"
+msgstr[0] "{count} ملف متعارض"
+msgstr[1] "{count} ملف متعارض"
+msgstr[2] "{count} ملفان متعارضان"
+msgstr[3] "{count} ملف متعارض"
+msgstr[4] "{count} ملفات متعارضة"
+msgstr[5] "{count} ملفات متعارضة"
+
+msgid "{count} file conflict in {dirname}"
+msgid_plural "{count} file conflicts in {dirname}"
+msgstr[0] "{count} ملف متعارض في n {dirname}"
+msgstr[1] "{count} ملف متعارض في n {dirname}"
+msgstr[2] "{count} ملفان متعارضان في n {dirname}"
+msgstr[3] "{count} ملف متعارض في n {dirname}"
+msgstr[4] "{count} ملفات متعارضة في n {dirname}"
+msgstr[5] "{count} ملفات متعارضة في n {dirname}"
+
 msgid "{seconds} seconds left"
 msgstr "{seconds} ثانية متبقية"
 
-#. time has the format 00:00:00
+#. TRANSLATORS time has the format 00:00:00
 msgid "{time} left"
 msgstr "{time} متبقية"
 
@@ -27,11 +45,63 @@ msgstr "أضف"
 msgid "Cancel uploads"
 msgstr "إلغاء عمليات رفع الملفات"
 
+msgid "Continue"
+msgstr "إستمر"
+
 msgid "estimating time left"
 msgstr "تقدير الوقت المتبقي"
+
+msgid "Existing version"
+msgstr "الإصدار الحالي"
+
+msgid ""
+"If you select both versions, the copied file will have a number added to its"
+" name."
+msgstr ""
+"إذا اخترت الإبقاء على النسختين معاً، فإن الملف المنسوخ سيتم إلحاق رقم تسلسلي"
+" في نهاية اسمه."
+
+msgid "Last modified date unknown"
+msgstr "تاريخ آخر تعديل غير معلوم"
+
+msgid "New version"
+msgstr "نسخة جديدة"
 
 msgid "paused"
 msgstr "مُجمَّد"
 
+msgid "Preview image"
+msgstr "معاينة الصورة"
+
+msgid "Select all checkboxes"
+msgstr "حدِّد كل صناديق الخيارات"
+
+msgid "Select all existing files"
+msgstr "حدِّد كل الملفات الموجودة"
+
+msgid "Select all new files"
+msgstr "حدِّد كل الملفات الجديدة"
+
+msgid "Skip this file"
+msgid_plural "Skip {count} files"
+msgstr[0] "تخطَّ {count} ملف"
+msgstr[1] "تخطَّ {count} ملف"
+msgstr[2] "تخطَّ {count} ملف"
+msgstr[3] "تخطَّ {count} ملف"
+msgstr[4] "تخطَّ {count} ملف"
+msgstr[5] "تخطَّ {count} ملف"
+
+msgid "Unknown size"
+msgstr "حجم غير معلوم"
+
+msgid "Upload cancelled"
+msgstr "تمَّ إلغاء الرفع"
+
 msgid "Upload files"
 msgstr "رفع ملفات"
+
+msgid "Which files do you want to keep?"
+msgstr "أيُّ الملفات ترغب في الإبقاء عليها؟"
+
+msgid "You need to select at least one version of each file to continue."
+msgstr "يجب أن تختار نسخة واحدة على الأقل من كل ملف للاستمرار."
