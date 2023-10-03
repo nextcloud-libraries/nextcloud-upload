@@ -1,20 +1,32 @@
 # 
 # Translators:
-# Gianluca Montalbano, 2022
-# marcotrevisan <mrctrevisan@yahoo.it>, 2023
+# John Molakvoæ <skjnldsv@protonmail.com>, 2023
+# Lep Lep, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: marcotrevisan <mrctrevisan@yahoo.it>, 2023\n"
+"Last-Translator: Lep Lep, 2023\n"
 "Language-Team: Italian (https://app.transifex.com/nextcloud/teams/64236/it/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: it\n"
 "Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
+msgid "{count} file conflict"
+msgid_plural "{count} files conflict"
+msgstr[0] "{count} file in conflitto"
+msgstr[1] "{count} file in conflitto"
+msgstr[2] "{count} file in conflitto"
+
+msgid "{count} file conflict in {dirname}"
+msgid_plural "{count} file conflicts in {dirname}"
+msgstr[0] "{count} file in conflitto in {dirname}"
+msgstr[1] "{count} file in conflitto in {dirname}"
+msgstr[2] "{count} file in conflitto in {dirname}"
+
 msgid "{seconds} seconds left"
 msgstr "{seconds} secondi rimanenti "
 
-#. time has the format 00:00:00
+#. TRANSLATORS time has the format 00:00:00
 msgid "{time} left"
 msgstr "{time} rimanente"
 
@@ -27,11 +39,60 @@ msgstr "Aggiungi"
 msgid "Cancel uploads"
 msgstr "Annulla i caricamenti"
 
+msgid "Continue"
+msgstr "Continua"
+
 msgid "estimating time left"
 msgstr "calcolo il tempo rimanente"
+
+msgid "Existing version"
+msgstr "Versione esistente"
+
+msgid ""
+"If you select both versions, the copied file will have a number added to its"
+" name."
+msgstr ""
+"Se selezioni entrambe le versioni, nel nome del file copiato verrà aggiunto "
+"un numero "
+
+msgid "Last modified date unknown"
+msgstr "Ultima modifica sconosciuta"
+
+msgid "New version"
+msgstr "Nuova versione"
 
 msgid "paused"
 msgstr "pausa"
 
+msgid "Preview image"
+msgstr "Anteprima immagine"
+
+msgid "Select all checkboxes"
+msgstr "Seleziona tutte le caselle"
+
+msgid "Select all existing files"
+msgstr "Seleziona tutti i file esistenti"
+
+msgid "Select all new files"
+msgstr "Seleziona tutti i nuovi file"
+
+msgid "Skip this file"
+msgid_plural "Skip {count} files"
+msgstr[0] "Salta questo file"
+msgstr[1] "Salta {count} file"
+msgstr[2] "Salta {count} file"
+
+msgid "Unknown size"
+msgstr "Dimensione sconosciuta"
+
+msgid "Upload cancelled"
+msgstr "Caricamento cancellato"
+
 msgid "Upload files"
 msgstr "Carica i file"
+
+msgid "Which files do you want to keep?"
+msgstr "Quali file vuoi mantenere?"
+
+msgid "You need to select at least one version of each file to continue."
+msgstr "Devi selezionare almeno una versione di ogni file per continuare"
