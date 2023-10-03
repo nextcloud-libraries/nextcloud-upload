@@ -1,20 +1,28 @@
 # 
 # Translators:
-# Pin-Hsien Lee, 2022
-# Tragic Life, 2022
+# John Molakvoæ <skjnldsv@protonmail.com>, 2023
+# 黃柏諺 <s8321414@gmail.com>, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Tragic Life, 2022\n"
-"Language-Team: Chinese (Taiwan) (https://www.transifex.com/nextcloud/teams/64236/zh_TW/)\n"
+"Last-Translator: 黃柏諺 <s8321414@gmail.com>, 2023\n"
+"Language-Team: Chinese (Taiwan) (https://app.transifex.com/nextcloud/teams/64236/zh_TW/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: zh_TW\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
+msgid "{count} file conflict"
+msgid_plural "{count} files conflict"
+msgstr[0] "{count} 個檔案衝突"
+
+msgid "{count} file conflict in {dirname}"
+msgid_plural "{count} file conflicts in {dirname}"
+msgstr[0] "{dirname} 中有 {count} 個檔案衝突"
+
 msgid "{seconds} seconds left"
 msgstr "剩餘 {seconds} 秒"
 
-#. time has the format 00:00:00
+#. TRANSLATORS time has the format 00:00:00
 msgid "{time} left"
 msgstr "剩餘 {time}"
 
@@ -27,11 +35,56 @@ msgstr "新增"
 msgid "Cancel uploads"
 msgstr "取消上傳"
 
+msgid "Continue"
+msgstr "繼續"
+
 msgid "estimating time left"
 msgstr "估計剩餘時間"
+
+msgid "Existing version"
+msgstr "既有版本"
+
+msgid ""
+"If you select both versions, the copied file will have a number added to its"
+" name."
+msgstr "若您選取兩個版本，複製的檔案的名稱將會新增編號。"
+
+msgid "Last modified date unknown"
+msgstr "最後修改日期未知"
+
+msgid "New version"
+msgstr "新版本"
 
 msgid "paused"
 msgstr "已暫停"
 
+msgid "Preview image"
+msgstr "預覽圖片"
+
+msgid "Select all checkboxes"
+msgstr "選取所有核取方塊"
+
+msgid "Select all existing files"
+msgstr "選取所有既有檔案"
+
+msgid "Select all new files"
+msgstr "選取所有新檔案"
+
+msgid "Skip this file"
+msgid_plural "Skip {count} files"
+msgstr[0] "略過 {count} 檔案"
+
+msgid "Unknown size"
+msgstr "未知大小"
+
+msgid "Upload cancelled"
+msgstr "已取消上傳"
+
 msgid "Upload files"
 msgstr "上傳檔案"
+
+msgid "Which files do you want to keep?"
+msgstr "您想保留哪些檔案？"
+
+msgid "You need to select at least one version of each file to continue."
+msgstr "您必須為每個檔案都至少選取一個版本以繼續。"
