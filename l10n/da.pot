@@ -1,19 +1,30 @@
 # 
 # Translators:
-# Henrik Dunch, 2022
+# John Molakvoæ <skjnldsv@protonmail.com>, 2023
+# Simon T, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Henrik Dunch, 2022\n"
-"Language-Team: Danish (https://www.transifex.com/nextcloud/teams/64236/da/)\n"
+"Last-Translator: Simon T, 2023\n"
+"Language-Team: Danish (https://app.transifex.com/nextcloud/teams/64236/da/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: da\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+msgid "{count} file conflict"
+msgid_plural "{count} files conflict"
+msgstr[0] "{count} fil konflikt"
+msgstr[1] "{count} filer i konflikt"
+
+msgid "{count} file conflict in {dirname}"
+msgid_plural "{count} file conflicts in {dirname}"
+msgstr[0] "{count} fil konflikt i {dirname}"
+msgstr[1] "{count} filer i konflikt i {dirname}"
+
 msgid "{seconds} seconds left"
 msgstr "{sekunder} sekunder tilbage"
 
-#. time has the format 00:00:00
+#. TRANSLATORS time has the format 00:00:00
 msgid "{time} left"
 msgstr "{tid} tilbage"
 
@@ -26,11 +37,59 @@ msgstr "Tilføj"
 msgid "Cancel uploads"
 msgstr "Annuller uploads"
 
+msgid "Continue"
+msgstr "Fortsæt"
+
 msgid "estimating time left"
 msgstr "estimering af resterende tid"
+
+msgid "Existing version"
+msgstr "Eksisterende version"
+
+msgid ""
+"If you select both versions, the copied file will have a number added to its"
+" name."
+msgstr ""
+"Hvis du vælger begge versioner vil den kopierede fil få et nummer tilføjet "
+"til sit navn."
+
+msgid "Last modified date unknown"
+msgstr "Sidste modifikationsdato ukendt"
+
+msgid "New version"
+msgstr "Ny version"
 
 msgid "paused"
 msgstr "pauset"
 
+msgid "Preview image"
+msgstr "Forhåndsvisning af billede"
+
+msgid "Select all checkboxes"
+msgstr "Vælg alle felter"
+
+msgid "Select all existing files"
+msgstr "Vælg alle eksisterende filer"
+
+msgid "Select all new files"
+msgstr "Vælg alle nye filer"
+
+msgid "Skip this file"
+msgid_plural "Skip {count} files"
+msgstr[0] "Spring denne fil over"
+msgstr[1] "Spring {count} filer over"
+
+msgid "Unknown size"
+msgstr "Ukendt størrelse"
+
+msgid "Upload cancelled"
+msgstr "Upload annulleret"
+
 msgid "Upload files"
 msgstr "Upload filer"
+
+msgid "Which files do you want to keep?"
+msgstr "Hvilke filer ønsker du at beholde?"
+
+msgid "You need to select at least one version of each file to continue."
+msgstr "Du skal vælge mindst én version af hver fil for at fortsætte."
