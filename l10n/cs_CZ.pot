@@ -1,5 +1,6 @@
 # 
 # Translators:
+# John Molakvoæ <skjnldsv@protonmail.com>, 2023
 # Pavel Borecki <pavel.borecki@gmail.com>, 2023
 # 
 msgid ""
@@ -10,10 +11,24 @@ msgstr ""
 "Language: cs_CZ\n"
 "Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;\n"
 
+msgid "{count} file conflict"
+msgid_plural "{count} files conflict"
+msgstr[0] "{count} kolize souborů"
+msgstr[1] "{count} kolize souborů"
+msgstr[2] "{count} kolizí souborů"
+msgstr[3] "{count} kolize souborů"
+
+msgid "{count} file conflict in {dirname}"
+msgid_plural "{count} file conflicts in {dirname}"
+msgstr[0] "{count} kolize souboru v {dirname}"
+msgstr[1] "{count} kolize souboru v {dirname}"
+msgstr[2] "{count} kolizí souborů v {dirname}"
+msgstr[3] "{count} kolize souboru v {dirname}"
+
 msgid "{seconds} seconds left"
 msgstr "zbývá {seconds}"
 
-#. time has the format 00:00:00
+#. TRANSLATORS time has the format 00:00:00
 msgid "{time} left"
 msgstr "zbývá {time}"
 
@@ -26,11 +41,62 @@ msgstr "Přidat"
 msgid "Cancel uploads"
 msgstr "Zrušit nahrávání"
 
+msgid "Continue"
+msgstr "Pokračovat"
+
 msgid "estimating time left"
 msgstr "odhaduje se zbývající čas"
+
+msgid "Existing version"
+msgstr "Existující verze"
+
+msgid ""
+"If you select both versions, the copied file will have a number added to its"
+" name."
+msgstr ""
+"Pokud vyberete obě verze, zkopírovaný soubor bude mít k názvu přidáno číslo."
+
+msgid "Last modified date unknown"
+msgstr "Neznámé datum poslední úpravy"
+
+msgid "New version"
+msgstr "Nová verze"
 
 msgid "paused"
 msgstr "pozastaveno"
 
+msgid "Preview image"
+msgstr "Náhled obrázku"
+
+msgid "Select all checkboxes"
+msgstr "Označit všechny zaškrtávací kolonky"
+
+msgid "Select all existing files"
+msgstr "Vybrat veškeré stávající soubory"
+
+msgid "Select all new files"
+msgstr "Vybrat veškeré nové soubory"
+
+msgid "Skip this file"
+msgid_plural "Skip {count} files"
+msgstr[0] "Přeskočit tento soubor"
+msgstr[1] "Přeskočit {count} soubory"
+msgstr[2] "Přeskočit {count} souborů"
+msgstr[3] "Přeskočit {count} soubory"
+
+msgid "Unknown size"
+msgstr "Neznámá velikost"
+
+msgid "Upload cancelled"
+msgstr "Nahrávání zrušeno"
+
 msgid "Upload files"
 msgstr "Nahrát soubory"
+
+msgid "Which files do you want to keep?"
+msgstr "Které soubory si přejete ponechat?"
+
+msgid "You need to select at least one version of each file to continue."
+msgstr ""
+"Aby bylo možné pokračovat, je třeba vybrat alespoň jednu verzi od každého "
+"souboru."
