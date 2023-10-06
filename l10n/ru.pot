@@ -46,7 +46,7 @@ msgid "Continue"
 msgstr "Продолжить"
 
 msgid "estimating time left"
-msgstr "Оценка оставшегося времени"
+msgstr "оценка оставшегося времени"
 
 msgid "Existing version"
 msgstr "Текущая версия"
