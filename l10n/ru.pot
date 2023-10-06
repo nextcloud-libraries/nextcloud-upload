@@ -74,7 +74,7 @@ msgid "Select all checkboxes"
 msgstr "Установить все флажки"
 
 msgid "Select all existing files"
-msgstr "Выберать все существующие файлы"
+msgstr "Выбрать все существующие файлы"
 
 msgid "Select all new files"
 msgstr "Выбрать все новые файлы"
