@@ -49,7 +49,7 @@ msgid "estimating time left"
 msgstr "Оценка оставшегося времени"
 
 msgid "Existing version"
-msgstr "Существующая версия"
+msgstr "Текущая версия"
 
 msgid ""
 "If you select both versions, the copied file will have a number added to its"
