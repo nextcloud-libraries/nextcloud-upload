@@ -65,7 +65,7 @@ msgid "New version"
 msgstr "Новая версия"
 
 msgid "paused"
-msgstr "Приостановлено"
+msgstr "приостановлено"
 
 msgid "Preview image"
 msgstr "Предварительный просмотр"
