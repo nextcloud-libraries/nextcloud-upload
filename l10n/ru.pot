@@ -1,20 +1,35 @@
 # 
 # Translators:
-# Алексей Хрусталёв, 2022
-# Тёма Лапин, 2022
+# John Molakvoæ <skjnldsv@protonmail.com>, 2023
+# Max Smith <sevinfolds@gmail.com>, 2023
+# Александр, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Тёма Лапин, 2022\n"
-"Language-Team: Russian (https://www.transifex.com/nextcloud/teams/64236/ru/)\n"
+"Last-Translator: Александр, 2023\n"
+"Language-Team: Russian (https://app.transifex.com/nextcloud/teams/64236/ru/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: ru\n"
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
 
+msgid "{count} file conflict"
+msgid_plural "{count} files conflict"
+msgstr[0] "Конфликт {count} файла"
+msgstr[1] "Конфликт {count} файлов"
+msgstr[2] "Конфликт {count} файлов"
+msgstr[3] "Конфликт {count} файлов"
+
+msgid "{count} file conflict in {dirname}"
+msgid_plural "{count} file conflicts in {dirname}"
+msgstr[0] "Конфликт {count} файла в {dirname}"
+msgstr[1] "Конфликт {count} файлов в {dirname}"
+msgstr[2] "Конфликт {count} файлов в {dirname}"
+msgstr[3] "Конфликт {count} файлов в {dirname}"
+
 msgid "{seconds} seconds left"
 msgstr "осталось {seconds} секунд"
 
-#. time has the format 00:00:00
+#. TRANSLATORS time has the format 00:00:00
 msgid "{time} left"
 msgstr "осталось {time}"
 
@@ -27,11 +42,63 @@ msgstr "Добавить"
 msgid "Cancel uploads"
 msgstr "Отменить загрузки"
 
+msgid "Continue"
+msgstr "Продолжить"
+
 msgid "estimating time left"
 msgstr "Оценка оставшегося времени"
+
+msgid "Existing version"
+msgstr "Существующая версия"
+
+msgid ""
+"If you select both versions, the copied file will have a number added to its"
+" name."
+msgstr ""
+"Если вы выберете обе версии, к имени скопированного файла будет добавлен "
+"номер."
+
+msgid "Last modified date unknown"
+msgstr "Дата последнего изменения неизвестна"
+
+msgid "New version"
+msgstr "Новая версия"
 
 msgid "paused"
 msgstr "Приостановлено"
 
+msgid "Preview image"
+msgstr "Предварительный просмотр"
+
+msgid "Select all checkboxes"
+msgstr "Установить все флажки"
+
+msgid "Select all existing files"
+msgstr "Выберать все существующие файлы"
+
+msgid "Select all new files"
+msgstr "Выбрать все новые файлы"
+
+msgid "Skip this file"
+msgid_plural "Skip {count} files"
+msgstr[0] "Пропустить файл"
+msgstr[1] "Пропустить {count} файла"
+msgstr[2] "Пропустить {count} файлов"
+msgstr[3] "Пропустить {count} файлов"
+
+msgid "Unknown size"
+msgstr "Неизвестный размер"
+
+msgid "Upload cancelled"
+msgstr "Загрузка отменена"
+
 msgid "Upload files"
 msgstr "Загрузка файлов"
+
+msgid "Which files do you want to keep?"
+msgstr "Какие файлы вы хотите сохранить?"
+
+msgid "You need to select at least one version of each file to continue."
+msgstr ""
+"Вам нужно выбрать по крайней мере одну версию каждого файла, чтобы "
+"продолжить."
