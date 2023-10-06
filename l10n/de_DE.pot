@@ -45,9 +45,7 @@ msgid "estimating time left"
 msgstr "Geschätzte verbleibende Zeit"
 
 msgid "Existing version"
-msgstr ""
-"Vorhandene Version\n"
-" "
+msgstr "Vorhandene Version"
 
 msgid ""
 "If you select both versions, the copied file will have a number added to its"
