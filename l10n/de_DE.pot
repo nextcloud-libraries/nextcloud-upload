@@ -30,7 +30,7 @@ msgid "{time} left"
 msgstr "{time} verbleibend"
 
 msgid "a few seconds left"
-msgstr "ein paar Sekunden verbleibend"
+msgstr "ein paar Sekunden verbleiben"
 
 msgid "Add"
 msgstr "Hinzufügen"
