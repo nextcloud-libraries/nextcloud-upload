@@ -34,7 +34,7 @@
 				:close-after-click="true"
 				class="upload-picker__menu-entry"
 				@click="entry.handler(destination, content)">
-				<template #icon>
+				<template #icon v-if="entry.iconSvgInline">
 					<NcIconSvgWrapper :svg="entry.iconSvgInline" />
 				</template>
 				{{ entry.displayName }}

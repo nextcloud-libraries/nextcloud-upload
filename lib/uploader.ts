@@ -163,7 +163,7 @@ export class Uploader {
 	 * @param {string} destinationPath the destination path relative to the root folder. e.g. /foo/bar.txt
 	 * @param {File} file the file to upload
 	 */
-	upload(destinationPath: string, file: File) {
+	upload(destinationPath: string, file: File): PCancelable<Upload> {
 		const destinationFile = `${this.root}/${destinationPath.replace(/^\//, '')}`
 
 		logger.debug(`Uploading ${file.name} to ${destinationFile}`)
@@ -206,7 +206,7 @@ export class Uploader {
 							.then(() => { upload.uploaded = upload.uploaded + maxChunkSize })
 							.catch((error) => {
 								if (!(error instanceof CanceledError)) {
-									logger.error(`Chunk ${chunk+1} ${bufferStart} - ${bufferEnd} uploading failed`)
+									logger.error(`Chunk ${chunk + 1} ${bufferStart} - ${bufferEnd} uploading failed`)
 									upload.status = UploadStatus.FAILED
 								}
 								throw error
@@ -296,7 +296,7 @@ export class Uploader {
 			this._jobQueue.onIdle()
 				.then(() => this.reset())
 			return upload
-		})
+		}) as PCancelable<Upload>
 
 		return promise
 	}
