@@ -201,7 +201,17 @@ export class Uploader {
 
 					// Init request queue
 					const request = () => {
-						return uploadData(`${tempUrl}/${chunk+1}`, blob, upload.signal, () => this.updateStats(), destinationFile)
+						return uploadData(
+							`${tempUrl}/${chunk+1}`,
+							blob,
+							upload.signal,
+							() => this.updateStats(),
+							destinationFile,
+							{
+								'X-OC-Mtime': file.lastModified,
+								'OC-Total-Length': file.size,
+							}
+						)
 							// Update upload progress on chunk completion
 							.then(() => { upload.uploaded = upload.uploaded + maxChunkSize })
 							.catch((error) => {
@@ -261,7 +271,16 @@ export class Uploader {
 				const blob = await getChunk(file, 0, upload.size)
 				const request = async () => {
 					try {
-						upload.response = await uploadData(destinationFile, blob, upload.signal, () => this.updateStats())
+						upload.response = await uploadData(
+							destinationFile,
+							blob,
+							upload.signal,
+							() => this.updateStats(),
+							undefined,
+							{
+								'X-OC-Mtime': file.lastModified,
+							}
+						)
 
 						// Update progress
 						upload.uploaded = upload.size

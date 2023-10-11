@@ -12,7 +12,7 @@ type UploadData = Blob | (() => Promise<Blob>)
 /**
  * Upload some data to a given path
  */
-export const uploadData = async function(url: string, uploadData: UploadData, signal: AbortSignal, onUploadProgress = () => {}, destinationFile: string | undefined = undefined): Promise<AxiosResponse> {
+export const uploadData = async function(url: string, uploadData: UploadData, signal: AbortSignal, onUploadProgress = () => {}, destinationFile: string | undefined = undefined, headers: any = undefined): Promise<AxiosResponse> {
 	let data: Blob
 
 	if (uploadData instanceof Blob) {
@@ -21,7 +21,10 @@ export const uploadData = async function(url: string, uploadData: UploadData, si
 		data = await uploadData()
 	}
 
-	const headers = destinationFile ? { Destination: destinationFile } : undefined
+	if (destinationFile) {
+		headers ??= {}
+		headers.Destination = destinationFile
+	}
 
 	return await axios.request({
 		method: 'PUT',
