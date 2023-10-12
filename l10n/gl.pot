@@ -1,19 +1,31 @@
 # 
 # Translators:
-# Xosé, 2023
+# John Molakvoæ <skjnldsv@protonmail.com>, 2023
+# Nacho <nacho.vfranco@gmail.com>, 2023
+# Miguel Anxo Bouzada <mbouzada@gmail.com>, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Xosé, 2023\n"
+"Last-Translator: Miguel Anxo Bouzada <mbouzada@gmail.com>, 2023\n"
 "Language-Team: Galician (https://app.transifex.com/nextcloud/teams/64236/gl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: gl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+msgid "{count} file conflict"
+msgid_plural "{count} files conflict"
+msgstr[0] "{count} conflito de ficheiros"
+msgstr[1] "{count} conflitos de ficheiros"
+
+msgid "{count} file conflict in {dirname}"
+msgid_plural "{count} file conflicts in {dirname}"
+msgstr[0] "{count} conflito de ficheiros en {dirname}"
+msgstr[1] "{count} conflitos de ficheiros en {dirname}"
+
 msgid "{seconds} seconds left"
 msgstr "faltan {seconds} segundos"
 
-#. time has the format 00:00:00
+#. TRANSLATORS time has the format 00:00:00
 msgid "{time} left"
 msgstr "falta {time}"
 
@@ -26,11 +38,60 @@ msgstr "Engadir"
 msgid "Cancel uploads"
 msgstr "Cancelar envíos"
 
+msgid "Continue"
+msgstr "Continuar"
+
 msgid "estimating time left"
 msgstr "calculando canto tempo falta"
+
+msgid "Existing version"
+msgstr "Versión existente"
+
+msgid ""
+"If you select both versions, the copied file will have a number added to its"
+" name."
+msgstr ""
+"Se selecciona ambas as versións, o ficheiro copiado terá un número engadido "
+"ao seu nome."
+
+msgid "Last modified date unknown"
+msgstr "Data da última modificación descoñecida"
+
+msgid "New version"
+msgstr "Nova versión"
 
 msgid "paused"
 msgstr "detido"
 
+msgid "Preview image"
+msgstr "Vista previa da imaxe"
+
+msgid "Select all checkboxes"
+msgstr "Marcar todas as caixas de selección"
+
+msgid "Select all existing files"
+msgstr "Seleccionar todos os ficheiros existentes"
+
+msgid "Select all new files"
+msgstr "Seleccionar todos os ficheiros novos"
+
+msgid "Skip this file"
+msgid_plural "Skip {count} files"
+msgstr[0] "Omita este ficheiro"
+msgstr[1] "Omitir {count} ficheiros"
+
+msgid "Unknown size"
+msgstr "Tamaño descoñecido"
+
+msgid "Upload cancelled"
+msgstr "Envío cancelado"
+
 msgid "Upload files"
 msgstr "Enviar ficheiros"
+
+msgid "Which files do you want to keep?"
+msgstr "Que ficheiros quere conservar?"
+
+msgid "You need to select at least one version of each file to continue."
+msgstr ""
+"Debe seleccionar polo menos unha versión de cada ficheiro para continuar."
