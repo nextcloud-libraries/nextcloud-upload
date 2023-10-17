@@ -208,9 +208,9 @@ export class Uploader {
 							() => this.updateStats(),
 							destinationFile,
 							{
-								'X-OC-Mtime': file.lastModified,
+								'X-OC-Mtime': file.lastModified / 1000,
 								'OC-Total-Length': file.size,
-							}
+							},
 						)
 							// Update upload progress on chunk completion
 							.then(() => { upload.uploaded = upload.uploaded + maxChunkSize })
@@ -278,8 +278,8 @@ export class Uploader {
 							() => this.updateStats(),
 							undefined,
 							{
-								'X-OC-Mtime': file.lastModified,
-							}
+								'X-OC-Mtime': file.lastModified / 1000,
+							},
 						)
 
 						// Update progress
