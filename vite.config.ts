@@ -26,7 +26,7 @@ export default defineConfig((env) => {
 			// for subpath imports like '@nextcloud/l10n/gettext'
 			include: [/^@nextcloud\//],
 			// we should externalize vue SFC dependencies
-			exclude: [/^vue-material-design-icons\//, /^@nextcloud\/vue/, /^@nextcloud\/l10n/, /\.vue(\?|$)/],
+			exclude: [/^vue-material-design-icons\//],
 		},
 		libraryFormats: ['es', 'cjs'],
 		replace: {
