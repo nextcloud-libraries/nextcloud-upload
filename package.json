@@ -57,6 +57,7 @@
     "@nextcloud/babel-config": "^1.0.0",
     "@nextcloud/eslint-config": "^8.3.0",
     "@nextcloud/vite-config": "^1.0.1",
+    "@nextcloud/webpack-vue-config": "^6.0.0",
     "@tsconfig/cypress": "^1.0.1",
     "@types/jest": "^29.5.4",
     "@types/node": "^20.5.7",
