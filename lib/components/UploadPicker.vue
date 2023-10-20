@@ -8,15 +8,19 @@
 		<NcButton v-if="newFileMenuEntries && newFileMenuEntries.length === 0"
 			:disabled="disabled"
 			data-cy-upload-picker-add
+			type="secondary"
 			@click="onClick">
 			<template #icon>
 				<Plus title="" :size="20" decorative />
 			</template>
-			{{ addLabel }}
+			{{ buttonName }}
 		</NcButton>
 
 		<!-- New file menu -->
-		<NcActions v-else :menu-title="addLabel">
+		<NcActions v-else
+			:menu-name="buttonName"
+			:menu-title="addLabel"
+			type="secondary">
 			<template #icon>
 				<Plus title="" :size="20" decorative />
 			</template>
@@ -177,6 +181,14 @@ export default Vue.extend({
 		},
 		isPaused() {
 			return this.uploadManager.info?.status === Status.PAUSED
+		},
+
+		// Hide the button text if we're uploading
+		buttonName() {
+			if (this.isUploading) {
+				return undefined
+			}
+			return this.addLabel
 		},
 	},
 
