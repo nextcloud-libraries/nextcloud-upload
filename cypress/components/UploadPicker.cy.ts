@@ -36,7 +36,7 @@ describe('UploadPicker rendering', () => {
 	})
 })
 
-describenly('UploadPicker valid uploads', () => {
+describe('UploadPicker valid uploads', () => {
 	beforeEach(() => {
 		// Make sure we reset the destination
 		// so other tests do not interfere
@@ -66,9 +66,6 @@ describenly('UploadPicker valid uploads', () => {
 		cy.window().then((win) => {
 			win.document.body.innerHTML = '<div data-cy-root></div>'
 		})
-
-		// Label is displayed again after upload
-		cy.get('[data-cy-upload-picker]').should('have.text', 'Add')
 	})
 
 	it('Uploads a file', () => {
@@ -96,9 +93,14 @@ describenly('UploadPicker valid uploads', () => {
 		// Label gets hidden during upload
 		cy.get('[data-cy-upload-picker]').should('not.have.text', 'Add')
 
-		cy.get('[data-cy-upload-picker] .upload-picker__progress')
-			.as('progress')
-			.should('not.be.visible')
+		cy.wait('@upload').then(() => {
+			cy.get('[data-cy-upload-picker] .upload-picker__progress')
+				.as('progress')
+				.should('not.be.visible')
+
+			// Label is displayed again after upload
+			cy.get('[data-cy-upload-picker] button').should('have.text', 'Add')
+		})
 	})
 })
 
