@@ -21,7 +21,6 @@
  */
 
 import { getCurrentUser, type NextcloudUser } from '@nextcloud/auth'
-// @ts-expect-error we do not export typings for @nextcloud/logger
 import { getLoggerBuilder } from '@nextcloud/logger'
 
 const getLogger = (user: NextcloudUser|null) => {
