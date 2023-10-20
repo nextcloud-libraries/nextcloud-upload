@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-expressions */
 // dist file might not be built when running eslint only
 // eslint-disable-next-line import/no-unresolved,n/no-missing-import
-import { Folder, Permission, addNewFileMenuEntry, Entry } from '@nextcloud/files'
+import { Folder, Permission, addNewFileMenuEntry, type Entry } from '@nextcloud/files'
 import { UploadPicker, getUploader } from '../../dist/index.mjs'
 import { generateRemoteUrl } from '@nextcloud/router'
 
@@ -50,7 +50,7 @@ describe('NewFileMenu handling', () => {
 		displayName: 'Create empty file',
 		templateName: 'New file',
 		iconClass: 'icon-file',
-		if: (folder: Folder) => (folder.permissions & Permission.CREATE) !== 0,
+		enabled: (folder: Folder) => (folder.permissions & Permission.CREATE) !== 0,
 		handler() {},
 	} as Entry
 
@@ -117,6 +117,8 @@ describe('NewFileMenu handling', () => {
 				root: '/files/user',
 			}))
 		})
+
+		// Menu should not be visible anymore
 		cy.get('[data-cy-upload-picker] .action-item__menutoggle')
 			.as('menuButton')
 			.should('not.exist')
