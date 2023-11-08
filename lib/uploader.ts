@@ -1,4 +1,4 @@
-import { CanceledError } from 'axios'
+import { CanceledError, type AxiosError, type AxiosResponse } from 'axios'
 import { generateRemoteUrl } from '@nextcloud/router'
 import { getCurrentUser } from '@nextcloud/auth'
 import { Folder, Permission } from '@nextcloud/files'
@@ -295,6 +295,12 @@ export class Uploader {
 							reject('Upload has been cancelled')
 							return
 						}
+
+						// Attach response to the upload object
+						if ((error as AxiosError)?.response) {
+							upload.response = (error as AxiosError).response as AxiosResponse
+						}
+
 						upload.status = UploadStatus.FAILED
 						logger.error(`Failed uploading ${file.name}`, { error, file, upload })
 						reject('Failed uploading the file')
