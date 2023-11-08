@@ -25,6 +25,7 @@ describe('UploadPicker rendering', () => {
 		}
 		cy.mount(UploadPicker, { propsData })
 		cy.get('[data-cy-upload-picker]').should('be.visible')
+		cy.get('[data-cy-upload-picker]').should('have.text', 'Add')
 		cy.get('[data-cy-upload-picker] [data-cy-upload-picker-input]').should('exist')
 	})
 
@@ -32,6 +33,74 @@ describe('UploadPicker rendering', () => {
 		cy.mount(UploadPicker)
 		cy.get('[data-cy-upload-picker]').should('not.exist')
 		cy.get('[data-cy-upload-picker] [data-cy-upload-picker-input]').should('not.exist')
+	})
+})
+
+describe('UploadPicker valid uploads', () => {
+	beforeEach(() => {
+		// Make sure we reset the destination
+		// so other tests do not interfere
+		const propsData = {
+			destination: new Folder({
+				id: 56,
+				owner: 'user',
+				source: generateRemoteUrl('dav/files/user'),
+				permissions: Permission.ALL,
+				root: '/files/user',
+			}),
+		}
+
+		// Mount picker
+		cy.mount(UploadPicker, { propsData }).as('uploadPicker')
+
+		// Label is displayed before upload
+		cy.get('[data-cy-upload-picker]').should('have.text', 'Add')
+
+		// Check and init aliases
+		cy.get('[data-cy-upload-picker] [data-cy-upload-picker-input]').as('input').should('exist')
+		cy.get('[data-cy-upload-picker] .upload-picker__progress').as('progress').should('exist')
+	})
+
+	afterEach(() => {
+		// Make sure we clear the body
+		cy.window().then((win) => {
+			win.document.body.innerHTML = '<div data-cy-root></div>'
+		})
+	})
+
+	it('Uploads a file', () => {
+		// Intercept single upload
+		cy.intercept('PUT', '/remote.php/dav/files/*/*', (req) => {
+			req.reply({
+				statusCode: 201,
+				delay: 2000,
+			})
+		}).as('upload')
+
+		cy.get('@input').attachFile({
+			// Fake file of 5 MB
+			fileContent: new Blob([new ArrayBuffer(2 * 1024 * 1024)]),
+			fileName: 'image.jpg',
+			mimeType: 'image/jpeg',
+			encoding: 'utf8',
+			lastModified: new Date().getTime(),
+		})
+
+		cy.get('[data-cy-upload-picker] .upload-picker__progress')
+			.as('progress')
+			.should('be.visible')
+
+		// Label gets hidden during upload
+		cy.get('[data-cy-upload-picker]').should('not.have.text', 'Add')
+
+		cy.wait('@upload').then(() => {
+			cy.get('[data-cy-upload-picker] .upload-picker__progress')
+				.as('progress')
+				.should('not.be.visible')
+
+			// Label is displayed again after upload
+			cy.get('[data-cy-upload-picker] button').should('have.text', 'Add')
+		})
 	})
 })
 
