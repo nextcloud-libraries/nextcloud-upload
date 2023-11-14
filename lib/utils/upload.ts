@@ -42,10 +42,6 @@ export const uploadData = async function(url: string, uploadData: UploadData, si
  * garbage collection
  */
 export const getChunk = function(file: File, start: number, length: number): Promise<Blob> {
-	if (!file.type) {
-		return Promise.reject(new Error('Unknown file type'))
-	}
-
 	// Since we use a global FileReader, we need to only read one chunk at a time
 	return readerLimit(() => new Promise((resolve, reject) => {
 		reader.onload = () => {
