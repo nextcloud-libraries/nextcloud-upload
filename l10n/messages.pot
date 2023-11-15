@@ -22,9 +22,6 @@ msgstr ""
 msgid "a few seconds left"
 msgstr ""
 
-msgid "Add"
-msgstr ""
-
 msgid "Cancel uploads"
 msgstr ""
 
@@ -41,6 +38,9 @@ msgid "If you select both versions, the copied file will have a number added to 
 msgstr ""
 
 msgid "Last modified date unknown"
+msgstr ""
+
+msgid "New"
 msgstr ""
 
 msgid "New version"
