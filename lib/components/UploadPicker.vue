@@ -143,7 +143,7 @@ export default Vue.extend({
 
 	data() {
 		return {
-			addLabel: t('Add'),
+			addLabel: t('New'),
 			cancelLabel: t('Cancel uploads'),
 			uploadLabel: t('Upload files'),
 
