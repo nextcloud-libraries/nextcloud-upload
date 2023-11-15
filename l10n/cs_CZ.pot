@@ -35,9 +35,6 @@ msgstr "zbývá {time}"
 msgid "a few seconds left"
 msgstr "zbývá několik sekund"
 
-msgid "Add"
-msgstr "Přidat"
-
 msgid "Cancel uploads"
 msgstr "Zrušit nahrávání"
 
@@ -58,6 +55,9 @@ msgstr ""
 
 msgid "Last modified date unknown"
 msgstr "Neznámé datum poslední úpravy"
+
+msgid "New"
+msgstr "Nové"
 
 msgid "New version"
 msgstr "Nová verze"
