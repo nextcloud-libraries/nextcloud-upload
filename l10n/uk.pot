@@ -99,5 +99,4 @@ msgid "Which files do you want to keep?"
 msgstr "Які файли залишити?"
 
 msgid "You need to select at least one version of each file to continue."
-msgstr ""
-"Щоб продовжити, вам потрібно вибрати принаймні одну версію кожного файлу."
+msgstr "Для продовження потрібно вибрати принаймні одну версію кожного файлу."
