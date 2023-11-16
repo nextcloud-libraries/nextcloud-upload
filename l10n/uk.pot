@@ -1,36 +1,103 @@
 # 
 # Translators:
-# Vitaliy <gviabcua@gmail.com>, 2022
+# John Molakvoæ <skjnldsv@protonmail.com>, 2023
+# Mehi Loki, 2023
+# O St <oleksiy.stasevych@gmail.com>, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Vitaliy <gviabcua@gmail.com>, 2022\n"
-"Language-Team: Ukrainian (https://www.transifex.com/nextcloud/teams/64236/uk/)\n"
+"Last-Translator: O St <oleksiy.stasevych@gmail.com>, 2023\n"
+"Language-Team: Ukrainian (https://app.transifex.com/nextcloud/teams/64236/uk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: uk\n"
 "Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != 11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || (n % 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
 
+msgid "{count} file conflict"
+msgid_plural "{count} files conflict"
+msgstr[0] "{count} конфліктний файл"
+msgstr[1] "{count} конфліктних файли"
+msgstr[2] "{count} конфліктних файлів"
+msgstr[3] "{count} конфліктних файлів"
+
+msgid "{count} file conflict in {dirname}"
+msgid_plural "{count} file conflicts in {dirname}"
+msgstr[0] "{count} конфліктний файл у каталозі {dirname}"
+msgstr[1] "{count} конфліктних файли у каталозі {dirname}"
+msgstr[2] "{count} конфліктних файлів у каталозі {dirname}"
+msgstr[3] "{count} конфліктних файлів у каталозі {dirname}"
+
 msgid "{seconds} seconds left"
 msgstr "Залишилося {seconds} секунд"
 
-#. time has the format 00:00:00
+#. TRANSLATORS time has the format 00:00:00
 msgid "{time} left"
 msgstr "Залишилося {time}"
 
 msgid "a few seconds left"
 msgstr "залишилося кілька секунд"
 
-msgid "Add"
-msgstr "Додати"
-
 msgid "Cancel uploads"
 msgstr "Скасувати завантаження"
+
+msgid "Continue"
+msgstr "Продовжити"
 
 msgid "estimating time left"
 msgstr "оцінка часу, що залишився"
 
+msgid "Existing version"
+msgstr "Присутня версія"
+
+msgid ""
+"If you select both versions, the copied file will have a number added to its"
+" name."
+msgstr ""
+"Якщо ви виберете обидві версії, буде створено копію файлу до назви якої буде"
+" додано цифру."
+
+msgid "Last modified date unknown"
+msgstr "Дата останньої зміни невідома"
+
+msgid "New"
+msgstr "Нове"
+
+msgid "New version"
+msgstr "Нова версія"
+
 msgid "paused"
 msgstr "призупинено"
 
+msgid "Preview image"
+msgstr "Попередній перегляд"
+
+msgid "Select all checkboxes"
+msgstr "Вибрати все"
+
+msgid "Select all existing files"
+msgstr "Вибрати всі присутні файли"
+
+msgid "Select all new files"
+msgstr "Виберіть усі нові файли"
+
+msgid "Skip this file"
+msgid_plural "Skip {count} files"
+msgstr[0] "Пропустити файл"
+msgstr[1] "Пропустити {count} файли"
+msgstr[2] "Пропустити {count} файлів"
+msgstr[3] "Пропустити {count} файлів"
+
+msgid "Unknown size"
+msgstr "Невідомий розмір"
+
+msgid "Upload cancelled"
+msgstr "Завантаження скасовано"
+
 msgid "Upload files"
 msgstr "Завантажте файли"
+
+msgid "Which files do you want to keep?"
+msgstr "Які файли залишити?"
+
+msgid "You need to select at least one version of each file to continue."
+msgstr ""
+"Для продовження потрібно вибрати принаймні одну версію для кожного файлу."
