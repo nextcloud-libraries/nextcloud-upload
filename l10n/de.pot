@@ -2,10 +2,11 @@
 # Translators:
 # John Molakvoæ <skjnldsv@protonmail.com>, 2023
 # Markus Eckstein, 2023
+# Mario Siegmann <mario_siegmann@web.de>, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Markus Eckstein, 2023\n"
+"Last-Translator: Mario Siegmann <mario_siegmann@web.de>, 2023\n"
 "Language-Team: German (https://app.transifex.com/nextcloud/teams/64236/de/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: de\n"
@@ -31,9 +32,6 @@ msgstr "{time} verbleibend"
 msgid "a few seconds left"
 msgstr "noch ein paar Sekunden"
 
-msgid "Add"
-msgstr "Hinzufügen"
-
 msgid "Cancel uploads"
 msgstr "Hochladen abbrechen"
 
@@ -55,6 +53,9 @@ msgstr ""
 
 msgid "Last modified date unknown"
 msgstr "Datum der letzten Änderung ist unbekannt."
+
+msgid "New"
+msgstr "Neu"
 
 msgid "New version"
 msgstr "Neue Version"
