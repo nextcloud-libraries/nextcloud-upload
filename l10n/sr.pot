@@ -33,9 +33,6 @@ msgstr "{time} преостало"
 msgid "a few seconds left"
 msgstr "преостало је неколико секунди"
 
-msgid "Add"
-msgstr "Додај"
-
 msgid "Cancel uploads"
 msgstr "Обустави отпремања"
 
@@ -55,6 +52,9 @@ msgstr "Ако изаберете обе верзије, на име копир�
 
 msgid "Last modified date unknown"
 msgstr "Није познат датум последње измене"
+
+msgid "New"
+msgstr "Ново"
 
 msgid "New version"
 msgstr "Нова верзија"
