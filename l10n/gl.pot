@@ -32,9 +32,6 @@ msgstr "falta {time}"
 msgid "a few seconds left"
 msgstr "faltan uns segundos"
 
-msgid "Add"
-msgstr "Engadir"
-
 msgid "Cancel uploads"
 msgstr "Cancelar envíos"
 
@@ -56,6 +53,9 @@ msgstr ""
 
 msgid "Last modified date unknown"
 msgstr "Data da última modificación descoñecida"
+
+msgid "New"
+msgstr "Nova"
 
 msgid "New version"
 msgstr "Nova versión"
