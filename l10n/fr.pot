@@ -3,10 +3,11 @@
 # John Molakvoæ <skjnldsv@protonmail.com>, 2023
 # Jean-Claude Richard <jcr-conseil@otherway.eu>, 2023
 # Clément Saccoccio, 2023
+# Liviu Milies, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Clément Saccoccio, 2023\n"
+"Last-Translator: Liviu Milies, 2023\n"
 "Language-Team: French (https://app.transifex.com/nextcloud/teams/64236/fr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: fr\n"
@@ -34,9 +35,6 @@ msgstr "{time} restant"
 msgid "a few seconds left"
 msgstr "quelques secondes restantes"
 
-msgid "Add"
-msgstr "Ajouter"
-
 msgid "Cancel uploads"
 msgstr "Annuler les envois"
 
@@ -58,6 +56,9 @@ msgstr ""
 
 msgid "Last modified date unknown"
 msgstr "Date de dernière modification inconnue"
+
+msgid "New"
+msgstr "Nou"
 
 msgid "New version"
 msgstr "Nouvelle version"
