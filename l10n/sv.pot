@@ -31,9 +31,6 @@ msgstr "{time} kvarstår"
 msgid "a few seconds left"
 msgstr "några sekunder kvar"
 
-msgid "Add"
-msgstr "Lägg till"
-
 msgid "Cancel uploads"
 msgstr "Avbryt uppladdningar"
 
@@ -55,6 +52,9 @@ msgstr ""
 
 msgid "Last modified date unknown"
 msgstr "Senaste ändringsdatum okänt"
+
+msgid "New"
+msgstr "Ny"
 
 msgid "New version"
 msgstr "Ny version"
