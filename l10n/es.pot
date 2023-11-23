@@ -2,10 +2,11 @@
 # Translators:
 # John Molakvoæ <skjnldsv@protonmail.com>, 2023
 # FranciscoFJ <dev-ooo@satel-sa.com>, 2023
+# Next Cloud <nextcloud.translator.es@cgj.es>, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: FranciscoFJ <dev-ooo@satel-sa.com>, 2023\n"
+"Last-Translator: Next Cloud <nextcloud.translator.es@cgj.es>, 2023\n"
 "Language-Team: Spanish (https://app.transifex.com/nextcloud/teams/64236/es/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: es\n"
@@ -33,9 +34,6 @@ msgstr "{time} restante"
 msgid "a few seconds left"
 msgstr "quedan unos segundos"
 
-msgid "Add"
-msgstr "Añadir"
-
 msgid "Cancel uploads"
 msgstr "Cancelar subidas"
 
@@ -57,6 +55,9 @@ msgstr ""
 
 msgid "Last modified date unknown"
 msgstr "Última fecha de modificación desconocida"
+
+msgid "New"
+msgstr "Nuevo"
 
 msgid "New version"
 msgstr "Nueva versión"
