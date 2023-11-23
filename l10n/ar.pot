@@ -39,9 +39,6 @@ msgstr "{time} متبقية"
 msgid "a few seconds left"
 msgstr "باقٍ بضعُ ثوانٍ"
 
-msgid "Add"
-msgstr "أضف"
-
 msgid "Cancel uploads"
 msgstr "إلغاء عمليات رفع الملفات"
 
@@ -63,6 +60,9 @@ msgstr ""
 
 msgid "Last modified date unknown"
 msgstr "تاريخ آخر تعديل غير معلوم"
+
+msgid "New"
+msgstr "جديد"
 
 msgid "New version"
 msgstr "نسخة جديدة"
