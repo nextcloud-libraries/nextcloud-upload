@@ -1,36 +1,102 @@
 # 
 # Translators:
-# Valdnet, 2022
+# John Molakvoæ <skjnldsv@protonmail.com>, 2023
+# M H <haincu@o2.pl>, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Valdnet, 2022\n"
-"Language-Team: Polish (https://www.transifex.com/nextcloud/teams/64236/pl/)\n"
+"Last-Translator: M H <haincu@o2.pl>, 2023\n"
+"Language-Team: Polish (https://app.transifex.com/nextcloud/teams/64236/pl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: pl\n"
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
 
+msgid "{count} file conflict"
+msgid_plural "{count} files conflict"
+msgstr[0] "konflikt 1 pliku"
+msgstr[1] "{count} konfliktów plików"
+msgstr[2] "{count} konfliktów plików"
+msgstr[3] "{count} konfliktów plików"
+
+msgid "{count} file conflict in {dirname}"
+msgid_plural "{count} file conflicts in {dirname}"
+msgstr[0] "{count} konfliktowy plik w {dirname}"
+msgstr[1] "{count} konfliktowych plików w {dirname}"
+msgstr[2] "{count} konfliktowych plików w {dirname}"
+msgstr[3] "{count} konfliktowych plików w {dirname}"
+
 msgid "{seconds} seconds left"
 msgstr "Pozostało {seconds} sekund"
 
-#. time has the format 00:00:00
+#. TRANSLATORS time has the format 00:00:00
 msgid "{time} left"
 msgstr "Pozostało {time}"
 
 msgid "a few seconds left"
 msgstr "Pozostało kilka sekund"
 
-msgid "Add"
-msgstr "Dodaj"
-
 msgid "Cancel uploads"
 msgstr "Anuluj wysyłanie"
+
+msgid "Continue"
+msgstr "Kontynuuj"
 
 msgid "estimating time left"
 msgstr "Szacowanie pozostałego czasu"
 
+msgid "Existing version"
+msgstr "Istniejąca wersja"
+
+msgid ""
+"If you select both versions, the copied file will have a number added to its"
+" name."
+msgstr ""
+"Jeżeli wybierzesz obie wersje to do nazw skopiowanych plików zostanie dodany"
+" numer"
+
+msgid "Last modified date unknown"
+msgstr "Nieznana data ostatniej modyfikacji"
+
+msgid "New"
+msgstr "Nowy"
+
+msgid "New version"
+msgstr "Nowa wersja"
+
 msgid "paused"
 msgstr "Wstrzymane"
 
+msgid "Preview image"
+msgstr "Podgląd obrazu"
+
+msgid "Select all checkboxes"
+msgstr "Zaznacz wszystkie boxy"
+
+msgid "Select all existing files"
+msgstr "Zaznacz wszystkie istniejące pliki"
+
+msgid "Select all new files"
+msgstr "Zaznacz wszystkie nowe pliki"
+
+msgid "Skip this file"
+msgid_plural "Skip {count} files"
+msgstr[0] "Pomiń 1 plik"
+msgstr[1] "Pomiń {count} plików"
+msgstr[2] "Pomiń {count} plików"
+msgstr[3] "Pomiń {count} plików"
+
+msgid "Unknown size"
+msgstr "Nieznany rozmiar"
+
+msgid "Upload cancelled"
+msgstr "Anulowano wysyłanie"
+
 msgid "Upload files"
 msgstr "Wyślij pliki"
+
+msgid "Which files do you want to keep?"
+msgstr "Które pliki chcesz zachować"
+
+msgid "You need to select at least one version of each file to continue."
+msgstr ""
+"Aby kontynuować, musisz wybrać co najmniej jedną wersję każdego pliku."
