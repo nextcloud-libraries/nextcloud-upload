@@ -25,7 +25,7 @@ describe('UploadPicker rendering', () => {
 		}
 		cy.mount(UploadPicker, { propsData })
 		cy.get('[data-cy-upload-picker]').should('be.visible')
-		cy.get('[data-cy-upload-picker]').should('have.text', 'New')
+		cy.get('[data-cy-upload-picker]').should('have.text', ' New ')
 		cy.get('[data-cy-upload-picker] [data-cy-upload-picker-input]').should('exist')
 	})
 
@@ -54,7 +54,7 @@ describe('UploadPicker valid uploads', () => {
 		cy.mount(UploadPicker, { propsData }).as('uploadPicker')
 
 		// Label is displayed before upload
-		cy.get('[data-cy-upload-picker]').should('have.text', 'New')
+		cy.get('[data-cy-upload-picker]').should('have.text', ' New ')
 
 		// Check and init aliases
 		cy.get('[data-cy-upload-picker] [data-cy-upload-picker-input]').as('input').should('exist')
@@ -99,7 +99,7 @@ describe('UploadPicker valid uploads', () => {
 				.should('not.be.visible')
 
 			// Label is displayed again after upload
-			cy.get('[data-cy-upload-picker] button').should('have.text', 'New')
+			cy.get('[data-cy-upload-picker] button').should('have.text', ' New ')
 		})
 	})
 })
