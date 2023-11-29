@@ -1,5 +1,30 @@
 # Changelog
 
+## [v1.0.2](https://github.com/nextcloud-libraries/nextcloud-upload/tree/v1.0.2) (2023-11-29)
+
+## What's Changed
+* Updates for project Nextcloud upload library by @transifex-integration in https://github.com/nextcloud-libraries/nextcloud-upload/pull/961
+* Updates for project Nextcloud upload library by @transifex-integration in https://github.com/nextcloud-libraries/nextcloud-upload/pull/962
+* Updates for project Nextcloud upload library by @transifex-integration in https://github.com/nextcloud-libraries/nextcloud-upload/pull/963
+* Updates for project Nextcloud upload library by @transifex-integration in https://github.com/nextcloud-libraries/nextcloud-upload/pull/964
+* Updates for project Nextcloud upload library by @transifex-integration in https://github.com/nextcloud-libraries/nextcloud-upload/pull/965
+* Updates for project Nextcloud upload library by @transifex-integration in https://github.com/nextcloud-libraries/nextcloud-upload/pull/966
+* Updates for project Nextcloud upload library by @transifex-integration in https://github.com/nextcloud-libraries/nextcloud-upload/pull/967
+* enable dependabot by @szaimen in https://github.com/nextcloud-libraries/nextcloud-upload/pull/969
+* build(deps-dev): Bump @types/node from 20.9.0 to 20.10.0 by @dependabot in https://github.com/nextcloud-libraries/nextcloud-upload/pull/972
+* build(deps-dev): Bump typedoc from 0.25.3 to 0.25.4 by @dependabot in https://github.com/nextcloud-libraries/nextcloud-upload/pull/978
+* build(deps): Bump @nextcloud/dialogs from 5.0.0-beta.6 to 5.0.3 by @dependabot in https://github.com/nextcloud-libraries/nextcloud-upload/pull/976
+* Updates for project Nextcloud upload library by @transifex-integration in https://github.com/nextcloud-libraries/nextcloud-upload/pull/968
+* build(deps): Bump peter-evans/create-or-update-comment from 3.0.2 to 3.1.0 by @dependabot in https://github.com/nextcloud-libraries/nextcloud-upload/pull/970
+* build(deps): Bump cypress-io/github-action from 5.8.3 to 6.6.0 by @dependabot in https://github.com/nextcloud-libraries/nextcloud-upload/pull/971
+* build(deps): Bump actions/checkout from 3 to 4 by @dependabot in https://github.com/nextcloud-libraries/nextcloud-upload/pull/974
+* build(deps): Bump actions/setup-node from 3 to 4 by @dependabot in https://github.com/nextcloud-libraries/nextcloud-upload/pull/973
+
+## New Contributors
+* @szaimen made their first contribution in https://github.com/nextcloud-libraries/nextcloud-upload/pull/969
+
+**Full Changelog**: https://github.com/nextcloud-libraries/nextcloud-upload/compare/v1.0.1...v1.0.2
+
 ## [v1.0.1](https://github.com/nextcloud-libraries/nextcloud-upload/tree/v1.0.1) (2023-11-17)
 
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-upload/compare/v1.0.0...v1.0.1)
