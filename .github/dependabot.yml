@@ -4,22 +4,22 @@
 # https://help.github.com/github/administering-a-repository/configuration-options-for-dependency-updates
 version: 2
 updates:
-  - package-ecosystem: npm
-    directory: /
-    schedule:
-      interval: daily
-      timezone: Europe/Paris
-    open-pull-requests-limit: 10
-    labels:
-      - 3. to review
-      - dependencies
+- package-ecosystem: npm
+  directory: /
+  schedule:
+    interval: daily
+    timezone: Europe/Paris
+  open-pull-requests-limit: 10
+  labels:
+    - 3. to review
+    - dependencies
 
-  - package-ecosystem: github-actions
-    directory: /
-    schedule:
-      interval: daily
-      timezone: Europe/Paris
-    open-pull-requests-limit: 10
-    labels:
-      - 3. to review
-      - dependencies
+- package-ecosystem: github-actions
+  directory: /
+  schedule:
+    interval: daily
+    timezone: Europe/Paris
+  open-pull-requests-limit: 10
+  labels:
+    - 3. to review
+    - dependencies
