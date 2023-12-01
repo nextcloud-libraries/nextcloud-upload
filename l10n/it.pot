@@ -2,10 +2,11 @@
 # Translators:
 # John Molakvoæ <skjnldsv@protonmail.com>, 2023
 # Lep Lep, 2023
+# Random_R, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Lep Lep, 2023\n"
+"Last-Translator: Random_R, 2023\n"
 "Language-Team: Italian (https://app.transifex.com/nextcloud/teams/64236/it/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: it\n"
@@ -33,9 +34,6 @@ msgstr "{time} rimanente"
 msgid "a few seconds left"
 msgstr "alcuni secondi rimanenti"
 
-msgid "Add"
-msgstr "Aggiungi"
-
 msgid "Cancel uploads"
 msgstr "Annulla i caricamenti"
 
@@ -57,6 +55,9 @@ msgstr ""
 
 msgid "Last modified date unknown"
 msgstr "Ultima modifica sconosciuta"
+
+msgid "New"
+msgstr "Nuovo"
 
 msgid "New version"
 msgstr "Nuova versione"
