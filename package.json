@@ -84,7 +84,8 @@
     "p-cancelable": "^4.0.1",
     "p-limit": "^5.0.0",
     "p-queue": "^7.4.1",
-    "simple-eta": "^3.0.2"
+    "simple-eta": "^3.0.2",
+    "vue": "^2.7.15"
   },
   "peerDependencies": {
     "@nextcloud/vue": "^8.0.0-beta || ^8.0.0"
