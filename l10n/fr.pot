@@ -1,13 +1,12 @@
 # 
 # Translators:
-# John Molakvoæ <skjnldsv@protonmail.com>, 2023
 # Jean-Claude Richard <jcr-conseil@otherway.eu>, 2023
 # Clément Saccoccio, 2023
-# Liviu Milies, 2023
+# John Molakvoæ <skjnldsv@protonmail.com>, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Liviu Milies, 2023\n"
+"Last-Translator: John Molakvoæ <skjnldsv@protonmail.com>, 2023\n"
 "Language-Team: French (https://app.transifex.com/nextcloud/teams/64236/fr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: fr\n"
@@ -58,7 +57,7 @@ msgid "Last modified date unknown"
 msgstr "Date de dernière modification inconnue"
 
 msgid "New"
-msgstr "Nou"
+msgstr "Nouveau"
 
 msgid "New version"
 msgstr "Nouvelle version"
