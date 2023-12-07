@@ -59,7 +59,7 @@
     "@nextcloud/webpack-vue-config": "^6.0.0",
     "@tsconfig/cypress": "^1.0.1",
     "@types/node": "^20.9.0",
-    "@vitest/coverage-istanbul": "^0.34.6",
+    "@vitest/coverage-istanbul": "^1.0.2",
     "@vue/tsconfig": "^0.4.0",
     "cypress": "^13.4.0",
     "cypress-file-upload": "^5.0.8",
@@ -68,7 +68,7 @@
     "tslib": "^2.6.2",
     "typedoc": "^0.25.3",
     "typescript": "^5.2.2",
-    "vitest": "^0.34.6",
+    "vitest": "^1.0.2",
     "vue-material-design-icons": "^5.2.0"
   },
   "dependencies": {
