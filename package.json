@@ -83,7 +83,7 @@
     "crypto-browserify": "^3.12.0",
     "p-cancelable": "^4.0.1",
     "p-limit": "^5.0.0",
-    "p-queue": "^7.4.1",
+    "p-queue": "^8.0.0",
     "simple-eta": "^3.0.2",
     "vue": "^2.7.15"
   },
