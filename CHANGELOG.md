@@ -1,5 +1,13 @@
 # Changelog
 
+## [v1.0.3](https://github.com/nextcloud-libraries/nextcloud-upload/tree/v1.0.3) (2023-12-07)
+
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-upload/compare/v1.0.3...v1.0.2)
+
+### :bug: Fixed bugs
+
+* fix: do not flood with Vue errors when using in `NcBreadcrumbs` by externalizing Vue dependency [\#985](https://github.com/nextcloud-libraries/nextcloud-upload/pull/985) ([ShGKme](https://github.com/ShGKme))
+
 ## [v1.0.2](https://github.com/nextcloud-libraries/nextcloud-upload/tree/v1.0.2) (2023-11-29)
 
 ## What's Changed
