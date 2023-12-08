@@ -2,10 +2,11 @@
 # Translators:
 # John Molakvoæ <skjnldsv@protonmail.com>, 2023
 # Simon T, 2023
+# Jens Peter Nielsen <mail@jp-nielsen.dk>, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Simon T, 2023\n"
+"Last-Translator: Jens Peter Nielsen <mail@jp-nielsen.dk>, 2023\n"
 "Language-Team: Danish (https://app.transifex.com/nextcloud/teams/64236/da/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: da\n"
@@ -31,9 +32,6 @@ msgstr "{tid} tilbage"
 msgid "a few seconds left"
 msgstr "et par sekunder tilbage"
 
-msgid "Add"
-msgstr "Tilføj"
-
 msgid "Cancel uploads"
 msgstr "Annuller uploads"
 
@@ -55,6 +53,9 @@ msgstr ""
 
 msgid "Last modified date unknown"
 msgstr "Sidste modifikationsdato ukendt"
+
+msgid "New"
+msgstr "Ny"
 
 msgid "New version"
 msgstr "Ny version"
