@@ -75,6 +75,9 @@ msgstr ""
 msgid "Upload files"
 msgstr ""
 
+msgid "Upload progress"
+msgstr ""
+
 msgid "Which files do you want to keep?"
 msgstr ""
 
