@@ -1,7 +1,8 @@
 import { CanceledError, type AxiosError, type AxiosResponse } from 'axios'
+import { encodePath } from '@nextcloud/paths'
+import { Folder, Permission } from '@nextcloud/files'
 import { generateRemoteUrl } from '@nextcloud/router'
 import { getCurrentUser } from '@nextcloud/auth'
-import { Folder, Permission } from '@nextcloud/files'
 import axios from '@nextcloud/axios'
 import PCancelable from 'p-cancelable'
 import PQueue from 'p-queue'
@@ -166,7 +167,11 @@ export class Uploader {
 	upload(destinationPath: string, file: File): PCancelable<Upload> {
 		const destinationFile = `${this.root}/${destinationPath.replace(/^\//, '')}`
 
-		logger.debug(`Uploading ${file.name} to ${destinationFile}`)
+		// Get the encoded source url to this object for requests purposes
+		const { origin } = new URL(destinationFile)
+		const encodedDestinationFile = origin + encodePath(destinationFile.slice(origin.length))
+
+		logger.debug(`Uploading ${file.name} to ${encodedDestinationFile}`)
 
 		// If manually disabled or if the file is too small
 		// TODO: support chunk uploading in public pages
@@ -188,7 +193,7 @@ export class Uploader {
 				logger.debug('Initializing chunked upload', { file, upload })
 
 				// Let's initialize a chunk upload
-				const tempUrl = await initChunkWorkspace(destinationFile)
+				const tempUrl = await initChunkWorkspace(encodedDestinationFile)
 				const chunksQueue: Array<Promise<any>> = []
 
 				// Generate chunks array
@@ -206,7 +211,7 @@ export class Uploader {
 							blob,
 							upload.signal,
 							() => this.updateStats(),
-							destinationFile,
+							encodedDestinationFile,
 							{
 								'X-OC-Mtime': file.lastModified / 1000,
 								'OC-Total-Length': file.size,
@@ -234,7 +239,7 @@ export class Uploader {
 						method: 'MOVE',
 						url: `${tempUrl}/.file`,
 						headers: {
-							Destination: destinationFile,
+							Destination: encodedDestinationFile,
 						},
 					})
 
@@ -272,7 +277,7 @@ export class Uploader {
 				const request = async () => {
 					try {
 						upload.response = await uploadData(
-							destinationFile,
+							encodedDestinationFile,
 							blob,
 							upload.signal,
 							() => this.updateStats(),
