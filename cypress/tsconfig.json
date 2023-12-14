@@ -5,6 +5,7 @@
 	],
 	"include": ["./**/*.ts"],
 	"compilerOptions": {
-		"types": ["cypress"]
+		"types": ["cypress"],
+		"rootDir": "..",
 	}
 }

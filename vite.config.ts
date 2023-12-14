@@ -1,6 +1,7 @@
 import { createLibConfig } from '@nextcloud/vite-config'
 import { readdirSync, readFileSync } from 'fs'
 import { po as poParser } from 'gettext-parser'
+// eslint-disable-next-line n/no-extraneous-import
 import { defineConfig, type UserConfigFn } from 'vite'
 
 const translations = readdirSync('./l10n')

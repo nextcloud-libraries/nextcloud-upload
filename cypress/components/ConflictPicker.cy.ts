@@ -6,20 +6,13 @@ import type { ConflictResolutionResult } from '../../lib'
 import { File as NcFile } from '@nextcloud/files'
 import { openConflictPicker } from '../../dist/index.mjs'
 
-describe('ConflictPicker rendering', () => {
+describe('ConflictPicker rendering', { testIsolation: true }, () => {
 	let image: File
 
 	before(() => {
 		cy.fixture('image.jpg', 'binary').then((content) => {
 			content = Uint8Array.from(content, x => x.charCodeAt(0))
 			image = new File([content], 'image.jpg', { type: 'image/jpeg' })
-		})
-	})
-
-	afterEach(() => {
-		// Make sure we clear the body
-		cy.window().then((win) => {
-			win.document.body.innerHTML = '<div data-cy-root></div>'
 		})
 	})
 
@@ -62,13 +55,6 @@ describe('ConflictPicker resolving', () => {
 			content = Uint8Array.from(content, x => x.charCodeAt(0))
 			images.push(new File([content], 'image1.jpg', { type: 'image/jpeg' }))
 			images.push(new File([content], 'image2.jpg', { type: 'image/jpeg' }))
-		})
-	})
-
-	afterEach(() => {
-		// Make sure we clear the body
-		cy.window().then((win) => {
-			win.document.body.innerHTML = '<div data-cy-root></div>'
 		})
 	})
 
@@ -165,9 +151,10 @@ describe('ConflictPicker resolving', () => {
 		cy.get('[data-cy-conflict-picker-submit]').click()
 
 		// We only return the files to handle
-		promise.then((results: ConflictResolutionResult) => {
-			expect(results.selected).to.deep.equal([images[0]])
-			expect(results.renamed).to.have.length(0)
+		cy.wrap(promise).then((results) => {
+			const result = results as ConflictResolutionResult
+			expect(result.selected).to.deep.equal([images[0]])
+			expect(result.renamed).to.have.length(0)
 
 			cy.get('[data-cy-conflict-picker]').should('not.exist')
 		})
