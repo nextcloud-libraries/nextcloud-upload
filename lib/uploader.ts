@@ -1,4 +1,6 @@
-import { CanceledError, type AxiosError, type AxiosResponse } from 'axios'
+import type { AxiosError, AxiosResponse } from 'axios'
+
+import { CanceledError } from 'axios'
 import { encodePath } from '@nextcloud/paths'
 import { Folder, Permission } from '@nextcloud/files'
 import { generateRemoteUrl } from '@nextcloud/router'
@@ -194,7 +196,7 @@ export class Uploader {
 
 				// Let's initialize a chunk upload
 				const tempUrl = await initChunkWorkspace(encodedDestinationFile)
-				const chunksQueue: Array<Promise<any>> = []
+				const chunksQueue: Array<Promise<void>> = []
 
 				// Generate chunks array
 				for (let chunk = 0; chunk < upload.chunks; chunk++) {
@@ -207,7 +209,7 @@ export class Uploader {
 					// Init request queue
 					const request = () => {
 						return uploadData(
-							`${tempUrl}/${chunk+1}`,
+							`${tempUrl}/${chunk + 1}`,
 							blob,
 							upload.signal,
 							() => this.updateStats(),

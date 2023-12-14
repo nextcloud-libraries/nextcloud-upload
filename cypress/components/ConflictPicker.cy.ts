@@ -4,14 +4,13 @@
 import type { ConflictResolutionResult } from '../../lib'
 
 import { File as NcFile } from '@nextcloud/files'
-import { openConflictPicker } from '../../dist/index.mjs'
+import { openConflictPicker } from '../../lib/index.ts'
 
 describe('ConflictPicker rendering', { testIsolation: true }, () => {
 	let image: File
 
 	before(() => {
-		cy.fixture('image.jpg', 'binary').then((content) => {
-			content = Uint8Array.from(content, x => x.charCodeAt(0))
+		cy.fixture('image.jpg', null).then((content: Buffer) => {
 			image = new File([content], 'image.jpg', { type: 'image/jpeg' })
 		})
 	})
@@ -26,11 +25,9 @@ describe('ConflictPicker rendering', { testIsolation: true }, () => {
 			mtime: new Date('2021-01-01T00:00:00.000Z'),
 		})
 
-		openConflictPicker('Pictures', [image], [oldImage]).catch(() => {
-			// Ignore error
-		})
+		openConflictPicker('Pictures', [image], [oldImage]).catch(() => {})
 
-		cy.get('[data-cy-conflict-picker]').should('exist')
+		cy.get('[data-cy-conflict-picker]', { timeout: 10000 }).should('exist')
 		cy.get('[data-cy-conflict-picker] h2').should('have.text', '1 file conflict in Pictures')
 		cy.get('[data-cy-conflict-picker-form]').should('be.visible')
 
@@ -51,8 +48,7 @@ describe('ConflictPicker resolving', () => {
 
 	before(() => {
 		images = []
-		cy.fixture('image.jpg', 'binary').then((content) => {
-			content = Uint8Array.from(content, x => x.charCodeAt(0))
+		cy.fixture('image.jpg', null).then((content) => {
 			images.push(new File([content], 'image1.jpg', { type: 'image/jpeg' }))
 			images.push(new File([content], 'image2.jpg', { type: 'image/jpeg' }))
 		})
@@ -189,8 +185,8 @@ describe('ConflictPicker resolving', () => {
 		promise.then((results: ConflictResolutionResult) => {
 			expect(results.selected).to.have.length(0)
 			expect(results.renamed).to.have.length(2)
-			expect(results.renamed[0].name).to.equal('image1 (1).jpg')
-			expect(results.renamed[1].name).to.equal('image2 (1).jpg')
+			expect((results.renamed[0] as File).name).to.equal('image1 (1).jpg')
+			expect((results.renamed[1] as File).name).to.equal('image2 (1).jpg')
 
 			cy.get('[data-cy-conflict-picker]').should('not.exist')
 		})
