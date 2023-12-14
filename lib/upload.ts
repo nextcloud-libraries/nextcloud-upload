@@ -1,5 +1,5 @@
-import { getMaxChunksSize } from './utils/config.js'
 import type { AxiosResponse } from 'axios'
+import { getMaxChunksSize } from './utils/config.js'
 
 export enum Status {
 	INITIALIZED = 0,
