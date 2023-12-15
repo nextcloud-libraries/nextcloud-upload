@@ -45,12 +45,14 @@
 			</NcActionButton>
 		</NcActions>
 
-		<!-- Progressbar and status, hidden by css -->
-		<div class="upload-picker__progress">
-			<NcProgressBar :error="hasFailure"
+		<!-- Progressbar and status -->
+		<div v-show="isUploading" class="upload-picker__progress">
+			<NcProgressBar :aria-label="progressLabel"
+				:aria-describedby="progressTimeId"
+				:error="hasFailure"
 				:value="progress"
 				size="medium" />
-			<p>{{ timeLeft }}</p>
+			<p :id="progressTimeId">{{ timeLeft }}</p>
 		</div>
 
 		<!-- Cancel upload button -->
@@ -146,6 +148,8 @@ export default Vue.extend({
 			addLabel: t('New'),
 			cancelLabel: t('Cancel uploads'),
 			uploadLabel: t('Upload files'),
+			progressLabel: t('Upload progress'),
+			progressTimeId: `nc-uploader-progress-${Math.random().toString(36).slice(7)}`,
 
 			eta: null,
 			timeLeft: '',
