@@ -2,9 +2,12 @@
   "$schema": "https://json.schemastore.org/tsconfig",
   "extends": "@vue/tsconfig",
   "compilerOptions": {
+    "allowImportingTsExtensions": true,
     "allowSyntheticDefaultImports": true,
     "declaration": true,
     "esModuleInterop": true,
+    "emitDeclarationOnly": true,
+    "moduleResolution": "Bundler",
     "lib": ["DOM", "ESNext"],
     "outDir": "./dist",
     "rootDir": "lib/",

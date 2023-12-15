@@ -1,25 +1,21 @@
-// Making sure we're forcing the development mode
-process.env.NODE_ENV = 'development'
-
 import { defineConfig } from 'cypress'
-import webpackConfig from '@nextcloud/webpack-vue-config'
-import webpackRules from '@nextcloud/webpack-vue-config/rules'
+import { createAppConfig } from '@nextcloud/vite-config'
 
-webpackRules.RULE_TS = {
-	test: /\.ts$/,
-	use: [{
-		loader: 'ts-loader',
-		options: {
-			// skip typechecking for speed
-			transpileOnly: true,
+const viteConfig = await createAppConfig({}, {
+	inlineCSS: true,
+	nodePolyfills: true,
+	emptyOutputDirectory: false,
+	replace: {
+		__TRANSLATIONS__: '[]',
+	},
+	config: {
+		optimizeDeps: {
+			entries: ['cypress/**/*'],
 		},
-	}],
-}
-webpackConfig.module.rules = Object.values(webpackRules)
+	},
+})({ mode: 'development', command: 'serve' })
 
-// Cypress handle its own output
-delete webpackConfig.output
-webpackConfig.resolve.extensions = ['.ts', '.tsx', '.js', '.jsx', '.cjs', '.vue']
+viteConfig.build!.rollupOptions = undefined
 
 export default defineConfig({
 	projectId: 'v24ts6',
@@ -30,8 +26,8 @@ export default defineConfig({
 	component: {
 		devServer: {
 			framework: 'vue',
-			bundler: 'webpack',
-			webpackConfig,
+			bundler: 'vite',
+			viteConfig,
 		},
 	},
 })

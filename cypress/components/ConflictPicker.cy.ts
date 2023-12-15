@@ -1,25 +1,12 @@
-/* eslint-disable no-unused-expressions */
-// dist file might not be built when running eslint only
-// eslint-disable-next-line import/no-unresolved,n/no-missing-import
-import type { ConflictResolutionResult } from '../../lib'
-
 import { File as NcFile } from '@nextcloud/files'
-import { openConflictPicker } from '../../dist/index.mjs'
+import ConflictPicker from '../../lib/components/ConflictPicker.vue'
 
-describe('ConflictPicker rendering', () => {
+describe('ConflictPicker rendering', { testIsolation: true }, () => {
 	let image: File
 
 	before(() => {
-		cy.fixture('image.jpg', 'binary').then((content) => {
-			content = Uint8Array.from(content, x => x.charCodeAt(0))
+		cy.fixture('image.jpg', null).then((content: Buffer) => {
 			image = new File([content], 'image.jpg', { type: 'image/jpeg' })
-		})
-	})
-
-	afterEach(() => {
-		// Make sure we clear the body
-		cy.window().then((win) => {
-			win.document.body.innerHTML = '<div data-cy-root></div>'
 		})
 	})
 
@@ -33,8 +20,12 @@ describe('ConflictPicker rendering', () => {
 			mtime: new Date('2021-01-01T00:00:00.000Z'),
 		})
 
-		openConflictPicker('Pictures', [image], [oldImage]).catch(() => {
-			// Ignore error
+		cy.mount(ConflictPicker, {
+			propsData: {
+				dirname: 'Pictures',
+				content: [oldImage],
+				conflicts: [image],
+			},
 		})
 
 		cy.get('[data-cy-conflict-picker]').should('exist')
@@ -58,17 +49,9 @@ describe('ConflictPicker resolving', () => {
 
 	before(() => {
 		images = []
-		cy.fixture('image.jpg', 'binary').then((content) => {
-			content = Uint8Array.from(content, x => x.charCodeAt(0))
+		cy.fixture('image.jpg', null).then((content) => {
 			images.push(new File([content], 'image1.jpg', { type: 'image/jpeg' }))
 			images.push(new File([content], 'image2.jpg', { type: 'image/jpeg' }))
-		})
-	})
-
-	afterEach(() => {
-		// Make sure we clear the body
-		cy.window().then((win) => {
-			win.document.body.innerHTML = '<div data-cy-root></div>'
 		})
 	})
 
@@ -90,19 +73,31 @@ describe('ConflictPicker resolving', () => {
 			mtime: new Date('2021-01-01T00:00:00.000Z'),
 		})
 
-		const promise = openConflictPicker('Pictures', images, [old1, old2])
+		const onSubmit = cy.spy().as('onSubmitSpy')
+		const onCancel = cy.spy().as('onCancelSpy')
+		cy.mount(ConflictPicker, {
+			propsData: {
+				dirname: 'Pictures',
+				content: [old1, old2],
+				conflicts: images,
+			},
+			listeners: {
+				submit: onSubmit,
+				cancel: onCancel,
+			}
+		})
 
 		cy.get('[data-cy-conflict-picker-form]').should('be.visible')
 		cy.get('[data-cy-conflict-picker-fieldset]').should('have.length', 3)
 		cy.get('[data-cy-conflict-picker-input-incoming="all"] input').check({ force: true })
 		cy.get('[data-cy-conflict-picker-submit]').click()
 
-		promise.then((results: ConflictResolutionResult) => {
+		cy.get('@onSubmitSpy').should('have.been.calledOnce').then((onSubmit) => {
+			const results = (onSubmit as unknown as sinon.SinonSpy).firstCall.args[0]
 			expect(results.selected).to.deep.equal(images)
 			expect(results.renamed).to.have.length(0)
-
-			cy.get('[data-cy-conflict-picker]').should('not.exist')
 		})
+		cy.get('@onCancelSpy').should('not.have.been.called')
 	})
 
 	it('Pick all existing files', () => {
@@ -123,19 +118,31 @@ describe('ConflictPicker resolving', () => {
 			mtime: new Date('2021-01-01T00:00:00.000Z'),
 		})
 
-		const promise = openConflictPicker('Pictures', images, [old1, old2])
+		const onSubmit = cy.spy().as('onSubmitSpy')
+		const onCancel = cy.spy().as('onCancelSpy')
+		cy.mount(ConflictPicker, {
+			propsData: {
+				dirname: 'Pictures',
+				content: [old1, old2],
+				conflicts: images,
+			},
+			listeners: {
+				submit: onSubmit,
+				cancel: onCancel,
+			}
+		})
 
 		cy.get('[data-cy-conflict-picker-form]').should('be.visible')
 		cy.get('[data-cy-conflict-picker-fieldset]').should('have.length', 3)
 		cy.get('[data-cy-conflict-picker-input-existing="all"] input').check({ force: true })
 		cy.get('[data-cy-conflict-picker-submit]').click()
 
-		promise.then((results: ConflictResolutionResult) => {
+		cy.get('@onSubmitSpy').should('have.been.calledOnce').then((onSubmit) => {
+			const results = (onSubmit as unknown as sinon.SinonSpy).firstCall.args[0]
 			expect(results.selected).to.have.length(0)
 			expect(results.renamed).to.have.length(0)
-
-			cy.get('[data-cy-conflict-picker]').should('not.exist')
 		})
+		cy.get('@onCancelSpy').should('not.have.been.called')
 	})
 
 	it('Pick all existing files', () => {
@@ -156,7 +163,19 @@ describe('ConflictPicker resolving', () => {
 			mtime: new Date('2021-01-01T00:00:00.000Z'),
 		})
 
-		const promise = openConflictPicker('Pictures', images, [old1, old2])
+		const onSubmit = cy.spy().as('onSubmitSpy')
+		const onCancel = cy.spy().as('onCancelSpy')
+		cy.mount(ConflictPicker, {
+			propsData: {
+				dirname: 'Pictures',
+				content: [old1, old2],
+				conflicts: images,
+			},
+			listeners: {
+				submit: onSubmit,
+				cancel: onCancel,
+			}
+		})
 
 		cy.get('[data-cy-conflict-picker-form]').should('be.visible')
 		cy.get('[data-cy-conflict-picker-fieldset]').should('have.length', 3)
@@ -165,12 +184,12 @@ describe('ConflictPicker resolving', () => {
 		cy.get('[data-cy-conflict-picker-submit]').click()
 
 		// We only return the files to handle
-		promise.then((results: ConflictResolutionResult) => {
+		cy.get('@onSubmitSpy').should('have.been.calledOnce').then((onSubmit) => {
+			const results = (onSubmit as unknown as sinon.SinonSpy).firstCall.args[0]
 			expect(results.selected).to.deep.equal([images[0]])
 			expect(results.renamed).to.have.length(0)
-
-			cy.get('[data-cy-conflict-picker]').should('not.exist')
 		})
+		cy.get('@onCancelSpy').should('not.have.been.called')
 	})
 
 	it('Pick both versions files', () => {
@@ -191,7 +210,19 @@ describe('ConflictPicker resolving', () => {
 			mtime: new Date('2021-01-01T00:00:00.000Z'),
 		})
 
-		const promise = openConflictPicker('Pictures', images, [old1, old2])
+		const onSubmit = cy.spy().as('onSubmitSpy')
+		const onCancel = cy.spy().as('onCancelSpy')
+		cy.mount(ConflictPicker, {
+			propsData: {
+				dirname: 'Pictures',
+				content: [old1, old2],
+				conflicts: images,
+			},
+			listeners: {
+				submit: onSubmit,
+				cancel: onCancel,
+			}
+		})
 
 		cy.get('[data-cy-conflict-picker-form]').should('be.visible')
 		cy.get('[data-cy-conflict-picker-fieldset]').should('have.length', 3)
@@ -199,14 +230,14 @@ describe('ConflictPicker resolving', () => {
 		cy.get('[data-cy-conflict-picker-input-existing="all"] input').check({ force: true })
 		cy.get('[data-cy-conflict-picker-submit]').click()
 
-		promise.then((results: ConflictResolutionResult) => {
+		cy.get('@onSubmitSpy').should('have.been.calledOnce').then((onSubmit) => {
+			const results = (onSubmit as unknown as sinon.SinonSpy).firstCall.args[0]
 			expect(results.selected).to.have.length(0)
 			expect(results.renamed).to.have.length(2)
-			expect(results.renamed[0].name).to.equal('image1 (1).jpg')
-			expect(results.renamed[1].name).to.equal('image2 (1).jpg')
-
-			cy.get('[data-cy-conflict-picker]').should('not.exist')
+			expect((results.renamed[0] as File).name).to.equal('image1 (1).jpg')
+			expect((results.renamed[1] as File).name).to.equal('image2 (1).jpg')
 		})
+		cy.get('@onCancelSpy').should('not.have.been.called')
 	})
 
 	it('Skip all conflicts', () => {
@@ -227,17 +258,29 @@ describe('ConflictPicker resolving', () => {
 			mtime: new Date('2021-01-01T00:00:00.000Z'),
 		})
 
-		const promise = openConflictPicker('Pictures', images, [old1, old2])
+		const onSubmit = cy.spy().as('onSubmitSpy')
+		const onCancel = cy.spy().as('onCancelSpy')
+		cy.mount(ConflictPicker, {
+			propsData: {
+				dirname: 'Pictures',
+				content: [old1, old2],
+				conflicts: images,
+			},
+			listeners: {
+				submit: onSubmit,
+				cancel: onCancel,
+			}
+		})
 
 		cy.get('[data-cy-conflict-picker-form]').should('be.visible')
 		cy.get('[data-cy-conflict-picker-fieldset]').should('have.length', 3)
 		cy.get('[data-cy-conflict-picker-skip]').click()
 
-		promise.then((results: ConflictResolutionResult) => {
+		cy.get('@onSubmitSpy').should('have.been.calledOnce').then((onSubmit) => {
+			const results = (onSubmit as unknown as sinon.SinonSpy).firstCall.args[0]
 			expect(results.selected).to.have.length(0)
 			expect(results.renamed).to.have.length(0)
-
-			cy.get('[data-cy-conflict-picker]').should('not.exist')
 		})
+		cy.get('@onCancelSpy').should('not.have.been.called')
 	})
 })

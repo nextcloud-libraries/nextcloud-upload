@@ -15,8 +15,6 @@
 			</template>
 			{{ buttonName }}
 		</NcButton>
-
-		<!-- New file menu -->
 		<NcActions v-else
 			:menu-name="buttonName"
 			:menu-title="addLabel"
