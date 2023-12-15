@@ -1,8 +1,24 @@
 # Changelog
 
+## [v1.0.4](https://github.com/nextcloud-libraries/nextcloud-upload/tree/v1.0.4) (2023-12-15)
+
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-upload/compare/v1.0.3...v1.0.4)
+
+### :bug: Fixed bugs
+* fix(uploader): encode destination by @skjnldsv in https://github.com/nextcloud-libraries/nextcloud-upload/pull/996
+* fix(uploader): fix PUT content-type by @skjnldsv in https://github.com/nextcloud-libraries/nextcloud-upload/pull/1002
+* fix(UploadPicker): Add label for upload progress and connect progress with description [a11y] by @susnux in https://github.com/nextcloud-libraries/nextcloud-upload/pull/1000
+
+### Dependencies & translations
+* build(deps-dev): Bump @types/node from 20.10.3 to 20.10.4 by @dependabot in https://github.com/nextcloud-libraries/nextcloud-upload/pull/990
+* build(deps): Bump actions/upload-artifact from 3 to 4 by @dependabot in https://github.com/nextcloud-libraries/nextcloud-upload/pull/998
+* build(deps): Bump p-queue from 7.4.1 to 8.0.1 by @dependabot in https://github.com/nextcloud-libraries/nextcloud-upload/pull/997
+* Updates for project Nextcloud upload library by @transifex-integration in https://github.com/nextcloud-libraries/nextcloud-upload/pull/1003
+* Updates for project Nextcloud upload library by @transifex-integration in https://github.com/nextcloud-libraries/nextcloud-upload/pull/993
+
 ## [v1.0.3](https://github.com/nextcloud-libraries/nextcloud-upload/tree/v1.0.3) (2023-12-07)
 
-[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-upload/compare/v1.0.3...v1.0.2)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-upload/compare/v1.0.2...v1.0.3)
 
 ### :bug: Fixed bugs
 
