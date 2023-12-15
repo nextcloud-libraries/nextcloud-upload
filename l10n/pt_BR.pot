@@ -1,38 +1,103 @@
 # 
 # Translators:
-# Leonardo Colman <leonardo.dev@colman.com.br>, 2022
-# Jeann Cavalcante <wjeann@gmail.com>, 2022
-# Flávio Veras <flaviove@gmail.com>, 2022
+# John Molakvoæ <skjnldsv@protonmail.com>, 2023
+# Flávio Veras <flaviove@gmail.com>, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Flávio Veras <flaviove@gmail.com>, 2022\n"
-"Language-Team: Portuguese (Brazil) (https://www.transifex.com/nextcloud/teams/64236/pt_BR/)\n"
+"Last-Translator: Flávio Veras <flaviove@gmail.com>, 2023\n"
+"Language-Team: Portuguese (Brazil) (https://app.transifex.com/nextcloud/teams/64236/pt_BR/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: pt_BR\n"
 "Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
+msgid "{count} file conflict"
+msgid_plural "{count} files conflict"
+msgstr[0] "{count} arquivos em conflito"
+msgstr[1] "{count} arquivos em conflito"
+msgstr[2] "{count} arquivos em conflito"
+
+msgid "{count} file conflict in {dirname}"
+msgid_plural "{count} file conflicts in {dirname}"
+msgstr[0] "{count} conflitos de arquivo em {dirname}"
+msgstr[1] "{count} conflitos de arquivo em {dirname}"
+msgstr[2] "{count} conflitos de arquivo em {dirname}"
+
 msgid "{seconds} seconds left"
 msgstr "{seconds} segundos restantes"
 
-#. time has the format 00:00:00
+#. TRANSLATORS time has the format 00:00:00
 msgid "{time} left"
 msgstr "{time} restante"
 
 msgid "a few seconds left"
 msgstr "alguns segundos restantes"
 
-msgid "Add"
-msgstr "Adicionar"
-
 msgid "Cancel uploads"
 msgstr "Cancelar uploads"
+
+msgid "Continue"
+msgstr "Continuar"
 
 msgid "estimating time left"
 msgstr "estimando tempo restante"
 
+msgid "Existing version"
+msgstr "Versão existente"
+
+msgid ""
+"If you select both versions, the copied file will have a number added to its"
+" name."
+msgstr ""
+"Se você selecionar ambas as versões, o arquivo copiado terá um número "
+"adicionado ao seu nome."
+
+msgid "Last modified date unknown"
+msgstr "Data da última modificação desconhecida"
+
+msgid "New"
+msgstr "Novo"
+
+msgid "New version"
+msgstr "Nova versão"
+
 msgid "paused"
 msgstr "pausado"
 
+msgid "Preview image"
+msgstr "Visualizar imagem"
+
+msgid "Select all checkboxes"
+msgstr "Marque todas as caixas de seleção"
+
+msgid "Select all existing files"
+msgstr "Selecione todos os arquivos existentes"
+
+msgid "Select all new files"
+msgstr "Selecione todos os novos arquivos"
+
+msgid "Skip this file"
+msgid_plural "Skip {count} files"
+msgstr[0] "Ignorar {count} arquivos"
+msgstr[1] "Ignorar {count} arquivos"
+msgstr[2] "Ignorar {count} arquivos"
+
+msgid "Unknown size"
+msgstr "Tamanho desconhecido"
+
+msgid "Upload cancelled"
+msgstr "Envio cancelado"
+
 msgid "Upload files"
 msgstr "Enviar arquivos"
+
+msgid "Upload progress"
+msgstr "Envio em progresso"
+
+msgid "Which files do you want to keep?"
+msgstr "Quais arquivos você deseja manter?"
+
+msgid "You need to select at least one version of each file to continue."
+msgstr ""
+"Você precisa selecionar pelo menos uma versão de cada arquivo para "
+"continuar."
