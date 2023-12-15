@@ -89,6 +89,9 @@ msgstr "Envío cancelado"
 msgid "Upload files"
 msgstr "Enviar ficheiros"
 
+msgid "Upload progress"
+msgstr "Progreso do envío"
+
 msgid "Which files do you want to keep?"
 msgstr "Que ficheiros quere conservar?"
 
