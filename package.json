@@ -58,7 +58,7 @@
     "@tsconfig/cypress": "^1.0.1",
     "@types/node": "^20.9.0",
     "@vitest/coverage-istanbul": "^0.34.6",
-    "@vue/tsconfig": "^0.4.0",
+    "@vue/tsconfig": "^0.5.0",
     "cypress": "^13.4.0",
     "cypress-file-upload": "^5.0.8",
     "gettext-extractor": "^3.8.0",
