@@ -35,7 +35,7 @@
     "cypress": "cypress run --component",
     "cypress:gui": "cypress open --component",
     "test": "vitest run",
-    "test:watch": "vitest run --watchAll --verbose true",
+    "test:watch": "vitest run --watch",
     "test:coverage": "vitest run --coverage",
     "l10n:extract": "node build/extract-l10n.js"
   },

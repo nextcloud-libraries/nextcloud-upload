@@ -117,6 +117,9 @@ describe('Upload data', () => {
 			data: blob,
 			signal,
 			onUploadProgress,
+			headers: {
+				'Content-Type': 'application/octet-stream',
+			},
 		})
 	})
 	test('Upload async data stream', async () => {
@@ -139,6 +142,9 @@ describe('Upload data', () => {
 			data: blob,
 			signal,
 			onUploadProgress,
+			headers: {
+				'Content-Type': 'application/octet-stream',
+			},
 		})
 	})
 
@@ -161,6 +167,7 @@ describe('Upload data', () => {
 			onUploadProgress,
 			headers: {
 				Destination: url,
+				'Content-Type': 'application/octet-stream',
 			},
 		})
 	})

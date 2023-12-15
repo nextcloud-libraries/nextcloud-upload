@@ -215,6 +215,7 @@ export class Uploader {
 							{
 								'X-OC-Mtime': file.lastModified / 1000,
 								'OC-Total-Length': file.size,
+								'Content-Type': 'application/octet-stream',
 							},
 						)
 							// Update upload progress on chunk completion
@@ -284,6 +285,7 @@ export class Uploader {
 							undefined,
 							{
 								'X-OC-Mtime': file.lastModified / 1000,
+								'Content-Type': file.type,
 							},
 						)
 

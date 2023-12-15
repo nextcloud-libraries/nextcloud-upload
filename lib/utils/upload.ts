@@ -11,19 +11,39 @@ type UploadData = Blob | (() => Promise<Blob>)
 
 /**
  * Upload some data to a given path
+ * @param url the url to upload to
+ * @param uploadData the data to upload
+ * @param signal the abort signal
+ * @param onUploadProgress the progress callback
+ * @param destinationFile the final destination file (often used for chunked uploads)
+ * @param headers additional headers
  */
-export const uploadData = async function(url: string, uploadData: UploadData, signal: AbortSignal, onUploadProgress = () => {}, destinationFile: string | undefined = undefined, headers: any = undefined): Promise<AxiosResponse> {
+export const uploadData = async function(
+	url: string,
+	uploadData: UploadData,
+	signal: AbortSignal,
+	onUploadProgress = () => {},
+	destinationFile: string | undefined = undefined,
+	headers: Record<string, string|number> = {},
+): Promise<AxiosResponse> {
 	let data: Blob
 
+	// If the upload data is a blob, we can directly use it
+	// Otherwise, we need to wait for the promise to resolve
 	if (uploadData instanceof Blob) {
 		data = uploadData
 	} else {
 		data = await uploadData()
 	}
 
+	// Helps the server to know what to do with the file afterwards (e.g. chunked upload)
 	if (destinationFile) {
-		headers ??= {}
 		headers.Destination = destinationFile
+	}
+
+	// If no content type is set, we default to octet-stream
+	if (!headers['Content-Type']) {
+		headers['Content-Type'] = 'application/octet-stream'
 	}
 
 	return await axios.request({
