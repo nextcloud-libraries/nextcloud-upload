@@ -89,6 +89,9 @@ msgstr "Hochladen abgebrochen"
 msgid "Upload files"
 msgstr "Dateien hochladen"
 
+msgid "Upload progress"
+msgstr "Fortschritt beim Hochladen"
+
 msgid "Which files do you want to keep?"
 msgstr "Welche Dateien möchten Sie behalten?"
 
