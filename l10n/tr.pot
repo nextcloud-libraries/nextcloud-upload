@@ -86,6 +86,9 @@ msgstr "Yükleme iptal edildi"
 msgid "Upload files"
 msgstr "Dosyaları yükle"
 
+msgid "Upload progress"
+msgstr "Yükleme ilerlemesi"
+
 msgid "Which files do you want to keep?"
 msgstr "Hangi dosyaları tutmak istiyorsunuz?"
 

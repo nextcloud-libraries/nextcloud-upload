@@ -89,6 +89,9 @@ msgstr "Отпремање је отказано"
 msgid "Upload files"
 msgstr "Отпреми фајлове"
 
+msgid "Upload progress"
+msgstr "Напредак отпремања"
+
 msgid "Which files do you want to keep?"
 msgstr "Које фајлове желите да задржите?"
 
