@@ -88,6 +88,9 @@ msgstr "Uppladdningen avbröts"
 msgid "Upload files"
 msgstr "Ladda upp filer"
 
+msgid "Upload progress"
+msgstr "Uppladdningsförlopp"
+
 msgid "Which files do you want to keep?"
 msgstr "Vilka filer vill du behålla?"
 
