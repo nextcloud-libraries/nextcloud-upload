@@ -91,7 +91,7 @@ msgid "Upload files"
 msgstr "Dateien hochladen"
 
 msgid "Upload progress"
-msgstr "Hochladen Fortschritt"
+msgstr "Fortschritt beim Hochladen"
 
 msgid "Which files do you want to keep?"
 msgstr "Welche Dateien möchtest du behalten?"
