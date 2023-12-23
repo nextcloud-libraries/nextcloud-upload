@@ -1,36 +1,95 @@
 # 
 # Translators:
-# blakduk, 2023
+# John Molakvoæ <skjnldsv@protonmail.com>, 2023
+# Tung DangQuang, 2023
 # 
 msgid ""
 msgstr ""
-"Last-Translator: blakduk, 2023\n"
-"Language-Team: Vietnamese (https://www.transifex.com/nextcloud/teams/64236/vi/)\n"
+"Last-Translator: Tung DangQuang, 2023\n"
+"Language-Team: Vietnamese (https://app.transifex.com/nextcloud/teams/64236/vi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: vi\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
+msgid "{count} file conflict"
+msgid_plural "{count} files conflict"
+msgstr[0] "{count} Tập tin xung đột"
+
+msgid "{count} file conflict in {dirname}"
+msgid_plural "{count} file conflicts in {dirname}"
+msgstr[0] "{count} tập tin lỗi trong {dirname}"
+
 msgid "{seconds} seconds left"
 msgstr "Còn {second} giây"
 
-#. time has the format 00:00:00
+#. TRANSLATORS time has the format 00:00:00
 msgid "{time} left"
 msgstr "Còn lại {time}"
 
 msgid "a few seconds left"
 msgstr "Còn lại một vài giây"
 
-msgid "Add"
-msgstr "Thêm"
-
 msgid "Cancel uploads"
 msgstr "Huỷ tải lên"
+
+msgid "Continue"
+msgstr "Tiếp Tục"
 
 msgid "estimating time left"
 msgstr "Thời gian còn lại dự kiến"
 
+msgid "Existing version"
+msgstr "Phiên Bản Hiện Tại"
+
+msgid ""
+"If you select both versions, the copied file will have a number added to its"
+" name."
+msgstr ""
+"Nếu bạn chọn cả hai phiên bản, tệp được sao chép sẽ có thêm một số vào tên "
+"của nó."
+
+msgid "Last modified date unknown"
+msgstr "Ngày sửa dổi lần cuối không xác định"
+
+msgid "New"
+msgstr "Tạo Mới"
+
+msgid "New version"
+msgstr "Phiên Bản Mới"
+
 msgid "paused"
 msgstr "đã tạm dừng"
 
+msgid "Preview image"
+msgstr "Xem Trước Ảnh"
+
+msgid "Select all checkboxes"
+msgstr "Chọn tất cả hộp checkbox"
+
+msgid "Select all existing files"
+msgstr "Chọn tất cả các tập tin có sẵn"
+
+msgid "Select all new files"
+msgstr "Chọn tất cả các tập tin mới"
+
+msgid "Skip this file"
+msgid_plural "Skip {count} files"
+msgstr[0] "Bỏ Qua {count} tập tin"
+
+msgid "Unknown size"
+msgstr "Không rõ dung lượng"
+
+msgid "Upload cancelled"
+msgstr "Dừng Tải Lên"
+
 msgid "Upload files"
 msgstr "Tập tin tải lên"
+
+msgid "Upload progress"
+msgstr "Đang Tải Lên"
+
+msgid "Which files do you want to keep?"
+msgstr "Bạn muốn giữ tập tin nào?"
+
+msgid "You need to select at least one version of each file to continue."
+msgstr "Bạn cần chọn ít nhất một phiên bản tập tin mới có thể tiếp tục"
