@@ -93,6 +93,9 @@ msgstr "Nahrávání zrušeno"
 msgid "Upload files"
 msgstr "Nahrát soubory"
 
+msgid "Upload progress"
+msgstr "Postup v nahrávání"
+
 msgid "Which files do you want to keep?"
 msgstr "Které soubory si přejete ponechat?"
 
