@@ -100,6 +100,9 @@ msgstr "تمَّ إلغاء الرفع"
 msgid "Upload files"
 msgstr "رفع ملفات"
 
+msgid "Upload progress"
+msgstr "تقدُّم الرفع "
+
 msgid "Which files do you want to keep?"
 msgstr "أيُّ الملفات ترغب في الإبقاء عليها؟"
 
