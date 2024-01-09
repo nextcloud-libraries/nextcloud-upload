@@ -3,7 +3,6 @@
 # John Molakvoæ <skjnldsv@protonmail.com>, 2023
 # FranciscoFJ <dev-ooo@satel-sa.com>, 2023
 # Next Cloud <nextcloud.translator.es@cgj.es>, 2023
-# Héctor Cortés, 2024
 # Julio C. Ortega, 2024
 # 
 msgid ""
@@ -95,7 +94,7 @@ msgid "Upload files"
 msgstr "Subir archivos"
 
 msgid "Upload progress"
-msgstr "Estado de la Subida"
+msgstr "Progreso de la subida"
 
 msgid "Which files do you want to keep?"
 msgstr "¿Qué archivos desea conservar?"
