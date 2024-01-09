@@ -3,11 +3,11 @@
 # John Molakvoæ <skjnldsv@protonmail.com>, 2023
 # FranciscoFJ <dev-ooo@satel-sa.com>, 2023
 # Next Cloud <nextcloud.translator.es@cgj.es>, 2023
-# Héctor Cortés, 2024
+# Julio C. Ortega, 2024
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Héctor Cortés, 2024\n"
+"Last-Translator: Julio C. Ortega, 2024\n"
 "Language-Team: Spanish (https://app.transifex.com/nextcloud/teams/64236/es/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: es\n"
@@ -42,7 +42,7 @@ msgid "Continue"
 msgstr "Continuar"
 
 msgid "estimating time left"
-msgstr "estimación del tiempo restante"
+msgstr "estimando tiempo restante"
 
 msgid "Existing version"
 msgstr "Versión existente"
@@ -94,7 +94,7 @@ msgid "Upload files"
 msgstr "Subir archivos"
 
 msgid "Upload progress"
-msgstr "Estado de la Subida"
+msgstr "Progreso de la subida"
 
 msgid "Which files do you want to keep?"
 msgstr "¿Qué archivos desea conservar?"
