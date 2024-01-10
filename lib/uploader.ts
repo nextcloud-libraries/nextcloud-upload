@@ -242,6 +242,8 @@ export class Uploader {
 						method: 'MOVE',
 						url: `${tempUrl}/.file`,
 						headers: {
+							'X-OC-Mtime': file.lastModified / 1000,
+							'OC-Total-Length': file.size,
 							Destination: encodedDestinationFile,
 						},
 					})
