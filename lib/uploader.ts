@@ -223,8 +223,18 @@ export class Uploader {
 							// Update upload progress on chunk completion
 							.then(() => { upload.uploaded = upload.uploaded + maxChunkSize })
 							.catch((error) => {
+								if (error?.response?.status === 507) {
+									logger.error('Upload failed, not enough space on the server or quota exceeded. Cancelling the remaining chunks', { error, upload })
+									upload.cancel()
+									upload.status = UploadStatus.FAILED
+									throw error
+								}
+
 								if (!(error instanceof CanceledError)) {
-									logger.error(`Chunk ${chunk + 1} ${bufferStart} - ${bufferEnd} uploading failed`)
+									logger.error(`Chunk ${chunk + 1} ${bufferStart} - ${bufferEnd} uploading failed`, { error, upload })
+									// TODO: support retrying ?
+									// https://github.com/nextcloud-libraries/nextcloud-upload/issues/5
+									upload.cancel()
 									upload.status = UploadStatus.FAILED
 								}
 								throw error
