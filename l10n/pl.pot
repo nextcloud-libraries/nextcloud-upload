@@ -2,10 +2,11 @@
 # Translators:
 # John Molakvoæ <skjnldsv@protonmail.com>, 2023
 # M H <haincu@o2.pl>, 2023
+# Valdnet, 2024
 # 
 msgid ""
 msgstr ""
-"Last-Translator: M H <haincu@o2.pl>, 2023\n"
+"Last-Translator: Valdnet, 2024\n"
 "Language-Team: Polish (https://app.transifex.com/nextcloud/teams/64236/pl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: pl\n"
@@ -93,6 +94,9 @@ msgstr "Anulowano wysyłanie"
 
 msgid "Upload files"
 msgstr "Wyślij pliki"
+
+msgid "Upload progress"
+msgstr "Postęp wysyłania"
 
 msgid "Which files do you want to keep?"
 msgstr "Które pliki chcesz zachować"
