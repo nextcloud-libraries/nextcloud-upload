@@ -91,4 +91,4 @@ msgid "Which files do you want to keep?"
 msgstr "어떤 파일을 보존하시겠습니까?"
 
 msgid "You need to select at least one version of each file to continue."
-msgstr "계속하기 위해서는 한 파일에 최소 하나 이상의 버전을 선택해야 합니다."
+msgstr "계속하기 위해서는 한 파일에 최소 하나의 버전을 선택해야 합니다."
