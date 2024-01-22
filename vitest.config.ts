@@ -2,6 +2,9 @@ import config from './vite.config'
 
 export default async (env) => {
 	const cfg = await config(env)
+	// Node externals does not work with vitest
+	cfg.plugins = cfg.plugins!.filter((plugin) => plugin && plugin.name !== 'node-externals')
+
 	cfg.test = {
 		environment: 'jsdom',
 		coverage: {
@@ -11,6 +14,5 @@ export default async (env) => {
 			reporter: ['lcov', 'text'],
 		},
 	}
-	delete cfg.define
 	return cfg
 }
