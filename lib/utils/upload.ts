@@ -62,6 +62,10 @@ export const uploadData = async function(
  * garbage collection
  */
 export const getChunk = function(file: File, start: number, length: number): Promise<Blob> {
+	if (start === 0 && file.size <= length) {
+		return Promise.resolve(new Blob([file], { type: file.type || 'application/octet-stream' }))
+	}
+
 	// Since we use a global FileReader, we need to only read one chunk at a time
 	return readerLimit(() => new Promise((resolve, reject) => {
 		reader.onload = () => {

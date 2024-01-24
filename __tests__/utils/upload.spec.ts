@@ -35,9 +35,19 @@ describe('Get chunk from file', () => {
 		expect(chunk.size).toBe(10 * 1024 * 1024)
 	})
 
-	test('Chunking an invalid file', async () => {
+	test('Requesting a chunk bigger than the file', async () => {
 		const blob = new Blob([new ArrayBuffer(5 * 1024 * 1024)])
-		const file = new File([blob as BlobPart], 'image.jpg')
+		const file = new File([blob as BlobPart], 'image.jpg', { type: 'image/jpeg' })
+
+		const chunk = await getChunk(file, 0, 10 * 1024 * 1024)
+		expect(chunk.size).toBe(5 * 1024 * 1024)
+		expect(chunk.type).toBe('image/jpeg')
+
+	})
+
+	test('Chunking an unknown file', async () => {
+		const blob = new Blob([new ArrayBuffer(5 * 1024 * 1024)])
+		const file = new File([blob as BlobPart], 'image.jpg', { })
 
 		const chunk = await getChunk(file, 0, 10 * 1024 * 1024)
 		expect(chunk.size).toBe(5 * 1024 * 1024)
