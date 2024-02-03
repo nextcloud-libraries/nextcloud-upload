@@ -1,36 +1,98 @@
 # 
 # Translators:
-# Ari Selseng <ari@selseng.net>, 2022
+# John Molakvoæ <skjnldsv@protonmail.com>, 2023
+# Syvert Fossdal, 2024
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Ari Selseng <ari@selseng.net>, 2022\n"
-"Language-Team: Norwegian Bokmål (Norway) (https://www.transifex.com/nextcloud/teams/64236/nb_NO/)\n"
+"Last-Translator: Syvert Fossdal, 2024\n"
+"Language-Team: Norwegian Bokmål (Norway) (https://app.transifex.com/nextcloud/teams/64236/nb_NO/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: nb_NO\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+msgid "{count} file conflict"
+msgid_plural "{count} files conflict"
+msgstr[0] "{count} file conflict"
+msgstr[1] "{count} filkonflikter"
+
+msgid "{count} file conflict in {dirname}"
+msgid_plural "{count} file conflicts in {dirname}"
+msgstr[0] "{count} file conflict in {dirname}"
+msgstr[1] "{count} filkonflikter i {dirname}"
+
 msgid "{seconds} seconds left"
 msgstr "{seconds} sekunder igjen"
 
-#. time has the format 00:00:00
+#. TRANSLATORS time has the format 00:00:00
 msgid "{time} left"
 msgstr "{time} igjen"
 
 msgid "a few seconds left"
 msgstr "noen få sekunder igjen"
 
-msgid "Add"
-msgstr "Legg til"
-
 msgid "Cancel uploads"
 msgstr "Avbryt opplastninger"
+
+msgid "Continue"
+msgstr "Fortsett"
 
 msgid "estimating time left"
 msgstr "Estimerer tid igjen"
 
+msgid "Existing version"
+msgstr "Gjeldende versjon"
+
+msgid ""
+"If you select both versions, the copied file will have a number added to its"
+" name."
+msgstr ""
+"Hvis du velger begge versjoner, vil den kopierte filen få et tall lagt til "
+"navnet."
+
+msgid "Last modified date unknown"
+msgstr "Siste gang redigert ukjent"
+
+msgid "New"
+msgstr "Ny"
+
+msgid "New version"
+msgstr "Ny versjon"
+
 msgid "paused"
 msgstr "pauset"
 
+msgid "Preview image"
+msgstr "Forhåndsvis bilde"
+
+msgid "Select all checkboxes"
+msgstr "Velg alle"
+
+msgid "Select all existing files"
+msgstr "Velg alle eksisterende filer"
+
+msgid "Select all new files"
+msgstr "Velg alle nye filer"
+
+msgid "Skip this file"
+msgid_plural "Skip {count} files"
+msgstr[0] "Skip this file"
+msgstr[1] "Hopp over {count} filer"
+
+msgid "Unknown size"
+msgstr "Ukjent størrelse"
+
+msgid "Upload cancelled"
+msgstr "Opplasting avbrutt"
+
 msgid "Upload files"
 msgstr "Last opp filer"
+
+msgid "Upload progress"
+msgstr "Fremdrift, opplasting"
+
+msgid "Which files do you want to keep?"
+msgstr "Hvilke filer vil du beholde?"
+
+msgid "You need to select at least one version of each file to continue."
+msgstr "Du må velge minst en versjon av hver fil for å fortsette."
