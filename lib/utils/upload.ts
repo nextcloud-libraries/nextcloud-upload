@@ -1,4 +1,4 @@
-import type { AxiosResponse } from 'axios'
+import type { AxiosProgressEvent, AxiosResponse } from 'axios'
 import { generateRemoteUrl } from '@nextcloud/router'
 import { getCurrentUser } from '@nextcloud/auth'
 import axios from '@nextcloud/axios'
@@ -22,7 +22,7 @@ export const uploadData = async function(
 	url: string,
 	uploadData: UploadData,
 	signal: AbortSignal,
-	onUploadProgress = () => {},
+	onUploadProgress:(event: AxiosProgressEvent) => void = () => {},
 	destinationFile: string | undefined = undefined,
 	headers: Record<string, string|number> = {},
 ): Promise<AxiosResponse> {
