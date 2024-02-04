@@ -295,7 +295,10 @@ export class Uploader {
 							encodedDestinationFile,
 							blob,
 							upload.signal,
-							() => this.updateStats(),
+							(event) => {
+								upload.uploaded = upload.uploaded + event.bytes
+								this.updateStats()
+							},
 							undefined,
 							{
 								'X-OC-Mtime': file.lastModified / 1000,
