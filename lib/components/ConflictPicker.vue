@@ -25,7 +25,9 @@
 			@submit.prevent.stop="onSubmit">
 			<!-- Select all checkboxes -->
 			<fieldset class="conflict-picker__all" data-cy-conflict-picker-fieldset="all">
-				<legend class="hidden-visually">{{ t('Select all checkboxes') }}</legend>
+				<legend class="hidden-visually">
+					{{ t('Select all checkboxes') }}
+				</legend>
 				<NcCheckboxRadioSwitch v-bind="selectAllNewBind"
 					data-cy-conflict-picker-input-incoming="all"
 					@update:checked="onSelectAllNew">
