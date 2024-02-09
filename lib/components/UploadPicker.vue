@@ -36,7 +36,7 @@
 				:close-after-click="true"
 				class="upload-picker__menu-entry"
 				@click="entry.handler(destination, content)">
-				<template #icon v-if="entry.iconSvgInline">
+				<template v-if="entry.iconSvgInline" #icon>
 					<NcIconSvgWrapper :svg="entry.iconSvgInline" />
 				</template>
 				{{ entry.displayName }}
@@ -50,7 +50,9 @@
 				:error="hasFailure"
 				:value="progress"
 				size="medium" />
-			<p :id="progressTimeId">{{ timeLeft }}</p>
+			<p :id="progressTimeId">
+				{{ timeLeft }}
+			</p>
 		</div>
 
 		<!-- Cancel upload button -->
@@ -138,6 +140,10 @@ export default Vue.extend({
 		 */
 		content: {
 			type: Array as PropType<Node[]>,
+			default: () => [],
+		},
+		forbiddenCharacters: {
+			type: Array as PropType<string[]>,
 			default: () => [],
 		},
 	},
@@ -269,10 +275,17 @@ export default Vue.extend({
 			}
 
 			files.forEach(file => {
-				this.uploadManager.upload(file.name, file)
-					.catch(() => {
-						// Ignore errors, they are handled by the upload manager
-					})
+				const forbiddenCharacters = (this.forbiddenCharacters || []) as string[]
+				const forbiddenChar = forbiddenCharacters.find(char => file.name.includes(char))
+
+				if (forbiddenChar) {
+					showError(t(`"${forbiddenChar}" is not allowed inside a file name.`))
+				} else {
+					this.uploadManager.upload(file.name, file)
+						.catch(() => {
+							// Ignore errors, they are handled by the upload manager
+						})
+				}
 			})
 			this.$refs.form.reset()
 		},
