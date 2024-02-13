@@ -1,5 +1,23 @@
 # Changelog
 
+## [v1.0.5](https://github.com/nextcloud-libraries/nextcloud-upload/tree/v1.0.5) (2024-02-13)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-upload/compare/v1.0.4...v1.0.5)
+
+### :bug: Fixed bugs
+* fix: also add `X-OC-Mtime` header to final chunks move by @skjnldsv in https://github.com/nextcloud-libraries/nextcloud-upload/pull/1038
+* fix: properly handle chunk upload failure by @skjnldsv in https://github.com/nextcloud-libraries/nextcloud-upload/pull/1042
+* fix: Add upload progress for non-chunked uploads by @susnux in https://github.com/nextcloud-libraries/nextcloud-upload/pull/1080
+* fix: do not try to slice in chunk larger than the File itself by @skjnldsv in https://github.com/nextcloud-libraries/nextcloud-upload/pull/1057
+* fix: Some issues with `package.json` by @susnux in https://github.com/nextcloud-libraries/nextcloud-upload/pull/1088
+
+### Changed
+* Require NPM v10 to be compatible with LTS Node 20
+* Updated translations
+* Updated dependencies
+* Updated development dependencies
+* Migrate cypress config to use to vite by @susnux in https://github.com/nextcloud-libraries/nextcloud-upload/pull/999
+* chore: add block-unconventional-commits.yml by @skjnldsv in https://github.com/nextcloud-libraries/nextcloud-upload/pull/1082
+
 ## [v1.0.4](https://github.com/nextcloud-libraries/nextcloud-upload/tree/v1.0.4) (2023-12-15)
 
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-upload/compare/v1.0.3...v1.0.4)
