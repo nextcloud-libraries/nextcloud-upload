@@ -48,7 +48,7 @@
   },
   "engines": {
     "node": "^20.0.0",
-    "npm": "^9.0.0"
+    "npm": "^10.0.0"
   },
   "homepage": "https://github.com/skjnldsv/nextcloud-upload",
   "devDependencies": {
@@ -84,10 +84,10 @@
     "p-cancelable": "^4.0.1",
     "p-limit": "^5.0.0",
     "p-queue": "^8.0.0",
-    "simple-eta": "^3.0.2",
-    "vue": "^2.7.15"
+    "simple-eta": "^3.0.2"
   },
   "peerDependencies": {
-    "@nextcloud/vue": "^8.0.0-beta || ^8.0.0"
+    "@nextcloud/vue": "^8.0.0-beta || ^8.0.0",
+    "vue": "^2.7.16"
   }
 }

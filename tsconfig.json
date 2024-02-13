@@ -8,6 +8,7 @@
     "esModuleInterop": true,
     "emitDeclarationOnly": true,
     "moduleResolution": "Bundler",
+    "noEmit": false,
     "lib": ["DOM", "ESNext"],
     "outDir": "./dist",
     "rootDir": "lib/",
