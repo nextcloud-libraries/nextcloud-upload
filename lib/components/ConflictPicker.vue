@@ -1,7 +1,8 @@
 <template>
-	<NcModal class="conflict-picker"
+	<NcDialog class="conflict-picker"
 		data-cy-conflict-picker
 		:close-on-click-outside="false"
+		:canClose="false"
 		:show="opened"
 		size="large"
 		@close="onCancel">
@@ -67,7 +68,7 @@
 				{{ t('Continue') }}
 			</NcButton>
 		</div>
-	</NcModal>
+	</NcDialog>
 </template>
 
 <script lang="ts">
@@ -81,7 +82,7 @@ import Vue from 'vue'
 
 import NcButton from '@nextcloud/vue/dist/Components/NcButton.js'
 import NcCheckboxRadioSwitch from '@nextcloud/vue/dist/Components/NcCheckboxRadioSwitch.js'
-import NcModal from '@nextcloud/vue/dist/Components/NcModal.js'
+import NcDialog from '@nextcloud/vue/dist/Components/NcDialog.js'
 import ArrowRight from 'vue-material-design-icons/ArrowRight.vue'
 import Close from 'vue-material-design-icons/Close.vue'
 
@@ -99,7 +100,7 @@ export default Vue.extend({
 		Close,
 		NcButton,
 		NcCheckboxRadioSwitch,
-		NcModal,
+		NcDialog,
 		NodesPicker,
 	},
 
@@ -372,7 +373,7 @@ export default Vue.extend({
 		position: sticky;
 		z-index: 10;
 		top: 0;
-		padding: var(--margin);
+		padding: 0 var(--margin);
 		padding-bottom: 0;
 	}
 
