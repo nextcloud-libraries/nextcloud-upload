@@ -2,14 +2,13 @@
 	<NcDialog class="conflict-picker"
 		data-cy-conflict-picker
 		:close-on-click-outside="false"
-		:canClose="false"
+		:can-close="false"
 		:show="opened"
+		:name="name"
 		size="large"
 		@close="onCancel">
 		<!-- Header -->
 		<div class="conflict-picker__header">
-			<h2 class="conflict-picker__title" v-text="name" />
-
 			<!-- Description -->
 			<p id="conflict-picker-description" class="conflict-picker__description">
 				{{ t('Which files do you want to keep?') }}<br>
