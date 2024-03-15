@@ -36,11 +36,11 @@ describe('ConflictPicker rendering', { testIsolation: true }, () => {
 		cy.get('[data-cy-conflict-picker-fieldset="all"]').should('exist')
 		cy.get('[data-cy-conflict-picker-fieldset="image.jpg"]').should('exist')
 
-		cy.get('[data-cy-conflict-picker-skip]').should('be.visible')
+		cy.get('[data-cy-conflict-picker-skip]').scrollIntoView().should('be.visible')
 		cy.get('[data-cy-conflict-picker-submit]').should('be.visible')
 
 		// Force close and cancel
-		cy.get('[data-cy-conflict-picker] .modal-container__close').click({ force: true })
+		cy.get('[data-cy-conflict-picker-skip]').click({ force: true })
 	})
 })
 
