@@ -48,10 +48,10 @@
 		</form>
 
 		<!-- Controls -->
-		<div class="conflict-picker__controls">
+		<template #actions>
 			<NcButton data-cy-conflict-picker-skip @click="onSkip">
 				<template #icon>
-					<Close />
+					<Close :size="20" />
 				</template>
 				{{ skipButtonLabel }}
 			</NcButton>
@@ -62,11 +62,11 @@
 				data-cy-conflict-picker-submit
 				@click.stop.prevent="onSubmit">
 				<template #icon>
-					<ArrowRight />
+					<ArrowRight :size="20" />
 				</template>
 				{{ t('Continue') }}
 			</NcButton>
-		</div>
+		</template>
 	</NcDialog>
 </template>
 
@@ -417,25 +417,13 @@ export default Vue.extend({
 		}
 	}
 
-	&__controls {
-		z-index: 10;
-		display: flex;
-		justify-content: flex-end;
-		padding: var(--secondary-margin);
-		border-radius: var(--border-radius-large);
-		background-image: linear-gradient(to bottom, transparent, var(--color-main-background-blur) 10%, var(--color-main-background) 15%);
-		button {
-			margin-left: var(--secondary-margin);
-
-			// Do not use a real disabled state so
-			// the user can still click and trigger the
-			// form validation check.
-			&.button-vue--disabled {
-				cursor: default;
-				opacity: .5;
-				filter: saturate(.7);
-			}
-		}
+	// Do not use a real disabled state so
+	// the user can still click and trigger the
+	// form validation check.
+	.button-vue--disabled {
+		cursor: default;
+		opacity: .5;
+		filter: saturate(.7);
 	}
 }
 
