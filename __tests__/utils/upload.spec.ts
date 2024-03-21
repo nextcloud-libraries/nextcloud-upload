@@ -62,7 +62,7 @@ describe('Initialize chunks upload temporary workspace', () => {
 
 		// mock the current location for our assert on the URL
 		Object.defineProperty(window, 'location', {
-			value: new URL('https://cloud.domain.com'),
+			value: new URL('https://cloud.domain.com/index.php/apps/test'),
 			configurable: true,
 		})
 
@@ -71,7 +71,7 @@ describe('Initialize chunks upload temporary workspace', () => {
 
 		const url = await initChunkWorkspace()
 
-		expect(url.startsWith('https://cloud.domain.com/remote.php/dav/uploads/test/web-file-upload-')).toBe(true)
+		expect(url).toMatch('https://cloud.domain.com/remote.php/dav/uploads/test/web-file-upload-')
 		expect(url.length).toEqual('https://cloud.domain.com/remote.php/dav/uploads/test/web-file-upload-123456789abcdefg'.length)
 
 		expect(axiosMock.request).toHaveBeenCalledTimes(1)
@@ -86,7 +86,7 @@ describe('Initialize chunks upload temporary workspace', () => {
 
 		// mock the current location for our assert on the URL
 		Object.defineProperty(window, 'location', {
-			value: new URL('https://cloud.domain.com'),
+			value: new URL('https://cloud.domain.com/index.php/apps/test'),
 			configurable: true,
 		})
 
@@ -95,7 +95,7 @@ describe('Initialize chunks upload temporary workspace', () => {
 
 		const url = await initChunkWorkspace('https://cloud.domain.com/remote.php/dav/files/test/image.jpg')
 
-		expect(url.startsWith('https://cloud.domain.com/remote.php/dav/uploads/test/web-file-upload-')).toBe(true)
+		expect(url).toMatch('https://cloud.domain.com/remote.php/dav/uploads/test/web-file-upload-')
 		expect(url.length).toEqual('https://cloud.domain.com/remote.php/dav/uploads/test/web-file-upload-123456789abcdefg'.length)
 
 		expect(axiosMock.request).toHaveBeenCalledTimes(1)
