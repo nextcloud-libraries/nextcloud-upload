@@ -81,10 +81,10 @@
 import type { Entry, Node } from '@nextcloud/files'
 import type { PropType } from 'vue'
 
-import { defineComponent } from 'vue'
 import { getNewFileMenuEntries, Folder } from '@nextcloud/files'
 import { showError } from '@nextcloud/dialogs'
 import makeEta from 'simple-eta'
+import Vue from 'vue'
 
 import NcActionButton from '@nextcloud/vue/dist/Components/NcActionButton.js'
 import NcActions from '@nextcloud/vue/dist/Components/NcActions.js'
@@ -102,7 +102,7 @@ import { Status as UploadStatus } from '../upload.ts'
 import { t } from '../utils/l10n.ts'
 import logger from '../utils/logger.ts'
 
-export default defineComponent({
+export default Vue.extend({
 	name: 'UploadPicker',
 
 	components: {
