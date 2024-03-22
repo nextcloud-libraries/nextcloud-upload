@@ -1,7 +1,9 @@
 import type { Node } from '@nextcloud/files'
+import type { AsyncComponent } from 'vue'
 
 import { Uploader } from './uploader'
 import UploadPicker from './components/UploadPicker.vue'
+import Vue, { defineAsyncComponent } from 'vue'
 
 export type { Uploader } from './uploader'
 export { Status as UploaderStatus } from './uploader'
@@ -53,31 +55,35 @@ export function upload(destinationPath: string, file: File): Uploader {
  * @return {Promise<ConflictResolutionResult>} the selected and renamed files
  */
 export async function openConflictPicker(dirname: string, conflicts: (File|Node)[], content: Node[]): Promise<ConflictResolutionResult> {
-	const { default: ConflictPicker } = await import('./components/ConflictPicker.vue')
+	const ConflictPicker = defineAsyncComponent(() => import('./components/ConflictPicker.vue')) as AsyncComponent
 	return new Promise((resolve, reject) => {
-		const picker = new ConflictPicker({
-			propsData: {
-				dirname,
-				conflicts,
-				content,
-			},
-		})
+		const picker = new Vue({
+			name: 'ConflictPickerRoot',
+			render: (h) => h(ConflictPicker, {
+				props: {
+					dirname,
+					conflicts,
+					content,
+				},
+				on: {
+					submit(results: ConflictResolutionResult) {
+						// Return the results
+						resolve(results)
 
-		// Add listeners
-		picker.$on('submit', (results: ConflictResolutionResult) => {
-			// Return the results
-			resolve(results)
+						// Destroy the component
+						picker.$destroy()
+						picker.$el?.parentNode?.removeChild(picker.$el)
+					},
+					cancel(error?: Error) {
+						// Reject the promise
+						reject(error ?? new Error('Canceled'))
 
-			// Destroy the component
-			picker.$destroy()
-			picker.$el?.parentNode?.removeChild(picker.$el)
-		})
-		picker.$on('cancel', (error?: Error) => {
-			reject(error ?? new Error('Canceled'))
-
-			// Destroy the component
-			picker.$destroy()
-			picker.$el?.parentNode?.removeChild(picker.$el)
+						// Destroy the component
+						picker.$destroy()
+						picker.$el?.parentNode?.removeChild(picker.$el)
+					},
+				},
+			}),
 		})
 
 		// Mount the component

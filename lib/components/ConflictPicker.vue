@@ -2,17 +2,18 @@
 	<NcDialog class="conflict-picker"
 		data-cy-conflict-picker
 		:close-on-click-outside="false"
-		:can-close="false"
+		:can-close="true"
 		:show="opened"
 		:name="name"
 		size="large"
-		@close="onCancel">
+		@closing="onCancel">
 		<!-- Header -->
 		<div class="conflict-picker__header">
 			<!-- Description -->
 			<p id="conflict-picker-description" class="conflict-picker__description">
 				{{ t('Which files do you want to keep?') }}<br>
-				{{ t('If you select both versions, the copied file will have a number added to its name.') }}
+				{{ t('If you select both versions, the copied file will have a number added to its name.') }}<br>
+				{{ t('When an incoming folder is selected, any conflicting files within it will also be overwritten.') }}
 			</p>
 		</div>
 
@@ -49,17 +50,35 @@
 
 		<!-- Controls -->
 		<template #actions>
-			<NcButton data-cy-conflict-picker-skip @click="onSkip">
+			<!-- Cancel the entire operation -->
+			<NcButton :aria-label="t('Cancel')"
+				:title="t('Cancel the entire operation')"
+				data-cy-conflict-picker-cancel
+				type="tertiary"
+				@click="onCancel">
+				<template #icon>
+					<Close :size="20" />
+				</template>
+				{{ t('Cancel') }}
+			</NcButton>
+
+			<!-- Align right -->
+			<span class="dialog__actions-separator" />
+
+			<NcButton :aria-label="skipButtonLabel"
+				data-cy-conflict-picker-skip
+				@click="onSkip">
 				<template #icon>
 					<Close :size="20" />
 				</template>
 				{{ skipButtonLabel }}
 			</NcButton>
-			<NcButton type="primary"
+			<NcButton :aria-label="t('Continue')"
 				:class="{ 'button-vue--disabled': !isEnoughSelected}"
 				:title="isEnoughSelected ? '' : blockedTitle"
-				native-type="submit"
 				data-cy-conflict-picker-submit
+				native-type="submit"
+				type="primary"
 				@click.stop.prevent="onSubmit">
 				<template #icon>
 					<ArrowRight :size="20" />
@@ -75,15 +94,15 @@ import type { ConflictResolutionResult } from '../index.ts'
 import type { PropType } from 'vue'
 
 import { basename, extname } from 'path'
+import { defineComponent } from 'vue'
 import { Node } from '@nextcloud/files'
 import { showError } from '@nextcloud/dialogs'
-import Vue from 'vue'
 
-import NcButton from '@nextcloud/vue/dist/Components/NcButton.js'
-import NcCheckboxRadioSwitch from '@nextcloud/vue/dist/Components/NcCheckboxRadioSwitch.js'
-import NcDialog from '@nextcloud/vue/dist/Components/NcDialog.js'
 import ArrowRight from 'vue-material-design-icons/ArrowRight.vue'
 import Close from 'vue-material-design-icons/Close.vue'
+import NcCheckboxRadioSwitch from '@nextcloud/vue/dist/Components/NcCheckboxRadioSwitch.js'
+import NcDialog from '@nextcloud/vue/dist/Components/NcDialog.js'
+import NcButton from '@nextcloud/vue/dist/Components/NcButton.js'
 
 import { n, t } from '../utils/l10n.ts'
 import logger from '../utils/logger.ts'
@@ -91,7 +110,7 @@ import NodesPicker from './NodesPicker.vue'
 
 export type NodesPickerRef = InstanceType<typeof NodesPicker>
 
-export default Vue.extend({
+export default defineComponent({
 	name: 'ConflictPicker',
 
 	components: {
@@ -122,6 +141,8 @@ export default Vue.extend({
 			required: true,
 		},
 	},
+
+	emits: ['cancel', 'submit'],
 
 	data() {
 		return {
@@ -207,13 +228,12 @@ export default Vue.extend({
 		},
 	},
 
-	beforeMount() {
+	mounted() {
 		// Using map keep the same order
 		this.files = this.conflicts.map((conflict: File|Node) => {
 			const name = (conflict instanceof File) ? conflict.name : conflict.basename
 			return this.content.find((node: Node) => node.basename === name)
 		}).filter(Boolean) as Node[]
-		logger.debug('ConflictPicker initialised', { files: this.files, conflicts: this.conflicts, content: this.content })
 
 		if (this.conflicts.length === 0 || this.files.length === 0) {
 			const error = new Error('ConflictPicker: files and conflicts must not be empty')
@@ -222,10 +242,13 @@ export default Vue.extend({
 		}
 
 		if (this.conflicts.length !== this.files.length) {
-			const error = new Error('ConflictPicker: files and conflicts must have the same length')
+			const error = new Error('ConflictPicker: files and conflicts must have the same length. Make sure you filter out non conflicting files from the conflicts array.')
 			this.onCancel(error)
 			throw error
 		}
+
+		// Successful initialisation
+		logger.debug('ConflictPicker initialised', { files: this.files, conflicts: this.conflicts, content: this.content })
 	},
 
 	methods: {
@@ -269,11 +292,15 @@ export default Vue.extend({
 				toRename.forEach(file => {
 					const name = (file instanceof File) ? file.name : file.basename
 					const newName = this.getUniqueName(name, directoryContent)
+					// If File, create a new one with the new name
 					if (file instanceof File) {
-						file = new File([file], newName, { type: file.type, lastModified: file.lastModified })
+						// Keep the original file object and force rename
+						Object.defineProperty(file, 'name', { value: newName })
 						renamed.push(file)
 						return
 					}
+
+					// Rename the node
 					file.rename(newName)
 					renamed.push(file)
 				})
@@ -283,7 +310,7 @@ export default Vue.extend({
 			const selected = this.newSelected.filter((node: File|Node) => {
 				const name = (node instanceof File) ? node.name : node.basename
 				// files that are not in the old selection
-				return !selectedOldNames.includes(name)
+				return !selectedOldNames.includes(name) && !toRename.includes(node)
 			}) as (File|Node)[]
 
 			logger.debug('Conflict resolved', { selected, renamed })
@@ -373,17 +400,15 @@ export default Vue.extend({
 		z-index: 10;
 		top: 0;
 		padding: 0 var(--margin);
-		padding-bottom: 0;
+		padding-bottom: var(--secondary-margin);
 	}
 
 	&__form {
 		position: relative;
 		overflow: auto;
 		padding: 0 var(--margin);
-		// 12 px to underlap the header and controls
-		// and have the gradient background visible
-		padding-bottom: 12px;
-		margin-bottom: -12px;
+		// overlap header bottom padding
+		margin-top: calc(-1 * var(--secondary-margin));
 	}
 
 	fieldset {
@@ -425,6 +450,14 @@ export default Vue.extend({
 		opacity: .5;
 		filter: saturate(.7);
 	}
+
+	:deep(.dialog__actions) {
+		width: auto;
+		margin-inline: 12px;
+		span.dialog__actions-separator {
+			margin-left: auto;
+		}
+	}
 }
 
 // Responsive layout
@@ -445,4 +478,16 @@ export default Vue.extend({
 	}
 }
 
+// Responsive layout
+@media screen and (max-width: 512px) {
+	.conflict-picker {
+		:deep(.dialog__actions) {
+			flex-wrap: wrap;
+			span.dialog__actions-separator {
+				// Make the second row wrap
+				width: 100%;
+			}
+		}
+	}
+}
 </style>

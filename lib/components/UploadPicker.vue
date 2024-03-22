@@ -104,6 +104,7 @@ import logger from '../utils/logger.ts'
 
 export default Vue.extend({
 	name: 'UploadPicker',
+
 	components: {
 		Cancel,
 		NcActionButton,
@@ -318,7 +319,6 @@ export default Vue.extend({
 				return
 			}
 
-			logger.debug('Destination set', { destination })
 			this.uploadManager.destination = destination
 
 			// If the destination change, we need to refresh the menu
