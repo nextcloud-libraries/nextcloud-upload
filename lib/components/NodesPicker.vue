@@ -9,7 +9,10 @@
 			@update:checked="onUpdateIncomingChecked">
 			<span class="node-picker node-picker--incoming">
 				<!-- Icon or preview -->
-				<FileSvg v-if="!incomingPreview" class="node-picker__icon" :size="48" />
+				<template v-if="!incomingPreview">
+					<FolderSvg v-if="isFolder(existing)" class="node-picker__icon" :size="48" />
+					<FileSvg v-else class="node-picker__icon" :size="48" />
+				</template>
 				<img v-else
 					class="node-picker__preview"
 					:src="incomingPreview"
@@ -32,7 +35,10 @@
 			@update:checked="onUpdateExistingChecked">
 			<span class="node-picker node-picker--existing">
 				<!-- Icon or preview -->
-				<FileSvg v-if="!existingPreview" class="node-picker__icon" :size="48" />
+				<template v-if="!existingPreview">
+					<FolderSvg v-if="isFolder(existing)" class="node-picker__icon" :size="48" />
+					<FileSvg v-else class="node-picker__icon" :size="48" />
+				</template>
 				<img v-else
 					class="node-picker__preview"
 					:src="existingPreview"
@@ -53,33 +59,35 @@
 <script lang="ts">
 import type { PropType } from 'vue'
 
+import { defineComponent } from 'vue'
 import { File as NcFile, Folder, formatFileSize, FileType, Node } from '@nextcloud/files'
 import { generateUrl } from '@nextcloud/router'
-import moment from 'moment'
-import Vue from 'vue'
+import moment from '@nextcloud/moment'
 
 import FileSvg from 'vue-material-design-icons/File.vue'
+import FolderSvg from 'vue-material-design-icons/Folder.vue'
 import NcCheckboxRadioSwitch from '@nextcloud/vue/dist/Components/NcCheckboxRadioSwitch.js'
 
 import { t } from '../utils/l10n.ts'
 
 const PREVIEW_SIZE = 64
 
-export default Vue.extend({
+export default defineComponent({
 	name: 'NodesPicker',
 
 	components: {
 		FileSvg,
+		FolderSvg,
 		NcCheckboxRadioSwitch,
 	},
 
 	props: {
 		incoming: {
-			type: [Node, File, NcFile, Folder],
+			type: Object as PropType<File|Node|Folder|NcFile>,
 			required: true,
 		},
 		existing: {
-			type: [NcFile, Folder],
+			type: Object as PropType<Folder|NcFile>,
 			required: true,
 		},
 		newSelected: {
@@ -166,6 +174,11 @@ export default Vue.extend({
 			}
 		},
 
+		isFolder(node: File|Node): boolean {
+			return node.type === FileType.Folder
+				|| node.type === 'httpd/unix-directory'
+		},
+
 		isChecked(node: Node, selected: Node[]): boolean {
 			return selected.includes(node)
 		},
@@ -241,6 +254,10 @@ $height: 64px;
 
 	&__icon {
 		color: var(--color-text-maxcontrast);
+
+		&.folder-icon {
+			color: var(--color-primary-element);
+		}
 	}
 
 	&__preview {

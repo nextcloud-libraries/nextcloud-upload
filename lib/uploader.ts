@@ -85,6 +85,8 @@ export class Uploader {
 		if (!folder) {
 			throw new Error('Invalid destination folder')
 		}
+
+		logger.debug('Destination set', { folder })
 		this._destinationFolder = folder
 	}
 
