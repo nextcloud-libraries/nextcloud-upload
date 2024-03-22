@@ -310,7 +310,7 @@ export default defineComponent({
 			const selected = this.newSelected.filter((node: File|Node) => {
 				const name = (node instanceof File) ? node.name : node.basename
 				// files that are not in the old selection
-				return !selectedOldNames.includes(name)
+				return !selectedOldNames.includes(name) && !toRename.includes(node)
 			}) as (File|Node)[]
 
 			logger.debug('Conflict resolved', { selected, renamed })

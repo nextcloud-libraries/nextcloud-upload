@@ -37,13 +37,18 @@ Cypress.Commands.add('mount', (component, optionsOrProps) => {
 	let instance = null
 
 	// Add our mounted method to exposethe component instance to cypress
-	if (!component?.options?.mounted) {
-		component.options.mounted = []
+	if (typeof component?.mounted !== 'function') {
+		component.mounted = function() {
+			instance = this
+		}
+	} else {
+		// If the component already has a mounted method, we need to chain them
+		const originalMounted = component.mounted
+		component.mounted = function() {
+			originalMounted.call(this)
+			instance = this
+		}
 	}
-
-	component.options.mounted.push(function() {
-		instance = this
-	})
 
 	// Expose the component with cy.get('@component')
 	return mount(component, optionsOrProps).then(() => {

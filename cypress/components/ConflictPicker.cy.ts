@@ -47,7 +47,7 @@ describe('ConflictPicker rendering', { testIsolation: true }, () => {
 describe('ConflictPicker resolving', () => {
 	let images: File[] = []
 
-	before(() => {
+	beforeEach(() => {
 		images = []
 		cy.fixture('image.jpg', null).then((content) => {
 			images.push(new File([content], 'image1.jpg', { type: 'image/jpeg' }))
@@ -84,7 +84,7 @@ describe('ConflictPicker resolving', () => {
 			listeners: {
 				submit: onSubmit,
 				cancel: onCancel,
-			}
+			},
 		})
 
 		cy.get('[data-cy-conflict-picker-form]').should('be.visible')
@@ -129,7 +129,7 @@ describe('ConflictPicker resolving', () => {
 			listeners: {
 				submit: onSubmit,
 				cancel: onCancel,
-			}
+			},
 		})
 
 		cy.get('[data-cy-conflict-picker-form]').should('be.visible')
@@ -174,7 +174,7 @@ describe('ConflictPicker resolving', () => {
 			listeners: {
 				submit: onSubmit,
 				cancel: onCancel,
-			}
+			},
 		})
 
 		cy.get('[data-cy-conflict-picker-form]').should('be.visible')
@@ -221,7 +221,7 @@ describe('ConflictPicker resolving', () => {
 			listeners: {
 				submit: onSubmit,
 				cancel: onCancel,
-			}
+			},
 		})
 
 		cy.get('[data-cy-conflict-picker-form]').should('be.visible')
@@ -269,7 +269,7 @@ describe('ConflictPicker resolving', () => {
 			listeners: {
 				submit: onSubmit,
 				cancel: onCancel,
-			}
+			},
 		})
 
 		cy.get('[data-cy-conflict-picker-form]').should('be.visible')

@@ -60,7 +60,7 @@
 import type { PropType } from 'vue'
 
 import { defineComponent } from 'vue'
-import { File as NcFile, Folder, formatFileSize, FileType, Node } from '@nextcloud/files'
+import { formatFileSize, FileType, Node } from '@nextcloud/files'
 import { generateUrl } from '@nextcloud/router'
 import moment from '@nextcloud/moment'
 
@@ -83,11 +83,11 @@ export default defineComponent({
 
 	props: {
 		incoming: {
-			type: Object as PropType<File|Node|Folder|NcFile>,
+			type: [File, Object] as PropType<File|Node>,
 			required: true,
 		},
 		existing: {
-			type: Object as PropType<Folder|NcFile>,
+			type: Object as PropType<Node>,
 			required: true,
 		},
 		newSelected: {
@@ -179,21 +179,18 @@ export default defineComponent({
 				|| node.type === 'httpd/unix-directory'
 		},
 
-		isChecked(node: Node, selected: Node[]): boolean {
+		isChecked(node: File|Node, selected: (File|Node)[]): boolean {
 			return selected.includes(node)
 		},
 
-		onUpdateChecked(node: Node, selection: string): void {
-			this.$emit(`update:${selection}`, ...args)
-		},
-		onUpdateIncomingChecked(checked) {
+		onUpdateIncomingChecked(checked: boolean) {
 			if (checked) {
 				this.$emit('update:newSelected', [this.incoming, ...this.newSelected])
 			} else {
 				this.$emit('update:newSelected', this.newSelected.filter((node) => node !== this.incoming))
 			}
 		},
-		onUpdateExistingChecked(checked) {
+		onUpdateExistingChecked(checked: boolean) {
 			if (checked) {
 				this.$emit('update:oldSelected', [this.existing, ...this.oldSelected])
 			} else {
