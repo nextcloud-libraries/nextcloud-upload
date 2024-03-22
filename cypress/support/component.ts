@@ -36,7 +36,19 @@ declare global {
 Cypress.Commands.add('mount', (component, optionsOrProps) => {
 	let instance = null
 
-	// Add our mounted method to exposethe component instance to cypress
+	// Add our mounted method to expose the component instance to cypress
+
+	// Support old vue 2 options
+	if (component.options) {
+		if (!component.options.mounted) {
+			component.options.mounted = []
+		}
+		component.options.mounted.push(function() {
+			instance = this
+		})
+	}
+
+	// Support new vue 3 options
 	if (typeof component?.mounted !== 'function') {
 		component.mounted = function() {
 			instance = this
