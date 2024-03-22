@@ -139,6 +139,10 @@ export default Vue.extend({
 			type: Array as PropType<Node[]>,
 			default: () => [],
 		},
+		forbiddenCharacters: {
+			type: String,
+			default: '',
+		},
 	},
 
 	data() {
@@ -268,10 +272,17 @@ export default Vue.extend({
 			}
 
 			files.forEach(file => {
-				this.uploadManager.upload(file.name, file)
-					.catch(() => {
-						// Ignore errors, they are handled by the upload manager
-					})
+				const forbidden = this.forbiddenCharacters.split('')
+				let forbiddenChar
+
+				if(forbiddenChar = forbidden.find(char => file.name.includes(char))){
+					showError(t(`"${forbiddenChar}" is not allowed inside a file name.`));
+				}else{
+					this.uploadManager.upload(file.name, file)
+						.catch(() => {
+							// Ignore errors, they are handled by the upload manager
+						})
+				}
 			})
 			this.$refs.form.reset()
 		},
