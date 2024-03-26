@@ -1,11 +1,11 @@
 # 
 # Translators:
-# John Molakvoæ <skjnldsv@protonmail.com>, 2023
-# Flávio Veras <flaviove@gmail.com>, 2023
+# Joas Schilling, 2024
+# Leonardo Colman Lopes <leonardo.dev@colman.com.br>, 2024
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Flávio Veras <flaviove@gmail.com>, 2023\n"
+"Last-Translator: Leonardo Colman Lopes <leonardo.dev@colman.com.br>, 2024\n"
 "Language-Team: Portuguese (Brazil) (https://app.transifex.com/nextcloud/teams/64236/pt_BR/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: pt_BR\n"
@@ -32,6 +32,12 @@ msgstr "{time} restante"
 
 msgid "a few seconds left"
 msgstr "alguns segundos restantes"
+
+msgid "Cancel"
+msgstr "Cancelar"
+
+msgid "Cancel the entire operation"
+msgstr "Cancelar a operação inteira"
 
 msgid "Cancel uploads"
 msgstr "Cancelar uploads"
@@ -93,6 +99,13 @@ msgstr "Enviar arquivos"
 
 msgid "Upload progress"
 msgstr "Envio em progresso"
+
+msgid ""
+"When an incoming folder is selected, any conflicting files within it will "
+"also be overwritten."
+msgstr ""
+"Quando uma pasta é selecionada, quaisquer arquivos dentro dela também serão "
+"sobrescritos."
 
 msgid "Which files do you want to keep?"
 msgstr "Quais arquivos você deseja manter?"
