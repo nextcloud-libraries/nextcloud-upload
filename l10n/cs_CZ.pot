@@ -1,11 +1,11 @@
 # 
 # Translators:
-# John Molakvoæ <skjnldsv@protonmail.com>, 2023
-# Pavel Borecki <pavel.borecki@gmail.com>, 2023
+# Joas Schilling, 2024
+# Michal Šmahel <ceskyDJ@seznam.cz>, 2024
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Pavel Borecki <pavel.borecki@gmail.com>, 2023\n"
+"Last-Translator: Michal Šmahel <ceskyDJ@seznam.cz>, 2024\n"
 "Language-Team: Czech (Czech Republic) (https://app.transifex.com/nextcloud/teams/64236/cs_CZ/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: cs_CZ\n"
@@ -34,6 +34,12 @@ msgstr "zbývá {time}"
 
 msgid "a few seconds left"
 msgstr "zbývá několik sekund"
+
+msgid "Cancel"
+msgstr "Zrušit"
+
+msgid "Cancel the entire operation"
+msgstr "Zrušit celou operaci"
 
 msgid "Cancel uploads"
 msgstr "Zrušit nahrávání"
@@ -95,6 +101,13 @@ msgstr "Nahrát soubory"
 
 msgid "Upload progress"
 msgstr "Postup v nahrávání"
+
+msgid ""
+"When an incoming folder is selected, any conflicting files within it will "
+"also be overwritten."
+msgstr ""
+"Po výběru příchozí složky budou rovněž přepsány všechny v ní obsažené "
+"konfliktní soubory"
 
 msgid "Which files do you want to keep?"
 msgstr "Které soubory si přejete ponechat?"
