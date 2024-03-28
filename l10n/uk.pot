@@ -1,7 +1,6 @@
 # 
 # Translators:
-# John Molakvoæ <skjnldsv@protonmail.com>, 2023
-# Mehi Loki, 2023
+# Joas Schilling, 2024
 # O St <oleksiy.stasevych@gmail.com>, 2024
 # 
 msgid ""
@@ -35,6 +34,12 @@ msgstr "Залишилося {time}"
 
 msgid "a few seconds left"
 msgstr "залишилося кілька секунд"
+
+msgid "Cancel"
+msgstr "Скасувати"
+
+msgid "Cancel the entire operation"
+msgstr "Скасувати операцію повністю"
 
 msgid "Cancel uploads"
 msgstr "Скасувати завантаження"
@@ -93,10 +98,17 @@ msgid "Upload cancelled"
 msgstr "Завантаження скасовано"
 
 msgid "Upload files"
-msgstr "Завантажте файли"
+msgstr "Завантажити файли"
 
 msgid "Upload progress"
 msgstr "Поступ завантаження"
+
+msgid ""
+"When an incoming folder is selected, any conflicting files within it will "
+"also be overwritten."
+msgstr ""
+"У разі вибору каталогу призначення, будь-які конфліктні файли в такому "
+"каталозі буде перезаписано поверх."
 
 msgid "Which files do you want to keep?"
 msgstr "Які файли залишити?"
