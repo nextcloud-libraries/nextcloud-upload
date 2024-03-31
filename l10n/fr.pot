@@ -2,10 +2,11 @@
 # Translators:
 # Joas Schilling, 2024
 # Benoit Pruneau, 2024
+# jed boulahya, 2024
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Benoit Pruneau, 2024\n"
+"Last-Translator: jed boulahya, 2024\n"
 "Language-Team: French (https://app.transifex.com/nextcloud/teams/64236/fr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: fr\n"
@@ -55,11 +56,11 @@ msgid ""
 "If you select both versions, the copied file will have a number added to its"
 " name."
 msgstr ""
-"Si vous sélectionnez les deux versions, un nombre sera postfixé au nom du "
-"fichier."
+"Si vous sélectionnez les deux versions, le fichier copié aura un numéro "
+"ajouté àname."
 
 msgid "Last modified date unknown"
-msgstr "Date de dernière modification inconnue"
+msgstr "Date de la dernière modification est inconnue"
 
 msgid "New"
 msgstr "Nouveau"
@@ -71,10 +72,10 @@ msgid "paused"
 msgstr "en pause"
 
 msgid "Preview image"
-msgstr "Image d'aperçu"
+msgstr "Aperçu de l'image"
 
 msgid "Select all checkboxes"
-msgstr "Sélectionner toutes les cases"
+msgstr "Sélectionner toutes les cases à cocher"
 
 msgid "Select all existing files"
 msgstr "Sélectionner tous les fichiers existants"
@@ -92,10 +93,10 @@ msgid "Unknown size"
 msgstr "Taille inconnue"
 
 msgid "Upload cancelled"
-msgstr "Envoi annulé"
+msgstr " annulé"
 
 msgid "Upload files"
-msgstr "Téléverser des fichiers"
+msgstr "Téléchargement des fichiers"
 
 msgid "Upload progress"
 msgstr "Progression du téléchargement"
