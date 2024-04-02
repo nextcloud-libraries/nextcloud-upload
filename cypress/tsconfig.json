@@ -3,7 +3,10 @@
 		"@tsconfig/cypress/tsconfig.json",
 		"../tsconfig.json"
 	],
-	"include": ["./**/*.ts"],
+	"include": [
+		"./**/*.ts", 
+		"./cypress.d.ts"
+	],
 	"compilerOptions": {
 		"types": ["cypress"],
 		"rootDir": "..",
