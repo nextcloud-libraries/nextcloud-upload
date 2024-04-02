@@ -9,6 +9,9 @@
 		<!-- Nextcloud customizations -->
 		<link href="https://nextcloud.github.io/server/apps/theming/css/default.css" rel="stylesheet" />
 		<script type="text/javascript">
+			// mocking the webroot for @nextcloud/router
+			window._oc_webroot = ''
+
 			window.OC = {
 				webroot: '',
 				config: {},
