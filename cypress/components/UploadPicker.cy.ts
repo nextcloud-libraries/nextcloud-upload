@@ -2,8 +2,8 @@
 // dist file might not be built when running eslint only
 // eslint-disable-next-line import/no-unresolved,n/no-missing-import
 import { Folder, Permission, addNewFileMenuEntry, type Entry } from '@nextcloud/files'
-import { UploadPicker, getUploader } from '../../lib/index.ts'
 import { generateRemoteUrl } from '@nextcloud/router'
+import { UploadPicker, getUploader } from '../../lib/index.ts'
 
 describe('UploadPicker rendering', () => {
 	afterEach(() => {
@@ -25,7 +25,7 @@ describe('UploadPicker rendering', () => {
 		}
 		cy.mount(UploadPicker, { propsData })
 		cy.get('[data-cy-upload-picker]').should('be.visible')
-		cy.get('[data-cy-upload-picker]').should('have.text', ' New ')
+		cy.get('[data-cy-upload-picker]').shouldHaveTrimmedText('New')
 		cy.get('[data-cy-upload-picker] [data-cy-upload-picker-input]').should('exist')
 	})
 
@@ -54,7 +54,7 @@ describe('UploadPicker valid uploads', () => {
 		cy.mount(UploadPicker, { propsData }).as('uploadPicker')
 
 		// Label is displayed before upload
-		cy.get('[data-cy-upload-picker]').should('have.text', ' New ')
+		cy.get('[data-cy-upload-picker]').shouldHaveTrimmedText('New')
 
 		// Check and init aliases
 		cy.get('[data-cy-upload-picker] [data-cy-upload-picker-input]').as('input').should('exist')
@@ -99,8 +99,79 @@ describe('UploadPicker valid uploads', () => {
 				.should('not.be.visible')
 
 			// Label is displayed again after upload
-			cy.get('[data-cy-upload-picker] button').should('have.text', ' New ')
+			cy.get('[data-cy-upload-picker] button').shouldHaveTrimmedText('New')
 		})
+	})
+})
+
+describe('UploadPicker invalid uploads', () => {
+
+	afterEach(() => {
+		// Make sure we clear the body
+		cy.window().then((win) => {
+			win.document.body.innerHTML = '<div data-cy-root></div>'
+		})
+	})
+
+	it('Fails a file if forbidden character', () => {
+		// Make sure we reset the destination
+		// so other tests do not interfere
+		const propsData = {
+			destination: new Folder({
+				id: 56,
+				owner: 'user',
+				source: generateRemoteUrl('dav/files/user'),
+				permissions: Permission.ALL,
+				root: '/files/user',
+			}),
+			forbiddenCharacters: '$#~&',
+		}
+
+		// Mount picker
+		cy.mount(UploadPicker, { propsData }).as('uploadPicker')
+
+		// Label is displayed before upload
+		cy.get('[data-cy-upload-picker]').shouldHaveTrimmedText('New')
+
+		// Check and init aliases
+		cy.get('[data-cy-upload-picker] [data-cy-upload-picker-input]').as('input').should('exist')
+		cy.get('[data-cy-upload-picker] .upload-picker__progress').as('progress').should('exist')
+
+		// Intercept single upload
+		cy.intercept('PUT', '/remote.php/dav/files/*/*', (req) => {
+			req.reply({
+				statusCode: 201,
+				delay: 2000,
+			})
+		}).as('upload')
+
+		// Upload 2 files
+		cy.get('@input').attachFile({
+			// Fake file of 5 MB
+			fileContent: new Blob([new ArrayBuffer(2 * 1024 * 1024)]),
+			fileName: 'invalid-image$.jpg',
+			mimeType: 'image/jpeg',
+			encoding: 'utf8',
+			lastModified: new Date().getTime(),
+		})
+
+		cy.get('@input').attachFile({
+			// Fake file of 5 MB
+			fileContent: new Blob([new ArrayBuffer(2 * 1024 * 1024)]),
+			fileName: 'valid-image.jpg',
+			mimeType: 'image/jpeg',
+			encoding: 'utf8',
+			lastModified: new Date().getTime(),
+		})
+
+		cy.get('[data-cy-upload-picker] .upload-picker__progress')
+			.as('progress')
+			.should('not.be.visible')
+
+		cy.wait('@upload')
+		// Should not have been called more than once as the first file is invalid
+		cy.get('@upload.all').should('have.length', 1)
+		cy.get('body').should('contain', '"$" is not allowed inside a file name.')
 	})
 })
 
