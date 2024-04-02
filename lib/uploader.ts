@@ -167,9 +167,10 @@ export class Uploader {
 	 * Upload a file to the given path
 	 * @param {string} destinationPath the destination path relative to the root folder. e.g. /foo/bar.txt
 	 * @param {File} file the file to upload
+	 * @param {string} root the root folder to upload to
 	 */
-	upload(destinationPath: string, file: File): PCancelable<Upload> {
-		const destinationFile = `${this.root}/${destinationPath.replace(/^\//, '')}`
+	upload(destinationPath: string, file: File, root?: string): PCancelable<Upload> {
+		const destinationFile = `${root || this.root}/${destinationPath.replace(/^\//, '')}`
 
 		// Get the encoded source url to this object for requests purposes
 		const { origin } = new URL(destinationFile)
