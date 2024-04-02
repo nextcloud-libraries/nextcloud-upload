@@ -1,11 +1,11 @@
 # 
 # Translators:
-# John Molakvoæ <skjnldsv@protonmail.com>, 2023
-# Kaya Zeren <kayazeren@gmail.com>, 2023
+# Joas Schilling, 2024
+# Kaya Zeren <kayazeren@gmail.com>, 2024
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Kaya Zeren <kayazeren@gmail.com>, 2023\n"
+"Last-Translator: Kaya Zeren <kayazeren@gmail.com>, 2024\n"
 "Language-Team: Turkish (https://app.transifex.com/nextcloud/teams/64236/tr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: tr\n"
@@ -30,6 +30,12 @@ msgstr "{time} kaldı"
 
 msgid "a few seconds left"
 msgstr "bir kaç saniye kaldı"
+
+msgid "Cancel"
+msgstr "İptal"
+
+msgid "Cancel the entire operation"
+msgstr "Tüm işlemi iptal et"
 
 msgid "Cancel uploads"
 msgstr "Yüklemeleri iptal et"
@@ -88,6 +94,13 @@ msgstr "Dosyaları yükle"
 
 msgid "Upload progress"
 msgstr "Yükleme ilerlemesi"
+
+msgid ""
+"When an incoming folder is selected, any conflicting files within it will "
+"also be overwritten."
+msgstr ""
+"Bir gelen klasör seçildiğinde, içindeki çakışan dosyaların da üzerine "
+"yazılır."
 
 msgid "Which files do you want to keep?"
 msgstr "Hangi dosyaları tutmak istiyorsunuz?"

@@ -1,12 +1,11 @@
 # 
 # Translators:
-# John Molakvoæ <skjnldsv@protonmail.com>, 2023
-# Simon T, 2023
-# Jens Peter Nielsen <mail@jp-nielsen.dk>, 2023
+# Joas Schilling, 2024
+# Martin Bonde <Martin@maboni.dk>, 2024
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Jens Peter Nielsen <mail@jp-nielsen.dk>, 2023\n"
+"Last-Translator: Martin Bonde <Martin@maboni.dk>, 2024\n"
 "Language-Team: Danish (https://app.transifex.com/nextcloud/teams/64236/da/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: da\n"
@@ -31,6 +30,12 @@ msgstr "{tid} tilbage"
 
 msgid "a few seconds left"
 msgstr "et par sekunder tilbage"
+
+msgid "Cancel"
+msgstr "Annuller"
+
+msgid "Cancel the entire operation"
+msgstr "Annuller hele handlingen"
 
 msgid "Cancel uploads"
 msgstr "Annuller uploads"
@@ -88,6 +93,16 @@ msgstr "Upload annulleret"
 
 msgid "Upload files"
 msgstr "Upload filer"
+
+msgid "Upload progress"
+msgstr "Upload fremskridt"
+
+msgid ""
+"When an incoming folder is selected, any conflicting files within it will "
+"also be overwritten."
+msgstr ""
+"Når en indgående mappe er valgt, vil alle modstridende filer i den også "
+"blive overskrevet."
 
 msgid "Which files do you want to keep?"
 msgstr "Hvilke filer ønsker du at beholde?"
