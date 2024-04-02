@@ -1,5 +1,35 @@
 # Changelog
 
+## [v1.1.0](https://github.com/nextcloud-libraries/nextcloud-upload/tree/v1.1.0) (2024-04-02)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-upload/compare/v1.0.5...v1.1.0)
+
+### Features :rocket:
+* feat: allow to specify the root of an upload by @skjnldsv in https://github.com/nextcloud-libraries/nextcloud-upload/pull/1131
+* feat: allow to specify forbidden characters by @arublov in https://github.com/nextcloud-libraries/nextcloud-upload/pull/1132
+
+### Bug Fixes :bug:
+* fix: conflict picker by @skjnldsv in https://github.com/nextcloud-libraries/nextcloud-upload/pull/1123
+* fix: migrate conflictpicker to NcDialog and remove incorrect semantic closing icon by @emoral435 in https://github.com/nextcloud-libraries/nextcloud-upload/pull/1113
+* fix(ConflictPicker): Use action slot instead of custom wrapper for buttons by @susnux in https://github.com/nextcloud-libraries/nextcloud-upload/pull/1117
+
+### Changed
+* build(deps-dev): Bump @cypress/vue2 from 2.0.1 to 2.1.0 by @dependabot
+* build(deps-dev): Bump @tsconfig/cypress from 1.0.1 to 1.0.2 by @dependabot
+* build(deps-dev): Bump @types/node from 20.11.17 to 20.12.2 by @dependabot
+* build(deps-dev): Bump @vitest/coverage-istanbul from 1.2.2 to 1.4.0 by @dependabot
+* build(deps-dev): Bump cypress from 13.6.4 to 13.7.0 by @dependabot
+* build(deps-dev): Bump typedoc from 0.25.8 to 0.25.12 by @dependabot
+* build(deps-dev): Bump typescript from 5.3.3 to 5.4.3 by @dependabot
+* build(deps): Bump @nextcloud/dialogs from 5.1.1 to 5.1.2 by @dependabot
+* build(deps): Bump @nextcloud/files from 3.1.0 to 3.1.1 by @dependabot
+* build(deps): Bump axios from 1.6.7 to 1.6.8 by @dependabot
+* build(deps): Bump codecov/codecov-action from 4.0.1 to 4.1.1 by @dependabot
+* build(deps): Bump dorny/paths-filter from 3.0.0 to 3.0.2 by @dependabot
+* Translations updates
+
+## New Contributors
+* @emoral435 made their first contribution in https://github.com/nextcloud-libraries/nextcloud-upload/pull/1113
+
 ## [v1.0.5](https://github.com/nextcloud-libraries/nextcloud-upload/tree/v1.0.5) (2024-02-13)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-upload/compare/v1.0.4...v1.0.5)
 
