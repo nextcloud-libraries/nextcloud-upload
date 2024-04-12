@@ -82,7 +82,7 @@ msgid "Select all existing files"
 msgstr "Вибрати усі присутні файли"
 
 msgid "Select all new files"
-msgstr "Виберіть усі нові файли"
+msgstr "Вибрати усі нові файли"
 
 msgid "Skip this file"
 msgid_plural "Skip {count} files"
