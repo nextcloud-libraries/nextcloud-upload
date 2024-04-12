@@ -79,7 +79,7 @@ msgid "Select all checkboxes"
 msgstr "Вибрати все"
 
 msgid "Select all existing files"
-msgstr "Вибрати всі присутні файли"
+msgstr "Вибрати усі присутні файли"
 
 msgid "Select all new files"
 msgstr "Виберіть усі нові файли"
