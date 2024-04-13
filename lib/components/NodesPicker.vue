@@ -22,7 +22,14 @@
 				<!-- Description -->
 				<span class="node-picker__desc">
 					<span class="node-picker__name">{{ t('New version') }}</span>
-					<span class="node-picker__mtime">{{ lastModified(incoming) }}</span>
+					<NcDateTime v-if="incomingLastModified"
+						:timestamp="incomingLastModified"
+						:relative-time="false"
+						:format="{ timeStyle: 'short', dateStyle: 'medium' }"
+						class="node-picker__mtime" />
+					<span v-else class="node-picker__mtime">
+						{{ t('Last modified date unknown') }}
+					</span>
 					<span class="node-picker__size">{{ size(incoming) }}</span>
 				</span>
 			</span>
@@ -48,7 +55,14 @@
 				<!-- Description -->
 				<span class="node-picker__desc">
 					<span class="node-picker__name">{{ t('Existing version') }}</span>
-					<span class="node-picker__mtime">{{ lastModified(existing) }}</span>
+					<NcDateTime v-if="existingLastModified"
+						:timestamp="existingLastModified"
+						:relative-time="false"
+						:format="{ timeStyle: 'short', dateStyle: 'medium' }"
+						class="node-picker__mtime" />
+					<span v-else class="node-picker__mtime">
+						{{ t('Last modified date unknown') }}
+					</span>
 					<span class="node-picker__size">{{ size(existing) }}</span>
 				</span>
 			</span>
@@ -62,10 +76,10 @@ import type { PropType } from 'vue'
 import { defineComponent } from 'vue'
 import { formatFileSize, FileType, Node } from '@nextcloud/files'
 import { generateUrl } from '@nextcloud/router'
-import moment from '@nextcloud/moment'
 
 import FileSvg from 'vue-material-design-icons/File.vue'
 import FolderSvg from 'vue-material-design-icons/Folder.vue'
+import NcDateTime from '@nextcloud/vue/dist/Components/NcDateTime.js'
 import NcCheckboxRadioSwitch from '@nextcloud/vue/dist/Components/NcCheckboxRadioSwitch.js'
 
 import { t } from '../utils/l10n.ts'
@@ -79,6 +93,7 @@ export default defineComponent({
 		FileSvg,
 		FolderSvg,
 		NcCheckboxRadioSwitch,
+		NcDateTime,
 	},
 
 	props: {
@@ -102,7 +117,7 @@ export default defineComponent({
 
 	data() {
 		return {
-			asyncPreview: null,
+			asyncPreview: null as string | null,
 		}
 	},
 
@@ -127,17 +142,21 @@ export default defineComponent({
 		existingPreview() {
 			return this.previewUrl(this.existing)
 		},
+
+		incomingLastModified() {
+			return this.lastModified(this.incoming)
+		},
+		existingLastModified() {
+			return this.lastModified(this.existing)
+		},
 	},
 
 	methods: {
-		lastModified(node: File|Node): string {
+		lastModified(node: File|Node): Date | null {
 			const lastModified = node instanceof File
 				? new Date(node.lastModified)
 				: node.mtime
-			if (lastModified) {
-				return moment(lastModified).format('LLL')
-			}
-			return t('Last modified date unknown')
+			return lastModified ?? null
 		},
 		size(node: File|Node): string {
 			if (node.size) {
@@ -147,7 +166,7 @@ export default defineComponent({
 		},
 		previewUrl(node: File|Node) {
 			if (node instanceof File) {
-				this.previewImage(node).then((url: string) => {
+				this.previewImage(node).then((url: string | null) => {
 					this.asyncPreview = url
 				})
 				return
