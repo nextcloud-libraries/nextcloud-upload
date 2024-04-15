@@ -1,5 +1,17 @@
 # Changelog
 
+## [v1.1.1](https://github.com/nextcloud-libraries/nextcloud-upload/tree/v1.1.1) (2024-04-15)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-upload/compare/v1.1.0...v1.1.1)
+
+### :bug: Fixed bugs
+* fix: Drop dependency on moment.js by @susnux in https://github.com/nextcloud-libraries/nextcloud-upload/pull/1155
+* fix(upload): Do not read chunks into memory but just stream file chunks by @susnux in https://github.com/nextcloud-libraries/nextcloud-upload/pull/1153
+
+### Changed
+* Updated development dependencies
+* Updated translations
+* Updated @nextcloud/dialogs from 5.2.0 to 5.3.0
+
 ## [v1.1.0](https://github.com/nextcloud-libraries/nextcloud-upload/tree/v1.1.0) (2024-04-02)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-upload/compare/v1.0.5...v1.1.0)
 
