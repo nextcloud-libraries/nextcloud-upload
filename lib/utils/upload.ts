@@ -2,10 +2,6 @@ import type { AxiosProgressEvent, AxiosResponse } from 'axios'
 import { generateRemoteUrl } from '@nextcloud/router'
 import { getCurrentUser } from '@nextcloud/auth'
 import axios from '@nextcloud/axios'
-import PLimit from 'p-limit'
-
-const readerLimit = PLimit(1)
-const reader = new FileReader()
 
 type UploadData = Blob | (() => Promise<Blob>)
 
@@ -57,31 +53,23 @@ export const uploadData = async function(
 }
 
 /**
- * Get chunk of the file. Doing this on the fly
- * give us a big performance boost and proper
- * garbage collection
+ * Get chunk of the file.
+ * Doing this on the fly give us a big performance boost and proper garbage collection
+ * @param file File to upload
+ * @param start Offset to start upload
+ * @param length Size of chunk to upload
  */
 export const getChunk = function(file: File, start: number, length: number): Promise<Blob> {
 	if (start === 0 && file.size <= length) {
 		return Promise.resolve(new Blob([file], { type: file.type || 'application/octet-stream' }))
 	}
 
-	// Since we use a global FileReader, we need to only read one chunk at a time
-	return readerLimit(() => new Promise((resolve, reject) => {
-		reader.onload = () => {
-			if (reader.result !== null) {
-				resolve(new Blob([reader.result], {
-					type: 'application/octet-stream',
-				}))
-			}
-			reject(new Error('Error while reading the file'))
-		}
-		reader.readAsArrayBuffer(file.slice(start, start + length))
-	}))
+	return Promise.resolve(new Blob([file.slice(start, start + length)], { type: 'application/octet-stream' }))
 }
 
 /**
  * Create a temporary upload workspace to upload the chunks to
+ * @param destinationFile The file name after finishing the chunked upload
  */
 export const initChunkWorkspace = async function(destinationFile: string | undefined = undefined): Promise<string> {
 	const chunksWorkspace = generateRemoteUrl(`dav/uploads/${getCurrentUser()?.uid}`)
