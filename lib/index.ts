@@ -12,8 +12,8 @@ export { Upload, Status as UploadStatus } from './upload'
 let _uploader: Uploader | null = null
 
 export type ConflictResolutionResult = {
-	selected: (File|Node)[],
-	renamed: (File|Node)[],
+	selected: (File|FileSystemEntry|Node)[],
+	renamed: (File|FileSystemEntry|Node)[],
 }
 /**
  * Get an Uploader instance
@@ -54,7 +54,7 @@ export function upload(destinationPath: string, file: File): Uploader {
  * @param {Node[]} content all the existing files in the directory
  * @return {Promise<ConflictResolutionResult>} the selected and renamed files
  */
-export async function openConflictPicker(dirname: string, conflicts: (File|Node)[], content: Node[]): Promise<ConflictResolutionResult> {
+export async function openConflictPicker(dirname: string | undefined, conflicts: (File|FileSystemEntry|Node)[], content: Node[]): Promise<ConflictResolutionResult> {
 	const ConflictPicker = defineAsyncComponent(() => import('./components/ConflictPicker.vue')) as AsyncComponent
 	return new Promise((resolve, reject) => {
 		const picker = new Vue({
@@ -98,10 +98,13 @@ export async function openConflictPicker(dirname: string, conflicts: (File|Node)
  * @param {Node[]} content all the existing files in the directory
  * @return {boolean} true if there is a conflict
  */
-export function hasConflict(files: (File|Node)[], content: Node[]): boolean {
+export function hasConflict(files: (File|FileSystemEntry|Node)[], content: Node[]): boolean {
+	// If the browser does not support the file system api we do not want a ReferenceError, so fallback to File
+	const SupportedFileSystemEntry = window.FileSystemEntry ?? File
+
 	const contentNames = content.map((node: Node) => node.basename)
-	const conflicts = files.filter((node: File|Node) => {
-		const name = (node instanceof File) ? node.name : node.basename
+	const conflicts = files.filter((node: File|FileSystemEntry|Node) => {
+		const name = (node instanceof File || node instanceof SupportedFileSystemEntry) ? node.name : node.basename
 		return contentNames.indexOf(name) !== -1
 	}) as Node[]
 
