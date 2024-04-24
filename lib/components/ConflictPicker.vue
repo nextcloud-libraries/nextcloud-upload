@@ -1,8 +1,8 @@
 <template>
-	<NcDialog class="conflict-picker"
+	<NcDialog can-close
+		class="conflict-picker"
 		data-cy-conflict-picker
 		:close-on-click-outside="false"
-		:can-close="true"
 		:show="opened"
 		:name="name"
 		size="large"
@@ -12,8 +12,11 @@
 			<!-- Description -->
 			<p id="conflict-picker-description" class="conflict-picker__description">
 				{{ t('Which files do you want to keep?') }}<br>
-				{{ t('If you select both versions, the copied file will have a number added to its name.') }}<br>
-				{{ t('When an incoming folder is selected, any conflicting files within it will also be overwritten.') }}
+				{{ t('If you select both versions, the copied file will have a number added to its name.') }}
+				<template v-if="!recursiveUpload">
+					<br>
+					{{ t('When an incoming folder is selected, any conflicting files within it will also be overwritten.') }}
+				</template>
 			</p>
 		</div>
 
@@ -92,12 +95,12 @@
 </template>
 
 <script lang="ts">
-import type { ConflictResolutionResult } from '../index.ts'
+import type { Node } from '@nextcloud/files'
 import type { PropType } from 'vue'
+import type { ConflictResolutionResult } from '../index.ts'
 
 import { basename, extname } from 'path'
 import { defineComponent } from 'vue'
-import { Node } from '@nextcloud/files'
 import { showError } from '@nextcloud/dialogs'
 
 import ArrowRight from 'vue-material-design-icons/ArrowRight.vue'
@@ -139,12 +142,27 @@ export default defineComponent({
 
 		/** New files being moved/uploaded */
 		conflicts: {
-			type: Array as PropType<(Node|File)[]>,
+			type: Array as PropType<(Node|File|FileSystemEntry)[]>,
 			required: true,
+		},
+
+		/**
+		 * If set to true no hint about overwriting directory content will be shown
+		 */
+		recursiveUpload: {
+			type: Boolean,
+			default: false,
 		},
 	},
 
 	emits: ['cancel', 'submit'],
+
+	setup() {
+		// Non reactive props
+		return {
+			blockedTitle: t('You need to select at least one version of each file to continue.'),
+		}
+	},
 
 	data() {
 		return {
@@ -152,8 +170,7 @@ export default defineComponent({
 			files: [] as Node[],
 
 			opened: true,
-			blockedTitle: t('You need to select at least one version of each file to continue.'),
-			newSelected: [] as (Node|File)[],
+			newSelected: [] as (Node|File|FileSystemEntry)[],
 			oldSelected: [] as Node[],
 		}
 	},
@@ -232,8 +249,8 @@ export default defineComponent({
 
 	mounted() {
 		// Using map keep the same order
-		this.files = this.conflicts.map((conflict: File|Node) => {
-			const name = (conflict instanceof File) ? conflict.name : conflict.basename
+		this.files = this.conflicts.map((conflict: File|FileSystemEntry|Node) => {
+			const name = (conflict instanceof File || conflict instanceof FileSystemEntry) ? conflict.name : conflict.basename
 			return this.content.find((node: Node) => node.basename === name)
 		}).filter(Boolean) as Node[]
 
@@ -273,29 +290,29 @@ export default defineComponent({
 			// the user can still click and trigger the
 			// form validation check.
 			if (!this.isEnoughSelected) {
-				this.scrollValidityInputIntoView()
-				this.$refs.form.reportValidity()
+				this.scrollValidityInputIntoView();
+				(this.$refs.form as HTMLFormElement).reportValidity()
 				showError(this.blockedTitle)
 				return
 			}
 
-			const selectedOldNames = this.oldSelected.map((node: Node) => node.basename) as string[]
+			const selectedOldNames = (this.oldSelected as Node[]).map((node: Node) => node.basename) as string[]
 			const directoryContent = this.content.map((node: Node) => node.basename) as string[]
 
 			// Files that got selected twice (new and old) gets renamed
-			const renamed = [] as (File|Node)[]
-			const toRename = this.newSelected.filter((node: File|Node) => {
-				const name = (node instanceof File) ? node.name : node.basename
+			const renamed = [] as (File|FileSystemEntry|Node)[]
+			const toRename = (this.newSelected as (File|FileSystemEntry|Node)[]).filter((node) => {
+				const name = (node instanceof File || node instanceof FileSystemEntry) ? node.name : node.basename
 				return selectedOldNames.includes(name)
-			}) as (File|Node)[]
+			})
 
 			// Rename files
 			if (toRename.length > 0) {
 				toRename.forEach(file => {
-					const name = (file instanceof File) ? file.name : file.basename
+					const name = (file instanceof File || file instanceof FileSystemEntry) ? file.name : file.basename
 					const newName = this.getUniqueName(name, directoryContent)
 					// If File, create a new one with the new name
-					if (file instanceof File) {
+					if (file instanceof File || file instanceof FileSystemEntry) {
 						// Keep the original file object and force rename
 						Object.defineProperty(file, 'name', { value: newName })
 						renamed.push(file)
@@ -309,8 +326,8 @@ export default defineComponent({
 			}
 
 			// Remove files that got renamed from the new selection
-			const selected = this.newSelected.filter((node: File|Node) => {
-				const name = (node instanceof File) ? node.name : node.basename
+			const selected = (this.newSelected as (File|FileSystemEntry|Node)[]).filter((node) => {
+				const name = (node instanceof File || node instanceof FileSystemEntry) ? node.name : node.basename
 				// files that are not in the old selection
 				return !selectedOldNames.includes(name) && !toRename.includes(node)
 			}) as (File|Node)[]
@@ -349,7 +366,7 @@ export default defineComponent({
 			const selector = '.checkbox-radio-switch input[type="checkbox"]'
 
 			// Reset the custom validity of all checkboxes
-			const checkboxes = [...this.$el.querySelectorAll(selector)] as HTMLInputElement[]
+			const checkboxes: HTMLInputElement[] = Array.from(this.$el.querySelectorAll(selector))
 			checkboxes.forEach(input => input?.setCustomValidity?.(''))
 
 			// Scroll the first invalid input into view if any
