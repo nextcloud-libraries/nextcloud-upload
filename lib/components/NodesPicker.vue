@@ -10,7 +10,7 @@
 			<span class="node-picker node-picker--incoming">
 				<!-- Icon or preview -->
 				<template v-if="!incomingPreview">
-					<FolderSvg v-if="isFolder(existing)" class="node-picker__icon" :size="48" />
+					<FolderSvg v-if="isFolder(incoming)" class="node-picker__icon" :size="48" />
 					<FileSvg v-else class="node-picker__icon" :size="48" />
 				</template>
 				<img v-else
@@ -30,7 +30,7 @@
 					<span v-else class="node-picker__mtime">
 						{{ t('Last modified date unknown') }}
 					</span>
-					<span class="node-picker__size">{{ size(incoming) }}</span>
+					<span class="node-picker__size">{{ incomingSize }}</span>
 				</span>
 			</span>
 		</NcCheckboxRadioSwitch>
@@ -71,10 +71,11 @@
 </template>
 
 <script lang="ts">
+import type { Node } from '@nextcloud/files'
 import type { PropType } from 'vue'
 
 import { defineComponent } from 'vue'
-import { formatFileSize, FileType, Node } from '@nextcloud/files'
+import { formatFileSize, FileType } from '@nextcloud/files'
 import { generateUrl } from '@nextcloud/router'
 
 import FileSvg from 'vue-material-design-icons/File.vue'
@@ -98,7 +99,7 @@ export default defineComponent({
 
 	props: {
 		incoming: {
-			type: [File, Object] as PropType<File|Node>,
+			type: [File, Object] as PropType<File|FileSystemEntry|Node>,
 			required: true,
 		},
 		existing: {
@@ -106,7 +107,7 @@ export default defineComponent({
 			required: true,
 		},
 		newSelected: {
-			type: Array as PropType<(File|Node)[]>,
+			type: Array as PropType<(File|FileSystemEntry|Node)[]>,
 			required: true,
 		},
 		oldSelected: {
@@ -118,6 +119,7 @@ export default defineComponent({
 	data() {
 		return {
 			asyncPreview: null as string | null,
+			incomingFile: null as File | null,
 		}
 	},
 
@@ -133,21 +135,56 @@ export default defineComponent({
 		},
 
 		incomingPreview() {
-			// If we generated a preview image, use it
-			if (this.asyncPreview) {
-				return this.asyncPreview
+			if (!this.incomingFile) {
+				return null
 			}
-			return this.previewUrl(this.incoming)
+
+			const preview = this.previewUrl(this.incomingFile)
+			return preview ?? this.asyncPreview
 		},
+
+		incomingLastModified(): Date | null {
+			if (!this.incomingFile) {
+				return null
+			}
+			return this.lastModified(this.incomingFile)
+		},
+
+		incomingSize(): string {
+			if (!this.incomingFile) {
+				return t('Unknown size')
+			}
+			return this.size(this.incomingFile)
+		},
+
 		existingPreview() {
 			return this.previewUrl(this.existing)
 		},
 
-		incomingLastModified() {
-			return this.lastModified(this.incoming)
-		},
 		existingLastModified() {
 			return this.lastModified(this.existing)
+		},
+	},
+
+	watch: {
+		/**
+		 * Watch "incoming" to update "incomingFile"
+		 */
+		incoming: {
+			// Run the watcher also on mount with initial "incoming" value
+			immediate: true,
+			async handler() {
+				if (this.incoming instanceof File) {
+					// If "incoming" is a file then just use that
+					this.incomingFile = this.incoming
+				} else if (this.incoming instanceof FileSystemFileEntry) {
+					// For FileSystemEntry we only support the file type
+					this.incomingFile = await new Promise<File>((resolve, reject) => (this.incoming as FileSystemFileEntry).file(resolve, reject))
+				} else {
+					// We do not support directories here
+					this.incomingFile = null
+				}
+			},
 		},
 	},
 
@@ -169,7 +206,7 @@ export default defineComponent({
 				this.previewImage(node).then((url: string | null) => {
 					this.asyncPreview = url
 				})
-				return
+				return null
 			}
 
 			if (node.type === FileType.Folder) {
@@ -193,12 +230,18 @@ export default defineComponent({
 			}
 		},
 
-		isFolder(node: File|Node): boolean {
+		isFolder(node: File|FileSystemEntry|Node): boolean {
+			if ('FileSystemEntry' in window && node instanceof FileSystemEntry) {
+				return node.isDirectory
+			}
+			// For typescript cast it as we are sure it is no FileSystemEntry here
+			node = node as File|Node
+			// Guess based on node type
 			return node.type === FileType.Folder
 				|| node.type === 'httpd/unix-directory'
 		},
 
-		isChecked(node: File|Node, selected: (File|Node)[]): boolean {
+		isChecked(node: File|FileSystemEntry|Node, selected: (File|FileSystemEntry|Node)[]): boolean {
 			return selected.includes(node)
 		},
 
@@ -223,7 +266,7 @@ export default defineComponent({
 		 */
 		async previewImage(file: File): Promise<string|null> {
 			return new Promise((resolve) => {
-				if (file.type.startsWith('image/')) {
+				if (file instanceof File && file.type.startsWith('image/')) {
 					const reader = new FileReader()
 					reader.onload = async (e) => {
 						const result = e?.target?.result
@@ -236,6 +279,8 @@ export default defineComponent({
 						resolve(null)
 					}
 					reader.readAsArrayBuffer(file)
+				} else {
+					resolve(null)
 				}
 			})
 		},
