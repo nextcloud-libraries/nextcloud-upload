@@ -83,6 +83,7 @@ import FolderSvg from 'vue-material-design-icons/Folder.vue'
 import NcDateTime from '@nextcloud/vue/dist/Components/NcDateTime.js'
 import NcCheckboxRadioSwitch from '@nextcloud/vue/dist/Components/NcCheckboxRadioSwitch.js'
 
+import { isFileSystemEntry } from '../utils/filesystem'
 import { t } from '../utils/l10n.ts'
 
 const PREVIEW_SIZE = 64
@@ -231,7 +232,7 @@ export default defineComponent({
 		},
 
 		isFolder(node: File|FileSystemEntry|Node): boolean {
-			if ('FileSystemEntry' in window && node instanceof FileSystemEntry) {
+			if (isFileSystemEntry(node)) {
 				return node.isDirectory
 			}
 			// For typescript cast it as we are sure it is no FileSystemEntry here

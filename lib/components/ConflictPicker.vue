@@ -109,6 +109,7 @@ import NcCheckboxRadioSwitch from '@nextcloud/vue/dist/Components/NcCheckboxRadi
 import NcDialog from '@nextcloud/vue/dist/Components/NcDialog.js'
 import NcButton from '@nextcloud/vue/dist/Components/NcButton.js'
 
+import { isFileSystemEntry } from '../utils/filesystem.ts'
 import { n, t } from '../utils/l10n.ts'
 import logger from '../utils/logger.ts'
 import NodesPicker from './NodesPicker.vue'
@@ -250,7 +251,7 @@ export default defineComponent({
 	mounted() {
 		// Using map keep the same order
 		this.files = this.conflicts.map((conflict: File|FileSystemEntry|Node) => {
-			const name = (conflict instanceof File || conflict instanceof FileSystemEntry) ? conflict.name : conflict.basename
+			const name = (conflict instanceof File || isFileSystemEntry(conflict)) ? conflict.name : conflict.basename
 			return this.content.find((node: Node) => node.basename === name)
 		}).filter(Boolean) as Node[]
 
@@ -302,17 +303,17 @@ export default defineComponent({
 			// Files that got selected twice (new and old) gets renamed
 			const renamed = [] as (File|FileSystemEntry|Node)[]
 			const toRename = (this.newSelected as (File|FileSystemEntry|Node)[]).filter((node) => {
-				const name = (node instanceof File || node instanceof FileSystemEntry) ? node.name : node.basename
+				const name = (node instanceof File || isFileSystemEntry(node)) ? node.name : node.basename
 				return selectedOldNames.includes(name)
 			})
 
 			// Rename files
 			if (toRename.length > 0) {
 				toRename.forEach(file => {
-					const name = (file instanceof File || file instanceof FileSystemEntry) ? file.name : file.basename
+					const name = (file instanceof File || isFileSystemEntry(file)) ? file.name : file.basename
 					const newName = this.getUniqueName(name, directoryContent)
 					// If File, create a new one with the new name
-					if (file instanceof File || file instanceof FileSystemEntry) {
+					if (file instanceof File || isFileSystemEntry(file)) {
 						// Keep the original file object and force rename
 						Object.defineProperty(file, 'name', { value: newName })
 						renamed.push(file)
@@ -327,7 +328,7 @@ export default defineComponent({
 
 			// Remove files that got renamed from the new selection
 			const selected = (this.newSelected as (File|FileSystemEntry|Node)[]).filter((node) => {
-				const name = (node instanceof File || node instanceof FileSystemEntry) ? node.name : node.basename
+				const name = (node instanceof File || isFileSystemEntry(node)) ? node.name : node.basename
 				// files that are not in the old selection
 				return !selectedOldNames.includes(name) && !toRename.includes(node)
 			}) as (File|Node)[]
