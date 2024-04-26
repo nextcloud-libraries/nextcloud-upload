@@ -8,6 +8,7 @@ export default async (env) => {
 
 	cfg.test = {
 		environment: 'jsdom',
+		setupFiles: '__tests__/setup.ts',
 		coverage: {
 			include: ['lib/**'],
 			// This makes no sense to test
