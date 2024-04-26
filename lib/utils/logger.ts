@@ -20,19 +20,9 @@
  *
  */
 
-import { getCurrentUser, type NextcloudUser } from '@nextcloud/auth'
 import { getLoggerBuilder } from '@nextcloud/logger'
 
-const getLogger = (user: NextcloudUser|null) => {
-	if (user === null) {
-		return getLoggerBuilder()
-			.setApp('uploader')
-			.build()
-	}
-	return getLoggerBuilder()
-		.setApp('uploader')
-		.setUid(user.uid)
-		.build()
-}
-
-export default getLogger(getCurrentUser())
+export default getLoggerBuilder()
+	.setApp('@nextcloud/upload')
+	.detectUser()
+	.build()
