@@ -11,9 +11,9 @@ export { Upload, Status as UploadStatus } from './upload'
 
 let _uploader: Uploader | null = null
 
-export type ConflictResolutionResult = {
-	selected: (File|FileSystemEntry|Node)[],
-	renamed: (File|FileSystemEntry|Node)[],
+export type ConflictResolutionResult<T extends File|FileSystemEntry|Node> = {
+	selected: T[],
+	renamed: T[],
 }
 /**
  * Get an Uploader instance
@@ -47,14 +47,28 @@ export function upload(destinationPath: string, file: File): Uploader {
 	return uploader
 }
 
+interface ConflictPickerOptions {
+	/**
+	 * When this is set to true a hint is shown that conflicts in directories are handles recursivly
+	 * You still need to call this function for each directory separatly.
+	 */
+	recursive?: boolean
+}
+
 /**
  * Open the conflict resolver
  * @param {string} dirname the directory name
  * @param {(File|Node)[]} conflicts the incoming files
  * @param {Node[]} content all the existing files in the directory
+ * @param {ConflictPickerOptions} options Optional settings for the conflict picker
  * @return {Promise<ConflictResolutionResult>} the selected and renamed files
  */
-export async function openConflictPicker(dirname: string | undefined, conflicts: (File|FileSystemEntry|Node)[], content: Node[]): Promise<ConflictResolutionResult> {
+export async function openConflictPicker<T extends File|FileSystemEntry|Node>(
+	dirname: string | undefined,
+	conflicts: T[],
+	content: Node[],
+	options?: ConflictPickerOptions,
+): Promise<ConflictResolutionResult<T>> {
 	const ConflictPicker = defineAsyncComponent(() => import('./components/ConflictPicker.vue')) as AsyncComponent
 	return new Promise((resolve, reject) => {
 		const picker = new Vue({
@@ -64,9 +78,10 @@ export async function openConflictPicker(dirname: string | undefined, conflicts:
 					dirname,
 					conflicts,
 					content,
+					recursiveUpload: options?.recursive === true,
 				},
 				on: {
-					submit(results: ConflictResolutionResult) {
+					submit(results: ConflictResolutionResult<T>) {
 						// Return the results
 						resolve(results)
 
@@ -94,21 +109,28 @@ export async function openConflictPicker(dirname: string | undefined, conflicts:
 
 /**
  * Check if there is a conflict between two sets of files
- * @param {(File|Node)[]} files the incoming files
+ * @param {Array<File|FileSystemEntry|Node>} files the incoming files
  * @param {Node[]} content all the existing files in the directory
  * @return {boolean} true if there is a conflict
  */
 export function hasConflict(files: (File|FileSystemEntry|Node)[], content: Node[]): boolean {
-	// If the browser does not support the file system api we do not want a ReferenceError, so fallback to File
-	const SupportedFileSystemEntry = window.FileSystemEntry ?? File
+	return getConflicts(files, content).length > 0
+}
 
+/**
+ * Get the conflicts between two sets of files
+ * @param {Array<File|FileSystemEntry|Node>} files the incoming files
+ * @param {Node[]} content all the existing files in the directory
+ * @return {boolean} true if there is a conflict
+ */
+export function getConflicts<T extends File|FileSystemEntry|Node>(files: T[], content: Node[]): T[] {
 	const contentNames = content.map((node: Node) => node.basename)
 	const conflicts = files.filter((node: File|FileSystemEntry|Node) => {
-		const name = (node instanceof File || node instanceof SupportedFileSystemEntry) ? node.name : node.basename
+		const name = (node instanceof File || node instanceof FileSystemEntry) ? node.name : node.basename
 		return contentNames.indexOf(name) !== -1
-	}) as Node[]
+	})
 
-	return conflicts.length > 0
+	return conflicts
 }
 
 /** UploadPicker vue component */

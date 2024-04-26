@@ -12,9 +12,11 @@
 			<!-- Description -->
 			<p id="conflict-picker-description" class="conflict-picker__description">
 				{{ t('Which files do you want to keep?') }}<br>
-				{{ t('If you select both versions, the copied file will have a number added to its name.') }}
-				<template v-if="!recursiveUpload">
-					<br>
+				{{ t('If you select both versions, the incoming file will have a number added to its name.') }}<br>
+				<template v-if="recursiveUpload">
+					{{ t('When an incoming folder is selected, the content is written into the existing folder and a recursive conflict resolution is performed.') }}
+				</template>
+				<template v-else>
 					{{ t('When an incoming folder is selected, any conflicting files within it will also be overwritten.') }}
 				</template>
 			</p>
