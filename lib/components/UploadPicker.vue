@@ -121,6 +121,7 @@ import IconUpload from 'vue-material-design-icons/Upload.vue'
 import { getUploader, openConflictPicker, getConflicts } from '../index.ts'
 import { Status } from '../uploader.ts'
 import { Status as UploadStatus } from '../upload.ts'
+import { getUniqueName } from '../utils/uniqueName'
 import { t } from '../utils/l10n.ts'
 import logger from '../utils/logger.ts'
 import PCancelable from 'p-cancelable'
@@ -355,8 +356,6 @@ export default Vue.extend({
 		},
 
 		async handleConflicts(nodes: Array<File|Directory>, path: string): Promise<Array<File|Directory>|false> {
-			const invalidReplacement = ['-', '_', ' '].filter((c) => !this.forbiddenCharacters.includes(c))[0] ?? 'x'
-
 			try {
 				const content = path === '' ? this.currentContent : await this.getContent(path).catch(() => [])
 				const conflicts = getConflicts(nodes, content)
@@ -380,8 +379,8 @@ export default Vue.extend({
 					// Hanle invalid path
 					if (await this.showInvalidFileNameDialog(file.name)) {
 						// create a new valid path name
-						let newName = file.name
-						this.forbiddenCharacters.forEach((c) => { newName = newName.replaceAll(c, invalidReplacement) })
+						let newName = this.replaceInvalidCharacters(file.name)
+						newName = getUniqueName(newName, nodes.map((node) => node.name))
 						Object.defineProperty(file, 'name', { value: newName })
 						filesToUpload.push(file)
 					}
@@ -392,6 +391,16 @@ export default Vue.extend({
 				showWarning(t('Upload has been cancelled'))
 				return false
 			}
+		},
+
+		/**
+		 * Helper function to replace invalid characters in text
+		 * @param text Text to replace invalid character
+		 */
+		 replaceInvalidCharacters(text: string): string {
+			const invalidReplacement = ['-', '_', ' '].filter((c) => !this.forbiddenCharacters.includes(c))[0] ?? 'x'
+			this.forbiddenCharacters.forEach((c) => { text = text.replaceAll(c, invalidReplacement) })
+			return text
 		},
 
 		/**
