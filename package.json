@@ -74,7 +74,7 @@
     "@nextcloud/axios": "^2.4.0",
     "@nextcloud/dialogs": "^5.2.0",
     "@nextcloud/files": "^3.1.1",
-    "@nextcloud/l10n": "^2.2.0",
+    "@nextcloud/l10n": "^3.0.1",
     "@nextcloud/logger": "^3.0.1",
     "@nextcloud/paths": "^2.1.0",
     "@nextcloud/router": "^3.0.0",
