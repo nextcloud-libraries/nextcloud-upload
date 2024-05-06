@@ -1,11 +1,11 @@
 # 
 # Translators:
-# John Molakvoæ <skjnldsv@protonmail.com>, 2023
-# Café Tango, 2023
+# Joas Schilling, 2024
+# Café Tango, 2024
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Café Tango, 2023\n"
+"Last-Translator: Café Tango, 2024\n"
 "Language-Team: Chinese (Hong Kong) (https://app.transifex.com/nextcloud/teams/64236/zh_HK/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: zh_HK\n"
@@ -29,8 +29,11 @@ msgstr "剩餘 {time}"
 msgid "a few seconds left"
 msgstr "還剩幾秒"
 
-msgid "Add"
-msgstr "添加"
+msgid "Cancel"
+msgstr "取消"
+
+msgid "Cancel the entire operation"
+msgstr "取消整個操作"
 
 msgid "Cancel uploads"
 msgstr "取消上傳"
@@ -45,12 +48,15 @@ msgid "Existing version"
 msgstr "既有版本"
 
 msgid ""
-"If you select both versions, the copied file will have a number added to its"
-" name."
-msgstr "若您選取兩個版本，複製的檔案的名稱將會新增編號。"
+"If you select both versions, the incoming file will have a number added to "
+"its name."
+msgstr "若您選取兩個版本，傳入檔案的名稱將會新增編號。"
 
 msgid "Last modified date unknown"
 msgstr "最後修改日期不詳"
+
+msgid "New"
+msgstr "新增"
 
 msgid "New version"
 msgstr "新版本 "
@@ -82,6 +88,19 @@ msgstr "已取消上傳"
 
 msgid "Upload files"
 msgstr "上傳檔案"
+
+msgid "Upload progress"
+msgstr "上傳進度"
+
+msgid ""
+"When an incoming folder is selected, any conflicting files within it will "
+"also be overwritten."
+msgstr "選取傳入資料夾後，其中任何的衝突檔案都會被覆寫。"
+
+msgid ""
+"When an incoming folder is selected, the content is written into the "
+"existing folder and a recursive conflict resolution is performed."
+msgstr "選擇傳入資料夾後，內容將寫入現有資料夾並執行遞歸衝突解決。"
 
 msgid "Which files do you want to keep?"
 msgstr "您想保留哪些檔案？"
