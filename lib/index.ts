@@ -1,9 +1,8 @@
 import type { Node } from '@nextcloud/files'
-import type { AsyncComponent } from 'vue'
 
 import { Uploader } from './uploader'
 import UploadPicker from './components/UploadPicker.vue'
-import Vue, { defineAsyncComponent } from 'vue'
+import { createApp, defineAsyncComponent } from 'vue'
 
 export type { Uploader } from './uploader'
 export { Status as UploaderStatus } from './uploader'
@@ -69,41 +68,35 @@ export async function openConflictPicker<T extends File|FileSystemEntry|Node>(
 	content: Node[],
 	options?: ConflictPickerOptions,
 ): Promise<ConflictResolutionResult<T>> {
-	const ConflictPicker = defineAsyncComponent(() => import('./components/ConflictPicker.vue')) as AsyncComponent
+	const ConflictPicker = defineAsyncComponent(() => import('./components/ConflictPicker.vue'))
 	return new Promise((resolve, reject) => {
-		const picker = new Vue({
-			name: 'ConflictPickerRoot',
-			render: (h) => h(ConflictPicker, {
-				props: {
-					dirname,
-					conflicts,
-					content,
-					recursiveUpload: options?.recursive === true,
-				},
-				on: {
-					submit(results: ConflictResolutionResult<T>) {
-						// Return the results
-						resolve(results)
+		const container = document.body.appendChild(document.createElement('div'))
 
-						// Destroy the component
-						picker.$destroy()
-						picker.$el?.parentNode?.removeChild(picker.$el)
-					},
-					cancel(error?: Error) {
-						// Reject the promise
-						reject(error ?? new Error('Canceled'))
+		const picker = createApp(ConflictPicker, {
+			dirname,
+			conflicts,
+			content,
+			recursiveUpload: options?.recursive === true,
+			onSubmit(results: ConflictResolutionResult<T>) {
+				// Return the results
+				resolve(results)
 
-						// Destroy the component
-						picker.$destroy()
-						picker.$el?.parentNode?.removeChild(picker.$el)
-					},
-				},
-			}),
+				// Destroy the component
+				picker.unmount()
+				container.remove()
+			},
+			onCancel(error?: Error) {
+				// Reject the promise
+				reject(error ?? new Error('Canceled'))
+
+				// Destroy the component
+				picker.unmount()
+				container.remove()
+			},
 		})
 
 		// Mount the component
-		picker.$mount()
-		document.body.appendChild(picker.$el)
+		picker.mount(container)
 	})
 }
 

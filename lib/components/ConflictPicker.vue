@@ -49,10 +49,10 @@
 			<NodesPicker v-for="(node, index) in files"
 				ref="nodesPicker"
 				:key="node.fileid"
+				v-model:new-selected="newSelected"
+				v-model:old-selected="oldSelected"
 				:incoming="conflicts[index]"
-				:existing="files[index]"
-				:new-selected.sync="newSelected"
-				:old-selected.sync="oldSelected" />
+				:existing="files[index]" />
 		</form>
 
 		<!-- Controls -->

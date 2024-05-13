@@ -21,7 +21,7 @@ describe('ConflictPicker rendering', { testIsolation: true }, () => {
 		})
 
 		cy.mount(ConflictPicker, {
-			propsData: {
+			props: {
 				dirname: 'Pictures',
 				content: [oldImage],
 				conflicts: [image],
@@ -76,14 +76,14 @@ describe('ConflictPicker resolving', () => {
 		const onSubmit = cy.spy().as('onSubmitSpy')
 		const onCancel = cy.spy().as('onCancelSpy')
 		cy.mount(ConflictPicker, {
-			propsData: {
+			props: {
 				dirname: 'Pictures',
 				content: [old1, old2],
 				conflicts: images,
 			},
-			listeners: {
-				submit: onSubmit,
-				cancel: onCancel,
+			attrs: {
+				onSubmit,
+				onCancel,
 			},
 		})
 
@@ -121,14 +121,14 @@ describe('ConflictPicker resolving', () => {
 		const onSubmit = cy.spy().as('onSubmitSpy')
 		const onCancel = cy.spy().as('onCancelSpy')
 		cy.mount(ConflictPicker, {
-			propsData: {
+			props: {
 				dirname: 'Pictures',
 				content: [old1, old2],
 				conflicts: images,
 			},
-			listeners: {
-				submit: onSubmit,
-				cancel: onCancel,
+			attrs: {
+				onSubmit,
+				onCancel,
 			},
 		})
 
@@ -166,14 +166,14 @@ describe('ConflictPicker resolving', () => {
 		const onSubmit = cy.spy().as('onSubmitSpy')
 		const onCancel = cy.spy().as('onCancelSpy')
 		cy.mount(ConflictPicker, {
-			propsData: {
+			props: {
 				dirname: 'Pictures',
 				content: [old1, old2],
 				conflicts: images,
 			},
-			listeners: {
-				submit: onSubmit,
-				cancel: onCancel,
+			attrs: {
+				onSubmit,
+				onCancel,
 			},
 		})
 
@@ -213,14 +213,14 @@ describe('ConflictPicker resolving', () => {
 		const onSubmit = cy.spy().as('onSubmitSpy')
 		const onCancel = cy.spy().as('onCancelSpy')
 		cy.mount(ConflictPicker, {
-			propsData: {
+			props: {
 				dirname: 'Pictures',
 				content: [old1, old2],
 				conflicts: images,
 			},
-			listeners: {
-				submit: onSubmit,
-				cancel: onCancel,
+			attrs: {
+				onSubmit,
+				onCancel,
 			},
 		})
 
@@ -261,14 +261,14 @@ describe('ConflictPicker resolving', () => {
 		const onSubmit = cy.spy().as('onSubmitSpy')
 		const onCancel = cy.spy().as('onCancelSpy')
 		cy.mount(ConflictPicker, {
-			propsData: {
+			props: {
 				dirname: 'Pictures',
 				content: [old1, old2],
 				conflicts: images,
 			},
-			listeners: {
-				submit: onSubmit,
-				cancel: onCancel,
+			attrs: {
+				onSubmit,
+				onCancel,
 			},
 		})
 

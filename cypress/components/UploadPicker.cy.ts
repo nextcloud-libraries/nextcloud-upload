@@ -14,7 +14,7 @@ describe('UploadPicker rendering', () => {
 	})
 
 	it('Renders default UploadPicker', () => {
-		const propsData = {
+		const props = {
 			destination: new Folder({
 				id: 56,
 				owner: 'user',
@@ -23,7 +23,7 @@ describe('UploadPicker rendering', () => {
 				root: '/files/user',
 			}),
 		}
-		cy.mount(UploadPicker, { propsData })
+		cy.mount(UploadPicker, { props })
 		cy.get('[data-cy-upload-picker]').should('be.visible')
 		cy.get('[data-cy-upload-picker]').shouldHaveTrimmedText('New')
 		cy.get('[data-cy-upload-picker] [data-cy-upload-picker-input]').should('exist')
@@ -40,7 +40,7 @@ describe('UploadPicker valid uploads', () => {
 	beforeEach(() => {
 		// Make sure we reset the destination
 		// so other tests do not interfere
-		const propsData = {
+		const props = {
 			destination: new Folder({
 				id: 56,
 				owner: 'user',
@@ -51,7 +51,7 @@ describe('UploadPicker valid uploads', () => {
 		}
 
 		// Mount picker
-		cy.mount(UploadPicker, { propsData }).as('uploadPicker')
+		cy.mount(UploadPicker, { props }).as('uploadPicker')
 
 		// Label is displayed before upload
 		cy.get('[data-cy-upload-picker]').shouldHaveTrimmedText('New')
@@ -116,7 +116,7 @@ describe('UploadPicker invalid uploads', () => {
 	it('Fails a file if forbidden character', () => {
 		// Make sure we reset the destination
 		// so other tests do not interfere
-		const propsData = {
+		const props = {
 			destination: new Folder({
 				id: 56,
 				owner: 'user',
@@ -128,7 +128,7 @@ describe('UploadPicker invalid uploads', () => {
 		}
 
 		// Mount picker
-		cy.mount(UploadPicker, { propsData }).as('uploadPicker')
+		cy.mount(UploadPicker, { props }).as('uploadPicker')
 
 		// Label is displayed before upload
 		cy.get('[data-cy-upload-picker]').shouldHaveTrimmedText('New')
@@ -176,7 +176,7 @@ describe('UploadPicker invalid uploads', () => {
 })
 
 describe('NewFileMenu handling', () => {
-	const propsData = {
+	const props = {
 		destination: new Folder({
 			id: 56,
 			owner: 'user',
@@ -208,7 +208,7 @@ describe('NewFileMenu handling', () => {
 
 	it('Open the New File Menu', () => {
 		// Mount picker
-		cy.mount(UploadPicker, { propsData })
+		cy.mount(UploadPicker, { props })
 
 		// Check and init aliases
 		cy.get('[data-cy-upload-picker] [data-cy-upload-picker-input]').as('input').should('exist')
@@ -230,7 +230,7 @@ describe('NewFileMenu handling', () => {
 
 	it('Changes the context', () => {
 		// Mount picker
-		cy.mount(UploadPicker, { propsData })
+		cy.mount(UploadPicker, { props })
 
 		// Check and init aliases
 		cy.get('[data-cy-upload-picker] [data-cy-upload-picker-input]').as('input').should('exist')
@@ -271,7 +271,7 @@ describe('UploadPicker valid uploads', () => {
 	beforeEach(() => {
 		// Make sure we reset the destination
 		// so other tests do not interfere
-		const propsData = {
+		const props = {
 			destination: new Folder({
 				id: 56,
 				owner: 'user',
@@ -282,7 +282,7 @@ describe('UploadPicker valid uploads', () => {
 		}
 
 		// Mount picker
-		cy.mount(UploadPicker, { propsData }).as('uploadPicker')
+		cy.mount(UploadPicker, { props }).as('uploadPicker')
 
 		// Check and init aliases
 		cy.get('[data-cy-upload-picker] [data-cy-upload-picker-input]').as('input').should('exist')
@@ -383,7 +383,7 @@ describe('UploadPicker valid uploads', () => {
 })
 
 describe('Destination management', () => {
-	const propsData = {
+	const props = {
 		destination: new Folder({
 			id: 56,
 			owner: 'user',
@@ -402,7 +402,7 @@ describe('Destination management', () => {
 
 	it('Upload then changes the destination', () => {
 		// Mount picker
-		cy.mount(UploadPicker, { propsData })
+		cy.mount(UploadPicker, { props })
 
 		// Check and init aliases
 		cy.get('[data-cy-upload-picker] [data-cy-upload-picker-input]').as('input').should('exist')
@@ -424,7 +424,7 @@ describe('Destination management', () => {
 
 		cy.wait('@upload').then((upload) => {
 			expect(upload.request.url).to.have.string(
-				'/remote.php/dav/files/user/image.jpg'
+				'/remote.php/dav/files/user/image.jpg',
 			)
 		})
 
@@ -451,14 +451,14 @@ describe('Destination management', () => {
 
 		cy.wait('@upload').then((upload) => {
 			expect(upload.request.url).to.have.string(
-				'/remote.php/dav/files/user/Photos/image.jpg'
+				'/remote.php/dav/files/user/Photos/image.jpg',
 			)
 		})
 	})
 })
 
 describe('Root management', () => {
-	const propsData = {
+	const props = {
 		root: null,
 		destination: new Folder({
 			id: 56,
@@ -478,7 +478,7 @@ describe('Root management', () => {
 
 	it('Upload then changes the root', () => {
 		// Mount picker
-		cy.mount(UploadPicker, { propsData })
+		cy.mount(UploadPicker, { props })
 
 		// Check and init aliases
 		cy.get('[data-cy-upload-picker] [data-cy-upload-picker-input]').as('input').should('exist')
@@ -540,14 +540,14 @@ describe('Root management', () => {
 
 describe('UploadPicker notify testing', () => {
 	const listeners = {
-		uploaded: () => {},
-		failed: () => {},
+		onUploaded: () => {},
+		onFailed: () => {},
 	}
 
 	beforeEach(() => {
 		// Make sure we reset the destination
 		// so other tests do not interfere
-		const propsData = {
+		const props = {
 			destination: new Folder({
 				id: 56,
 				owner: 'user',
@@ -557,13 +557,13 @@ describe('UploadPicker notify testing', () => {
 			}),
 		}
 
-		cy.spy(listeners, 'uploaded')
-		cy.spy(listeners, 'failed')
+		cy.spy(listeners, 'onUploaded')
+		cy.spy(listeners, 'onFailed')
 
 		// Mount picker
 		cy.mount(UploadPicker, {
-			propsData,
-			listeners,
+			props,
+			attrs: listeners,
 		}).as('uploadPicker')
 
 		// Check and init aliases
@@ -605,8 +605,8 @@ describe('UploadPicker notify testing', () => {
 				.children('progress')
 				.should('not.have.value', '0')
 			expect(notify).to.be.calledOnce
-			expect(listeners.uploaded).to.be.calledOnce
-			expect(listeners.failed).to.not.be.called
+			expect(listeners.onUploaded).to.be.calledOnce
+			expect(listeners.onFailed).to.not.be.called
 		})
 	})
 
@@ -637,8 +637,8 @@ describe('UploadPicker notify testing', () => {
 				.children('progress')
 				.should('not.have.value', '0')
 			expect(notify).to.be.calledOnce
-			expect(listeners.uploaded).to.not.be.called
-			expect(listeners.failed).to.be.calledOnce
+			expect(listeners.onUploaded).to.not.be.called
+			expect(listeners.onFailed).to.be.calledOnce
 		})
 	})
 })

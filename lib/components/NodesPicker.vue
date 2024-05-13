@@ -117,6 +117,8 @@ export default defineComponent({
 		},
 	},
 
+	emits: ['update:newSelected', 'update:oldSelected'],
+
 	data() {
 		return {
 			asyncPreview: null as string | null,
