@@ -1,0 +1,128 @@
+# 
+# Translators:
+# Aindriú Mac Giolla Eoin, 2024
+# 
+msgid ""
+msgstr ""
+"Last-Translator: Aindriú Mac Giolla Eoin, 2024\n"
+"Language-Team: Irish (https://app.transifex.com/nextcloud/teams/64236/ga/)\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: ga\n"
+"Plural-Forms: nplurals=5; plural=(n==1 ? 0 : n==2 ? 1 : n<7 ? 2 : n<11 ? 3 : 4);\n"
+
+msgid "{count} file conflict"
+msgid_plural "{count} files conflict"
+msgstr[0] "{count} coimhlint comhaid"
+msgstr[1] "coimhlint comhaid {count}"
+msgstr[2] "coimhlint comhaid {count}"
+msgstr[3] "coimhlint comhaid {count}"
+msgstr[4] "coimhlint comhaid {count}"
+
+msgid "{count} file conflict in {dirname}"
+msgid_plural "{count} file conflicts in {dirname}"
+msgstr[0] "{count} coimhlint comhaid i {dirname}"
+msgstr[1] "{count} coimhlint comhaid i {dirname}"
+msgstr[2] "{count} coimhlint comhaid i {dirname}"
+msgstr[3] "{count} coimhlint comhaid i {dirname}"
+msgstr[4] "{count} coimhlint comhaid i {dirname}"
+
+msgid "{seconds} seconds left"
+msgstr "{soicind} fágtha"
+
+#. TRANSLATORS time has the format 00:00:00
+msgid "{time} left"
+msgstr "{am} fágtha"
+
+msgid "a few seconds left"
+msgstr "cúpla soicind fágtha"
+
+msgid "Cancel"
+msgstr "Cealaigh"
+
+msgid "Cancel the entire operation"
+msgstr "Cealaigh an oibríocht iomlán"
+
+msgid "Cancel uploads"
+msgstr "Cealaigh uaslódálacha"
+
+msgid "Continue"
+msgstr "Leanúint ar aghaidh"
+
+msgid "estimating time left"
+msgstr "ag déanamh meastachán ar an am atá fágtha"
+
+msgid "Existing version"
+msgstr "Leagan láithreach "
+
+msgid ""
+"If you select both versions, the incoming file will have a number added to "
+"its name."
+msgstr ""
+"Má roghnaíonn tú an dá leagan, cuirfear uimhir leis an ainm a thagann "
+"isteach."
+
+msgid "Last modified date unknown"
+msgstr "Dáta modhnaithe is déanaí anaithnid"
+
+msgid "New"
+msgstr "Nua"
+
+msgid "New version"
+msgstr "Leagan nua"
+
+msgid "paused"
+msgstr "sos"
+
+msgid "Preview image"
+msgstr "Íomhá réamhamharc"
+
+msgid "Select all checkboxes"
+msgstr "Roghnaigh gach ticbhosca"
+
+msgid "Select all existing files"
+msgstr "Roghnaigh gach comhad atá ann cheana féin"
+
+msgid "Select all new files"
+msgstr "Roghnaigh gach comhad nua"
+
+msgid "Skip this file"
+msgid_plural "Skip {count} files"
+msgstr[0] "Léim an comhad seo"
+msgstr[1] "Léim ar {count} comhad"
+msgstr[2] "Léim ar {count} comhad"
+msgstr[3] "Léim ar {count} comhad"
+msgstr[4] "Léim ar {count} comhad"
+
+msgid "Unknown size"
+msgstr "Méid anaithnid"
+
+msgid "Upload cancelled"
+msgstr "Cuireadh an t-uaslódáil ar ceal"
+
+msgid "Upload files"
+msgstr "Uaslódáil comhaid"
+
+msgid "Upload progress"
+msgstr "Uaslódáil dul chun cinn"
+
+msgid ""
+"When an incoming folder is selected, any conflicting files within it will "
+"also be overwritten."
+msgstr ""
+"Nuair a roghnaítear fillteán isteach, déanfar aon chomhad contrártha "
+"laistigh de a fhorscríobh freisin."
+
+msgid ""
+"When an incoming folder is selected, the content is written into the "
+"existing folder and a recursive conflict resolution is performed."
+msgstr ""
+"Nuair a roghnaítear fillteán isteach, scríobhtar an t-ábhar isteach san "
+"fhillteán atá ann cheana agus déantar réiteach coinbhleachta athchúrsach."
+
+msgid "Which files do you want to keep?"
+msgstr "Cé na comhaid ar mhaith leat a choinneáil?"
+
+msgid "You need to select at least one version of each file to continue."
+msgstr ""
+"Ní mór duit leagan amháin ar a laghad de gach comhad a roghnú chun leanúint "
+"ar aghaidh."
