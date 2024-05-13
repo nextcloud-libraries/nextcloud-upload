@@ -1,12 +1,11 @@
 # 
 # Translators:
-# John Molakvoæ <skjnldsv@protonmail.com>, 2023
-# Nacho <nacho.vfranco@gmail.com>, 2023
-# Miguel Anxo Bouzada <mbouzada@gmail.com>, 2023
+# Joas Schilling, 2024
+# Miguel Anxo Bouzada <mbouzada@gmail.com>, 2024
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Miguel Anxo Bouzada <mbouzada@gmail.com>, 2023\n"
+"Last-Translator: Miguel Anxo Bouzada <mbouzada@gmail.com>, 2024\n"
 "Language-Team: Galician (https://app.transifex.com/nextcloud/teams/64236/gl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: gl\n"
@@ -32,6 +31,12 @@ msgstr "falta {time}"
 msgid "a few seconds left"
 msgstr "faltan uns segundos"
 
+msgid "Cancel"
+msgstr "Cancelar"
+
+msgid "Cancel the entire operation"
+msgstr "Cancela toda a operación"
+
 msgid "Cancel uploads"
 msgstr "Cancelar envíos"
 
@@ -45,11 +50,11 @@ msgid "Existing version"
 msgstr "Versión existente"
 
 msgid ""
-"If you select both versions, the copied file will have a number added to its"
-" name."
+"If you select both versions, the incoming file will have a number added to "
+"its name."
 msgstr ""
-"Se selecciona ambas as versións, o ficheiro copiado terá un número engadido "
-"ao seu nome."
+"Se selecciona ambas as versións, o ficheiro entrante terá un número engadido"
+" ao seu nome."
 
 msgid "Last modified date unknown"
 msgstr "Data da última modificación descoñecida"
@@ -91,6 +96,20 @@ msgstr "Enviar ficheiros"
 
 msgid "Upload progress"
 msgstr "Progreso do envío"
+
+msgid ""
+"When an incoming folder is selected, any conflicting files within it will "
+"also be overwritten."
+msgstr ""
+"Cando se selecciona un cartafol entrante, tamén se sobrescribirán os "
+"ficheiros en conflito dentro del."
+
+msgid ""
+"When an incoming folder is selected, the content is written into the "
+"existing folder and a recursive conflict resolution is performed."
+msgstr ""
+"Cando se selecciona un cartafol entrante, o contido escríbese no cartafol "
+"existente e lévase a cabo unha resolución recursiva de conflitos."
 
 msgid "Which files do you want to keep?"
 msgstr "Que ficheiros quere conservar?"
