@@ -1,9 +1,11 @@
 declare module '*.vue' {
-	import Vue from 'vue'
-	export default Vue
+	import type { Component } from 'vue'
+	const component: Component
+	export default component
 }
 
 declare module '@nextcloud/vue/dist/Components/*.js' {
-	import Vue from 'vue'
-	export default Vue
+	import type { Component } from 'vue'
+	const component: Component
+	export default component
 }
