@@ -4,6 +4,7 @@
 import { Folder, Permission, addNewFileMenuEntry, type Entry } from '@nextcloud/files'
 import { generateRemoteUrl } from '@nextcloud/router'
 import { UploadPicker, getUploader } from '../../lib/index.ts'
+import { basename } from 'path'
 
 describe('UploadPicker rendering', () => {
 	afterEach(() => {
@@ -106,6 +107,10 @@ describe('UploadPicker valid uploads', () => {
 
 describe('UploadPicker invalid uploads', () => {
 
+	// Cypress shares the module state between tests, we need to reset it
+	// ref: https://github.com/cypress-io/cypress/issues/25441
+	beforeEach(() => getUploader(true))
+
 	afterEach(() => {
 		// Make sure we clear the body
 		cy.window().then((win) => {
@@ -171,7 +176,82 @@ describe('UploadPicker invalid uploads', () => {
 		cy.wait('@upload')
 		// Should not have been called more than once as the first file is invalid
 		cy.get('@upload.all').should('have.length', 1)
-		cy.get('body').should('contain', '"$" is not allowed inside a file name.')
+		cy.contains('[role="dialog"]', 'Invalid file name')
+			.should('be.visible')
+	})
+
+	it('Can rename invalid files', () => {
+		// Make sure we reset the destination
+		// so other tests do not interfere
+		const propsData = {
+			destination: new Folder({
+				id: 56,
+				owner: 'user',
+				source: generateRemoteUrl('dav/files/user'),
+				permissions: Permission.ALL,
+				root: '/files/user',
+			}),
+			forbiddenCharacters: ['$', '#', '~', '&'],
+		}
+
+		// Mount picker
+		cy.mount(UploadPicker, { propsData }).as('uploadPicker')
+
+		// Label is displayed before upload
+		cy.get('[data-cy-upload-picker]').contains('New').should('be.visible')
+
+		// Check and init aliases
+		cy.get('[data-cy-upload-picker] [data-cy-upload-picker-input]').as('input').should('exist')
+		cy.get('[data-cy-upload-picker] .upload-picker__progress').as('progress').should('exist')
+
+		// Intercept single upload
+		cy.intercept('PUT', '/remote.php/dav/files/*/*', (req) => {
+			req.reply({
+				statusCode: 201,
+				delay: 2000,
+			})
+		}).as('upload')
+
+		// Upload 2 files
+		cy.get('@input').attachFile({
+			// Fake file of 5 MB
+			fileContent: new Blob([new ArrayBuffer(2 * 1024 * 1024)]),
+			fileName: 'invalid-image$.jpg',
+			mimeType: 'image/jpeg',
+			encoding: 'utf8',
+			lastModified: new Date().getTime(),
+		})
+
+		cy.get('@input').attachFile({
+			// Fake file of 5 MB
+			fileContent: new Blob([new ArrayBuffer(2 * 1024 * 1024)]),
+			fileName: 'valid-image.jpg',
+			mimeType: 'image/jpeg',
+			encoding: 'utf8',
+			lastModified: new Date().getTime(),
+		})
+
+		cy.get('[data-cy-upload-picker] .upload-picker__progress')
+			.as('progress')
+			.should('not.be.visible')
+
+		cy.contains('[role="dialog"]', 'Invalid file name')
+			.should('be.visible')
+			.contains('button', 'Rename')
+			.click()
+
+		cy.wait('@upload')
+		// Should have been called two times with an valid name now
+		cy.get('@upload.all').should('have.length', 2).then((array): void => {
+			// eslint-disable-next-line @typescript-eslint/no-explicit-any
+			const requests = (array as unknown as any[]).map(({ request }) => basename(request.url))
+			// The valid one is included
+			expect(requests).to.contain('valid-image.jpg')
+			// The invalid is NOT included
+			expect(requests).to.not.contain('invalid-image$.jpg')
+			// The invalid was made valid
+			expect(requests).to.contain('invalid-image-.jpg')
+		})
 	})
 })
 

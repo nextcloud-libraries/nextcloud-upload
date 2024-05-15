@@ -2,6 +2,9 @@ msgid ""
 msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 
+msgid "\"{filename}\" contains invalid characters, how do you want to continue?"
+msgstr ""
+
 msgid "{count} file conflict"
 msgid_plural "{count} files conflict"
 msgstr[0] ""
@@ -34,6 +37,9 @@ msgstr ""
 msgid "Continue"
 msgstr ""
 
+msgid "Create new"
+msgstr ""
+
 msgid "estimating time left"
 msgstr ""
 
@@ -41,6 +47,9 @@ msgid "Existing version"
 msgstr ""
 
 msgid "If you select both versions, the incoming file will have a number added to its name."
+msgstr ""
+
+msgid "Invalid file name"
 msgstr ""
 
 msgid "Last modified date unknown"
@@ -58,6 +67,9 @@ msgstr ""
 msgid "Preview image"
 msgstr ""
 
+msgid "Rename"
+msgstr ""
+
 msgid "Select all checkboxes"
 msgstr ""
 
@@ -65,6 +77,9 @@ msgid "Select all existing files"
 msgstr ""
 
 msgid "Select all new files"
+msgstr ""
+
+msgid "Skip"
 msgstr ""
 
 msgid "Skip this file"
@@ -75,10 +90,16 @@ msgstr[1] ""
 msgid "Unknown size"
 msgstr ""
 
-msgid "Upload cancelled"
+msgid "Upload files"
 msgstr ""
 
-msgid "Upload files"
+msgid "Upload folders"
+msgstr ""
+
+msgid "Upload from device"
+msgstr ""
+
+msgid "Upload has been cancelled"
 msgstr ""
 
 msgid "Upload progress"

@@ -18,10 +18,10 @@ export type ConflictResolutionResult<T extends File|FileSystemEntry|Node> = {
 /**
  * Get an Uploader instance
  */
-export function getUploader(): Uploader {
+export function getUploader(forceRecreate = false): Uploader {
 	const isPublic = document.querySelector('input[name="isPublic"][value="1"]') !== null
 
-	if (_uploader instanceof Uploader) {
+	if (_uploader instanceof Uploader && !forceRecreate) {
 		return _uploader
 	}
 

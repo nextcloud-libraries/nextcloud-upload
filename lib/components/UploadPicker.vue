@@ -9,25 +9,41 @@
 			:disabled="disabled"
 			data-cy-upload-picker-add
 			type="secondary"
-			@click="onClick">
+			@click="onTriggerPick()">
 			<template #icon>
-				<Plus title="" :size="20" decorative />
+				<IconPlus :size="20" />
 			</template>
 			{{ buttonName }}
 		</NcButton>
 		<NcActions v-else
 			:menu-name="buttonName"
-			:menu-title="addLabel"
+			:menu-title="t('New')"
 			type="secondary">
 			<template #icon>
-				<Plus title="" :size="20" decorative />
+				<IconPlus :size="20" />
 			</template>
-			<NcActionButton data-cy-upload-picker-add :close-after-click="true" @click="onClick">
+
+			<NcActionCaption :name="t('Upload from device')" />
+
+			<NcActionButton data-cy-upload-picker-add :close-after-click="true" @click="onTriggerPick()">
 				<template #icon>
-					<Upload title="" :size="20" decorative />
+					<IconUpload :size="20" />
 				</template>
-				{{ uploadLabel }}
+				{{ t('Upload files') }}
 			</NcActionButton>
+			<NcActionButton v-if="canUploadFolders"
+				close-after-click
+				data-cy-upload-picker-add-folders
+				@click="onTriggerPick(true)">
+				<template #icon>
+					<IconFolderUpload style="color: var(--color-primary-element)" :size="20" />
+				</template>
+				{{ t('Upload folders') }}
+			</NcActionButton>
+
+			<NcActionSeparator v-if="newFileMenuEntries.length > 0" />
+
+			<NcActionCaption v-if="newFileMenuEntries.length > 0" :name="t('Create new')" />
 
 			<!-- Custom new file entries -->
 			<NcActionButton v-for="entry in newFileMenuEntries"
@@ -35,7 +51,7 @@
 				:icon="entry.iconClass"
 				:close-after-click="true"
 				class="upload-picker__menu-entry"
-				@click="entry.handler(destination, content)">
+				@click="entry.handler(destination, currentContent)">
 				<template v-if="entry.iconSvgInline" #icon>
 					<NcIconSvgWrapper :svg="entry.iconSvgInline" />
 				</template>
@@ -45,7 +61,7 @@
 
 		<!-- Progressbar and status -->
 		<div v-show="isUploading" class="upload-picker__progress">
-			<NcProgressBar :aria-label="progressLabel"
+			<NcProgressBar :aria-label="t('Upload progress')"
 				:aria-describedby="progressTimeId"
 				:error="hasFailure"
 				:value="progress"
@@ -59,22 +75,21 @@
 		<NcButton v-if="isUploading"
 			class="upload-picker__cancel"
 			type="tertiary"
-			:aria-label="cancelLabel"
+			:aria-label="t('Cancel uploads')"
 			data-cy-upload-picker-cancel
 			@click="onCancel">
 			<template #icon>
-				<Cancel title=""
-					:size="20" />
+				<IconCancel :size="20" />
 			</template>
 		</NcButton>
 
 		<!-- Hidden files picker input -->
-		<input v-show="false"
-			ref="input"
-			type="file"
+		<input ref="input"
 			:accept="accept?.join?.(', ')"
 			:multiple="multiple"
+			class="hidden-visually"
 			data-cy-upload-picker-input
+			type="file"
 			@change="onPick">
 	</form>
 </template>
@@ -82,40 +97,50 @@
 <script lang="ts">
 import type { Entry, Node } from '@nextcloud/files'
 import type { PropType } from 'vue'
+import type { Upload } from '../upload.ts'
+import type { Directory } from '../utils/fileTree'
 
+import { DialogBuilder, showWarning } from '@nextcloud/dialogs'
 import { getNewFileMenuEntries, Folder } from '@nextcloud/files'
-import { showError } from '@nextcloud/dialogs'
 import makeEta from 'simple-eta'
 import Vue from 'vue'
 
 import NcActionButton from '@nextcloud/vue/dist/Components/NcActionButton.js'
+import NcActionCaption from '@nextcloud/vue/dist/Components/NcActionCaption.js'
+import NcActionSeparator from '@nextcloud/vue/dist/Components/NcActionSeparator.js'
 import NcActions from '@nextcloud/vue/dist/Components/NcActions.js'
 import NcButton from '@nextcloud/vue/dist/Components/NcButton.js'
 import NcIconSvgWrapper from '@nextcloud/vue/dist/Components/NcIconSvgWrapper.js'
 import NcProgressBar from '@nextcloud/vue/dist/Components/NcProgressBar.js'
 
-import Cancel from 'vue-material-design-icons/Cancel.vue'
-import Plus from 'vue-material-design-icons/Plus.vue'
-import Upload from 'vue-material-design-icons/Upload.vue'
+import IconCancel from 'vue-material-design-icons/Cancel.vue'
+import IconFolderUpload from 'vue-material-design-icons/FolderUpload.vue'
+import IconPlus from 'vue-material-design-icons/Plus.vue'
+import IconUpload from 'vue-material-design-icons/Upload.vue'
 
-import { getUploader, openConflictPicker, hasConflict } from '../index.ts'
+import { getUploader, openConflictPicker, getConflicts } from '../index.ts'
 import { Status } from '../uploader.ts'
 import { Status as UploadStatus } from '../upload.ts'
+import { getUniqueName } from '../utils/uniqueName'
 import { t } from '../utils/l10n.ts'
 import logger from '../utils/logger.ts'
+import PCancelable from 'p-cancelable'
 
 export default Vue.extend({
 	name: 'UploadPicker',
 
 	components: {
-		Cancel,
+		IconCancel,
+		IconFolderUpload,
+		IconPlus,
+		IconUpload,
 		NcActionButton,
+		NcActionCaption,
+		NcActionSeparator,
 		NcActions,
 		NcButton,
 		NcIconSvgWrapper,
 		NcProgressBar,
-		Plus,
-		Upload,
 	},
 
 	props: {
@@ -135,11 +160,17 @@ export default Vue.extend({
 			type: Folder,
 			default: undefined,
 		},
+		allowFolders: {
+			type: Boolean,
+			default: false,
+		},
 		/**
 		 * List of file present in the destination folder
+		 * It is also possible to provide a function that takes a relative path to the current directory and returns the content of it
+		 * Note: If a function is passed it should return the current base directory when no path or an empty is passed
 		 */
 		content: {
-			type: Array as PropType<Node[]>,
+			type: [Array, Function] as PropType<Node[]|((relativePath?: string) => Node[]|PromiseLike<Node[]>)>,
 			default: () => [],
 		},
 		forbiddenCharacters: {
@@ -148,29 +179,43 @@ export default Vue.extend({
 		},
 	},
 
+	setup() {
+		return {
+			t,
+
+			// non reactive data / properties
+			progressTimeId: `nc-uploader-progress-${Math.random().toString(36).slice(7)}`,
+		}
+	},
+
 	data() {
 		return {
-			addLabel: t('New'),
-			cancelLabel: t('Cancel uploads'),
-			uploadLabel: t('Upload files'),
-			progressLabel: t('Upload progress'),
-			progressTimeId: `nc-uploader-progress-${Math.random().toString(36).slice(7)}`,
-
 			eta: null,
 			timeLeft: '',
 
+			currentContent: [] as Node[],
 			newFileMenuEntries: [] as Entry[],
 			uploadManager: getUploader(),
 		}
 	},
 
 	computed: {
+		/**
+		 * Check whether the current browser supports uploading directories
+		 * Hint: This does not check if the current connection supports this, as some browsers require a secure context!
+		 */
+		canUploadFolders() {
+			return this.allowFolders && 'webkitdirectory' in document.createElement('input')
+		},
+
 		totalQueueSize() {
 			return this.uploadManager.info?.size || 0
 		},
+
 		uploadedQueueSize() {
 			return this.uploadManager.info?.progress || 0
 		},
+
 		progress() {
 			return Math.round(this.uploadedQueueSize / this.totalQueueSize * 100) || 0
 		},
@@ -180,13 +225,13 @@ export default Vue.extend({
 		},
 
 		hasFailure() {
-			return this.queue?.filter(upload => upload.status === UploadStatus.FAILED).length !== 0
+			return this.queue?.filter((upload: Upload) => upload.status === UploadStatus.FAILED).length !== 0
 		},
 		isUploading() {
 			return this.queue?.length > 0
 		},
 		isAssembling() {
-			return this.queue?.filter(upload => upload.status === UploadStatus.ASSEMBLING).length !== 0
+			return this.queue?.filter((upload: Upload) => upload.status === UploadStatus.ASSEMBLING).length !== 0
 		},
 		isPaused() {
 			return this.uploadManager.info?.status === Status.PAUSED
@@ -197,11 +242,27 @@ export default Vue.extend({
 			if (this.isUploading) {
 				return undefined
 			}
-			return this.addLabel
+			return t('New')
 		},
 	},
 
 	watch: {
+		allowFolders: {
+			immediate: true,
+			handler() {
+				if (typeof this.content !== 'function' && this.allowFolders) {
+					logger.error('[UploadPicker] Setting `allowFolders` is only allowed if `content` is a function')
+				}
+			},
+		},
+
+		content: {
+			immediate: true,
+			async handler() {
+				this.currentContent = await this.getContent()
+			},
+		},
+
 		destination(destination) {
 			this.setDestination(destination)
 		},
@@ -240,54 +301,124 @@ export default Vue.extend({
 	methods: {
 		/**
 		 * Trigger file picker
+		 * @param uploadFolders Upload folders
 		 */
-		onClick() {
-			this.$refs.input.click()
+		onTriggerPick(uploadFolders = false) {
+			const input = this.$refs.input as HTMLInputElement
+			// Setup directory picking if enabled
+			if (this.canUploadFolders) {
+				input.webkitdirectory = uploadFolders
+			}
+			// Trigger click on the input to open the file picker
+			this.$nextTick(() => input.click())
+		},
+
+		/**
+		 * Helper for backwards compatibility that queries the content of the current directory
+		 * @param path The current path
+		 */
+		async getContent(path?: string) {
+			return Array.isArray(this.content) ? this.content : await this.content(path)
+		},
+
+		/**
+		 * Show a dialog to let the user decide how to proceed with invalid filenames.
+		 * The returned promise resolves to true if the file should be renamed and resolves to false to skip it the file.
+		 * The promise rejects when the user want to abort the operation.
+		 *
+		 * @param filename The invalid file name
+		 */
+		async showInvalidFileNameDialog(filename: string) {
+			return new PCancelable(async (resolve, reject) => {
+				await new DialogBuilder()
+					.setName(t('Invalid file name'))
+					.setSeverity('error')
+					.setText(t('"{filename}" contains invalid characters, how do you want to continue?', { filename }))
+					.setButtons([
+						{
+							label: t('Cancel'),
+							type: 'error',
+							callback: reject,
+						},
+						{
+							label: t('Skip'),
+							callback: () => resolve(false),
+						},
+						{
+							label: t('Rename'),
+							type: 'primary',
+							callback: () => resolve(true),
+						},
+					])
+					.build()
+					.show()
+			})
+		},
+
+		async handleConflicts(nodes: Array<File|Directory>, path: string): Promise<Array<File|Directory>|false> {
+			try {
+				const content = path === '' ? this.currentContent : await this.getContent(path).catch(() => [])
+				const conflicts = getConflicts(nodes, content)
+
+				// First handle conflicts as this might already remove invalid files
+				if (conflicts.length > 0) {
+					const { selected, renamed } = await openConflictPicker(path, conflicts, content, { recursive: true })
+					nodes = [...selected, ...renamed]
+				}
+
+				// We need to check all files for invalid characters
+				const filesToUpload: Array<File|Directory> = []
+				for (const file of nodes) {
+					const invalid = this.forbiddenCharacters.some((c) => file.name.includes(c))
+					// No invalid characters used on this file, so just continue
+					if (!invalid) {
+						filesToUpload.push(file)
+						continue
+					}
+
+					// Hanle invalid path
+					if (await this.showInvalidFileNameDialog(file.name)) {
+						// create a new valid path name
+						let newName = this.replaceInvalidCharacters(file.name)
+						newName = getUniqueName(newName, nodes.map((node) => node.name))
+						Object.defineProperty(file, 'name', { value: newName })
+						filesToUpload.push(file)
+					}
+				}
+				return filesToUpload
+			} catch (error) {
+				logger.debug('Upload has been cancelled', { error })
+				showWarning(t('Upload has been cancelled'))
+				return false
+			}
+		},
+
+		/**
+		 * Helper function to replace invalid characters in text
+		 * @param text Text to replace invalid character
+		 */
+		 replaceInvalidCharacters(text: string): string {
+			const invalidReplacement = ['-', '_', ' '].filter((c) => !this.forbiddenCharacters.includes(c))[0] ?? 'x'
+			this.forbiddenCharacters.forEach((c) => { text = text.replaceAll(c, invalidReplacement) })
+			return text
 		},
 
 		/**
 		 * Start uploading
 		 */
-		async onPick() {
-			let files = [...this.$refs.input.files] as File[]
+		onPick() {
+			const input = this.$refs.input as HTMLInputElement
+			const files = input.files ? Array.from(input.files) : []
 
-			// Detect and resolve conflicts
-			if (hasConflict(files, this.content)) {
-				// List of incoming files that are in conflict
-				const conflicts = files.filter((file: File) => {
-					return this.content.find((node: Node) => node.basename === file.name)
-				}).filter(Boolean) as File[]
+			this.uploadManager
+				.batchUpload('', files, this.handleConflicts)
+				.catch((error) => logger.debug('Error while uploading', { error }))
+				.finally(() => this.resetForm())
+		},
 
-				// List of incoming files that are NOT in conflict
-				const uploads = files.filter((file: File) => {
-					return !conflicts.includes(file)
-				})
-
-				try {
-					// Let the user choose what to do with the conflicting files
-					const { selected, renamed } = await openConflictPicker(this.destination.basename, conflicts, this.content)
-					files = [...uploads, ...selected, ...renamed]
-				} catch (error) {
-					// User cancelled
-					showError(t('Upload cancelled'))
-					return
-				}
-			}
-
-			files.forEach(file => {
-				const forbiddenCharacters = (this.forbiddenCharacters || []) as string[]
-				const forbiddenChar = forbiddenCharacters.find(char => file.name.includes(char))
-
-				if (forbiddenChar) {
-					showError(t(`"${forbiddenChar}" is not allowed inside a file name.`))
-				} else {
-					this.uploadManager.upload(file.name, file)
-						.catch(() => {
-							// Ignore errors, they are handled by the upload manager
-						})
-				}
-			})
-			this.$refs.form.reset()
+		resetForm() {
+			const form = this.$refs.form as HTMLFormElement
+			form?.reset()
 		},
 
 		/**
@@ -297,7 +428,7 @@ export default Vue.extend({
 			this.uploadManager.queue.forEach(upload => {
 				upload.cancel()
 			})
-			this.$refs.form.reset()
+			this.resetForm()
 		},
 
 		updateStatus() {
@@ -306,7 +437,7 @@ export default Vue.extend({
 				return
 			}
 
-			const estimate = Math.round(this.eta.estimate())
+			const estimate = Math.round(this.eta!.estimate())
 
 			if (estimate === Infinity) {
 				this.timeLeft = t('estimating time left')
@@ -326,7 +457,7 @@ export default Vue.extend({
 			this.timeLeft = t('{seconds} seconds left', { seconds: estimate })
 		},
 
-		setDestination(destination) {
+		setDestination(destination: Folder) {
 			if (!this.destination) {
 				logger.debug('Invalid destination')
 				return
@@ -338,7 +469,7 @@ export default Vue.extend({
 			this.newFileMenuEntries = getNewFileMenuEntries(destination)
 		},
 
-		onUploadCompletion(upload) {
+		onUploadCompletion(upload: Upload) {
 			if (upload.status === UploadStatus.FAILED) {
 				this.$emit('failed', upload)
 			} else {

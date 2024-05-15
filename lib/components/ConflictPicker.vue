@@ -101,7 +101,6 @@ import type { Node } from '@nextcloud/files'
 import type { PropType } from 'vue'
 import type { ConflictResolutionResult } from '../index.ts'
 
-import { basename, extname } from 'path'
 import { defineComponent } from 'vue'
 import { showError } from '@nextcloud/dialogs'
 
@@ -112,6 +111,7 @@ import NcDialog from '@nextcloud/vue/dist/Components/NcDialog.js'
 import NcButton from '@nextcloud/vue/dist/Components/NcButton.js'
 
 import { isFileSystemEntry } from '../utils/filesystem.ts'
+import { getUniqueName } from '../utils/uniqueName.ts'
 import { n, t } from '../utils/l10n.ts'
 import logger from '../utils/logger.ts'
 import NodesPicker from './NodesPicker.vue'
@@ -285,7 +285,7 @@ export default defineComponent({
 			this.$emit('submit', {
 				selected: [],
 				renamed: [],
-			} as ConflictResolutionResult)
+			} as ConflictResolutionResult<File>)
 		},
 
 		onSubmit() {
@@ -313,7 +313,7 @@ export default defineComponent({
 			if (toRename.length > 0) {
 				toRename.forEach(file => {
 					const name = (file instanceof File || isFileSystemEntry(file)) ? file.name : file.basename
-					const newName = this.getUniqueName(name, directoryContent)
+					const newName = getUniqueName(name, directoryContent)
 					// If File, create a new one with the new name
 					if (file instanceof File || isFileSystemEntry(file)) {
 						// Keep the original file object and force rename
@@ -340,25 +340,7 @@ export default defineComponent({
 			this.$emit('submit', {
 				selected,
 				renamed,
-			} as ConflictResolutionResult)
-		},
-
-		/**
-		 * Get a unique name for a file based
-		 * on the existing directory content.
-		 * @param {string} name The original file name with extension
-		 * @param {string} names The existing directory content names
-		 * @return {string} A unique name
-		 * TODO: migrate to @nextcloud/files
-		 */
-		getUniqueName(name: string, names: string[]): string {
-			let newName = name
-			let i = 1
-			while (names.includes(newName)) {
-				const ext = extname(name)
-				newName = `${basename(name, ext)} (${i++})${ext}`
-			}
-			return newName
+			} as ConflictResolutionResult<File|Node|FileSystemEntry>)
 		},
 
 		/**
