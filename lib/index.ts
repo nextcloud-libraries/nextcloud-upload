@@ -17,6 +17,7 @@ export type ConflictResolutionResult<T extends File|FileSystemEntry|Node> = {
 }
 /**
  * Get an Uploader instance
+ * @param forceRecreate Force a new uploader instance - main purpose is for testing
  */
 export function getUploader(forceRecreate = false): Uploader {
 	const isPublic = document.querySelector('input[name="isPublic"][value="1"]') !== null
