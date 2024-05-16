@@ -11,6 +11,10 @@ msgstr ""
 "Language: tr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
+msgid "\"{filename}\" contains invalid characters, how do you want to continue?"
+msgstr ""
+"\"{filename}\" içinde geçersiz karakterler var. Nasıl ilerlemek istersiniz?"
+
 msgid "{count} file conflict"
 msgid_plural "{count} files conflict"
 msgstr[0] "{count} dosya çakışması var"
@@ -43,6 +47,9 @@ msgstr "Yüklemeleri iptal et"
 msgid "Continue"
 msgstr "İlerle"
 
+msgid "Create new"
+msgstr "Yeni ekle"
+
 msgid "estimating time left"
 msgstr "öngörülen kalan süre"
 
@@ -53,6 +60,9 @@ msgid ""
 "If you select both versions, the incoming file will have a number added to "
 "its name."
 msgstr "İki sürümü de seçerseniz, gelen dosyanın adına bir sayı eklenir."
+
+msgid "Invalid file name"
+msgstr "Dosya adı geçersiz"
 
 msgid "Last modified date unknown"
 msgstr "Son değiştirilme tarihi bilinmiyor"
@@ -69,6 +79,9 @@ msgstr "duraklatıldı"
 msgid "Preview image"
 msgstr "Görsel ön izlemesi"
 
+msgid "Rename"
+msgstr "Yeniden adlandır"
+
 msgid "Select all checkboxes"
 msgstr "Tüm kutuları işaretle"
 
@@ -78,6 +91,9 @@ msgstr "Tüm var olan dosyaları seç"
 msgid "Select all new files"
 msgstr "Tüm yeni dosyaları seç"
 
+msgid "Skip"
+msgstr "Atla"
+
 msgid "Skip this file"
 msgid_plural "Skip {count} files"
 msgstr[0] "Bu dosyayı atla"
@@ -86,11 +102,17 @@ msgstr[1] "{count} dosyayı atla"
 msgid "Unknown size"
 msgstr "Boyut bilinmiyor"
 
-msgid "Upload cancelled"
-msgstr "Yükleme iptal edildi"
-
 msgid "Upload files"
 msgstr "Dosyaları yükle"
+
+msgid "Upload folders"
+msgstr "Klasörleri yükle"
+
+msgid "Upload from device"
+msgstr "Aygıttan yükle"
+
+msgid "Upload has been cancelled"
+msgstr "Yükleme iptal edildi"
 
 msgid "Upload progress"
 msgstr "Yükleme ilerlemesi"
