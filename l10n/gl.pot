@@ -11,6 +11,9 @@ msgstr ""
 "Language: gl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+msgid "\"{filename}\" contains invalid characters, how do you want to continue?"
+msgstr "«{filename}» contén caracteres non válidos, como quere continuar?"
+
 msgid "{count} file conflict"
 msgid_plural "{count} files conflict"
 msgstr[0] "{count} conflito de ficheiros"
@@ -43,6 +46,9 @@ msgstr "Cancelar envíos"
 msgid "Continue"
 msgstr "Continuar"
 
+msgid "Create new"
+msgstr "Crear un novo"
+
 msgid "estimating time left"
 msgstr "calculando canto tempo falta"
 
@@ -55,6 +61,9 @@ msgid ""
 msgstr ""
 "Se selecciona ambas as versións, o ficheiro entrante terá un número engadido"
 " ao seu nome."
+
+msgid "Invalid file name"
+msgstr "O nome de ficheiro non é válido"
 
 msgid "Last modified date unknown"
 msgstr "Data da última modificación descoñecida"
@@ -71,6 +80,9 @@ msgstr "detido"
 msgid "Preview image"
 msgstr "Vista previa da imaxe"
 
+msgid "Rename"
+msgstr "Renomear"
+
 msgid "Select all checkboxes"
 msgstr "Marcar todas as caixas de selección"
 
@@ -80,6 +92,9 @@ msgstr "Seleccionar todos os ficheiros existentes"
 msgid "Select all new files"
 msgstr "Seleccionar todos os ficheiros novos"
 
+msgid "Skip"
+msgstr "Omitir"
+
 msgid "Skip this file"
 msgid_plural "Skip {count} files"
 msgstr[0] "Omita este ficheiro"
@@ -88,11 +103,17 @@ msgstr[1] "Omitir {count} ficheiros"
 msgid "Unknown size"
 msgstr "Tamaño descoñecido"
 
-msgid "Upload cancelled"
-msgstr "Envío cancelado"
-
 msgid "Upload files"
 msgstr "Enviar ficheiros"
+
+msgid "Upload folders"
+msgstr "Enviar cartafoles"
+
+msgid "Upload from device"
+msgstr "Enviar dende o dispositivo"
+
+msgid "Upload has been cancelled"
+msgstr "O envío foi cancelado"
 
 msgid "Upload progress"
 msgstr "Progreso do envío"
