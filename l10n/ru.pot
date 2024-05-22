@@ -1,16 +1,19 @@
 # 
 # Translators:
-# John Molakvoæ <skjnldsv@protonmail.com>, 2023
-# Max Smith <sevinfolds@gmail.com>, 2023
-# Александр, 2023
+# Joas Schilling, 2024
+# Alex <kekcuha@gmail.com>, 2024
+# Влад, 2024
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Александр, 2023\n"
+"Last-Translator: Влад, 2024\n"
 "Language-Team: Russian (https://app.transifex.com/nextcloud/teams/64236/ru/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: ru\n"
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
+
+msgid "\"{filename}\" contains invalid characters, how do you want to continue?"
+msgstr "\"{filename}\" содержит недопустимые символы, хотите продолжить?"
 
 msgid "{count} file conflict"
 msgid_plural "{count} files conflict"
@@ -36,14 +39,20 @@ msgstr "осталось {time}"
 msgid "a few seconds left"
 msgstr "осталось несколько секунд"
 
-msgid "Add"
-msgstr "Добавить"
+msgid "Cancel"
+msgstr "Отмена"
+
+msgid "Cancel the entire operation"
+msgstr "Отменить всю операцию целиком"
 
 msgid "Cancel uploads"
 msgstr "Отменить загрузки"
 
 msgid "Continue"
 msgstr "Продолжить"
+
+msgid "Create new"
+msgstr "Создать новое"
 
 msgid "estimating time left"
 msgstr "оценка оставшегося времени"
@@ -52,14 +61,19 @@ msgid "Existing version"
 msgstr "Текущая версия"
 
 msgid ""
-"If you select both versions, the copied file will have a number added to its"
-" name."
+"If you select both versions, the incoming file will have a number added to "
+"its name."
 msgstr ""
-"Если вы выберете обе версии, к имени скопированного файла будет добавлен "
-"номер."
+"Если вы выберете обе версии, к имени входящего файла будет добавлен номер."
+
+msgid "Invalid file name"
+msgstr "Имя файла недопустимо"
 
 msgid "Last modified date unknown"
 msgstr "Дата последнего изменения неизвестна"
+
+msgid "New"
+msgstr "Новый"
 
 msgid "New version"
 msgstr "Новая версия"
@@ -70,6 +84,9 @@ msgstr "приостановлено"
 msgid "Preview image"
 msgstr "Предварительный просмотр"
 
+msgid "Rename"
+msgstr "Переименовать"
+
 msgid "Select all checkboxes"
 msgstr "Установить все флажки"
 
@@ -78,6 +95,9 @@ msgstr "Выбрать все существующие файлы"
 
 msgid "Select all new files"
 msgstr "Выбрать все новые файлы"
+
+msgid "Skip"
+msgstr "Пропуск"
 
 msgid "Skip this file"
 msgid_plural "Skip {count} files"
@@ -89,11 +109,34 @@ msgstr[3] "Пропустить {count} файлов"
 msgid "Unknown size"
 msgstr "Неизвестный размер"
 
-msgid "Upload cancelled"
-msgstr "Загрузка отменена"
-
 msgid "Upload files"
 msgstr "Загрузка файлов"
+
+msgid "Upload folders"
+msgstr "Загрузка папок"
+
+msgid "Upload from device"
+msgstr "Загрузка с устройства"
+
+msgid "Upload has been cancelled"
+msgstr "Загрузка была отменена"
+
+msgid "Upload progress"
+msgstr "Состояние передачи на сервер"
+
+msgid ""
+"When an incoming folder is selected, any conflicting files within it will "
+"also be overwritten."
+msgstr ""
+"Когда выбрана входящая папка, все конфликтующие файлы в ней также будут "
+"перезаписаны."
+
+msgid ""
+"When an incoming folder is selected, the content is written into the "
+"existing folder and a recursive conflict resolution is performed."
+msgstr ""
+"Когда выбрана входящая папка, содержимое записывается в существующую папку и"
+" выполняется рекурсивное разрешение конфликтов."
 
 msgid "Which files do you want to keep?"
 msgstr "Какие файлы вы хотите сохранить?"

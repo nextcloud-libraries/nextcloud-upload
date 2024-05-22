@@ -11,6 +11,9 @@ msgstr ""
 "Language: sv\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+msgid "\"{filename}\" contains invalid characters, how do you want to continue?"
+msgstr "\"{filename}\" innehåller ogiltiga tecken, hur vill du fortsätta?"
+
 msgid "{count} file conflict"
 msgid_plural "{count} files conflict"
 msgstr[0] "{count} filkonflikt"
@@ -43,6 +46,9 @@ msgstr "Avbryt uppladdningar"
 msgid "Continue"
 msgstr "Fortsätt"
 
+msgid "Create new"
+msgstr "Skapa ny"
+
 msgid "estimating time left"
 msgstr "uppskattar kvarstående tid"
 
@@ -50,11 +56,14 @@ msgid "Existing version"
 msgstr "Nuvarande version"
 
 msgid ""
-"If you select both versions, the copied file will have a number added to its"
-" name."
+"If you select both versions, the incoming file will have a number added to "
+"its name."
 msgstr ""
-"Om du väljer båda versionerna kommer den kopierade filen att få ett nummer "
-"tillagt  i namnet."
+"Om du väljer båda versionerna kommer den inkommande filen att läggas till "
+"ett nummer i namnet."
+
+msgid "Invalid file name"
+msgstr "Ogiltigt filnamn"
 
 msgid "Last modified date unknown"
 msgstr "Senaste ändringsdatum okänt"
@@ -71,6 +80,9 @@ msgstr "pausad"
 msgid "Preview image"
 msgstr "Förhandsgranska bild"
 
+msgid "Rename"
+msgstr "Byt namn"
+
 msgid "Select all checkboxes"
 msgstr "Markera alla kryssrutor"
 
@@ -80,6 +92,9 @@ msgstr "Välj alla befintliga filer"
 msgid "Select all new files"
 msgstr "Välj alla nya filer"
 
+msgid "Skip"
+msgstr "Hoppa över"
+
 msgid "Skip this file"
 msgid_plural "Skip {count} files"
 msgstr[0] "Hoppa över denna fil"
@@ -88,11 +103,17 @@ msgstr[1] "Hoppa över {count} filer"
 msgid "Unknown size"
 msgstr "Okänd storlek"
 
-msgid "Upload cancelled"
-msgstr "Uppladdningen avbröts"
-
 msgid "Upload files"
 msgstr "Ladda upp filer"
+
+msgid "Upload folders"
+msgstr "Ladda upp mappar"
+
+msgid "Upload from device"
+msgstr "Ladda upp från enhet"
+
+msgid "Upload has been cancelled"
+msgstr "Uppladdningen har avbrutits"
 
 msgid "Upload progress"
 msgstr "Uppladdningsförlopp"
@@ -102,6 +123,13 @@ msgid ""
 "also be overwritten."
 msgstr ""
 "När en inkommande mapp väljs skrivs även alla konfliktande filer i den över."
+
+msgid ""
+"When an incoming folder is selected, the content is written into the "
+"existing folder and a recursive conflict resolution is performed."
+msgstr ""
+"När en inkommande mapp väljs skrivs innehållet in i den befintliga mappen "
+"och en rekursiv konfliktlösning utförs."
 
 msgid "Which files do you want to keep?"
 msgstr "Vilka filer vill du behålla?"
