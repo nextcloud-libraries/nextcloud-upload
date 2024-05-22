@@ -23,9 +23,9 @@ msgstr[2] "{count} conflictos de archivo"
 
 msgid "{count} file conflict in {dirname}"
 msgid_plural "{count} file conflicts in {dirname}"
-msgstr[0] "{count} archivo en conflicto en {dirname}"
-msgstr[1] "{count} archivos en conflicto en {dirname}"
-msgstr[2] "{count} archivos en conflicto en {dirname}"
+msgstr[0] "{count} conflicto de archivo en {dirname}"
+msgstr[1] "{count} conflictos de archivo en {dirname}"
+msgstr[2] "{count} conflictos de archivo en {dirname}"
 
 msgid "{seconds} seconds left"
 msgstr "{seconds} segundos restantes"
