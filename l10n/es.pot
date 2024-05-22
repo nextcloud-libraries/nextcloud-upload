@@ -17,9 +17,9 @@ msgstr "\"{filename}\" contiene caracteres inválidos, ¿cómo desea continuar?"
 
 msgid "{count} file conflict"
 msgid_plural "{count} files conflict"
-msgstr[0] "{count} archivo en conflicto"
-msgstr[1] "{count} archivos en conflicto"
-msgstr[2] "{count} archivos en conflicto"
+msgstr[0] "{count} conflicto de archivo"
+msgstr[1] "{count} conflictos de archivo"
+msgstr[2] "{count} conflictos de archivo"
 
 msgid "{count} file conflict in {dirname}"
 msgid_plural "{count} file conflicts in {dirname}"
