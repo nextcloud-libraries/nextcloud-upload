@@ -1,8 +1,7 @@
 # 
 # Translators:
-# John Molakvoæ <skjnldsv@protonmail.com>, 2023
-# FranciscoFJ <dev-ooo@satel-sa.com>, 2023
-# Next Cloud <nextcloud.translator.es@cgj.es>, 2023
+# Joas Schilling, 2024
+# FranciscoFJ <dev-ooo@satel-sa.com>, 2024
 # Julio C. Ortega, 2024
 # 
 msgid ""
@@ -12,6 +11,9 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: es\n"
 "Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
+
+msgid "\"{filename}\" contains invalid characters, how do you want to continue?"
+msgstr "\"{filename}\" contiene caracteres inválidos, ¿cómo desea continuar?"
 
 msgid "{count} file conflict"
 msgid_plural "{count} files conflict"
@@ -35,11 +37,20 @@ msgstr "{time} restante"
 msgid "a few seconds left"
 msgstr "quedan unos segundos"
 
+msgid "Cancel"
+msgstr "Cancelar"
+
+msgid "Cancel the entire operation"
+msgstr "Cancelar toda la operación"
+
 msgid "Cancel uploads"
 msgstr "Cancelar subidas"
 
 msgid "Continue"
 msgstr "Continuar"
+
+msgid "Create new"
+msgstr "Crear nuevo"
 
 msgid "estimating time left"
 msgstr "estimando tiempo restante"
@@ -48,11 +59,14 @@ msgid "Existing version"
 msgstr "Versión existente"
 
 msgid ""
-"If you select both versions, the copied file will have a number added to its"
-" name."
+"If you select both versions, the incoming file will have a number added to "
+"its name."
 msgstr ""
-"Si selecciona ambas versiones, al archivo copiado se le añadirá un número en"
-" el nombre."
+"Si selecciona ambas versionas, el archivo entrante le será agregado un "
+"número a su nombre."
+
+msgid "Invalid file name"
+msgstr "Nombre de archivo inválido"
 
 msgid "Last modified date unknown"
 msgstr "Última fecha de modificación desconocida"
@@ -69,6 +83,9 @@ msgstr "pausado"
 msgid "Preview image"
 msgstr "Previsualizar imagen"
 
+msgid "Rename"
+msgstr "Renombrar"
+
 msgid "Select all checkboxes"
 msgstr "Seleccionar todas las casillas de verificación"
 
@@ -77,6 +94,9 @@ msgstr "Seleccionar todos los archivos existentes"
 
 msgid "Select all new files"
 msgstr "Seleccionar todos los archivos nuevos"
+
+msgid "Skip"
+msgstr "Saltar"
 
 msgid "Skip this file"
 msgid_plural "Skip {count} files"
@@ -87,14 +107,34 @@ msgstr[2] "Saltar {count} archivos"
 msgid "Unknown size"
 msgstr "Tamaño desconocido"
 
-msgid "Upload cancelled"
-msgstr "Subida cancelada"
-
 msgid "Upload files"
 msgstr "Subir archivos"
 
+msgid "Upload folders"
+msgstr "Subir carpetas"
+
+msgid "Upload from device"
+msgstr "Subir desde dispositivo"
+
+msgid "Upload has been cancelled"
+msgstr "La subida ha sido cancelada"
+
 msgid "Upload progress"
 msgstr "Progreso de la subida"
+
+msgid ""
+"When an incoming folder is selected, any conflicting files within it will "
+"also be overwritten."
+msgstr ""
+"Cuando una carpeta entrante es seleccionada, cualquier de los archivos en "
+"conflictos también serán sobre-escritos."
+
+msgid ""
+"When an incoming folder is selected, the content is written into the "
+"existing folder and a recursive conflict resolution is performed."
+msgstr ""
+"Cuando una carpeta entrante es seleccionada, el contenido es escrito en la "
+"carpeta existente y se realizará una resolución de conflictos recursiva."
 
 msgid "Which files do you want to keep?"
 msgstr "¿Qué archivos desea conservar?"
