@@ -225,6 +225,11 @@ export default defineComponent({
 				url.searchParams.set('x', PREVIEW_SIZE.toString())
 				url.searchParams.set('y', PREVIEW_SIZE.toString())
 				url.searchParams.set('mimeFallback', 'true')
+
+				// Etag to force refresh preview on change
+				const etag = node.attributes?.etag || ''
+				url.searchParams.set('v', etag.slice(0, 6))
+
 				return url.href
 			} catch (e) {
 				return null
