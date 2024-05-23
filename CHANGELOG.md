@@ -1,5 +1,33 @@
 # Changelog
 
+## [v1.2.0](https://github.com/nextcloud-libraries/nextcloud-upload/tree/v1.2.0) (2024-05-23)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-upload/compare/v1.1.1...v1.2.0)
+
+
+### Added
+* feat(NodesPicker): Add support for FileSystemEntry by @susnux in https://github.com/nextcloud-libraries/nextcloud-upload/pull/1165
+* feat(ConflictPicker): Allow to use `FileSystemEntry` by @susnux in https://github.com/nextcloud-libraries/nextcloud-upload/pull/1166
+* feat: Allow to upload directories and allow bulk upload by @susnux in https://github.com/nextcloud-libraries/nextcloud-upload/pull/1175
+* feat: Split new-menu entries into `upload` `new` and *other* by @susnux in https://github.com/nextcloud-libraries/nextcloud-upload/pull/1206
+* feat(ConflictPicker): refresh preview on etag change by @skjnldsv in https://github.com/nextcloud-libraries/nextcloud-upload/pull/1214
+
+### Fixed
+* fix(ConflictPicker): Ensure component works also if browser does not support FileSystemEntry by @susnux in https://github.com/nextcloud-libraries/nextcloud-upload/pull/1171
+* fix(ConflictPicker): Allow to set recursive upload note + fix types for conflict utils functions by @susnux in https://github.com/nextcloud-libraries/nextcloud-upload/pull/1176
+* fix(docs): Add parameter docs for `getUploader` by @susnux in https://github.com/nextcloud-libraries/nextcloud-upload/pull/1207
+
+### Changed
+* Updated translations
+* fix(tests): Add tests for filesystem helpers by @susnux in https://github.com/nextcloud-libraries/nextcloud-upload/pull/1174
+* fix: Refactor logger and fix badges in README by @susnux in https://github.com/nextcloud-libraries/nextcloud-upload/pull/1173
+* build(deps): Bump @nextcloud/dialogs to 5.3.1
+* build(deps): Bump @nextcloud/auth to 2.3.0
+* build(deps): Bump @nextcloud/router to 3.0.1
+* build(deps): Bump @nextcloud/files to 3.2.1
+* build(deps): Bump @nextcloud/l10n to 3.1.0
+* build(deps): Bump @nextcloud/logger to 3.0.2
+* build(deps): Bump axios to 1.7.2
+
 ## [v1.1.1](https://github.com/nextcloud-libraries/nextcloud-upload/tree/v1.1.1) (2024-04-15)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-upload/compare/v1.1.0...v1.1.1)
 
