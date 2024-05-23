@@ -41,12 +41,8 @@
 				{{ t('Upload folders') }}
 			</NcActionButton>
 
-			<NcActionSeparator v-if="newFileMenuEntries.length > 0" />
-
-			<NcActionCaption v-if="newFileMenuEntries.length > 0" :name="t('Create new')" />
-
-			<!-- Custom new file entries -->
-			<NcActionButton v-for="entry in newFileMenuEntries"
+			<!-- App defined upload actions -->
+			<NcActionButton v-for="entry in menuEntriesUpload"
 				:key="entry.id"
 				:icon="entry.iconClass"
 				:close-after-click="true"
@@ -57,6 +53,39 @@
 				</template>
 				{{ entry.displayName }}
 			</NcActionButton>
+
+			<!-- Custom new file entries -->
+			<template v-if="menuEntriesNew.length > 0">
+				<NcActionSeparator />
+				<NcActionCaption :name="t('Create new')" />
+				<NcActionButton v-for="entry in menuEntriesNew"
+					:key="entry.id"
+					:icon="entry.iconClass"
+					:close-after-click="true"
+					class="upload-picker__menu-entry"
+					@click="entry.handler(destination, currentContent)">
+					<template v-if="entry.iconSvgInline" #icon>
+						<NcIconSvgWrapper :svg="entry.iconSvgInline" />
+					</template>
+					{{ entry.displayName }}
+				</NcActionButton>
+			</template>
+
+			<!-- other file entries -->
+			<template v-if="menuEntriesOther.length > 0">
+				<NcActionSeparator />
+				<NcActionButton v-for="entry in menuEntriesNew"
+					:key="entry.id"
+					:icon="entry.iconClass"
+					:close-after-click="true"
+					class="upload-picker__menu-entry"
+					@click="entry.handler(destination, currentContent)">
+					<template v-if="entry.iconSvgInline" #icon>
+						<NcIconSvgWrapper :svg="entry.iconSvgInline" />
+					</template>
+					{{ entry.displayName }}
+				</NcActionButton>
+			</template>
 		</NcActions>
 
 		<!-- Progressbar and status -->
@@ -101,7 +130,7 @@ import type { Upload } from '../upload.ts'
 import type { Directory } from '../utils/fileTree'
 
 import { DialogBuilder, showWarning } from '@nextcloud/dialogs'
-import { getNewFileMenuEntries, Folder } from '@nextcloud/files'
+import { getNewFileMenuEntries, Folder, NewMenuEntryCategory } from '@nextcloud/files'
 import makeEta from 'simple-eta'
 import Vue from 'vue'
 
@@ -200,6 +229,17 @@ export default Vue.extend({
 	},
 
 	computed: {
+		menuEntriesUpload() {
+			return this.newFileMenuEntries.filter((entry) => entry.category === NewMenuEntryCategory.UploadFromDevice)
+		},
+
+		menuEntriesNew() {
+			return this.newFileMenuEntries.filter((entry) => entry.category === NewMenuEntryCategory.CreateNew)
+		},
+
+		menuEntriesOther() {
+			return this.newFileMenuEntries.filter((entry) => entry.category === NewMenuEntryCategory.Other)
+		},
 		/**
 		 * Check whether the current browser supports uploading directories
 		 * Hint: This does not check if the current connection supports this, as some browsers require a secure context!
