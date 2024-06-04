@@ -11,6 +11,9 @@ msgstr ""
 "Language: ar\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
 
+msgid "\"{filename}\" contains invalid characters, how do you want to continue?"
+msgstr "\"{filename}\" يحتوي على حروف غير مقبولة. كيف ترغب في الاستمرار؟"
+
 msgid "{count} file conflict"
 msgid_plural "{count} files conflict"
 msgstr[0] "{count} ملف متعارض"
@@ -51,6 +54,9 @@ msgstr "إلغاء عمليات رفع الملفات"
 msgid "Continue"
 msgstr "إستمر"
 
+msgid "Create new"
+msgstr "إنشاء جديد"
+
 msgid "estimating time left"
 msgstr "تقدير الوقت المتبقي"
 
@@ -62,6 +68,9 @@ msgid ""
 "its name."
 msgstr ""
 "إذا اخترت الاحتفاظ بالنسختين فسيتم إلحاق رقم عداد آخر اسم الملف الوارد."
+
+msgid "Invalid file name"
+msgstr "اسم الملف غير صحيح"
 
 msgid "Last modified date unknown"
 msgstr "تاريخ آخر تعديل غير معلوم"
@@ -78,6 +87,9 @@ msgstr "مُجمَّد"
 msgid "Preview image"
 msgstr "معاينة الصورة"
 
+msgid "Rename"
+msgstr "تغيير التسمية"
+
 msgid "Select all checkboxes"
 msgstr "حدِّد كل صناديق الخيارات"
 
@@ -86,6 +98,9 @@ msgstr "حدِّد كل الملفات الموجودة"
 
 msgid "Select all new files"
 msgstr "حدِّد كل الملفات الجديدة"
+
+msgid "Skip"
+msgstr "تخطِّي"
 
 msgid "Skip this file"
 msgid_plural "Skip {count} files"
@@ -99,11 +114,17 @@ msgstr[5] "تخطَّ {count} ملف"
 msgid "Unknown size"
 msgstr "حجم غير معلوم"
 
-msgid "Upload cancelled"
-msgstr "تمَّ إلغاء الرفع"
-
 msgid "Upload files"
 msgstr "رفع ملفات"
+
+msgid "Upload folders"
+msgstr "رفع مجلدات"
+
+msgid "Upload from device"
+msgstr "الرفع من جهاز "
+
+msgid "Upload has been cancelled"
+msgstr "تمّ إلغاء عملية رفع الملفات"
 
 msgid "Upload progress"
 msgstr "تقدُّم الرفع "
