@@ -15,6 +15,11 @@ export default async (env) => {
 			exclude: ['lib/utils/l10n.ts'],
 			reporter: ['lcov', 'text'],
 		},
+		server: {
+			deps: {
+				inline: ['@nextcloud/files'],
+			},
+		},
 	} as UserConfig
 	return cfg
 }
