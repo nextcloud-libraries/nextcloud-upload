@@ -3,6 +3,7 @@ import type { WebDAVClient } from 'webdav'
 
 import { getCurrentUser } from '@nextcloud/auth'
 import { Folder, Permission, davGetClient } from '@nextcloud/files'
+import { loadState } from '@nextcloud/initial-state'
 import { encodePath } from '@nextcloud/paths'
 import { generateRemoteUrl } from '@nextcloud/router'
 import { normalize } from 'path'
@@ -53,11 +54,26 @@ export class Uploader {
 		this._isPublic = isPublic
 
 		if (!destinationFolder) {
-			const owner = getCurrentUser()?.uid
-			const source = generateRemoteUrl(`dav/files/${owner}`)
-			if (!owner) {
-				throw new Error('User is not logged in')
+			let owner: string
+			let source: string
+
+			if (isPublic) {
+				const sharingToken = loadState<string | null>('files_sharing', 'sharingToken', null) ?? document.querySelector<HTMLInputElement>('input#sharingToken')?.value
+				if (!sharingToken) {
+					logger.error('No sharing token found for public shares, please specify the destination folder manually.')
+					throw new Error('No sharing token found.')
+				}
+				owner = sharingToken
+				source = generateRemoteUrl(`dav/files/${sharingToken}`).replace('remote.php', 'public.php')
+			} else {
+				const user = getCurrentUser()?.uid
+				if (!user) {
+					throw new Error('User is not logged in')
+				}
+				owner = user
+				source = generateRemoteUrl(`dav/files/${owner}`)
 			}
+
 			destinationFolder = new Folder({
 				id: 0,
 				owner,
