@@ -1,13 +1,13 @@
 import type { AxiosError, AxiosResponse } from 'axios'
 import type { WebDAVClient } from 'webdav'
 
-import { CanceledError } from 'axios'
-import { encodePath } from '@nextcloud/paths'
-import { Folder, Permission, davGetClient } from '@nextcloud/files'
-import { generateRemoteUrl } from '@nextcloud/router'
 import { getCurrentUser } from '@nextcloud/auth'
+import { Folder, Permission, davGetClient } from '@nextcloud/files'
+import { encodePath } from '@nextcloud/paths'
+import { generateRemoteUrl } from '@nextcloud/router'
 import { normalize } from 'path'
-import axios from '@nextcloud/axios'
+
+import axios, { isCancel } from '@nextcloud/axios'
 import PCancelable from 'p-cancelable'
 import PQueue from 'p-queue'
 
@@ -406,7 +406,7 @@ export class Uploader {
 									throw error
 								}
 
-								if (!(error instanceof CanceledError)) {
+								if (!isCancel(error)) {
 									logger.error(`Chunk ${chunk + 1} ${bufferStart} - ${bufferEnd} uploading failed`, { error, upload })
 									// TODO: support retrying ?
 									// https://github.com/nextcloud-libraries/nextcloud-upload/issues/5
@@ -439,7 +439,7 @@ export class Uploader {
 					logger.debug(`Successfully uploaded ${file.name}`, { file, upload })
 					resolve(upload)
 				} catch (error) {
-					if (!(error instanceof CanceledError)) {
+					if (!isCancel(error)) {
 						upload.status = UploadStatus.FAILED
 						reject('Failed assembling the chunks together')
 					} else {
@@ -486,7 +486,7 @@ export class Uploader {
 						logger.debug(`Successfully uploaded ${file.name}`, { file, upload })
 						resolve(upload)
 					} catch (error) {
-						if (error instanceof CanceledError) {
+						if (isCancel(error)) {
 							upload.status = UploadStatus.FAILED
 							reject(t('Upload has been cancelled'))
 							return
