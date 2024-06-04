@@ -1,13 +1,14 @@
 import type { AxiosError, AxiosResponse } from 'axios'
 import type { WebDAVClient } from 'webdav'
 
-import { CanceledError } from 'axios'
-import { encodePath } from '@nextcloud/paths'
-import { Folder, Permission, davGetClient } from '@nextcloud/files'
-import { generateRemoteUrl } from '@nextcloud/router'
 import { getCurrentUser } from '@nextcloud/auth'
+import { Folder, Permission, davGetClient } from '@nextcloud/files'
+import { loadState } from '@nextcloud/initial-state'
+import { encodePath } from '@nextcloud/paths'
+import { generateRemoteUrl } from '@nextcloud/router'
 import { normalize } from 'path'
-import axios from '@nextcloud/axios'
+
+import axios, { isCancel } from '@nextcloud/axios'
 import PCancelable from 'p-cancelable'
 import PQueue from 'p-queue'
 
@@ -53,11 +54,26 @@ export class Uploader {
 		this._isPublic = isPublic
 
 		if (!destinationFolder) {
-			const owner = getCurrentUser()?.uid
-			const source = generateRemoteUrl(`dav/files/${owner}`)
-			if (!owner) {
-				throw new Error('User is not logged in')
+			let owner: string
+			let source: string
+
+			if (isPublic) {
+				const sharingToken = loadState<string | null>('files_sharing', 'sharingToken', null) ?? document.querySelector<HTMLInputElement>('input#sharingToken')?.value
+				if (!sharingToken) {
+					logger.error('No sharing token found for public shares, please specify the destination folder manually.')
+					throw new Error('No sharing token found.')
+				}
+				owner = sharingToken
+				source = generateRemoteUrl(`dav/files/${sharingToken}`).replace('remote.php', 'public.php')
+			} else {
+				const user = getCurrentUser()?.uid
+				if (!user) {
+					throw new Error('User is not logged in')
+				}
+				owner = user
+				source = generateRemoteUrl(`dav/files/${owner}`)
 			}
+
 			destinationFolder = new Folder({
 				id: 0,
 				owner,
@@ -406,7 +422,7 @@ export class Uploader {
 									throw error
 								}
 
-								if (!(error instanceof CanceledError)) {
+								if (!isCancel(error)) {
 									logger.error(`Chunk ${chunk + 1} ${bufferStart} - ${bufferEnd} uploading failed`, { error, upload })
 									// TODO: support retrying ?
 									// https://github.com/nextcloud-libraries/nextcloud-upload/issues/5
@@ -439,7 +455,7 @@ export class Uploader {
 					logger.debug(`Successfully uploaded ${file.name}`, { file, upload })
 					resolve(upload)
 				} catch (error) {
-					if (!(error instanceof CanceledError)) {
+					if (!isCancel(error)) {
 						upload.status = UploadStatus.FAILED
 						reject('Failed assembling the chunks together')
 					} else {
@@ -486,7 +502,7 @@ export class Uploader {
 						logger.debug(`Successfully uploaded ${file.name}`, { file, upload })
 						resolve(upload)
 					} catch (error) {
-						if (error instanceof CanceledError) {
+						if (isCancel(error)) {
 							upload.status = UploadStatus.FAILED
 							reject(t('Upload has been cancelled'))
 							return
