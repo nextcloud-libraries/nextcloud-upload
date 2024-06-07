@@ -1,8 +1,19 @@
 # Changelog
 
+## [v1.3.0](https://github.com/nextcloud-libraries/nextcloud-upload/tree/v1.3.0) (2024-06-06)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-upload/compare/v1.2.0...v1.3.0)
+
+### Added
+* feat: Implement upload on public shares using dav endpoint v2 by @susnux in https://github.com/nextcloud-libraries/nextcloud-upload/pull/1225
+
+### Changed
+* refactor: Only import from nextcloud-axios not axios directly by @susnux in https://github.com/nextcloud-libraries/nextcloud-upload/pull/1224
+* Updated translations
+* chore(deps): Bump @nextcloud/files from 3.3.1 to 3.4.0 by @dependabot in https://github.com/nextcloud-libraries/nextcloud-upload/pull/1220
+* chore(deps): Bump @types/node to 20.14.2 by @dependabot in https://github.com/nextcloud-libraries/nextcloud-upload/pull/1227
+
 ## [v1.2.0](https://github.com/nextcloud-libraries/nextcloud-upload/tree/v1.2.0) (2024-05-23)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-upload/compare/v1.1.1...v1.2.0)
-
 
 ### Added
 * feat(NodesPicker): Add support for FileSystemEntry by @susnux in https://github.com/nextcloud-libraries/nextcloud-upload/pull/1165
