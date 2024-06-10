@@ -78,6 +78,10 @@ describe('Initialize chunks upload temporary workspace', () => {
 		expect(axiosMock.request).toHaveBeenCalledWith({
 			method: 'MKCOL',
 			url,
+			'axios-retry': {
+				retries: 5,
+				retryDelay: expect.any(Function),
+			},
 		})
 	})
 
@@ -105,6 +109,10 @@ describe('Initialize chunks upload temporary workspace', () => {
 			headers: {
 				Destination: 'https://cloud.domain.com/remote.php/dav/files/test/image.jpg',
 			},
+			'axios-retry': {
+				retries: 5,
+				retryDelay: expect.any(Function),
+			},
 		})
 	})
 })
@@ -129,6 +137,10 @@ describe('Upload data', () => {
 			onUploadProgress,
 			headers: {
 				'Content-Type': 'application/octet-stream',
+			},
+			'axios-retry': {
+				retries: 5,
+				retryDelay: expect.any(Function),
 			},
 		})
 	})
@@ -155,6 +167,10 @@ describe('Upload data', () => {
 			headers: {
 				'Content-Type': 'application/octet-stream',
 			},
+			'axios-retry': {
+				retries: 5,
+				retryDelay: expect.any(Function),
+			},
 		})
 	})
 
@@ -178,6 +194,10 @@ describe('Upload data', () => {
 			headers: {
 				Destination: url,
 				'Content-Type': 'application/octet-stream',
+			},
+			'axios-retry': {
+				retries: 5,
+				retryDelay: expect.any(Function),
 			},
 		})
 	})

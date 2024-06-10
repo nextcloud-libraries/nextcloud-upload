@@ -350,8 +350,9 @@ export class Uploader {
 	 * @param {string} destination the destination path relative to the root folder. e.g. /foo/bar.txt
 	 * @param {File|FileSystemFileEntry} fileHandle the file to upload
 	 * @param {string} root the root folder to upload to
+	 * @param retries number of retries
 	 */
-	upload(destination: string, fileHandle: File|FileSystemFileEntry, root?: string): PCancelable<Upload> {
+	upload(destination: string, fileHandle: File|FileSystemFileEntry, root?: string, retries: number = 5): PCancelable<Upload> {
 		root = root || this.root
 		const destinationPath = `${root.replace(/\/$/, '')}/${destination.replace(/^\//, '')}`
 
@@ -387,7 +388,7 @@ export class Uploader {
 				logger.debug('Initializing chunked upload', { file, upload })
 
 				// Let's initialize a chunk upload
-				const tempUrl = await initChunkWorkspace(encodedDestinationFile)
+				const tempUrl = await initChunkWorkspace(encodedDestinationFile, retries)
 				const chunksQueue: Array<Promise<void>> = []
 
 				// Generate chunks array
@@ -411,6 +412,7 @@ export class Uploader {
 								'OC-Total-Length': file.size,
 								'Content-Type': 'application/octet-stream',
 							},
+							retries,
 						)
 							// Update upload progress on chunk completion
 							.then(() => { upload.uploaded = upload.uploaded + maxChunkSize })
@@ -424,8 +426,6 @@ export class Uploader {
 
 								if (!isCancel(error)) {
 									logger.error(`Chunk ${chunk + 1} ${bufferStart} - ${bufferEnd} uploading failed`, { error, upload })
-									// TODO: support retrying ?
-									// https://github.com/nextcloud-libraries/nextcloud-upload/issues/5
 									upload.cancel()
 									upload.status = UploadStatus.FAILED
 								}

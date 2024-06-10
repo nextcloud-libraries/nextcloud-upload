@@ -8,11 +8,6 @@ const viteConfig = await createAppConfig({}, {
 	replace: {
 		__TRANSLATIONS__: '[]',
 	},
-	config: {
-		optimizeDeps: {
-			entries: ['cypress/**/*'],
-		},
-	},
 })({ mode: 'development', command: 'serve' })
 
 viteConfig.build!.rollupOptions = undefined
