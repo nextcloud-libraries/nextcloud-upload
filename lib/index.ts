@@ -1,6 +1,7 @@
 import type { Node } from '@nextcloud/files'
 import type { AsyncComponent } from 'vue'
 
+import { loadState } from '@nextcloud/initial-state'
 import { Uploader } from './uploader'
 import UploadPicker from './components/UploadPicker.vue'
 import Vue, { defineAsyncComponent } from 'vue'
@@ -20,7 +21,8 @@ export type ConflictResolutionResult<T extends File|FileSystemEntry|Node> = {
  * @param forceRecreate Force a new uploader instance - main purpose is for testing
  */
 export function getUploader(forceRecreate = false): Uploader {
-	const isPublic = document.querySelector('input[name="isPublic"][value="1"]') !== null
+	const isPublic = loadState<boolean | null>('files_sharing', 'isPublic', null)
+		?? document.querySelector('input[name="isPublic"][value="1"]') !== null
 
 	if (_uploader instanceof Uploader && !forceRecreate) {
 		return _uploader
