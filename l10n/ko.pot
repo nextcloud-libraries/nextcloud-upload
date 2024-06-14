@@ -11,6 +11,9 @@ msgstr ""
 "Language: ko\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
+msgid "\"{filename}\" contains invalid characters, how do you want to continue?"
+msgstr "\"{filename}\"에 유효하지 않은 문자가 있습니다, 계속하시겠습니까?"
+
 msgid "{count} file conflict"
 msgid_plural "{count} files conflict"
 msgstr[0] "{count}개의 파일이 충돌함"
@@ -41,6 +44,9 @@ msgstr "업로드 취소"
 msgid "Continue"
 msgstr "확인"
 
+msgid "Create new"
+msgstr "새로 만들기"
+
 msgid "estimating time left"
 msgstr "남은 시간 계산"
 
@@ -51,6 +57,9 @@ msgid ""
 "If you select both versions, the incoming file will have a number added to "
 "its name."
 msgstr "두 파일을 모두 선택하면, 들어오는 파일의 이름에 번호가 추가됩니다."
+
+msgid "Invalid file name"
+msgstr "잘못된 파일 이름"
 
 msgid "Last modified date unknown"
 msgstr "최근 수정일 알 수 없음"
@@ -67,6 +76,9 @@ msgstr "일시정지됨"
 msgid "Preview image"
 msgstr "미리보기 이미지"
 
+msgid "Rename"
+msgstr "이름 바꾸기"
+
 msgid "Select all checkboxes"
 msgstr "모든 체크박스 선택"
 
@@ -76,6 +88,9 @@ msgstr "기존 파일을 모두 선택"
 msgid "Select all new files"
 msgstr "새로운 파일을 모두 선택"
 
+msgid "Skip"
+msgstr "건너뛰기"
+
 msgid "Skip this file"
 msgid_plural "Skip {count} files"
 msgstr[0] "{count}개의 파일 넘기기"
@@ -83,11 +98,17 @@ msgstr[0] "{count}개의 파일 넘기기"
 msgid "Unknown size"
 msgstr "크기를 알 수 없음"
 
-msgid "Upload cancelled"
-msgstr "업로드 취소됨"
-
 msgid "Upload files"
 msgstr "파일 업로드"
+
+msgid "Upload folders"
+msgstr "폴더 업로드"
+
+msgid "Upload from device"
+msgstr "장치에서 업로드"
+
+msgid "Upload has been cancelled"
+msgstr "업로드가 취소되었습니다."
 
 msgid "Upload progress"
 msgstr "업로드 진행도"
