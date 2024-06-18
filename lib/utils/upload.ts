@@ -2,6 +2,8 @@ import type { AxiosProgressEvent, AxiosResponse } from 'axios'
 import { generateRemoteUrl } from '@nextcloud/router'
 import { getCurrentUser } from '@nextcloud/auth'
 import axios from '@nextcloud/axios'
+import axiosRetry from 'axios-retry';
+axiosRetry(axios, { retries: 0 });
 
 type UploadData = Blob | (() => Promise<Blob>)
 
@@ -13,6 +15,7 @@ type UploadData = Blob | (() => Promise<Blob>)
  * @param onUploadProgress the progress callback
  * @param destinationFile the final destination file (often used for chunked uploads)
  * @param headers additional headers
+ * @param retries number of retries
  */
 export const uploadData = async function(
 	url: string,
@@ -21,6 +24,7 @@ export const uploadData = async function(
 	onUploadProgress:(event: AxiosProgressEvent) => void = () => {},
 	destinationFile: string | undefined = undefined,
 	headers: Record<string, string|number> = {},
+	retries: number = 5,
 ): Promise<AxiosResponse> {
 	let data: Blob
 
@@ -49,6 +53,10 @@ export const uploadData = async function(
 		signal,
 		onUploadProgress,
 		headers,
+		'axios-retry': {
+			retries,
+			retryDelay: (retryCount, error) => axiosRetry.exponentialDelay(retryCount, error, 1000),
+		},
 	})
 }
 
@@ -70,8 +78,9 @@ export const getChunk = function(file: File, start: number, length: number): Pro
 /**
  * Create a temporary upload workspace to upload the chunks to
  * @param destinationFile The file name after finishing the chunked upload
+ * @param retries number of retries
  */
-export const initChunkWorkspace = async function(destinationFile: string | undefined = undefined): Promise<string> {
+export const initChunkWorkspace = async function(destinationFile: string | undefined = undefined, retries: number = 5): Promise<string> {
 	const chunksWorkspace = generateRemoteUrl(`dav/uploads/${getCurrentUser()?.uid}`)
 	const hash = [...Array(16)].map(() => Math.floor(Math.random() * 16).toString(16)).join('')
 	const tempWorkspace = `web-file-upload-${hash}`
@@ -82,6 +91,10 @@ export const initChunkWorkspace = async function(destinationFile: string | undef
 		method: 'MKCOL',
 		url,
 		headers,
+		'axios-retry': {
+			retries,
+			retryDelay: (retryCount, error) => axiosRetry.exponentialDelay(retryCount, error, 1000),
+		},
 	})
 
 	return url
