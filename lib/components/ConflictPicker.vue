@@ -103,6 +103,7 @@ import type { ConflictResolutionResult } from '../index.ts'
 
 import { defineComponent } from 'vue'
 import { showError } from '@nextcloud/dialogs'
+import { getUniqueName } from '@nextcloud/files'
 
 import ArrowRight from 'vue-material-design-icons/ArrowRight.vue'
 import Close from 'vue-material-design-icons/Close.vue'
@@ -111,7 +112,6 @@ import NcDialog from '@nextcloud/vue/dist/Components/NcDialog.js'
 import NcButton from '@nextcloud/vue/dist/Components/NcButton.js'
 
 import { isFileSystemEntry } from '../utils/filesystem.ts'
-import { getUniqueName } from '../utils/uniqueName.ts'
 import { n, t } from '../utils/l10n.ts'
 import logger from '../utils/logger.ts'
 import NodesPicker from './NodesPicker.vue'

@@ -54,7 +54,7 @@
   "devDependencies": {
     "@cypress/vue2": "^2.1.0",
     "@nextcloud/eslint-config": "^8.3.0",
-    "@nextcloud/vite-config": "^1.2.2",
+    "@nextcloud/vite-config": "^1.2.5",
     "@tsconfig/cypress": "^1.0.2",
     "@types/node": "^20.11.30",
     "@vitest/coverage-v8": "^1.5.2",
@@ -67,7 +67,8 @@
     "jsdom": "^24.0.0",
     "typedoc": "^0.25.12",
     "typescript": "^5.4.3",
-    "vitest": "^1.5.2",
+    "vite": "^5.3.1",
+    "vitest": "^1.6.0",
     "vue-material-design-icons": "^5.3.0",
     "webdav": "^5.5.0"
   },
@@ -75,7 +76,7 @@
     "@nextcloud/auth": "^2.2.1",
     "@nextcloud/axios": "^2.5.0",
     "@nextcloud/dialogs": "^5.2.0",
-    "@nextcloud/files": "^3.3.1",
+    "@nextcloud/files": "^3.5.1",
     "@nextcloud/initial-state": "^2.2.0",
     "@nextcloud/l10n": "^3.0.1",
     "@nextcloud/logger": "^3.0.1",
