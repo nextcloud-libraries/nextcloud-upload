@@ -105,11 +105,13 @@ describe('UploadPicker valid uploads', () => {
 	})
 })
 
-describe('UploadPicker invalid uploads', () => {
+describe('UploadPicker invalid uploads', { testIsolation: true }, () => {
 
 	// Cypress shares the module state between tests, we need to reset it
 	// ref: https://github.com/cypress-io/cypress/issues/25441
-	beforeEach(() => getUploader(true))
+	beforeEach(() => {
+		getUploader(false, true)
+	})
 
 	afterEach(() => {
 		// Make sure we clear the body
@@ -196,6 +198,8 @@ describe('UploadPicker invalid uploads', () => {
 
 		// Mount picker
 		cy.mount(UploadPicker, { propsData }).as('uploadPicker')
+
+		cy.wait(4000)
 
 		// Label is displayed before upload
 		cy.get('[data-cy-upload-picker]').contains('New').should('be.visible')

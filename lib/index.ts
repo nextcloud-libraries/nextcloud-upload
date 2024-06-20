@@ -1,10 +1,10 @@
 import type { Node } from '@nextcloud/files'
 import type { AsyncComponent } from 'vue'
 
-import { loadState } from '@nextcloud/initial-state'
 import { Uploader } from './uploader'
 import UploadPicker from './components/UploadPicker.vue'
 import Vue, { defineAsyncComponent } from 'vue'
+import { isPublicShare } from '@nextcloud/sharing/public'
 
 export type { Uploader } from './uploader'
 export { Status as UploaderStatus } from './uploader'
@@ -18,12 +18,10 @@ export type ConflictResolutionResult<T extends File|FileSystemEntry|Node> = {
 }
 /**
  * Get an Uploader instance
+ * @param isPublic Set to true to use public upload endpoint (by default it is auto detected)
  * @param forceRecreate Force a new uploader instance - main purpose is for testing
  */
-export function getUploader(forceRecreate = false): Uploader {
-	const isPublic = loadState<boolean | null>('files_sharing', 'isPublic', null)
-		?? document.querySelector('input[name="isPublic"][value="1"]') !== null
-
+export function getUploader(isPublic: boolean = isPublicShare(), forceRecreate = false): Uploader {
 	if (_uploader instanceof Uploader && !forceRecreate) {
 		return _uploader
 	}
