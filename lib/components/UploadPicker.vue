@@ -130,7 +130,7 @@ import type { Upload } from '../upload.ts'
 import type { Directory } from '../utils/fileTree'
 
 import { DialogBuilder, showWarning } from '@nextcloud/dialogs'
-import { getNewFileMenuEntries, Folder, NewMenuEntryCategory } from '@nextcloud/files'
+import { Folder, NewMenuEntryCategory, getNewFileMenuEntries, getUniqueName } from '@nextcloud/files'
 import makeEta from 'simple-eta'
 import Vue from 'vue'
 
@@ -150,7 +150,6 @@ import IconUpload from 'vue-material-design-icons/Upload.vue'
 import { getUploader, openConflictPicker, getConflicts } from '../index.ts'
 import { Status } from '../uploader.ts'
 import { Status as UploadStatus } from '../upload.ts'
-import { getUniqueName } from '../utils/uniqueName'
 import { t } from '../utils/l10n.ts'
 import logger from '../utils/logger.ts'
 import PCancelable from 'p-cancelable'
@@ -368,7 +367,7 @@ export default Vue.extend({
 		 *
 		 * @param filename The invalid file name
 		 */
-		async showInvalidFileNameDialog(filename: string) {
+		async showInvalidFileNameDialog(filename: string): Promise<boolean> {
 			return new PCancelable(async (resolve, reject) => {
 				await new DialogBuilder()
 					.setName(t('Invalid file name'))
