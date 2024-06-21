@@ -1,5 +1,28 @@
 # Changelog
 
+## [v1.4.0](https://github.com/nextcloud-libraries/nextcloud-upload/tree/v1.4.0) (2024-06-21)
+[Full Changelog](https://github.com/nextcloud-libraries/nextcloud-upload/compare/v1.3.0...v1.4.0)
+
+### Added
+* Added retry capability for uploading files [\#1233](https://github.com/nextcloud-libraries/nextcloud-upload/pull/1233) \([Koc](https://github.com/Koc)\)
+
+### Fixed
+* fix: Adjust `isPublic` detection for uploader [\#1234](https://github.com/nextcloud-libraries/nextcloud-upload/pull/1234) \([susnux](https://github.com/susnux)\)
+
+### Changed
+* refactor: Use `getUniqueName` from `@nextcloud/files` [\#1244](https://github.com/nextcloud-libraries/nextcloud-upload/pull/1244) \([susnux](https://github.com/susnux)\)
+* refactor: Use public-share aware functions from `@nextcloud/files` and `@nextcloud/sharing` [\#1245](https://github.com/nextcloud-libraries/nextcloud-upload/pull/1245) \([susnux](https://github.com/susnux)\)
+* chore: Bump @cypress/vue2 from 2.1.0 to 2.1.1
+* chore: Bump @nextcloud/dialogs from 5.3.1 to 5.3.2
+* chore: Bump braces from 3.0.2 to 3.0.3
+* chore: Bump codecov/codecov-action from 4.4.1 to 4.5.0
+* chore: Bump cypress-io/github-action from 6.7.0 to 6.7.1
+* chore: Bump ws from 8.17.0 to 8.17.1
+* chore: Bump @nextcloud/files from 3.4.1 to 3.5.0
+* chore: Bump cypress from 13.11.0 to 13.12.0
+* chore: Bump @types/node from 20.14.6 to 20.14.7
+* chore: Bump axios-retry from 4.4.0 to 4.4.1
+
 ## [v1.3.0](https://github.com/nextcloud-libraries/nextcloud-upload/tree/v1.3.0) (2024-06-06)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-upload/compare/v1.2.0...v1.3.0)
 
