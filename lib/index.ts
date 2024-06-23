@@ -1,10 +1,12 @@
 import type { Node } from '@nextcloud/files'
 import type { AsyncComponent } from 'vue'
 
-import { Uploader } from './uploader'
-import UploadPicker from './components/UploadPicker.vue'
-import Vue, { defineAsyncComponent } from 'vue'
 import { isPublicShare } from '@nextcloud/sharing/public'
+import Vue, { defineAsyncComponent } from 'vue'
+import { isFileSystemEntry } from './utils/filesystem'
+import { Uploader } from './uploader'
+
+import UploadPicker from './components/UploadPicker.vue'
 
 export type { Uploader } from './uploader'
 export { Status as UploaderStatus } from './uploader'
@@ -127,7 +129,7 @@ export function hasConflict(files: (File|FileSystemEntry|Node)[], content: Node[
 export function getConflicts<T extends File|FileSystemEntry|Node>(files: T[], content: Node[]): T[] {
 	const contentNames = content.map((node: Node) => node.basename)
 	const conflicts = files.filter((node: File|FileSystemEntry|Node) => {
-		const name = (node instanceof File || node instanceof FileSystemEntry) ? node.name : node.basename
+		const name = 'basename' in node ? node.basename : node.name
 		return contentNames.indexOf(name) !== -1
 	})
 
