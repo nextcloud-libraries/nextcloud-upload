@@ -1,5 +1,9 @@
 # Changelog
 
+## [v1.4.1](https://github.com/nextcloud-libraries/nextcloud-upload/tree/v1.4.1) \(2024-06-24\)
+### Fixed
+* fix: Prevent issues with Chromium based browsers [\#1250](https://github.com/nextcloud-libraries/nextcloud-upload/pull/1250) \([susnux](https://github.com/susnux)\)
+
 ## [v1.4.0](https://github.com/nextcloud-libraries/nextcloud-upload/tree/v1.4.0) (2024-06-21)
 [Full Changelog](https://github.com/nextcloud-libraries/nextcloud-upload/compare/v1.3.0...v1.4.0)
 
