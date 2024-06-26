@@ -36,7 +36,7 @@ msgstr "{seconds} soicind fágtha"
 
 #. TRANSLATORS time has the format 00:00:00
 msgid "{time} left"
-msgstr "{am} fágtha"
+msgstr "{time} fágtha"
 
 msgid "a few seconds left"
 msgstr "cúpla soicind fágtha"
