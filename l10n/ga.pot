@@ -120,7 +120,7 @@ msgid "Upload folders"
 msgstr "Uaslódáil fillteáin"
 
 msgid "Upload from device"
-msgstr "Íosluchtaigh ó gléas"
+msgstr "Íosluchtaigh ó ghléas"
 
 msgid "Upload has been cancelled"
 msgstr "Cuireadh an t-uaslódáil ar ceal"
