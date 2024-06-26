@@ -24,6 +24,9 @@ export enum Status {
 	PAUSED = 2
 }
 
+// Maximum number of concurrent uploads
+const MAX_CONCURRENCY = 5
+
 export class Uploader {
 
 	// Initialized via setter in the constructor
@@ -32,7 +35,7 @@ export class Uploader {
 
 	// Global upload queue
 	private _uploadQueue: Array<Upload> = []
-	private _jobQueue: PQueue = new PQueue({ concurrency: 3 })
+	private _jobQueue: PQueue = new PQueue({ concurrency: MAX_CONCURRENCY })
 	private _queueSize = 0
 	private _queueProgress = 0
 	private _queueStatus: Status = Status.IDLE
