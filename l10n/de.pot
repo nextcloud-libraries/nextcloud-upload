@@ -26,7 +26,7 @@ msgstr[0] "{count} Datei-Konflikt in {dirname}"
 msgstr[1] "{count} Datei-Konflikte in {dirname}"
 
 msgid "{seconds} seconds left"
-msgstr "{seconds} Sekunden verbleibend"
+msgstr "{seconds} Sekunden verbleiben"
 
 #. TRANSLATORS time has the format 00:00:00
 msgid "{time} left"
