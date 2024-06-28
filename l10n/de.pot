@@ -2,14 +2,18 @@
 # Translators:
 # Joas Schilling, 2024
 # Mario Siegmann <mario_siegmann@web.de>, 2024
+# Martin Wilichowski, 2024
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Mario Siegmann <mario_siegmann@web.de>, 2024\n"
+"Last-Translator: Martin Wilichowski, 2024\n"
 "Language-Team: German (https://app.transifex.com/nextcloud/teams/64236/de/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "\"{filename}\" contains invalid characters, how do you want to continue?"
+msgstr "\"{filename}\" enthält ungültige Zeichen. Wie möchten Sie fortfahren?"
 
 msgid "{count} file conflict"
 msgid_plural "{count} files conflict"
@@ -22,14 +26,14 @@ msgstr[0] "{count} Datei-Konflikt in {dirname}"
 msgstr[1] "{count} Datei-Konflikte in {dirname}"
 
 msgid "{seconds} seconds left"
-msgstr "{seconds} Sekunden verbleibend"
+msgstr "{seconds} Sekunden verbleiben"
 
 #. TRANSLATORS time has the format 00:00:00
 msgid "{time} left"
 msgstr "{time} verbleibend"
 
 msgid "a few seconds left"
-msgstr "noch ein paar Sekunden"
+msgstr "ein paar Sekunden verbleiben"
 
 msgid "Cancel"
 msgstr "Abbrechen"
@@ -43,6 +47,9 @@ msgstr "Hochladen abbrechen"
 msgid "Continue"
 msgstr "Fortsetzen"
 
+msgid "Create new"
+msgstr "Neu erstellen"
+
 msgid "estimating time left"
 msgstr "Geschätzte verbleibende Zeit"
 
@@ -50,11 +57,14 @@ msgid "Existing version"
 msgstr "Vorhandene Version"
 
 msgid ""
-"If you select both versions, the copied file will have a number added to its"
-" name."
+"If you select both versions, the incoming file will have a number added to "
+"its name."
 msgstr ""
-"Wenn du beide Versionen auswählst, wird der kopierten Datei eine Nummer zum "
-"Namen hinzugefügt."
+"Wenn du beide Versionen auswählst, wird der eingehenden Datei eine Nummer "
+"zum Namen hinzugefügt."
+
+msgid "Invalid file name"
+msgstr "Ungültiger Dateiname"
 
 msgid "Last modified date unknown"
 msgstr "Datum der letzten Änderung unbekannt"
@@ -71,6 +81,9 @@ msgstr "Pausiert"
 msgid "Preview image"
 msgstr "Vorschaubild"
 
+msgid "Rename"
+msgstr "Umbenennen"
+
 msgid "Select all checkboxes"
 msgstr "Alle Kontrollkästchen aktivieren"
 
@@ -80,6 +93,9 @@ msgstr "Alle vorhandenen Dateien auswählen"
 msgid "Select all new files"
 msgstr "Alle neuen Dateien auswählen"
 
+msgid "Skip"
+msgstr "Überspringen"
+
 msgid "Skip this file"
 msgid_plural "Skip {count} files"
 msgstr[0] "Diese Datei überspringen"
@@ -88,11 +104,17 @@ msgstr[1] "{count} Dateien überspringen"
 msgid "Unknown size"
 msgstr "Unbekannte Größe"
 
-msgid "Upload cancelled"
-msgstr "Hochladen abgebrochen"
-
 msgid "Upload files"
 msgstr "Dateien hochladen"
+
+msgid "Upload folders"
+msgstr "Ordner hochladen"
+
+msgid "Upload from device"
+msgstr "Vom Gerät hochladen"
+
+msgid "Upload has been cancelled"
+msgstr "Das Hochladen wurde abgebrochen"
 
 msgid "Upload progress"
 msgstr "Fortschritt beim Hochladen"
@@ -103,6 +125,13 @@ msgid ""
 msgstr ""
 "Wenn ein eingehender Ordner ausgewählt wird, werden alle darin enthaltenen "
 "Konfliktdateien ebenfalls überschrieben."
+
+msgid ""
+"When an incoming folder is selected, the content is written into the "
+"existing folder and a recursive conflict resolution is performed."
+msgstr ""
+"Bei Auswahl eines eingehenden Ordners wird der Inhalt in den vorhandenen "
+"Ordner geschrieben und eine rekursive Konfliktlösung durchgeführt."
 
 msgid "Which files do you want to keep?"
 msgstr "Welche Dateien möchtest du behalten?"
