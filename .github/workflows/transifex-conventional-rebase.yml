@@ -24,6 +24,7 @@ jobs:
         with:
           fetch-depth: 0
           token: ${{ secrets.COMMAND_BOT_PAT }}
+          ref: ${{ github.head_ref }}
 
       - uses: webiny/action-conventional-commits@8bc41ff4e7d423d56fa4905f6ff79209a78776c7 # v1.3.0
         with:
