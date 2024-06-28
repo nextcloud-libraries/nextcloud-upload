@@ -38,5 +38,5 @@ jobs:
         if: failure()
         run: |
           git fetch origin '${{ github.base_ref }}:${{ github.base_ref }}'
-          git rebase -i --exec 'git commit --amend --no-verify -m "chore(l10n): $(git show -s --format=%s)"' 'origin/${{ github.base_ref }}'
+          git rebase --exec 'git commit --amend --no-verify -m "chore(l10n): $(git show -s --format=%s)"' 'origin/${{ github.base_ref }}'
           git push --force origin '${{ github.head_ref }}'
