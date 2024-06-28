@@ -1,0 +1,42 @@
+name: Block unconventional commits
+
+on:
+  pull_request:
+    types: [opened, ready_for_review, reopened, synchronize]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: transifex-conventional-rebase-${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+
+jobs:
+  transifex-conventional-rebase:
+    name: Rebase transifex PR with conventional commits
+
+    if: github.event.pull_request.user.login == 'transifex-integration[bot]'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+        with:
+          token: ${{ secrets.COMMAND_BOT_PAT }}
+
+      - uses: webiny/action-conventional-commits@8bc41ff4e7d423d56fa4905f6ff79209a78776c7 # v1.3.0
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Setup git
+        if: failure()
+        run: |
+          git config --local user.email 'nextcloud-command@users.noreply.github.com'
+          git config --local user.name 'nextcloud-command'
+
+      - name: Rebase on failure
+        if: failure()
+        run: |
+          git fetch origin '${{ github.base_ref }}:${{ github.base_ref }}'
+          git rebase -i --exec 'git commit --amend --no-verify -m "chore(l10n): $(git show -s --format=%s)"' 'origin/${{ github.base_ref }}''
+          git push --force origin '${{ github.head_ref }}''
