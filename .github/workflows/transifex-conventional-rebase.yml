@@ -1,4 +1,4 @@
-name: Block unconventional commits
+name: Transifex conventional commits
 
 on:
   pull_request:
@@ -43,7 +43,9 @@ jobs:
           git rebase --exec 'git commit --amend --no-verify -m "chore(l10n): $(git show -s --format=%s)"' 'HEAD~${{ github.event.pull_request.commits }}'
           git push --force --set-upstream origin ${{ github.head_ref }}
 
+      # We already have the block-unconventional-commits action to fail if necessary
       - name: Success
         if: always()
         run: |
           echo "Success"
+          exit 0
