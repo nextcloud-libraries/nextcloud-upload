@@ -40,4 +40,9 @@ jobs:
         run: |
           git fetch origin '${{ github.base_ref }}:${{ github.base_ref }}'
           git rebase --exec 'git commit --amend --no-verify -m "chore(l10n): $(git show -s --format=%s)"' 'HEAD~${{ github.event.pull_request.commits }}'
-          git push --force origin '${{ github.head_ref }}'
+          git push --force --set-upstream origin ${{ github.head_ref }}
+
+      - name: Success
+        if: always()
+        run: |
+          echo "Success"
