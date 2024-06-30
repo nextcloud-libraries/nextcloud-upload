@@ -11,6 +11,9 @@ msgstr ""
 "Language: en_GB\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+msgid "\"{filename}\" contains invalid characters, how do you want to continue?"
+msgstr "\"{filename}\" contains invalid characters, how do you want to continue?"
+
 msgid "{count} file conflict"
 msgid_plural "{count} files conflict"
 msgstr[0] "{count} file conflict"
@@ -43,6 +46,9 @@ msgstr "Cancel uploads"
 msgid "Continue"
 msgstr "Continue"
 
+msgid "Create new"
+msgstr "Create new"
+
 msgid "estimating time left"
 msgstr "estimating time left"
 
@@ -55,6 +61,9 @@ msgid ""
 msgstr ""
 "If you select both versions, the incoming file will have a number added to "
 "its name."
+
+msgid "Invalid file name"
+msgstr "Invalid file name"
 
 msgid "Last modified date unknown"
 msgstr "Last modified date unknown"
@@ -71,6 +80,9 @@ msgstr "paused"
 msgid "Preview image"
 msgstr "Preview image"
 
+msgid "Rename"
+msgstr "Rename"
+
 msgid "Select all checkboxes"
 msgstr "Select all checkboxes"
 
@@ -80,6 +92,9 @@ msgstr "Select all existing files"
 msgid "Select all new files"
 msgstr "Select all new files"
 
+msgid "Skip"
+msgstr "Skip"
+
 msgid "Skip this file"
 msgid_plural "Skip {count} files"
 msgstr[0] "Skip this file"
@@ -88,11 +103,17 @@ msgstr[1] "Skip {count} files"
 msgid "Unknown size"
 msgstr "Unknown size"
 
-msgid "Upload cancelled"
-msgstr "Upload cancelled"
-
 msgid "Upload files"
 msgstr "Upload files"
+
+msgid "Upload folders"
+msgstr "Upload folders"
+
+msgid "Upload from device"
+msgstr "Upload from device"
+
+msgid "Upload has been cancelled"
+msgstr "Upload has been cancelled"
 
 msgid "Upload progress"
 msgstr "Upload progress"
