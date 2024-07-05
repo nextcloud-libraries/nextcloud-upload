@@ -74,7 +74,7 @@
 			<!-- other file entries -->
 			<template v-if="menuEntriesOther.length > 0">
 				<NcActionSeparator />
-				<NcActionButton v-for="entry in menuEntriesNew"
+				<NcActionButton v-for="entry in menuEntriesOther"
 					:key="entry.id"
 					:icon="entry.iconClass"
 					:close-after-click="true"
