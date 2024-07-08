@@ -262,7 +262,7 @@ describe('ConflictPicker resolving', () => {
 			mtime: new Date('2021-01-01T00:00:00.000Z'),
 		})
 
-		const onSubmit = cy.spy().as('onSubmitSpy')
+		const onSkip = cy.spy().as('onSkipSpy')
 		const onCancel = cy.spy().as('onCancelSpy')
 		cy.mount(ConflictPicker, {
 			propsData: {
@@ -271,7 +271,7 @@ describe('ConflictPicker resolving', () => {
 				conflicts: images,
 			},
 			listeners: {
-				submit: onSubmit,
+				skip: onSkip,
 				cancel: onCancel,
 			},
 		})
@@ -280,11 +280,7 @@ describe('ConflictPicker resolving', () => {
 		cy.get('[data-cy-conflict-picker-fieldset]').should('have.length', 3)
 		cy.get('[data-cy-conflict-picker-skip]').click()
 
-		cy.get('@onSubmitSpy').should('have.been.calledOnce').then((onSubmit) => {
-			const results = (onSubmit as unknown as sinon.SinonSpy).firstCall.args[0]
-			expect(results.selected).to.have.length(0)
-			expect(results.renamed).to.have.length(0)
-		})
+		cy.get('@onSkipSpy').should('have.been.calledOnce')
 		cy.get('@onCancelSpy').should('not.have.been.called')
 	})
 })

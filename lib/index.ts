@@ -21,6 +21,7 @@ let _uploader: Uploader | null = null
 export type ConflictResolutionResult<T extends File|FileSystemEntry|Node> = {
 	selected: T[],
 	renamed: T[],
+	skipped: boolean,
 }
 /**
  * Get an Uploader instance
@@ -104,6 +105,13 @@ export async function openConflictPicker<T extends File|FileSystemEntry|Node>(
 						picker.$destroy()
 						picker.$el?.parentNode?.removeChild(picker.$el)
 					},
+					skip() {
+						resolve({selected: [],renamed: [], skipped: true})
+
+						// Destroy the component
+						picker.$destroy()
+						picker.$el?.parentNode?.removeChild(picker.$el)
+					}
 				},
 			}),
 		})

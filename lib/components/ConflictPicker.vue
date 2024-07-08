@@ -286,10 +286,7 @@ export default defineComponent({
 		onSkip() {
 			logger.debug('Conflict skipped. Ignoring all conflicting files')
 			this.opened = false
-			this.$emit('submit', {
-				selected: [],
-				renamed: [],
-			} as ConflictResolutionResult<File>)
+			this.$emit('skip')
 		},
 
 		onSubmit() {
@@ -344,6 +341,7 @@ export default defineComponent({
 			this.$emit('submit', {
 				selected,
 				renamed,
+				skipped: false,
 			} as ConflictResolutionResult<File|Node|FileSystemEntry>)
 		},
 
