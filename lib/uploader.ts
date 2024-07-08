@@ -4,7 +4,7 @@ import type { WebDAVClient } from 'webdav'
 import { getCurrentUser } from '@nextcloud/auth'
 import { Folder, Permission, davGetClient, davRemoteURL, davRootPath } from '@nextcloud/files'
 import { encodePath } from '@nextcloud/paths'
-import { join, normalize } from 'path'
+import { normalize } from 'path'
 
 import axios, { isCancel } from '@nextcloud/axios'
 import PCancelable from 'p-cancelable'
@@ -55,7 +55,7 @@ export class Uploader {
 		this._isPublic = isPublic
 
 		if (!destinationFolder) {
-			const source = join(davRemoteURL, davRootPath)
+			const source = `${davRemoteURL}${davRootPath}`
 			let owner: string
 
 			if (isPublic) {
