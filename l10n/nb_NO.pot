@@ -1,15 +1,18 @@
 # 
 # Translators:
-# John Molakvoæ <skjnldsv@protonmail.com>, 2023
-# Syvert Fossdal, 2024
+# Joas Schilling, 2024
+# Roger Knutsen, 2024
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Syvert Fossdal, 2024\n"
+"Last-Translator: Roger Knutsen, 2024\n"
 "Language-Team: Norwegian Bokmål (Norway) (https://app.transifex.com/nextcloud/teams/64236/nb_NO/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: nb_NO\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "\"{filename}\" contains invalid characters, how do you want to continue?"
+msgstr "\"{filename}\" inneholder ugyldige tegn, hvordan vil du fortsette?"
 
 msgid "{count} file conflict"
 msgid_plural "{count} files conflict"
@@ -31,11 +34,20 @@ msgstr "{time} igjen"
 msgid "a few seconds left"
 msgstr "noen få sekunder igjen"
 
+msgid "Cancel"
+msgstr "Avbryt"
+
+msgid "Cancel the entire operation"
+msgstr "Avbryt hele operasjonen"
+
 msgid "Cancel uploads"
 msgstr "Avbryt opplastninger"
 
 msgid "Continue"
 msgstr "Fortsett"
+
+msgid "Create new"
+msgstr "Opprett ny"
 
 msgid "estimating time left"
 msgstr "Estimerer tid igjen"
@@ -44,11 +56,14 @@ msgid "Existing version"
 msgstr "Gjeldende versjon"
 
 msgid ""
-"If you select both versions, the copied file will have a number added to its"
-" name."
+"If you select both versions, the incoming file will have a number added to "
+"its name."
 msgstr ""
-"Hvis du velger begge versjoner, vil den kopierte filen få et tall lagt til "
-"navnet."
+"Hvis du velger begge versjonene, vil den innkommende filen ha et nummer lagt"
+" til navnet."
+
+msgid "Invalid file name"
+msgstr "Ugyldig filnavn"
 
 msgid "Last modified date unknown"
 msgstr "Siste gang redigert ukjent"
@@ -65,6 +80,9 @@ msgstr "pauset"
 msgid "Preview image"
 msgstr "Forhåndsvis bilde"
 
+msgid "Rename"
+msgstr "Omdøp"
+
 msgid "Select all checkboxes"
 msgstr "Velg alle"
 
@@ -74,6 +92,9 @@ msgstr "Velg alle eksisterende filer"
 msgid "Select all new files"
 msgstr "Velg alle nye filer"
 
+msgid "Skip"
+msgstr "Hopp over"
+
 msgid "Skip this file"
 msgid_plural "Skip {count} files"
 msgstr[0] "Skip this file"
@@ -82,14 +103,34 @@ msgstr[1] "Hopp over {count} filer"
 msgid "Unknown size"
 msgstr "Ukjent størrelse"
 
-msgid "Upload cancelled"
-msgstr "Opplasting avbrutt"
-
 msgid "Upload files"
 msgstr "Last opp filer"
 
+msgid "Upload folders"
+msgstr "Last opp mapper"
+
+msgid "Upload from device"
+msgstr "Last opp fra enhet"
+
+msgid "Upload has been cancelled"
+msgstr "Opplastingen er kansellert"
+
 msgid "Upload progress"
 msgstr "Fremdrift, opplasting"
+
+msgid ""
+"When an incoming folder is selected, any conflicting files within it will "
+"also be overwritten."
+msgstr ""
+"Når en innkommende mappe velges, blir eventuelle motstridende filer i den "
+"også overskrevet."
+
+msgid ""
+"When an incoming folder is selected, the content is written into the "
+"existing folder and a recursive conflict resolution is performed."
+msgstr ""
+"Når en innkommende mappe velges, skrives innholdet inn i den eksisterende "
+"mappen, og en rekursiv konfliktløsning utføres."
 
 msgid "Which files do you want to keep?"
 msgstr "Hvilke filer vil du beholde?"
