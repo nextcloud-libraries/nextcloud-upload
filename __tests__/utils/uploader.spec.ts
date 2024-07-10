@@ -1,3 +1,7 @@
+/**
+ * SPDX-FileCopyrightText: 2024 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
 import type { Uploader } from '../../lib/uploader'
 import type { NextcloudUser } from '@nextcloud/auth'
 import { beforeEach, describe, expect, test, vi } from 'vitest'

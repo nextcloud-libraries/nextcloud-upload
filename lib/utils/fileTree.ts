@@ -1,4 +1,8 @@
 /**
+ * SPDX-FileCopyrightText: 2024 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+/**
  * Helpers to generate a file tree when the File and Directory API is used (e.g. Drag and Drop or <input type="file" webkitdirectory>)
  */
 

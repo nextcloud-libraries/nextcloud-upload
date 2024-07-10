@@ -1,3 +1,7 @@
+/**
+ * SPDX-FileCopyrightText: 2022 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
 import { beforeAll, afterAll, describe, expect, test, vi } from 'vitest'
 import axios from '@nextcloud/axios'
 
@@ -8,6 +12,7 @@ const axiosMock: vi.Mock<typeof axios> | typeof axios = axios
 beforeAll(() => {
 	vi.mock('axios', vi.fn())
 })
+
 afterAll(() => {
 	vi.unmock('axios')
 })

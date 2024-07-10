@@ -1,3 +1,7 @@
+<!--
+  - SPDX-FileCopyrightText: 2023 Nextcloud GmbH and Nextcloud contributors
+  - SPDX-License-Identifier: AGPL-3.0-or-later
+-->
 # Changelog
 
 ## [v1.4.1](https://github.com/nextcloud-libraries/nextcloud-upload/tree/v1.4.1) \(2024-06-24\)

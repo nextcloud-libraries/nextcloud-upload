@@ -1,3 +1,7 @@
+/**
+ * SPDX-FileCopyrightText: 2022 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
 // Fake cancellable timeout
 // TODO: replace by import { setTimeout } from 'timers/promises' when min LTS is >= 16
 // implemented in node 15

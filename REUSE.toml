@@ -1,0 +1,30 @@
+# SPDX-FileCopyrightText: 2024 Nextcloud GmbH and Nextcloud contributors
+# SPDX-License-Identifier: AGPL-3.0-or-later
+version = 1
+SPDX-PackageName = "nextcloud-upload"
+SPDX-PackageSupplier = "Nextcloud <info@nextcloud.com>"
+SPDX-PackageDownloadLocation = "https://github.com/nextcloud-libraries/nextcloud-upload"
+
+[[annotations]]
+path = ["l10n/*.pot"]
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2022 Nextcloud translators"
+SPDX-License-Identifier = "AGPL-3.0-or-later"
+
+[[annotations]]
+path = ["package-lock.json", "package.json", "__tests__/tsconfig.json"]
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2022 Nextcloud GmbH and Nextcloud contributors"
+SPDX-License-Identifier = "AGPL-3.0-or-later"
+
+[[annotations]]
+path = [".eslintrc.json", "typedoc.json", "tsconfig.json", "cypress/tsconfig.json"]
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2023 Nextcloud GmbH and Nextcloud contributors"
+SPDX-License-Identifier = "AGPL-3.0-or-later"
+
+[[annotations]]
+path = ["cypress/fixtures/image.jpg"]
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2020 66 north <https://unsplash.com/@66north> <https://unsplash.com/photos/snow-covered-mountain-during-daytime-XA3k8YJjY1c>"
+SPDX-License-Identifier = "LicenseRef-Unsplash"

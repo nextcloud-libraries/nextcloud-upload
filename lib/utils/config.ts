@@ -1,3 +1,7 @@
+/**
+ * SPDX-FileCopyrightText: 2022 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
 export const getMaxChunksSize = function(fileSize: number | undefined = undefined): number {
 	const maxChunkSize = window.OC?.appConfig?.files?.max_chunk_size
 	if (maxChunkSize <= 0) {

@@ -1,3 +1,7 @@
+<!--
+  - SPDX-FileCopyrightText: 2023 Nextcloud GmbH and Nextcloud contributors
+  - SPDX-License-Identifier: AGPL-3.0-or-later
+-->
 <template>
 	<fieldset class="node-picker__wrapper" :data-cy-conflict-picker-fieldset="existing.basename">
 		<legend>{{ existing.basename }}</legend>

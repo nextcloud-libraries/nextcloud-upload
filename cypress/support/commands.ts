@@ -1,4 +1,8 @@
 /// <reference types="cypress" />
+/**
+ * SPDX-FileCopyrightText: 2022 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
 // ***********************************************
 // This example commands.ts shows you how to
 // create various custom commands and overwrite
