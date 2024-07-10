@@ -1,3 +1,7 @@
+/**
+ * SPDX-FileCopyrightText: 2023 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
 import { createLibConfig } from '@nextcloud/vite-config'
 import { readdirSync, readFileSync } from 'fs'
 import { po as poParser } from 'gettext-parser'

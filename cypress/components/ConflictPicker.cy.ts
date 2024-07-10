@@ -1,3 +1,7 @@
+/**
+ * SPDX-FileCopyrightText: 2023 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
 import { File as NcFile } from '@nextcloud/files'
 import ConflictPicker from '../../lib/components/ConflictPicker.vue'
 

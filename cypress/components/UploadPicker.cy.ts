@@ -1,4 +1,8 @@
 /* eslint-disable no-unused-expressions */
+/**
+ * SPDX-FileCopyrightText: 2022 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
 // dist file might not be built when running eslint only
 // eslint-disable-next-line import/no-unresolved,n/no-missing-import
 import { Folder, Permission, addNewFileMenuEntry, type Entry } from '@nextcloud/files'
