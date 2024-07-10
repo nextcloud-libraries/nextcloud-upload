@@ -26,5 +26,5 @@ SPDX-License-Identifier = "AGPL-3.0-or-later"
 [[annotations]]
 path = ["cypress/fixtures/image.jpg"]
 precedence = "aggregate"
-SPDX-FileCopyrightText = "2020 66 north <https://unsplash.com/@66north> <https://unsplash.com/photos/snow-covered-mountain-during-daytime-XA3k8YJjY1c>"
-SPDX-License-Identifier = "LicenseRef-Unsplash"
+SPDX-FileCopyrightText = "2016 pixabay <https://www.pexels.com/@pixabay/> <https://www.pexels.com/photo/gray-and-brown-mountain-417173/>"
+SPDX-License-Identifier = "CC0-1.0"
