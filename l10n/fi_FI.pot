@@ -1,36 +1,141 @@
 # 
 # Translators:
-# Jiri Grönroos <jiri.gronroos@iki.fi>, 2022
+# Joas Schilling, 2024
+# Jiri Grönroos <jiri.gronroos@iki.fi>, 2024
+# thingumy, 2024
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>, 2022\n"
-"Language-Team: Finnish (Finland) (https://www.transifex.com/nextcloud/teams/64236/fi_FI/)\n"
+"Last-Translator: thingumy, 2024\n"
+"Language-Team: Finnish (Finland) (https://app.transifex.com/nextcloud/teams/64236/fi_FI/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: fi_FI\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+msgid "\"{filename}\" contains invalid characters, how do you want to continue?"
+msgstr "\"{filename}\" sisältää virheellisiä merkkejä, miten haluat jatkaa?"
+
+msgid "{count} file conflict"
+msgid_plural "{count} files conflict"
+msgstr[0] "{count} tiedoston ristiriita"
+msgstr[1] "{count} tiedoston ristiriita"
+
+msgid "{count} file conflict in {dirname}"
+msgid_plural "{count} file conflicts in {dirname}"
+msgstr[0] "{count} tiedoston ristiriita kansiossa {dirname}"
+msgstr[1] "{count} tiedoston ristiriita kansiossa {dirname}"
+
 msgid "{seconds} seconds left"
 msgstr "{seconds} sekuntia jäljellä"
 
-#. time has the format 00:00:00
+#. TRANSLATORS time has the format 00:00:00
 msgid "{time} left"
 msgstr "{time} jäljellä"
 
 msgid "a few seconds left"
 msgstr "muutama sekunti jäljellä"
 
-msgid "Add"
-msgstr "Lisää"
+msgid "Cancel"
+msgstr "Peruuta"
+
+msgid "Cancel the entire operation"
+msgstr "Peruuta koko toimenpide"
 
 msgid "Cancel uploads"
 msgstr "Peruuta lähetykset"
 
+msgid "Continue"
+msgstr "Jatka"
+
+msgid "Create new"
+msgstr "Luo uusi"
+
 msgid "estimating time left"
 msgstr "arvioidaan jäljellä olevaa aikaa"
+
+msgid "Existing version"
+msgstr "Olemassa oleva versio"
+
+msgid ""
+"If you select both versions, the incoming file will have a number added to "
+"its name."
+msgstr ""
+"Jos valitset molemmat versiot, saapuvan tiedoston nimeen lisätään numero."
+
+msgid "Invalid file name"
+msgstr "Virheellinen tiedostonimi"
+
+msgid "Last modified date unknown"
+msgstr "Viimeisin muokkauspäivä on tuntematon"
+
+msgid "New"
+msgstr "Uusi"
+
+msgid "New version"
+msgstr "Uusi versio"
 
 msgid "paused"
 msgstr "keskeytetty"
 
+msgid "Preview image"
+msgstr "Esikatsele kuva"
+
+msgid "Rename"
+msgstr "Nimeä uudelleen"
+
+msgid "Select all checkboxes"
+msgstr "Valitse kaikki valintaruudut"
+
+msgid "Select all existing files"
+msgstr "Valitse kaikki olemassa olevat tiedostot"
+
+msgid "Select all new files"
+msgstr "Valitse kaikki uudet tiedostot"
+
+msgid "Skip"
+msgstr "Ohita"
+
+msgid "Skip this file"
+msgid_plural "Skip {count} files"
+msgstr[0] "Ohita tämä tiedosto"
+msgstr[1] "Ohita {count} tiedostoa"
+
+msgid "Unknown size"
+msgstr "Tuntematon koko"
+
 msgid "Upload files"
 msgstr "Lähetä tiedostoja"
+
+msgid "Upload folders"
+msgstr "Lähetä kansioita"
+
+msgid "Upload from device"
+msgstr "Lähetä laitteelta"
+
+msgid "Upload has been cancelled"
+msgstr "Lähetys on peruttu"
+
+msgid "Upload progress"
+msgstr "Lähetyksen edistyminen"
+
+msgid ""
+"When an incoming folder is selected, any conflicting files within it will "
+"also be overwritten."
+msgstr ""
+"Valittuasi saapuvien kansion, kaikki ristiriitaiset tiedostot kansiossa "
+"ylikirjoitetaan."
+
+msgid ""
+"When an incoming folder is selected, the content is written into the "
+"existing folder and a recursive conflict resolution is performed."
+msgstr ""
+"Valittuasi saapuvien kansion, sisältö kirjoitetaan olemassaolevaan kansioon "
+"ja suoritetaan rekursiivinen ristiriitojen poisto."
+
+msgid "Which files do you want to keep?"
+msgstr "Mitkä tiedostot haluat säilyttää?"
+
+msgid "You need to select at least one version of each file to continue."
+msgstr ""
+"Sinun täytyy valita vähintään yksi versio jokaisesta tiedostosta "
+"jatkaaksesi."
