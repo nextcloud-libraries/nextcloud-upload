@@ -4,6 +4,19 @@
 -->
 # Changelog
 
+## [v1.4.2](https://github.com/nextcloud-libraries/nextcloud-upload/tree/v1.4.2) \(2024-07-11\)
+### Fixed
+* fix(uploader): increase max concurrency to 5 [\#1256](https://github.com/nextcloud-libraries/nextcloud-upload/pull/1256) \([skjnldsv](https://github.com/skjnldsv)\)
+* fix: Use other menu entries instead of new ones twice [\#1269](https://github.com/nextcloud-libraries/nextcloud-upload/pull/1269) \([juliushaertl](https://github.com/juliushaertl)\)
+* fix: Allow remote URL with protocol [\#1271](https://github.com/nextcloud-libraries/nextcloud-upload/pull/1271) \([susnux](https://github.com/susnux)\)
+
+### Changed
+* Add SPDX header [\#1278](https://github.com/nextcloud-libraries/nextcloud-upload/pull/1278) \([AndyScherzinger](https://github.com/AndyScherzinger)\)
+* Update translations
+* chore: add transifex-conventional-rebase.yml
+* chore: Bump @nextcloud/dialogs from 5.3.2 to 5.3.5
+* Update development dependencies
+
 ## [v1.4.1](https://github.com/nextcloud-libraries/nextcloud-upload/tree/v1.4.1) \(2024-06-24\)
 ### Fixed
 * fix: Prevent issues with Chromium based browsers [\#1250](https://github.com/nextcloud-libraries/nextcloud-upload/pull/1250) \([susnux](https://github.com/susnux)\)
