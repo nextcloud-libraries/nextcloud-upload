@@ -59,7 +59,6 @@
     "@types/node": "^20.14.10",
     "@vitest/coverage-v8": "^2.0.2",
     "@vue/tsconfig": "^0.5.1",
-    "@zamiell/typedoc-plugin-not-exported": "^0.3.0",
     "blob-polyfill": "^9.0.20240710",
     "cypress": "^13.13.0",
     "cypress-file-upload": "^5.0.8",

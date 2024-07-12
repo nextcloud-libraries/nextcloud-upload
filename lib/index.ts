@@ -7,7 +7,6 @@ import type { AsyncComponent } from 'vue'
 
 import { isPublicShare } from '@nextcloud/sharing/public'
 import Vue, { defineAsyncComponent } from 'vue'
-import { isFileSystemEntry } from './utils/filesystem'
 import { Uploader } from './uploader'
 
 import UploadPicker from './components/UploadPicker.vue'
@@ -15,6 +14,7 @@ import UploadPicker from './components/UploadPicker.vue'
 export type { Uploader } from './uploader'
 export { Status as UploaderStatus } from './uploader'
 export { Upload, Status as UploadStatus } from './upload'
+export type { IDirectory, Directory } from './utils/fileTree'
 
 let _uploader: Uploader | null = null
 
@@ -54,7 +54,7 @@ export function upload(destinationPath: string, file: File): Uploader {
 	return uploader
 }
 
-interface ConflictPickerOptions {
+export interface ConflictPickerOptions {
 	/**
 	 * When this is set to true a hint is shown that conflicts in directories are handles recursivly
 	 * You still need to call this function for each directory separatly.

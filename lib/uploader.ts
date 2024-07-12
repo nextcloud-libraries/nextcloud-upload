@@ -4,6 +4,7 @@
  */
 import type { AxiosError, AxiosResponse } from 'axios'
 import type { WebDAVClient } from 'webdav'
+import type { IDirectory } from './utils/fileTree'
 
 import { getCurrentUser } from '@nextcloud/auth'
 import { Folder, Permission, davGetClient, davRemoteURL, davRootPath } from '@nextcloud/files'
@@ -233,8 +234,8 @@ export class Uploader {
 	batchUpload(
 		destination: string,
 		files: (File|FileSystemEntry)[],
-		callback?: (nodes: Array<File|Directory>,
-		currentPath: string) => Promise<Array<File|Directory>|false>,
+		callback?: (nodes: Array<File|IDirectory>,
+		currentPath: string) => Promise<Array<File|IDirectory>|false>,
 	): PCancelable<Upload[]> {
 		const rootFolder = new Directory('', files)
 		if (!callback) {

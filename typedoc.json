@@ -6,7 +6,4 @@
     "navigationLinks": {
         "GitHub": "https://github.com/nextcloud-libraries/nextcloud-upload/"
     },
-    "plugin": [
-        "@zamiell/typedoc-plugin-not-exported"
-    ],
 }
