@@ -97,3 +97,8 @@ export class Directory extends File {
 	}
 
 }
+
+/**
+ * Interface of the internal Directory class
+ */
+export type IDirectory = Pick<Directory, keyof Directory>
