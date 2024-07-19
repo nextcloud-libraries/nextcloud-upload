@@ -306,10 +306,10 @@ describe('NewFileMenu handling', () => {
 			.should('exist')
 
 		cy.get('@menuButton').click()
-		cy.get('[data-cy-upload-picker-add]').should('have.length', 1)
-		cy.get('.upload-picker__menu-entry').should('have.length', 1)
+		cy.get('[data-cy-upload-picker-menu-entry="upload-file"]').should('have.length', 1)
+		cy.get('[data-cy-upload-picker-menu-entry="empty-file"]').should('have.length', 1)
 
-		cy.get('.upload-picker__menu-entry')
+		cy.get('[data-cy-upload-picker-menu-entry="empty-file"]')
 			.click()
 			.then(() => {
 				expect(entry.handler).to.be.called
@@ -328,13 +328,13 @@ describe('NewFileMenu handling', () => {
 			.should('exist')
 
 		cy.get('@menuButton').click()
-		cy.get('[data-cy-upload-picker-add]').should('have.length', 1)
-		cy.get('.upload-picker__menu-entry').should('have.length', 1)
+		cy.get('[data-cy-upload-picker-menu-entry="upload-file"]').should('have.length', 1)
+		cy.get('[data-cy-upload-picker-menu-entry="empty-file"]').should('have.length', 1)
 
 		// Close menu
 		cy.get('body').click()
-		cy.get('[data-cy-upload-picker-add]').should('not.be.visible')
-		cy.get('.upload-picker__menu-entry').should('not.be.visible')
+		cy.get('[data-cy-upload-picker-menu-entry="upload-file"]').should('not.be.visible')
+		cy.get('[data-cy-upload-picker-menu-entry="empty-file"]').should('not.be.visible')
 
 		cy.get('@component').then((component) => {
 			component.setDestination(new Folder({
@@ -350,8 +350,8 @@ describe('NewFileMenu handling', () => {
 		cy.get('[data-cy-upload-picker] .action-item__menutoggle')
 			.as('menuButton')
 			.should('not.exist')
-		cy.get('[data-cy-upload-picker-add]').should('have.length', 1)
-		cy.get('.upload-picker__menu-entry').should('not.exist')
+		cy.get('[data-cy-upload-picker-menu-entry="upload-file"]').should('have.length', 1)
+		cy.get('[data-cy-upload-picker-menu-entry="empty-file"]').should('not.exist')
 	})
 })
 
