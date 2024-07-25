@@ -12,6 +12,7 @@
 		<NcButton v-if="newFileMenuEntries && newFileMenuEntries.length === 0"
 			:disabled="disabled"
 			data-cy-upload-picker-add
+			data-cy-upload-picker-menu-entry="upload-file"
 			type="secondary"
 			@click="onTriggerPick()">
 			<template #icon>
@@ -29,7 +30,10 @@
 
 			<NcActionCaption :name="t('Upload from device')" />
 
-			<NcActionButton data-cy-upload-picker-add :close-after-click="true" @click="onTriggerPick()">
+			<NcActionButton data-cy-upload-picker-add
+				data-cy-upload-picker-menu-entry="upload-file"
+				:close-after-click="true"
+				@click="onTriggerPick()">
 				<template #icon>
 					<IconUpload :size="20" />
 				</template>
@@ -38,6 +42,7 @@
 			<NcActionButton v-if="canUploadFolders"
 				close-after-click
 				data-cy-upload-picker-add-folders
+				data-cy-upload-picker-menu-entry="upload-folder"
 				@click="onTriggerPick(true)">
 				<template #icon>
 					<IconFolderUpload style="color: var(--color-primary-element)" :size="20" />
@@ -50,6 +55,7 @@
 				:key="entry.id"
 				:icon="entry.iconClass"
 				:close-after-click="true"
+				:data-cy-upload-picker-menu-entry="entry.id"
 				class="upload-picker__menu-entry"
 				@click="entry.handler(destination, currentContent)">
 				<template v-if="entry.iconSvgInline" #icon>
@@ -66,6 +72,7 @@
 					:key="entry.id"
 					:icon="entry.iconClass"
 					:close-after-click="true"
+					:data-cy-upload-picker-menu-entry="entry.id"
 					class="upload-picker__menu-entry"
 					@click="entry.handler(destination, currentContent)">
 					<template v-if="entry.iconSvgInline" #icon>
@@ -82,6 +89,7 @@
 					:key="entry.id"
 					:icon="entry.iconClass"
 					:close-after-click="true"
+					:data-cy-upload-picker-menu-entry="entry.id"
 					class="upload-picker__menu-entry"
 					@click="entry.handler(destination, currentContent)">
 					<template v-if="entry.iconSvgInline" #icon>
