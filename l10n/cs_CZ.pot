@@ -2,14 +2,20 @@
 # Translators:
 # Joas Schilling, 2024
 # Michal Šmahel <ceskyDJ@seznam.cz>, 2024
+# Martin Hankovec, 2024
+# Appukonrad <appukonrad@gmail.com>, 2024
+# Pavel Borecki <pavel.borecki@gmail.com>, 2024
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Michal Šmahel <ceskyDJ@seznam.cz>, 2024\n"
+"Last-Translator: Pavel Borecki <pavel.borecki@gmail.com>, 2024\n"
 "Language-Team: Czech (Czech Republic) (https://app.transifex.com/nextcloud/teams/64236/cs_CZ/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: cs_CZ\n"
 "Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;\n"
+
+msgid "\"{filename}\" contains invalid characters, how do you want to continue?"
+msgstr "\"{filename}\" obsahuje neplatné znaky, jak chcete pokračovat?"
 
 msgid "{count} file conflict"
 msgid_plural "{count} files conflict"
@@ -47,6 +53,9 @@ msgstr "Zrušit nahrávání"
 msgid "Continue"
 msgstr "Pokračovat"
 
+msgid "Create new"
+msgstr "Vytvořit nový"
+
 msgid "estimating time left"
 msgstr "odhaduje se zbývající čas"
 
@@ -54,10 +63,13 @@ msgid "Existing version"
 msgstr "Existující verze"
 
 msgid ""
-"If you select both versions, the copied file will have a number added to its"
-" name."
+"If you select both versions, the incoming file will have a number added to "
+"its name."
 msgstr ""
-"Pokud vyberete obě verze, zkopírovaný soubor bude mít k názvu přidáno číslo."
+"Pokud vyberete obě verze, příchozí soubor bude mít ke jménu přidánu číslici."
+
+msgid "Invalid file name"
+msgstr "Neplatný název souboru"
 
 msgid "Last modified date unknown"
 msgstr "Neznámé datum poslední úpravy"
@@ -74,6 +86,9 @@ msgstr "pozastaveno"
 msgid "Preview image"
 msgstr "Náhled obrázku"
 
+msgid "Rename"
+msgstr "Přejmenovat"
+
 msgid "Select all checkboxes"
 msgstr "Označit všechny zaškrtávací kolonky"
 
@@ -82,6 +97,9 @@ msgstr "Vybrat veškeré stávající soubory"
 
 msgid "Select all new files"
 msgstr "Vybrat veškeré nové soubory"
+
+msgid "Skip"
+msgstr "Přeskočit"
 
 msgid "Skip this file"
 msgid_plural "Skip {count} files"
@@ -93,11 +111,17 @@ msgstr[3] "Přeskočit {count} soubory"
 msgid "Unknown size"
 msgstr "Neznámá velikost"
 
-msgid "Upload cancelled"
-msgstr "Nahrávání zrušeno"
-
 msgid "Upload files"
 msgstr "Nahrát soubory"
+
+msgid "Upload folders"
+msgstr "Nahrát složky"
+
+msgid "Upload from device"
+msgstr "Nahrát ze zařízení"
+
+msgid "Upload has been cancelled"
+msgstr "Nahrávání bylo zrušeno"
 
 msgid "Upload progress"
 msgstr "Postup v nahrávání"
@@ -108,6 +132,13 @@ msgid ""
 msgstr ""
 "Po výběru příchozí složky budou rovněž přepsány všechny v ní obsažené "
 "konfliktní soubory"
+
+msgid ""
+"When an incoming folder is selected, the content is written into the "
+"existing folder and a recursive conflict resolution is performed."
+msgstr ""
+"Když je vybrána příchozí složka, obsah je zapsán do existující složky a je "
+"provedeno rekurzivní řešení kolizí."
 
 msgid "Which files do you want to keep?"
 msgstr "Které soubory si přejete ponechat?"
