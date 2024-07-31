@@ -537,7 +537,7 @@ $progress-width: 200px;
 .upload-picker {
 	display: inline-flex;
 	align-items: center;
-	height: 44px;
+	height: var(--default-clickable-area);
 
 	&__progress {
 		width: $progress-width;
