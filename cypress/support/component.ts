@@ -21,19 +21,14 @@
 
 import './commands'
 
+// Ensure Cypress' browser has same polyfills as server
+// eslint-disable-next-line n/no-extraneous-import
+import 'core-js/stable/index.js'
+
 import { mount } from '@cypress/vue2'
 
-// Augment the Cypress namespace to include type definitions for
-// your custom command.
-// Alternatively, can be defined in cypress/support/component.d.ts
-// with a <reference path="./component" /> at the top of your spec.
-declare global {
-	namespace Cypress {
-		interface Chainable {
-			mount: typeof mount
-		}
-	}
-}
+// @ts-expect-error Mock window so this is an internal property
+window._oc_capabilities = { files: {} }
 
 // Example use:
 // cy.mount(MyComponent)
@@ -67,7 +62,8 @@ Cypress.Commands.add('mount', (component, optionsOrProps) => {
 	}
 
 	// Expose the component with cy.get('@component')
-	return mount(component, optionsOrProps).then(() => {
-		return cy.wrap(instance).as('component')
+	const mounted = mount(component, optionsOrProps).then(() => {
+		cy.wrap(instance).as('component')
+		return mounted
 	})
 })
