@@ -12,6 +12,8 @@
 
 		<!-- Nextcloud customizations -->
 		<link href="https://nextcloud.github.io/server/apps/theming/css/default.css" rel="stylesheet" />
+		<link href="https://nextcloud.github.io/server/core/css/server.css" rel="stylesheet" />
+		<link href="https://nextcloud.github.io/server/core/css/apps.css" rel="stylesheet" />
 		<script type="text/javascript">
 			// mocking the webroot for @nextcloud/router
 			window._oc_webroot = ''
@@ -25,6 +27,11 @@
 		</script>
 	</head>
 	<body>
-		<div data-cy-root></div>
+		<header id="header" style="height: var(--header-height); width: 100%; position: absolute;"></header>
+		<main id="content">
+		<div id="app-content">
+			<div data-cy-root></div>
+		</div>
+		</main>
 	</body>
 </html>

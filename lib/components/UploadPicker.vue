@@ -57,7 +57,7 @@
 				:close-after-click="true"
 				:data-cy-upload-picker-menu-entry="entry.id"
 				class="upload-picker__menu-entry"
-				@click="entry.handler(destination, currentContent)">
+				@click="onClick(entry)">
 				<template v-if="entry.iconSvgInline" #icon>
 					<NcIconSvgWrapper :svg="entry.iconSvgInline" />
 				</template>
@@ -74,7 +74,7 @@
 					:close-after-click="true"
 					:data-cy-upload-picker-menu-entry="entry.id"
 					class="upload-picker__menu-entry"
-					@click="entry.handler(destination, currentContent)">
+					@click="onClick(entry)">
 					<template v-if="entry.iconSvgInline" #icon>
 						<NcIconSvgWrapper :svg="entry.iconSvgInline" />
 					</template>
@@ -91,7 +91,7 @@
 					:close-after-click="true"
 					:data-cy-upload-picker-menu-entry="entry.id"
 					class="upload-picker__menu-entry"
-					@click="entry.handler(destination, currentContent)">
+					@click="onClick(entry)">
 					<template v-if="entry.iconSvgInline" #icon>
 						<NcIconSvgWrapper :svg="entry.iconSvgInline" />
 					</template>
@@ -233,7 +233,6 @@ export default Vue.extend({
 			eta: null,
 			timeLeft: '',
 
-			currentContent: [] as Node[],
 			newFileMenuEntries: [] as Entry[],
 			uploadManager: getUploader(),
 		}
@@ -307,13 +306,6 @@ export default Vue.extend({
 			},
 		},
 
-		content: {
-			immediate: true,
-			async handler() {
-				this.currentContent = await this.getContent()
-			},
-		},
-
 		destination(destination) {
 			this.setDestination(destination)
 		},
@@ -350,6 +342,17 @@ export default Vue.extend({
 	},
 
 	methods: {
+		/**
+		 * Handle clicking a new-menu entry
+		 * @param entry The entry that was clicked
+		 */
+		async onClick(entry: Entry) {
+			entry.handler(
+				this.destination!,
+				await this.getContent().catch(() => []),
+			)
+		},
+
 		/**
 		 * Trigger file picker
 		 * @param uploadFolders Upload folders
@@ -408,7 +411,7 @@ export default Vue.extend({
 
 		async handleConflicts(nodes: Array<File|Directory>, path: string): Promise<Array<File|Directory>|false> {
 			try {
-				const content = path === '' ? this.currentContent : await this.getContent(path).catch(() => [])
+				const content = await this.getContent(path).catch(() => [])
 				const conflicts = getConflicts(nodes, content)
 
 				// First handle conflicts as this might already remove invalid files
