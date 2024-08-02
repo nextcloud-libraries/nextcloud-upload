@@ -10,13 +10,23 @@ import { generateRemoteUrl } from '@nextcloud/router'
 import { UploadPicker, getUploader } from '../../lib/index.ts'
 import { basename } from 'path'
 
-describe('UploadPicker rendering', () => {
-	afterEach(() => {
-		// Make sure we clear the body
-		cy.window().then((win) => {
-			win.document.body.innerHTML = '<div data-cy-root></div>'
-		})
+let state: string | undefined
+before(() => {
+	cy.window().then((win) => {
+		state = win.document.body.innerHTML
 	})
+})
+
+const resetDocument = () => {
+	if (state) {
+		cy.window().then((win) => {
+			win.document.body.innerHTML = state!
+		})
+	}
+}
+
+describe('UploadPicker rendering', () => {
+	afterEach(() => resetDocument())
 
 	it('Renders default UploadPicker', () => {
 		const propsData = {
@@ -66,12 +76,7 @@ describe('UploadPicker valid uploads', () => {
 		cy.get('[data-cy-upload-picker] .upload-picker__progress').as('progress').should('exist')
 	})
 
-	afterEach(() => {
-		// Make sure we clear the body
-		cy.window().then((win) => {
-			win.document.body.innerHTML = '<div data-cy-root></div>'
-		})
-	})
+	afterEach(() => resetDocument())
 
 	it('Uploads a file', () => {
 		// Intercept single upload
@@ -117,12 +122,7 @@ describe('UploadPicker invalid uploads', { testIsolation: true }, () => {
 		getUploader(false, true)
 	})
 
-	afterEach(() => {
-		// Make sure we clear the body
-		cy.window().then((win) => {
-			win.document.body.innerHTML = '<div data-cy-root></div>'
-		})
-	})
+	afterEach(() => resetDocument())
 
 	it('Fails a file if forbidden character', () => {
 		// Make sure we reset the destination
@@ -287,12 +287,7 @@ describe('NewFileMenu handling', () => {
 		addNewFileMenuEntry(entry)
 	})
 
-	afterEach(() => {
-		// Make sure we clear the body
-		cy.window().then((win) => {
-			win.document.body.innerHTML = '<div data-cy-root></div>'
-		})
-	})
+	afterEach(() => resetDocument())
 
 	it('Open the New File Menu', () => {
 		// Mount picker
@@ -377,12 +372,7 @@ describe('UploadPicker valid uploads', () => {
 		cy.get('[data-cy-upload-picker] .upload-picker__progress').as('progress').should('exist')
 	})
 
-	afterEach(() => {
-		// Make sure we clear the body
-		cy.window().then((win) => {
-			win.document.body.innerHTML = '<div data-cy-root></div>'
-		})
-	})
+	afterEach(() => resetDocument())
 
 	it('Uploads a file with chunking', () => {
 		// Init and reset chunk request spy
@@ -481,12 +471,7 @@ describe('Destination management', () => {
 		}),
 	}
 
-	afterEach(() => {
-		// Make sure we clear the body
-		cy.window().then((win) => {
-			win.document.body.innerHTML = '<div data-cy-root></div>'
-		})
-	})
+	afterEach(() => resetDocument())
 
 	it('Upload then changes the destination', () => {
 		// Mount picker
@@ -557,12 +542,7 @@ describe('Root management', () => {
 		}),
 	}
 
-	afterEach(() => {
-		// Make sure we clear the body
-		cy.window().then((win) => {
-			win.document.body.innerHTML = '<div data-cy-root></div>'
-		})
-	})
+	afterEach(() => resetDocument())
 
 	it('Upload then changes the root', () => {
 		// Mount picker
@@ -659,12 +639,7 @@ describe('UploadPicker notify testing', () => {
 		cy.get('[data-cy-upload-picker] .upload-picker__progress').as('progress').should('exist')
 	})
 
-	afterEach(() => {
-		// Make sure we clear the body
-		cy.window().then((win) => {
-			win.document.body.innerHTML = '<div data-cy-root></div>'
-		})
-	})
+	afterEach(() => resetDocument())
 
 	it('Uploads a file without chunking', () => {
 		const notify = cy.spy()
