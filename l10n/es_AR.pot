@@ -107,7 +107,7 @@ msgid "Unknown size"
 msgstr "Tamaño desconocido"
 
 msgid "Upload files"
-msgstr "Subir archivos"
+msgstr "Cargar archivos"
 
 msgid "Upload folders"
 msgstr "Cargar carpetas"
