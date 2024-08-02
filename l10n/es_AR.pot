@@ -107,7 +107,7 @@ msgid "Unknown size"
 msgstr "Tamaño desconocido"
 
 msgid "Upload files"
-msgstr "Subir archivos"
+msgstr "Cargar archivos"
 
 msgid "Upload folders"
 msgstr "Cargar carpetas"
@@ -116,7 +116,7 @@ msgid "Upload from device"
 msgstr "Cargar desde dispositivo"
 
 msgid "Upload has been cancelled"
-msgstr "La carga ha sido cancelada"
+msgstr "Carga cancelada"
 
 msgid "Upload progress"
 msgstr "Progreso de la carga"
