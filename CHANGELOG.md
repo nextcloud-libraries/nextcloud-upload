@@ -4,6 +4,35 @@
 -->
 # Changelog
 
+## [v1.4.3](https://github.com/nextcloud-libraries/nextcloud-upload/tree/v1.4.3) \(2024-08-07\)
+### Fixed
+* fix: Always request current content when triggering a menu entry by @susnux in https://github.com/nextcloud-libraries/nextcloud-upload/pull/1313
+* fix: Remove outdated languages that are blocking the real translations by @susnux in https://github.com/nextcloud-libraries/nextcloud-upload/pull/1282
+* fix(UploadPicker): Do not hardcode the height but use the CSS variable by @susnux in https://github.com/nextcloud-libraries/nextcloud-upload/pull/1309
+
+## What's Changed
+* chore: Bump @nextcloud/files from 3.5.1 to 3.7.0 by @dependabot
+* chore: Bump @nextcloud/paths from 2.1.0 to 2.2.1 by @dependabot
+* chore: Bump @nextcloud/sharing from 0.2.2 to 0.2.3 by @dependabot
+* chore: Bump @types/node from 20.14.10 to 22.1.0 by @dependabot
+* chore: Bump @vitest/coverage-v8 from 2.0.2 to 2.0.5 by @dependabot
+* chore: Bump axios from 1.7.2 to 1.7.3 by @dependabot
+* chore: Bump axios-retry from 4.4.1 to 4.5.0 by @dependabot
+* chore: Bump blob-polyfill from 7.0.20220408 to 8.0.20240630 by @dependabot
+* chore: Bump cypress from 13.13.0 to 3.13.2 by @dependabot
+* chore: Bump cypress-io/github-action from 6.7.1 to 6.7.2 by @dependabot
+* chore: Bump fast-xml-parser from 4.3.2 to 4.4.1 by @dependabot
+* chore: Bump jsdom from 24.1.0 to 24.1.1 by @dependabot
+* chore: Bump typedoc from 0.26.4 to 0.26.5 by @dependabot
+* chore: Bump typescript from 5.4.5 to 5.5.4 by @dependabot
+* chore: Bump vite from 5.3.3 to 5.3.5 by @dependabot
+* chore: Bump webdav from 5.6.0 to 5.7.1 by @dependabot
+* chore: monitor bundle size with codecov by @skjnldsv in https://github.com/nextcloud-libraries/nextcloud-upload/pull/1290
+* feat: add cypress selectors for new menu entries by @skjnldsv in https://github.com/nextcloud-libraries/nextcloud-upload/pull/1289
+* Translations updates
+
+**Full Changelog**: https://github.com/nextcloud-libraries/nextcloud-upload/compare/v1.4.2...v1.4.3
+
 ## [v1.4.2](https://github.com/nextcloud-libraries/nextcloud-upload/tree/v1.4.2) \(2024-07-11\)
 ### Fixed
 * fix(uploader): increase max concurrency to 5 [\#1256](https://github.com/nextcloud-libraries/nextcloud-upload/pull/1256) \([skjnldsv](https://github.com/skjnldsv)\)
