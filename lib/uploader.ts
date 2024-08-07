@@ -287,6 +287,9 @@ export class Uploader {
 			if (selectedForUpload === false) {
 				reject(t('Upload has been cancelled'))
 				return
+			} else if (selectedForUpload.length === 0 && directory.children.length > 0) {
+				resolve([])
+				return
 			}
 
 			const directories: PCancelable<Upload[]>[] = []

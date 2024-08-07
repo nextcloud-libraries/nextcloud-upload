@@ -141,8 +141,9 @@ import type { PropType } from 'vue'
 import type { Upload } from '../upload.ts'
 import type { Directory } from '../utils/fileTree'
 
-import { DialogBuilder, showWarning } from '@nextcloud/dialogs'
-import { Folder, NewMenuEntryCategory, getNewFileMenuEntries, getUniqueName } from '@nextcloud/files'
+import { showInfo, showWarning, spawnDialog } from '@nextcloud/dialogs'
+import { Folder, InvalidFilenameError, InvalidFilenameErrorReason, NewMenuEntryCategory, getNewFileMenuEntries, getUniqueName, validateFilename } from '@nextcloud/files'
+import { basename } from '@nextcloud/paths'
 import makeEta from 'simple-eta'
 import Vue from 'vue'
 
@@ -164,7 +165,7 @@ import { Status } from '../uploader.ts'
 import { Status as UploadStatus } from '../upload.ts'
 import { t } from '../utils/l10n.ts'
 import logger from '../utils/logger.ts'
-import PCancelable from 'p-cancelable'
+import InvalidFilenameDialog from './InvalidFilenameDialog.vue'
 
 export default Vue.extend({
 	name: 'UploadPicker',
@@ -213,6 +214,11 @@ export default Vue.extend({
 			type: [Array, Function] as PropType<Node[]|((relativePath?: string) => Node[]|PromiseLike<Node[]>)>,
 			default: () => [],
 		},
+
+		/**
+		 * Overwrite forbidden characters (by default the capabilities of the server are used)
+		 * @deprecated Deprecated and will be removed in the next major version
+		 */
 		forbiddenCharacters: {
 			type: Array as PropType<string[]>,
 			default: () => [],
@@ -377,36 +383,53 @@ export default Vue.extend({
 
 		/**
 		 * Show a dialog to let the user decide how to proceed with invalid filenames.
-		 * The returned promise resolves to true if the file should be renamed and resolves to false to skip it the file.
+		 * The returned promise resolves to false if the file should be skipped, and resolves to a string if it should be renamed.
 		 * The promise rejects when the user want to abort the operation.
 		 *
-		 * @param filename The invalid file name
+		 * @param error the validation error
 		 */
-		async showInvalidFileNameDialog(filename: string): Promise<boolean> {
-			return new PCancelable(async (resolve, reject) => {
-				await new DialogBuilder()
-					.setName(t('Invalid file name'))
-					.setSeverity('error')
-					.setText(t('"{filename}" contains invalid characters, how do you want to continue?', { filename }))
-					.setButtons([
-						{
-							label: t('Cancel'),
-							type: 'error',
-							callback: reject,
-						},
-						{
-							label: t('Skip'),
-							callback: () => resolve(false),
-						},
-						{
-							label: t('Rename'),
-							type: 'primary',
-							callback: () => resolve(true),
-						},
-					])
-					.build()
-					.show()
-			})
+		showInvalidFileNameDialog(error: InvalidFilenameError): Promise<string | false> {
+			const { promise, reject, resolve } = Promise.withResolvers<string | false>()
+			spawnDialog(
+				InvalidFilenameDialog,
+				{
+					error,
+					validateFilename: this.validateFilename.bind(this),
+				},
+				(...rest) => {
+					const [{ skip, rename }] = rest as [{ cancel?: true, skip?: true, rename?: string }]
+					if (skip) {
+						resolve(false)
+					} else if (rename) {
+						resolve(rename)
+					} else {
+						reject()
+					}
+				},
+			)
+			return promise
+		},
+
+		/**
+		 * Wrapper to allow overwriting forbidden characters
+		 * Remove with next major
+		 * @param filename name to validate
+		 */
+		validateFilename(filename: string) {
+			// just for legacy reasons, remove with next major
+			if (this.forbiddenCharacters.length > 0) {
+				for (const c of this.forbiddenCharacters) {
+					if (filename.includes(c)) {
+						throw new InvalidFilenameError({
+							filename,
+							reason: InvalidFilenameErrorReason.Character,
+							segment: c,
+						})
+					}
+				}
+			} else {
+				validateFilename(filename)
+			}
 		},
 
 		async handleConflicts(nodes: Array<File|Directory>, path: string): Promise<Array<File|Directory>|false> {
@@ -423,21 +446,32 @@ export default Vue.extend({
 				// We need to check all files for invalid characters
 				const filesToUpload: Array<File|Directory> = []
 				for (const file of nodes) {
-					const invalid = this.forbiddenCharacters.some((c) => file.name.includes(c))
-					// No invalid characters used on this file, so just continue
-					if (!invalid) {
+					try {
+						this.validateFilename(file.name)
+						// No invalid name used on this file, so just continue
 						filesToUpload.push(file)
-						continue
+					} catch (error) {
+						// do not handle other errors
+						if (!(error instanceof InvalidFilenameError)) {
+							logger.error(`Unexpected error while validating ${file.name}`, { error })
+							throw error
+						}
+						// Handle invalid path
+						let newName = await this.showInvalidFileNameDialog(error)
+						if (newName !== false) {
+							// create a new valid path name
+							newName = getUniqueName(newName, nodes.map((node) => node.name))
+							Object.defineProperty(file, 'name', { value: newName })
+							filesToUpload.push(file)
+						}
 					}
-
-					// Hanle invalid path
-					if (await this.showInvalidFileNameDialog(file.name)) {
-						// create a new valid path name
-						let newName = this.replaceInvalidCharacters(file.name)
-						newName = getUniqueName(newName, nodes.map((node) => node.name))
-						Object.defineProperty(file, 'name', { value: newName })
-						filesToUpload.push(file)
-					}
+				}
+				if (filesToUpload.length === 0 && nodes.length > 0) {
+					const folder = basename(path)
+					showInfo(folder
+						? t('Upload of "{folder}" has been skipped', { folder })
+						: t('Upload has been skipped'),
+					)
 				}
 				return filesToUpload
 			} catch (error) {
@@ -445,16 +479,6 @@ export default Vue.extend({
 				showWarning(t('Upload has been cancelled'))
 				return false
 			}
-		},
-
-		/**
-		 * Helper function to replace invalid characters in text
-		 * @param text Text to replace invalid character
-		 */
-		 replaceInvalidCharacters(text: string): string {
-			const invalidReplacement = ['-', '_', ' '].filter((c) => !this.forbiddenCharacters.includes(c))[0] ?? 'x'
-			this.forbiddenCharacters.forEach((c) => { text = text.replaceAll(c, invalidReplacement) })
-			return text
 		},
 
 		/**
