@@ -11,8 +11,14 @@ msgstr ""
 "Language: de_DE\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgid "\"{filename}\" contains invalid characters, how do you want to continue?"
-msgstr "\"{filename}\" enthält ungültige Zeichen. Wie möchten Sie fortfahren?"
+msgid "\"{segment}\" is a forbidden file or folder name."
+msgstr "\"{segment}\" ist ein verbotener Datei- oder Ordnername."
+
+msgid "\"{segment}\" is a forbidden file type."
+msgstr "\"{segment}\" ist ein verbotener Dateityp."
+
+msgid "\"{segment}\" is not allowed inside a file or folder name."
+msgstr "\"{segment}\" ist in einem Datei- oder Ordnernamen nicht zulässig."
 
 msgid "{count} file conflict"
 msgid_plural "{count} files conflict"
@@ -55,6 +61,9 @@ msgstr "Geschätzte verbleibende Zeit"
 msgid "Existing version"
 msgstr "Vorhandene Version"
 
+msgid "Filenames must not end with \"{segment}\"."
+msgstr "Dateinamen dürfen nicht mit \"{segment}\" enden."
+
 msgid ""
 "If you select both versions, the incoming file will have a number added to "
 "its name."
@@ -62,7 +71,7 @@ msgstr ""
 "Wenn Sie beide Versionen auswählen, wird der eingehenden Datei eine Nummer "
 "zum Namen hinzugefügt."
 
-msgid "Invalid file name"
+msgid "Invalid filename"
 msgstr "Ungültiger Dateiname"
 
 msgid "Last modified date unknown"
@@ -70,6 +79,9 @@ msgstr "Datum der letzten Änderung unbekannt"
 
 msgid "New"
 msgstr "Neu"
+
+msgid "New filename"
+msgstr "Neuer Dateiname"
 
 msgid "New version"
 msgstr "Neue Version"
@@ -115,6 +127,12 @@ msgstr "Vom Gerät hochladen"
 msgid "Upload has been cancelled"
 msgstr "Das Hochladen wurde abgebrochen"
 
+msgid "Upload has been skipped"
+msgstr "Das Hochladen wurde übersprungen"
+
+msgid "Upload of \"{folder}\" has been skipped"
+msgstr "Das Hochladen von \"{folder}\" wurde übersprungen"
+
 msgid "Upload progress"
 msgstr "Fortschritt beim Hochladen"
 
@@ -134,6 +152,13 @@ msgstr ""
 
 msgid "Which files do you want to keep?"
 msgstr "Welche Dateien möchten Sie behalten?"
+
+msgid ""
+"You can either rename the file, skip this file or cancel the whole "
+"operation."
+msgstr ""
+"Sie können die Datei entweder umbenennen, diese Datei überspringen oder den "
+"gesamten Vorgang abbrechen."
 
 msgid "You need to select at least one version of each file to continue."
 msgstr ""
