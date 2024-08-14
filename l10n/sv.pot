@@ -11,8 +11,14 @@ msgstr ""
 "Language: sv\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgid "\"{filename}\" contains invalid characters, how do you want to continue?"
-msgstr "\"{filename}\" innehåller ogiltiga tecken, hur vill du fortsätta?"
+msgid "\"{segment}\" is a forbidden file or folder name."
+msgstr "\"{segment}\" är ett förbjudet fil- eller mappnamn."
+
+msgid "\"{segment}\" is a forbidden file type."
+msgstr "\"{segment}\" är en förbjuden filtyp."
+
+msgid "\"{segment}\" is not allowed inside a file or folder name."
+msgstr "\"{segment}\" är inte tillåtet i ett fil- eller mappnamn."
 
 msgid "{count} file conflict"
 msgid_plural "{count} files conflict"
@@ -55,6 +61,9 @@ msgstr "uppskattar kvarstående tid"
 msgid "Existing version"
 msgstr "Nuvarande version"
 
+msgid "Filenames must not end with \"{segment}\"."
+msgstr "Filnamn får inte sluta med \"{segment}\"."
+
 msgid ""
 "If you select both versions, the incoming file will have a number added to "
 "its name."
@@ -62,7 +71,7 @@ msgstr ""
 "Om du väljer båda versionerna kommer den inkommande filen att läggas till "
 "ett nummer i namnet."
 
-msgid "Invalid file name"
+msgid "Invalid filename"
 msgstr "Ogiltigt filnamn"
 
 msgid "Last modified date unknown"
@@ -70,6 +79,9 @@ msgstr "Senaste ändringsdatum okänt"
 
 msgid "New"
 msgstr "Ny"
+
+msgid "New filename"
+msgstr "Nytt filnamn"
 
 msgid "New version"
 msgstr "Ny version"
@@ -115,6 +127,12 @@ msgstr "Ladda upp från enhet"
 msgid "Upload has been cancelled"
 msgstr "Uppladdningen har avbrutits"
 
+msgid "Upload has been skipped"
+msgstr "Uppladdningen har hoppats över"
+
+msgid "Upload of \"{folder}\" has been skipped"
+msgstr "Uppladdningen av \"{folder}\" har hoppats över"
+
 msgid "Upload progress"
 msgstr "Uppladdningsförlopp"
 
@@ -133,6 +151,13 @@ msgstr ""
 
 msgid "Which files do you want to keep?"
 msgstr "Vilka filer vill du behålla?"
+
+msgid ""
+"You can either rename the file, skip this file or cancel the whole "
+"operation."
+msgstr ""
+"Du kan antingen byta namn på filen, hoppa över den här filen eller avbryta "
+"hela operationen."
 
 msgid "You need to select at least one version of each file to continue."
 msgstr "Du måste välja minst en version av varje fil för att fortsätta."
