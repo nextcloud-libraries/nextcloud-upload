@@ -10,10 +10,14 @@ msgstr ""
 "Language: ga\n"
 "Plural-Forms: nplurals=5; plural=(n==1 ? 0 : n==2 ? 1 : n<7 ? 2 : n<11 ? 3 : 4);\n"
 
-msgid "\"{filename}\" contains invalid characters, how do you want to continue?"
-msgstr ""
-"Tá carachtair neamhbhailí in \"{filename}\", conas ba mhaith leat leanúint "
-"ar aghaidh?"
+msgid "\"{segment}\" is a forbidden file or folder name."
+msgstr "Is ainm toirmiscthe comhaid nó fillteáin é \"{segment}\"."
+
+msgid "\"{segment}\" is a forbidden file type."
+msgstr "Is cineál comhaid toirmiscthe é \"{segment}\"."
+
+msgid "\"{segment}\" is not allowed inside a file or folder name."
+msgstr "Ní cheadaítear \"{segment}\" taobh istigh d'ainm comhaid nó fillteáin."
 
 msgid "{count} file conflict"
 msgid_plural "{count} files conflict"
@@ -62,6 +66,9 @@ msgstr "ag déanamh meastachán ar an am atá fágtha"
 msgid "Existing version"
 msgstr "Leagan láithreach "
 
+msgid "Filenames must not end with \"{segment}\"."
+msgstr "Níor cheart go gcríochnaíonn comhaid chomhad le \"{segment}\"."
+
 msgid ""
 "If you select both versions, the incoming file will have a number added to "
 "its name."
@@ -69,7 +76,7 @@ msgstr ""
 "Má roghnaíonn tú an dá leagan, cuirfear uimhir leis an ainm a thagann "
 "isteach."
 
-msgid "Invalid file name"
+msgid "Invalid filename"
 msgstr "Ainm comhaid neamhbhailí"
 
 msgid "Last modified date unknown"
@@ -77,6 +84,9 @@ msgstr "Dáta modhnaithe is déanaí anaithnid"
 
 msgid "New"
 msgstr "Nua"
+
+msgid "New filename"
+msgstr "Ainm comhaid nua"
 
 msgid "New version"
 msgstr "Leagan nua"
@@ -125,6 +135,12 @@ msgstr "Íosluchtaigh ó ghléas"
 msgid "Upload has been cancelled"
 msgstr "Cuireadh an t-uaslódáil ar ceal"
 
+msgid "Upload has been skipped"
+msgstr "Léiríodh an uaslódáil"
+
+msgid "Upload of \"{folder}\" has been skipped"
+msgstr "Léiríodh an uaslódáil \"{folder}\"."
+
 msgid "Upload progress"
 msgstr "Uaslódáil dul chun cinn"
 
@@ -144,6 +160,13 @@ msgstr ""
 
 msgid "Which files do you want to keep?"
 msgstr "Cé na comhaid ar mhaith leat a choinneáil?"
+
+msgid ""
+"You can either rename the file, skip this file or cancel the whole "
+"operation."
+msgstr ""
+"Is féidir leat an comhad a athainmniú, scipeáil an comhad seo nó an "
+"oibríocht iomlán a chealú."
 
 msgid "You need to select at least one version of each file to continue."
 msgstr ""
