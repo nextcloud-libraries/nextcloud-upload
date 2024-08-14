@@ -7,7 +7,7 @@
 // eslint-disable-next-line import/no-unresolved,n/no-missing-import
 import { Folder, Permission, addNewFileMenuEntry, type Entry } from '@nextcloud/files'
 import { generateRemoteUrl } from '@nextcloud/router'
-import { UploadPicker, getUploader } from '../../../lib/index.ts'
+import { UploadPicker, UploadStatus, getUploader } from '../../../lib/index.ts'
 
 let state: string | undefined
 before(() => {
@@ -347,7 +347,7 @@ describe('Destination management', () => {
 
 		cy.wait('@upload').then((upload) => {
 			expect(upload.request.url).to.have.string(
-				'/remote.php/dav/files/user/image.jpg'
+				'/remote.php/dav/files/user/image.jpg',
 			)
 		})
 
@@ -374,7 +374,7 @@ describe('Destination management', () => {
 
 		cy.wait('@upload').then((upload) => {
 			expect(upload.request.url).to.have.string(
-				'/remote.php/dav/files/user/Photos/image.jpg'
+				'/remote.php/dav/files/user/Photos/image.jpg',
 			)
 		})
 	})
@@ -517,9 +517,17 @@ describe('UploadPicker notify testing', () => {
 			cy.get('@progress')
 				.children('progress')
 				.should('not.have.value', '0')
-			expect(notify).to.be.calledOnce
-			expect(listeners.uploaded).to.be.calledOnce
+			expect(notify).to.be.calledTwice
+			// The image upload
+			expect(notify.getCall(0).args[0].file.name).to.eq('image.jpg')
+			expect(notify.getCall(0).args[0].status).to.eq(UploadStatus.FINISHED)
+			// The meta upload
+			expect(notify.getCall(1).args[0].status).to.eq(UploadStatus.FINISHED)
+			expect(notify.getCall(1).args[0].file.name).to.eq('')
+			expect(notify.getCall(1).args[0].file.type).to.eq('httpd/unix-directory')
+			// the listeners
 			expect(listeners.failed).to.not.be.called
+			expect(listeners.uploaded).to.be.calledTwice
 		})
 	})
 
@@ -549,9 +557,17 @@ describe('UploadPicker notify testing', () => {
 			cy.get('@progress')
 				.children('progress')
 				.should('not.have.value', '0')
-			expect(notify).to.be.calledOnce
+			expect(notify).to.be.calledTwice
+			// The image upload
+			expect(notify.getCall(0).args[0].file.name).to.eq('image.jpg')
+			expect(notify.getCall(0).args[0].status).to.eq(UploadStatus.FAILED)
+			// The meta upload
+			expect(notify.getCall(1).args[0].status).to.eq(UploadStatus.FAILED)
+			expect(notify.getCall(1).args[0].file.name).to.eq('')
+			expect(notify.getCall(1).args[0].file.type).to.eq('httpd/unix-directory')
+			// the listeners
 			expect(listeners.uploaded).to.not.be.called
-			expect(listeners.failed).to.be.calledOnce
+			expect(listeners.failed).to.be.calledTwice
 		})
 	})
 })
