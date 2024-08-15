@@ -11,8 +11,14 @@ msgstr ""
 "Language: ar\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
 
-msgid "\"{filename}\" contains invalid characters, how do you want to continue?"
-msgstr "\"{filename}\" يحتوي على حروف غير مقبولة. كيف ترغب في الاستمرار؟"
+msgid "\"{segment}\" is a forbidden file or folder name."
+msgstr "\"{segment}\" هو اسم ممنوع لملف أو مجلد."
+
+msgid "\"{segment}\" is a forbidden file type."
+msgstr "\"{segment}\" هو نوع ممنوع أن يكون لملف."
+
+msgid "\"{segment}\" is not allowed inside a file or folder name."
+msgstr "\"{segment}\" هو غير مسموح به في اسم ملف أو مجلد."
 
 msgid "{count} file conflict"
 msgid_plural "{count} files conflict"
@@ -63,20 +69,26 @@ msgstr "تقدير الوقت المتبقي"
 msgid "Existing version"
 msgstr "الإصدار الحالي"
 
+msgid "Filenames must not end with \"{segment}\"."
+msgstr "غير مسموح ان ينتهي اسم الملف بـ \"{segment}\"."
+
 msgid ""
 "If you select both versions, the incoming file will have a number added to "
 "its name."
 msgstr ""
 "إذا اخترت الاحتفاظ بالنسختين فسيتم إلحاق رقم عداد آخر اسم الملف الوارد."
 
-msgid "Invalid file name"
-msgstr "اسم الملف غير صحيح"
+msgid "Invalid filename"
+msgstr "اسم ملف غير صحيح"
 
 msgid "Last modified date unknown"
 msgstr "تاريخ آخر تعديل غير معلوم"
 
 msgid "New"
 msgstr "جديد"
+
+msgid "New filename"
+msgstr "اسم ملف جديد"
 
 msgid "New version"
 msgstr "نسخة جديدة"
@@ -126,6 +138,12 @@ msgstr "الرفع من جهاز "
 msgid "Upload has been cancelled"
 msgstr "تمّ إلغاء عملية رفع الملفات"
 
+msgid "Upload has been skipped"
+msgstr "تمّ تجاوز الرفع"
+
+msgid "Upload of \"{folder}\" has been skipped"
+msgstr "رفع \"{folder}\" تمّ تجاوزه"
+
 msgid "Upload progress"
 msgstr "تقدُّم الرفع "
 
@@ -143,6 +161,11 @@ msgstr ""
 
 msgid "Which files do you want to keep?"
 msgstr "أيُّ الملفات ترغب في الإبقاء عليها؟"
+
+msgid ""
+"You can either rename the file, skip this file or cancel the whole "
+"operation."
+msgstr "يمكنك إمّا تغيير اسم الملف، أو تجاوزه، أو إلغاء العملية برمتها."
 
 msgid "You need to select at least one version of each file to continue."
 msgstr "يجب أن تختار نسخة واحدة على الأقل من كل ملف للاستمرار."
