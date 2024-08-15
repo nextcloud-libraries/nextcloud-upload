@@ -11,8 +11,15 @@ msgstr ""
 "Language: uk\n"
 "Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != 11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || (n % 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
 
-msgid "\"{filename}\" contains invalid characters, how do you want to continue?"
-msgstr "\"{filename}\" містить недійсні символи, продовжити?"
+msgid "\"{segment}\" is a forbidden file or folder name."
+msgstr "\"{segment}\" не є  дозволеним ім'ям файлу або каталогу."
+
+msgid "\"{segment}\" is a forbidden file type."
+msgstr "\"{segment}\" не є дозволеним типом файлу."
+
+msgid "\"{segment}\" is not allowed inside a file or folder name."
+msgstr ""
+"\"{segment}\" не дозволене сполучення символів в назві файлу або каталогу."
 
 msgid "{count} file conflict"
 msgid_plural "{count} files conflict"
@@ -59,13 +66,16 @@ msgstr "оцінка часу, що залишився"
 msgid "Existing version"
 msgstr "Присутня версія"
 
+msgid "Filenames must not end with \"{segment}\"."
+msgstr "Ім'я файлів не можуть закінчуватися на \"{segment}\"."
+
 msgid ""
 "If you select both versions, the incoming file will have a number added to "
 "its name."
 msgstr ""
 "Якщо буде вибрано обидві версії, до імени вхідного файлу було додано цифру."
 
-msgid "Invalid file name"
+msgid "Invalid filename"
 msgstr "Недійсне ім'я файлу"
 
 msgid "Last modified date unknown"
@@ -73,6 +83,9 @@ msgstr "Дата останньої зміни невідома"
 
 msgid "New"
 msgstr "Нове"
+
+msgid "New filename"
+msgstr "Нове ім'я файлу"
 
 msgid "New version"
 msgstr "Нова версія"
@@ -120,6 +133,12 @@ msgstr "Завантажити з пристрою"
 msgid "Upload has been cancelled"
 msgstr "Завантаження скасовано"
 
+msgid "Upload has been skipped"
+msgstr "Завантаження пропущено"
+
+msgid "Upload of \"{folder}\" has been skipped"
+msgstr "Завантаження \"{folder}\" пропущено"
+
 msgid "Upload progress"
 msgstr "Поступ завантаження"
 
@@ -139,6 +158,12 @@ msgstr ""
 
 msgid "Which files do you want to keep?"
 msgstr "Які файли залишити?"
+
+msgid ""
+"You can either rename the file, skip this file or cancel the whole "
+"operation."
+msgstr ""
+"Ви можете або перейменувати цей файл, пропустити або скасувати дію з файлом."
 
 msgid "You need to select at least one version of each file to continue."
 msgstr ""
