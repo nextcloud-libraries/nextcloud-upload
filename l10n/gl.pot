@@ -11,8 +11,15 @@ msgstr ""
 "Language: gl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgid "\"{filename}\" contains invalid characters, how do you want to continue?"
-msgstr "«{filename}» contén caracteres non válidos, como quere continuar?"
+msgid "\"{segment}\" is a forbidden file or folder name."
+msgstr "«{segment}» é un nome vedado para un ficheiro ou cartafol."
+
+msgid "\"{segment}\" is a forbidden file type."
+msgstr "«{segment}» é un tipo de ficheiro vedado."
+
+msgid "\"{segment}\" is not allowed inside a file or folder name."
+msgstr ""
+"«{segment}» non está permitido dentro dun nome de ficheiro ou cartafol."
 
 msgid "{count} file conflict"
 msgid_plural "{count} files conflict"
@@ -55,6 +62,9 @@ msgstr "calculando canto tempo falta"
 msgid "Existing version"
 msgstr "Versión existente"
 
+msgid "Filenames must not end with \"{segment}\"."
+msgstr "Os nomes de ficheiros non deben rematar con «{segment}»."
+
 msgid ""
 "If you select both versions, the incoming file will have a number added to "
 "its name."
@@ -62,7 +72,7 @@ msgstr ""
 "Se selecciona ambas as versións, o ficheiro entrante terá un número engadido"
 " ao seu nome."
 
-msgid "Invalid file name"
+msgid "Invalid filename"
 msgstr "O nome de ficheiro non é válido"
 
 msgid "Last modified date unknown"
@@ -70,6 +80,9 @@ msgstr "Data da última modificación descoñecida"
 
 msgid "New"
 msgstr "Nova"
+
+msgid "New filename"
+msgstr "Novo nome de ficheiro"
 
 msgid "New version"
 msgstr "Nova versión"
@@ -115,6 +128,12 @@ msgstr "Enviar dende o dispositivo"
 msgid "Upload has been cancelled"
 msgstr "O envío foi cancelado"
 
+msgid "Upload has been skipped"
+msgstr "O envío foi omitido"
+
+msgid "Upload of \"{folder}\" has been skipped"
+msgstr "O envío de «{folder}» foi omitido"
+
 msgid "Upload progress"
 msgstr "Progreso do envío"
 
@@ -134,6 +153,13 @@ msgstr ""
 
 msgid "Which files do you want to keep?"
 msgstr "Que ficheiros quere conservar?"
+
+msgid ""
+"You can either rename the file, skip this file or cancel the whole "
+"operation."
+msgstr ""
+"Pode cambiar o nome do ficheiro, omitir este ficheiro ou cancelar toda a "
+"operación."
 
 msgid "You need to select at least one version of each file to continue."
 msgstr ""
