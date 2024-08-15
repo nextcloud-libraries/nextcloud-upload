@@ -165,7 +165,7 @@ msgstr "أيُّ الملفات ترغب في الإبقاء عليها؟"
 msgid ""
 "You can either rename the file, skip this file or cancel the whole "
 "operation."
-msgstr "يمكنك إمّا تغيير اسم الملف، أو تجاوزه، أو إلغاء العملية برمتها."
+msgstr "يمكنك إمّا تغيير اسم الملف، أو تجاوزه، أو إلغاء العملية برُمَّتها."
 
 msgid "You need to select at least one version of each file to continue."
 msgstr "يجب أن تختار نسخة واحدة على الأقل من كل ملف للاستمرار."
