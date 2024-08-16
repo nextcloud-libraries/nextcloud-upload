@@ -13,8 +13,14 @@ msgstr ""
 "Language: ja_JP\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-msgid "\"{filename}\" contains invalid characters, how do you want to continue?"
-msgstr "\"{filename}\" には無効な文字が含まれています。どう続けますか？"
+msgid "\"{segment}\" is a forbidden file or folder name."
+msgstr "\"{segment}\" は禁止されているファイルまたはフォルダ名です。"
+
+msgid "\"{segment}\" is a forbidden file type."
+msgstr "\"{segment}\" は禁止されているファイルタイプです。"
+
+msgid "\"{segment}\" is not allowed inside a file or folder name."
+msgstr "ファイルまたはフォルダ名に \"{segment}\" を含めることはできません。"
 
 msgid "{count} file conflict"
 msgid_plural "{count} files conflict"
@@ -55,12 +61,15 @@ msgstr "概算残り時間"
 msgid "Existing version"
 msgstr "既存バージョン"
 
+msgid "Filenames must not end with \"{segment}\"."
+msgstr "ファイル名の末尾に \"{segment}\" を付けることはできません。"
+
 msgid ""
 "If you select both versions, the incoming file will have a number added to "
 "its name."
 msgstr "両方のバージョンを選択した場合、受信ファイルの名前に数字が追加されます。"
 
-msgid "Invalid file name"
+msgid "Invalid filename"
 msgstr "無効なファイル名"
 
 msgid "Last modified date unknown"
@@ -68,6 +77,9 @@ msgstr "最終更新日不明"
 
 msgid "New"
 msgstr "新規作成"
+
+msgid "New filename"
+msgstr "新しいファイル名"
 
 msgid "New version"
 msgstr "新しいバージョン"
@@ -112,6 +124,12 @@ msgstr "デバイスからのアップロード"
 msgid "Upload has been cancelled"
 msgstr "アップロードはキャンセルされました"
 
+msgid "Upload has been skipped"
+msgstr "アップロードがスキップされました"
+
+msgid "Upload of \"{folder}\" has been skipped"
+msgstr "\"{folder}\" のアップロードがスキップされました"
+
 msgid "Upload progress"
 msgstr "アップロード進行状況"
 
@@ -127,6 +145,11 @@ msgstr "受信フォルダが選択されると、その内容は既存のフォ
 
 msgid "Which files do you want to keep?"
 msgstr "どのファイルを保持しますか？"
+
+msgid ""
+"You can either rename the file, skip this file or cancel the whole "
+"operation."
+msgstr "ファイル名を変更するか、このファイルをスキップするか、操作全体をキャンセルすることができます。"
 
 msgid "You need to select at least one version of each file to continue."
 msgstr "続行するには、各ファイルの少なくとも1つのバージョンを選択する必要があります。"
