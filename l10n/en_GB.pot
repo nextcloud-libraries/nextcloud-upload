@@ -11,8 +11,14 @@ msgstr ""
 "Language: en_GB\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgid "\"{filename}\" contains invalid characters, how do you want to continue?"
-msgstr "\"{filename}\" contains invalid characters, how do you want to continue?"
+msgid "\"{segment}\" is a forbidden file or folder name."
+msgstr "\"{segment}\" is a forbidden file or folder name."
+
+msgid "\"{segment}\" is a forbidden file type."
+msgstr "\"{segment}\" is a forbidden file type."
+
+msgid "\"{segment}\" is not allowed inside a file or folder name."
+msgstr "\"{segment}\" is not allowed inside a file or folder name."
 
 msgid "{count} file conflict"
 msgid_plural "{count} files conflict"
@@ -55,6 +61,9 @@ msgstr "estimating time left"
 msgid "Existing version"
 msgstr "Existing version"
 
+msgid "Filenames must not end with \"{segment}\"."
+msgstr "Filenames must not end with \"{segment}\"."
+
 msgid ""
 "If you select both versions, the incoming file will have a number added to "
 "its name."
@@ -62,14 +71,17 @@ msgstr ""
 "If you select both versions, the incoming file will have a number added to "
 "its name."
 
-msgid "Invalid file name"
-msgstr "Invalid file name"
+msgid "Invalid filename"
+msgstr "Invalid filename"
 
 msgid "Last modified date unknown"
 msgstr "Last modified date unknown"
 
 msgid "New"
 msgstr "New"
+
+msgid "New filename"
+msgstr "New filename"
 
 msgid "New version"
 msgstr "New version"
@@ -115,6 +127,12 @@ msgstr "Upload from device"
 msgid "Upload has been cancelled"
 msgstr "Upload has been cancelled"
 
+msgid "Upload has been skipped"
+msgstr "Upload has been skipped"
+
+msgid "Upload of \"{folder}\" has been skipped"
+msgstr "Upload of \"{folder}\" has been skipped"
+
 msgid "Upload progress"
 msgstr "Upload progress"
 
@@ -134,6 +152,13 @@ msgstr ""
 
 msgid "Which files do you want to keep?"
 msgstr "Which files do you want to keep?"
+
+msgid ""
+"You can either rename the file, skip this file or cancel the whole "
+"operation."
+msgstr ""
+"You can either rename the file, skip this file or cancel the whole "
+"operation."
 
 msgid "You need to select at least one version of each file to continue."
 msgstr "You need to select at least one version of each file to continue."
