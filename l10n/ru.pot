@@ -3,17 +3,24 @@
 # Joas Schilling, 2024
 # Alex <kekcuha@gmail.com>, 2024
 # Влад, 2024
+# Alex <fedotov22091982@gmail.com>, 2024
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Влад, 2024\n"
+"Last-Translator: Alex <fedotov22091982@gmail.com>, 2024\n"
 "Language-Team: Russian (https://app.transifex.com/nextcloud/teams/64236/ru/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: ru\n"
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
 
-msgid "\"{filename}\" contains invalid characters, how do you want to continue?"
-msgstr "\"{filename}\" содержит недопустимые символы, хотите продолжить?"
+msgid "\"{segment}\" is a forbidden file or folder name."
+msgstr "{segment} — это запрещенное имя файла или папки."
+
+msgid "\"{segment}\" is a forbidden file type."
+msgstr "{segment}— это запрещенный тип файла."
+
+msgid "\"{segment}\" is not allowed inside a file or folder name."
+msgstr "{segment}не допускается в имени файла или папки."
 
 msgid "{count} file conflict"
 msgid_plural "{count} files conflict"
@@ -60,20 +67,26 @@ msgstr "оценка оставшегося времени"
 msgid "Existing version"
 msgstr "Текущая версия"
 
+msgid "Filenames must not end with \"{segment}\"."
+msgstr "Имена файлов не должны заканчиваться на {segment}"
+
 msgid ""
 "If you select both versions, the incoming file will have a number added to "
 "its name."
 msgstr ""
 "Если вы выберете обе версии, к имени входящего файла будет добавлен номер."
 
-msgid "Invalid file name"
-msgstr "Имя файла недопустимо"
+msgid "Invalid filename"
+msgstr "Неверное имя файла"
 
 msgid "Last modified date unknown"
 msgstr "Дата последнего изменения неизвестна"
 
 msgid "New"
 msgstr "Новый"
+
+msgid "New filename"
+msgstr "Новое имя файла"
 
 msgid "New version"
 msgstr "Новая версия"
@@ -121,6 +134,12 @@ msgstr "Загрузка с устройства"
 msgid "Upload has been cancelled"
 msgstr "Загрузка была отменена"
 
+msgid "Upload has been skipped"
+msgstr "Загрузка была пропущена"
+
+msgid "Upload of \"{folder}\" has been skipped"
+msgstr "Загрузка {folder}была пропущена"
+
 msgid "Upload progress"
 msgstr "Состояние передачи на сервер"
 
@@ -140,6 +159,13 @@ msgstr ""
 
 msgid "Which files do you want to keep?"
 msgstr "Какие файлы вы хотите сохранить?"
+
+msgid ""
+"You can either rename the file, skip this file or cancel the whole "
+"operation."
+msgstr ""
+"Вы можете переименовать файл, пропустить этот файл или отменить всю "
+"операцию."
 
 msgid "You need to select at least one version of each file to continue."
 msgstr ""
