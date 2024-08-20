@@ -4,6 +4,19 @@
 -->
 # Changelog
 
+## [v1.5.0](https://github.com/nextcloud-libraries/nextcloud-upload/tree/v1.5.0) \(2024-08-16\)
+### Added
+* feat(UploadPicker): Use `@nextcloud/files` filename validation by default [\#1310](https://github.com/nextcloud-libraries/nextcloud-upload/pull/1310) \([susnux](https://github.com/susnux)\)
+
+### Fixed
+* fix(uploader): Make sure every request is added to the job queue [\#1326](https://github.com/nextcloud-libraries/nextcloud-upload/pull/1326) \([susnux](https://github.com/susnux)\)
+
+### Changed
+* Updated translations
+* chore: Bump @nextcloud/auth to 2.4.0
+* chore: Bump @nextcloud/files to 3.8.0
+* chore: Bump axios to 1.7.4
+
 ## [v1.4.3](https://github.com/nextcloud-libraries/nextcloud-upload/tree/v1.4.3) \(2024-08-07\)
 ### Fixed
 * fix: Always request current content when triggering a menu entry by @susnux in https://github.com/nextcloud-libraries/nextcloud-upload/pull/1313
