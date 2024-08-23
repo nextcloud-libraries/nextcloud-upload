@@ -2,14 +2,24 @@
 # Translators:
 # Joas Schilling, 2024
 # Leonardo Colman Lopes <leonardo.dev@colman.com.br>, 2024
+# Rodrigo Sottomaior Macedo <sottomaiormacedotec@sottomaiormacedo.tech>, 2024
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Leonardo Colman Lopes <leonardo.dev@colman.com.br>, 2024\n"
+"Last-Translator: Rodrigo Sottomaior Macedo <sottomaiormacedotec@sottomaiormacedo.tech>, 2024\n"
 "Language-Team: Portuguese (Brazil) (https://app.transifex.com/nextcloud/teams/64236/pt_BR/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: pt_BR\n"
 "Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
+
+msgid "\"{segment}\" is a forbidden file or folder name."
+msgstr "\"{segment}\" é um nome de arquivo ou pasta proibido."
+
+msgid "\"{segment}\" is a forbidden file type."
+msgstr "\"{segment}\" é um tipo de arquivo proibido."
+
+msgid "\"{segment}\" is not allowed inside a file or folder name."
+msgstr "\"{segment}\" não é permitido dentro de um nome de arquivo ou pasta."
 
 msgid "{count} file conflict"
 msgid_plural "{count} files conflict"
@@ -45,24 +55,36 @@ msgstr "Cancelar uploads"
 msgid "Continue"
 msgstr "Continuar"
 
+msgid "Create new"
+msgstr "Criar novo"
+
 msgid "estimating time left"
 msgstr "estimando tempo restante"
 
 msgid "Existing version"
 msgstr "Versão existente"
 
+msgid "Filenames must not end with \"{segment}\"."
+msgstr "Os nomes dos arquivos não devem terminar com \"{segment}\"."
+
 msgid ""
-"If you select both versions, the copied file will have a number added to its"
-" name."
+"If you select both versions, the incoming file will have a number added to "
+"its name."
 msgstr ""
-"Se você selecionar ambas as versões, o arquivo copiado terá um número "
+"Se você selecionar ambas as versões, o arquivo recebido terá um número "
 "adicionado ao seu nome."
+
+msgid "Invalid filename"
+msgstr "Nome de arquivo inválido"
 
 msgid "Last modified date unknown"
 msgstr "Data da última modificação desconhecida"
 
 msgid "New"
 msgstr "Novo"
+
+msgid "New filename"
+msgstr "Novo nome de arquivo"
 
 msgid "New version"
 msgstr "Nova versão"
@@ -73,6 +95,9 @@ msgstr "pausado"
 msgid "Preview image"
 msgstr "Visualizar imagem"
 
+msgid "Rename"
+msgstr "Renomear"
+
 msgid "Select all checkboxes"
 msgstr "Marque todas as caixas de seleção"
 
@@ -81,6 +106,9 @@ msgstr "Selecione todos os arquivos existentes"
 
 msgid "Select all new files"
 msgstr "Selecione todos os novos arquivos"
+
+msgid "Skip"
+msgstr "Pular"
 
 msgid "Skip this file"
 msgid_plural "Skip {count} files"
@@ -91,11 +119,23 @@ msgstr[2] "Ignorar {count} arquivos"
 msgid "Unknown size"
 msgstr "Tamanho desconhecido"
 
-msgid "Upload cancelled"
-msgstr "Envio cancelado"
-
 msgid "Upload files"
 msgstr "Enviar arquivos"
+
+msgid "Upload folders"
+msgstr "Enviar pastas"
+
+msgid "Upload from device"
+msgstr "Carregar do dispositivo"
+
+msgid "Upload has been cancelled"
+msgstr "O upload foi cancelado"
+
+msgid "Upload has been skipped"
+msgstr "O upload foi pulado"
+
+msgid "Upload of \"{folder}\" has been skipped"
+msgstr "O upload de \"{folder}\" foi ignorado"
 
 msgid "Upload progress"
 msgstr "Envio em progresso"
@@ -107,8 +147,22 @@ msgstr ""
 "Quando uma pasta é selecionada, quaisquer arquivos dentro dela também serão "
 "sobrescritos."
 
+msgid ""
+"When an incoming folder is selected, the content is written into the "
+"existing folder and a recursive conflict resolution is performed."
+msgstr ""
+"Quando uma pasta de entrada é selecionada, o conteúdo é gravado na pasta "
+"existente e uma resolução de conflito recursiva é executada."
+
 msgid "Which files do you want to keep?"
 msgstr "Quais arquivos você deseja manter?"
+
+msgid ""
+"You can either rename the file, skip this file or cancel the whole "
+"operation."
+msgstr ""
+"Você pode renomear o arquivo, pular este arquivo ou cancelar toda a "
+"operação."
 
 msgid "You need to select at least one version of each file to continue."
 msgstr ""
