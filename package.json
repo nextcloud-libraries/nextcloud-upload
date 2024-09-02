@@ -83,7 +83,7 @@
     "@nextcloud/paths": "^2.2.1",
     "@nextcloud/router": "^3.0.0",
     "@nextcloud/sharing": "^0.2.3",
-    "axios": "^1.7.5",
+    "axios": "^1.7.7",
     "axios-retry": "^4.5.0",
     "crypto-browserify": "^3.12.0",
     "p-cancelable": "^4.0.1",
