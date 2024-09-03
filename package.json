@@ -65,7 +65,7 @@
     "cypress-file-upload": "^5.0.8",
     "gettext-extractor": "^3.8.0",
     "gettext-parser": "^8.0.0",
-    "jsdom": "^24.1.1",
+    "jsdom": "^25.0.0",
     "typedoc": "^0.26.6",
     "typescript": "^5.5.4",
     "vite": "^5.4.3",
