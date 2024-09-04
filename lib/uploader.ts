@@ -37,6 +37,7 @@ export class Uploader {
 	// Initialized via setter in the constructor
 	private _destinationFolder!: Folder
 	private _isPublic: boolean
+	private _customHeaders: Record<string, string>
 
 	// Global upload queue
 	private _uploadQueue: Array<Upload> = []
@@ -58,6 +59,7 @@ export class Uploader {
 		destinationFolder?: Folder,
 	) {
 		this._isPublic = isPublic
+		this._customHeaders = {}
 
 		if (!destinationFolder) {
 			const source = `${davRemoteURL}${davRootPath}`
@@ -105,7 +107,7 @@ export class Uploader {
 	 * Set the upload destination path relative to the root folder
 	 */
 	set destination(folder: Folder) {
-		if (!folder) {
+		if (!folder || !(folder instanceof Folder)) {
 			throw new Error('Invalid destination folder')
 		}
 
@@ -118,6 +120,30 @@ export class Uploader {
 	 */
 	get root() {
 		return this._destinationFolder.source
+	}
+
+	/**
+	 * Get registered custom headers for uploads
+	 */
+	get customHeaders(): Record<string, string> {
+		return structuredClone(this._customHeaders)
+	}
+
+	/**
+	 * Set a custom header
+	 * @param name The header to set
+	 * @param value The string value
+	 */
+	setCustomHeader(name: string, value: string = ''): void {
+		this._customHeaders[name] = value
+	}
+
+	/**
+	 * Unset a custom header
+	 * @param name The header to unset
+	 */
+	deleteCustomerHeader(name: string): void {
+		delete this._customHeaders[name]
 	}
 
 	/**
@@ -216,7 +242,7 @@ export class Uploader {
 	 *
 	 * async handleConflicts(nodes: File[], currentPath: string) {
 	 *   const conflicts = getConflicts(nodes, this.fetchContent(currentPath))
-	 *   if (conficts.length === 0) {
+	 *   if (conflicts.length === 0) {
 	 *     // No conflicts so upload all
 	 *     return nodes
 	 *   } else {
@@ -247,8 +273,10 @@ export class Uploader {
 			upload.status = UploadStatus.UPLOADING
 			this._uploadQueue.push(upload)
 			try {
+				// setup client with root and custom header
+				const client = davGetClient(this.root, this._customHeaders)
 				// Create the promise for the virtual root directory
-				const promise = this.uploadDirectory(destination, rootFolder, callback, davGetClient(this.root))
+				const promise = this.uploadDirectory(destination, rootFolder, callback, client)
 				// Make sure to cancel it when requested
 				onCancel(() => promise.cancel())
 				// await the uploads and resolve with "finished" status
@@ -438,6 +466,7 @@ export class Uploader {
 							() => this.updateStats(),
 							encodedDestinationFile,
 							{
+								...this._customHeaders,
 								'X-OC-Mtime': file.lastModified / 1000,
 								'OC-Total-Length': file.size,
 								'Content-Type': 'application/octet-stream',
@@ -474,6 +503,7 @@ export class Uploader {
 						method: 'MOVE',
 						url: `${tempUrl}/.file`,
 						headers: {
+							...this._customHeaders,
 							'X-OC-Mtime': file.lastModified / 1000,
 							'OC-Total-Length': file.size,
 							Destination: encodedDestinationFile,
@@ -519,6 +549,7 @@ export class Uploader {
 							},
 							undefined,
 							{
+								...this._customHeaders,
 								'X-OC-Mtime': file.lastModified / 1000,
 								'Content-Type': file.type,
 							},

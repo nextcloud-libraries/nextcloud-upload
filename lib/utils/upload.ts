@@ -6,8 +6,9 @@ import type { AxiosProgressEvent, AxiosResponse } from 'axios'
 import { generateRemoteUrl } from '@nextcloud/router'
 import { getCurrentUser } from '@nextcloud/auth'
 import axios from '@nextcloud/axios'
-import axiosRetry from 'axios-retry';
-axiosRetry(axios, { retries: 0 });
+import axiosRetry, { exponentialDelay } from 'axios-retry'
+
+axiosRetry(axios, { retries: 0 })
 
 type UploadData = Blob | (() => Promise<Blob>)
 
@@ -59,7 +60,7 @@ export const uploadData = async function(
 		headers,
 		'axios-retry': {
 			retries,
-			retryDelay: (retryCount, error) => axiosRetry.exponentialDelay(retryCount, error, 1000),
+			retryDelay: (retryCount, error) => exponentialDelay(retryCount, error, 1000),
 		},
 	})
 }
@@ -97,7 +98,7 @@ export const initChunkWorkspace = async function(destinationFile: string | undef
 		headers,
 		'axios-retry': {
 			retries,
-			retryDelay: (retryCount, error) => axiosRetry.exponentialDelay(retryCount, error, 1000),
+			retryDelay: (retryCount, error) => exponentialDelay(retryCount, error, 1000),
 		},
 	})
 
