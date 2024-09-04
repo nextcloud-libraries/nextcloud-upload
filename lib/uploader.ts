@@ -467,7 +467,7 @@ export class Uploader {
 							encodedDestinationFile,
 							{
 								...this._customHeaders,
-								'X-OC-Mtime': file.lastModified / 1000,
+								'X-OC-Mtime': Math.floor(file.lastModified / 1000),
 								'OC-Total-Length': file.size,
 								'Content-Type': 'application/octet-stream',
 							},
@@ -504,7 +504,7 @@ export class Uploader {
 						url: `${tempUrl}/.file`,
 						headers: {
 							...this._customHeaders,
-							'X-OC-Mtime': file.lastModified / 1000,
+							'X-OC-Mtime': Math.floor(file.lastModified / 1000),
 							'OC-Total-Length': file.size,
 							Destination: encodedDestinationFile,
 						},
@@ -550,7 +550,7 @@ export class Uploader {
 							undefined,
 							{
 								...this._customHeaders,
-								'X-OC-Mtime': file.lastModified / 1000,
+								'X-OC-Mtime': Math.floor(file.lastModified / 1000),
 								'Content-Type': file.type,
 							},
 						)
