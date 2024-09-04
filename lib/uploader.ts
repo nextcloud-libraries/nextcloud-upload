@@ -7,7 +7,7 @@ import type { WebDAVClient } from 'webdav'
 import type { IDirectory } from './utils/fileTree'
 
 import { getCurrentUser } from '@nextcloud/auth'
-import { Folder, Permission, davGetClient, davRemoteURL, davRootPath } from '@nextcloud/files'
+import { FileType, Folder, Permission, davGetClient, davRemoteURL, davRootPath } from '@nextcloud/files'
 import { encodePath } from '@nextcloud/paths'
 import { normalize } from 'path'
 
@@ -107,7 +107,7 @@ export class Uploader {
 	 * Set the upload destination path relative to the root folder
 	 */
 	set destination(folder: Folder) {
-		if (!folder || !(folder instanceof Folder)) {
+		if (!folder || folder.type !== FileType.Folder || !folder.source) {
 			throw new Error('Invalid destination folder')
 		}
 
