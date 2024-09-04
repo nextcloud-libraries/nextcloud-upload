@@ -102,6 +102,9 @@ msgstr[1] ""
 msgid "Unknown size"
 msgstr ""
 
+msgid "Upload"
+msgstr ""
+
 msgid "Upload files"
 msgstr ""
 

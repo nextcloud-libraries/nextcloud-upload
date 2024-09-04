@@ -9,7 +9,7 @@
 		class="upload-picker"
 		data-cy-upload-picker>
 		<!-- New button -->
-		<NcButton v-if="newFileMenuEntries.length === 0 && !canUploadFolders"
+		<NcButton v-if="(noMenu || newFileMenuEntries.length === 0) && !canUploadFolders"
 			:disabled="disabled"
 			data-cy-upload-picker-add
 			data-cy-upload-picker-menu-entry="upload-file"
@@ -21,8 +21,8 @@
 			{{ buttonName }}
 		</NcButton>
 		<NcActions v-else
+			:aria-label="buttonLabel"
 			:menu-name="buttonName"
-			:menu-title="t('New')"
 			type="secondary">
 			<template #icon>
 				<IconPlus :size="20" />
@@ -51,21 +51,23 @@
 			</NcActionButton>
 
 			<!-- App defined upload actions -->
-			<NcActionButton v-for="entry in menuEntriesUpload"
-				:key="entry.id"
-				:icon="entry.iconClass"
-				:close-after-click="true"
-				:data-cy-upload-picker-menu-entry="entry.id"
-				class="upload-picker__menu-entry"
-				@click="onClick(entry)">
-				<template v-if="entry.iconSvgInline" #icon>
-					<NcIconSvgWrapper :svg="entry.iconSvgInline" />
-				</template>
-				{{ entry.displayName }}
-			</NcActionButton>
+			<template v-if="!noMenu">
+				<NcActionButton v-for="entry in menuEntriesUpload"
+					:key="entry.id"
+					:icon="entry.iconClass"
+					:close-after-click="true"
+					:data-cy-upload-picker-menu-entry="entry.id"
+					class="upload-picker__menu-entry"
+					@click="onClick(entry)">
+					<template v-if="entry.iconSvgInline" #icon>
+						<NcIconSvgWrapper :svg="entry.iconSvgInline" />
+					</template>
+					{{ entry.displayName }}
+				</NcActionButton>
+			</template>
 
 			<!-- Custom new file entries -->
-			<template v-if="menuEntriesNew.length > 0">
+			<template v-if="!noMenu && menuEntriesNew.length > 0">
 				<NcActionSeparator />
 				<NcActionCaption :name="t('Create new')" />
 				<NcActionButton v-for="entry in menuEntriesNew"
@@ -83,7 +85,7 @@
 			</template>
 
 			<!-- other file entries -->
-			<template v-if="menuEntriesOther.length > 0">
+			<template v-if="!noMenu && menuEntriesOther.length > 0">
 				<NcActionSeparator />
 				<NcActionButton v-for="entry in menuEntriesOther"
 					:key="entry.id"
@@ -197,6 +199,16 @@ export default Vue.extend({
 			type: Boolean,
 			default: false,
 		},
+
+		/**
+		 * Allow to disable the "new"-menu for this UploadPicker instance
+		 * @default false
+		 */
+		noMenu: {
+			type: Boolean,
+			default: false,
+		},
+
 		destination: {
 			type: Folder,
 			default: undefined,
@@ -293,12 +305,16 @@ export default Vue.extend({
 			return this.uploadManager.info?.status === Status.PAUSED
 		},
 
+		buttonLabel() {
+			return this.noMenu ? t('Upload') : t('New')
+		},
+
 		// Hide the button text if we're uploading
 		buttonName() {
 			if (this.isUploading) {
 				return undefined
 			}
-			return t('New')
+			return this.buttonLabel
 		},
 	},
 
