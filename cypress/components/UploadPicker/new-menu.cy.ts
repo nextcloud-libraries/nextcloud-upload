@@ -85,11 +85,50 @@ describe('UploadPicker: "new"-menu', () => {
 			handler() {},
 		} as Entry
 
-		before(() => {
-			cy.spy(entry, 'handler')
-			addNewFileMenuEntry(entry)
-		})
+		before(() => addNewFileMenuEntry(entry))
+		beforeEach(() => cy.spy(entry, 'handler'))
 		afterEach(() => resetDocument())
+
+		it('With "noMenu" prop no menu is shown', () => {
+			// Mount picker
+			cy.mount(UploadPicker, { propsData: { ...propsData, noMenu: true } })
+
+			// Check and init aliases
+			cy.get('[data-cy-upload-picker] [data-cy-upload-picker-input]').as('input').should('exist')
+			cy.get('[data-cy-upload-picker] .upload-picker__progress').as('progress').should('exist')
+			cy.get('[data-cy-upload-picker]')
+				.contains('button', 'Upload')
+				.should('be.visible')
+				// Directly trigger upload
+				.and('have.attr', 'data-cy-upload-picker-menu-entry', 'upload-file')
+				.click()
+
+			cy.get('[role="menu"]').should('not.exist')
+		})
+
+		it('With "noMenu" prop and allowed folder-upload only the upload menu is shown', () => {
+			// Mount picker
+			cy.mount(UploadPicker, { propsData: { ...propsData, noMenu: true, allowFolders: true } })
+
+			// Check and init aliases
+			cy.get('[data-cy-upload-picker] [data-cy-upload-picker-input]').as('input').should('exist')
+			cy.get('[data-cy-upload-picker] .upload-picker__progress').as('progress').should('exist')
+			cy.get('[data-cy-upload-picker]')
+				.contains('button', 'Upload')
+				.should('be.visible')
+				// Directly no trigger
+				.and('not.have.attr', 'data-cy-upload-picker-menu-entry', 'upload-file')
+				// click should open the menu
+				.click()
+
+			cy.get('[role="menu"]')
+				.should('be.visible')
+				.get('[role="menuitem"]')
+				// only two (!) entries: uploader folder + upload files
+				.should('have.length', 2)
+			// Not the custom entry
+			cy.get('[data-cy-upload-picker-menu-entry="empty-file"]').should('not.exist')
+		})
 
 		it('Open the New File Menu', () => {
 			// Mount picker
