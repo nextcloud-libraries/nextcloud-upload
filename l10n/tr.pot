@@ -113,6 +113,9 @@ msgstr[1] "{count} dosyayı atla"
 msgid "Unknown size"
 msgstr "Boyut bilinmiyor"
 
+msgid "Upload"
+msgstr "Yükle"
+
 msgid "Upload files"
 msgstr "Dosyaları yükle"
 
