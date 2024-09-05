@@ -4,6 +4,25 @@
 -->
 # Changelog
 
+## [v1.6.0](https://github.com/nextcloud-libraries/nextcloud-upload/tree/v1.6.0) \(2024-09-05\)
+
+### Added
+* feat(uploader): Allow to specify custom headers [\#1366](https://github.com/nextcloud-libraries/nextcloud-upload/pull/1366) \([susnux](https://github.com/susnux)\)
+* feat(UploadPicker): Allow to disable the "new"-menu [\#1373](https://github.com/nextcloud-libraries/nextcloud-upload/pull/1373) \([susnux](https://github.com/susnux)\)
+
+### Fixed
+* fix(Uploader): The mtime should be a valid UNIX timestamp [\#1368](https://github.com/nextcloud-libraries/nextcloud-upload/pull/1368) \([susnux](https://github.com/susnux)\)
+* fix(uploader): validation of the destination should not compare the class [\#1369](https://github.com/nextcloud-libraries/nextcloud-upload/pull/1369) \([susnux](https://github.com/susnux)\)
+* fix(UploadPicker): Show menu if folders are enabled [\#1372](https://github.com/nextcloud-libraries/nextcloud-upload/pull/1372) \([susnux](https://github.com/susnux)\)
+* fix: Make the default uploader global [\#1370](https://github.com/nextcloud-libraries/nextcloud-upload/pull/1370) \([susnux](https://github.com/susnux)\)
+
+### Changed
+* Updated translations
+* chore: Bump `axios` to 1.7.7
+* chore: Bump `@nextcloud/dialogs` to 5.3.7
+* Updated development dependencies
+* chore(ci): also run node on main push [\#1367](https://github.com/nextcloud-libraries/nextcloud-upload/pull/1367) \([skjnldsv](https://github.com/skjnldsv)\)
+
 ## [v1.5.0](https://github.com/nextcloud-libraries/nextcloud-upload/tree/v1.5.0) \(2024-08-16\)
 ### Added
 * feat(UploadPicker): Use `@nextcloud/files` filename validation by default [\#1310](https://github.com/nextcloud-libraries/nextcloud-upload/pull/1310) \([susnux](https://github.com/susnux)\)
