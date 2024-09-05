@@ -11,30 +11,29 @@ import { Uploader } from './uploader'
 
 import UploadPicker from './components/UploadPicker.vue'
 
-export type { Uploader } from './uploader'
-export { Status as UploaderStatus } from './uploader'
-export { Upload, Status as UploadStatus } from './upload'
 export type { IDirectory, Directory } from './utils/fileTree'
-
-let _uploader: Uploader | null = null
+export { Upload, Status as UploadStatus } from './upload'
+export { Uploader, Status as UploaderStatus } from './uploader'
 
 export type ConflictResolutionResult<T extends File|FileSystemEntry|Node> = {
 	selected: T[],
 	renamed: T[],
 }
 /**
- * Get an Uploader instance
+ * Get the global Uploader instance.
+ *
+ * Note: If you need a local uploader you can just create a new instance,
+ * this global instance will be shared with other apps.
+ *
  * @param isPublic Set to true to use public upload endpoint (by default it is auto detected)
  * @param forceRecreate Force a new uploader instance - main purpose is for testing
  */
 export function getUploader(isPublic: boolean = isPublicShare(), forceRecreate = false): Uploader {
-	if (_uploader instanceof Uploader && !forceRecreate) {
-		return _uploader
+	if (forceRecreate || window._nc_uploader === undefined) {
+		window._nc_uploader = new Uploader(isPublic)
 	}
 
-	// Init uploader
-	_uploader = new Uploader(isPublic)
-	return _uploader
+	return window._nc_uploader
 }
 
 /**
