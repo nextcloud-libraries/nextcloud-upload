@@ -9,7 +9,7 @@
 		class="upload-picker"
 		data-cy-upload-picker>
 		<!-- New button -->
-		<NcButton v-if="newFileMenuEntries && newFileMenuEntries.length === 0"
+		<NcButton v-if="newFileMenuEntries.length === 0 && !canUploadFolders"
 			:disabled="disabled"
 			data-cy-upload-picker-add
 			data-cy-upload-picker-menu-entry="upload-file"
