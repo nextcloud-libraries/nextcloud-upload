@@ -4,10 +4,11 @@
 # kojima.imamura, 2024
 # Takafumi AKAMATSU, 2024
 # devi, 2024
+# kshimohata, 2024
 # 
 msgid ""
 msgstr ""
-"Last-Translator: devi, 2024\n"
+"Last-Translator: kshimohata, 2024\n"
 "Language-Team: Japanese (Japan) (https://app.transifex.com/nextcloud/teams/64236/ja_JP/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: ja_JP\n"
@@ -111,6 +112,9 @@ msgstr[0] "{count} 個のファイルをスキップする"
 
 msgid "Unknown size"
 msgstr "サイズ不明"
+
+msgid "Upload"
+msgstr "アップロード"
 
 msgid "Upload files"
 msgstr "ファイルをアップロード"
