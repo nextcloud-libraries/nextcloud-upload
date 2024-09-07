@@ -115,6 +115,9 @@ msgstr[1] "{count} Dateien überspringen"
 msgid "Unknown size"
 msgstr "Unbekannte Größe"
 
+msgid "Upload"
+msgstr "Hochladen"
+
 msgid "Upload files"
 msgstr "Dateien hochladen"
 
