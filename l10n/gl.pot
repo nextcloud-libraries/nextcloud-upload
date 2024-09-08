@@ -116,6 +116,9 @@ msgstr[1] "Omitir {count} ficheiros"
 msgid "Unknown size"
 msgstr "Tamaño descoñecido"
 
+msgid "Upload"
+msgstr "Enviar"
+
 msgid "Upload files"
 msgstr "Enviar ficheiros"
 
