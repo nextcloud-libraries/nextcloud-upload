@@ -123,6 +123,9 @@ msgstr[4] "Léim ar {count} comhad"
 msgid "Unknown size"
 msgstr "Méid anaithnid"
 
+msgid "Upload"
+msgstr "Uaslódáil"
+
 msgid "Upload files"
 msgstr "Uaslódáil comhaid"
 
