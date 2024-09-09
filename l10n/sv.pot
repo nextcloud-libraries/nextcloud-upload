@@ -115,6 +115,9 @@ msgstr[1] "Hoppa över {count} filer"
 msgid "Unknown size"
 msgstr "Okänd storlek"
 
+msgid "Upload"
+msgstr "Ladda upp"
+
 msgid "Upload files"
 msgstr "Ladda upp filer"
 
