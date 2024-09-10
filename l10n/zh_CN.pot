@@ -71,7 +71,7 @@ msgid "Invalid filename"
 msgstr "无效文件名"
 
 msgid "Last modified date unknown"
-msgstr "文件最新修改日期未知"
+msgstr "文件最后修改日期未知"
 
 msgid "New"
 msgstr "新增"
