@@ -1,15 +1,24 @@
 # 
 # Translators:
-# John Molakvoæ <skjnldsv@protonmail.com>, 2023
-# Hongbo Chen, 2023
+# Joas Schilling, 2024
+# Ruijian Deng, 2024
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Hongbo Chen, 2023\n"
+"Last-Translator: Ruijian Deng, 2024\n"
 "Language-Team: Chinese (China) (https://app.transifex.com/nextcloud/teams/64236/zh_CN/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: zh_CN\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "\"{segment}\" is a forbidden file or folder name."
+msgstr "\"{segment}\" 是被禁止的文件名或文件夹名。"
+
+msgid "\"{segment}\" is a forbidden file type."
+msgstr "\"{segment}\" 是被禁止的文件类型。"
+
+msgid "\"{segment}\" is not allowed inside a file or folder name."
+msgstr "\"{segment}\" 不允许包含在文件名或文件夹名中。"
 
 msgid "{count} file conflict"
 msgid_plural "{count} files conflict"
@@ -29,8 +38,11 @@ msgstr "剩余 {time}"
 msgid "a few seconds left"
 msgstr "还剩几秒"
 
-msgid "Add"
-msgstr "添加"
+msgid "Cancel"
+msgstr "取消"
+
+msgid "Cancel the entire operation"
+msgstr "取消整个操作"
 
 msgid "Cancel uploads"
 msgstr "取消上传"
@@ -38,22 +50,37 @@ msgstr "取消上传"
 msgid "Continue"
 msgstr "继续"
 
+msgid "Create new"
+msgstr "新建"
+
 msgid "estimating time left"
 msgstr "估计剩余时间"
 
 msgid "Existing version"
-msgstr "版本已存在"
+msgstr "服务端版本"
+
+msgid "Filenames must not end with \"{segment}\"."
+msgstr "文件名不得以 \"{segment}\" 结尾。"
 
 msgid ""
-"If you select both versions, the copied file will have a number added to its"
-" name."
-msgstr "如果选择所有的版本，新增版本的文件名为原文件名加数字"
+"If you select both versions, the incoming file will have a number added to "
+"its name."
+msgstr "如果同时选择两个版本，则上传文件的名称中将添加一个数字。"
+
+msgid "Invalid filename"
+msgstr "无效文件名"
 
 msgid "Last modified date unknown"
-msgstr "文件最后修改日期未知"
+msgstr "文件最新修改日期未知"
+
+msgid "New"
+msgstr "新增"
+
+msgid "New filename"
+msgstr "新文件名"
 
 msgid "New version"
-msgstr "新版本"
+msgstr "上传版本"
 
 msgid "paused"
 msgstr "已暂停"
@@ -61,14 +88,20 @@ msgstr "已暂停"
 msgid "Preview image"
 msgstr "图片预览"
 
+msgid "Rename"
+msgstr "重命名"
+
 msgid "Select all checkboxes"
 msgstr "选择所有的选择框"
 
 msgid "Select all existing files"
-msgstr "选择所有存在的文件"
+msgstr "保留所有服务端版本"
 
 msgid "Select all new files"
-msgstr "选择所有的新文件"
+msgstr "保留所有上传版本"
+
+msgid "Skip"
+msgstr "跳过"
 
 msgid "Skip this file"
 msgid_plural "Skip {count} files"
@@ -77,14 +110,47 @@ msgstr[0] "跳过{count}个文件"
 msgid "Unknown size"
 msgstr "文件大小未知"
 
-msgid "Upload cancelled"
-msgstr "取消上传"
+msgid "Upload"
+msgstr "上传"
 
 msgid "Upload files"
 msgstr "上传文件"
 
+msgid "Upload folders"
+msgstr "上传文件夹"
+
+msgid "Upload from device"
+msgstr "从设备上传"
+
+msgid "Upload has been cancelled"
+msgstr "上传已取消"
+
+msgid "Upload has been skipped"
+msgstr "上传已跳过"
+
+msgid "Upload of \"{folder}\" has been skipped"
+msgstr "已跳过上传\"{folder}\""
+
+msgid "Upload progress"
+msgstr "上传进度"
+
+msgid ""
+"When an incoming folder is selected, any conflicting files within it will "
+"also be overwritten."
+msgstr "当选择上传文件夹时，其中任何冲突的文件也都会被覆盖。"
+
+msgid ""
+"When an incoming folder is selected, the content is written into the "
+"existing folder and a recursive conflict resolution is performed."
+msgstr "选择上传文件夹后，内容将写入现有文件夹，并递归执行冲突解决。"
+
 msgid "Which files do you want to keep?"
 msgstr "你要保留哪些文件？"
 
+msgid ""
+"You can either rename the file, skip this file or cancel the whole "
+"operation."
+msgstr "您可以重命名文件、跳过此文件或取消整个操作。"
+
 msgid "You need to select at least one version of each file to continue."
-msgstr "每个文件至少选择一个版本"
+msgstr "每个文件至少选择保留一个版本"
