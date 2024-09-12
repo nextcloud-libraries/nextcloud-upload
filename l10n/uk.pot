@@ -121,6 +121,9 @@ msgstr[3] "Пропустити {count} файлів"
 msgid "Unknown size"
 msgstr "Невідомий розмір"
 
+msgid "Upload"
+msgstr "Завантажити"
+
 msgid "Upload files"
 msgstr "Завантажити файли"
 
