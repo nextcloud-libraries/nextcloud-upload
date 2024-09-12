@@ -141,7 +141,7 @@ msgid "Upload has been skipped"
 msgstr "Le téléversement a été ignoré"
 
 msgid "Upload of \"{folder}\" has been skipped"
-msgstr "Le téléversement de {folder}a été ignoré"
+msgstr "Le téléversement de \"{folder}\" a été ignoré"
 
 msgid "Upload progress"
 msgstr "Progression du téléversement"
