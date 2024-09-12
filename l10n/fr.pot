@@ -3,14 +3,26 @@
 # Joas Schilling, 2024
 # Benoit Pruneau, 2024
 # jed boulahya, 2024
+# Jérôme HERBINET, 2024
+# Arnaud Cazenave, 2024
 # 
 msgid ""
 msgstr ""
-"Last-Translator: jed boulahya, 2024\n"
+"Last-Translator: Arnaud Cazenave, 2024\n"
 "Language-Team: French (https://app.transifex.com/nextcloud/teams/64236/fr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: fr\n"
 "Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
+
+msgid "\"{segment}\" is a forbidden file or folder name."
+msgstr "\"{segment}\" est un nom de fichier ou de dossier interdit."
+
+msgid "\"{segment}\" is a forbidden file type."
+msgstr "\"{segment}\" est un type de fichier interdit."
+
+msgid "\"{segment}\" is not allowed inside a file or folder name."
+msgstr ""
+"\"{segment}\" n'est pas autorisé dans le nom d'un fichier ou d'un dossier."
 
 msgid "{count} file conflict"
 msgid_plural "{count} files conflict"
@@ -41,10 +53,13 @@ msgid "Cancel the entire operation"
 msgstr "Annuler l'opération entière"
 
 msgid "Cancel uploads"
-msgstr "Annuler les envois"
+msgstr "Annuler les téléversements"
 
 msgid "Continue"
 msgstr "Continuer"
+
+msgid "Create new"
+msgstr "Créer un nouveau"
 
 msgid "estimating time left"
 msgstr "estimation du temps restant"
@@ -52,18 +67,27 @@ msgstr "estimation du temps restant"
 msgid "Existing version"
 msgstr "Version existante"
 
+msgid "Filenames must not end with \"{segment}\"."
+msgstr "Le nom des fichiers ne doit pas finir par {segment}."
+
 msgid ""
-"If you select both versions, the copied file will have a number added to its"
-" name."
+"If you select both versions, the incoming file will have a number added to "
+"its name."
 msgstr ""
-"Si vous sélectionnez les deux versions, le fichier copié aura un numéro "
-"ajouté àname."
+"Si vous sélectionnez les deux versions, le nouveau fichier aura un nombre "
+"ajouté à son nom."
+
+msgid "Invalid filename"
+msgstr "Nom de fichier invalide"
 
 msgid "Last modified date unknown"
 msgstr "Date de la dernière modification est inconnue"
 
 msgid "New"
 msgstr "Nouveau"
+
+msgid "New filename"
+msgstr "Nouveau nom de fichier"
 
 msgid "New version"
 msgstr "Nouvelle version"
@@ -74,6 +98,9 @@ msgstr "en pause"
 msgid "Preview image"
 msgstr "Aperçu de l'image"
 
+msgid "Rename"
+msgstr "Renommer"
+
 msgid "Select all checkboxes"
 msgstr "Sélectionner toutes les cases à cocher"
 
@@ -82,6 +109,9 @@ msgstr "Sélectionner tous les fichiers existants"
 
 msgid "Select all new files"
 msgstr "Sélectionner tous les nouveaux fichiers"
+
+msgid "Skip"
+msgstr "Ignorer"
 
 msgid "Skip this file"
 msgid_plural "Skip {count} files"
@@ -92,14 +122,29 @@ msgstr[2] "Ignorer {count} fichiers"
 msgid "Unknown size"
 msgstr "Taille inconnue"
 
-msgid "Upload cancelled"
-msgstr " annulé"
+msgid "Upload"
+msgstr "Téléverser"
 
 msgid "Upload files"
-msgstr "Téléchargement des fichiers"
+msgstr "Téléverser des fichiers"
+
+msgid "Upload folders"
+msgstr "Téléverser des dossiers"
+
+msgid "Upload from device"
+msgstr "Téléverser depuis l'appareil"
+
+msgid "Upload has been cancelled"
+msgstr "Le téléversement a été annulé"
+
+msgid "Upload has been skipped"
+msgstr "Le téléversement a été ignoré"
+
+msgid "Upload of \"{folder}\" has been skipped"
+msgstr "Le téléversement de {folder}a été ignoré"
 
 msgid "Upload progress"
-msgstr "Progression du téléchargement"
+msgstr "Progression du téléversement"
 
 msgid ""
 "When an incoming folder is selected, any conflicting files within it will "
@@ -108,8 +153,22 @@ msgstr ""
 "Lorsqu'un dossier entrant est sélectionné, tous les fichiers en conflit "
 "qu'il contient seront également écrasés."
 
+msgid ""
+"When an incoming folder is selected, the content is written into the "
+"existing folder and a recursive conflict resolution is performed."
+msgstr ""
+"Lorsqu'un dossier entrant est sélectionné, le contenu est ajouté dans le "
+"dossier existant et une résolution récursive des conflits est effectuée."
+
 msgid "Which files do you want to keep?"
 msgstr "Quels fichiers souhaitez-vous conserver ?"
+
+msgid ""
+"You can either rename the file, skip this file or cancel the whole "
+"operation."
+msgstr ""
+"Vous pouvez soit renommer le fichier, soit ignorer le fichier soit annuler "
+"toute l'opération."
 
 msgid "You need to select at least one version of each file to continue."
 msgstr ""
