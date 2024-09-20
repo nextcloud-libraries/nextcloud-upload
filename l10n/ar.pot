@@ -126,6 +126,9 @@ msgstr[5] "تخطَّ {count} ملف"
 msgid "Unknown size"
 msgstr "حجم غير معلوم"
 
+msgid "Upload"
+msgstr "رفع الملفات"
+
 msgid "Upload files"
 msgstr "رفع ملفات"
 
