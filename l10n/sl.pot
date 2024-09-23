@@ -1,36 +1,173 @@
 # 
 # Translators:
-# Matej Urbančič <>, 2022
+# Joas Schilling, 2024
+# Jan Kraljič <jan.kraljic@patware.eu>, 2024
+# Simon Bogina, 2024
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Matej Urbančič <>, 2022\n"
-"Language-Team: Slovenian (https://www.transifex.com/nextcloud/teams/64236/sl/)\n"
+"Last-Translator: Simon Bogina, 2024\n"
+"Language-Team: Slovenian (https://app.transifex.com/nextcloud/teams/64236/sl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: sl\n"
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
 
+msgid "\"{segment}\" is a forbidden file or folder name."
+msgstr "\"{segment}\" je prepovedano ime datoteka ali mape."
+
+msgid "\"{segment}\" is a forbidden file type."
+msgstr "\"{segment}\" je prepovedan tip datoteke."
+
+msgid "\"{segment}\" is not allowed inside a file or folder name."
+msgstr "\"{segment}\" ni dovoljeno v imenu datoteke ali mape."
+
+msgid "{count} file conflict"
+msgid_plural "{count} files conflict"
+msgstr[0] "1{count} datoteka je v konfliktu"
+msgstr[1] "1{count} datoteki sta v konfiktu"
+msgstr[2] "1{count} datotek je v konfliktu"
+msgstr[3] "{count} datotek je v konfliktu"
+
+msgid "{count} file conflict in {dirname}"
+msgid_plural "{count} file conflicts in {dirname}"
+msgstr[0] "{count} datoteka je v konfiktu v {dirname}"
+msgstr[1] "{count} datoteki sta v konfiktu v {dirname}"
+msgstr[2] "{count} datotek je v konfiktu v {dirname}"
+msgstr[3] "{count} konfliktov datotek v {dirname}"
+
 msgid "{seconds} seconds left"
 msgstr "še {seconds} sekund"
 
-#. time has the format 00:00:00
+#. TRANSLATORS time has the format 00:00:00
 msgid "{time} left"
 msgstr "še {time}"
 
 msgid "a few seconds left"
 msgstr "še nekaj sekund"
 
-msgid "Add"
-msgstr "Dodaj"
+msgid "Cancel"
+msgstr "Prekliči"
+
+msgid "Cancel the entire operation"
+msgstr "Prekliči celotni postopek"
 
 msgid "Cancel uploads"
 msgstr "Prekliči pošiljanje"
 
+msgid "Continue"
+msgstr "Nadaljuj"
+
+msgid "Create new"
+msgstr "Ustvari nov"
+
 msgid "estimating time left"
 msgstr "ocenjen čas do konca"
+
+msgid "Existing version"
+msgstr "Obstoječa verzija"
+
+msgid "Filenames must not end with \"{segment}\"."
+msgstr "Imena datotek se ne smejo končati s \"{segment}\"."
+
+msgid ""
+"If you select both versions, the incoming file will have a number added to "
+"its name."
+msgstr ""
+"Če izberete obe različici, bo imenu dohodne datoteke na koncu dodana "
+"številka."
+
+msgid "Invalid filename"
+msgstr "Nepravilno ime datoteke"
+
+msgid "Last modified date unknown"
+msgstr "Datum zadnje spremembe neznan"
+
+msgid "New"
+msgstr "Nov"
+
+msgid "New filename"
+msgstr "Novo ime datoteke"
+
+msgid "New version"
+msgstr "Nova verzija"
 
 msgid "paused"
 msgstr "v premoru"
 
+msgid "Preview image"
+msgstr "Predogled slike"
+
+msgid "Rename"
+msgstr "Preimenuj"
+
+msgid "Select all checkboxes"
+msgstr "Izberi vsa potrditvena polja"
+
+msgid "Select all existing files"
+msgstr "Označi vse obstoječe datoteke"
+
+msgid "Select all new files"
+msgstr "Označi vse nove datoteke"
+
+msgid "Skip"
+msgstr "Preskoči"
+
+msgid "Skip this file"
+msgid_plural "Skip {count} files"
+msgstr[0] "Preskoči {count} datoteko"
+msgstr[1] "Preskoči {count} datoteki"
+msgstr[2] "Preskoči {count} datotek"
+msgstr[3] "Preskoči {count} datotek"
+
+msgid "Unknown size"
+msgstr "Neznana velikost"
+
+msgid "Upload"
+msgstr "Naloži"
+
 msgid "Upload files"
-msgstr "Pošlji datoteke"
+msgstr "Naloži datoteke"
+
+msgid "Upload folders"
+msgstr "Naloži mape"
+
+msgid "Upload from device"
+msgstr "Naloži iz naprave"
+
+msgid "Upload has been cancelled"
+msgstr "Nalaganje je bilo preklicano"
+
+msgid "Upload has been skipped"
+msgstr "Nalaganje je bilo preskočeno"
+
+msgid "Upload of \"{folder}\" has been skipped"
+msgstr "Nalaganje \"{folder}\" je bilo preskočeno"
+
+msgid "Upload progress"
+msgstr "Napredek nalaganja"
+
+msgid ""
+"When an incoming folder is selected, any conflicting files within it will "
+"also be overwritten."
+msgstr ""
+"Ko je izbrana dohodna mapa, bodo vse datototeke v konfliktu znotraj nje "
+"prepisane."
+
+msgid ""
+"When an incoming folder is selected, the content is written into the "
+"existing folder and a recursive conflict resolution is performed."
+msgstr ""
+"Ko je izbrana dohodna mapa, je vsebina vpisana v obstoječo mapo in je "
+"izvedeno rekurzivno reševanje konfliktov."
+
+msgid "Which files do you want to keep?"
+msgstr "Katere datoteke želite obdržati?"
+
+msgid ""
+"You can either rename the file, skip this file or cancel the whole "
+"operation."
+msgstr ""
+"Datoteko lahko preimenujete, preskočite ali prekličete celo operacijo."
+
+msgid "You need to select at least one version of each file to continue."
+msgstr "Izbrati morate vsaj eno različico vsake datoteke da nadaljujete."
