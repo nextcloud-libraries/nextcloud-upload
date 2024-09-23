@@ -89,7 +89,7 @@ msgid "New filename"
 msgstr "Novo ime datoteke"
 
 msgid "New version"
-msgstr "Nova verzija"
+msgstr "Nova različica"
 
 msgid "paused"
 msgstr "v premoru"
