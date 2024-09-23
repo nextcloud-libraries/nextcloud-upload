@@ -1,15 +1,24 @@
 # 
 # Translators:
-# John Molakvoæ <skjnldsv@protonmail.com>, 2023
-# Иван Пешић, 2023
+# Joas Schilling, 2024
+# Иван Пешић, 2024
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Иван Пешић, 2023\n"
+"Last-Translator: Иван Пешић, 2024\n"
 "Language-Team: Serbian (https://app.transifex.com/nextcloud/teams/64236/sr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: sr\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+msgid "\"{segment}\" is a forbidden file or folder name."
+msgstr "„{segment}” је забрањено име фајла или фолдера."
+
+msgid "\"{segment}\" is a forbidden file type."
+msgstr "„{segment}” је забрањен тип фајла."
+
+msgid "\"{segment}\" is not allowed inside a file or folder name."
+msgstr "„{segment}” није дозвољено унутар имена фајла или фолдера."
 
 msgid "{count} file conflict"
 msgid_plural "{count} files conflict"
@@ -33,11 +42,20 @@ msgstr "{time} преостало"
 msgid "a few seconds left"
 msgstr "преостало је неколико секунди"
 
+msgid "Cancel"
+msgstr "Откажи"
+
+msgid "Cancel the entire operation"
+msgstr "Отказује комплетну операцију"
+
 msgid "Cancel uploads"
 msgstr "Обустави отпремања"
 
 msgid "Continue"
 msgstr "Настави"
+
+msgid "Create new"
+msgstr "Креирај ново"
 
 msgid "estimating time left"
 msgstr "процена преосталог времена"
@@ -45,16 +63,25 @@ msgstr "процена преосталог времена"
 msgid "Existing version"
 msgstr "Постојећа верзија"
 
+msgid "Filenames must not end with \"{segment}\"."
+msgstr "Имена фајлова не смеју да се завршавају на „{segment}”."
+
 msgid ""
-"If you select both versions, the copied file will have a number added to its"
-" name."
-msgstr "Ако изаберете обе верзије, на име копираног фајла ће се додати број."
+"If you select both versions, the incoming file will have a number added to "
+"its name."
+msgstr "Ако изаберете обе верзије, на име долазног фајла ће се додати број."
+
+msgid "Invalid filename"
+msgstr "Неисправно име фајла"
 
 msgid "Last modified date unknown"
 msgstr "Није познат датум последње измене"
 
 msgid "New"
 msgstr "Ново"
+
+msgid "New filename"
+msgstr "Ново име фајла"
 
 msgid "New version"
 msgstr "Нова верзија"
@@ -65,6 +92,9 @@ msgstr "паузирано"
 msgid "Preview image"
 msgstr "Слика прегледа"
 
+msgid "Rename"
+msgstr "Промени име"
+
 msgid "Select all checkboxes"
 msgstr "Штиклирај сва поља за штиклирање"
 
@@ -73,6 +103,9 @@ msgstr "Изабери све постојеће фајлове"
 
 msgid "Select all new files"
 msgstr "Изабери све нове фајлове"
+
+msgid "Skip"
+msgstr "Прескочи"
 
 msgid "Skip this file"
 msgid_plural "Skip {count} files"
@@ -83,17 +116,53 @@ msgstr[2] "Прескочи {count} фајлова"
 msgid "Unknown size"
 msgstr "Непозната величина"
 
-msgid "Upload cancelled"
-msgstr "Отпремање је отказано"
+msgid "Upload"
+msgstr "Отпреми"
 
 msgid "Upload files"
 msgstr "Отпреми фајлове"
 
+msgid "Upload folders"
+msgstr "Отпреми фолдере"
+
+msgid "Upload from device"
+msgstr "Отпреми са уређаја"
+
+msgid "Upload has been cancelled"
+msgstr "Отпремање је отказано"
+
+msgid "Upload has been skipped"
+msgstr "Отпремање је прескочено"
+
+msgid "Upload of \"{folder}\" has been skipped"
+msgstr "Отпремање „{folder}”је прескочено"
+
 msgid "Upload progress"
 msgstr "Напредак отпремања"
 
+msgid ""
+"When an incoming folder is selected, any conflicting files within it will "
+"also be overwritten."
+msgstr ""
+"Када се изабере долазни фолдер, сва имена фајлова са конфликтом унутар њега "
+"ће се такође преписати."
+
+msgid ""
+"When an incoming folder is selected, the content is written into the "
+"existing folder and a recursive conflict resolution is performed."
+msgstr ""
+"Када се изабере долазни фолдер, садржај се уписује у постојећи фолдер и "
+"извршава се рекурзивно разрешавање конфликата."
+
 msgid "Which files do you want to keep?"
 msgstr "Које фајлове желите да задржите?"
+
+msgid ""
+"You can either rename the file, skip this file or cancel the whole "
+"operation."
+msgstr ""
+"Можете или да промените име фајлу, прескочите овај фајл или откажете "
+"комплетну операцију."
 
 msgid "You need to select at least one version of each file to continue."
 msgstr "Морате да изаберете барем једну верзију сваког фајла да наставите."
