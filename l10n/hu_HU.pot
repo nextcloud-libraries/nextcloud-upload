@@ -114,6 +114,9 @@ msgstr[1] "{count}fájl kihagyása"
 msgid "Unknown size"
 msgstr "Ismeretlen méret"
 
+msgid "Upload"
+msgstr "Feltöltés"
+
 msgid "Upload files"
 msgstr "Fájlok feltöltése"
 
