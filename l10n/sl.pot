@@ -114,7 +114,7 @@ msgstr "Preskoči"
 
 msgid "Skip this file"
 msgid_plural "Skip {count} files"
-msgstr[0] "Preskoči {count} datoteko"
+msgstr[0] "Preskoči  datoteko"
 msgstr[1] "Preskoči {count} datoteki"
 msgstr[2] "Preskoči {count} datotek"
 msgstr[3] "Preskoči {count} datotek"
