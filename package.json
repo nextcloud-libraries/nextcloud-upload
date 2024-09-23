@@ -52,7 +52,7 @@
   },
   "homepage": "https://github.com/skjnldsv/nextcloud-upload",
   "devDependencies": {
-    "@codecov/vite-plugin": "^1.1.0",
+    "@codecov/vite-plugin": "^1.2.0",
     "@cypress/vue2": "^2.1.1",
     "@nextcloud/eslint-config": "^8.4.1",
     "@nextcloud/vite-config": "^1.3.0",
