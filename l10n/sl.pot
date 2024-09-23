@@ -61,7 +61,7 @@ msgid "Create new"
 msgstr "Ustvari nov"
 
 msgid "estimating time left"
-msgstr "ocenjen čas do konca"
+msgstr "ocenjujem čas do konca"
 
 msgid "Existing version"
 msgstr "Obstoječa verzija"
