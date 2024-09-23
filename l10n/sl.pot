@@ -64,7 +64,7 @@ msgid "estimating time left"
 msgstr "ocenjujem čas do konca"
 
 msgid "Existing version"
-msgstr "Obstoječa verzija"
+msgstr "Obstoječa različica"
 
 msgid "Filenames must not end with \"{segment}\"."
 msgstr "Imena datotek se ne smejo končati s \"{segment}\"."
