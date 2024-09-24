@@ -123,6 +123,9 @@ msgstr[3] "Přeskočit {count} soubory"
 msgid "Unknown size"
 msgstr "Neznámá velikost"
 
+msgid "Upload"
+msgstr "Nahrát"
+
 msgid "Upload files"
 msgstr "Nahrát soubory"
 
