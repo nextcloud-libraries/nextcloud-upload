@@ -87,7 +87,7 @@ import FolderSvg from 'vue-material-design-icons/Folder.vue'
 import NcDateTime from '@nextcloud/vue/dist/Components/NcDateTime.js'
 import NcCheckboxRadioSwitch from '@nextcloud/vue/dist/Components/NcCheckboxRadioSwitch.js'
 
-import { isFileSystemEntry } from '../utils/filesystem'
+import { isFileSystemEntry, isFileSystemFileEntry } from '../utils/filesystem'
 import { t } from '../utils/l10n.ts'
 
 const PREVIEW_SIZE = 64
@@ -182,7 +182,7 @@ export default defineComponent({
 				if (this.incoming instanceof File) {
 					// If "incoming" is a file then just use that
 					this.incomingFile = this.incoming
-				} else if (this.incoming instanceof FileSystemFileEntry) {
+				} else if (isFileSystemFileEntry(this.incoming)) {
 					// For FileSystemEntry we only support the file type
 					this.incomingFile = await new Promise<File>((resolve, reject) => (this.incoming as FileSystemFileEntry).file(resolve, reject))
 				} else {
