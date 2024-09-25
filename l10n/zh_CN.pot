@@ -1,11 +1,11 @@
 # 
 # Translators:
 # Joas Schilling, 2024
-# Ruijian Deng, 2024
+# Gloryandel, 2024
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Ruijian Deng, 2024\n"
+"Last-Translator: Gloryandel, 2024\n"
 "Language-Team: Chinese (China) (https://app.transifex.com/nextcloud/teams/64236/zh_CN/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: zh_CN\n"
@@ -74,7 +74,7 @@ msgid "Last modified date unknown"
 msgstr "文件最后修改日期未知"
 
 msgid "New"
-msgstr "新增"
+msgstr "新建"
 
 msgid "New filename"
 msgstr "新文件名"
