@@ -1,5 +1,6 @@
-# SPDX-FileCopyrightText: 2022 Nextcloud GmbH and Nextcloud contributors
-# SPDX-License-Identifier: AGPL-3.0-or-later
+# SPDX-FileCopyrightText: 2023 Nextcloud GmbH and Nextcloud contributors
+# SPDX-License-Identifier: CC0-1.0
+
 git:
   filters:
     - filter_type: file
@@ -7,3 +8,15 @@ git:
       source_language: en
       source_file: l10n/messages.pot
       translation_files_expression: l10n/<lang>.pot
+
+  settings:
+    # Nextcloud uses different language tags than the translations on Transifex
+    language_mapping:
+      fi_FI: fi
+      hu_HU: hu
+      nb_NO: nb
+      sk_SK: sk
+      th_TH: th
+      ja_JP: ja
+      bg_BG: bg
+      cs_CZ: cs
