@@ -3,10 +3,11 @@
 # Joas Schilling, 2024
 # Leonardo Colman Lopes <leonardo.dev@colman.com.br>, 2024
 # Rodrigo Sottomaior Macedo <sottomaiormacedotec@sottomaiormacedo.tech>, 2024
+# Paulo Schopf, 2024
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Rodrigo Sottomaior Macedo <sottomaiormacedotec@sottomaiormacedo.tech>, 2024\n"
+"Last-Translator: Paulo Schopf, 2024\n"
 "Language-Team: Portuguese (Brazil) (https://app.transifex.com/nextcloud/teams/64236/pt_BR/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: pt_BR\n"
@@ -118,6 +119,9 @@ msgstr[2] "Ignorar {count} arquivos"
 
 msgid "Unknown size"
 msgstr "Tamanho desconhecido"
+
+msgid "Upload"
+msgstr "Enviar"
 
 msgid "Upload files"
 msgstr "Enviar arquivos"
