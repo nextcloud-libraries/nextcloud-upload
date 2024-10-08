@@ -12,6 +12,7 @@ import { Uploader } from './uploader'
 import UploadPicker from './components/UploadPicker.vue'
 
 export type { IDirectory, Directory } from './utils/fileTree'
+export { getConflicts, hasConflict, uploadConflictHandler } from './utils/conflicts'
 export { Upload, Status as UploadStatus } from './upload'
 export { Uploader, Status as UploaderStatus } from './uploader'
 
@@ -19,6 +20,7 @@ export type ConflictResolutionResult<T extends File|FileSystemEntry|Node> = {
 	selected: T[],
 	renamed: T[],
 }
+
 /**
  * Get the global Uploader instance.
  *
@@ -55,8 +57,8 @@ export function upload(destinationPath: string, file: File): Uploader {
 
 export interface ConflictPickerOptions {
 	/**
-	 * When this is set to true a hint is shown that conflicts in directories are handles recursivly
-	 * You still need to call this function for each directory separatly.
+	 * When this is set to true a hint is shown that conflicts in directories are handles recursively
+	 * You still need to call this function for each directory separately.
 	 */
 	recursive?: boolean
 }
@@ -111,32 +113,6 @@ export async function openConflictPicker<T extends File|FileSystemEntry|Node>(
 		picker.$mount()
 		document.body.appendChild(picker.$el)
 	})
-}
-
-/**
- * Check if there is a conflict between two sets of files
- * @param {Array<File|FileSystemEntry|Node>} files the incoming files
- * @param {Node[]} content all the existing files in the directory
- * @return {boolean} true if there is a conflict
- */
-export function hasConflict(files: (File|FileSystemEntry|Node)[], content: Node[]): boolean {
-	return getConflicts(files, content).length > 0
-}
-
-/**
- * Get the conflicts between two sets of files
- * @param {Array<File|FileSystemEntry|Node>} files the incoming files
- * @param {Node[]} content all the existing files in the directory
- * @return {boolean} true if there is a conflict
- */
-export function getConflicts<T extends File|FileSystemEntry|Node>(files: T[], content: Node[]): T[] {
-	const contentNames = content.map((node: Node) => node.basename)
-	const conflicts = files.filter((node: File|FileSystemEntry|Node) => {
-		const name = 'basename' in node ? node.basename : node.name
-		return contentNames.indexOf(name) !== -1
-	})
-
-	return conflicts
 }
 
 /** UploadPicker vue component */
