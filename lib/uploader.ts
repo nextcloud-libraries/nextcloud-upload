@@ -269,9 +269,12 @@ export class Uploader {
 
 		return new PCancelable(async (resolve, reject, onCancel) => {
 			// create a meta upload to ensure all ongoing child requests are listed
-			const upload = new Upload(`${this.root.replace(/\/$/, '')}/${destination.replace(/^\//, '')}`, false, 0, rootFolder)
+			const target = `${this.root.replace(/\/$/, '')}/${destination.replace(/^\//, '')}`
+			const upload = new Upload(target, false, 0, rootFolder)
 			upload.status = UploadStatus.UPLOADING
 			this._uploadQueue.push(upload)
+
+			logger.debug('Starting new batch upload', { target })
 			try {
 				// setup client with root and custom header
 				const client = davGetClient(this.root, this._customHeaders)
@@ -360,9 +363,11 @@ export class Uploader {
 			// Let the user handle conflicts
 			const selectedForUpload = await callback(directory.children, folderPath)
 			if (selectedForUpload === false) {
+				logger.debug('Upload canceled by user', { directory })
 				reject(t('Upload has been cancelled'))
 				return
 			} else if (selectedForUpload.length === 0 && directory.children.length > 0) {
+				logger.debug('Skipping directory, as all files were skipped by user', { directory })
 				resolve([])
 				return
 			}
@@ -375,6 +380,7 @@ export class Uploader {
 				uploads.forEach((upload) => upload.cancel())
 			})
 
+			logger.debug('Start directory upload', { directory })
 			try {
 				if (directory.name) {
 					// If not the virtual root we need to create the directory first before uploading
