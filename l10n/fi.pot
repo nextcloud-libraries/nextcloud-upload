@@ -3,10 +3,11 @@
 # Joas Schilling, 2024
 # Jiri Grönroos <jiri.gronroos@iki.fi>, 2024
 # thingumy, 2024
+# teemue, 2024
 # 
 msgid ""
 msgstr ""
-"Last-Translator: thingumy, 2024\n"
+"Last-Translator: teemue, 2024\n"
 "Language-Team: Finnish (Finland) (https://app.transifex.com/nextcloud/teams/64236/fi_FI/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: fi_FI\n"
@@ -114,6 +115,9 @@ msgstr[1] "Ohita {count} tiedostoa"
 
 msgid "Unknown size"
 msgstr "Tuntematon koko"
+
+msgid "Upload"
+msgstr "Lähetä"
 
 msgid "Upload files"
 msgstr "Lähetä tiedostoja"
