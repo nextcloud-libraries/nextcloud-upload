@@ -2,7 +2,7 @@
  * SPDX-FileCopyrightText: 2023 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
-import type { UserConfig } from 'vitest'
+import type { UserConfig } from 'vitest/node'
 import config from './vite.config.ts'
 
 export default async (env) => {
@@ -12,6 +12,11 @@ export default async (env) => {
 
 	cfg.test = {
 		environment: 'jsdom',
+		environmentOptions: {
+			jsdom: {
+				url: 'https://cloud.example.com/index.php/apps/test',
+			},
+		},
 		setupFiles: '__tests__/setup.ts',
 		coverage: {
 			include: ['lib/**'],
@@ -19,11 +24,7 @@ export default async (env) => {
 			exclude: ['lib/utils/l10n.ts'],
 			reporter: ['lcov', 'text'],
 		},
-		server: {
-			deps: {
-				inline: ['@nextcloud/files'],
-			},
-		},
+		pool: 'vmForks',
 	} as UserConfig
 	return cfg
 }

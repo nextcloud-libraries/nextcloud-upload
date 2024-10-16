@@ -2,17 +2,25 @@
  * SPDX-FileCopyrightText: 2024 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
-import { beforeEach, describe, expect, it, test, vi } from 'vitest'
+import { beforeAll, beforeEach, describe, expect, it, test, vi } from 'vitest'
 import { Uploader } from '../lib/uploader'
 import * as nextcloudAuth from '@nextcloud/auth'
 import * as nextcloudFiles from '@nextcloud/files'
 
 // This mocks auth to always return the `test` user by default
 vi.mock('@nextcloud/auth')
+vi.mock('@nextcloud/files', async (getModule) => {
+	const original: typeof nextcloudFiles = await getModule()
+	return { ...original }
+})
+
+beforeAll(() => {
+	vi.spyOn(nextcloudFiles, 'davRemoteURL', 'get').mockReturnValue('http://cloud.example.com/remote.php/dav')
+	vi.spyOn(nextcloudFiles, 'davRootPath', 'get').mockReturnValue('/files/test')
+})
 
 describe('Uploader', () => {
 	beforeEach(() => {
-		vi.restoreAllMocks()
 		// Reset mocks of DOM
 		document.body.innerHTML = ''
 	})
@@ -24,11 +32,12 @@ describe('Uploader', () => {
 		})
 
 		it('sets default target folder for public share', async () => {
-			// no logged in user
-			vi.spyOn(nextcloudAuth, 'getCurrentUser').mockImplementationOnce(() => null)
 			// public share values
-			vi.spyOn(nextcloudFiles, 'davRemoteURL', 'get').mockReturnValue('http://example.com/public.php/dav')
-			vi.spyOn(nextcloudFiles, 'davRootPath', 'get').mockReturnValue('/files/share-token')
+			vi.spyOn(nextcloudFiles, 'davRemoteURL', 'get')
+				.mockReturnValueOnce('http://cloud.example.com/public.php/dav')
+			vi.spyOn(nextcloudFiles, 'davRootPath', 'get')
+				.mockReturnValueOnce('/files/share-token')
+				.mockReturnValueOnce('/files/share-token')
 
 			const uploader = new Uploader(true)
 			expect(uploader.destination.source).match(/\/public\.php\/dav\/files\/share-token\/?$/)
@@ -73,7 +82,7 @@ describe('Uploader', () => {
 			// This is valid as per RFC7230
 			const uploader = new Uploader()
 			uploader.setCustomHeader('Host', '')
-			expect(uploader.customHeaders).toEqual({ 'Host': '' })
+			expect(uploader.customHeaders).toEqual({ Host: '' })
 		})
 	})
 
@@ -96,7 +105,7 @@ describe('Uploader', () => {
 			const uploader = new Uploader()
 			expect(uploader.destination.path).toBe('/')
 
-			expect(() => { uploader.destination = undefined as any }).toThrowError(/invalid destination/i)
+			expect(() => { uploader.destination = undefined as never }).toThrowError(/invalid destination/i)
 		})
 
 		test('cannot set file as destination', () => {
