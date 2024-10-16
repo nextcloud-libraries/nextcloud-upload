@@ -9,7 +9,9 @@ import type { IDirectory } from '../utils/fileTree'
 import { showInfo, showWarning } from '@nextcloud/dialogs'
 import { getUniqueName, InvalidFilenameError, validateFilename } from '@nextcloud/files'
 import { basename } from '@nextcloud/paths'
-import { openConflictPicker, showInvalidFilenameDialog } from '../index'
+
+import { openConflictPicker } from '../index'
+import { showInvalidFilenameDialog } from './dialog'
 import { t } from './l10n'
 import logger from './logger'
 

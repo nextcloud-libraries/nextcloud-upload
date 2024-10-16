@@ -394,34 +394,6 @@ export default Vue.extend({
 			return Array.isArray(this.content) ? this.content : await this.content(path)
 		},
 
-		/**
-		 * Show a dialog to let the user decide how to proceed with invalid filenames.
-		 * The returned promise resolves to false if the file should be skipped, and resolves to a string if it should be renamed.
-		 * The promise rejects when the user want to abort the operation.
-		 *
-		 * @param error the validation error
-		 */
-		showInvalidFileNameDialog(error: InvalidFilenameError): Promise<string | false> {
-			const { promise, reject, resolve } = Promise.withResolvers<string | false>()
-			spawnDialog(
-				InvalidFilenameDialog,
-				{
-					error,
-					validateFilename: this.validateFilename.bind(this),
-				},
-				(...rest) => {
-					const [{ skip, rename }] = rest as [{ cancel?: true, skip?: true, rename?: string }]
-					if (skip) {
-						resolve(false)
-					} else if (rename) {
-						resolve(rename)
-					} else {
-						reject()
-					}
-				},
-			)
-			return promise
-		},
 
 		/**
 		 * Start uploading
