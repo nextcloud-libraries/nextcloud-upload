@@ -141,11 +141,8 @@
 import type { Entry, Node } from '@nextcloud/files'
 import type { PropType } from 'vue'
 import type { Upload } from '../upload.ts'
-import type { Directory } from '../utils/fileTree'
 
-import { showInfo, showWarning, spawnDialog } from '@nextcloud/dialogs'
-import { Folder, InvalidFilenameError, InvalidFilenameErrorReason, NewMenuEntryCategory, getNewFileMenuEntries, getUniqueName, validateFilename } from '@nextcloud/files'
-import { basename } from '@nextcloud/paths'
+import { Folder, NewMenuEntryCategory, getNewFileMenuEntries } from '@nextcloud/files'
 import makeEta from 'simple-eta'
 import Vue from 'vue'
 
@@ -162,12 +159,12 @@ import IconFolderUpload from 'vue-material-design-icons/FolderUpload.vue'
 import IconPlus from 'vue-material-design-icons/Plus.vue'
 import IconUpload from 'vue-material-design-icons/Upload.vue'
 
-import { getUploader, openConflictPicker, getConflicts } from '../index.ts'
+import { getUploader } from '../index.ts'
 import { Status } from '../uploader.ts'
 import { Status as UploadStatus } from '../upload.ts'
 import { t } from '../utils/l10n.ts'
 import logger from '../utils/logger.ts'
-import InvalidFilenameDialog from './InvalidFilenameDialog.vue'
+import { uploadConflictHandler } from '../utils/conflicts.ts'
 
 export default Vue.extend({
 	name: 'UploadPicker',
@@ -397,105 +394,6 @@ export default Vue.extend({
 			return Array.isArray(this.content) ? this.content : await this.content(path)
 		},
 
-		/**
-		 * Show a dialog to let the user decide how to proceed with invalid filenames.
-		 * The returned promise resolves to false if the file should be skipped, and resolves to a string if it should be renamed.
-		 * The promise rejects when the user want to abort the operation.
-		 *
-		 * @param error the validation error
-		 */
-		showInvalidFileNameDialog(error: InvalidFilenameError): Promise<string | false> {
-			const { promise, reject, resolve } = Promise.withResolvers<string | false>()
-			spawnDialog(
-				InvalidFilenameDialog,
-				{
-					error,
-					validateFilename: this.validateFilename.bind(this),
-				},
-				(...rest) => {
-					const [{ skip, rename }] = rest as [{ cancel?: true, skip?: true, rename?: string }]
-					if (skip) {
-						resolve(false)
-					} else if (rename) {
-						resolve(rename)
-					} else {
-						reject()
-					}
-				},
-			)
-			return promise
-		},
-
-		/**
-		 * Wrapper to allow overwriting forbidden characters
-		 * Remove with next major
-		 * @param filename name to validate
-		 */
-		validateFilename(filename: string) {
-			// just for legacy reasons, remove with next major
-			if (this.forbiddenCharacters.length > 0) {
-				for (const c of this.forbiddenCharacters) {
-					if (filename.includes(c)) {
-						throw new InvalidFilenameError({
-							filename,
-							reason: InvalidFilenameErrorReason.Character,
-							segment: c,
-						})
-					}
-				}
-			} else {
-				validateFilename(filename)
-			}
-		},
-
-		async handleConflicts(nodes: Array<File|Directory>, path: string): Promise<Array<File|Directory>|false> {
-			try {
-				const content = await this.getContent(path).catch(() => [])
-				const conflicts = getConflicts(nodes, content)
-
-				// First handle conflicts as this might already remove invalid files
-				if (conflicts.length > 0) {
-					const { selected, renamed } = await openConflictPicker(path, conflicts, content, { recursive: true })
-					nodes = [...selected, ...renamed]
-				}
-
-				// We need to check all files for invalid characters
-				const filesToUpload: Array<File|Directory> = []
-				for (const file of nodes) {
-					try {
-						this.validateFilename(file.name)
-						// No invalid name used on this file, so just continue
-						filesToUpload.push(file)
-					} catch (error) {
-						// do not handle other errors
-						if (!(error instanceof InvalidFilenameError)) {
-							logger.error(`Unexpected error while validating ${file.name}`, { error })
-							throw error
-						}
-						// Handle invalid path
-						let newName = await this.showInvalidFileNameDialog(error)
-						if (newName !== false) {
-							// create a new valid path name
-							newName = getUniqueName(newName, nodes.map((node) => node.name))
-							Object.defineProperty(file, 'name', { value: newName })
-							filesToUpload.push(file)
-						}
-					}
-				}
-				if (filesToUpload.length === 0 && nodes.length > 0) {
-					const folder = basename(path)
-					showInfo(folder
-						? t('Upload of "{folder}" has been skipped', { folder })
-						: t('Upload has been skipped'),
-					)
-				}
-				return filesToUpload
-			} catch (error) {
-				logger.debug('Upload has been cancelled', { error })
-				showWarning(t('Upload has been cancelled'))
-				return false
-			}
-		},
 
 		/**
 		 * Start uploading
@@ -505,7 +403,7 @@ export default Vue.extend({
 			const files = input.files ? Array.from(input.files) : []
 
 			this.uploadManager
-				.batchUpload('', files, this.handleConflicts)
+				.batchUpload('', files, uploadConflictHandler(this.getContent))
 				.catch((error) => logger.debug('Error while uploading', { error }))
 				.finally(() => this.resetForm())
 		},
