@@ -9,3 +9,12 @@ export const getCurrentUser = function() {
 		isAdmin: false,
 	}
 }
+
+/** Mock the request token */
+export function getRequestToken() {
+	return 'request-token'
+}
+
+/** Mock that receives a parameter (callback) */
+export function onRequestTokenUpdate() {
+}

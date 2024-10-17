@@ -2,20 +2,17 @@
  * SPDX-FileCopyrightText: 2022 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
-import { beforeAll, afterAll, describe, expect, test, vi } from 'vitest'
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import type { Mock } from 'vitest'
+import { describe, expect, test, vi } from 'vitest'
 import axios from '@nextcloud/axios'
 
 import { getChunk, initChunkWorkspace, uploadData } from '../../lib/utils/upload.js'
 
-const axiosMock: vi.Mock<typeof axios> | typeof axios = axios
+const axiosMock: Mock<typeof axios> | typeof axios = axios
 
-beforeAll(() => {
-	vi.mock('axios', vi.fn())
-})
-
-afterAll(() => {
-	vi.unmock('axios')
-})
+vi.mock('@nextcloud/auth')
+vi.mock('axios', vi.fn())
 
 describe('Get chunk from file', () => {
 	test('Chunking a valid file', async () => {
@@ -65,19 +62,10 @@ describe('Initialize chunks upload temporary workspace', () => {
 	test('Init random workspace', async () => {
 		axiosMock.request = vi.fn((config: any) => Promise.resolve(config?.onUploadProgress?.()))
 
-		// mock the current location for our assert on the URL
-		Object.defineProperty(window, 'location', {
-			value: new URL('https://cloud.domain.com/index.php/apps/test'),
-			configurable: true,
-		})
-
-		// mock the current user
-		document.head.setAttribute('data-user', 'test')
-
 		const url = await initChunkWorkspace()
 
-		expect(url).toMatch('https://cloud.domain.com/remote.php/dav/uploads/test/web-file-upload-')
-		expect(url.length).toEqual('https://cloud.domain.com/remote.php/dav/uploads/test/web-file-upload-123456789abcdefg'.length)
+		expect(url).toMatch('https://cloud.example.com/remote.php/dav/uploads/test/web-file-upload-')
+		expect(url.length).toEqual('https://cloud.example.com/remote.php/dav/uploads/test/web-file-upload-123456789abcdefg'.length)
 
 		expect(axiosMock.request).toHaveBeenCalledTimes(1)
 		expect(axiosMock.request).toHaveBeenCalledWith({
@@ -93,26 +81,17 @@ describe('Initialize chunks upload temporary workspace', () => {
 	test('Init random workspace for file destination', async () => {
 		axiosMock.request = vi.fn((config: any) => Promise.resolve(config?.onUploadProgress?.()))
 
-		// mock the current location for our assert on the URL
-		Object.defineProperty(window, 'location', {
-			value: new URL('https://cloud.domain.com/index.php/apps/test'),
-			configurable: true,
-		})
+		const url = await initChunkWorkspace('https://cloud.example.com/remote.php/dav/files/test/image.jpg')
 
-		// mock the current user
-		document.head.setAttribute('data-user', 'test')
-
-		const url = await initChunkWorkspace('https://cloud.domain.com/remote.php/dav/files/test/image.jpg')
-
-		expect(url).toMatch('https://cloud.domain.com/remote.php/dav/uploads/test/web-file-upload-')
-		expect(url.length).toEqual('https://cloud.domain.com/remote.php/dav/uploads/test/web-file-upload-123456789abcdefg'.length)
+		expect(url).toMatch('https://cloud.example.com/remote.php/dav/uploads/test/web-file-upload-')
+		expect(url.length).toEqual('https://cloud.example.com/remote.php/dav/uploads/test/web-file-upload-123456789abcdefg'.length)
 
 		expect(axiosMock.request).toHaveBeenCalledTimes(1)
 		expect(axiosMock.request).toHaveBeenCalledWith({
 			method: 'MKCOL',
 			url,
 			headers: {
-				Destination: 'https://cloud.domain.com/remote.php/dav/files/test/image.jpg',
+				Destination: 'https://cloud.example.com/remote.php/dav/files/test/image.jpg',
 			},
 			'axios-retry': {
 				retries: 5,
@@ -126,7 +105,7 @@ describe('Upload data', () => {
 	test('Upload data stream', async () => {
 		axiosMock.request = vi.fn((config: any) => Promise.resolve(config?.onUploadProgress()))
 
-		const url = 'https://cloud.domain.com/remote.php/dav/files/test/image.jpg'
+		const url = 'https://cloud.example.com/remote.php/dav/files/test/image.jpg'
 		const blob = new Blob([new ArrayBuffer(50 * 1024 * 1024)])
 		const signal = new AbortController().signal
 		const onUploadProgress = vi.fn()
@@ -152,7 +131,7 @@ describe('Upload data', () => {
 	test('Upload async data stream', async () => {
 		axiosMock.request = vi.fn((config: any) => Promise.resolve(config?.onUploadProgress()))
 
-		const url = 'https://cloud.domain.com/remote.php/dav/files/test/image.jpg'
+		const url = 'https://cloud.example.com/remote.php/dav/files/test/image.jpg'
 		const blob = new Blob([new ArrayBuffer(50 * 1024 * 1024)])
 		const data = vi.fn(async () => blob)
 		const signal = new AbortController().signal
@@ -182,7 +161,7 @@ describe('Upload data', () => {
 	test('Upload data stream with destination', async () => {
 		axiosMock.request = vi.fn((config: any) => Promise.resolve(config?.onUploadProgress()))
 
-		const url = 'https://cloud.domain.com/remote.php/dav/files/test/image.jpg'
+		const url = 'https://cloud.example.com/remote.php/dav/files/test/image.jpg'
 		const blob = new Blob([new ArrayBuffer(50 * 1024 * 1024)])
 		const signal = new AbortController().signal
 		const onUploadProgress = vi.fn()
@@ -210,7 +189,7 @@ describe('Upload data', () => {
 	test('Upload cancellation', async () => {
 		axiosMock.request = vi.fn((config: any) => Promise.resolve(config?.onUploadProgress()))
 
-		const url = 'https://cloud.domain.com/remote.php/dav/files/test/image.jpg'
+		const url = 'https://cloud.example.com/remote.php/dav/files/test/image.jpg'
 		const blob = new Blob([new ArrayBuffer(50 * 1024 * 1024)])
 		const data = vi.fn(async () => blob)
 		const controller = new AbortController()
