@@ -14,6 +14,7 @@ declare global {
 			appConfig: {
 				files: {
 					max_chunk_size: number
+					max_parallel_count?: number
 				}
 			}
 		}
