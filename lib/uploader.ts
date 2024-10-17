@@ -22,15 +22,13 @@ import { isFileSystemFileEntry } from './utils/filesystem.js'
 import { Directory } from './utils/fileTree.js'
 import { t } from './utils/l10n.js'
 import logger from './utils/logger.js'
+import { getCapabilities } from '@nextcloud/capabilities'
 
 export enum Status {
 	IDLE = 0,
 	UPLOADING = 1,
 	PAUSED = 2
 }
-
-// Maximum number of concurrent uploads
-const MAX_CONCURRENCY = 5
 
 export class Uploader {
 
@@ -41,7 +39,12 @@ export class Uploader {
 
 	// Global upload queue
 	private _uploadQueue: Array<Upload> = []
-	private _jobQueue: PQueue = new PQueue({ concurrency: MAX_CONCURRENCY })
+	private _jobQueue: PQueue = new PQueue({
+		// Maximum number of concurrent uploads
+		// @ts-expect-error TS2339 Object has no defined properties
+		concurrency: getCapabilities().files?.chunked_upload?.max_parallel_count ?? 5,
+	})
+
 	private _queueSize = 0
 	private _queueProgress = 0
 	private _queueStatus: Status = Status.IDLE
