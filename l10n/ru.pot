@@ -4,10 +4,11 @@
 # Alex <kekcuha@gmail.com>, 2024
 # Влад, 2024
 # Alex <fedotov22091982@gmail.com>, 2024
+# Roman Stepanov, 2024
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Alex <fedotov22091982@gmail.com>, 2024\n"
+"Last-Translator: Roman Stepanov, 2024\n"
 "Language-Team: Russian (https://app.transifex.com/nextcloud/teams/64236/ru/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: ru\n"
@@ -121,6 +122,9 @@ msgstr[3] "Пропустить {count} файлов"
 
 msgid "Unknown size"
 msgstr "Неизвестный размер"
+
+msgid "Upload"
+msgstr "Загрузить"
 
 msgid "Upload files"
 msgstr "Загрузка файлов"
