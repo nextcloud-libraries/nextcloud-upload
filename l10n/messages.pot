@@ -79,6 +79,9 @@ msgstr ""
 msgid "Preview image"
 msgstr ""
 
+msgid "Processing..."
+msgstr ""
+
 msgid "Rename"
 msgstr ""
 
