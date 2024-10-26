@@ -2,27 +2,34 @@
  * SPDX-FileCopyrightText: 2022 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
-import type { AxiosError, AxiosResponse } from 'axios'
-import type { WebDAVClient } from 'webdav'
-import type { IDirectory } from './utils/fileTree'
+import type {AxiosError, AxiosResponse} from 'axios'
+import type {WebDAVClient} from 'webdav'
+import type {IDirectory} from './utils/fileTree'
 
-import { getCurrentUser } from '@nextcloud/auth'
-import { FileType, Folder, Permission, davGetClient, davRemoteURL, davRootPath } from '@nextcloud/files'
-import { encodePath } from '@nextcloud/paths'
-import { normalize } from 'path'
+import {getCurrentUser} from '@nextcloud/auth'
+import {
+	davGetClient,
+	davRemoteURL,
+	davRootPath,
+	FileType,
+	Folder,
+	Permission
+} from '@nextcloud/files'
+import {encodePath} from '@nextcloud/paths'
+import {normalize} from 'path'
 
-import axios, { isCancel } from '@nextcloud/axios'
+import axios, {isCancel} from '@nextcloud/axios'
 import PCancelable from 'p-cancelable'
 import PQueue from 'p-queue'
 
-import { getChunk, initChunkWorkspace, uploadData } from './utils/upload.js'
-import { getMaxChunksSize } from './utils/config.js'
-import { Status as UploadStatus, Upload } from './upload.js'
-import { isFileSystemFileEntry } from './utils/filesystem.js'
-import { Directory } from './utils/fileTree.js'
-import { t } from './utils/l10n.js'
+import {getChunk, initChunkWorkspace, uploadData} from './utils/upload.js'
+import {getMaxChunksSize} from './utils/config.js'
+import {Status as UploadStatus, Upload} from './upload.js'
+import {isFileSystemFileEntry} from './utils/filesystem.js'
+import {Directory} from './utils/fileTree.js'
+import {t} from './utils/l10n.js'
 import logger from './utils/logger.js'
-import { getCapabilities } from '@nextcloud/capabilities'
+import {getCapabilities} from '@nextcloud/capabilities'
 
 export enum Status {
 	IDLE = 0,
@@ -509,6 +516,11 @@ export class Uploader {
 					await Promise.all(chunksQueue)
 					this.updateStats()
 
+					// re-add upload because it was reset
+					this._uploadQueue.push(upload)
+					upload.status = UploadStatus.ASSEMBLING
+					this.updateStats()
+
 					upload.response = await axios.request({
 						method: 'MOVE',
 						url: `${tempUrl}/.file`,
@@ -520,8 +532,9 @@ export class Uploader {
 						},
 					})
 
-					this.updateStats()
+					this._uploadQueue.push(upload)
 					upload.status = UploadStatus.FINISHED
+					this.updateStats()
 					logger.debug(`Successfully uploaded ${file.name}`, { file, upload })
 					resolve(upload)
 				} catch (error) {
