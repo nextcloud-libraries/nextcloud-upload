@@ -265,12 +265,13 @@ export class Uploader {
 		files: (File|FileSystemEntry)[],
 		callback?: (nodes: Array<File|IDirectory>, currentPath: string) => Promise<Array<File|IDirectory>|false>,
 	): PCancelable<Upload[]> {
-		const rootFolder = new Directory('', files)
 		if (!callback) {
 			callback = async (files: Array<File|Directory>) => files
 		}
 
 		return new PCancelable(async (resolve, reject, onCancel) => {
+			const rootFolder = new Directory('')
+			await rootFolder.addChildren(files)
 			// create a meta upload to ensure all ongoing child requests are listed
 			const target = `${this.root.replace(/\/$/, '')}/${destination.replace(/^\//, '')}`
 			const upload = new Upload(target, false, 0, rootFolder)

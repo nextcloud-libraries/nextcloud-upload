@@ -19,15 +19,11 @@ export class Directory extends File {
 	private _path: string
 	private _children: Map<string, File|this>
 
-	constructor(path: string, children?: Array<File|FileSystemEntry>) {
+	constructor(path: string) {
 		super([], basename(path), { type: 'httpd/unix-directory', lastModified: 0 })
 		this._children = new Map()
 		this._originalName = basename(path)
 		this._path = path
-
-		if (children) {
-			children.forEach((c) => this.addChild(c))
-		}
 	}
 
 	get size(): number {
@@ -55,6 +51,21 @@ export class Directory extends File {
 		return this._children.get(name) ?? null
 	}
 
+	/**
+	 * Add multiple children at once
+	 * @param files The files to add
+	 */
+	async addChildren(files: Array<File|FileSystemEntry>): Promise<void> {
+		for (const file of files) {
+			await this.addChild(file)
+		}
+	}
+
+	/**
+	 * Add a child to the directory.
+	 * If it is a nested child the parents will be created if not already exist.
+	 * @param file The child to add
+	 */
 	async addChild(file: File|FileSystemEntry) {
 		const rootPath = this._path && `${this._path}/`
 		if (isFileSystemFileEntry(file)) {
@@ -62,7 +73,11 @@ export class Directory extends File {
 		} else if (isFileSystemDirectoryEntry(file)) {
 			const reader = file.createReader()
 			const entries = await new Promise<FileSystemEntry[]>((resolve, reject) => reader.readEntries(resolve, reject))
-			this._children.set(file.name, new Directory(`${rootPath}${file.name}`, entries))
+
+			// Create a new child directory and add the entries
+			const child = new Directory(`${rootPath}${file.name}`)
+			await child.addChildren(entries)
+			this._children.set(file.name, child)
 			return
 		}
 
@@ -79,18 +94,26 @@ export class Directory extends File {
 			if (!filePath.startsWith(this._path)) {
 				throw new Error(`File ${filePath} is not a child of ${this._path}`)
 			}
+
 			// If file is a child check if we need to nest it
 			const relPath = filePath.slice(rootPath.length)
 			const name = basename(relPath)
-			// It is a direct child
+
 			if (name === relPath) {
+				// It is a direct child so we can add it
 				this._children.set(name, file)
 			} else {
+				// It is not a direct child so we need to create intermediate nodes
 				const base = relPath.slice(0, relPath.indexOf('/'))
 				if (this._children.has(base)) {
-					(this._children.get(base) as Directory).addChild(file)
+					// It is a grandchild so we can add it directly
+					await (this._children.get(base) as Directory).addChild(file)
 				} else {
-					this._children.set(base, new Directory(`${rootPath}${base}`, [file]))
+					// We do not know any parent of that child
+					// so we need to add a new child on the current level
+					const child = new Directory(`${rootPath}${base}`)
+					await child.addChild(file)
+					this._children.set(base, child)
 				}
 			}
 		}
