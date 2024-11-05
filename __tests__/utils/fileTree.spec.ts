@@ -27,16 +27,29 @@ describe('file tree utils', () => {
 		expect(dir.webkitRelativePath).toBe('base/name')
 	})
 
-	it('Can create a directory with content', () => {
-		const dir = new Directory('base', [new File(['a'.repeat(1024)], 'my-file')])
+	it('Can add a direct child to the directory', async () => {
+		const dir = new Directory('base')
+		await dir.addChild(new File(['a'.repeat(1024)], 'my-file'))
+
 		// expected no exception
 		expect(dir.name).toBe('base')
 		expect(dir.children).toHaveLength(1)
 		expect(dir.children[0].name).toBe('my-file')
 	})
 
+	it('Can add multiple direct children to the directory', async () => {
+		const dir = new Directory('base')
+		await dir.addChildren([new File(['a'.repeat(1024)], 'my-file'), new File([], 'other-file')])
+
+		// expected no exception
+		expect(dir.name).toBe('base')
+		expect(dir.children).toHaveLength(2)
+		expect(dir.children.map((file) => file.name)).toEqual(['my-file', 'other-file'])
+	})
+
 	it('Can create a virtual root with content', async () => {
-		const dir = new Directory('', [new File(['I am bar.txt'], 'a/bar.txt')])
+		const dir = new Directory('')
+		await dir.addChildren([new File(['I am bar.txt'], 'a/bar.txt')])
 		expect(dir.name).toBe('')
 
 		expect(dir.children).toHaveLength(1)
@@ -49,15 +62,18 @@ describe('file tree utils', () => {
 		expect(await dirA.children[0].text()).toBe('I am bar.txt')
 	})
 
-	it('Reads the size from the content', () => {
-		const dir = new Directory('base', [new File(['a'.repeat(1024)], 'my-file')])
+	it('Reads the size from the content', async () => {
+		const dir = new Directory('base')
+		await dir.addChild(new File(['a'.repeat(1024)], 'my-file'))
+
 		// expected no exception
 		expect(dir.children).toHaveLength(1)
 		expect(dir.size).toBe(1024)
 	})
 
-	it('Reads the lastModified from the content', () => {
-		const dir = new Directory('base', [new File(['a'.repeat(1024)], 'my-file', { lastModified: 999 })])
+	it('Reads the lastModified from the content', async () => {
+		const dir = new Directory('base')
+		await dir.addChildren([new File(['a'.repeat(1024)], 'my-file', { lastModified: 999 })])
 		// expected no exception
 		expect(dir.children).toHaveLength(1)
 		expect(dir.lastModified).toBe(999)
@@ -84,7 +100,8 @@ describe('file tree utils', () => {
 	})
 
 	it('can add a child to existing ones', async () => {
-		const dir = new Directory('base', [new File(['a'.repeat(1024)], 'my-file')])
+		const dir = new Directory('base')
+		await dir.addChild(new File(['a'.repeat(1024)], 'my-file'))
 		expect(dir.children).toHaveLength(1)
 
 		await dir.addChild(new File(['a'.repeat(1024)], 'my-other-file'))
@@ -100,7 +117,8 @@ describe('file tree utils', () => {
 	})
 
 	it('Can get a child', async () => {
-		const dir = new Directory('base', [new File([], 'base/file')])
+		const dir = new Directory('base')
+		await dir.addChild(new File([], 'base/file'))
 
 		expect(dir.getChild('file')).toBeInstanceOf(File)
 	})
@@ -113,7 +131,7 @@ describe('file tree utils', () => {
 
 	it('Can add nested children', async () => {
 		const dir = new Directory('a')
-		dir.addChild(new File(['I am file D'], 'a/b/c/d.txt'))
+		await dir.addChild(new File(['I am file D'], 'a/b/c/d.txt'))
 
 		expect(dir.children).toHaveLength(1)
 		expect(dir.children[0]).toBeInstanceOf(Directory)
@@ -134,10 +152,10 @@ describe('file tree utils', () => {
 	it('Can add to existing nested children', async () => {
 		// First we start like the "can add nested" test
 		const dir = new Directory('a')
-		dir.addChild(new File(['I am file D'], 'a/b/c/d.txt'))
+		await dir.addChild(new File(['I am file D'], 'a/b/c/d.txt'))
 
 		// But now we add a second file
-		dir.addChild(new File(['I am file E'], 'a/b/e.txt'))
+		await dir.addChild(new File(['I am file E'], 'a/b/e.txt'))
 
 		expect(dir.children).toHaveLength(1)
 		expect(dir.children[0]).toBeInstanceOf(Directory)
