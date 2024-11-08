@@ -83,7 +83,7 @@ msgid "Invalid filename"
 msgstr "اسم ملف غير صحيح"
 
 msgid "Last modified date unknown"
-msgstr "تاريخ آخر تعديل غير معلوم"
+msgstr "تاريخ آخر تعديل غير معروف"
 
 msgid "New"
 msgstr "جديد"
