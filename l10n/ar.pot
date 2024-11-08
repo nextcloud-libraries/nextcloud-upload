@@ -47,7 +47,7 @@ msgid "{time} left"
 msgstr "{time} متبقية"
 
 msgid "a few seconds left"
-msgstr "باقٍ بضعُ ثوانٍ"
+msgstr "بضع ثوانٍ متبقية"
 
 msgid "Cancel"
 msgstr "إلغاء"
