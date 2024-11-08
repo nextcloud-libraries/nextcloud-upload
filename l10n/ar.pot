@@ -2,10 +2,11 @@
 # Translators:
 # Joas Schilling, 2024
 # Ali <alimahwer@yahoo.com>, 2024
+# abusaud, 2024
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Ali <alimahwer@yahoo.com>, 2024\n"
+"Last-Translator: abusaud, 2024\n"
 "Language-Team: Arabic (https://app.transifex.com/nextcloud/teams/64236/ar/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: ar\n"
@@ -31,12 +32,12 @@ msgstr[5] "{count} ملفات متعارضة"
 
 msgid "{count} file conflict in {dirname}"
 msgid_plural "{count} file conflicts in {dirname}"
-msgstr[0] "{count} ملف متعارض في n {dirname}"
-msgstr[1] "{count} ملف متعارض في n {dirname}"
-msgstr[2] "{count} ملفان متعارضان في n {dirname}"
-msgstr[3] "{count} ملف متعارض في n {dirname}"
-msgstr[4] "{count} ملفات متعارضة في n {dirname}"
-msgstr[5] "{count} ملفات متعارضة في n {dirname}"
+msgstr[0] "{count} ملف متعارض في {dirname}"
+msgstr[1] "{count} ملف متعارض في {dirname}"
+msgstr[2] "{count} ملفان متعارضان في {dirname}"
+msgstr[3] "{count} ملف متعارض في {dirname}"
+msgstr[4] "{count} ملفات متعارضة في {dirname}"
+msgstr[5] "{count} ملفات متعارضة في {dirname}"
 
 msgid "{seconds} seconds left"
 msgstr "{seconds} ثانية متبقية"
