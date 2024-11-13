@@ -4,6 +4,29 @@
 -->
 # Changelog
 
+## [v1.7.0](https://github.com/nextcloud-libraries/nextcloud-upload/tree/v1.7.0) \(2024-11-13\)
+
+### Added
+* feat: Add `uploadConflictHandler` to handle conflict resolution by @susnux in https://github.com/nextcloud-libraries/nextcloud-upload/pull/1442
+* feat: Respect parallel count config by @provokateurin in https://github.com/nextcloud-libraries/nextcloud-upload/pull/1444
+
+### Fixed
+* fix: Fix adding children to directory (file tree) for batch uploading by @susnux in https://github.com/nextcloud-libraries/nextcloud-upload/pull/1463
+
+### Changed
+* chore: Add more debug logging to trace errors by @susnux in https://github.com/nextcloud-libraries/nextcloud-upload/pull/1432
+* chore(deps): Bump @nextcloud/dialogs from 5.3.7 to 6.0.1 by @dependabot in https://github.com/nextcloud-libraries/nextcloud-upload/pull/1469
+* chore(deps): Bump @nextcloud/files from 3.9.0 to 3.9.1 by @dependabot in https://github.com/nextcloud-libraries/nextcloud-upload/pull/1452
+* chore(deps): Bump crypto-browserify from 3.12.0 to 3.12.1 by @dependabot in https://github.com/nextcloud-libraries/nextcloud-upload/pull/1450
+* chore(deps): Bump elliptic from 6.5.7 to 6.6.0 by @dependabot in https://github.com/nextcloud-libraries/nextcloud-upload/pull/1461
+* test: Cleanup test setup by @susnux in https://github.com/nextcloud-libraries/nextcloud-upload/pull/1441
+* Translations updates
+
+## New Contributors
+* @provokateurin made their first contribution in https://github.com/nextcloud-libraries/nextcloud-upload/pull/1444
+
+**Full Changelog**: https://github.com/nextcloud-libraries/nextcloud-upload/compare/v1.6.1...v1.7.0
+
 ## [v1.6.1](https://github.com/nextcloud-libraries/nextcloud-upload/tree/v1.6.1) \(2024-09-26\)
 
 ### Fixed
