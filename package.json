@@ -1,6 +1,6 @@
 {
   "name": "@nextcloud/upload",
-  "version": "1.6.2",
+  "version": "1.7.0",
   "description": "Nextcloud file upload client",
   "type": "module",
   "main": "dist/index.cjs",
