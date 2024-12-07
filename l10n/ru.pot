@@ -130,7 +130,7 @@ msgid "Upload files"
 msgstr "Загрузить файлы"
 
 msgid "Upload folders"
-msgstr "Загрузка папок"
+msgstr "Загрузить папки"
 
 msgid "Upload from device"
 msgstr "Загрузка с устройства"
