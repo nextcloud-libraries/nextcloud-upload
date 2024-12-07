@@ -18,7 +18,7 @@ msgid "\"{segment}\" is a forbidden file or folder name."
 msgstr "{segment} — это запрещенное имя файла или папки."
 
 msgid "\"{segment}\" is a forbidden file type."
-msgstr "{segment}— это запрещенный тип файла."
+msgstr "«{segment}» — это запрещенный тип файла."
 
 msgid "\"{segment}\" is not allowed inside a file or folder name."
 msgstr "{segment}не допускается в имени файла или папки."
