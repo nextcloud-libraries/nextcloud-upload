@@ -5,10 +5,11 @@
 # Alex <fedotov22091982@gmail.com>, 2024
 # Roman Stepanov, 2024
 # Maksim Sukharev, 2024
+# Александр, 2024
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Maksim Sukharev, 2024\n"
+"Last-Translator: Александр, 2024\n"
 "Language-Team: Russian (https://app.transifex.com/nextcloud/teams/64236/ru/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: ru\n"
@@ -102,7 +103,7 @@ msgid "Rename"
 msgstr "Переименовать"
 
 msgid "Select all checkboxes"
-msgstr "Установить все флажки"
+msgstr "Выбрать все"
 
 msgid "Select all existing files"
 msgstr "Выбрать все существующие файлы"
