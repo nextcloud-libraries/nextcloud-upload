@@ -128,7 +128,7 @@ msgid "Upload"
 msgstr "Загрузить"
 
 msgid "Upload files"
-msgstr "Загрузка файлов"
+msgstr "Загрузить файлы"
 
 msgid "Upload folders"
 msgstr "Загрузка папок"
