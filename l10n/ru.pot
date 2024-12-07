@@ -1,7 +1,6 @@
 # 
 # Translators:
 # Joas Schilling, 2024
-# Alex <kekcuha@gmail.com>, 2024
 # Влад, 2024
 # Alex <fedotov22091982@gmail.com>, 2024
 # Roman Stepanov, 2024
@@ -146,7 +145,7 @@ msgid "Upload of \"{folder}\" has been skipped"
 msgstr "Загрузка {folder}была пропущена"
 
 msgid "Upload progress"
-msgstr "Состояние передачи на сервер"
+msgstr "Прогресс загрузки"
 
 msgid ""
 "When an incoming folder is selected, any conflicting files within it will "
