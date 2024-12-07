@@ -1,27 +1,27 @@
 # 
 # Translators:
 # Joas Schilling, 2024
-# Alex <kekcuha@gmail.com>, 2024
 # Влад, 2024
 # Alex <fedotov22091982@gmail.com>, 2024
 # Roman Stepanov, 2024
+# Maksim Sukharev, 2024
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Roman Stepanov, 2024\n"
+"Last-Translator: Maksim Sukharev, 2024\n"
 "Language-Team: Russian (https://app.transifex.com/nextcloud/teams/64236/ru/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: ru\n"
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
 
 msgid "\"{segment}\" is a forbidden file or folder name."
-msgstr "{segment} — это запрещенное имя файла или папки."
+msgstr "«{segment}» — это запрещенное имя файла или папки."
 
 msgid "\"{segment}\" is a forbidden file type."
-msgstr "{segment}— это запрещенный тип файла."
+msgstr "«{segment}» — это запрещенный тип файла."
 
 msgid "\"{segment}\" is not allowed inside a file or folder name."
-msgstr "{segment}не допускается в имени файла или папки."
+msgstr "«{segment}» не допускается в имени файла или папки."
 
 msgid "{count} file conflict"
 msgid_plural "{count} files conflict"
@@ -32,10 +32,10 @@ msgstr[3] "конфликт {count} файлов"
 
 msgid "{count} file conflict in {dirname}"
 msgid_plural "{count} file conflicts in {dirname}"
-msgstr[0] "конфликт {count} файла в {dirname}"
-msgstr[1] "конфликт {count} файлов в {dirname}"
-msgstr[2] "конфликт {count} файлов в {dirname}"
-msgstr[3] "конфликт {count} файлов в {dirname}"
+msgstr[0] "конфликт {count} файла в «{dirname}»"
+msgstr[1] "конфликт {count} файлов в «{dirname}»"
+msgstr[2] "конфликт {count} файлов в «{dirname}»"
+msgstr[3] "конфликт {count} файлов в «{dirname}»"
 
 msgid "{seconds} seconds left"
 msgstr "осталось {seconds} секунд"
@@ -48,10 +48,10 @@ msgid "a few seconds left"
 msgstr "осталось несколько секунд"
 
 msgid "Cancel"
-msgstr "Отмена"
+msgstr "Отменить"
 
 msgid "Cancel the entire operation"
-msgstr "Отменить всю операцию целиком"
+msgstr "Отменить операцию целиком"
 
 msgid "Cancel uploads"
 msgstr "Отменить загрузки"
@@ -69,7 +69,7 @@ msgid "Existing version"
 msgstr "Текущая версия"
 
 msgid "Filenames must not end with \"{segment}\"."
-msgstr "Имена файлов не должны заканчиваться на {segment}"
+msgstr "Имена файлов не должны заканчиваться на «{segment}»"
 
 msgid ""
 "If you select both versions, the incoming file will have a number added to "
@@ -111,7 +111,7 @@ msgid "Select all new files"
 msgstr "Выбрать все новые файлы"
 
 msgid "Skip"
-msgstr "Пропуск"
+msgstr "Пропустить"
 
 msgid "Skip this file"
 msgid_plural "Skip {count} files"
@@ -127,13 +127,13 @@ msgid "Upload"
 msgstr "Загрузить"
 
 msgid "Upload files"
-msgstr "Загрузка файлов"
+msgstr "Загрузить файлы"
 
 msgid "Upload folders"
-msgstr "Загрузка папок"
+msgstr "Загрузить папки"
 
 msgid "Upload from device"
-msgstr "Загрузка с устройства"
+msgstr "Загрузить с устройства"
 
 msgid "Upload has been cancelled"
 msgstr "Загрузка была отменена"
@@ -142,10 +142,10 @@ msgid "Upload has been skipped"
 msgstr "Загрузка была пропущена"
 
 msgid "Upload of \"{folder}\" has been skipped"
-msgstr "Загрузка {folder}была пропущена"
+msgstr "Загрузка «{folder}» была пропущена"
 
 msgid "Upload progress"
-msgstr "Состояние передачи на сервер"
+msgstr "Прогресс загрузки"
 
 msgid ""
 "When an incoming folder is selected, any conflicting files within it will "
