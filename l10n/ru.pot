@@ -142,7 +142,7 @@ msgid "Upload has been skipped"
 msgstr "Загрузка была пропущена"
 
 msgid "Upload of \"{folder}\" has been skipped"
-msgstr "Загрузка {folder}была пропущена"
+msgstr "Загрузка «{folder}» была пропущена"
 
 msgid "Upload progress"
 msgstr "Прогресс загрузки"
