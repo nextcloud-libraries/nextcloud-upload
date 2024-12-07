@@ -69,7 +69,7 @@ msgid "Existing version"
 msgstr "Текущая версия"
 
 msgid "Filenames must not end with \"{segment}\"."
-msgstr "Имена файлов не должны заканчиваться на {segment}"
+msgstr "Имена файлов не должны заканчиваться на «{segment}»"
 
 msgid ""
 "If you select both versions, the incoming file will have a number added to "
