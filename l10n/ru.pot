@@ -51,7 +51,7 @@ msgid "Cancel"
 msgstr "Отменить"
 
 msgid "Cancel the entire operation"
-msgstr "Отменить всю операцию целиком"
+msgstr "Отменить операцию целиком"
 
 msgid "Cancel uploads"
 msgstr "Отменить загрузки"
