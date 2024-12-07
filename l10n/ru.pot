@@ -133,7 +133,7 @@ msgid "Upload folders"
 msgstr "Загрузить папки"
 
 msgid "Upload from device"
-msgstr "Загрузка с устройства"
+msgstr "Загрузить с устройства"
 
 msgid "Upload has been cancelled"
 msgstr "Загрузка была отменена"
