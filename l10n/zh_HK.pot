@@ -150,7 +150,7 @@ msgstr "您想保留哪些檔案？"
 msgid ""
 "You can either rename the file, skip this file or cancel the whole "
 "operation."
-msgstr "您可以選擇重新命名文件、跳過此文件或取消整個操作。"
+msgstr "您可以選擇重新命名檔案、跳過此檔案或取消整個操作。"
 
 msgid "You need to select at least one version of each file to continue."
 msgstr "您必須為每個檔案都至少選取一個版本以繼續。"
