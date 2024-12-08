@@ -126,6 +126,11 @@
 			</template>
 		</NcButton>
 
+		<div v-show="!isUploading && isAssembling" class="upload-picker__loading">
+			<NcLoadingIcon />
+			<p>{{ t('Processing...') }}</p>
+		</div>
+
 		<!-- Hidden files picker input -->
 		<input ref="input"
 			:accept="accept?.join?.(', ')"
@@ -144,7 +149,7 @@ import type { Upload } from '../upload.ts'
 
 import { Folder, NewMenuEntryCategory, getNewFileMenuEntries } from '@nextcloud/files'
 import makeEta from 'simple-eta'
-import Vue from 'vue'
+import { defineComponent } from 'vue'
 
 import NcActionButton from '@nextcloud/vue/dist/Components/NcActionButton.js'
 import NcActionCaption from '@nextcloud/vue/dist/Components/NcActionCaption.js'
@@ -152,6 +157,7 @@ import NcActionSeparator from '@nextcloud/vue/dist/Components/NcActionSeparator.
 import NcActions from '@nextcloud/vue/dist/Components/NcActions.js'
 import NcButton from '@nextcloud/vue/dist/Components/NcButton.js'
 import NcIconSvgWrapper from '@nextcloud/vue/dist/Components/NcIconSvgWrapper.js'
+import NcLoadingIcon from '@nextcloud/vue/dist/Components/NcLoadingIcon.js'
 import NcProgressBar from '@nextcloud/vue/dist/Components/NcProgressBar.js'
 
 import IconCancel from 'vue-material-design-icons/Cancel.vue'
@@ -166,7 +172,7 @@ import { t } from '../utils/l10n.ts'
 import logger from '../utils/logger.ts'
 import { uploadConflictHandler } from '../utils/conflicts.ts'
 
-export default Vue.extend({
+export default defineComponent({
 	name: 'UploadPicker',
 
 	components: {
@@ -180,6 +186,7 @@ export default Vue.extend({
 		NcActions,
 		NcButton,
 		NcIconSvgWrapper,
+		NcLoadingIcon,
 		NcProgressBar,
 	},
 
@@ -293,7 +300,7 @@ export default Vue.extend({
 			return this.queue?.filter((upload: Upload) => upload.status === UploadStatus.FAILED).length !== 0
 		},
 		isUploading() {
-			return this.queue?.length > 0
+			return this.queue?.filter((upload: Upload) => upload.status === UploadStatus.UPLOADING).length !== 0
 		},
 		isAssembling() {
 			return this.queue?.filter((upload: Upload) => upload.status === UploadStatus.ASSEMBLING).length !== 0
@@ -393,7 +400,6 @@ export default Vue.extend({
 		async getContent(path?: string) {
 			return Array.isArray(this.content) ? this.content : await this.content(path)
 		},
-
 
 		/**
 		 * Start uploading
@@ -506,6 +512,12 @@ $progress-width: 200px;
 
 	&--paused &__progress {
 		animation: breathing 3s ease-out infinite normal;
+	}
+
+	&__loading {
+		display: flex;
+		margin-left: 8px;
+		gap: 8px;
 	}
 }
 
