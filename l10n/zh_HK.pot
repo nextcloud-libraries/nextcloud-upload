@@ -11,6 +11,15 @@ msgstr ""
 "Language: zh_HK\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
+msgid "\"{segment}\" is a forbidden file or folder name."
+msgstr "\"{segment}\" 是禁止使用的檔案或資料夾名稱。"
+
+msgid "\"{segment}\" is a forbidden file type."
+msgstr "\"{segment}\" 是禁止使用的檔案類型。"
+
+msgid "\"{segment}\" is not allowed inside a file or folder name."
+msgstr "\"{segment}\" 不允許出現在檔案或資料夾名稱中。"
+
 msgid "{count} file conflict"
 msgid_plural "{count} files conflict"
 msgstr[0] "{count} 個檔案衝突"
@@ -41,22 +50,34 @@ msgstr "取消上傳"
 msgid "Continue"
 msgstr "繼續"
 
+msgid "Create new"
+msgstr "創建新"
+
 msgid "estimating time left"
 msgstr "估計剩餘時間"
 
 msgid "Existing version"
 msgstr "既有版本"
 
+msgid "Filenames must not end with \"{segment}\"."
+msgstr "檔案名不得以 \"{segment}\" 結尾。"
+
 msgid ""
 "If you select both versions, the incoming file will have a number added to "
 "its name."
 msgstr "若您選取兩個版本，傳入檔案的名稱將會新增編號。"
+
+msgid "Invalid filename"
+msgstr "無效的檔案名"
 
 msgid "Last modified date unknown"
 msgstr "最後修改日期不詳"
 
 msgid "New"
 msgstr "新增"
+
+msgid "New filename"
+msgstr "新檔案名"
 
 msgid "New version"
 msgstr "新版本 "
@@ -67,6 +88,9 @@ msgstr "已暫停"
 msgid "Preview image"
 msgstr "預覽圖片"
 
+msgid "Rename"
+msgstr "重新命名"
+
 msgid "Select all checkboxes"
 msgstr "選取所有核取方塊"
 
@@ -76,6 +100,9 @@ msgstr "選取所有既有檔案"
 msgid "Select all new files"
 msgstr "選取所有新檔案"
 
+msgid "Skip"
+msgstr "跳過"
+
 msgid "Skip this file"
 msgid_plural "Skip {count} files"
 msgstr[0] "略過 {count} 個檔案"
@@ -83,11 +110,26 @@ msgstr[0] "略過 {count} 個檔案"
 msgid "Unknown size"
 msgstr "大小不詳"
 
-msgid "Upload cancelled"
-msgstr "已取消上傳"
+msgid "Upload"
+msgstr "上傳"
 
 msgid "Upload files"
 msgstr "上傳檔案"
+
+msgid "Upload folders"
+msgstr "上傳資料夾"
+
+msgid "Upload from device"
+msgstr "從裝置上傳"
+
+msgid "Upload has been cancelled"
+msgstr "上傳已被取消"
+
+msgid "Upload has been skipped"
+msgstr "上傳已被跳過"
+
+msgid "Upload of \"{folder}\" has been skipped"
+msgstr "\"{folder}\" 的上傳已被跳過"
 
 msgid "Upload progress"
 msgstr "上傳進度"
@@ -104,6 +146,11 @@ msgstr "選擇傳入資料夾後，內容將寫入現有資料夾並執行遞歸
 
 msgid "Which files do you want to keep?"
 msgstr "您想保留哪些檔案？"
+
+msgid ""
+"You can either rename the file, skip this file or cancel the whole "
+"operation."
+msgstr "您可以選擇重新命名文件、跳過此文件或取消整個操作。"
 
 msgid "You need to select at least one version of each file to continue."
 msgstr "您必須為每個檔案都至少選取一個版本以繼續。"
