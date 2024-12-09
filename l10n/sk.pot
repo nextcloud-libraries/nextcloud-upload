@@ -1,35 +1,171 @@
 # 
 # Translators:
-# Transifex Bot <>, 2022
+# Jozef Gaal <preklady@mayday.sk>, 2024
+# Tomas Rusnak <linkermail@gmail.com>, 2024
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Transifex Bot <>, 2022\n"
-"Language-Team: Slovak (Slovakia) (https://www.transifex.com/nextcloud/teams/64236/sk_SK/)\n"
+"Last-Translator: Tomas Rusnak <linkermail@gmail.com>, 2024\n"
+"Language-Team: Slovak (Slovakia) (https://app.transifex.com/nextcloud/teams/64236/sk_SK/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: sk_SK\n"
 "Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n == 1 ? 0 : n % 1 == 0 && n >= 2 && n <= 4 ? 1 : n % 1 != 0 ? 2: 3);\n"
 
-msgid "{estimate} seconds left"
-msgstr ""
+msgid "\"{segment}\" is a forbidden file or folder name."
+msgstr "„{segment}“ je zakázaný názov súboru alebo priečinka."
 
-msgid "{hours} hours and {minutes} minutes left"
-msgstr ""
+msgid "\"{segment}\" is a forbidden file type."
+msgstr "\"{segment}\" je zákazaný typ súboru."
 
-msgid "{minutes} minutes left"
-msgstr ""
+msgid "\"{segment}\" is not allowed inside a file or folder name."
+msgstr "\"{segment}“ je zakázané v názve súboru alebo adresára."
+
+msgid "{count} file conflict"
+msgid_plural "{count} files conflict"
+msgstr[0] "{count} súbor má konflikt"
+msgstr[1] "{count} súbory majú konflikt"
+msgstr[2] "{count} súborov má konflikt"
+msgstr[3] "{count} súborov má konflikt"
+
+msgid "{count} file conflict in {dirname}"
+msgid_plural "{count} file conflicts in {dirname}"
+msgstr[0] "{count} súborový konflikt v {dirname}"
+msgstr[1] "{count} súborové konflikty v {dirname}"
+msgstr[2] "{count} súborových konfliktov v {dirname}"
+msgstr[3] "{count} súborových konfliktov v {dirname}"
+
+msgid "{seconds} seconds left"
+msgstr "{seconds} sekúnd zostáva"
+
+#. TRANSLATORS time has the format 00:00:00
+msgid "{time} left"
+msgstr "{time} zostáva"
 
 msgid "a few seconds left"
-msgstr ""
+msgstr "zostáva niekoľko sekúnd"
 
-msgid "Add"
-msgstr ""
+msgid "Cancel"
+msgstr "Zrušiť"
+
+msgid "Cancel the entire operation"
+msgstr "Zrušiť celú operáciu"
 
 msgid "Cancel uploads"
-msgstr ""
+msgstr "Zrušiť nahrávanie"
+
+msgid "Continue"
+msgstr "Pokračovať"
+
+msgid "Create new"
+msgstr "Vytvoriť nové"
 
 msgid "estimating time left"
+msgstr "odhadovanie zostávajúceho času"
+
+msgid "Existing version"
+msgstr "Existujúca verzia"
+
+msgid "Filenames must not end with \"{segment}\"."
+msgstr "Názvy súborov nesmú končiť znakom \"{segment}\"."
+
+msgid ""
+"If you select both versions, the incoming file will have a number added to "
+"its name."
 msgstr ""
+"Ak vyberiete obe verzie, k názvu prichádzajúceho súboru sa pridá číslo."
+
+msgid "Invalid filename"
+msgstr "Neplatný názov súboru"
+
+msgid "Last modified date unknown"
+msgstr "Dátum poslednej úpravy neznámy"
+
+msgid "New"
+msgstr "Nový"
+
+msgid "New filename"
+msgstr "Nový názov súboru"
+
+msgid "New version"
+msgstr "Nová verzia"
 
 msgid "paused"
+msgstr "pozastavené"
+
+msgid "Preview image"
+msgstr "Náhľad obrázka"
+
+msgid "Rename"
+msgstr "Premenovať"
+
+msgid "Select all checkboxes"
+msgstr "Označiť všetky výberové políčka"
+
+msgid "Select all existing files"
+msgstr "Vybrať všetky existujúce súbory"
+
+msgid "Select all new files"
+msgstr "Vybrať všetky nové súbory"
+
+msgid "Skip"
+msgstr "Preskočiť"
+
+msgid "Skip this file"
+msgid_plural "Skip {count} files"
+msgstr[0] "Preskočiť tento súbor"
+msgstr[1] "Preskočiť {count} súbory"
+msgstr[2] "Preskočiť {count} súborov"
+msgstr[3] "Preskočiť {count} súborov"
+
+msgid "Unknown size"
+msgstr "Neznáma veľkosť"
+
+msgid "Upload"
+msgstr "Nahrať"
+
+msgid "Upload files"
+msgstr "Nahrať súbory"
+
+msgid "Upload folders"
+msgstr "Nahrať priečinky"
+
+msgid "Upload from device"
+msgstr "Nahrať zo zariadenia"
+
+msgid "Upload has been cancelled"
+msgstr "Nahrávanie bolo zrušené"
+
+msgid "Upload has been skipped"
+msgstr "Nahrávanie bolo preskočené"
+
+msgid "Upload of \"{folder}\" has been skipped"
+msgstr "Nahrávanie \"{folder}\" bolo preskočené"
+
+msgid "Upload progress"
+msgstr "Priebeh nahrávania"
+
+msgid ""
+"When an incoming folder is selected, any conflicting files within it will "
+"also be overwritten."
 msgstr ""
+"Keď je vybraný prichádzajúci priečinok, prepíšu sa aj všetky konfliktné "
+"súbory v ňom."
+
+msgid ""
+"When an incoming folder is selected, the content is written into the "
+"existing folder and a recursive conflict resolution is performed."
+msgstr ""
+"Po výbere prichádzajúceho priečinka sa obsah zapíše do existujúceho "
+"priečinka a vykoná sa rekurzívne riešenie konfliktov."
+
+msgid "Which files do you want to keep?"
+msgstr "Ktoré súbory chcete ponechať?"
+
+msgid ""
+"You can either rename the file, skip this file or cancel the whole "
+"operation."
+msgstr "Súbor môžete premenovať, preskočiť alebo zrušiť celú operáciu."
+
+msgid "You need to select at least one version of each file to continue."
+msgstr ""
+"Ak chcete pokračovať, musíte vybrať aspoň jednu verziu každého súboru."
