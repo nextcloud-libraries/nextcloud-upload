@@ -141,7 +141,7 @@ describe('Cancellation', () => {
 		const upload = new Upload('http://domain.com/remote.php/dav/files/user/image.jpg', true, 10 * 1024 * 1024, file)
 
 		// Mock controller and spy on abort
-		upload['_controller'] = controller
+		upload._controller = controller
 		vi.spyOn(controller, 'abort')
 
 		expect(upload.signal).toBeInstanceOf(AbortSignal)
@@ -165,7 +165,7 @@ describe('Cancellation', () => {
 		const upload = new Upload('http://domain.com/remote.php/dav/files/user/image.jpg', true, 150 * 1024 * 1024, file)
 
 		// Mock controller and spy on abort
-		upload['_controller'] = controller
+		upload._controller = controller
 		vi.spyOn(controller, 'abort')
 
 		expect(upload.signal).toBeInstanceOf(AbortSignal)

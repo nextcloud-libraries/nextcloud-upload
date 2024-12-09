@@ -1,4 +1,4 @@
-/**
+/*!
  * SPDX-FileCopyrightText: 2022 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
@@ -7,12 +7,12 @@
 // implemented in node 15
 const timeout = (timeout: number, data = {}, signal: AbortSignal = new AbortController().signal) => {
 	return new Promise((resolve, reject) => {
-		if (signal?.aborted){
-			reject(new DOMException("Aborted", "AbortError"))
+		if (signal?.aborted) {
+			reject(new DOMException('Aborted', 'AbortError'))
 			return
 		}
 		signal.addEventListener('abort', () => {
-			reject(new DOMException("Aborted", "AbortError"))
+			reject(new DOMException('Aborted', 'AbortError'))
 		})
 
 		setTimeout(() => {
