@@ -4,6 +4,18 @@
 -->
 # Changelog
 
+## [v1.7.1](https://github.com/nextcloud-libraries/nextcloud-upload/tree/v1.7.1) \(2024-12-10\)
+### Fixed
+* fix(uploader): only monitor the queue being idle when we know we are finishing the upload by @skjnldsv in https://github.com/nextcloud-libraries/nextcloud-upload/pull/1521
+
+### Changed
+* chore(deps): Bump @nextcloud/files from 3.9.1 to 3.10.0 by @dependabot
+* chore(deps): Bump @nextcloud/sharing from 0.2.3 to 0.2.4 by @dependabot
+* chore(deps): Bump axios from 1.7.7 to 1.7.9 by @dependabot
+* Translations updates
+
+**Full Changelog**: https://github.com/nextcloud-libraries/nextcloud-upload/compare/v1.7.0...v1.7.1
+
 ## [v1.7.0](https://github.com/nextcloud-libraries/nextcloud-upload/tree/v1.7.0) \(2024-11-13\)
 
 ### Added
