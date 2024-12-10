@@ -8,6 +8,8 @@ import { getCurrentUser } from '@nextcloud/auth'
 import axios from '@nextcloud/axios'
 import axiosRetry, { exponentialDelay } from 'axios-retry'
 
+import logger from './logger'
+
 axiosRetry(axios, { retries: 0 })
 
 type UploadData = Blob | (() => Promise<Blob>)
@@ -101,6 +103,8 @@ export const initChunkWorkspace = async function(destinationFile: string | undef
 			retryDelay: (retryCount, error) => exponentialDelay(retryCount, error, 1000),
 		},
 	})
+
+	logger.debug('Created temporary upload workspace', { url })
 
 	return url
 }

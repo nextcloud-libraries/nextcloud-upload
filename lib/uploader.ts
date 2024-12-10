@@ -88,9 +88,6 @@ export class Uploader {
 		}
 		this.destination = destinationFolder
 
-		// Reset when upload queue is done
-		this._jobQueue.addListener('idle', () => this.reset())
-
 		logger.debug('Upload workspace initialized', {
 			destination: this.destination,
 			root: this.root,
@@ -157,12 +154,18 @@ export class Uploader {
 	}
 
 	private reset() {
+		// If there is no upload in the queue and no job in the queue
+		if (this._uploadQueue.length === 0 && this._jobQueue.size === 0) {
+			return
+		}
+
 		// Reset upload queue but keep the reference
 		this._uploadQueue.splice(0, this._uploadQueue.length)
 		this._jobQueue.clear()
 		this._queueSize = 0
 		this._queueProgress = 0
 		this._queueStatus = Status.IDLE
+		logger.debug('Uploader state reset')
 	}
 
 	/**
@@ -595,6 +598,16 @@ export class Uploader {
 				this._jobQueue.add(request)
 				this.updateStats()
 			}
+
+			// Reset when upload queue is done
+			// Only when we know we're closing on the last chunks
+			// and/or assembling we can reset the uploader.
+			// Otherwise he queue might be idle for a short time
+			// and clear the Upload queue before we're done.
+			this._jobQueue.onIdle()
+				.then(() => this.reset())
+
+			// Finally return the Upload
 			return upload
 		}) as PCancelable<Upload>
 
