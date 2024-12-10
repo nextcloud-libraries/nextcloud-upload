@@ -394,7 +394,6 @@ export default Vue.extend({
 			return Array.isArray(this.content) ? this.content : await this.content(path)
 		},
 
-
 		/**
 		 * Start uploading
 		 */
