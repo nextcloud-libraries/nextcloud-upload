@@ -517,10 +517,6 @@ export class Uploader {
 				try {
 					// Once all chunks are sent, assemble the final file
 					await Promise.all(chunksQueue)
-					this.updateStats()
-
-					// re-add upload because it was reset
-					this._uploadQueue.push(upload)
 					upload.status = UploadStatus.ASSEMBLING
 					this.updateStats()
 
@@ -535,7 +531,6 @@ export class Uploader {
 						},
 					})
 
-					this._uploadQueue.push(upload)
 					upload.status = UploadStatus.FINISHED
 					this.updateStats()
 					logger.debug(`Successfully uploaded ${file.name}`, { file, upload })
@@ -583,6 +578,7 @@ export class Uploader {
 
 						// Update progress
 						upload.uploaded = upload.size
+						upload.status = UploadStatus.FINISHED
 						this.updateStats()
 
 						// Resolve
