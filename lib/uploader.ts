@@ -7,7 +7,14 @@ import type { WebDAVClient } from 'webdav'
 import type { IDirectory } from './utils/fileTree'
 
 import { getCurrentUser } from '@nextcloud/auth'
-import { FileType, Folder, Permission, davGetClient, davRemoteURL, davRootPath } from '@nextcloud/files'
+import {
+	davGetClient,
+	davRemoteURL,
+	davRootPath,
+	FileType,
+	Folder,
+	Permission,
+} from '@nextcloud/files'
 import { encodePath } from '@nextcloud/paths'
 import { normalize } from 'path'
 
@@ -510,6 +517,7 @@ export class Uploader {
 				try {
 					// Once all chunks are sent, assemble the final file
 					await Promise.all(chunksQueue)
+					upload.status = UploadStatus.ASSEMBLING
 					this.updateStats()
 
 					upload.response = await axios.request({
@@ -523,8 +531,8 @@ export class Uploader {
 						},
 					})
 
-					this.updateStats()
 					upload.status = UploadStatus.FINISHED
+					this.updateStats()
 					logger.debug(`Successfully uploaded ${file.name}`, { file, upload })
 					resolve(upload)
 				} catch (error) {
@@ -570,6 +578,7 @@ export class Uploader {
 
 						// Update progress
 						upload.uploaded = upload.size
+						upload.status = UploadStatus.FINISHED
 						this.updateStats()
 
 						// Resolve
