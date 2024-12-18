@@ -59,7 +59,7 @@
     "@tsconfig/cypress": "^1.0.2",
     "@types/node": "^22.10.2",
     "@vitest/coverage-v8": "^2.1.8",
-    "@vue/tsconfig": "^0.5.1",
+    "@vue/tsconfig": "^0.7.0",
     "blob-polyfill": "^9.0.20240710",
     "cypress": "^13.17.0",
     "cypress-file-upload": "^5.0.8",
