@@ -2,7 +2,7 @@
  * SPDX-FileCopyrightText: 2022 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
-import type { AxiosProgressEvent, AxiosResponse } from 'axios'
+import type { AxiosProgressEvent, AxiosResponse, AxiosError } from 'axios'
 import { generateRemoteUrl } from '@nextcloud/router'
 import { getCurrentUser } from '@nextcloud/auth'
 import axios from '@nextcloud/axios'
@@ -62,7 +62,7 @@ export const uploadData = async function(
 		headers,
 		'axios-retry': {
 			retries,
-			retryDelay: (retryCount, error) => exponentialDelay(retryCount, error, 1000),
+			retryDelay: (retryCount: number, error: AxiosError) => exponentialDelay(retryCount, error, 1000),
 		},
 	})
 }
@@ -100,7 +100,7 @@ export const initChunkWorkspace = async function(destinationFile: string | undef
 		headers,
 		'axios-retry': {
 			retries,
-			retryDelay: (retryCount, error) => exponentialDelay(retryCount, error, 1000),
+			retryDelay: (retryCount: number, error: AxiosError) => exponentialDelay(retryCount, error, 1000),
 		},
 	})
 
