@@ -10,6 +10,7 @@ import { getCurrentUser } from '@nextcloud/auth'
 import { FileType, Folder, Permission, davGetClient, davRemoteURL, davRootPath } from '@nextcloud/files'
 import { encodePath } from '@nextcloud/paths'
 import { normalize } from 'path'
+import { getCapabilities } from '@nextcloud/capabilities'
 
 import axios, { isCancel } from '@nextcloud/axios'
 import PCancelable from 'p-cancelable'
@@ -22,7 +23,6 @@ import { isFileSystemFileEntry } from './utils/filesystem.js'
 import { Directory } from './utils/fileTree.js'
 import { t } from './utils/l10n.js'
 import logger from './utils/logger.js'
-import { getCapabilities } from '@nextcloud/capabilities'
 
 export enum Status {
 	IDLE = 0,

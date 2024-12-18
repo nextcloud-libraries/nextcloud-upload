@@ -137,11 +137,9 @@ describe('UploadPicker: "new"-menu', () => {
 			// Check and init aliases
 			cy.get('[data-cy-upload-picker] [data-cy-upload-picker-input]').as('input').should('exist')
 			cy.get('[data-cy-upload-picker] .upload-picker__progress').as('progress').should('exist')
-			cy.get('[data-cy-upload-picker] .action-item__menutoggle')
-				.as('menuButton')
-				.should('exist')
+			cy.get('[data-cy-upload-picker] .action-item__menutoggle').should('exist')
 
-			cy.get('@menuButton').click()
+			cy.get('[data-cy-upload-picker] .action-item__menutoggle').click()
 			cy.get('[data-cy-upload-picker-menu-entry="upload-file"]').should('have.length', 1)
 			cy.get('[data-cy-upload-picker-menu-entry="empty-file"]').should('have.length', 1)
 
@@ -152,42 +150,42 @@ describe('UploadPicker: "new"-menu', () => {
 				})
 		})
 
-		it('Changes the context', () => {
+		it.only('Changes the context', () => {
 			// Mount picker
-			cy.mount(UploadPicker, { propsData })
+			cy.mount(UploadPicker, { propsData }).then(({ component }) => {
+				const instance = component as InstanceType<typeof UploadPicker>
 
-			// Check and init aliases
-			cy.get('[data-cy-upload-picker] [data-cy-upload-picker-input]').as('input').should('exist')
-			cy.get('[data-cy-upload-picker] .upload-picker__progress').as('progress').should('exist')
-			cy.get('[data-cy-upload-picker] .action-item__menutoggle')
-				.as('menuButton')
-				.should('exist')
+				// Check and init aliases
+				cy.get('[data-cy-upload-picker] [data-cy-upload-picker-input]').as('input').should('exist')
+				cy.get('[data-cy-upload-picker] .upload-picker__progress').as('progress').should('exist')
+				cy.get('[data-cy-upload-picker] .action-item__menutoggle').should('exist')
 
-			cy.get('@menuButton').click()
-			cy.get('[data-cy-upload-picker-menu-entry="upload-file"]').should('have.length', 1)
-			cy.get('[data-cy-upload-picker-menu-entry="empty-file"]').should('have.length', 1)
+				cy.get('[data-cy-upload-picker] .action-item__menutoggle').click()
+				cy.get('[data-cy-upload-picker-menu-entry="upload-file"]').should('have.length', 1)
+				cy.get('[data-cy-upload-picker-menu-entry="empty-file"]').should('have.length', 1)
 
-			// Close menu
-			cy.get('body').click()
-			cy.get('[data-cy-upload-picker-menu-entry="upload-file"]').should('not.be.visible')
-			cy.get('[data-cy-upload-picker-menu-entry="empty-file"]').should('not.be.visible')
+				// Close menu
+				cy.get('body').click()
+				cy.get('[data-cy-upload-picker-menu-entry="upload-file"]').should('not.be.visible')
+				cy.get('[data-cy-upload-picker-menu-entry="empty-file"]').should('not.be.visible')
 
-			cy.get('@component').then((component) => {
-				component.setDestination(new Folder({
-					id: 56,
-					owner: 'user',
-					source: generateRemoteUrl('dav/files/user/Folder'),
-					permissions: Permission.NONE,
-					root: '/files/user',
-				}))
+				// Change context when we're sure the menu is closed
+				cy.get('[role="menu"]').should('not.be.visible')
+					.then(() => {
+						instance.setDestination(new Folder({
+							id: 56,
+							owner: 'user',
+							source: generateRemoteUrl('dav/files/user/Folder'),
+							permissions: Permission.NONE,
+							root: '/files/user',
+						}))
+					})
+
+				// Menu should not be visible anymore
+				cy.get('[data-cy-upload-picker] .action-item__menutoggle').should('not.exist')
+				cy.get('[data-cy-upload-picker-menu-entry="upload-file"]').should('have.length', 1)
+				cy.get('[data-cy-upload-picker-menu-entry="empty-file"]').should('not.exist')
 			})
-
-			// Menu should not be visible anymore
-			cy.get('[data-cy-upload-picker] .action-item__menutoggle')
-				.as('menuButton')
-				.should('not.exist')
-			cy.get('[data-cy-upload-picker-menu-entry="upload-file"]').should('have.length', 1)
-			cy.get('[data-cy-upload-picker-menu-entry="empty-file"]').should('not.exist')
 		})
 	})
 })

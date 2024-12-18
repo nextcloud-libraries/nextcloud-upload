@@ -7,8 +7,8 @@ import type { AsyncComponent } from 'vue'
 
 import { isPublicShare } from '@nextcloud/sharing/public'
 import Vue, { defineAsyncComponent } from 'vue'
-import { Uploader } from './uploader'
 
+import { Uploader } from './uploader'
 import UploadPicker from './components/UploadPicker.vue'
 
 export type { IDirectory, Directory } from './utils/fileTree'

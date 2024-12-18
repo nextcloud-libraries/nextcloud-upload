@@ -264,8 +264,9 @@ describe('Destination management', () => {
 			)
 		})
 
-		cy.get('@component').then((component) => {
-			component.setDestination(new Folder({
+		cy.mount(UploadPicker, { propsData }).then(({ component }) => {
+			const instance = component as InstanceType<typeof UploadPicker>
+			instance.setDestination(new Folder({
 				id: 56,
 				owner: 'user',
 				source: generateRemoteUrl('dav/files/user/Photos'),
@@ -273,7 +274,7 @@ describe('Destination management', () => {
 				root: '/files/user',
 			}))
 			// Wait for prop propagation
-			expect(component.uploadManager.root).to.have.string('/remote.php/dav/files/user/Photos')
+			expect(instance.uploadManager.root).to.have.string('/remote.php/dav/files/user/Photos')
 		})
 
 		cy.get('@input').attachFile({
@@ -335,8 +336,9 @@ describe('Root management', () => {
 			)
 		})
 
-		cy.get('@component').then((component) => {
-			component.setDestination(new Folder({
+		cy.mount(UploadPicker, { propsData }).then(({ component }) => {
+			const instance = component as InstanceType<typeof UploadPicker>
+			instance.setDestination(new Folder({
 				id: 56,
 				owner: 'user',
 				source: generateRemoteUrl('dav/photos/user/albums/2022 Summer Vacations'),
@@ -344,7 +346,7 @@ describe('Root management', () => {
 				root: '/photos/user',
 			}))
 			// Wait for prop propagation
-			expect(component.uploadManager.root).to.have.string('/remote.php/dav/photos/user/albums/2022 Summer Vacations')
+			expect(instance.uploadManager.root).to.have.string('/remote.php/dav/photos/user/albums/2022 Summer Vacations')
 		})
 
 		// Intercept single upload
