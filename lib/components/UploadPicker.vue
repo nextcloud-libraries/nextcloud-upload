@@ -9,7 +9,7 @@
 		class="upload-picker"
 		data-cy-upload-picker>
 		<!-- New button -->
-		<NcButton v-if="(noMenu || newFileMenuEntries.length === 0) && !canUploadFolders"
+		<NcButton v-if="!haveMenu"
 			:disabled="disabled"
 			data-cy-upload-picker-add
 			data-cy-upload-picker-menu-entry="upload-file"
@@ -20,9 +20,11 @@
 			</template>
 			{{ buttonName }}
 		</NcButton>
+
 		<NcActions v-else
 			:aria-label="buttonLabel"
 			:menu-name="buttonName"
+			:open.sync="openedMenu"
 			type="secondary">
 			<template #icon>
 				<IconPlus :size="20" />
@@ -142,9 +144,11 @@ import type { Entry, Node } from '@nextcloud/files'
 import type { PropType } from 'vue'
 import type { Upload } from '../upload.ts'
 
+import { defineComponent } from 'vue'
 import { Folder, NewMenuEntryCategory, getNewFileMenuEntries } from '@nextcloud/files'
+// @ts-expect-error missing types
+import { useHotKey } from '@nextcloud/vue/dist/Composables/useHotKey.js'
 import makeEta from 'simple-eta'
-import Vue from 'vue'
 
 import NcActionButton from '@nextcloud/vue/dist/Components/NcActionButton.js'
 import NcActionCaption from '@nextcloud/vue/dist/Components/NcActionCaption.js'
@@ -163,10 +167,10 @@ import { getUploader } from '../index.ts'
 import { Status } from '../uploader.ts'
 import { Status as UploadStatus } from '../upload.ts'
 import { t } from '../utils/l10n.ts'
-import logger from '../utils/logger.ts'
 import { uploadConflictHandler } from '../utils/conflicts.ts'
+import logger from '../utils/logger.ts'
 
-export default Vue.extend({
+export default defineComponent({
 	name: 'UploadPicker',
 
 	components: {
@@ -199,7 +203,6 @@ export default Vue.extend({
 
 		/**
 		 * Allow to disable the "new"-menu for this UploadPicker instance
-		 * @default false
 		 */
 		noMenu: {
 			type: Boolean,
@@ -245,7 +248,8 @@ export default Vue.extend({
 
 	data() {
 		return {
-			eta: null,
+			eta: null as null|ReturnType<typeof makeEta>,
+			openedMenu: false,
 			timeLeft: '',
 
 			newFileMenuEntries: [] as Entry[],
@@ -254,64 +258,68 @@ export default Vue.extend({
 	},
 
 	computed: {
-		menuEntriesUpload() {
+		menuEntriesUpload(): Entry[] {
 			return this.newFileMenuEntries.filter((entry) => entry.category === NewMenuEntryCategory.UploadFromDevice)
 		},
 
-		menuEntriesNew() {
+		menuEntriesNew(): Entry[] {
 			return this.newFileMenuEntries.filter((entry) => entry.category === NewMenuEntryCategory.CreateNew)
 		},
 
-		menuEntriesOther() {
+		menuEntriesOther(): Entry[] {
 			return this.newFileMenuEntries.filter((entry) => entry.category === NewMenuEntryCategory.Other)
 		},
 		/**
 		 * Check whether the current browser supports uploading directories
 		 * Hint: This does not check if the current connection supports this, as some browsers require a secure context!
 		 */
-		canUploadFolders() {
+		canUploadFolders(): boolean {
 			return this.allowFolders && 'webkitdirectory' in document.createElement('input')
 		},
 
-		totalQueueSize() {
+		totalQueueSize(): number {
 			return this.uploadManager.info?.size || 0
 		},
 
-		uploadedQueueSize() {
+		uploadedQueueSize(): number {
 			return this.uploadManager.info?.progress || 0
 		},
 
-		progress() {
+		progress(): number {
 			return Math.round(this.uploadedQueueSize / this.totalQueueSize * 100) || 0
 		},
 
-		queue() {
-			return this.uploadManager.queue
+		queue(): Upload[] {
+			return this.uploadManager.queue as Upload[]
 		},
 
-		hasFailure() {
+		hasFailure(): boolean {
 			return this.queue?.filter((upload: Upload) => upload.status === UploadStatus.FAILED).length !== 0
 		},
-		isUploading() {
+		isUploading(): boolean {
 			return this.queue?.length > 0
 		},
-		isAssembling() {
+		isAssembling(): boolean {
 			return this.queue?.filter((upload: Upload) => upload.status === UploadStatus.ASSEMBLING).length !== 0
 		},
-		isPaused() {
+		isPaused(): boolean {
 			return this.uploadManager.info?.status === Status.PAUSED
 		},
 
-		buttonLabel() {
+		buttonLabel(): string {
 			return this.noMenu ? t('Upload') : t('New')
 		},
 
 		// Hide the button text if we're uploading
-		buttonName() {
+		buttonName(): string|undefined {
 			if (this.isUploading) {
 				return undefined
 			}
 			return this.buttonLabel
+		},
+
+		haveMenu(): boolean {
+			return !((this.noMenu || this.newFileMenuEntries.length === 0) && !this.canUploadFolders)
 		},
 	},
 
@@ -357,6 +365,12 @@ export default Vue.extend({
 		// Update data on upload progress
 		this.uploadManager.addNotifier(this.onUploadCompletion)
 
+		// Register hotkeys
+		useHotKey(['u', 'Escape'], this.onKeyDown, {
+			stop: true,
+			prevent: true,
+		})
+
 		logger.debug('UploadPicker initialised')
 	},
 
@@ -393,7 +407,6 @@ export default Vue.extend({
 		async getContent(path?: string) {
 			return Array.isArray(this.content) ? this.content : await this.content(path)
 		},
-
 
 		/**
 		 * Start uploading
@@ -466,6 +479,23 @@ export default Vue.extend({
 				this.$emit('failed', upload)
 			} else {
 				this.$emit('uploaded', upload)
+			}
+		},
+
+		onKeyDown(event: KeyboardEvent) {
+			if (event.key === 'u') {
+				// If we have a menu, open it
+				if (this.haveMenu) {
+					this.openedMenu = true
+					return
+				}
+
+				// Otherwise, trigger the default action
+				this.onTriggerPick()
+			}
+
+			if (event.key === 'Escape' && this.openedMenu) {
+				this.openedMenu = false
 			}
 		},
 	},
