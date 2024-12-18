@@ -366,7 +366,13 @@ export default defineComponent({
 		this.uploadManager.addNotifier(this.onUploadCompletion)
 
 		// Register hotkeys
-		useHotKey(['u', 'Escape'], this.onKeyDown, {
+		useHotKey('u', this.onKeyDown, {
+			stop: true,
+			prevent: true,
+			shift: true,
+		})
+
+		useHotKey('Escape', this.onKeyDown, {
 			stop: true,
 			prevent: true,
 		})
@@ -483,6 +489,7 @@ export default defineComponent({
 		},
 
 		onKeyDown(event: KeyboardEvent) {
+			// Shift + u opens the menu
 			if (event.key === 'u') {
 				// If we have a menu, open it
 				if (this.haveMenu) {

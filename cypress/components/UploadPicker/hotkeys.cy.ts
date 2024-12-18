@@ -8,7 +8,6 @@
 import { Folder, Permission, addNewFileMenuEntry, type Entry } from '@nextcloud/files'
 import { generateRemoteUrl } from '@nextcloud/router'
 import { UploadPicker } from '../../../lib/index.ts'
-import type { ComponentPublicInstance } from 'vue'
 
 describe('UploadPicker: hotkeys testing', () => {
 	const propsData = {
@@ -31,7 +30,7 @@ describe('UploadPicker: hotkeys testing', () => {
 		} as Entry)
 	})
 
-	it('opens the upload menu when pressing u', () => {
+	it('opens the upload menu when pressing shift+u', () => {
 		cy.mount(UploadPicker, { propsData })
 
 		// Check and init aliases
@@ -40,7 +39,7 @@ describe('UploadPicker: hotkeys testing', () => {
 
 		cy.get('[role="menu"]').should('not.exist')
 
-		cy.get('body').type('u')
+		cy.get('body').type('{shift}u')
 		cy.get('[role="menu"]').should('be.visible')
 	})
 
