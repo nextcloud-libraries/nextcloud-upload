@@ -175,6 +175,8 @@ export class Uploader {
 	public pause() {
 		this._jobQueue.pause()
 		this._queueStatus = Status.PAUSED
+		this.updateStats()
+		logger.debug('Upload paused')
 	}
 
 	/**
@@ -184,6 +186,7 @@ export class Uploader {
 		this._jobQueue.start()
 		this._queueStatus = Status.UPLOADING
 		this.updateStats()
+		logger.debug('Upload resumed')
 	}
 
 	/**
@@ -547,6 +550,8 @@ export class Uploader {
 					await Promise.all(chunksQueue)
 					this.updateStats()
 
+					// Assemble the chunks
+					upload.status = UploadStatus.ASSEMBLING
 					upload.response = await axios.request({
 						method: 'MOVE',
 						url: `${tempUrl}/.file`,
