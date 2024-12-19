@@ -29,6 +29,8 @@ import { mount } from '@cypress/vue2'
 
 // @ts-expect-error Mock window so this is an internal property
 window._oc_capabilities = { files: {} }
+// @ts-expect-error Mock window so this is an internal property
+window._oc_debug = true
 
 // Example use:
 // cy.mount(MyComponent)
