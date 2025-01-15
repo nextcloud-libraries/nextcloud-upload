@@ -334,8 +334,7 @@ $height: 64px;
 	&__preview {
 		overflow: hidden;
 		border-radius: calc(var(--border-radius) * 2);
-		background-position: center;
-		background-size: cover;
+		object-fit: cover;
 	}
 
 	&__desc {
