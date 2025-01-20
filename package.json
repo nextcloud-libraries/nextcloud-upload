@@ -1,23 +1,7 @@
 {
   "name": "@nextcloud/upload",
-  "version": "1.7.1",
+  "version": "1.8.0",
   "description": "Nextcloud file upload client",
-  "type": "module",
-  "main": "dist/index.cjs",
-  "module": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.cjs"
-    }
-  },
-  "files": [
-    "dist"
-  ],
-  "author": "John Molakvoæ <skjnldsv@protonmail.com>",
-  "license": "AGPL-3.0-or-later",
   "keywords": [
     "nextcloud",
     "webdav",
@@ -25,32 +9,62 @@
     "upload",
     "chunk"
   ],
-  "scripts": {
-    "build": "vite --mode production build",
-    "dev": "vite --mode development build",
-    "watch": "vite --mode development build --watch",
-    "build:doc": "typedoc --out dist/doc lib && touch dist/doc/.nojekyll",
-    "lint": "eslint --ext .js,.vue .",
-    "lint:fix": "eslint --ext .js,.vue --fix .",
-    "cypress": "cypress run --component",
-    "cypress:gui": "cypress open --component",
-    "test": "vitest run",
-    "test:watch": "vitest watch",
-    "test:coverage": "vitest run --coverage",
-    "l10n:extract": "node build/extract-l10n.js"
+  "homepage": "https://github.com/nextcloud-libraries/nextcloud-upload",
+  "bugs": {
+    "url": "https://github.com/nextcloud-libraries/nextcloud-upload/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/skjnldsv/nextcloud-upload.git"
+    "url": "git+https://github.com/nextcloud-libraries/nextcloud-upload.git"
   },
-  "bugs": {
-    "url": "https://github.com/skjnldsv/nextcloud-upload/issues"
+  "license": "AGPL-3.0-or-later",
+  "author": "Nextcloud GmbH and Nextcloud contributors",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    }
   },
-  "engines": {
-    "node": "^20.0.0",
-    "npm": "^10.0.0"
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "vite --mode production build",
+    "build:doc": "typedoc --out dist/doc lib && touch dist/doc/.nojekyll",
+    "cypress": "cypress run --component",
+    "cypress:gui": "cypress open --component",
+    "dev": "vite --mode development build",
+    "l10n:extract": "node build/extract-l10n.js",
+    "lint": "eslint --ext .js,.vue .",
+    "lint:fix": "eslint --ext .js,.vue --fix .",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "test:watch": "vitest watch",
+    "watch": "vite --mode development build --watch"
   },
-  "homepage": "https://github.com/skjnldsv/nextcloud-upload",
+  "dependencies": {
+    "@nextcloud/auth": "^2.4.0",
+    "@nextcloud/axios": "^2.5.1",
+    "@nextcloud/capabilities": "^1.2.0",
+    "@nextcloud/dialogs": "^6.0.1",
+    "@nextcloud/files": "^3.10.1",
+    "@nextcloud/l10n": "^3.1.0",
+    "@nextcloud/logger": "^3.0.2",
+    "@nextcloud/paths": "^2.2.1",
+    "@nextcloud/router": "^3.0.0",
+    "@nextcloud/sharing": "^0.2.4",
+    "axios": "^1.7.9",
+    "axios-retry": "^4.5.0",
+    "crypto-browserify": "^3.12.1",
+    "p-cancelable": "^4.0.1",
+    "p-queue": "^8.0.0",
+    "simple-eta": "^3.0.2"
+  },
   "devDependencies": {
     "@codecov/vite-plugin": "^1.7.0",
     "@cypress/vue2": "^2.1.1",
@@ -73,26 +87,12 @@
     "vue-material-design-icons": "^5.3.1",
     "webdav": "^5.7.1"
   },
-  "dependencies": {
-    "@nextcloud/auth": "^2.4.0",
-    "@nextcloud/axios": "^2.5.1",
-    "@nextcloud/capabilities": "^1.2.0",
-    "@nextcloud/dialogs": "^6.0.1",
-    "@nextcloud/files": "^3.10.1",
-    "@nextcloud/l10n": "^3.1.0",
-    "@nextcloud/logger": "^3.0.2",
-    "@nextcloud/paths": "^2.2.1",
-    "@nextcloud/router": "^3.0.0",
-    "@nextcloud/sharing": "^0.2.4",
-    "axios": "^1.7.9",
-    "axios-retry": "^4.5.0",
-    "crypto-browserify": "^3.12.1",
-    "p-cancelable": "^4.0.1",
-    "p-queue": "^8.0.0",
-    "simple-eta": "^3.0.2"
-  },
   "peerDependencies": {
     "@nextcloud/vue": "^8.0.0-beta || ^8.0.0",
     "vue": "^2.7.16"
+  },
+  "engines": {
+    "node": "^20.0.0",
+    "npm": "^10.0.0"
   }
 }
