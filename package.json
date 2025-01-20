@@ -68,7 +68,7 @@
     "jsdom": "^26.0.0",
     "typedoc": "^0.27.6",
     "typescript": "^5.7.3",
-    "vite": "^5.4.11",
+    "vite": "^6.0.9",
     "vitest": "^2.0.2",
     "vue-material-design-icons": "^5.3.1",
     "webdav": "^5.7.1"
