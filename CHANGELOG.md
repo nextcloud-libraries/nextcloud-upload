@@ -4,14 +4,28 @@
 -->
 # Changelog
 
-## [v1.7.1](https://github.com/nextcloud-libraries/nextcloud-upload/tree/v1.7.1) \(2024-12-10\)
+## [v1.8.0](https://github.com/nextcloud-libraries/nextcloud-upload/tree/v1.8.0) \(2025-01-20\)
+
+### Added
+* feat: add upload menu shortcuts [\#1529](https://github.com/nextcloud-libraries/nextcloud-upload/pull/1529) \([skjnldsv](https://github.com/skjnldsv)\)
+
 ### Fixed
-* fix(uploader): only monitor the queue being idle when we know we are finishing the upload by @skjnldsv in https://github.com/nextcloud-libraries/nextcloud-upload/pull/1521
+* fix(NodesPicker): Use preview fit cover [\#1548](https://github.com/nextcloud-libraries/nextcloud-upload/pull/1548) \([provokateurin](https://github.com/provokateurin)\)
 
 ### Changed
-* chore(deps): Bump @nextcloud/files from 3.9.1 to 3.10.0 by @dependabot
-* chore(deps): Bump @nextcloud/sharing from 0.2.3 to 0.2.4 by @dependabot
-* chore(deps): Bump axios from 1.7.7 to 1.7.9 by @dependabot
+* Updated translations
+* Updated development dependencies
+* chore(deps): bump nanoid to 3.3.8 [\#1523](https://github.com/nextcloud-libraries/nextcloud-upload/pull/1523)
+* chore(deps): bump @nextcloud/files to 3.10.1 [\#1527](https://github.com/nextcloud-libraries/nextcloud-upload/pull/1527)
+
+## [v1.7.1](https://github.com/nextcloud-libraries/nextcloud-upload/tree/v1.7.1) \(2024-12-10\)
+### Fixed
+* fix(uploader): only monitor the queue being idle when we know we are finishing the upload [\#1521](https://github.com/nextcloud-libraries/nextcloud-upload/pull/1521) \([skjnldsv](https://github.com/skjnldsv)\)
+
+### Changed
+* chore(deps): Bump @nextcloud/files to 3.10.0
+* chore(deps): Bump @nextcloud/sharing to 0.2.4
+* chore(deps): Bump axios to 1.7.9
 * Translations updates
 
 **Full Changelog**: https://github.com/nextcloud-libraries/nextcloud-upload/compare/v1.7.0...v1.7.1
