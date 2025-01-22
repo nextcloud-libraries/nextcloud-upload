@@ -62,7 +62,7 @@
     "axios-retry": "^4.5.0",
     "crypto-browserify": "^3.12.1",
     "p-cancelable": "^4.0.1",
-    "p-queue": "^8.0.0",
+    "p-queue": "^8.1.0",
     "simple-eta": "^3.0.2"
   },
   "devDependencies": {
