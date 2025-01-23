@@ -3,10 +3,11 @@
 # Joas Schilling, 2024
 # Mario Siegmann <mario_siegmann@web.de>, 2024
 # Mark Ziegler <mark.ziegler@rakekniven.de>, 2024
+# Martin Wilichowski, 2025
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Mark Ziegler <mark.ziegler@rakekniven.de>, 2024\n"
+"Last-Translator: Martin Wilichowski, 2025\n"
 "Language-Team: German (Germany) (https://app.transifex.com/nextcloud/teams/64236/de_DE/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: de_DE\n"
@@ -69,7 +70,7 @@ msgid ""
 "If you select both versions, the incoming file will have a number added to "
 "its name."
 msgstr ""
-"Wenn Sie beide Versionen auswählen, wird der eingehenden Datei eine Nummer "
+"Wenn du beide Versionen auswählst, wird der eingehenden Datei eine Nummer "
 "zum Namen hinzugefügt."
 
 msgid "Invalid filename"
