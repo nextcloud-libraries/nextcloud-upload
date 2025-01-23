@@ -70,7 +70,7 @@ msgid ""
 "If you select both versions, the incoming file will have a number added to "
 "its name."
 msgstr ""
-"Wenn du beide Versionen auswählst, wird der eingehenden Datei eine Nummer "
+"Wenn Sie beide Versionen auswählen, wird der eingehenden Datei eine Nummer "
 "zum Namen hinzugefügt."
 
 msgid "Invalid filename"
