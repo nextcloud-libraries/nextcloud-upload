@@ -1,14 +1,24 @@
 # 
 # Translators:
-# Sveinn í Felli <sv1@fellsnet.is>, 2023
+# Joas Schilling, 2024
+# Sveinn í Felli <sv1@fellsnet.is>, 2025
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Sveinn í Felli <sv1@fellsnet.is>, 2023\n"
+"Last-Translator: Sveinn í Felli <sv1@fellsnet.is>, 2025\n"
 "Language-Team: Icelandic (https://app.transifex.com/nextcloud/teams/64236/is/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: is\n"
 "Plural-Forms: nplurals=2; plural=(n % 10 != 1 || n % 100 == 11);\n"
+
+msgid "\"{segment}\" is a forbidden file or folder name."
+msgstr "\"{segment}\" er bannað sem heiti á skrá eða möppu."
+
+msgid "\"{segment}\" is a forbidden file type."
+msgstr "\"{segment}\" er bönnuð skráartegund."
+
+msgid "\"{segment}\" is not allowed inside a file or folder name."
+msgstr "\"{segment}\" er ekki leyfilegt innan í heiti á skrá eða möppu."
 
 msgid "{count} file conflict"
 msgid_plural "{count} files conflict"
@@ -30,11 +40,20 @@ msgstr "{time} eftir"
 msgid "a few seconds left"
 msgstr "nokkrar sekúndur eftir"
 
+msgid "Cancel"
+msgstr "Hætta við"
+
+msgid "Cancel the entire operation"
+msgstr "Hætta við alla aðgerðina"
+
 msgid "Cancel uploads"
 msgstr "Hætta við innsendingar"
 
 msgid "Continue"
 msgstr "Halda áfram"
+
+msgid "Create new"
+msgstr "Búa til nýtt"
 
 msgid "estimating time left"
 msgstr "áætla tíma sem eftir er"
@@ -42,18 +61,27 @@ msgstr "áætla tíma sem eftir er"
 msgid "Existing version"
 msgstr "Fyrirliggjandi útgáfa"
 
+msgid "Filenames must not end with \"{segment}\"."
+msgstr "Skráaheiti mega ekki enda á \"{segment}\"."
+
 msgid ""
-"If you select both versions, the copied file will have a number added to its"
-" name."
+"If you select both versions, the incoming file will have a number added to "
+"its name."
 msgstr ""
 "Ef þú velur báðar útgáfur, þá mun verða bætt tölustaf aftan við heiti "
-"afrituðu skrárinnar."
+"innkomandi skrárinnar."
+
+msgid "Invalid filename"
+msgstr "Ógilt skráarheiti"
 
 msgid "Last modified date unknown"
 msgstr "Síðasta breytingadagsetning er óþekkt"
 
 msgid "New"
 msgstr "Nýtt"
+
+msgid "New filename"
+msgstr "Nýtt skráarheiti"
 
 msgid "New version"
 msgstr "Ný útgáfa"
@@ -64,6 +92,9 @@ msgstr "í bið"
 msgid "Preview image"
 msgstr "Forskoðun myndar"
 
+msgid "Rename"
+msgstr "Endurnefna"
+
 msgid "Select all checkboxes"
 msgstr "Velja gátreiti"
 
@@ -73,6 +104,9 @@ msgstr "Velja allar fyrirliggjandi skrár"
 msgid "Select all new files"
 msgstr "Velja allar nýjar skrár"
 
+msgid "Skip"
+msgstr "Sleppa"
+
 msgid "Skip this file"
 msgid_plural "Skip {count} files"
 msgstr[0] "Sleppa þessari skrá"
@@ -81,14 +115,53 @@ msgstr[1] "Sleppa {count} skrám"
 msgid "Unknown size"
 msgstr "Óþekkt stærð"
 
-msgid "Upload cancelled"
-msgstr "Hætt við innsendingu"
+msgid "Upload"
+msgstr "Senda inn"
 
 msgid "Upload files"
 msgstr "Senda inn skrár"
 
+msgid "Upload folders"
+msgstr "Senda inn möppur"
+
+msgid "Upload from device"
+msgstr "Senda inn frá tæki"
+
+msgid "Upload has been cancelled"
+msgstr "Hætt hefur verið við innsendingu"
+
+msgid "Upload has been skipped"
+msgstr "Innsendingu hefur verið sleppt"
+
+msgid "Upload of \"{folder}\" has been skipped"
+msgstr "Innsendingu á \"{folder}\" hefur verið sleppt"
+
+msgid "Upload progress"
+msgstr "Framvinda innsendingar"
+
+msgid ""
+"When an incoming folder is selected, any conflicting files within it will "
+"also be overwritten."
+msgstr ""
+"Þegar valin er mappa fyrir skrár sem berast, verður einnig skrifað yfir "
+"allar skrár í henni sem valda árekstrum."
+
+msgid ""
+"When an incoming folder is selected, the content is written into the "
+"existing folder and a recursive conflict resolution is performed."
+msgstr ""
+"Þegar valin er mappa fyrir skrár sem berast, verður efnið skrifað inn í "
+"fyrirliggjandi möppu og farið í að leysa úr árekstrum."
+
 msgid "Which files do you want to keep?"
 msgstr "Hvaða skrám vilt þú vilt halda eftir?"
+
+msgid ""
+"You can either rename the file, skip this file or cancel the whole "
+"operation."
+msgstr ""
+"Þú getur annaðhvort endurnefnt skrána, sleppt þessari skrá eða hætt við alla"
+" þessa aðgerð."
 
 msgid "You need to select at least one version of each file to continue."
 msgstr ""
