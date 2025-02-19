@@ -150,7 +150,7 @@ msgid ""
 "When an incoming folder is selected, any conflicting files within it will "
 "also be overwritten."
 msgstr ""
-"Po wybraniu folderu przychodzącego wszelkie znajdujące się w nim pliki "
+"Po wybraniu katalogu przychodzącego wszelkie znajdujące się w nim pliki "
 "powodujące konflikt również zostaną nadpisane."
 
 msgid ""
