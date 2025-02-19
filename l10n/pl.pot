@@ -132,7 +132,7 @@ msgid "Upload folders"
 msgstr "Wyślij katalogi"
 
 msgid "Upload from device"
-msgstr "Prześlij z urządzenia"
+msgstr "Wyślij z urządzenia"
 
 msgid "Upload has been cancelled"
 msgstr "Przesyłanie zostało anulowane"
