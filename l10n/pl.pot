@@ -1,11 +1,12 @@
 # 
 # Translators:
 # Joas Schilling, 2024
-# Piotr Strębski <strebski@gmail.com>, 2024
+# Piotr Strebski <strebski@gmail.com>, 2024
+# Valdnet, 2025
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Piotr Strębski <strebski@gmail.com>, 2024\n"
+"Last-Translator: Valdnet, 2025\n"
 "Language-Team: Polish (https://app.transifex.com/nextcloud/teams/64236/pl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: pl\n"
@@ -128,7 +129,7 @@ msgid "Upload files"
 msgstr "Wyślij pliki"
 
 msgid "Upload folders"
-msgstr "Prześlij foldery"
+msgstr "Wyślij katalogi"
 
 msgid "Upload from device"
 msgstr "Prześlij z urządzenia"
