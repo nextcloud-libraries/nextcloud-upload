@@ -67,7 +67,7 @@ msgid "Existing version"
 msgstr "Istniejąca wersja"
 
 msgid "Filenames must not end with \"{segment}\"."
-msgstr "Nazwy plików nie mogą kończyć się na „{segment}”."
+msgstr "Nazwy plików nie mogą kończyć się na \"{segment}\"."
 
 msgid ""
 "If you select both versions, the incoming file will have a number added to "
