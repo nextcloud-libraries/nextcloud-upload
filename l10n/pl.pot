@@ -138,7 +138,7 @@ msgid "Upload has been cancelled"
 msgstr "Wysyłanie zostało anulowane"
 
 msgid "Upload has been skipped"
-msgstr "Przesyłanie zostało pominięte"
+msgstr "Wysyłanie zostało pominięte"
 
 msgid "Upload of \"{folder}\" has been skipped"
 msgstr "Przesyłanie „{folder}” zostało pominięte"
