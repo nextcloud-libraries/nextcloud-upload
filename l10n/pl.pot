@@ -135,7 +135,7 @@ msgid "Upload from device"
 msgstr "Wyślij z urządzenia"
 
 msgid "Upload has been cancelled"
-msgstr "Przesyłanie zostało anulowane"
+msgstr "Wysyłanie zostało anulowane"
 
 msgid "Upload has been skipped"
 msgstr "Przesyłanie zostało pominięte"
