@@ -141,7 +141,7 @@ msgid "Upload has been skipped"
 msgstr "Wysyłanie zostało pominięte"
 
 msgid "Upload of \"{folder}\" has been skipped"
-msgstr "Przesyłanie „{folder}” zostało pominięte"
+msgstr "Wysyłanie \"{folder}\" zostało pominięte"
 
 msgid "Upload progress"
 msgstr "Postęp wysyłania"
