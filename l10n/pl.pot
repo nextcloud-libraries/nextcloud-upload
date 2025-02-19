@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
 
 msgid "\"{segment}\" is a forbidden file or folder name."
-msgstr "„{segment}” to zabroniona nazwa pliku lub katalogu."
+msgstr "\"{segment}\" to zabroniona nazwa pliku lub katalogu."
 
 msgid "\"{segment}\" is a forbidden file type."
 msgstr "„{segment}” jest zabronionym typem pliku."
