@@ -31,7 +31,7 @@
     "watch": "vite --mode development build --watch",
     "build:doc": "typedoc --out dist/doc lib && touch dist/doc/.nojekyll",
     "lint": "eslint --ext .js,.ts,.vue .",
-    "lint:fix": "eslint --ext .js,.ts,.vue, --fix .",
+    "lint:fix": "eslint --ext .js,.ts,.vue --fix .",
     "cypress": "cypress run --component",
     "cypress:gui": "cypress open --component",
     "test": "vitest run",
