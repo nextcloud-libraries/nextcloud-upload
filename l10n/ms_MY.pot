@@ -1,35 +1,161 @@
 # 
 # Translators:
-# Transifex Bot <>, 2022
+# DT Navy, 2024
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Transifex Bot <>, 2022\n"
-"Language-Team: Malay (Malaysia) (https://www.transifex.com/nextcloud/teams/64236/ms_MY/)\n"
+"Last-Translator: DT Navy, 2024\n"
+"Language-Team: Malay (Malaysia) (https://app.transifex.com/nextcloud/teams/64236/ms_MY/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: ms_MY\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-msgid "{estimate} seconds left"
-msgstr ""
+msgid "\"{segment}\" is a forbidden file or folder name."
+msgstr "\"{segment}\" adalah fail dan nama folder yang dilarang"
 
-msgid "{hours} hours and {minutes} minutes left"
-msgstr ""
+msgid "\"{segment}\" is a forbidden file type."
+msgstr "\"{segment}\" adalah jenis fail yang dilarang"
 
-msgid "{minutes} minutes left"
-msgstr ""
+msgid "\"{segment}\" is not allowed inside a file or folder name."
+msgstr "\"{segment}\" adalah tidak dibenarkan dalam nama fail atau folder"
+
+msgid "{count} file conflict"
+msgid_plural "{count} files conflict"
+msgstr[0] "{count} files bertindih"
+
+msgid "{count} file conflict in {dirname}"
+msgid_plural "{count} file conflicts in {dirname}"
+msgstr[0] "{count} fail bertindih dalam {dirname}"
+
+msgid "{seconds} seconds left"
+msgstr "{seconds} saat tinggal"
+
+#. TRANSLATORS time has the format 00:00:00
+msgid "{time} left"
+msgstr "{time} tinggal"
 
 msgid "a few seconds left"
-msgstr ""
+msgstr "beberapa saat lagi"
 
-msgid "Add"
-msgstr ""
+msgid "Cancel"
+msgstr "batal"
+
+msgid "Cancel the entire operation"
+msgstr "Batal keseluruhan operasi"
 
 msgid "Cancel uploads"
-msgstr ""
+msgstr "batal muat naik"
+
+msgid "Continue"
+msgstr "teruskan"
+
+msgid "Create new"
+msgstr "Buat baharu"
 
 msgid "estimating time left"
+msgstr "jangkaan masa tinggal"
+
+msgid "Existing version"
+msgstr "versi sedia ada"
+
+msgid "Filenames must not end with \"{segment}\"."
+msgstr "Nama fail tidak boleh berakhir dengan \"{segment}\"."
+
+msgid ""
+"If you select both versions, the incoming file will have a number added to "
+"its name."
 msgstr ""
+"Jika dua versi dipilih, fail yang masuk akan ditambah bilangan pada namanya."
+
+msgid "Invalid filename"
+msgstr "Nama fail tidak sah"
+
+msgid "Last modified date unknown"
+msgstr "Tarikh terakhir diubah suai tidak diketahui"
+
+msgid "New"
+msgstr "Baru"
+
+msgid "New filename"
+msgstr "Nama fail baharu"
+
+msgid "New version"
+msgstr "Versi baharu"
 
 msgid "paused"
+msgstr "Jeda"
+
+msgid "Preview image"
+msgstr "Pratonton gambar"
+
+msgid "Rename"
+msgstr "Menamakan semula"
+
+msgid "Select all checkboxes"
+msgstr "Pilih semua kotak pilihan"
+
+msgid "Select all existing files"
+msgstr "Pilih semua fail yang wujud"
+
+msgid "Select all new files"
+msgstr "pilih semua fail baharu"
+
+msgid "Skip"
+msgstr "Langkau"
+
+msgid "Skip this file"
+msgid_plural "Skip {count} files"
+msgstr[0] "Langkau fail {count}"
+
+msgid "Unknown size"
+msgstr "Saiz tidak diketahui"
+
+msgid "Upload"
+msgstr "Muat naik"
+
+msgid "Upload files"
+msgstr "Muat naik fail"
+
+msgid "Upload folders"
+msgstr "Muat naik folder"
+
+msgid "Upload from device"
+msgstr "Muat naik dari peranti"
+
+msgid "Upload has been cancelled"
+msgstr "Muat naik telah dibatalkan"
+
+msgid "Upload has been skipped"
+msgstr "Muat naik telah dilangkau"
+
+msgid "Upload of \"{folder}\" has been skipped"
+msgstr "Muat naik \"{folder}\" telah dilangkau"
+
+msgid "Upload progress"
+msgstr "Kemajuan muat naik"
+
+msgid ""
+"When an incoming folder is selected, any conflicting files within it will "
+"also be overwritten."
 msgstr ""
+"Apabila folder masuk dipilih, sebarang fail bertindih akan ditulis semula"
+
+msgid ""
+"When an incoming folder is selected, the content is written into the "
+"existing folder and a recursive conflict resolution is performed."
+msgstr ""
+"Apabila folder masuk dipilih, kandungan ditulis ke dalam folder sedia ada "
+"dan penyelesaian konflik rekursif dilakukan."
+
+msgid "Which files do you want to keep?"
+msgstr "Fail yang mana ingin disimpan?"
+
+msgid ""
+"You can either rename the file, skip this file or cancel the whole "
+"operation."
+msgstr ""
+"And boleh menamakan semula fail, langkau fail tersebut atau membatalkan "
+"keseluruhan operasi"
+
+msgid "You need to select at least one version of each file to continue."
+msgstr "Anda perlu memilih sekurangnya satu versi setiap fail untuk teruskan"

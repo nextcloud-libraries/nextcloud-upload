@@ -2,12 +2,12 @@
 # Translators:
 # Joas Schilling, 2024
 # Mario Siegmann <mario_siegmann@web.de>, 2024
-# Martin Wilichowski, 2024
 # Andy Scherzinger <info@andy-scherzinger.de>, 2024
+# Martin Wilichowski, 2025
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Andy Scherzinger <info@andy-scherzinger.de>, 2024\n"
+"Last-Translator: Martin Wilichowski, 2025\n"
 "Language-Team: German (https://app.transifex.com/nextcloud/teams/64236/de/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: de\n"
@@ -58,7 +58,7 @@ msgid "Create new"
 msgstr "Neu erstellen"
 
 msgid "estimating time left"
-msgstr "Geschätzte verbleibende Zeit"
+msgstr "Berechne verbleibende Zeit"
 
 msgid "Existing version"
 msgstr "Vorhandene Version"

@@ -1,24 +1,25 @@
 # 
 # Translators:
 # Joas Schilling, 2024
-# Piotr Strębski <strebski@gmail.com>, 2024
+# Piotr Strebski <strebski@gmail.com>, 2024
+# Valdnet, 2025
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Piotr Strębski <strebski@gmail.com>, 2024\n"
+"Last-Translator: Valdnet, 2025\n"
 "Language-Team: Polish (https://app.transifex.com/nextcloud/teams/64236/pl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: pl\n"
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
 
 msgid "\"{segment}\" is a forbidden file or folder name."
-msgstr "„{segment}” to zabroniona nazwa pliku lub folderu."
+msgstr "\"{segment}\" to zabroniona nazwa pliku lub katalogu."
 
 msgid "\"{segment}\" is a forbidden file type."
-msgstr "„{segment}” jest zabronionym typem pliku."
+msgstr "\"{segment}\" jest zabronionym typem pliku."
 
 msgid "\"{segment}\" is not allowed inside a file or folder name."
-msgstr "Znak „{segment}” nie jest dozwolony w nazwie pliku lub folderu."
+msgstr "Znak \"{segment}\" nie jest dozwolony w nazwie pliku lub katalogu."
 
 msgid "{count} file conflict"
 msgid_plural "{count} files conflict"
@@ -66,7 +67,7 @@ msgid "Existing version"
 msgstr "Istniejąca wersja"
 
 msgid "Filenames must not end with \"{segment}\"."
-msgstr "Nazwy plików nie mogą kończyć się na „{segment}”."
+msgstr "Nazwy plików nie mogą kończyć się na \"{segment}\"."
 
 msgid ""
 "If you select both versions, the incoming file will have a number added to "
@@ -122,25 +123,25 @@ msgid "Unknown size"
 msgstr "Nieznany rozmiar"
 
 msgid "Upload"
-msgstr "Prześlij"
+msgstr "Wyślij"
 
 msgid "Upload files"
 msgstr "Wyślij pliki"
 
 msgid "Upload folders"
-msgstr "Prześlij foldery"
+msgstr "Wyślij katalogi"
 
 msgid "Upload from device"
-msgstr "Prześlij z urządzenia"
+msgstr "Wyślij z urządzenia"
 
 msgid "Upload has been cancelled"
-msgstr "Przesyłanie zostało anulowane"
+msgstr "Wysyłanie zostało anulowane"
 
 msgid "Upload has been skipped"
-msgstr "Przesyłanie zostało pominięte"
+msgstr "Wysyłanie zostało pominięte"
 
 msgid "Upload of \"{folder}\" has been skipped"
-msgstr "Przesyłanie „{folder}” zostało pominięte"
+msgstr "Wysyłanie \"{folder}\" zostało pominięte"
 
 msgid "Upload progress"
 msgstr "Postęp wysyłania"
@@ -149,15 +150,15 @@ msgid ""
 "When an incoming folder is selected, any conflicting files within it will "
 "also be overwritten."
 msgstr ""
-"Po wybraniu folderu przychodzącego wszelkie znajdujące się w nim pliki "
+"Po wybraniu katalogu przychodzącego wszelkie znajdujące się w nim pliki "
 "powodujące konflikt również zostaną nadpisane."
 
 msgid ""
 "When an incoming folder is selected, the content is written into the "
 "existing folder and a recursive conflict resolution is performed."
 msgstr ""
-"Po wybraniu folderu przychodzącego zawartość jest zapisywana w istniejącym "
-"folderze i przeprowadzane jest rekursywne rozwiązywanie konfliktów."
+"Po wybraniu katalogu przychodzącego zawartość jest zapisywana w istniejącym "
+"katalogu i przeprowadzane jest rekursywne rozwiązywanie konfliktów."
 
 msgid "Which files do you want to keep?"
 msgstr "Które pliki chcesz zachować?"

@@ -32,38 +32,11 @@ window._oc_capabilities = { files: {} }
 
 // Example use:
 // cy.mount(MyComponent)
-Cypress.Commands.add('mount', (component, optionsOrProps) => {
-	let instance = null
+Cypress.Commands.add('mount', (component, options = {}) => {
+	// Setup options object
+	options.extensions = options.extensions || {}
+	options.extensions.plugins = options.extensions.plugins || []
+	options.extensions.components = options.extensions.components || {}
 
-	// Add our mounted method to expose the component instance to cypress
-
-	// Support old vue 2 options
-	if (component.options) {
-		if (!component.options.mounted) {
-			component.options.mounted = []
-		}
-		component.options.mounted.push(function() {
-			instance = this
-		})
-	}
-
-	// Support new vue 3 options
-	if (typeof component?.mounted !== 'function') {
-		component.mounted = function() {
-			instance = this
-		}
-	} else {
-		// If the component already has a mounted method, we need to chain them
-		const originalMounted = component.mounted
-		component.mounted = function() {
-			originalMounted.call(this)
-			instance = this
-		}
-	}
-
-	// Expose the component with cy.get('@component')
-	const mounted = mount(component, optionsOrProps).then(() => {
-		cy.wrap(instance).as('component')
-		return mounted
-	})
+	return mount(component, options)
 })

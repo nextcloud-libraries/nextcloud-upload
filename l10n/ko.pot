@@ -11,8 +11,14 @@ msgstr ""
 "Language: ko\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-msgid "\"{filename}\" contains invalid characters, how do you want to continue?"
-msgstr "\"{filename}\"에 유효하지 않은 문자가 있습니다, 계속하시겠습니까?"
+msgid "\"{segment}\" is a forbidden file or folder name."
+msgstr "\"{segment}\"(은)는 금지된 파일 및 폴더 이름입니다."
+
+msgid "\"{segment}\" is a forbidden file type."
+msgstr "\"{segment}\"(은)는 금지된 파일 형식입니다."
+
+msgid "\"{segment}\" is not allowed inside a file or folder name."
+msgstr "파일이나 폴더 이름에 \"{segment}\"(을)를 사용할 수 없습니다."
 
 msgid "{count} file conflict"
 msgid_plural "{count} files conflict"
@@ -53,12 +59,15 @@ msgstr "남은 시간 계산"
 msgid "Existing version"
 msgstr "현재 버전"
 
+msgid "Filenames must not end with \"{segment}\"."
+msgstr "파일 이름은 \"{segment}\"(으)로 끝나야 합니다."
+
 msgid ""
 "If you select both versions, the incoming file will have a number added to "
 "its name."
 msgstr "두 파일을 모두 선택하면, 들어오는 파일의 이름에 번호가 추가됩니다."
 
-msgid "Invalid file name"
+msgid "Invalid filename"
 msgstr "잘못된 파일 이름"
 
 msgid "Last modified date unknown"
@@ -66,6 +75,9 @@ msgstr "최근 수정일 알 수 없음"
 
 msgid "New"
 msgstr "새로 만들기"
+
+msgid "New filename"
+msgstr "새 파일 이름"
 
 msgid "New version"
 msgstr "새 버전"
@@ -98,6 +110,9 @@ msgstr[0] "{count}개의 파일 넘기기"
 msgid "Unknown size"
 msgstr "크기를 알 수 없음"
 
+msgid "Upload"
+msgstr "업로드"
+
 msgid "Upload files"
 msgstr "파일 업로드"
 
@@ -109,6 +124,12 @@ msgstr "장치에서 업로드"
 
 msgid "Upload has been cancelled"
 msgstr "업로드가 취소되었습니다."
+
+msgid "Upload has been skipped"
+msgstr "업로드를 건너뛰었습니다."
+
+msgid "Upload of \"{folder}\" has been skipped"
+msgstr "\"{folder}\" 업로드를 건너뛰었습니다."
 
 msgid "Upload progress"
 msgstr "업로드 진행도"
@@ -125,6 +146,11 @@ msgstr "들어오는 폴더를 선택했다면 내용물이 그 기존 폴더 �
 
 msgid "Which files do you want to keep?"
 msgstr "어떤 파일을 보존하시겠습니까?"
+
+msgid ""
+"You can either rename the file, skip this file or cancel the whole "
+"operation."
+msgstr "파일 이름을 바꾸거나, 이 파일을 건너뛰거나 모든 작업을 취소할 수 있습니다."
 
 msgid "You need to select at least one version of each file to continue."
 msgstr "계속하기 위해서는 한 파일에 최소 하나의 버전을 선택해야 합니다."
