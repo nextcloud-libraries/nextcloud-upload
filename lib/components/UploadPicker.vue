@@ -108,10 +108,11 @@
 		<div v-show="isUploading" class="upload-picker__progress">
 			<NcProgressBar :aria-label="t('Upload progress')"
 				:aria-describedby="progressTimeId"
+				data-cy-upload-picker-progress
 				:error="hasFailure"
 				:value="progress"
 				size="medium" />
-			<p :id="progressTimeId">
+			<p :id="progressTimeId" data-cy-upload-picker-progress-label>
 				{{ timeLeft }}
 			</p>
 		</div>

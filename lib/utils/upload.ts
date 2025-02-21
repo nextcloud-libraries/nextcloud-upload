@@ -14,25 +14,40 @@ axiosRetry(axios, { retries: 0 })
 
 type UploadData = Blob | (() => Promise<Blob>)
 
+interface UploadDataOptions {
+	/** The abort signal */
+	signal: AbortSignal
+	/** Upload progress event callback */
+	onUploadProgress?: (event: AxiosProgressEvent) => void
+	/** Request retry callback (e.g. network error of previous try) */
+	onUploadRetry?: () => void
+	/** The final destination file (for chunked uploads) */
+	destinationFile?: string
+	/** Additional headers */
+	headers?: Record<string, string|number>
+	/** Number of retries */
+	retries?: number,
+}
+
 /**
  * Upload some data to a given path
  * @param url the url to upload to
  * @param uploadData the data to upload
- * @param signal the abort signal
- * @param onUploadProgress the progress callback
- * @param destinationFile the final destination file (often used for chunked uploads)
- * @param headers additional headers
- * @param retries number of retries
+ * @param uploadOptions upload options
  */
-export const uploadData = async function(
+export async function uploadData(
 	url: string,
 	uploadData: UploadData,
-	signal: AbortSignal,
-	onUploadProgress:(event: AxiosProgressEvent) => void = () => {},
-	destinationFile: string | undefined = undefined,
-	headers: Record<string, string|number> = {},
-	retries: number = 5,
+	uploadOptions: UploadDataOptions,
 ): Promise<AxiosResponse> {
+	const options = {
+		headers: {},
+		onUploadProgress: () => {},
+		onUploadRetry: () => {},
+		retries: 5,
+		...uploadOptions,
+	}
+
 	let data: Blob
 
 	// If the upload data is a blob, we can directly use it
@@ -44,25 +59,26 @@ export const uploadData = async function(
 	}
 
 	// Helps the server to know what to do with the file afterwards (e.g. chunked upload)
-	if (destinationFile) {
-		headers.Destination = destinationFile
+	if (options.destinationFile) {
+		options.headers.Destination = options.destinationFile
 	}
 
 	// If no content type is set, we default to octet-stream
-	if (!headers['Content-Type']) {
-		headers['Content-Type'] = 'application/octet-stream'
+	if (!options.headers['Content-Type']) {
+		options.headers['Content-Type'] = 'application/octet-stream'
 	}
 
 	return await axios.request({
 		method: 'PUT',
 		url,
 		data,
-		signal,
-		onUploadProgress,
-		headers,
+		signal: options.signal,
+		onUploadProgress: options.onUploadProgress,
+		headers: options.headers,
 		'axios-retry': {
-			retries,
+			retries: options.retries,
 			retryDelay: (retryCount: number, error: AxiosError) => exponentialDelay(retryCount, error, 1000),
+			onRetry: options.onUploadRetry,
 		},
 	})
 }
