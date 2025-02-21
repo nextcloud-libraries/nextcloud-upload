@@ -28,3 +28,9 @@ path = ["cypress/fixtures/image.jpg"]
 precedence = "aggregate"
 SPDX-FileCopyrightText = "2016 pixabay <https://www.pexels.com/@pixabay/> <https://www.pexels.com/photo/gray-and-brown-mountain-417173/>"
 SPDX-License-Identifier = "CC0-1.0"
+
+[[annotations]]
+path = [".env.development"]
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2025 Nextcloud GmbH and Nextcloud contributors"
+SPDX-License-Identifier = "CC0-1.0"
