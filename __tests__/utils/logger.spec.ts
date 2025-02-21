@@ -8,6 +8,8 @@ import logger from '../../lib/utils/logger'
 // Just ensure correct app is set, rest is up to that library to test
 test('logger', () => {
 	const spy = vi.spyOn(window.console, 'warn')
+	// silence the output to not spam the console
+	spy.mockImplementationOnce(() => {})
 
 	logger.warn('test')
 	expect(spy).toHaveBeenCalled()
