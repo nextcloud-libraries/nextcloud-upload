@@ -472,22 +472,46 @@ export class Uploader {
 
 					// Init request queue
 					const request = () => {
+						// bytes uploaded on this chunk (as upload.uploaded tracks all chunks)
+						let chunkBytes = 0
 						return uploadData(
 							`${tempUrl}/${chunk + 1}`,
 							blob,
-							upload.signal,
-							() => this.updateStats(),
-							encodedDestinationFile,
 							{
-								...this._customHeaders,
-								'X-OC-Mtime': Math.floor(file.lastModified / 1000),
-								'OC-Total-Length': file.size,
-								'Content-Type': 'application/octet-stream',
+								signal: upload.signal,
+								destinationFile: encodedDestinationFile,
+								retries,
+								onUploadProgress: ({ bytes }) => {
+									// Only count 90% of bytes as the request is not yet processed by server
+									// we set the remaining 10% when the request finished (server responded).
+									const progressBytes = bytes * 0.9
+									chunkBytes += progressBytes
+									upload.uploaded += progressBytes
+									this.updateStats()
+								},
+								onUploadRetry: () => {
+									// Current try failed, so reset the stats for this chunk
+									// meaning remove the uploaded chunk bytes from stats
+									upload.uploaded -= chunkBytes
+									chunkBytes = 0
+									this.updateStats()
+								},
+								headers: {
+									...this._customHeaders,
+									'X-OC-Mtime': Math.floor(file.lastModified / 1000),
+									'OC-Total-Length': file.size,
+									'Content-Type': 'application/octet-stream',
+								},
 							},
-							retries,
 						)
 							// Update upload progress on chunk completion
-							.then(() => { upload.uploaded = upload.uploaded + maxChunkSize })
+							.then(() => {
+								// request fully done so we uploaded the full chunk
+								// we first remove the intermediate chunkBytes from progress events
+								// and then add the real full size
+								upload.uploaded += bufferEnd - bufferStart - chunkBytes
+								this.updateStats()
+							})
 							.catch((error) => {
 								if (error?.response?.status === 507) {
 									logger.error('Upload failed, not enough space on the server or quota exceeded. Cancelling the remaining chunks', { error, upload })
@@ -555,20 +579,27 @@ export class Uploader {
 						upload.response = await uploadData(
 							encodedDestinationFile,
 							blob,
-							upload.signal,
-							(event) => {
-								upload.uploaded = upload.uploaded + event.bytes
-								this.updateStats()
-							},
-							undefined,
 							{
-								...this._customHeaders,
-								'X-OC-Mtime': Math.floor(file.lastModified / 1000),
-								'Content-Type': file.type,
+								signal: upload.signal,
+								onUploadProgress: ({ bytes }) => {
+									// As this is only the sent bytes not the processed ones we only count 90%.
+									// When the upload is finished (server acknowledged the upload) the remaining 10% will be correctly set.
+									upload.uploaded += bytes * 0.9
+									this.updateStats()
+								},
+								onUploadRetry: () => {
+									upload.uploaded = 0
+									this.updateStats()
+								},
+								headers: {
+									...this._customHeaders,
+									'X-OC-Mtime': Math.floor(file.lastModified / 1000),
+									'Content-Type': file.type,
+								},
 							},
 						)
 
-						// Update progress
+						// Update progress - now we set the uploaded size to 100% of the file size
 						upload.uploaded = upload.size
 						this.updateStats()
 
