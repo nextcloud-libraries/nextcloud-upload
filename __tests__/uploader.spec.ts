@@ -46,7 +46,7 @@ describe('Uploader', () => {
 
 		it('fails if not logged in and not on public share', async () => {
 			vi.spyOn(nextcloudAuth, 'getCurrentUser').mockImplementationOnce(() => null)
-			expect(async () => new Uploader()).rejects.toThrow(/User is not logged in/)
+			await expect(async () => new Uploader()).rejects.toThrow(/User is not logged in/)
 		})
 	})
 
@@ -119,7 +119,7 @@ describe('Uploader', () => {
 				mime: 'text/plain',
 			})
 
-			expect(() => { uploader.destination = newDestination as nextcloudFiles.Folder }).toThrowError(/invalid destination/i)
+			expect(() => { uploader.destination = newDestination as unknown as nextcloudFiles.Folder }).toThrowError(/invalid destination/i)
 		})
 	})
 })
