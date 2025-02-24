@@ -1,4 +1,4 @@
-/**
+/*!
  * SPDX-FileCopyrightText: 2022 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
@@ -109,7 +109,7 @@ describe('Upload data', () => {
 		const blob = new Blob([new ArrayBuffer(50 * 1024 * 1024)])
 		const signal = new AbortController().signal
 		const onUploadProgress = vi.fn()
-		await uploadData(url, blob, signal, onUploadProgress)
+		await uploadData(url, blob, { signal, onUploadProgress })
 
 		expect(onUploadProgress).toHaveBeenCalledTimes(1)
 		expect(axiosMock.request).toHaveBeenCalledTimes(1)
@@ -125,6 +125,7 @@ describe('Upload data', () => {
 			'axios-retry': {
 				retries: 5,
 				retryDelay: expect.any(Function),
+				onRetry: expect.any(Function),
 			},
 		})
 	})
@@ -137,7 +138,7 @@ describe('Upload data', () => {
 		const signal = new AbortController().signal
 		const onUploadProgress = vi.fn()
 
-		await uploadData(url, data, signal, onUploadProgress)
+		await uploadData(url, data, { signal, onUploadProgress })
 
 		expect(onUploadProgress).toHaveBeenCalledTimes(1)
 		expect(axiosMock.request).toHaveBeenCalledTimes(1)
@@ -154,6 +155,7 @@ describe('Upload data', () => {
 			'axios-retry': {
 				retries: 5,
 				retryDelay: expect.any(Function),
+				onRetry: expect.any(Function),
 			},
 		})
 	})
@@ -165,7 +167,7 @@ describe('Upload data', () => {
 		const blob = new Blob([new ArrayBuffer(50 * 1024 * 1024)])
 		const signal = new AbortController().signal
 		const onUploadProgress = vi.fn()
-		await uploadData(url, blob, signal, onUploadProgress, url)
+		await uploadData(url, blob, { signal, onUploadProgress, destinationFile: url })
 
 		expect(onUploadProgress).toHaveBeenCalledTimes(1)
 		expect(axiosMock.request).toHaveBeenCalledTimes(1)
@@ -182,6 +184,35 @@ describe('Upload data', () => {
 			'axios-retry': {
 				retries: 5,
 				retryDelay: expect.any(Function),
+				onRetry: expect.any(Function),
+			},
+		})
+	})
+
+	test('Upload data stream with callback', async () => {
+		axiosMock.request = vi.fn((config: any) => Promise.resolve(config?.onUploadProgress()))
+
+		const url = 'https://cloud.example.com/remote.php/dav/files/test/image.jpg'
+		const blob = new Blob([new ArrayBuffer(50 * 1024 * 1024)])
+		const signal = new AbortController().signal
+		const onUploadProgress = vi.fn()
+		const onUploadRetry = vi.fn()
+		await uploadData(url, blob, { signal, onUploadProgress, onUploadRetry })
+
+		expect(onUploadProgress).toHaveBeenCalledTimes(1)
+		expect(axiosMock.request).toHaveBeenCalledWith({
+			method: 'PUT',
+			url,
+			data: blob,
+			signal,
+			onUploadProgress,
+			headers: {
+				'Content-Type': 'application/octet-stream',
+			},
+			'axios-retry': {
+				retries: 5,
+				retryDelay: expect.any(Function),
+				onRetry: onUploadRetry,
 			},
 		})
 	})
@@ -199,7 +230,7 @@ describe('Upload data', () => {
 		// Cancel after 200ms
 		setTimeout(() => controller.abort(), 400)
 		try {
-			await uploadData(url, data, controller.signal, onUploadProgress)
+			await uploadData(url, data, { signal: controller.signal, onUploadProgress })
 		} catch (error) {
 			expect(onUploadProgress).toHaveBeenCalledTimes(1)
 			expect(axiosMock.request).toHaveBeenCalledTimes(1)
