@@ -22,13 +22,18 @@ msgstr[0] ""
 msgstr[1] ""
 
 msgid "{seconds} seconds left"
-msgstr ""
+msgid_plural "{seconds} seconds left"
+msgstr[0] ""
+msgstr[1] ""
 
 #. TRANSLATORS time has the format 00:00:00
 msgid "{time} left"
 msgstr ""
 
 msgid "a few seconds left"
+msgstr ""
+
+msgid "assembling"
 msgstr ""
 
 msgid "Cancel"

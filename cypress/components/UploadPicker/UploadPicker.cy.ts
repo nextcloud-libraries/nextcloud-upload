@@ -138,9 +138,6 @@ describe('UploadPicker valid uploads', () => {
 	afterEach(() => resetDocument())
 
 	it('Uploads a file with chunking', () => {
-		// Init and reset chunk request spy
-		const chunksRequestsSpy = cy.spy()
-
 		// Intercept tmp upload chunks folder creation
 		cy.intercept('MKCOL', '/remote.php/dav/uploads/*/web-file-upload*', {
 			statusCode: 201,
@@ -151,7 +148,6 @@ describe('UploadPicker valid uploads', () => {
 			method: 'PUT',
 			url: '/remote.php/dav/uploads/*/web-file-upload*/*',
 		}, (req) => {
-			chunksRequestsSpy()
 			req.reply({
 				statusCode: 201,
 			})
@@ -193,7 +189,7 @@ describe('UploadPicker valid uploads', () => {
 			cy.get('[data-cy-upload-picker] .upload-picker__progress')
 				.as('progress')
 				.should('not.be.visible')
-			expect(chunksRequestsSpy).to.have.always.been.callCount(26)
+			cy.get('@chunks.all').should('have.lengthOf', 26)
 		})
 	})
 

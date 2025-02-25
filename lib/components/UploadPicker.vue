@@ -113,7 +113,7 @@
 				:value="progress"
 				size="medium" />
 			<p :id="progressTimeId" data-cy-upload-picker-progress-label>
-				{{ timeLeft }}
+				{{ status }}
 			</p>
 		</div>
 
@@ -167,7 +167,7 @@ import IconUpload from 'vue-material-design-icons/Upload.vue'
 import { getUploader } from '../index.ts'
 import { Status } from '../uploader.ts'
 import { Status as UploadStatus } from '../upload.ts'
-import { t } from '../utils/l10n.ts'
+import { n, t } from '../utils/l10n.ts'
 import { uploadConflictHandler } from '../utils/conflicts.ts'
 import logger from '../utils/logger.ts'
 
@@ -259,7 +259,7 @@ export default defineComponent({
 		return {
 			eta: null as null|ReturnType<typeof makeEta>,
 			openedMenu: false,
-			timeLeft: '',
+			status: '',
 
 			newFileMenuEntries: [] as Entry[],
 			uploadManager: getUploader(),
@@ -303,16 +303,26 @@ export default defineComponent({
 		},
 
 		hasFailure(): boolean {
-			return this.queue?.filter((upload: Upload) => upload.status === UploadStatus.FAILED).length !== 0
+			return this.queue.some((upload: Upload) => upload.status === UploadStatus.FAILED)
 		},
 		isUploading(): boolean {
-			return this.queue?.filter((upload: Upload) => upload.status !== UploadStatus.CANCELLED).length > 0
+			return this.queue.some((upload: Upload) => upload.status !== UploadStatus.CANCELLED)
 		},
-		isAssembling(): boolean {
-			return this.queue?.filter((upload: Upload) => upload.status === UploadStatus.ASSEMBLING).length !== 0
+		isOnlyAssembling(): boolean {
+			return this.queue.every((upload: Upload) => (
+				// ignore empty uploads or meta uploads
+				upload.size === 0
+				// all the uploads are assembling or finished
+				|| upload.status === UploadStatus.ASSEMBLING
+				|| upload.status === UploadStatus.FINISHED
+			))
 		},
 		isPaused(): boolean {
-			return this.uploadManager.info?.status === Status.PAUSED
+			return this.uploaderStatus === Status.PAUSED
+		},
+
+		uploaderStatus(): Status {
+			return this.uploadManager.info.status
 		},
 
 		buttonLabel(): string {
@@ -356,12 +366,17 @@ export default defineComponent({
 			this.updateStatus()
 		},
 
-		isPaused(isPaused) {
-			if (isPaused) {
+		uploaderStatus(status, oldStatus) {
+			if (status === Status.PAUSED) {
 				this.$emit('paused', this.queue)
-			} else {
+			} else if (oldStatus === Status.PAUSED) {
 				this.$emit('resumed', this.queue)
 			}
+			this.updateStatus()
+		},
+
+		isOnlyAssembling() {
+			this.updateStatus()
 		},
 	},
 
@@ -453,28 +468,33 @@ export default defineComponent({
 
 		updateStatus() {
 			if (this.isPaused) {
-				this.timeLeft = t('paused')
+				this.status = t('paused')
 				return
 			}
 
-			const estimate = Math.round(this.eta!.estimate())
+			if (this.isOnlyAssembling) {
+				this.status = t('assembling')
+				return
+			}
+
+			const estimate = Math.round(this.eta?.estimate?.() || 0)
 
 			if (estimate === Infinity) {
-				this.timeLeft = t('estimating time left')
+				this.status = t('estimating time left')
 				return
 			}
 			if (estimate < 10) {
-				this.timeLeft = t('a few seconds left')
+				this.status = t('a few seconds left')
 				return
 			}
 			if (estimate > 60) {
 				const date = new Date(0)
 				date.setSeconds(estimate)
 				const time = date.toISOString().slice(11, 11 + 8)
-				this.timeLeft = t('{time} left', { time }) // TRANSLATORS time has the format 00:00:00
+				this.status = t('{time} left', { time }) // TRANSLATORS time has the format 00:00:00
 				return
 			}
-			this.timeLeft = t('{seconds} seconds left', { seconds: estimate })
+			this.status = n('{seconds} seconds left', '{seconds} seconds left', estimate, { seconds: estimate })
 		},
 
 		setDestination(destination: Folder) {
