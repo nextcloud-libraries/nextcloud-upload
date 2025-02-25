@@ -52,6 +52,12 @@ msgstr ""
 msgid "Existing version"
 msgstr ""
 
+msgid "Failed assembling the chunks together"
+msgstr ""
+
+msgid "Failed uploading the file"
+msgstr ""
+
 msgid "Filenames must not end with \"{segment}\"."
 msgstr ""
 

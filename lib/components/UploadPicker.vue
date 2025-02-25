@@ -306,7 +306,7 @@ export default defineComponent({
 			return this.queue?.filter((upload: Upload) => upload.status === UploadStatus.FAILED).length !== 0
 		},
 		isUploading(): boolean {
-			return this.queue?.length > 0
+			return this.queue?.filter((upload: Upload) => upload.status !== UploadStatus.CANCELLED).length > 0
 		},
 		isAssembling(): boolean {
 			return this.queue?.filter((upload: Upload) => upload.status === UploadStatus.ASSEMBLING).length !== 0
