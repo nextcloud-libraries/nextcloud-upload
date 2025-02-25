@@ -3,6 +3,9 @@
 name: Transifex
 on: pull_request
 
+permissions:
+  contents: none
+
 jobs:
   auto-approve-merge:
     if: github.event.pull_request.user.login == 'transifex-integration[bot]'
