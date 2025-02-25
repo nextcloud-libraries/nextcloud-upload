@@ -295,7 +295,7 @@ export class Uploader {
 				resolve(uploads)
 			} catch (error) {
 				logger.error('Error in batch upload', { error })
-				upload.status = UploadStatus.FAILED
+				upload.status = UploadStatus.CANCELLED
 				reject(t('Upload has been cancelled'))
 			} finally {
 				this._notifyAll(upload)
@@ -556,7 +556,7 @@ export class Uploader {
 						upload.status = UploadStatus.FAILED
 						reject('Failed assembling the chunks together')
 					} else {
-						upload.status = UploadStatus.FAILED
+						upload.status = UploadStatus.CANCELLED
 						reject(t('Upload has been cancelled'))
 					}
 
@@ -608,7 +608,7 @@ export class Uploader {
 						resolve(upload)
 					} catch (error) {
 						if (isCancel(error)) {
-							upload.status = UploadStatus.FAILED
+							upload.status = UploadStatus.CANCELLED
 							reject(t('Upload has been cancelled'))
 							return
 						}
