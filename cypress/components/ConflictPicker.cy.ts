@@ -149,7 +149,7 @@ describe('ConflictPicker resolving', () => {
 		cy.get('@onCancelSpy').should('not.have.been.called')
 	})
 
-	it('Pick all existing files', () => {
+	it('Pick one existing and one new file', () => {
 		const old1 = new NcFile({
 			id: 1,
 			source: 'http://cloud.domain.com/remote.php/dav/files/user/image1.jpg',
@@ -196,7 +196,7 @@ describe('ConflictPicker resolving', () => {
 		cy.get('@onCancelSpy').should('not.have.been.called')
 	})
 
-	it('Pick both versions files', () => {
+	it('Pick both versions files (rename existing)', () => {
 		const old1 = new NcFile({
 			id: 1,
 			source: 'http://cloud.domain.com/remote.php/dav/files/user/image1.jpg',
