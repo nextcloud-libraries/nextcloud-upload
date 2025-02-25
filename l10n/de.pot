@@ -1,13 +1,13 @@
 # 
 # Translators:
 # Joas Schilling, 2024
-# Mario Siegmann <mario_siegmann@web.de>, 2024
 # Andy Scherzinger <info@andy-scherzinger.de>, 2024
 # Martin Wilichowski, 2025
+# Mario Siegmann <mario_siegmann@web.de>, 2025
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Martin Wilichowski, 2025\n"
+"Last-Translator: Mario Siegmann <mario_siegmann@web.de>, 2025\n"
 "Language-Team: German (https://app.transifex.com/nextcloud/teams/64236/de/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: de\n"
@@ -33,7 +33,9 @@ msgstr[0] "{count} Datei-Konflikt in {dirname}"
 msgstr[1] "{count} Datei-Konflikte in {dirname}"
 
 msgid "{seconds} seconds left"
-msgstr "{seconds} Sekunden verbleiben"
+msgid_plural "{seconds} seconds left"
+msgstr[0] "{seconds} Sekunde verbleibt"
+msgstr[1] "{seconds} Sekunden verbleiben"
 
 #. TRANSLATORS time has the format 00:00:00
 msgid "{time} left"
@@ -41,6 +43,9 @@ msgstr "{time} verbleibend"
 
 msgid "a few seconds left"
 msgstr "ein paar Sekunden verbleiben"
+
+msgid "assembling"
+msgstr "Zusammenbau"
 
 msgid "Cancel"
 msgstr "Abbrechen"
@@ -62,6 +67,12 @@ msgstr "Berechne verbleibende Zeit"
 
 msgid "Existing version"
 msgstr "Vorhandene Version"
+
+msgid "Failed assembling the chunks together"
+msgstr "Das Zusammenfügen der Teile ist fehlgeschlagen"
+
+msgid "Failed uploading the file"
+msgstr "Beim Hochladen der Datei ist ein Fehler aufgetreten"
 
 msgid "Filenames must not end with \"{segment}\"."
 msgstr "Dateinamen dürfen nicht mit \"{segment}\" enden."
