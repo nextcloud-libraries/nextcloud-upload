@@ -16,6 +16,7 @@ import axios, { isCancel } from '@nextcloud/axios'
 import PCancelable from 'p-cancelable'
 import PQueue from 'p-queue'
 
+import { UploadCancelledError } from './errors/UploadCancelledError.ts'
 import { getChunk, initChunkWorkspace, uploadData } from './utils/upload.js'
 import { getMaxChunksSize } from './utils/config.js'
 import { Status as UploadStatus, Upload } from './upload.js'
@@ -294,9 +295,15 @@ export class Uploader {
 				upload.status = UploadStatus.FINISHED
 				resolve(uploads)
 			} catch (error) {
-				logger.error('Error in batch upload', { error })
-				upload.status = UploadStatus.FAILED
-				reject(t('Upload has been cancelled'))
+				if (isCancel(error) || error instanceof UploadCancelledError) {
+					logger.info('Upload cancelled by user', { error })
+					upload.status = UploadStatus.CANCELLED
+					reject(new UploadCancelledError(error))
+				} else {
+					logger.error('Error in batch upload', { error })
+					upload.status = UploadStatus.FAILED
+					reject(error)
+				}
 			} finally {
 				this._notifyAll(upload)
 				this.updateStats()
@@ -335,10 +342,14 @@ export class Uploader {
 					await client.createDirectory(folderPath, { signal: abort.signal })
 					resolve(currentUpload)
 				} catch (error) {
-					if (error && typeof error === 'object' && 'status' in error && error.status === 405) {
+					if (isCancel(error) || error instanceof UploadCancelledError) {
+						currentUpload.status = UploadStatus.CANCELLED
+						reject(new UploadCancelledError(error))
+					} else if (error && typeof error === 'object' && 'status' in error && error.status === 405) {
 						// Directory already exists, so just write into it and ignore the error
-						currentUpload.status = UploadStatus.FINISHED
 						logger.debug('Directory already exists, writing into it', { directory: directory.name })
+						currentUpload.status = UploadStatus.FINISHED
+						resolve(currentUpload)
 					} else {
 						// Another error happened, so abort uploading the directory
 						currentUpload.status = UploadStatus.FAILED
@@ -371,7 +382,7 @@ export class Uploader {
 			const selectedForUpload = await callback(directory.children, folderPath)
 			if (selectedForUpload === false) {
 				logger.debug('Upload canceled by user', { directory })
-				reject(t('Upload has been cancelled'))
+				reject(new UploadCancelledError('Conflict resolution cancelled by user'))
 				return
 			} else if (selectedForUpload.length === 0 && directory.children.length > 0) {
 				logger.debug('Skipping directory, as all files were skipped by user', { directory })
@@ -552,12 +563,12 @@ export class Uploader {
 					logger.debug(`Successfully uploaded ${file.name}`, { file, upload })
 					resolve(upload)
 				} catch (error) {
-					if (!isCancel(error)) {
-						upload.status = UploadStatus.FAILED
-						reject('Failed assembling the chunks together')
+					if (isCancel(error) || error instanceof UploadCancelledError) {
+						upload.status = UploadStatus.CANCELLED
+						reject(new UploadCancelledError(error))
 					} else {
 						upload.status = UploadStatus.FAILED
-						reject(t('Upload has been cancelled'))
+						reject(t('Failed assembling the chunks together'))
 					}
 
 					// Cleaning up temp directory
@@ -607,9 +618,9 @@ export class Uploader {
 						logger.debug(`Successfully uploaded ${file.name}`, { file, upload })
 						resolve(upload)
 					} catch (error) {
-						if (isCancel(error)) {
-							upload.status = UploadStatus.FAILED
-							reject(t('Upload has been cancelled'))
+						if (isCancel(error) || error instanceof UploadCancelledError) {
+							upload.status = UploadStatus.CANCELLED
+							reject(new UploadCancelledError(error))
 							return
 						}
 
@@ -620,7 +631,7 @@ export class Uploader {
 
 						upload.status = UploadStatus.FAILED
 						logger.error(`Failed uploading ${file.name}`, { error, file, upload })
-						reject('Failed uploading the file')
+						reject(t('Failed uploading the file'))
 					}
 
 					// Notify listeners of the upload completion
