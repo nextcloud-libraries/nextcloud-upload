@@ -60,6 +60,9 @@ describe('UploadPicker: progress handling', () => {
 			}),
 		}
 
+		// Start paused
+		getUploader(false, true).pause()
+
 		// Mount picker
 		cy.mount(UploadPicker, {
 			propsData,
@@ -74,7 +77,6 @@ describe('UploadPicker: progress handling', () => {
 	it('has increasing progress bar during non-chunked upload', () => {
 		// Start in paused mode
 		const uploader = getUploader()
-		uploader.pause()
 
 		cy.get('@input').attachFile({
 			// file of 5 MiB
@@ -150,7 +152,6 @@ describe('UploadPicker: progress handling', () => {
 
 		// Start in paused mode
 		const uploader = getUploader()
-		uploader.pause()
 
 		// 3 MiB/s meaning upload will take 5 seconds
 		throttleUpload(3 * 1024 * 1024)
@@ -205,6 +206,74 @@ describe('UploadPicker: progress handling', () => {
 		cy.get('@progress')
 			.should('not.be.visible')
 	})
+
+	it('shows the progress bar while assembling', () => {
+		// Maximum the responses can take
+		Cypress.config({ defaultCommandTimeout: 7000 })
+
+		const { promise, resolve } = Promise.withResolvers<void>()
+
+		cy.intercept('PUT', '/remote.php/dav/files/user/file.txt', { statusCode: 201 }).as('upload')
+		cy.intercept('MKCOL', '/remote.php/dav/uploads/user/*', { statusCode: 201 }).as('mkdir')
+		cy.intercept('PUT', '/remote.php/dav/uploads/user/*/*', (rq) => {
+			rq.reply({ statusCode: 201 })
+			if (rq.url.endsWith('/2')) {
+				rq.on('response', async () => await promise)
+			}
+		}).as('uploadBig')
+		cy.intercept('MOVE', '/remote.php/dav/uploads/user/*/.file', { statusCode: 201, delay: 1000 }).as('move')
+
+		// Start in paused mode
+		const uploader = getUploader()
+
+		cy.get('@input').attachFile([
+			{
+				// file of 5 MiB so it is not chunked
+				fileContent: new Blob([new ArrayBuffer(5 * 1024 * 1024)]),
+				fileName: 'file.txt',
+				mimeType: 'text/plain',
+				encoding: 'utf8',
+				lastModified: new Date().getTime(),
+			},
+			{
+				// file of 15 MiB so it is chunked in 10MiB and 5 MiB
+				fileContent: new Blob([new ArrayBuffer(15 * 1024 * 1024)]),
+				fileName: 'big-file.txt',
+				mimeType: 'text/plain',
+				encoding: 'utf8',
+				lastModified: new Date().getTime(),
+			},
+		])
+
+		// See there is no progress yet
+		cy.get('@progress')
+			.should('be.visible')
+			.should('have.value', 0)
+		cy.get('@progressLabel')
+			.should('contain.text', 'paused')
+			// start the uploader
+			.then(() => uploader.start())
+
+		// MKCOL was successfully so the upload can begin
+		cy.wait('@mkdir')
+
+		cy.get('@progress', { timeout: 2000 })
+			.should((el) => expect(el.val()).to.be.greaterThan(10))
+			.and((el) => expect(el.val()).to.be.lessThan(95))
+
+		cy.wait('@upload')
+		cy.wait('@uploadBig')
+			.then(() => resolve())
+
+		cy.get('@progressLabel')
+			.should('be.visible')
+			.and('contain.text', 'assembling')
+
+		cy.wait('@move')
+
+		cy.get('@progress')
+			.should('not.be.visible')
+	})
 })
 
 describe('UploadPicker: reset progress on retry', () => {
@@ -217,6 +286,7 @@ describe('UploadPicker: reset progress on retry', () => {
 		cy.window()
 			.then((win) => {
 				// Internal global variable
+				// eslint-disable-next-line @typescript-eslint/no-explicit-any
 				(win as any)._oc_capabilities = { files: { chunked_upload: { max_parallel_count: 1 } } }
 			})
 

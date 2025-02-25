@@ -545,46 +545,51 @@ export class Uploader {
 					chunksQueue.push(this._jobQueue.add(request))
 				}
 
-				try {
-					// Once all chunks are sent, assemble the final file
-					await Promise.all(chunksQueue)
-					this.updateStats()
+				const request = async () => {
+					try {
+						// Once all chunks are sent, assemble the final file
+						await Promise.all(chunksQueue)
 
-					// Assemble the chunks
-					upload.status = UploadStatus.ASSEMBLING
-					upload.response = await axios.request({
-						method: 'MOVE',
-						url: `${tempUrl}/.file`,
-						headers: {
-							...this._customHeaders,
-							'X-OC-Mtime': Math.floor(file.lastModified / 1000),
-							'OC-Total-Length': file.size,
-							Destination: encodedDestinationFile,
-						},
-					})
+						// Assemble the chunks
+						upload.status = UploadStatus.ASSEMBLING
+						this.updateStats()
 
-					this.updateStats()
-					upload.status = UploadStatus.FINISHED
-					logger.debug(`Successfully uploaded ${file.name}`, { file, upload })
-					resolve(upload)
-				} catch (error) {
-					if (isCancel(error) || error instanceof UploadCancelledError) {
-						upload.status = UploadStatus.CANCELLED
-						reject(new UploadCancelledError(error))
-					} else {
-						upload.status = UploadStatus.FAILED
-						reject(t('Failed assembling the chunks together'))
+						// Send the assemble request
+						upload.response = await axios.request({
+							method: 'MOVE',
+							url: `${tempUrl}/.file`,
+							headers: {
+								...this._customHeaders,
+								'X-OC-Mtime': Math.floor(file.lastModified / 1000),
+								'OC-Total-Length': file.size,
+								Destination: encodedDestinationFile,
+							},
+						})
+						upload.status = UploadStatus.FINISHED
+						this.updateStats()
+
+						logger.debug(`Successfully uploaded ${file.name}`, { file, upload })
+						resolve(upload)
+					} catch (error) {
+						if (isCancel(error) || error instanceof UploadCancelledError) {
+							upload.status = UploadStatus.CANCELLED
+							reject(new UploadCancelledError(error))
+						} else {
+							upload.status = UploadStatus.FAILED
+							reject(t('Failed assembling the chunks together'))
+						}
+						// Cleaning up temp directory
+						axios.request({
+							method: 'DELETE',
+							url: `${tempUrl}`,
+						})
+					} finally {
+						// Notify listeners of the upload completion
+						this._notifyAll(upload)
 					}
-
-					// Cleaning up temp directory
-					axios.request({
-						method: 'DELETE',
-						url: `${tempUrl}`,
-					})
 				}
 
-				// Notify listeners of the upload completion
-				this._notifyAll(upload)
+				this._jobQueue.add(request)
 			} else {
 				logger.debug('Initializing regular upload', { file, upload })
 
