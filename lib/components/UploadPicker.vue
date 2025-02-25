@@ -13,7 +13,7 @@
 			:disabled="disabled"
 			data-cy-upload-picker-add
 			data-cy-upload-picker-menu-entry="upload-file"
-			type="secondary"
+			:type="primary ? 'primary' : 'secondary'"
 			@click="onTriggerPick()">
 			<template #icon>
 				<IconPlus :size="20" />
@@ -25,7 +25,7 @@
 			:aria-label="buttonLabel"
 			:menu-name="buttonName"
 			:open.sync="openedMenu"
-			type="secondary">
+			:type="primary ? 'primary' : 'secondary'">
 			<template #icon>
 				<IconPlus :size="20" />
 			</template>
@@ -206,6 +206,14 @@ export default defineComponent({
 		 * Allow to disable the "new"-menu for this UploadPicker instance
 		 */
 		noMenu: {
+			type: Boolean,
+			default: false,
+		},
+
+		/**
+		 * Make the "New"-button primary color.
+		 */
+		primary: {
 			type: Boolean,
 			default: false,
 		},
