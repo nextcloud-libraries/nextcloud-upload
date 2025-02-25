@@ -224,6 +224,11 @@ export class Uploader {
 	 * @param upload The upload that finished
 	 */
 	private _notifyAll(upload: Upload): void {
+		// Ignore meta uploads
+		if (upload.file.name === '') {
+			return
+		}
+
 		for (const notifier of this._notifiers) {
 			try {
 				notifier(upload)

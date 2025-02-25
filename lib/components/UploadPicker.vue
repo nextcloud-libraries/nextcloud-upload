@@ -246,6 +246,8 @@ export default defineComponent({
 		},
 	},
 
+	emits: ['uploaded', 'failed', 'cancelled', 'paused', 'resumed'],
+
 	setup() {
 		return {
 			t,
@@ -306,6 +308,7 @@ export default defineComponent({
 			return this.queue?.filter((upload: Upload) => upload.status === UploadStatus.FAILED).length !== 0
 		},
 		isUploading(): boolean {
+			// also ignore cancelled uploads
 			return this.queue?.filter((upload: Upload) => upload.status !== UploadStatus.CANCELLED).length > 0
 		},
 		isAssembling(): boolean {
@@ -490,8 +493,15 @@ export default defineComponent({
 		},
 
 		onUploadCompletion(upload: Upload) {
+			// Ignore meta uploads
+			if (upload.file.name === '') {
+				return
+			}
+
 			if (upload.status === UploadStatus.FAILED) {
 				this.$emit('failed', upload)
+			} else if (upload.status === UploadStatus.CANCELLED) {
+				this.$emit('cancelled', upload)
 			} else {
 				this.$emit('uploaded', upload)
 			}

@@ -5,7 +5,7 @@
  */
 // dist file might not be built when running eslint only
 // eslint-disable-next-line import/no-unresolved,n/no-missing-import
-import { Folder, Permission, addNewFileMenuEntry, type Entry } from '@nextcloud/files'
+import { Folder, Permission } from '@nextcloud/files'
 import { generateRemoteUrl } from '@nextcloud/router'
 import { UploadPicker, UploadStatus, getUploader } from '../../../lib/index.ts'
 
@@ -371,10 +371,11 @@ describe('Root management', () => {
 	})
 })
 
-describe('UploadPicker notify testing', () => {
+describe.only('UploadPicker notify testing', () => {
 	const listeners = {
 		uploaded: () => {},
 		failed: () => {},
+		cancelled: () => {},
 	}
 
 	beforeEach(() => {
@@ -390,8 +391,9 @@ describe('UploadPicker notify testing', () => {
 			}),
 		}
 
-		cy.spy(listeners, 'uploaded')
+		cy.spy(listeners, 'cancelled')
 		cy.spy(listeners, 'failed')
+		cy.spy(listeners, 'uploaded')
 
 		// Mount picker
 		cy.mount(UploadPicker, {
@@ -432,17 +434,16 @@ describe('UploadPicker notify testing', () => {
 			cy.get('@progress')
 				.children('progress')
 				.should('not.have.value', '0')
-			expect(notify).to.be.calledTwice
+			expect(notify).to.be.calledOnce
+
 			// The image upload
 			expect(notify.getCall(0).args[0].file.name).to.eq('image.jpg')
 			expect(notify.getCall(0).args[0].status).to.eq(UploadStatus.FINISHED)
-			// The meta upload
-			expect(notify.getCall(1).args[0].status).to.eq(UploadStatus.FINISHED)
-			expect(notify.getCall(1).args[0].file.name).to.eq('')
-			expect(notify.getCall(1).args[0].file.type).to.eq('httpd/unix-directory')
-			// the listeners
+
+			// The listeners
+			expect(listeners.cancelled).to.not.be.called
 			expect(listeners.failed).to.not.be.called
-			expect(listeners.uploaded).to.be.calledTwice
+			expect(listeners.uploaded).to.be.calledOnce
 		})
 	})
 
@@ -472,17 +473,65 @@ describe('UploadPicker notify testing', () => {
 			cy.get('@progress')
 				.children('progress')
 				.should('not.have.value', '0')
-			expect(notify).to.be.calledTwice
+			expect(notify).to.be.calledOnce
+
 			// The image upload
 			expect(notify.getCall(0).args[0].file.name).to.eq('image.jpg')
 			expect(notify.getCall(0).args[0].status).to.eq(UploadStatus.FAILED)
-			// The meta upload
-			expect(notify.getCall(1).args[0].status).to.eq(UploadStatus.FAILED)
-			expect(notify.getCall(1).args[0].file.name).to.eq('')
-			expect(notify.getCall(1).args[0].file.type).to.eq('httpd/unix-directory')
-			// the listeners
+
+			// The listeners
+			expect(listeners.cancelled).to.not.be.called
+			expect(listeners.failed).to.be.calledOnce
 			expect(listeners.uploaded).to.not.be.called
-			expect(listeners.failed).to.be.calledTwice
+		})
+	})
+
+	it('Cancel a file without chunking', () => {
+		const notify = cy.spy()
+		const uploader = getUploader()
+		uploader.addNotifier(notify)
+
+		// Intercept single upload
+		cy.intercept('PUT', '/remote.php/dav/files/*/*', {
+			statusCode: 201,
+			delay: 2000,
+		}).as('upload')
+
+		cy.get('@input').attachFile({
+			// Fake file of 5 MB
+			fileContent: new Blob([new ArrayBuffer(5 * 1024 * 1024)]),
+			fileName: 'image.jpg',
+			mimeType: 'image/jpeg',
+			encoding: 'utf8',
+			lastModified: new Date().getTime(),
+		})
+
+		cy.get('[data-cy-upload-picker] .upload-picker__progress')
+			.as('progress')
+			.should('be.visible')
+
+		// Immediately cancel the upload
+		cy.get('[data-cy-upload-picker-cancel]').click()
+
+		cy.get('[data-cy-upload-picker] .upload-picker__progress')
+			.as('progress')
+			.should('not.be.visible')
+
+		// Wait for the upload to be cancelled
+		cy.wait('@upload').then(() => {
+			cy.get('@progress')
+				.children('progress')
+				.should('not.have.value', '0')
+			expect(notify).to.be.calledOnce
+
+			// The image upload
+			expect(notify.getCall(0).args[0].file.name).to.eq('image.jpg')
+			expect(notify.getCall(0).args[0].status).to.eq(UploadStatus.FAILED)
+
+			// The listeners
+			expect(listeners.uploaded).to.not.be.called
+			expect(listeners.failed).to.not.be.called
+			expect(listeners.cancelled).to.be.calledOnce
 		})
 	})
 })
