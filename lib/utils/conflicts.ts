@@ -4,16 +4,16 @@
  */
 
 import type { Node } from '@nextcloud/files'
-import type { IDirectory } from '../utils/fileTree'
+import type { IDirectory } from '../utils/fileTree.ts'
 
 import { showInfo, showWarning } from '@nextcloud/dialogs'
 import { getUniqueName, InvalidFilenameError, validateFilename } from '@nextcloud/files'
 import { basename } from '@nextcloud/paths'
 
-import { openConflictPicker } from '../index'
-import { showInvalidFilenameDialog } from './dialog'
-import { t } from './l10n'
-import logger from './logger'
+import { openConflictPicker } from '../index.ts'
+import { showInvalidFilenameDialog } from './dialog.ts'
+import { t } from './l10n.ts'
+import logger from './logger.ts'
 
 /**
  * Check if there is a conflict between two sets of files
@@ -58,7 +58,11 @@ export function uploadConflictHandler(contentsCallback: (path: string) => Promis
 			// First handle conflicts as this might already remove invalid files
 			if (conflicts.length > 0) {
 				const { selected, renamed } = await openConflictPicker(path, conflicts, content, { recursive: true })
-				nodes = [...selected, ...renamed]
+				nodes = [
+					...nodes.filter((node) => !conflicts.includes(node)),
+					...selected,
+					...renamed,
+				]
 			}
 
 			// We need to check all files for invalid characters
