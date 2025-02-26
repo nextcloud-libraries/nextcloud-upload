@@ -12,9 +12,6 @@ declare global {
 	namespace Cypress {
 		interface Chainable {
 			mount: typeof mount
-			shouldHaveTrimmedText: (
-				text: string
-			) => Chainable<JQuery<HTMLElement>>
 		}
 	}
 }
