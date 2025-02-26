@@ -10,6 +10,7 @@
 		data-cy-upload-picker>
 		<!-- New button -->
 		<NcButton v-if="!haveMenu"
+			:aria-label="buttonLabel"
 			:disabled="disabled"
 			data-cy-upload-picker-add
 			data-cy-upload-picker-menu-entry="upload-file"
@@ -18,12 +19,14 @@
 			<template #icon>
 				<IconPlus :size="20" />
 			</template>
-			{{ buttonName }}
+			<template v-if="!isUploading" #default>
+				{{ buttonLabel }}
+			</template>
 		</NcButton>
 
 		<NcActions v-else
 			:aria-label="buttonLabel"
-			:menu-name="buttonName"
+			:menu-name="buttonLabel"
 			:open.sync="openedMenu"
 			:type="primary ? 'primary' : 'secondary'">
 			<template #icon>
@@ -301,17 +304,21 @@ export default defineComponent({
 		hasFailure(): boolean {
 			return this.queue.some((upload: Upload) => upload.status === UploadStatus.FAILED)
 		},
+		isAssembling(): boolean {
+			return this.queue.some((upload: Upload) => upload.status === UploadStatus.ASSEMBLING)
+		},
 		isUploading(): boolean {
 			return this.queue.some((upload: Upload) => upload.status !== UploadStatus.CANCELLED)
 		},
 		isOnlyAssembling(): boolean {
-			return this.queue.every((upload: Upload) => (
-				// ignore empty uploads or meta uploads
-				upload.size === 0
-				// all the uploads are assembling or finished
-				|| upload.status === UploadStatus.ASSEMBLING
-				|| upload.status === UploadStatus.FINISHED
-			))
+			return this.isAssembling
+				&& this.queue.every((upload: Upload) => (
+					// ignore empty uploads or meta uploads
+					upload.size === 0
+					// all the uploads are assembling or finished
+					|| upload.status === UploadStatus.ASSEMBLING
+					|| upload.status === UploadStatus.FINISHED
+				))
 		},
 		isPaused(): boolean {
 			return this.uploadManager.info?.status === UploaderStatus.PAUSED
@@ -319,14 +326,6 @@ export default defineComponent({
 
 		buttonLabel(): string {
 			return this.noMenu ? t('Upload') : t('New')
-		},
-
-		// Hide the button text if we're uploading
-		buttonName(): string|undefined {
-			if (this.isUploading) {
-				return undefined
-			}
-			return this.buttonLabel
 		},
 
 		haveMenu(): boolean {
