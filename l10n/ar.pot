@@ -1,12 +1,12 @@
 # 
 # Translators:
 # Joas Schilling, 2024
-# Ali <alimahwer@yahoo.com>, 2024
-# abusaud, 2024
+# abu.s3ud, 2024
+# Ali <alimahwer@yahoo.com>, 2025
 # 
 msgid ""
 msgstr ""
-"Last-Translator: abusaud, 2024\n"
+"Last-Translator: Ali <alimahwer@yahoo.com>, 2025\n"
 "Language-Team: Arabic (https://app.transifex.com/nextcloud/teams/64236/ar/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: ar\n"
@@ -40,7 +40,13 @@ msgstr[4] "{count} ملفات متعارضة في {dirname}"
 msgstr[5] "{count} ملفات متعارضة في {dirname}"
 
 msgid "{seconds} seconds left"
-msgstr "{seconds} ثانية متبقية"
+msgid_plural "{seconds} seconds left"
+msgstr[0] "مازال {seconds} ثوانٍ"
+msgstr[1] "مازال {seconds} ثوانٍ"
+msgstr[2] "مازال {seconds} ثوانٍ"
+msgstr[3] "مازال {seconds} ثوانٍ"
+msgstr[4] "مازال {seconds} ثوانٍ"
+msgstr[5] "مازال {seconds} ثوانٍ"
 
 #. TRANSLATORS time has the format 00:00:00
 msgid "{time} left"
@@ -48,6 +54,9 @@ msgstr "{time} متبقية"
 
 msgid "a few seconds left"
 msgstr "بضع ثوانٍ متبقية"
+
+msgid "assembling"
+msgstr "تجميع"
 
 msgid "Cancel"
 msgstr "إلغاء"
@@ -69,6 +78,12 @@ msgstr "تقدير الوقت المتبقي"
 
 msgid "Existing version"
 msgstr "الإصدار الحالي"
+
+msgid "Failed assembling the chunks together"
+msgstr "فشل في تجميع الكُتَل معاً"
+
+msgid "Failed uploading the file"
+msgstr "فشل في رفع الملف"
 
 msgid "Filenames must not end with \"{segment}\"."
 msgstr "غير مسموح ان ينتهي اسم الملف بـ \"{segment}\"."
