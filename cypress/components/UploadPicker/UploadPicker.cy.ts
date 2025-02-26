@@ -111,7 +111,7 @@ describe('UploadPicker valid uploads', () => {
 				.should('not.be.visible')
 
 			// Label is displayed again after upload
-			cy.get('[data-cy-upload-picker] button').shouldHaveTrimmedText('New')
+			cy.get('[data-cy-upload-picker] button').should('contain.text', 'New')
 		})
 	})
 })
