@@ -68,7 +68,7 @@ export class Eta extends TypedEventTarget<EtaEventsMap> {
 	}
 
 	/**
-	 * Add more transfered bytes.
+	 * Add more transferred bytes.
 	 * @param done Additional bytes done.
 	 */
 	public add(done: number): void {
