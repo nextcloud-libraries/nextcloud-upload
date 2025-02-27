@@ -13,12 +13,3 @@
 // https://on.cypress.io/custom-commands
 // ***********************************************
 import 'cypress-file-upload'
-
-Cypress.Commands.add(
-	'shouldHaveTrimmedText',
-	{ prevSubject: true },
-	(subject: JQuery<HTMLElement>, text: string) => {
-		cy.wrap(subject)
-			.should(element => expect(element.text().trim()).to.equal(text))
-	},
-)

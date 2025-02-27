@@ -8,13 +8,13 @@ import type { AsyncComponent } from 'vue'
 import { isPublicShare } from '@nextcloud/sharing/public'
 import Vue, { defineAsyncComponent } from 'vue'
 
-import { Uploader } from './uploader'
+import { Uploader } from './uploader/uploader'
 import UploadPicker from './components/UploadPicker.vue'
 
 export type { IDirectory, Directory } from './utils/fileTree'
 export { getConflicts, hasConflict, uploadConflictHandler } from './utils/conflicts'
 export { Upload, Status as UploadStatus } from './upload'
-export { Uploader, Status as UploaderStatus } from './uploader'
+export * from './uploader/index.ts'
 
 export type ConflictResolutionResult<T extends File|FileSystemEntry|Node> = {
 	selected: T[],

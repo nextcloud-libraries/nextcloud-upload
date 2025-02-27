@@ -3,9 +3,7 @@
  * SPDX-FileCopyrightText: 2022 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
-// dist file might not be built when running eslint only
-// eslint-disable-next-line import/no-unresolved,n/no-missing-import
-import { Folder, Permission, addNewFileMenuEntry, type Entry } from '@nextcloud/files'
+import { Folder, Permission } from '@nextcloud/files'
 import { generateRemoteUrl } from '@nextcloud/router'
 import { UploadPicker, UploadStatus, getUploader } from '../../../lib/index.ts'
 
@@ -39,8 +37,9 @@ describe('UploadPicker rendering', () => {
 		}
 		cy.mount(UploadPicker, { propsData })
 		cy.get('[data-cy-upload-picker]').should('be.visible')
-		cy.get('[data-cy-upload-picker]').shouldHaveTrimmedText('New')
+		cy.get('[data-cy-upload-picker]').should('contain.text', 'New')
 		cy.get('[data-cy-upload-picker] [data-cy-upload-picker-input]').should('exist')
+		cy.get('[data-cy-upload-picker] [data-cy-upload-picker-progress]').should('not.be.visible')
 	})
 
 	it('Does NOT render without a destination', () => {
@@ -68,22 +67,22 @@ describe('UploadPicker valid uploads', () => {
 		cy.mount(UploadPicker, { propsData }).as('uploadPicker')
 
 		// Label is displayed before upload
-		cy.get('[data-cy-upload-picker]').shouldHaveTrimmedText('New')
+		cy.get('[data-cy-upload-picker]')
+			.contains('button', 'New')
+			.should('be.visible')
 
 		// Check and init aliases
 		cy.get('[data-cy-upload-picker] [data-cy-upload-picker-input]').as('input').should('exist')
-		cy.get('[data-cy-upload-picker] .upload-picker__progress').as('progress').should('exist')
+		cy.get('[data-cy-upload-picker] [data-cy-upload-picker-progress]').as('progress').should('exist')
 	})
 
 	afterEach(() => resetDocument())
 
 	it('Uploads a file', () => {
-		// Intercept single upload
+		const { promise, resolve } = Promise.withResolvers<void>()
 		cy.intercept('PUT', '/remote.php/dav/files/*/*', (req) => {
-			req.reply({
-				statusCode: 201,
-				delay: 2000,
-			})
+			req.reply({ statusCode: 201 })
+			req.on('response', async () => await promise)
 		}).as('upload')
 
 		cy.get('@input').attachFile({
@@ -95,20 +94,24 @@ describe('UploadPicker valid uploads', () => {
 			lastModified: new Date().getTime(),
 		})
 
-		cy.get('[data-cy-upload-picker] .upload-picker__progress')
-			.as('progress')
-			.should('be.visible')
-
-		// Label gets hidden during upload
-		cy.get('[data-cy-upload-picker]').should('not.have.text', 'New')
+		cy.get('@progress').should('be.visible')
+		cy.get('[data-cy-upload-picker]')
+			.within(() => {
+				// Label gets hidden during upload
+				cy.contains('button', 'New').should('not.exist')
+				// but the button exists
+				cy.get('button[data-cy-upload-picker-add]')
+					.should('be.visible')
+					.and('have.attr', 'aria-label', 'New')
+			})
+			.then(() => resolve())
 
 		cy.wait('@upload').then(() => {
-			cy.get('[data-cy-upload-picker] .upload-picker__progress')
-				.as('progress')
+			cy.get('@progress')
 				.should('not.be.visible')
 
 			// Label is displayed again after upload
-			cy.get('[data-cy-upload-picker] button').shouldHaveTrimmedText('New')
+			cy.get('[data-cy-upload-picker] button').should('contain.text', 'New')
 		})
 	})
 })

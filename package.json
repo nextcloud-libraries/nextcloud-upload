@@ -63,7 +63,7 @@
     "crypto-browserify": "^3.12.1",
     "p-cancelable": "^4.0.1",
     "p-queue": "^8.1.0",
-    "simple-eta": "^3.0.2"
+    "typescript-event-target": "^1.1.1"
   },
   "devDependencies": {
     "@codecov/vite-plugin": "^1.9.0",
