@@ -1,10 +1,10 @@
 # 
 # Translators:
-# Aindriú Mac Giolla Eoin, 2024
+# Aindriú Mac Giolla Eoin, 2025
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Aindriú Mac Giolla Eoin, 2024\n"
+"Last-Translator: Aindriú Mac Giolla Eoin, 2025\n"
 "Language-Team: Irish (https://app.transifex.com/nextcloud/teams/64236/ga/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: ga\n"
@@ -36,7 +36,12 @@ msgstr[3] "{count} coimhlintí comhaid i {dirname}"
 msgstr[4] "{count} coimhlintí comhaid i {dirname}"
 
 msgid "{seconds} seconds left"
-msgstr "{seconds} soicind fágtha"
+msgid_plural "{seconds} seconds left"
+msgstr[0] "{seconds} soicind fágtha"
+msgstr[1] "{seconds} soicind fágtha"
+msgstr[2] "{seconds} soicind fágtha"
+msgstr[3] "{seconds} soicind fágtha"
+msgstr[4] "{seconds} soicind fágtha"
 
 #. TRANSLATORS time has the format 00:00:00
 msgid "{time} left"
@@ -44,6 +49,9 @@ msgstr "{time} fágtha"
 
 msgid "a few seconds left"
 msgstr "cúpla soicind fágtha"
+
+msgid "assembling"
+msgstr "ag cur le chéile"
 
 msgid "Cancel"
 msgstr "Cealaigh"
@@ -65,6 +73,12 @@ msgstr "ag déanamh meastachán ar an am atá fágtha"
 
 msgid "Existing version"
 msgstr "Leagan láithreach "
+
+msgid "Failed assembling the chunks together"
+msgstr "Theip ar na smután a chur le chéile"
+
+msgid "Failed uploading the file"
+msgstr "Theip ar uaslódáil an chomhaid"
 
 msgid "Filenames must not end with \"{segment}\"."
 msgstr "Níor cheart go gcríochnaíonn comhaid chomhad le \"{segment}\"."
