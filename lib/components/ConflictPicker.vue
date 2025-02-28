@@ -409,6 +409,7 @@ export default defineComponent({
 		top: 0;
 		padding: 0 var(--margin);
 		padding-bottom: var(--secondary-margin);
+		background-color: var(--color-main-background);
 	}
 
 	&__form {
