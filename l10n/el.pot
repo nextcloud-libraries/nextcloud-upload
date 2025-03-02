@@ -1,36 +1,179 @@
 # 
 # Translators:
-# Nik Pap, 2022
+# Joas Schilling, 2024
+# Efstathios Iosifidis <iefstathios@gmail.com>, 2025
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Nik Pap, 2022\n"
-"Language-Team: Greek (https://www.transifex.com/nextcloud/teams/64236/el/)\n"
+"Last-Translator: Efstathios Iosifidis <iefstathios@gmail.com>, 2025\n"
+"Language-Team: Greek (https://app.transifex.com/nextcloud/teams/64236/el/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: el\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgid "{seconds} seconds left"
-msgstr "απομένουν {seconds} δευτερόλεπτα"
+msgid "\"{segment}\" is a forbidden file or folder name."
+msgstr "Το \"{segment}\" είναι απαγορευμένο όνομα αρχείου ή φακέλου."
 
-#. time has the format 00:00:00
+msgid "\"{segment}\" is a forbidden file type."
+msgstr "Το \"{segment}\" είναι απαγορευμένος τύπος αρχείου."
+
+msgid "\"{segment}\" is not allowed inside a file or folder name."
+msgstr "Το \"{segment}\" δεν επιτρέπεται μέσα στο όνομα ενός αρχείου ή φακέλου."
+
+msgid "{count} file conflict"
+msgid_plural "{count} files conflict"
+msgstr[0] "{count} αρχείο σε διένεξη"
+msgstr[1] "{count} αρχεία σε διένεξη"
+
+msgid "{count} file conflict in {dirname}"
+msgid_plural "{count} file conflicts in {dirname}"
+msgstr[0] "{count} αρχείο σε διένεξη στον φάκελο {dirname}"
+msgstr[1] "{count} αρχεία σε διένεξη στον φάκελο {dirname}"
+
+msgid "{seconds} seconds left"
+msgid_plural "{seconds} seconds left"
+msgstr[0] "Απομένει {seconds} δευτερόλεπτο"
+msgstr[1] "Απομένουν {seconds} δευτερόλεπτα"
+
+#. TRANSLATORS time has the format 00:00:00
 msgid "{time} left"
 msgstr "απομένουν {time}"
 
 msgid "a few seconds left"
 msgstr "απομένουν λίγα δευτερόλεπτα"
 
-msgid "Add"
-msgstr "Προσθήκη"
+msgid "assembling"
+msgstr "συναρμολόγηση"
+
+msgid "Cancel"
+msgstr "Ακύρωση"
+
+msgid "Cancel the entire operation"
+msgstr "Ακύρωση όλης της λειτουργίας"
 
 msgid "Cancel uploads"
 msgstr "Ακύρωση μεταφορτώσεων"
 
+msgid "Continue"
+msgstr "Συνέχεια"
+
+msgid "Create new"
+msgstr "Δημιουργία νέου"
+
 msgid "estimating time left"
 msgstr "εκτίμηση του χρόνου που απομένει"
+
+msgid "Existing version"
+msgstr "Υπάρχουσα έκδοση"
+
+msgid "Failed assembling the chunks together"
+msgstr "Αποτυχία συναρμολόγησης των τμημάτων"
+
+msgid "Failed uploading the file"
+msgstr "Αποτυχία μεταφόρτωσης του αρχείου"
+
+msgid "Filenames must not end with \"{segment}\"."
+msgstr "Τα ονόματα αρχείων δεν πρέπει να τελειώνουν με \"{segment}\"."
+
+msgid ""
+"If you select both versions, the incoming file will have a number added to "
+"its name."
+msgstr ""
+"Αν επιλέξετε και τις δύο εκδόσεις, το εισερχόμενο αρχείο θα έχει έναν αριθμό"
+" προσαρτημένο στο όνομά του."
+
+msgid "Invalid filename"
+msgstr "Μη έγκυρο όνομα αρχείου"
+
+msgid "Last modified date unknown"
+msgstr "Άγνωστη ημερομηνία τελευταίας τροποποίησης"
+
+msgid "New"
+msgstr "Νέο"
+
+msgid "New filename"
+msgstr "Νέο όνομα αρχείου"
+
+msgid "New version"
+msgstr "Νέα έκδοση"
 
 msgid "paused"
 msgstr "σε παύση"
 
+msgid "Preview image"
+msgstr "Προεπισκόπηση εικόνας"
+
+msgid "Rename"
+msgstr "Μετονομασία"
+
+msgid "Select all checkboxes"
+msgstr "Επιλογή όλων των πλαισίων ελέγχου"
+
+msgid "Select all existing files"
+msgstr "Επιλογή όλων των υπαρχόντων αρχείων"
+
+msgid "Select all new files"
+msgstr "Επιλογή όλων των νέων αρχείων"
+
+msgid "Skip"
+msgstr "Παράλειψη"
+
+msgid "Skip this file"
+msgid_plural "Skip {count} files"
+msgstr[0] "Παράλειψη αυτού του αρχείου"
+msgstr[1] "Παράλειψη {count} αρχείων"
+
+msgid "Unknown size"
+msgstr "Άγνωστο μέγεθος"
+
+msgid "Upload"
+msgstr "Μεταφόρτωση"
+
 msgid "Upload files"
 msgstr "Μεταφόρτωση αρχείων"
+
+msgid "Upload folders"
+msgstr "Μεταφόρτωση φακέλων"
+
+msgid "Upload from device"
+msgstr "Μεταφόρτωση από συσκευή"
+
+msgid "Upload has been cancelled"
+msgstr "Η μεταφόρτωση ακυρώθηκε"
+
+msgid "Upload has been skipped"
+msgstr "Η μεταφόρτωση παραλείφθηκε"
+
+msgid "Upload of \"{folder}\" has been skipped"
+msgstr "Η μεταφόρτωση του \"{folder}\" παραλείφθηκε"
+
+msgid "Upload progress"
+msgstr "Πρόοδος μεταφόρτωσης"
+
+msgid ""
+"When an incoming folder is selected, any conflicting files within it will "
+"also be overwritten."
+msgstr ""
+"Όταν επιλέγεται ένας εισερχόμενος φάκελος, όλα τα αρχεία σε διένεξη μέσα σε "
+"αυτόν θα αντικατασταθούν."
+
+msgid ""
+"When an incoming folder is selected, the content is written into the "
+"existing folder and a recursive conflict resolution is performed."
+msgstr ""
+"Όταν επιλέγεται ένας εισερχόμενος φάκελος, το περιεχόμενό του γράφεται στον "
+"υπάρχοντα φάκελο και εκτελείται αναδρομική επίλυση διενέξεων."
+
+msgid "Which files do you want to keep?"
+msgstr "Ποια αρχεία θέλετε να διατηρήσετε;"
+
+msgid ""
+"You can either rename the file, skip this file or cancel the whole "
+"operation."
+msgstr ""
+"Μπορείτε είτε να μετονομάσετε το αρχείο, να παραλείψετε αυτό το αρχείο ή να "
+"ακυρώσετε όλη τη λειτουργία."
+
+msgid "You need to select at least one version of each file to continue."
+msgstr ""
+"Πρέπει να επιλέξετε τουλάχιστον μία έκδοση κάθε αρχείου για να συνεχίσετε."
