@@ -132,7 +132,7 @@
 		</div>
 
 		<!-- Cancel upload button -->
-		<NcButton v-if="isUploading"
+		<NcButton v-if="isUploading && !isOnlyAssembling"
 			class="upload-picker__cancel"
 			type="tertiary"
 			:aria-label="t('Cancel uploads')"
