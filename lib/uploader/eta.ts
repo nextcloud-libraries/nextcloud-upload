@@ -105,6 +105,21 @@ export class Eta extends TypedEventTarget<EtaEventsMap> {
 			const filtered = (this._done - deltaDone) + (1 - alpha) * deltaDone
 			// bytes per second - filtered
 			this._speed = Math.round(filtered / this._elapsedTime)
+		} else if (this._speed === -1 && this._elapsedTime > deltaTime) {
+			// special case when uploading with high speed
+			// it could be that the upload is finished before we reach the curoff time
+			// so we already give an estimation
+			const remaining = this._total - done
+			const eta = remaining / (done / this._elapsedTime)
+			// Only set the ETA when we either already set it for a previous update
+			// or when the special case happened that we are in fast upload and we only got a couple of seconds for the whole upload
+			// meaning we are below 2x the cutoff time.
+			if (this._eta !== Infinity || eta <= 2 * this._cutoffTime) {
+				// We only take a couple of seconds so we set the eta to the current ETA using current speed.
+				// But we do not set the speed because we do not want to trigger the real ETA calculation below
+				// and especially because the speed would be very spiky (we still have no filters in place).
+				this._eta = eta
+			}
 		}
 
 		// Update the eta if we have valid speed information (prevent divide by zero)

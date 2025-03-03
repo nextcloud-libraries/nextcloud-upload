@@ -166,6 +166,44 @@ describe('ETA - progress', () => {
 		expect(eta.timeReadable).toMatchInlineSnapshot('"37 seconds left"')
 	})
 
+	test('progress calculation for fast uploads', () => {
+		const eta = new Eta({ start: true, total: 100 * 1024 * 1024, cutoffTime: 2.5 })
+		expect(eta.progress).toBe(0)
+
+		// we have 100 MiB - when uploading with 40 MiB/s the time will be just like 2.5 seconds
+		// so not enough for estimation, instead we use the current speed to at least show that it is very fast
+
+		// First chunk will not show any information as we initialize the system
+		vi.advanceTimersByTime(500)
+		eta.add(20 * 1024 * 1024)
+		expect(eta.progress).toBe(20)
+		expect(eta.speed).toBe(-1)
+		expect(eta.time).toBe(Infinity)
+		expect(eta.timeReadable).toBe('estimating time left')
+
+		// Now we have some information but not enough for normal estimation
+		// yet we show some information as the upload is very fast (40% per second)
+		vi.advanceTimersByTime(500)
+		eta.add(20 * 1024 * 1024)
+		expect(eta.progress).toBe(40)
+		expect(eta.time).toBe(1.5)
+		expect(eta.timeReadable).toBe('a few seconds left')
+		// still no speed information
+		expect(eta.speed).toBe(-1)
+
+		// same check for the last 60MiB
+		for (let i = 1; i <= 3; i++) {
+			vi.advanceTimersByTime(500)
+			eta.add(20 * 1024 * 1024)
+			expect(eta.progress).toBe(40 + i * 20)
+			expect(eta.time).toBe(1.5 - (i / 2))
+			expect(eta.timeReadable).toBe('a few seconds left')
+			// still no speed information
+			expect(eta.speed).toBe(-1)
+		}
+		expect(eta.progress).toBe(100)
+	})
+
 	it('can autostart in constructor', () => {
 		const eta = new Eta({ start: true, total: 100 })
 		expect(eta.status).toBe(EtaStatus.Running)
