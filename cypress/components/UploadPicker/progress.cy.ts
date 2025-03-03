@@ -76,8 +76,8 @@ describe('UploadPicker: progress handling', () => {
 
 	it('has upload speed information', () => {
 		cy.get('@input').attachFile({
-			// file of 5 MiB
-			fileContent: new Blob([new ArrayBuffer(5 * 1024 * 1024)]),
+			// file of 9 MiB
+			fileContent: new Blob([new ArrayBuffer(9 * 1024 * 1024)]),
 			fileName: 'file.txt',
 			mimeType: 'text/plain',
 			encoding: 'utf8',
@@ -86,8 +86,8 @@ describe('UploadPicker: progress handling', () => {
 
 		cy.intercept('PUT', '/remote.php/dav/files/user/file.txt', { statusCode: 201 })
 
-		// 512 KB/s
-		throttleUpload(512 * 1024)
+		// 128 KB/s
+		throttleUpload(128 * 1024)
 
 		// See there is no progress yet
 		cy.get('@progress')
@@ -101,6 +101,15 @@ describe('UploadPicker: progress handling', () => {
 		// See the upload has started
 		cy.get('@progressLabel', { timeout: 10000 })
 			.should((el) => expect(el.text()).to.match(/\d+(\.\d+)?\s?KB∕s/))
+			// increase speed to 1MiB/s
+			.then(() => throttleUpload(1024 * 1024))
+		cy.get('@progressLabel')
+			.children('span')
+			.first({ timeout: 9000 })
+			.should((el) => {
+				expect(el.text().trim()).to.equal('a few seconds left')
+				expect(el.attr('title')).to.match(/\d+(\.\d+)?\s?KB∕s/)
+			})
 	})
 
 	it('has increasing progress bar during non-chunked upload', () => {

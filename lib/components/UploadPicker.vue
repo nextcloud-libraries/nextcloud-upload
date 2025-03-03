@@ -122,9 +122,10 @@
 				<span v-else-if="isOnlyAssembling">
 					{{ t('assembling') }}
 				</span>
-				<span v-else>
+				<span v-else :title="etaTimeAndSpeed()">
 					{{ uploadManager.eta.timeReadable }}
-					<span v-if="uploadManager.eta.speedReadable">
+					<!-- the speed is included in the tooltip / title so we only show it in the text content if there is enough space (not showing "a few seconds left") -->
+					<span v-if="uploadManager.eta.speedReadable && uploadManager.eta.time >= 60">
 						({{ uploadManager.eta.speedReadable }})
 					</span>
 				</span>
@@ -381,6 +382,14 @@ export default defineComponent({
 	},
 
 	methods: {
+		etaTimeAndSpeed(): string {
+			const speed = this.uploadManager.eta.speedReadable
+			if (speed) {
+				return `${this.uploadManager.eta.timeReadable} (${speed})`
+			}
+			return this.uploadManager.eta.timeReadable
+		},
+
 		/**
 		 * Handle clicking a new-menu entry
 		 * @param entry The entry that was clicked
