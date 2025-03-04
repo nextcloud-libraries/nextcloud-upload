@@ -31,7 +31,9 @@ msgstr[0] "{count} árekstur skráa í {dirname}"
 msgstr[1] "{count} árekstrar skráa í {dirname}"
 
 msgid "{seconds} seconds left"
-msgstr "{seconds} sekúndur eftir"
+msgid_plural "{seconds} seconds left"
+msgstr[0] "{seconds} sekúnda eftir"
+msgstr[1] "{seconds} sekúndur eftir"
 
 #. TRANSLATORS time has the format 00:00:00
 msgid "{time} left"
@@ -39,6 +41,9 @@ msgstr "{time} eftir"
 
 msgid "a few seconds left"
 msgstr "nokkrar sekúndur eftir"
+
+msgid "assembling"
+msgstr "set saman"
 
 msgid "Cancel"
 msgstr "Hætta við"
@@ -60,6 +65,12 @@ msgstr "áætla tíma sem eftir er"
 
 msgid "Existing version"
 msgstr "Fyrirliggjandi útgáfa"
+
+msgid "Failed assembling the chunks together"
+msgstr "Mistókst að setja saman bútana"
+
+msgid "Failed uploading the file"
+msgstr "Mistókst að senda inn skrána"
 
 msgid "Filenames must not end with \"{segment}\"."
 msgstr "Skráaheiti mega ekki enda á \"{segment}\"."
