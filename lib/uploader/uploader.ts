@@ -4,7 +4,7 @@
  */
 import type { AxiosError, AxiosResponse } from 'axios'
 import type { WebDAVClient } from 'webdav'
-import type { IDirectory } from './utils/fileTree'
+import type { IDirectory } from '../utils/fileTree.ts'
 
 import { getCurrentUser } from '@nextcloud/auth'
 import { FileType, Folder, Permission, davGetClient, davRemoteURL, davRootPath } from '@nextcloud/files'
@@ -16,16 +16,17 @@ import axios, { isCancel } from '@nextcloud/axios'
 import PCancelable from 'p-cancelable'
 import PQueue from 'p-queue'
 
-import { UploadCancelledError } from './errors/UploadCancelledError.ts'
-import { getChunk, initChunkWorkspace, uploadData } from './utils/upload.js'
-import { getMaxChunksSize } from './utils/config.js'
-import { Status as UploadStatus, Upload } from './upload.js'
-import { isFileSystemFileEntry } from './utils/filesystem.js'
-import { Directory } from './utils/fileTree.js'
-import { t } from './utils/l10n.js'
-import logger from './utils/logger.js'
+import { UploadCancelledError } from '../errors/UploadCancelledError.ts'
+import { getChunk, initChunkWorkspace, uploadData } from '../utils/upload.ts'
+import { getMaxChunksSize } from '../utils/config.ts'
+import { Status as UploadStatus, Upload } from '../upload.ts'
+import { isFileSystemFileEntry } from '../utils/filesystem.ts'
+import { Directory } from '../utils/fileTree.ts'
+import { t } from '../utils/l10n.ts'
+import logger from '../utils/logger.ts'
+import { Eta } from './eta.ts'
 
-export enum Status {
+export enum UploaderStatus {
 	IDLE = 0,
 	UPLOADING = 1,
 	PAUSED = 2
@@ -48,7 +49,9 @@ export class Uploader {
 
 	private _queueSize = 0
 	private _queueProgress = 0
-	private _queueStatus: Status = Status.IDLE
+	private _queueStatus: UploaderStatus = UploaderStatus.IDLE
+
+	private _eta = new Eta()
 
 	private _notifiers: Array<(upload: Upload) => void> = []
 
@@ -150,11 +153,13 @@ export class Uploader {
 	/**
 	 * Get the upload queue
 	 */
-	get queue() {
+	get queue(): Upload[] {
 		return this._uploadQueue
 	}
 
 	private reset() {
+		// Reset the ETA
+		this._eta.reset()
 		// If there is no upload in the queue and no job in the queue
 		if (this._uploadQueue.length === 0 && this._jobQueue.size === 0) {
 			return
@@ -165,7 +170,7 @@ export class Uploader {
 		this._jobQueue.clear()
 		this._queueSize = 0
 		this._queueProgress = 0
-		this._queueStatus = Status.IDLE
+		this._queueStatus = UploaderStatus.IDLE
 		logger.debug('Uploader state reset')
 	}
 
@@ -173,20 +178,29 @@ export class Uploader {
 	 * Pause any ongoing upload(s)
 	 */
 	public pause() {
+		this._eta.pause()
 		this._jobQueue.pause()
-		this._queueStatus = Status.PAUSED
+		this._queueStatus = UploaderStatus.PAUSED
 		this.updateStats()
-		logger.debug('Upload paused')
+		logger.debug('Uploader paused')
 	}
 
 	/**
 	 * Resume any pending upload(s)
 	 */
 	public start() {
+		this._eta.resume()
 		this._jobQueue.start()
-		this._queueStatus = Status.UPLOADING
+		this._queueStatus = UploaderStatus.UPLOADING
 		this.updateStats()
-		logger.debug('Upload resumed')
+		logger.debug('Uploader resumed')
+	}
+
+	/**
+	 * Get the estimation for the uploading time.
+	 */
+	get eta(): Eta {
+		return this._eta
 	}
 
 	/**
@@ -206,16 +220,20 @@ export class Uploader {
 		const uploaded = this._uploadQueue.map(upload => upload.uploaded)
 			.reduce((partialSum, a) => partialSum + a, 0)
 
+		this._eta.update(uploaded, size)
 		this._queueSize = size
 		this._queueProgress = uploaded
 
 		// If already paused keep it that way
-		if (this._queueStatus === Status.PAUSED) {
-			return
+		if (this._queueStatus !== UploaderStatus.PAUSED) {
+			const pending = this._uploadQueue.find(({ status }) => [UploadStatus.INITIALIZED, UploadStatus.UPLOADING, UploadStatus.ASSEMBLING].includes(status))
+			if (this._jobQueue.size > 0 || pending) {
+				this._queueStatus = UploaderStatus.UPLOADING
+			} else {
+				this.eta.reset()
+				this._queueStatus = UploaderStatus.IDLE
+			}
 		}
-		this._queueStatus = this._jobQueue.size > 0
-			? Status.UPLOADING
-			: Status.IDLE
 	}
 
 	addNotifier(notifier: (upload: Upload) => void) {
@@ -445,6 +463,7 @@ export class Uploader {
 		const { origin } = new URL(destinationPath)
 		const encodedDestinationFile = origin + encodePath(destinationPath.slice(origin.length))
 
+		this.eta.resume()
 		logger.debug(`Uploading ${fileHandle.name} to ${encodedDestinationFile}`)
 
 		const promise = new PCancelable(async (resolve, reject, onCancel): Promise<Upload> => {

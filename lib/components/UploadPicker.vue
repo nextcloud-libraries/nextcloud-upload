@@ -10,6 +10,7 @@
 		data-cy-upload-picker>
 		<!-- New button -->
 		<NcButton v-if="!haveMenu"
+			:aria-label="buttonLabel"
 			:disabled="disabled"
 			data-cy-upload-picker-add
 			data-cy-upload-picker-menu-entry="upload-file"
@@ -18,12 +19,14 @@
 			<template #icon>
 				<IconPlus :size="20" />
 			</template>
-			{{ buttonName }}
+			<template v-if="!isUploading" #default>
+				{{ buttonLabel }}
+			</template>
 		</NcButton>
 
 		<NcActions v-else
 			:aria-label="buttonLabel"
-			:menu-name="buttonName"
+			:menu-name="buttonLabel"
 			:open.sync="openedMenu"
 			:type="primary ? 'primary' : 'secondary'">
 			<template #icon>
@@ -110,15 +113,27 @@
 				:aria-describedby="progressTimeId"
 				data-cy-upload-picker-progress
 				:error="hasFailure"
-				:value="progress"
+				:value="uploadManager.eta.progress"
 				size="medium" />
 			<p :id="progressTimeId" data-cy-upload-picker-progress-label>
-				{{ status }}
+				<span v-if="isPaused">
+					{{ t('paused') }}
+				</span>
+				<span v-else-if="isOnlyAssembling">
+					{{ t('assembling') }}
+				</span>
+				<span v-else :title="etaTimeAndSpeed()">
+					{{ uploadManager.eta.timeReadable }}
+					<!-- the speed is included in the tooltip / title so we only show it in the text content if there is enough space (not showing "a few seconds left") -->
+					<span v-if="uploadManager.eta.speedReadable && uploadManager.eta.time >= 60">
+						({{ uploadManager.eta.speedReadable }})
+					</span>
+				</span>
 			</p>
 		</div>
 
 		<!-- Cancel upload button -->
-		<NcButton v-if="isUploading"
+		<NcButton v-if="isUploading && !isOnlyAssembling"
 			class="upload-picker__cancel"
 			type="tertiary"
 			:aria-label="t('Cancel uploads')"
@@ -149,7 +164,6 @@ import { defineComponent } from 'vue'
 import { Folder, NewMenuEntryCategory, getNewFileMenuEntries } from '@nextcloud/files'
 // @ts-expect-error missing types
 import { useHotKey } from '@nextcloud/vue/dist/Composables/useHotKey.js'
-import makeEta from 'simple-eta'
 
 import NcActionButton from '@nextcloud/vue/dist/Components/NcActionButton.js'
 import NcActionCaption from '@nextcloud/vue/dist/Components/NcActionCaption.js'
@@ -165,9 +179,9 @@ import IconPlus from 'vue-material-design-icons/Plus.vue'
 import IconUpload from 'vue-material-design-icons/Upload.vue'
 
 import { getUploader } from '../index.ts'
-import { Status } from '../uploader.ts'
+import { UploaderStatus } from '../uploader/uploader.ts'
 import { Status as UploadStatus } from '../upload.ts'
-import { n, t } from '../utils/l10n.ts'
+import { t } from '../utils/l10n.ts'
 import { uploadConflictHandler } from '../utils/conflicts.ts'
 import logger from '../utils/logger.ts'
 
@@ -257,11 +271,8 @@ export default defineComponent({
 
 	data() {
 		return {
-			eta: null as null|ReturnType<typeof makeEta>,
-			openedMenu: false,
-			status: '',
-
 			newFileMenuEntries: [] as Entry[],
+			openedMenu: false,
 			uploadManager: getUploader(),
 		}
 	},
@@ -278,24 +289,13 @@ export default defineComponent({
 		menuEntriesOther(): Entry[] {
 			return this.newFileMenuEntries.filter((entry) => entry.category === NewMenuEntryCategory.Other)
 		},
+
 		/**
 		 * Check whether the current browser supports uploading directories
 		 * Hint: This does not check if the current connection supports this, as some browsers require a secure context!
 		 */
 		canUploadFolders(): boolean {
 			return this.allowFolders && 'webkitdirectory' in document.createElement('input')
-		},
-
-		totalQueueSize(): number {
-			return this.uploadManager.info?.size || 0
-		},
-
-		uploadedQueueSize(): number {
-			return this.uploadManager.info?.progress || 0
-		},
-
-		progress(): number {
-			return Math.round(this.uploadedQueueSize / this.totalQueueSize * 100) || 0
 		},
 
 		queue(): Upload[] {
@@ -305,36 +305,28 @@ export default defineComponent({
 		hasFailure(): boolean {
 			return this.queue.some((upload: Upload) => upload.status === UploadStatus.FAILED)
 		},
+		isAssembling(): boolean {
+			return this.queue.some((upload: Upload) => upload.status === UploadStatus.ASSEMBLING)
+		},
 		isUploading(): boolean {
 			return this.queue.some((upload: Upload) => upload.status !== UploadStatus.CANCELLED)
 		},
 		isOnlyAssembling(): boolean {
-			return this.queue.every((upload: Upload) => (
-				// ignore empty uploads or meta uploads
-				upload.size === 0
-				// all the uploads are assembling or finished
-				|| upload.status === UploadStatus.ASSEMBLING
-				|| upload.status === UploadStatus.FINISHED
-			))
+			return this.isAssembling
+				&& this.queue.every((upload: Upload) => (
+					// ignore empty uploads or meta uploads
+					upload.size === 0
+					// all the uploads are assembling or finished
+					|| upload.status === UploadStatus.ASSEMBLING
+					|| upload.status === UploadStatus.FINISHED
+				))
 		},
 		isPaused(): boolean {
-			return this.uploaderStatus === Status.PAUSED
-		},
-
-		uploaderStatus(): Status {
-			return this.uploadManager.info.status
+			return this.uploadManager.info?.status === UploaderStatus.PAUSED
 		},
 
 		buttonLabel(): string {
 			return this.noMenu ? t('Upload') : t('New')
-		},
-
-		// Hide the button text if we're uploading
-		buttonName(): string|undefined {
-			if (this.isUploading) {
-				return undefined
-			}
-			return this.buttonLabel
 		},
 
 		haveMenu(): boolean {
@@ -356,27 +348,12 @@ export default defineComponent({
 			this.setDestination(destination)
 		},
 
-		totalQueueSize(size) {
-			this.eta = makeEta({ min: 0, max: size })
-			this.updateStatus()
-		},
-
-		uploadedQueueSize(size) {
-			this.eta?.report?.(size)
-			this.updateStatus()
-		},
-
-		uploaderStatus(status, oldStatus) {
-			if (status === Status.PAUSED) {
+		isPaused(isPaused) {
+			if (isPaused) {
 				this.$emit('paused', this.queue)
-			} else if (oldStatus === Status.PAUSED) {
+			} else {
 				this.$emit('resumed', this.queue)
 			}
-			this.updateStatus()
-		},
-
-		isOnlyAssembling() {
-			this.updateStatus()
 		},
 	},
 
@@ -405,6 +382,14 @@ export default defineComponent({
 	},
 
 	methods: {
+		etaTimeAndSpeed(): string {
+			const speed = this.uploadManager.eta.speedReadable
+			if (speed) {
+				return `${this.uploadManager.eta.timeReadable} (${speed})`
+			}
+			return this.uploadManager.eta.timeReadable
+		},
+
 		/**
 		 * Handle clicking a new-menu entry
 		 * @param entry The entry that was clicked
@@ -441,14 +426,18 @@ export default defineComponent({
 		/**
 		 * Start uploading
 		 */
-		onPick() {
+		async onPick() {
 			const input = this.$refs.input as HTMLInputElement
 			const files = input.files ? Array.from(input.files) : []
 
-			this.uploadManager
-				.batchUpload('', files, uploadConflictHandler(this.getContent))
-				.catch((error) => logger.debug('Error while uploading', { error }))
-				.finally(() => this.resetForm())
+			try {
+				await this.uploadManager
+					.batchUpload('', files, uploadConflictHandler(this.getContent))
+			} catch (error) {
+				logger.debug('Error while uploading', { error })
+			} finally {
+				this.resetForm()
+			}
 		},
 
 		resetForm() {
@@ -460,41 +449,10 @@ export default defineComponent({
 		 * Cancel ongoing queue
 		 */
 		onCancel() {
-			this.uploadManager.queue.forEach(upload => {
+			this.uploadManager.queue.forEach((upload: Upload) => {
 				upload.cancel()
 			})
 			this.resetForm()
-		},
-
-		updateStatus() {
-			if (this.isPaused) {
-				this.status = t('paused')
-				return
-			}
-
-			if (this.isOnlyAssembling) {
-				this.status = t('assembling')
-				return
-			}
-
-			const estimate = Math.round(this.eta?.estimate?.() || 0)
-
-			if (estimate === Infinity) {
-				this.status = t('estimating time left')
-				return
-			}
-			if (estimate < 10) {
-				this.status = t('a few seconds left')
-				return
-			}
-			if (estimate > 60) {
-				const date = new Date(0)
-				date.setSeconds(estimate)
-				const time = date.toISOString().slice(11, 11 + 8)
-				this.status = t('{time} left', { time }) // TRANSLATORS time has the format 00:00:00
-				return
-			}
-			this.status = n('{seconds} seconds left', '{seconds} seconds left', estimate, { seconds: estimate })
 		},
 
 		setDestination(destination: Folder) {

@@ -74,10 +74,45 @@ describe('UploadPicker: progress handling', () => {
 		cy.get('[data-cy-upload-picker] [data-cy-upload-picker-progress-label]').as('progressLabel').should('exist')
 	})
 
-	it('has increasing progress bar during non-chunked upload', () => {
-		// Start in paused mode
-		const uploader = getUploader()
+	it('has upload speed information', () => {
+		cy.get('@input').attachFile({
+			// file of 9 MiB
+			fileContent: new Blob([new ArrayBuffer(9 * 1024 * 1024)]),
+			fileName: 'file.txt',
+			mimeType: 'text/plain',
+			encoding: 'utf8',
+			lastModified: new Date().getTime(),
+		})
 
+		cy.intercept('PUT', '/remote.php/dav/files/user/file.txt', { statusCode: 201 })
+
+		// 128 KB/s
+		throttleUpload(128 * 1024)
+
+		// See there is no progress yet
+		cy.get('@progress')
+			.should('be.visible')
+			.should('have.value', 0)
+		cy.get('@progressLabel')
+			.should('contain.text', 'paused')
+			// start the uploader
+			.then(() => getUploader().start())
+
+		// See the upload has started
+		cy.get('@progressLabel', { timeout: 10000 })
+			.should((el) => expect(el.text()).to.match(/\d+(\.\d+)?\s?KB∕s/))
+			// increase speed to 1MiB/s
+			.then(() => throttleUpload(1024 * 1024))
+		cy.get('@progressLabel')
+			.children('span')
+			.first({ timeout: 9000 })
+			.should((el) => {
+				expect(el.text().trim()).to.equal('a few seconds left')
+				expect(el.attr('title')).to.match(/\d+(\.\d+)?\s?KB∕s/)
+			})
+	})
+
+	it('has increasing progress bar during non-chunked upload', () => {
 		cy.get('@input').attachFile({
 			// file of 5 MiB
 			fileContent: new Blob([new ArrayBuffer(5 * 1024 * 1024)]),
@@ -106,7 +141,7 @@ describe('UploadPicker: progress handling', () => {
 		cy.get('@progressLabel')
 			.should('contain.text', 'paused')
 			// start the uploader
-			.then(() => uploader.start())
+			.then(() => getUploader().start())
 
 		// See the upload has started
 		cy.get('@progressLabel')
@@ -150,9 +185,6 @@ describe('UploadPicker: progress handling', () => {
 			rq.reply({ statusCode: 201 })
 		}).as('move')
 
-		// Start in paused mode
-		const uploader = getUploader()
-
 		// 3 MiB/s meaning upload will take 5 seconds
 		throttleUpload(3 * 1024 * 1024)
 
@@ -172,7 +204,7 @@ describe('UploadPicker: progress handling', () => {
 		cy.get('@progressLabel')
 			.should('contain.text', 'paused')
 			// start the uploader
-			.then(() => uploader.start())
+			.then(() => getUploader().start())
 
 		// See the upload has started
 		cy.get('@progressLabel')
@@ -197,10 +229,10 @@ describe('UploadPicker: progress handling', () => {
 
 		cy.get('@progress')
 			.should('have.value', 90)
-			// Now the upload (sending) is done - if we trigger the resolve the value will increase to 97% (or 95 if we resolve only chunk2)
+			// Now the upload (sending) is done - if we trigger the resolve the value will increase to 96% (or 95 if we resolve only chunk2)
 			.then(() => resolveChunk1())
 		cy.get('@progress')
-			.should('have.value', 97)
+			.should((e) => expect(Math.round(e.val() as number)).to.be.eq(97))
 			.then(() => resolveChunk2())
 		// now the progress should be 100 meaning the progress bar is hidden
 		cy.get('@progress')

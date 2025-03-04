@@ -59,7 +59,7 @@ describe('UploadPicker: invalid filenames (legacy prop)', { testIsolation: true 
 		cy.mount(UploadPicker, { propsData }).as('uploadPicker')
 
 		// Label is displayed before upload
-		cy.get('[data-cy-upload-picker]').shouldHaveTrimmedText('New')
+		cy.get('[data-cy-upload-picker] [data-cy-upload-picker-add]').should('contain.text', 'New')
 
 		// Check and init aliases
 		cy.get('[data-cy-upload-picker] [data-cy-upload-picker-input]').as('input').should('exist')
@@ -193,11 +193,11 @@ describe.only('UploadPicker: invalid filenames (server capabilities)', { testIso
 		cy.mount(UploadPicker, { propsData }).as('uploadPicker')
 
 		// Label is displayed before upload
-		cy.get('[data-cy-upload-picker]').shouldHaveTrimmedText('New')
+		cy.get('[data-cy-upload-picker] [data-cy-upload-picker-add]').should('contain.text', 'New')
 
 		// Check and init aliases
 		cy.get('[data-cy-upload-picker] [data-cy-upload-picker-input]').as('input').should('exist')
-		cy.get('[data-cy-upload-picker] .upload-picker__progress').as('progress').should('exist')
+		cy.get('[data-cy-upload-picker] [data-cy-upload-picker-progress]').as('progress').should('exist')
 
 		// Upload
 		cy.get('@input').attachFile({
@@ -208,8 +208,7 @@ describe.only('UploadPicker: invalid filenames (server capabilities)', { testIso
 			lastModified: new Date().getTime(),
 		})
 
-		cy.get('[data-cy-upload-picker] .upload-picker__progress')
-			.as('progress')
+		cy.get('@progress')
 			.should('not.be.visible')
 
 		cy.contains('[role="dialog"]', 'Invalid filename')
@@ -234,11 +233,11 @@ describe.only('UploadPicker: invalid filenames (server capabilities)', { testIso
 		cy.mount(UploadPicker, { propsData }).as('uploadPicker')
 
 		// Label is displayed before upload
-		cy.get('[data-cy-upload-picker]').shouldHaveTrimmedText('New')
+		cy.get('[data-cy-upload-picker] [data-cy-upload-picker-add]').should('contain.text', 'New')
 
 		// Check and init aliases
 		cy.get('[data-cy-upload-picker] [data-cy-upload-picker-input]').as('input').should('exist')
-		cy.get('[data-cy-upload-picker] .upload-picker__progress').as('progress').should('exist')
+		cy.get('[data-cy-upload-picker] [data-cy-upload-picker-progress]').as('progress').should('exist')
 
 		// Upload
 		cy.get('@input').attachFile({
@@ -249,8 +248,7 @@ describe.only('UploadPicker: invalid filenames (server capabilities)', { testIso
 			lastModified: new Date().getTime(),
 		})
 
-		cy.get('[data-cy-upload-picker] .upload-picker__progress')
-			.as('progress')
+		cy.get('@progress')
 			.should('not.be.visible')
 
 		cy.contains('[role="dialog"]', 'Invalid filename')
@@ -275,11 +273,11 @@ describe.only('UploadPicker: invalid filenames (server capabilities)', { testIso
 		cy.mount(UploadPicker, { propsData }).as('uploadPicker')
 
 		// Label is displayed before upload
-		cy.get('[data-cy-upload-picker]').shouldHaveTrimmedText('New')
+		cy.get('[data-cy-upload-picker] [data-cy-upload-picker-add]').should('contain.text', 'New')
 
 		// Check and init aliases
 		cy.get('[data-cy-upload-picker] [data-cy-upload-picker-input]').as('input').should('exist')
-		cy.get('[data-cy-upload-picker] .upload-picker__progress').as('progress').should('exist')
+		cy.get('[data-cy-upload-picker] [data-cy-upload-picker-progress]').as('progress').should('exist')
 
 		// Upload
 		cy.get('@input').attachFile({
@@ -290,8 +288,7 @@ describe.only('UploadPicker: invalid filenames (server capabilities)', { testIso
 			lastModified: new Date().getTime(),
 		})
 
-		cy.get('[data-cy-upload-picker] .upload-picker__progress')
-			.as('progress')
+		cy.get('@progress')
 			.should('not.be.visible')
 
 		cy.contains('[role="dialog"]', 'Invalid filename')
@@ -390,8 +387,7 @@ describe.only('UploadPicker: invalid filenames (server capabilities)', { testIso
 			lastModified: new Date().getTime(),
 		}])
 
-		cy.get('[data-cy-upload-picker] .upload-picker__progress')
-			.as('progress')
+		cy.get('@progress')
 			.should('not.be.visible')
 
 		cy.contains('[role="dialog"]', 'Invalid filename')
