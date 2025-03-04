@@ -4,6 +4,33 @@
 -->
 # Changelog
 
+## [v1.9.0](https://github.com/nextcloud-libraries/nextcloud-upload/tree/v1.9.0) \(2025-03-04\)
+
+### Added
+* feat: add assembling status to UploadPicker by @skjnldsv in https://github.com/nextcloud-libraries/nextcloud-upload/pull/1530
+* feat(UploadPicker): Allow to set color to primary by @susnux in https://github.com/nextcloud-libraries/nextcloud-upload/pull/1606
+* feat(uploader): add ETA implementation with upload speed information by @susnux in https://github.com/nextcloud-libraries/nextcloud-upload/pull/1627
+
+### Fixed
+* fix: fix eslint scripts by @Koc in https://github.com/nextcloud-libraries/nextcloud-upload/pull/1518
+* fix: include non conflicting files for upload by @susnux in https://github.com/nextcloud-libraries/nextcloud-upload/pull/1615
+* fix(conflictpicker): force background on sticky header by @skjnldsv in https://github.com/nextcloud-libraries/nextcloud-upload/pull/1635
+* fix(uploader): Correctly (re)set progress on upload by @susnux in https://github.com/nextcloud-libraries/nextcloud-upload/pull/1603
+* fix(uploader): properly propagate upload cancelled status by @susnux in https://github.com/nextcloud-libraries/nextcloud-upload/pull/1617
+
+### Changed
+* Updated translations
+* Updated development dependencies
+* chore(deps): bump @nextcloud/dialogs from 6.0.1 to 6.1.1
+* chore(deps): bump @nextcloud/files from 3.10.1 to 3.10.2
+* chore(deps): bump @nextcloud/l10n from 3.1.0 to 3.2.0
+* chore(deps): bump axios from 1.7.9 to 1.8.1
+* chore(deps): bump dompurify from 3.1.6 to 3.2.4
+* chore(deps): bump elliptic from 6.6.0 to 6.6.1
+* chore(deps): bump p-queue from 8.0.1 to 8.1.0
+* test: adjust config for vitest v3 and await expect by @susnux in https://github.com/nextcloud-libraries/nextcloud-upload/pull/1600
+* test: silence console output when testing logger by @susnux in https://github.com/nextcloud-libraries/nextcloud-upload/pull/1602
+
 ## [v1.8.0](https://github.com/nextcloud-libraries/nextcloud-upload/tree/v1.8.0) \(2025-01-20\)
 
 ### Added
