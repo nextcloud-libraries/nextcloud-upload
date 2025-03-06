@@ -1,13 +1,13 @@
 # 
 # Translators:
 # Joas Schilling, 2024
-# Mark Ziegler <mark.ziegler@rakekniven.de>, 2024
 # Martin Wilichowski, 2025
 # Mario Siegmann <mario_siegmann@web.de>, 2025
+# Mark Ziegler <mark.ziegler@rakekniven.de>, 2025
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Mario Siegmann <mario_siegmann@web.de>, 2025\n"
+"Last-Translator: Mark Ziegler <mark.ziegler@rakekniven.de>, 2025\n"
 "Language-Team: German (Germany) (https://app.transifex.com/nextcloud/teams/64236/de_DE/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: de_DE\n"
@@ -45,7 +45,7 @@ msgid "a few seconds left"
 msgstr "ein paar Sekunden verbleiben"
 
 msgid "assembling"
-msgstr "Zusammenbau"
+msgstr "zusammenfügen"
 
 msgid "Cancel"
 msgstr "Abbrechen"
