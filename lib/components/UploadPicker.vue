@@ -120,6 +120,7 @@
 					{{ t('paused') }}
 				</span>
 				<span v-else-if="isOnlyAssembling">
+					<!-- Chunks are assembled and the process runs -->
 					{{ t('assembling') }}
 				</span>
 				<span v-else :title="etaTimeAndSpeed()">
