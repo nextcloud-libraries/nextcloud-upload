@@ -1,35 +1,175 @@
 # 
 # Translators:
-# Transifex Bot <>, 2022
+# Khurshid Ibatov <Khurshid.Ibatov@tibbiysugurta.uz>, 2025
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Transifex Bot <>, 2022\n"
-"Language-Team: Uzbek (https://www.transifex.com/nextcloud/teams/64236/uz/)\n"
+"Last-Translator: Khurshid Ibatov <Khurshid.Ibatov@tibbiysugurta.uz>, 2025\n"
+"Language-Team: Uzbek (https://app.transifex.com/nextcloud/teams/64236/uz/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: uz\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-msgid "{estimate} seconds left"
-msgstr ""
+msgid "\"{segment}\" is a forbidden file or folder name."
+msgstr "\"{segment}\" taqiqlangan fayl yoki papka nomidir."
 
-msgid "{hours} hours and {minutes} minutes left"
-msgstr ""
+msgid "\"{segment}\" is a forbidden file type."
+msgstr "\"{segment}\" taqiqlangan fayl turi hisoblanadi."
 
-msgid "{minutes} minutes left"
-msgstr ""
+msgid "\"{segment}\" is not allowed inside a file or folder name."
+msgstr "\"{segment}\" fayl yoki papka nomi ichida ruxsat berilmaydi."
+
+msgid "{count} file conflict"
+msgid_plural "{count} files conflict"
+msgstr[0] "{count} fayllar ziddiyati"
+
+msgid "{count} file conflict in {dirname}"
+msgid_plural "{count} file conflicts in {dirname}"
+msgstr[0] "{count}fayl ziddiyatlari {dirname} da"
+
+msgid "{seconds} seconds left"
+msgid_plural "{seconds} seconds left"
+msgstr[0] "{seconds} soniya qoldi"
+
+#. TRANSLATORS time has the format 00:00:00
+msgid "{time} left"
+msgstr "{time} qoldi"
 
 msgid "a few seconds left"
-msgstr ""
+msgstr "bir necha soniya qoldi"
 
-msgid "Add"
-msgstr ""
+msgid "assembling"
+msgstr "yig'ish"
+
+msgid "Cancel"
+msgstr "Bekor qilish"
+
+msgid "Cancel the entire operation"
+msgstr "Butun operatsiyani bekor qiling"
 
 msgid "Cancel uploads"
-msgstr ""
+msgstr "Yuklashni bekor qilish"
+
+msgid "Continue"
+msgstr "Davom eting"
+
+msgid "Create new"
+msgstr "Yangi yaratish"
 
 msgid "estimating time left"
+msgstr "qolgan vaqtni hisoblash"
+
+msgid "Existing version"
+msgstr "Mavjud versiya"
+
+msgid "Failed assembling the chunks together"
+msgstr "Bo'laklarni birlashtirib bo'lmadi"
+
+msgid "Failed uploading the file"
+msgstr "Fayl yuklanmadi"
+
+msgid "Filenames must not end with \"{segment}\"."
+msgstr "Fayl nomlari bilan tugamasligi kerak \"{segment}\"."
+
+msgid ""
+"If you select both versions, the incoming file will have a number added to "
+"its name."
 msgstr ""
+"Agar siz ikkala versiyani tanlasangiz, kiruvchi fayl nomiga qo'shilgan "
+"raqamga ega bo'ladi."
+
+msgid "Invalid filename"
+msgstr "Fayl nomi noto‘g‘ri"
+
+msgid "Last modified date unknown"
+msgstr "Oxirgi tahrirlangan sana noma'lum"
+
+msgid "New"
+msgstr "Yangi"
+
+msgid "New filename"
+msgstr "Yangi nom faylga"
+
+msgid "New version"
+msgstr "Yangi versiya"
 
 msgid "paused"
+msgstr "tanaffus"
+
+msgid "Preview image"
+msgstr "Rasmni oldindan ko'rish"
+
+msgid "Rename"
+msgstr "Qayta nomlash"
+
+msgid "Select all checkboxes"
+msgstr "Barcha katakchalarni belgilang"
+
+msgid "Select all existing files"
+msgstr "Barcha mavjud fayllarni tanlang"
+
+msgid "Select all new files"
+msgstr "Barcha yangi fayllarni tanlang"
+
+msgid "Skip"
+msgstr "Oʻtkazib yuborish"
+
+msgid "Skip this file"
+msgid_plural "Skip {count} files"
+msgstr[0] "Oʻtkazib yuborish {count} fayllarini"
+
+msgid "Unknown size"
+msgstr "Noma'lum o'lcham"
+
+msgid "Upload"
+msgstr "Yuklash"
+
+msgid "Upload files"
+msgstr "Fayllarni yuklash"
+
+msgid "Upload folders"
+msgstr "Jildlarni yuklash"
+
+msgid "Upload from device"
+msgstr "Qurilmadan yuklash"
+
+msgid "Upload has been cancelled"
+msgstr "Yuklash bekor qilindi"
+
+msgid "Upload has been skipped"
+msgstr "Yuklash oʻtkazib yuborildi"
+
+msgid "Upload of \"{folder}\" has been skipped"
+msgstr " \"{folder}\" ni yuklash bekor qilindi"
+
+msgid "Upload progress"
+msgstr "Yuklash jarayoni"
+
+msgid ""
+"When an incoming folder is selected, any conflicting files within it will "
+"also be overwritten."
 msgstr ""
+"Kiruvchi jild tanlanganda, undagi har qanday ziddiyatli fayllar ham ustiga "
+"yoziladi."
+
+msgid ""
+"When an incoming folder is selected, the content is written into the "
+"existing folder and a recursive conflict resolution is performed."
+msgstr ""
+"Kiruvchi jild tanlanganda, kontent mavjud jildga yoziladi va nizolarni "
+"rekursiv hal qilish amalga oshiriladi."
+
+msgid "Which files do you want to keep?"
+msgstr "Qaysi fayllarni saqlamoqchisiz?"
+
+msgid ""
+"You can either rename the file, skip this file or cancel the whole "
+"operation."
+msgstr ""
+"Siz fayl nomini o'zgartirishingiz, ushbu faylni o'tkazib yuborishingiz yoki "
+"butun operatsiyani bekor qilishingiz mumkin."
+
+msgid "You need to select at least one version of each file to continue."
+msgstr ""
+"Davom etish uchun har bir faylning kamida bitta versiyasini tanlashingiz "
+"kerak."
