@@ -74,7 +74,7 @@ msgid "Existing version"
 msgstr "Присутня версія"
 
 msgid "Failed assembling the chunks together"
-msgstr "Не вдалося зібрати докупи частинки докупи"
+msgstr "Не вдалося зібрати докупи частинки"
 
 msgid "Failed uploading the file"
 msgstr "Не вдалося завантажити файл"
