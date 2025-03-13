@@ -124,6 +124,7 @@ describe('Upload data', () => {
 			},
 			'axios-retry': {
 				retries: 5,
+				retryCondition: expect.any(Function),
 				retryDelay: expect.any(Function),
 				onRetry: expect.any(Function),
 			},
@@ -154,6 +155,7 @@ describe('Upload data', () => {
 			},
 			'axios-retry': {
 				retries: 5,
+				retryCondition: expect.any(Function),
 				retryDelay: expect.any(Function),
 				onRetry: expect.any(Function),
 			},
@@ -183,6 +185,7 @@ describe('Upload data', () => {
 			},
 			'axios-retry': {
 				retries: 5,
+				retryCondition: expect.any(Function),
 				retryDelay: expect.any(Function),
 				onRetry: expect.any(Function),
 			},
@@ -211,6 +214,7 @@ describe('Upload data', () => {
 			},
 			'axios-retry': {
 				retries: 5,
+				retryCondition: expect.any(Function),
 				retryDelay: expect.any(Function),
 				onRetry: onUploadRetry,
 			},

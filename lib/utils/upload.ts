@@ -6,7 +6,7 @@ import type { AxiosProgressEvent, AxiosResponse, AxiosError } from 'axios'
 import { generateRemoteUrl } from '@nextcloud/router'
 import { getCurrentUser } from '@nextcloud/auth'
 import axios from '@nextcloud/axios'
-import axiosRetry, { exponentialDelay } from 'axios-retry'
+import axiosRetry, { exponentialDelay, isNetworkOrIdempotentRequestError } from 'axios-retry'
 
 import logger from './logger'
 
@@ -78,6 +78,18 @@ export async function uploadData(
 		'axios-retry': {
 			retries: options.retries,
 			retryDelay: (retryCount: number, error: AxiosError) => exponentialDelay(retryCount, error, 1000),
+			retryCondition(error: AxiosError): boolean {
+				// Do not retry on insufficient storage - this is permanent
+				if (error.status === 507) {
+					return false
+				}
+				// Do a retry on locked error as this is often just some preview generation
+				if (error.status === 423) {
+					return true
+				}
+				// Otherwise fallback to default behavior
+				return isNetworkOrIdempotentRequestError(error)
+			},
 			onRetry: options.onUploadRetry,
 		},
 	})
