@@ -1,37 +1,176 @@
 # 
 # Translators:
-# Mait R, 2022
-# Taavo Roos, 2023
+# Joas Schilling, 2024
+# Priit Jõerüüt <transifex@joeruut.com>, 2025
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Taavo Roos, 2023\n"
+"Last-Translator: Priit Jõerüüt <transifex@joeruut.com>, 2025\n"
 "Language-Team: Estonian (Estonia) (https://app.transifex.com/nextcloud/teams/64236/et_EE/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: et_EE\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgid "{seconds} seconds left"
-msgstr "{seconds} jäänud sekundid"
+msgid "\"{segment}\" is a forbidden file or folder name."
+msgstr "„{segment}“ on keelatud faili- või kausta nimi."
 
-#. time has the format 00:00:00
+msgid "\"{segment}\" is a forbidden file type."
+msgstr "„{segment}“ on keelatud failitüüp."
+
+msgid "\"{segment}\" is not allowed inside a file or folder name."
+msgstr "„{segment}“ pole faili- või kausta nimes lubatud."
+
+msgid "{count} file conflict"
+msgid_plural "{count} files conflict"
+msgstr[0] "{count} fail on vastuolus"
+msgstr[1] "{count} faili on vastuolus"
+
+msgid "{count} file conflict in {dirname}"
+msgid_plural "{count} file conflicts in {dirname}"
+msgstr[0] "{count} fail on vastuolus „{dirname}“ kaustas"
+msgstr[1] "{count} faili on vastuolus „{dirname}“ kaustas"
+
+msgid "{seconds} seconds left"
+msgid_plural "{seconds} seconds left"
+msgstr[0] "jäänud {seconds} sekund"
+msgstr[1] "jäänud {seconds} sekundit"
+
+#. TRANSLATORS time has the format 00:00:00
 msgid "{time} left"
 msgstr "{time} aega jäänud"
 
 msgid "a few seconds left"
 msgstr "jäänud mõni sekund"
 
-msgid "Add"
-msgstr "Lisa"
+msgid "assembling"
+msgstr "koostamisel"
+
+msgid "Cancel"
+msgstr "Katkesta"
+
+msgid "Cancel the entire operation"
+msgstr "Katkesta kogu tegevus"
 
 msgid "Cancel uploads"
-msgstr "Tühista üleslaadimine"
+msgstr "Katkesta üleslaadimine"
+
+msgid "Continue"
+msgstr "Jätka"
+
+msgid "Create new"
+msgstr "Loo uus"
 
 msgid "estimating time left"
 msgstr "hinnanguline järelejäänud aeg"
 
+msgid "Existing version"
+msgstr "Olemasolev versioon"
+
+msgid "Failed assembling the chunks together"
+msgstr "Tükkide koostamine ei õnnestunud"
+
+msgid "Failed uploading the file"
+msgstr "Faili üleslaadimine ei õnnestunud"
+
+msgid "Filenames must not end with \"{segment}\"."
+msgstr "Failinime lõpus ei tohi olla „{segment}“."
+
+msgid ""
+"If you select both versions, the incoming file will have a number added to "
+"its name."
+msgstr ""
+"Kui sa valid mõlemad versioonid, lisatakse kopeeritud faili nimele number."
+
+msgid "Invalid filename"
+msgstr "Vigane failinimi"
+
+msgid "Last modified date unknown"
+msgstr "Viimase muutmise kuupäev pole teada"
+
+msgid "New"
+msgstr "Uus"
+
+msgid "New filename"
+msgstr "Uus failinimi"
+
+msgid "New version"
+msgstr "Uus versioon"
+
 msgid "paused"
 msgstr "pausil"
 
+msgid "Preview image"
+msgstr "Vaata pildi eelvaadet"
+
+msgid "Rename"
+msgstr "Muuda nime"
+
+msgid "Select all checkboxes"
+msgstr "Vali kõik märkeruudud"
+
+msgid "Select all existing files"
+msgstr "Vali kõik olemasolevad failid"
+
+msgid "Select all new files"
+msgstr "Vali kõik uued failid"
+
+msgid "Skip"
+msgstr "Jäta vahele"
+
+msgid "Skip this file"
+msgid_plural "Skip {count} files"
+msgstr[0] "Jäta see fail vahele"
+msgstr[1] "Jäta {count} faili vahele"
+
+msgid "Unknown size"
+msgstr "Tundmatu suurus"
+
+msgid "Upload"
+msgstr "Laadi üles"
+
 msgid "Upload files"
-msgstr "Lae failid üles"
+msgstr "Laadi failid üles"
+
+msgid "Upload folders"
+msgstr "Laadi kaustad üles"
+
+msgid "Upload from device"
+msgstr "Laadi üles seadmest"
+
+msgid "Upload has been cancelled"
+msgstr "Üleslaadimine on katkestatud"
+
+msgid "Upload has been skipped"
+msgstr "Üleslaadimine on vahele jäetud"
+
+msgid "Upload of \"{folder}\" has been skipped"
+msgstr "„{folder}“ kausta üleslaadimine on vahele jäetud"
+
+msgid "Upload progress"
+msgstr "Üleslaadimise edenemine"
+
+msgid ""
+"When an incoming folder is selected, any conflicting files within it will "
+"also be overwritten."
+msgstr ""
+"Kui saabuvate failide kaust on valitud, siis seal asuvad vastuoluliste "
+"nimedega failid kirjutatakse samuti üle."
+
+msgid ""
+"When an incoming folder is selected, the content is written into the "
+"existing folder and a recursive conflict resolution is performed."
+msgstr ""
+"Kui saabuvate failide kaust on valitud, siis sisu kirjutatakse "
+"olemasolevasse kausta ja käivitatakse rekursiivne vastuolude haldus."
+
+msgid "Which files do you want to keep?"
+msgstr "Milliseid faile soovid säilitada?"
+
+msgid ""
+"You can either rename the file, skip this file or cancel the whole "
+"operation."
+msgstr ""
+"Sa võid kas faili nime muuta, ta vahele jätta või kogu tegevuse katkestada."
+
+msgid "You need to select at least one version of each file to continue."
+msgstr "Jätkamiseks pead valima vähemalt ühe versiooni igast failist."
