@@ -4,6 +4,19 @@
 -->
 # Changelog
 
+## [v1.9.1](https://github.com/nextcloud-libraries/nextcloud-upload/tree/v1.9.1) \(2025-03-20\)
+
+### Fixed
+* fix(upload): do not retry when insufficient storage but when locked [\#1657](https://github.com/nextcloud-libraries/nextcloud-upload/pull/1657) \([susnux](https://github.com/susnux)\)
+* fix(uploader): only set mtime if valid value is passed [\#1666](https://github.com/nextcloud-libraries/nextcloud-upload/pull/1666) \([susnux](https://github.com/susnux)\)
+
+## Changed
+* Updated translations
+* Updated Axios to version 1.8.3
+* Updated development dependencies
+* chore(i18n): adding hint for translators [\#1643](https://github.com/nextcloud-libraries/nextcloud-upload/pull/1643) \([rakekniven](https://github.com/rakekniven)\)
+* chore(i18n): Fixes wrong translations syntax [\#1645](https://github.com/nextcloud-libraries/nextcloud-upload/pull/1645) \([rakekniven](https://github.com/rakekniven)\)
+
 ## [v1.9.0](https://github.com/nextcloud-libraries/nextcloud-upload/tree/v1.9.0) \(2025-03-04\)
 
 ### Added
