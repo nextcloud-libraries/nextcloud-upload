@@ -531,7 +531,7 @@ export class Uploader {
 								},
 								headers: {
 									...this._customHeaders,
-									'X-OC-Mtime': Math.floor(file.lastModified / 1000),
+									...this._mtimeHeader(file),
 									'OC-Total-Length': file.size,
 									'Content-Type': 'application/octet-stream',
 								},
@@ -579,7 +579,7 @@ export class Uploader {
 							url: `${tempUrl}/.file`,
 							headers: {
 								...this._customHeaders,
-								'X-OC-Mtime': Math.floor(file.lastModified / 1000),
+								...this._mtimeHeader(file),
 								'OC-Total-Length': file.size,
 								Destination: encodedDestinationFile,
 							},
@@ -633,7 +633,7 @@ export class Uploader {
 								},
 								headers: {
 									...this._customHeaders,
-									'X-OC-Mtime': Math.floor(file.lastModified / 1000),
+									...this._mtimeHeader(file),
 									'Content-Type': file.type,
 								},
 							},
@@ -683,6 +683,21 @@ export class Uploader {
 		}) as PCancelable<Upload>
 
 		return promise
+	}
+
+	/**
+	 * Create modification time headers if valid value is available.
+	 * It can be invalid on Android devices if SD cards with NTFS / FAT are used,
+	 * as those files might use the NT epoch for time so the value will be negative.
+	 *
+	 * @param file The file to upload
+	 */
+	private _mtimeHeader(file: File): { 'X-OC-Mtime'?: number } {
+		const mtime = Math.floor(file.lastModified / 1000)
+		if (mtime > 0) {
+			return { 'X-OC-Mtime': mtime }
+		}
+		return {}
 	}
 
 }
