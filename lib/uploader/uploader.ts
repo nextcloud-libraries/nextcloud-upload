@@ -595,7 +595,7 @@ export class Uploader {
 							reject(new UploadCancelledError(error))
 						} else {
 							upload.status = UploadStatus.FAILED
-							reject(t('Failed assembling the chunks together'))
+							reject(t('Failed to assemble the chunks together'))
 						}
 						// Cleaning up temp directory
 						axios.request({
@@ -660,7 +660,7 @@ export class Uploader {
 
 						upload.status = UploadStatus.FAILED
 						logger.error(`Failed uploading ${file.name}`, { error, file, upload })
-						reject(t('Failed uploading the file'))
+						reject(t('Failed to upload the file'))
 					}
 
 					// Notify listeners of the upload completion

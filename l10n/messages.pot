@@ -57,10 +57,10 @@ msgstr ""
 msgid "Existing version"
 msgstr ""
 
-msgid "Failed assembling the chunks together"
+msgid "Failed to assemble the chunks together"
 msgstr ""
 
-msgid "Failed uploading the file"
+msgid "Failed to upload the file"
 msgstr ""
 
 msgid "Filenames must not end with \"{segment}\"."
