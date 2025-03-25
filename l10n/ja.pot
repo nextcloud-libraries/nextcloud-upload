@@ -5,10 +5,11 @@
 # Takafumi AKAMATSU, 2024
 # devi, 2024
 # kshimohata, 2024
+# test test, 2025
 # 
 msgid ""
 msgstr ""
-"Last-Translator: kshimohata, 2024\n"
+"Last-Translator: test test, 2025\n"
 "Language-Team: Japanese (Japan) (https://app.transifex.com/nextcloud/teams/64236/ja_JP/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: ja_JP\n"
@@ -32,7 +33,8 @@ msgid_plural "{count} file conflicts in {dirname}"
 msgstr[0] "{dirname} で {count} 個のファイルが競合しています"
 
 msgid "{seconds} seconds left"
-msgstr "残り {seconds} 秒"
+msgid_plural "{seconds} seconds left"
+msgstr[0] "残り{seconds}"
 
 #. TRANSLATORS time has the format 00:00:00
 msgid "{time} left"
@@ -40,6 +42,9 @@ msgstr "残り {time}"
 
 msgid "a few seconds left"
 msgstr "残り数秒"
+
+msgid "assembling"
+msgstr "組み立て中"
 
 msgid "Cancel"
 msgstr "キャンセル"
@@ -61,6 +66,12 @@ msgstr "概算残り時間"
 
 msgid "Existing version"
 msgstr "既存バージョン"
+
+msgid "Failed assembling the chunks together"
+msgstr "チャンクを一緒に組み立てるのに失敗しました。"
+
+msgid "Failed uploading the file"
+msgstr "ファイルのアップロードに失敗しました。"
 
 msgid "Filenames must not end with \"{segment}\"."
 msgstr "ファイル名の末尾に \"{segment}\" を付けることはできません。"
