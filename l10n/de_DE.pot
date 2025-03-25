@@ -2,12 +2,12 @@
 # Translators:
 # Joas Schilling, 2024
 # Martin Wilichowski, 2025
-# Mario Siegmann <mario_siegmann@web.de>, 2025
 # Mark Ziegler <mark.ziegler@rakekniven.de>, 2025
+# Mario Siegmann <mario_siegmann@web.de>, 2025
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Mark Ziegler <mark.ziegler@rakekniven.de>, 2025\n"
+"Last-Translator: Mario Siegmann <mario_siegmann@web.de>, 2025\n"
 "Language-Team: German (Germany) (https://app.transifex.com/nextcloud/teams/64236/de_DE/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: de_DE\n"
@@ -68,11 +68,11 @@ msgstr "Berechne verbleibende Zeit"
 msgid "Existing version"
 msgstr "Vorhandene Version"
 
-msgid "Failed assembling the chunks together"
-msgstr "Das Zusammenfügen der Teile ist fehlgeschlagen"
+msgid "Failed to assemble the chunks together"
+msgstr "Die Teile konnten nicht zusammengefügt werden"
 
-msgid "Failed uploading the file"
-msgstr "Beim Hochladen der Datei ist ein Fehler aufgetreten"
+msgid "Failed to upload the file"
+msgstr "Das Hochladen der Datei ist fehlgeschlagen"
 
 msgid "Filenames must not end with \"{segment}\"."
 msgstr "Dateinamen dürfen nicht mit \"{segment}\" enden."
