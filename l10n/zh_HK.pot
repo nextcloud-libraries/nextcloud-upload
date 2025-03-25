@@ -1,11 +1,11 @@
 # 
 # Translators:
 # Joas Schilling, 2024
-# Café Tango, 2024
+# Café Tango, 2025
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Café Tango, 2024\n"
+"Last-Translator: Café Tango, 2025\n"
 "Language-Team: Chinese (Hong Kong) (https://app.transifex.com/nextcloud/teams/64236/zh_HK/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: zh_HK\n"
@@ -29,7 +29,8 @@ msgid_plural "{count} file conflicts in {dirname}"
 msgstr[0] "{dirname} 中有 {count} 個檔案衝突"
 
 msgid "{seconds} seconds left"
-msgstr "剩餘 {seconds} 秒"
+msgid_plural "{seconds} seconds left"
+msgstr[0] "剩餘 {seconds} 秒"
 
 #. TRANSLATORS time has the format 00:00:00
 msgid "{time} left"
@@ -37,6 +38,9 @@ msgstr "剩餘 {time}"
 
 msgid "a few seconds left"
 msgstr "還剩幾秒"
+
+msgid "assembling"
+msgstr "組裝"
 
 msgid "Cancel"
 msgstr "取消"
@@ -58,6 +62,12 @@ msgstr "估計剩餘時間"
 
 msgid "Existing version"
 msgstr "既有版本"
+
+msgid "Failed assembling the chunks together"
+msgstr "組裝這些部分時失敗"
+
+msgid "Failed uploading the file"
+msgstr "上傳文件失敗"
 
 msgid "Filenames must not end with \"{segment}\"."
 msgstr "檔案名不得以 \"{segment}\" 結尾。"

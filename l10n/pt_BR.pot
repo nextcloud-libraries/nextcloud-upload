@@ -4,10 +4,11 @@
 # Leonardo Colman Lopes <leonardo.dev@colman.com.br>, 2024
 # Rodrigo Sottomaior Macedo <sottomaiormacedotec@sottomaiormacedo.tech>, 2024
 # Paulo Schopf, 2024
+# F Bausch, 2025
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Paulo Schopf, 2024\n"
+"Last-Translator: F Bausch, 2025\n"
 "Language-Team: Portuguese (Brazil) (https://app.transifex.com/nextcloud/teams/64236/pt_BR/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: pt_BR\n"
@@ -35,7 +36,10 @@ msgstr[1] "{count} conflitos de arquivo em {dirname}"
 msgstr[2] "{count} conflitos de arquivo em {dirname}"
 
 msgid "{seconds} seconds left"
-msgstr "{seconds} segundos restantes"
+msgid_plural "{seconds} seconds left"
+msgstr[0] "{seconds} segundo restante"
+msgstr[1] "{seconds} segundos restantes"
+msgstr[2] "{seconds} segundos restantes"
 
 #. TRANSLATORS time has the format 00:00:00
 msgid "{time} left"
@@ -43,6 +47,9 @@ msgstr "{time} restante"
 
 msgid "a few seconds left"
 msgstr "alguns segundos restantes"
+
+msgid "assembling"
+msgstr "montando"
 
 msgid "Cancel"
 msgstr "Cancelar"
@@ -64,6 +71,12 @@ msgstr "estimando tempo restante"
 
 msgid "Existing version"
 msgstr "Versão existente"
+
+msgid "Failed assembling the chunks together"
+msgstr "Falha ao montar os blocos juntos"
+
+msgid "Failed uploading the file"
+msgstr "Falha ao fazer o upload do arquivo"
 
 msgid "Filenames must not end with \"{segment}\"."
 msgstr "Os nomes dos arquivos não devem terminar com \"{segment}\"."
