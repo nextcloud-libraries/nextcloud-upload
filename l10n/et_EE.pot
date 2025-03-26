@@ -66,10 +66,10 @@ msgstr "hinnanguline järelejäänud aeg"
 msgid "Existing version"
 msgstr "Olemasolev versioon"
 
-msgid "Failed assembling the chunks together"
-msgstr "Tükkide koostamine ei õnnestunud"
+msgid "Failed to assemble the chunks together"
+msgstr "Tükkide koostamine üheks tervikuks ei õnnestunud"
 
-msgid "Failed uploading the file"
+msgid "Failed to upload the file"
 msgstr "Faili üleslaadimine ei õnnestunud"
 
 msgid "Filenames must not end with \"{segment}\"."
