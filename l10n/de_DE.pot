@@ -72,7 +72,7 @@ msgid "Failed to assemble the chunks together"
 msgstr "Das Zusammenfügen der Teile ist fehlgeschlagen"
 
 msgid "Failed to upload the file"
-msgstr "Das Hochladen der Datei ist fehlgeschlagen"
+msgstr "Beim Hochladen der Datei ist ein Fehler aufgetreten"
 
 msgid "Filenames must not end with \"{segment}\"."
 msgstr "Dateinamen dürfen nicht mit \"{segment}\" enden."
