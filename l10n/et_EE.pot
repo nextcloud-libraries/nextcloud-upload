@@ -67,7 +67,7 @@ msgid "Existing version"
 msgstr "Olemasolev versioon"
 
 msgid "Failed to assemble the chunks together"
-msgstr "Tükkide koostamine ei õnnestunud"
+msgstr "Tükkide koostamine üheks tervikuks ei õnnestunud"
 
 msgid "Failed to upload the file"
 msgstr "Faili üleslaadimine ei õnnestunud"
