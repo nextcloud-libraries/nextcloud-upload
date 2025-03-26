@@ -75,10 +75,10 @@ msgstr "odhaduje se zbývající čas"
 msgid "Existing version"
 msgstr "Existující verze"
 
-msgid "Failed assembling the chunks together"
+msgid "Failed to assemble the chunks together"
 msgstr "Shluky se nepodařilo dát dohromady"
 
-msgid "Failed uploading the file"
+msgid "Failed to upload the file"
 msgstr "Soubor se nepodařilo nahrát"
 
 msgid "Filenames must not end with \"{segment}\"."
