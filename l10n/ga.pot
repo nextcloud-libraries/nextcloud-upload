@@ -74,10 +74,10 @@ msgstr "ag déanamh meastachán ar an am atá fágtha"
 msgid "Existing version"
 msgstr "Leagan láithreach "
 
-msgid "Failed assembling the chunks together"
-msgstr "Theip ar na smután a chur le chéile"
+msgid "Failed to assemble the chunks together"
+msgstr "Theip ar na smután a chur le chéile le chéile"
 
-msgid "Failed uploading the file"
+msgid "Failed to upload the file"
 msgstr "Theip ar uaslódáil an chomhaid"
 
 msgid "Filenames must not end with \"{segment}\"."
