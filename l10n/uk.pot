@@ -73,10 +73,10 @@ msgstr "оцінка часу, що залишився"
 msgid "Existing version"
 msgstr "Присутня версія"
 
-msgid "Failed assembling the chunks together"
-msgstr "Не вдалося зібрати докупи частинки"
+msgid "Failed to assemble the chunks together"
+msgstr "Не вдалося зібрати частинки докупи"
 
-msgid "Failed uploading the file"
+msgid "Failed to upload the file"
 msgstr "Не вдалося завантажити файл"
 
 msgid "Filenames must not end with \"{segment}\"."
