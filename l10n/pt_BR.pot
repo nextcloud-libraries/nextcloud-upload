@@ -143,7 +143,7 @@ msgid "Upload folders"
 msgstr "Fazer upload de pastas"
 
 msgid "Upload from device"
-msgstr "Carregar do dispositivo"
+msgstr "Fazer upload do dispositivo"
 
 msgid "Upload has been cancelled"
 msgstr "O upload foi cancelado"
