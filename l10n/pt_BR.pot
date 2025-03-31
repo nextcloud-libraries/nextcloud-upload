@@ -152,7 +152,7 @@ msgid "Upload has been skipped"
 msgstr "O upload foi pulado"
 
 msgid "Upload of \"{folder}\" has been skipped"
-msgstr "O upload de \"{folder}\" foi ignorado"
+msgstr "O upload de \"{folder}\" foi pulado"
 
 msgid "Upload progress"
 msgstr "Progresso de upload"
