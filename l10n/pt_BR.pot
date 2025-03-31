@@ -168,7 +168,7 @@ msgid ""
 "When an incoming folder is selected, the content is written into the "
 "existing folder and a recursive conflict resolution is performed."
 msgstr ""
-"Quando uma pasta de entrada é selecionada, o conteúdo é gravado na pasta "
+"Quando uma pasta recebida é selecionada, o conteúdo é gravado na pasta "
 "existente e uma resolução de conflito recursiva é executada."
 
 msgid "Which files do you want to keep?"
