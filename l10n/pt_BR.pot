@@ -113,13 +113,13 @@ msgid "Rename"
 msgstr "Renomear"
 
 msgid "Select all checkboxes"
-msgstr "Marque todas as caixas de seleção"
+msgstr "Marcar todas as caixas de seleção"
 
 msgid "Select all existing files"
-msgstr "Selecione todos os arquivos existentes"
+msgstr "Selecionar todos os arquivos existentes"
 
 msgid "Select all new files"
-msgstr "Selecione todos os novos arquivos"
+msgstr "Selecionar todos os novos arquivos"
 
 msgid "Skip"
 msgstr "Pular"
@@ -128,7 +128,7 @@ msgid "Skip this file"
 msgid_plural "Skip {count} files"
 msgstr[0] "Ignorar este arquivo"
 msgstr[1] "Ignorar {count} arquivos"
-msgstr[2] "Ignorar {count} arquivos"
+msgstr[2] "Pular {count} arquivos"
 
 msgid "Unknown size"
 msgstr "Tamanho desconhecido"
@@ -137,10 +137,10 @@ msgid "Upload"
 msgstr "Enviar"
 
 msgid "Upload files"
-msgstr "Enviar arquivos"
+msgstr "Carregar arquivos"
 
 msgid "Upload folders"
-msgstr "Enviar pastas"
+msgstr "Carregar pastas"
 
 msgid "Upload from device"
 msgstr "Carregar do dispositivo"
