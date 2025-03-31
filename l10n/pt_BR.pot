@@ -3,7 +3,6 @@
 # Joas Schilling, 2024
 # Leonardo Colman Lopes <leonardo.dev@colman.com.br>, 2024
 # Rodrigo Sottomaior Macedo <sottomaiormacedotec@sottomaiormacedo.tech>, 2024
-# Paulo Schopf, 2024
 # F Bausch, 2025
 # 
 msgid ""
@@ -126,24 +125,24 @@ msgstr "Pular"
 
 msgid "Skip this file"
 msgid_plural "Skip {count} files"
-msgstr[0] "Ignorar este arquivo"
-msgstr[1] "Ignorar {count} arquivos"
+msgstr[0] "Pular este arquivo"
+msgstr[1] "Pular {count} arquivos"
 msgstr[2] "Pular {count} arquivos"
 
 msgid "Unknown size"
 msgstr "Tamanho desconhecido"
 
 msgid "Upload"
-msgstr "Enviar"
+msgstr "Fazer upload"
 
 msgid "Upload files"
-msgstr "Carregar arquivos"
+msgstr "Fazer upload de arquivos"
 
 msgid "Upload folders"
-msgstr "Carregar pastas"
+msgstr "Fazer upload de pastas"
 
 msgid "Upload from device"
-msgstr "Carregar do dispositivo"
+msgstr "Fazer upload do dispositivo"
 
 msgid "Upload has been cancelled"
 msgstr "O upload foi cancelado"
@@ -161,14 +160,14 @@ msgid ""
 "When an incoming folder is selected, any conflicting files within it will "
 "also be overwritten."
 msgstr ""
-"Quando uma pasta é selecionada, quaisquer arquivos dentro dela também serão "
-"sobrescritos."
+"Quando uma pasta recebida é selecionada, todos os arquivos conflitantes "
+"dentro dela também serão sobrescritos."
 
 msgid ""
 "When an incoming folder is selected, the content is written into the "
 "existing folder and a recursive conflict resolution is performed."
 msgstr ""
-"Quando uma pasta de entrada é selecionada, o conteúdo é gravado na pasta "
+"Quando uma pasta recebida é selecionada, o conteúdo é gravado na pasta "
 "existente e uma resolução de conflito recursiva é executada."
 
 msgid "Which files do you want to keep?"
