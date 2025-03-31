@@ -113,10 +113,10 @@ msgid "Rename"
 msgstr "Renomear"
 
 msgid "Select all checkboxes"
-msgstr "Marque todas as caixas de seleção"
+msgstr "Marcar todas as caixas de seleção"
 
 msgid "Select all existing files"
-msgstr "Selecione todos os arquivos existentes"
+msgstr "Selecionar todos os arquivos existentes"
 
 msgid "Select all new files"
 msgstr "Selecione todos os novos arquivos"
