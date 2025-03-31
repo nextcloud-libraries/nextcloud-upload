@@ -155,7 +155,7 @@ msgid "Upload of \"{folder}\" has been skipped"
 msgstr "O upload de \"{folder}\" foi ignorado"
 
 msgid "Upload progress"
-msgstr "Envio em progresso"
+msgstr "Progresso de upload"
 
 msgid ""
 "When an incoming folder is selected, any conflicting files within it will "
