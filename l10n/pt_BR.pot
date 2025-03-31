@@ -3,7 +3,6 @@
 # Joas Schilling, 2024
 # Leonardo Colman Lopes <leonardo.dev@colman.com.br>, 2024
 # Rodrigo Sottomaior Macedo <sottomaiormacedotec@sottomaiormacedo.tech>, 2024
-# Paulo Schopf, 2024
 # F Bausch, 2025
 # 
 msgid ""
@@ -134,7 +133,7 @@ msgid "Unknown size"
 msgstr "Tamanho desconhecido"
 
 msgid "Upload"
-msgstr "Enviar"
+msgstr "Fazer upload"
 
 msgid "Upload files"
 msgstr "Fazer upload de arquivos"
