@@ -137,10 +137,10 @@ msgid "Upload"
 msgstr "Enviar"
 
 msgid "Upload files"
-msgstr "Carregar arquivos"
+msgstr "Fazer upload de arquivos"
 
 msgid "Upload folders"
-msgstr "Carregar pastas"
+msgstr "Fazer upload de pastas"
 
 msgid "Upload from device"
 msgstr "Carregar do dispositivo"
