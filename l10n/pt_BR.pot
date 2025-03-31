@@ -126,8 +126,8 @@ msgstr "Pular"
 
 msgid "Skip this file"
 msgid_plural "Skip {count} files"
-msgstr[0] "Ignorar este arquivo"
-msgstr[1] "Ignorar {count} arquivos"
+msgstr[0] "Pular este arquivo"
+msgstr[1] "Pular {count} arquivos"
 msgstr[2] "Pular {count} arquivos"
 
 msgid "Unknown size"
