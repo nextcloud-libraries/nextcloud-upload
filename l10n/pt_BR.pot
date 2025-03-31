@@ -126,7 +126,7 @@ msgstr "Pular"
 
 msgid "Skip this file"
 msgid_plural "Skip {count} files"
-msgstr[0] "Ignorar {count} arquivos"
+msgstr[0] "Ignorar este arquivo"
 msgstr[1] "Ignorar {count} arquivos"
 msgstr[2] "Ignorar {count} arquivos"
 
@@ -152,10 +152,10 @@ msgid "Upload has been skipped"
 msgstr "O upload foi pulado"
 
 msgid "Upload of \"{folder}\" has been skipped"
-msgstr "O upload de \"{folder}\" foi ignorado"
+msgstr "O upload de \"{folder}\" foi pulado"
 
 msgid "Upload progress"
-msgstr "Envio em progresso"
+msgstr "Progresso de upload"
 
 msgid ""
 "When an incoming folder is selected, any conflicting files within it will "
