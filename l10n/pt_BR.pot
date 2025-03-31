@@ -119,7 +119,7 @@ msgid "Select all existing files"
 msgstr "Selecionar todos os arquivos existentes"
 
 msgid "Select all new files"
-msgstr "Selecione todos os novos arquivos"
+msgstr "Selecionar todos os novos arquivos"
 
 msgid "Skip"
 msgstr "Pular"
