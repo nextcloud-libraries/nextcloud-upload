@@ -79,11 +79,11 @@ msgstr "تقدير الوقت المتبقي"
 msgid "Existing version"
 msgstr "الإصدار الحالي"
 
-msgid "Failed assembling the chunks together"
-msgstr "فشل في تجميع الكُتَل معاً"
+msgid "Failed to assemble the chunks together"
+msgstr "تعذّرت إعادة تجميع الكتل معاً "
 
-msgid "Failed uploading the file"
-msgstr "فشل في رفع الملف"
+msgid "Failed to upload the file"
+msgstr "تعذّر رفع الملف"
 
 msgid "Filenames must not end with \"{segment}\"."
 msgstr "غير مسموح ان ينتهي اسم الملف بـ \"{segment}\"."
