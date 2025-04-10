@@ -1,13 +1,13 @@
 # 
 # Translators:
 # Joas Schilling, 2024
-# Jiri Grönroos <jiri.gronroos@iki.fi>, 2024
 # thingumy, 2024
 # teemue, 2024
+# Jiri Grönroos <jiri.gronroos@iki.fi>, 2025
 # 
 msgid ""
 msgstr ""
-"Last-Translator: teemue, 2024\n"
+"Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>, 2025\n"
 "Language-Team: Finnish (Finland) (https://app.transifex.com/nextcloud/teams/64236/fi_FI/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: fi_FI\n"
@@ -33,7 +33,9 @@ msgstr[0] "{count} tiedoston ristiriita kansiossa {dirname}"
 msgstr[1] "{count} tiedoston ristiriita kansiossa {dirname}"
 
 msgid "{seconds} seconds left"
-msgstr "{seconds} sekuntia jäljellä"
+msgid_plural "{seconds} seconds left"
+msgstr[0] "{seconds} sekunti jäljellä"
+msgstr[1] "{seconds} sekuntia jäljellä"
 
 #. TRANSLATORS time has the format 00:00:00
 msgid "{time} left"
@@ -41,6 +43,9 @@ msgstr "{time} jäljellä"
 
 msgid "a few seconds left"
 msgstr "muutama sekunti jäljellä"
+
+msgid "assembling"
+msgstr "kootaan"
 
 msgid "Cancel"
 msgstr "Peruuta"
@@ -62,6 +67,12 @@ msgstr "arvioidaan jäljellä olevaa aikaa"
 
 msgid "Existing version"
 msgstr "Olemassa oleva versio"
+
+msgid "Failed to assemble the chunks together"
+msgstr "Palojen kokoaminen yhteen epäonnistui"
+
+msgid "Failed to upload the file"
+msgstr "Tiedoston lähetys epäonnistui"
 
 msgid "Filenames must not end with \"{segment}\"."
 msgstr "Tiedoston nimi ei saa päättyä \"{segment}\""
