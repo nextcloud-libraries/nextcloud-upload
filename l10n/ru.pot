@@ -80,7 +80,7 @@ msgid "Failed to assemble the chunks together"
 msgstr "Не удалось собрать части вместе"
 
 msgid "Failed to upload the file"
-msgstr "Ошибка загрузки файла"
+msgstr "Не удалось загрузить файл"
 
 msgid "Filenames must not end with \"{segment}\"."
 msgstr "Имена файлов не должны заканчиваться на «{segment}»"
