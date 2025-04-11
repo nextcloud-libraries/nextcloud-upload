@@ -5,11 +5,11 @@
 # Alex <fedotov22091982@gmail.com>, 2024
 # Roman Stepanov, 2024
 # Maksim Sukharev, 2024
-# Александр, 2024
+# Александр, 2025
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Александр, 2024\n"
+"Last-Translator: Александр, 2025\n"
 "Language-Team: Russian (https://app.transifex.com/nextcloud/teams/64236/ru/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: ru\n"
@@ -39,7 +39,11 @@ msgstr[2] "конфликт {count} файлов в «{dirname}»"
 msgstr[3] "конфликт {count} файлов в «{dirname}»"
 
 msgid "{seconds} seconds left"
-msgstr "осталось {seconds} секунд"
+msgid_plural "{seconds} seconds left"
+msgstr[0] "осталась {seconds} секунда"
+msgstr[1] "осталось {seconds} секунды"
+msgstr[2] "осталось {seconds} секунд"
+msgstr[3] "осталось {seconds} секунд"
 
 #. TRANSLATORS time has the format 00:00:00
 msgid "{time} left"
@@ -47,6 +51,9 @@ msgstr "осталось {time}"
 
 msgid "a few seconds left"
 msgstr "осталось несколько секунд"
+
+msgid "assembling"
+msgstr "сборка"
 
 msgid "Cancel"
 msgstr "Отменить"
@@ -68,6 +75,12 @@ msgstr "оценка оставшегося времени"
 
 msgid "Existing version"
 msgstr "Текущая версия"
+
+msgid "Failed to assemble the chunks together"
+msgstr "Не удалось собрать части вместе"
+
+msgid "Failed to upload the file"
+msgstr "Ошибка загрузки файла"
 
 msgid "Filenames must not end with \"{segment}\"."
 msgstr "Имена файлов не должны заканчиваться на «{segment}»"
