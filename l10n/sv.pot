@@ -66,11 +66,11 @@ msgstr "uppskattar kvarstående tid"
 msgid "Existing version"
 msgstr "Nuvarande version"
 
-msgid "Failed assembling the chunks together"
+msgid "Failed to assemble the chunks together"
 msgstr "Misslyckades med att sammanställa delarna"
 
-msgid "Failed uploading the file"
-msgstr "Misslyckades med att ladda upp filen"
+msgid "Failed to upload the file"
+msgstr "Kunde inte ladda upp filen"
 
 msgid "Filenames must not end with \"{segment}\"."
 msgstr "Filnamn får inte sluta med \"{segment}\"."
