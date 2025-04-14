@@ -474,10 +474,11 @@ export class Uploader {
 			// We can cast here as we handled system entries in the if above
 			const file = fileHandle as File
 
-			// If manually disabled or if the file is too small
-			// TODO: support chunk uploading in public pages
+			// @ts-expect-error TS2339 Object has no defined properties
+			const supportsPublicChunking = getCapabilities().dav?.public_shares_chunking ?? false
 			const maxChunkSize = getMaxChunksSize('size' in file ? file.size : undefined)
-			const disabledChunkUpload = this._isPublic
+			// If manually disabled or if the file is too small
+			const disabledChunkUpload = !supportsPublicChunking
 				|| maxChunkSize === 0
 				|| ('size' in file && file.size < maxChunkSize)
 
@@ -492,7 +493,7 @@ export class Uploader {
 				logger.debug('Initializing chunked upload', { file, upload })
 
 				// Let's initialize a chunk upload
-				const tempUrl = await initChunkWorkspace(encodedDestinationFile, retries)
+				const tempUrl = await initChunkWorkspace(encodedDestinationFile, retries, this._isPublic)
 				const chunksQueue: Array<Promise<void>> = []
 
 				// Generate chunks array
