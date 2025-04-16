@@ -2,11 +2,11 @@
 # Translators:
 # Joas Schilling, 2024
 # Rasmus Rosendahl-Kaa, 2024
-# Martin Bonde <Martin@maboni.dk>, 2024
+# Martin Bonde <Martin@maboni.dk>, 2025
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Martin Bonde <Martin@maboni.dk>, 2024\n"
+"Last-Translator: Martin Bonde <Martin@maboni.dk>, 2025\n"
 "Language-Team: Danish (https://app.transifex.com/nextcloud/teams/64236/da/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: da\n"
@@ -32,7 +32,9 @@ msgstr[0] "{count} fil konflikt i {dirname}"
 msgstr[1] "{count} filer i konflikt i {dirname}"
 
 msgid "{seconds} seconds left"
-msgstr "{sekunder} sekunder tilbage"
+msgid_plural "{seconds} seconds left"
+msgstr[0] "{sekunder} sekunder tilbage"
+msgstr[1] "{sekunder} sekunder tilbage"
 
 #. TRANSLATORS time has the format 00:00:00
 msgid "{time} left"
@@ -40,6 +42,9 @@ msgstr "{time} tilbage"
 
 msgid "a few seconds left"
 msgstr "et par sekunder tilbage"
+
+msgid "assembling"
+msgstr "samling"
 
 msgid "Cancel"
 msgstr "Annuller"
@@ -61,6 +66,12 @@ msgstr "estimering af resterende tid"
 
 msgid "Existing version"
 msgstr "Eksisterende version"
+
+msgid "Failed to assemble the chunks together"
+msgstr "Mislykkedes at samle stumperne sammen"
+
+msgid "Failed to upload the file"
+msgstr "Kunne ikke uploade filen"
 
 msgid "Filenames must not end with \"{segment}\"."
 msgstr "Filnavne må ikke slutte med \"{segment}\"."
