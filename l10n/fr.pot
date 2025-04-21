@@ -41,7 +41,7 @@ msgid "{seconds} seconds left"
 msgid_plural "{seconds} seconds left"
 msgstr[0] "{seconds} seconde restante"
 msgstr[1] "{seconds} secondes restantes"
-msgstr[2] "{seconds} secondes restantes"
+msgstr[2] "gauche{seconds} secondes restantes"
 
 #. TRANSLATORS time has the format 00:00:00
 msgid "{time} left"
