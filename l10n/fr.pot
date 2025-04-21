@@ -2,13 +2,14 @@
 # Translators:
 # Joas Schilling, 2024
 # Benoit Pruneau, 2024
-# jed boulahya, 2024
+# JEEEEEEEEEEEEEEEEEEEEEED, 2024
 # Jérôme HERBINET, 2024
-# Arnaud Cazenave, 2024
+# acazenave, 2024
+# Lisa Cintosh, 2025
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Arnaud Cazenave, 2024\n"
+"Last-Translator: Lisa Cintosh, 2025\n"
 "Language-Team: French (https://app.transifex.com/nextcloud/teams/64236/fr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: fr\n"
@@ -37,7 +38,10 @@ msgstr[1] "{count} fichiers en conflit dans {dirname}"
 msgstr[2] "{count} fichiers en conflit dans {dirname}"
 
 msgid "{seconds} seconds left"
-msgstr "{seconds} secondes restantes"
+msgid_plural "{seconds} seconds left"
+msgstr[0] "{seconds} seconde restante"
+msgstr[1] "{seconds} secondes restantes"
+msgstr[2] "{seconds} secondes restantes"
 
 #. TRANSLATORS time has the format 00:00:00
 msgid "{time} left"
@@ -45,6 +49,9 @@ msgstr "{time} restant"
 
 msgid "a few seconds left"
 msgstr "quelques secondes restantes"
+
+msgid "assembling"
+msgstr "assemblage"
 
 msgid "Cancel"
 msgstr "Annuler"
@@ -66,6 +73,12 @@ msgstr "estimation du temps restant"
 
 msgid "Existing version"
 msgstr "Version existante"
+
+msgid "Failed to assemble the chunks together"
+msgstr "Échec de l'assemblage des morceaux"
+
+msgid "Failed to upload the file"
+msgstr "Échec du téléversement du fichier"
 
 msgid "Filenames must not end with \"{segment}\"."
 msgstr "Le nom des fichiers ne doit pas finir par \"{segment}\"."
