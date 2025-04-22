@@ -1,10 +1,10 @@
 # 
 # Translators:
-# Khurshid Ibatov <Khurshid.Ibatov@tibbiysugurta.uz>, 2025
+# Khurshid Ibatov <x.ibatov@dtsj.uz>, 2025
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Khurshid Ibatov <Khurshid.Ibatov@tibbiysugurta.uz>, 2025\n"
+"Last-Translator: Khurshid Ibatov <x.ibatov@dtsj.uz>, 2025\n"
 "Language-Team: Uzbek (https://app.transifex.com/nextcloud/teams/64236/uz/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: uz\n"
@@ -62,10 +62,10 @@ msgstr "qolgan vaqtni hisoblash"
 msgid "Existing version"
 msgstr "Mavjud versiya"
 
-msgid "Failed assembling the chunks together"
+msgid "Failed to assemble the chunks together"
 msgstr "Bo'laklarni birlashtirib bo'lmadi"
 
-msgid "Failed uploading the file"
+msgid "Failed to upload the file"
 msgstr "Fayl yuklanmadi"
 
 msgid "Filenames must not end with \"{segment}\"."
