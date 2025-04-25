@@ -139,7 +139,7 @@ msgid "Upload from device"
 msgstr "بارگذاری از دستگاه"
 
 msgid "Upload has been cancelled"
-msgstr "بارگذاری لغو شده است"
+msgstr "بارگذاری رد شده است"
 
 msgid "Upload has been skipped"
 msgstr "بارگذاری نادیده گرفته شده است"
