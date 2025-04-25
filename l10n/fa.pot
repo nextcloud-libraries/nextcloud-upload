@@ -175,4 +175,4 @@ msgstr ""
 " کنید."
 
 msgid "You need to select at least one version of each file to continue."
-msgstr "برای ادامه باید حداقل یک نسخه از هر فایل را انتخاب کنید."
+msgstr "برای ادامه باید دست‌کم یک نگارش از هر پرونده را انتخاب کنید."
