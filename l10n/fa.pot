@@ -1,36 +1,178 @@
 # 
 # Translators:
-# Fatemeh Komeily, 2023
+# Joas Schilling, 2024
+# reza reza <forghan89@yahoo.com>, 2024
+# Alireza Rashidi, 2025
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Fatemeh Komeily, 2023\n"
+"Last-Translator: Alireza Rashidi, 2025\n"
 "Language-Team: Persian (https://app.transifex.com/nextcloud/teams/64236/fa/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: fa\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-msgid "{seconds} seconds left"
-msgstr "ثانیه های باقی مانده"
+msgid "\"{segment}\" is a forbidden file or folder name."
+msgstr "{segment} یک نام فایل یا پوشه ممنوعه است."
 
-#. time has the format 00:00:00
+msgid "\"{segment}\" is a forbidden file type."
+msgstr "{segment} یک نوع فایل ممنوعه است."
+
+msgid "\"{segment}\" is not allowed inside a file or folder name."
+msgstr "{segment} داخل نام فایل یا پوشه مجاز نیست."
+
+msgid "{count} file conflict"
+msgid_plural "{count} files conflict"
+msgstr[0] "{count} تداخل فایل"
+msgstr[1] "{count} تداخل فایل‌ها"
+
+msgid "{count} file conflict in {dirname}"
+msgid_plural "{count} file conflicts in {dirname}"
+msgstr[0] "{count} پرونده با {dirname} ناسازگاری داشت"
+msgstr[1] "{count} پرونده با {dirname} ناسازگاری داشت"
+
+msgid "{seconds} seconds left"
+msgid_plural "{seconds} seconds left"
+msgstr[0] "{seconds} ثانیه مانده"
+msgstr[1] "{seconds} ثانیه مانده"
+
+#. TRANSLATORS time has the format 00:00:00
 msgid "{time} left"
-msgstr "باقی مانده"
+msgstr "{time} باقی مانده"
 
 msgid "a few seconds left"
 msgstr "چند ثانیه مانده"
 
-msgid "Add"
-msgstr "اضافه کردن"
+msgid "assembling"
+msgstr "سرهم کردن"
+
+msgid "Cancel"
+msgstr "رد کردن"
+
+msgid "Cancel the entire operation"
+msgstr "رد کردن کل عملیات"
 
 msgid "Cancel uploads"
-msgstr "کنسل کردن فایل های اپلود شده"
+msgstr "رد کردن بارگذاری"
+
+msgid "Continue"
+msgstr "ادامه"
+
+msgid "Create new"
+msgstr "ساخت جدید"
 
 msgid "estimating time left"
 msgstr "تخمین زمان باقی مانده"
 
+msgid "Existing version"
+msgstr "نگارش موجود"
+
+msgid "Failed to assemble the chunks together"
+msgstr "نتوانست تکه‌های را به سرهم کند"
+
+msgid "Failed to upload the file"
+msgstr "نتوانست پرونده را بارگذاری کند"
+
+msgid "Filenames must not end with \"{segment}\"."
+msgstr "نام پرونده نباید با {segment} پایان یابد."
+
+msgid ""
+"If you select both versions, the incoming file will have a number added to "
+"its name."
+msgstr ""
+"اگر هر دو نسخه را انتخاب کنید، یک عدد به نام پرونده ورودی اضافه خواهد شد."
+
+msgid "Invalid filename"
+msgstr "نام پرونده نامعتبر"
+
+msgid "Last modified date unknown"
+msgstr "آخرین تاریخ تغییر نامشخص"
+
+msgid "New"
+msgstr "جدید"
+
+msgid "New filename"
+msgstr "نام فایل جدید"
+
+msgid "New version"
+msgstr "نسخه جدید"
+
 msgid "paused"
 msgstr "مکث کردن"
 
+msgid "Preview image"
+msgstr "پیش نمایش تصویر"
+
+msgid "Rename"
+msgstr "تغییر نام"
+
+msgid "Select all checkboxes"
+msgstr "انتخاب همه چک‌باکس‌ها"
+
+msgid "Select all existing files"
+msgstr "انتخاب همه فایل‌های موجود"
+
+msgid "Select all new files"
+msgstr "انتخاب همه فایل‌های جدید"
+
+msgid "Skip"
+msgstr "رد شدن"
+
+msgid "Skip this file"
+msgid_plural "Skip {count} files"
+msgstr[0] "رد شدن از "
+msgstr[1] "رد شدن از {count} فایل"
+
+msgid "Unknown size"
+msgstr "اندازه نامشخص"
+
+msgid "Upload"
+msgstr "بارگذاری"
+
 msgid "Upload files"
-msgstr "بارگذاری فایل ها"
+msgstr "بارگذاری پرونده‌ها"
+
+msgid "Upload folders"
+msgstr "بارگذاری پوشه‌ها"
+
+msgid "Upload from device"
+msgstr "بارگذاری از دستگاه"
+
+msgid "Upload has been cancelled"
+msgstr "بارگذاری لغو شده است"
+
+msgid "Upload has been skipped"
+msgstr "بارگذاری نادیده گرفته شده است"
+
+msgid "Upload of \"{folder}\" has been skipped"
+msgstr "بارگذاری {folder} نادیده گرفته شده است"
+
+msgid "Upload progress"
+msgstr "روند بارگذاری"
+
+msgid ""
+"When an incoming folder is selected, any conflicting files within it will "
+"also be overwritten."
+msgstr ""
+"هنگامی که یک پوشه ورودی انتخاب می‌شود، هر فایل متناقضی در آن نیز بازنویسی "
+"می‌شود."
+
+msgid ""
+"When an incoming folder is selected, the content is written into the "
+"existing folder and a recursive conflict resolution is performed."
+msgstr ""
+"هنگامی که یک پوشه دریافتی انتخاب می شود ، محتوا در پوشه موجود نوشته می شود و"
+" حل ناسازگاری بازگشتی انجام می شود."
+
+msgid "Which files do you want to keep?"
+msgstr "کدام فایل‌ها را می‌خواهید نگه دارید؟"
+
+msgid ""
+"You can either rename the file, skip this file or cancel the whole "
+"operation."
+msgstr ""
+"می‌توانید نام فایل را تغییر دهید، از این فایل رد شوید یا کل عملیات را لغو "
+"کنید."
+
+msgid "You need to select at least one version of each file to continue."
+msgstr "برای ادامه باید حداقل یک نسخه از هر فایل را انتخاب کنید."
