@@ -139,7 +139,7 @@ msgid "Upload from device"
 msgstr "بارگذاری از دستگاه"
 
 msgid "Upload has been cancelled"
-msgstr "بارگذاری لغو شده است"
+msgstr "بارگذاری رد شده است"
 
 msgid "Upload has been skipped"
 msgstr "بارگذاری نادیده گرفته شده است"
@@ -165,14 +165,14 @@ msgstr ""
 " حل ناسازگاری بازگشتی انجام می شود."
 
 msgid "Which files do you want to keep?"
-msgstr "کدام فایل‌ها را می‌خواهید نگه دارید؟"
+msgstr "کدام پرونده‌ها را می‌خواهید نگه دارید؟"
 
 msgid ""
 "You can either rename the file, skip this file or cancel the whole "
 "operation."
 msgstr ""
-"می‌توانید نام فایل را تغییر دهید، از این فایل رد شوید یا کل عملیات را لغو "
-"کنید."
+"می‌توانید نام پرونده را تغییر دهید، از این پرونده رد شوید یا کل عملیات را رد"
+" کنید."
 
 msgid "You need to select at least one version of each file to continue."
-msgstr "برای ادامه باید حداقل یک نسخه از هر فایل را انتخاب کنید."
+msgstr "برای ادامه باید دست‌کم یک نگارش از هر پرونده را انتخاب کنید."
