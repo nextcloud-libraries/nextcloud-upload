@@ -3,10 +3,11 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 import type { AxiosProgressEvent, AxiosResponse, AxiosError } from 'axios'
-import { generateRemoteUrl } from '@nextcloud/router'
+import { generateRemoteUrl, getBaseUrl } from '@nextcloud/router'
 import { getCurrentUser } from '@nextcloud/auth'
 import axios from '@nextcloud/axios'
 import axiosRetry, { exponentialDelay, isNetworkOrIdempotentRequestError } from 'axios-retry'
+import { getSharingToken } from '@nextcloud/sharing/public'
 
 import logger from './logger'
 
@@ -114,9 +115,16 @@ export const getChunk = function(file: File, start: number, length: number): Pro
  * Create a temporary upload workspace to upload the chunks to
  * @param destinationFile The file name after finishing the chunked upload
  * @param retries number of retries
+ * @param isPublic whether this upload is in a public share or not
  */
-export const initChunkWorkspace = async function(destinationFile: string | undefined = undefined, retries: number = 5): Promise<string> {
-	const chunksWorkspace = generateRemoteUrl(`dav/uploads/${getCurrentUser()?.uid}`)
+export const initChunkWorkspace = async function(destinationFile: string | undefined = undefined, retries: number = 5, isPublic: boolean = false): Promise<string> {
+	let chunksWorkspace: string
+	if (isPublic) {
+		chunksWorkspace = `${getBaseUrl()}/public.php/dav/uploads/${getSharingToken()}`
+	} else {
+		chunksWorkspace = generateRemoteUrl(`dav/uploads/${getCurrentUser()?.uid}`)
+	}
+
 	const hash = [...Array(16)].map(() => Math.floor(Math.random() * 16).toString(16)).join('')
 	const tempWorkspace = `web-file-upload-${hash}`
 	const url = `${chunksWorkspace}/${tempWorkspace}`
