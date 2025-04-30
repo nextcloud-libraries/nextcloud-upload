@@ -478,7 +478,7 @@ export class Uploader {
 			const supportsPublicChunking = getCapabilities().dav?.public_shares_chunking ?? false
 			const maxChunkSize = getMaxChunksSize('size' in file ? file.size : undefined)
 			// If manually disabled or if the file is too small
-			const disabledChunkUpload = !supportsPublicChunking
+			const disabledChunkUpload = (this._isPublic && !supportsPublicChunking)
 				|| maxChunkSize === 0
 				|| ('size' in file && file.size < maxChunkSize)
 
