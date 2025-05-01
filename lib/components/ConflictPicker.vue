@@ -194,7 +194,10 @@ export default defineComponent({
 		},
 
 		skipButtonLabel() {
-			return n('Skip this file', 'Skip {count} files', this.conflicts.length, { count: this.conflicts.length })
+			if (this.conflicts.length === 1) {
+				return t('Skip this file')
+			}
+			return n('Skip {count} file', 'Skip {count} files', this.conflicts.length, { count: this.conflicts.length })
 		},
 
 		// Select all incoming files
