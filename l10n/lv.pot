@@ -1,35 +1,182 @@
 # 
 # Translators:
-# Transifex Bot <>, 2022
+# Papuass <martinsb@gmail.com>, 2024
+# Armīns Jeltajevs <armins.jeltajevs@gmail.com>, 2024
+# Edgars Andersons, 2025
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Transifex Bot <>, 2022\n"
-"Language-Team: Latvian (https://www.transifex.com/nextcloud/teams/64236/lv/)\n"
+"Last-Translator: Edgars Andersons, 2025\n"
+"Language-Team: Latvian (https://app.transifex.com/nextcloud/teams/64236/lv/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: lv\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : 2);\n"
 
-msgid "{estimate} seconds left"
-msgstr ""
+msgid "\"{segment}\" is a forbidden file or folder name."
+msgstr "\"{segment}\" ir aizliegts datnes vai mapes nosaukums."
 
-msgid "{hours} hours and {minutes} minutes left"
-msgstr ""
+msgid "\"{segment}\" is a forbidden file type."
+msgstr "\"{segment}\" ir aizliegts datnes veids."
 
-msgid "{minutes} minutes left"
-msgstr ""
+msgid "\"{segment}\" is not allowed inside a file or folder name."
+msgstr "\"{segment}\" ir nav ļauts datnes vai mapes nosaukumā."
+
+msgid "{count} file conflict"
+msgid_plural "{count} files conflict"
+msgstr[0] "{count} nesaderīgu datņu"
+msgstr[1] "{count} nesaderīga datne"
+msgstr[2] "{count} nesaderīgas datnes"
+
+msgid "{count} file conflict in {dirname}"
+msgid_plural "{count} file conflicts in {dirname}"
+msgstr[0] "{count} nesaderīgu datņu {dirname}"
+msgstr[1] "{count} nesaderīga datne {dirname}"
+msgstr[2] "{count} nesaderīgas datnes {dirname}"
+
+msgid "{seconds} seconds left"
+msgid_plural "{seconds} seconds left"
+msgstr[0] "Atlikušas {seconds} sekundes"
+msgstr[1] "Aatlikusi {seconds} sekunde"
+msgstr[2] "Atlikušas {seconds} sekundes"
+
+#. TRANSLATORS time has the format 00:00:00
+msgid "{time} left"
+msgstr "atlicis {time}"
 
 msgid "a few seconds left"
-msgstr ""
+msgstr "atlikušas dažas sekundes"
 
-msgid "Add"
-msgstr ""
+msgid "assembling"
+msgstr "sakopo"
+
+msgid "Cancel"
+msgstr "Atcelt"
+
+msgid "Cancel the entire operation"
+msgstr "Atcelt visu darbību"
 
 msgid "Cancel uploads"
-msgstr ""
+msgstr "Atcelt augšupielādes"
+
+msgid "Continue"
+msgstr "Turpināt"
+
+msgid "Create new"
+msgstr "Izveidot jaunu"
 
 msgid "estimating time left"
+msgstr "paredzamais atlikušais laiks"
+
+msgid "Existing version"
+msgstr "Esošā versija"
+
+msgid "Failed to assemble the chunks together"
+msgstr "Neizdevās apvienot gabalus"
+
+msgid "Failed to upload the file"
+msgstr "Neizdevās augšupielādēt datni"
+
+msgid "Filenames must not end with \"{segment}\"."
+msgstr "Datnes nosaukumi nedrīkst beigties ar \"{segment}\"."
+
+msgid ""
+"If you select both versions, the incoming file will have a number added to "
+"its name."
 msgstr ""
+"Ja atlasa abas versijas, ienākošās datnes nosaukumam tiks pievienots "
+"skaitlis."
+
+msgid "Invalid filename"
+msgstr "Nederīgs datnes nosaukums"
+
+msgid "Last modified date unknown"
+msgstr "Pēdējais izmainīšanas datums nav zināms"
+
+msgid "New"
+msgstr "Jauns"
+
+msgid "New filename"
+msgstr "Jauns datnes nosaukums"
+
+msgid "New version"
+msgstr "Jauna versija"
 
 msgid "paused"
+msgstr "apturēta"
+
+msgid "Preview image"
+msgstr "Priekšskatīt attēlu"
+
+msgid "Rename"
+msgstr "Pārdēvēt"
+
+msgid "Select all checkboxes"
+msgstr "Atlasīt visas izvēles rūtiņas"
+
+msgid "Select all existing files"
+msgstr "Atlasīt visas esošās datnes"
+
+msgid "Select all new files"
+msgstr "Atlasīt visas jaunās datnes"
+
+msgid "Skip"
+msgstr "Izlaist"
+
+msgid "Skip this file"
+msgid_plural "Skip {count} files"
+msgstr[0] "Izlaist {count} datņu"
+msgstr[1] "Izlaist šo datni"
+msgstr[2] "Izlaist {count} datnes"
+
+msgid "Unknown size"
+msgstr "Nezināms izmērs"
+
+msgid "Upload"
+msgstr "Augšupielādēt"
+
+msgid "Upload files"
+msgstr "Augšupielādēt datnes"
+
+msgid "Upload folders"
+msgstr "Augšupielādēt mapes"
+
+msgid "Upload from device"
+msgstr "Augšupielādēt no ierīces"
+
+msgid "Upload has been cancelled"
+msgstr "Augšupielāde tika atcelta"
+
+msgid "Upload has been skipped"
+msgstr "Augšupielāde tika izlaista"
+
+msgid "Upload of \"{folder}\" has been skipped"
+msgstr "\"{folder}\" augšupielāde tika izlaista"
+
+msgid "Upload progress"
+msgstr "Augšupielādes virzība"
+
+msgid ""
+"When an incoming folder is selected, any conflicting files within it will "
+"also be overwritten."
 msgstr ""
+"Kad ir atlasīta ienākošā mape, tiks pārrakstītas arī jebkuras tajā esošās "
+"nesaderīgās datnes."
+
+msgid ""
+"When an incoming folder is selected, the content is written into the "
+"existing folder and a recursive conflict resolution is performed."
+msgstr ""
+"Kad ir atlasīta ienākošā mape, saturs tiks rakstīts esošajā mapē, un tiks "
+"veikta rekursīva nesaderību novēršana."
+
+msgid "Which files do you want to keep?"
+msgstr "Kuras datnes paturēt?"
+
+msgid ""
+"You can either rename the file, skip this file or cancel the whole "
+"operation."
+msgstr "Datni var vai nu pārdēvēt, vai izlaist vai atcelt visu darbību."
+
+msgid "You need to select at least one version of each file to continue."
+msgstr ""
+"Ir nepieciešams atlasīt vismaz vienu katras datnes versiju, lai turpinātu."
