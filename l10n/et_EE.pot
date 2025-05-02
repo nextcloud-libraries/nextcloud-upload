@@ -37,7 +37,7 @@ msgstr[1] "jäänud {seconds} sekundit"
 
 #. TRANSLATORS time has the format 00:00:00
 msgid "{time} left"
-msgstr "{time} aega jäänud"
+msgstr "aega jäänud {time} "
 
 msgid "a few seconds left"
 msgstr "jäänud mõni sekund"
