@@ -37,7 +37,7 @@ msgstr[1] "jäänud {seconds} sekundit"
 
 #. TRANSLATORS time has the format 00:00:00
 msgid "{time} left"
-msgstr "{time} aega jäänud"
+msgstr "aega jäänud {time} "
 
 msgid "a few seconds left"
 msgstr "jäänud mõni sekund"
@@ -117,10 +117,13 @@ msgstr "Vali kõik uued failid"
 msgid "Skip"
 msgstr "Jäta vahele"
 
-msgid "Skip this file"
+msgid "Skip {count} file"
 msgid_plural "Skip {count} files"
-msgstr[0] "Jäta see fail vahele"
-msgstr[1] "Jäta {count} faili vahele"
+msgstr[0] "Jäta vahele {count} fail"
+msgstr[1] "Jäta vahele {count} faili"
+
+msgid "Skip this file"
+msgstr "Jäta vahele see fail"
 
 msgid "Unknown size"
 msgstr "Tundmatu suurus"
