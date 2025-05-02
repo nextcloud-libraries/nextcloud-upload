@@ -126,12 +126,15 @@ msgstr "Vybrat veškeré nové soubory"
 msgid "Skip"
 msgstr "Přeskočit"
 
-msgid "Skip this file"
+msgid "Skip {count} file"
 msgid_plural "Skip {count} files"
-msgstr[0] "Přeskočit tento soubor"
+msgstr[0] "Přeskočit {count} soubor"
 msgstr[1] "Přeskočit {count} soubory"
 msgstr[2] "Přeskočit {count} souborů"
 msgstr[3] "Přeskočit {count} soubory"
+
+msgid "Skip this file"
+msgstr "Přeskočit tento soubor"
 
 msgid "Unknown size"
 msgstr "Neznámá velikost"
