@@ -66,10 +66,10 @@ msgstr "öngörülen kalan süre"
 msgid "Existing version"
 msgstr "Var olan sürüm"
 
-msgid "Failed assembling the chunks together"
+msgid "Failed to assemble the chunks together"
 msgstr "Parçalar birleştirilemedi"
 
-msgid "Failed uploading the file"
+msgid "Failed to upload the file"
 msgstr "Dosya yüklenemedi"
 
 msgid "Filenames must not end with \"{segment}\"."
@@ -116,10 +116,13 @@ msgstr "Tüm yeni dosyaları seç"
 msgid "Skip"
 msgstr "Atla"
 
-msgid "Skip this file"
+msgid "Skip {count} file"
 msgid_plural "Skip {count} files"
-msgstr[0] "Bu dosyayı atla"
+msgstr[0] "{count} dosyayı atla"
 msgstr[1] "{count} dosyayı atla"
+
+msgid "Skip this file"
+msgstr "Bu dosyayı atla"
 
 msgid "Unknown size"
 msgstr "Boyut bilinmiyor"
