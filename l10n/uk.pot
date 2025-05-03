@@ -124,12 +124,15 @@ msgstr "Вибрати усі нові файли"
 msgid "Skip"
 msgstr "Пропустити"
 
-msgid "Skip this file"
+msgid "Skip {count} file"
 msgid_plural "Skip {count} files"
-msgstr[0] "Пропустити файл"
+msgstr[0] "Пропустити {count} файл"
 msgstr[1] "Пропустити {count} файли"
 msgstr[2] "Пропустити {count} файлів"
 msgstr[3] "Пропустити {count} файлів"
+
+msgid "Skip this file"
+msgstr "Пропустити цей файл"
 
 msgid "Unknown size"
 msgstr "Невідомий розмір"
