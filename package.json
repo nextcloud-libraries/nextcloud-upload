@@ -1,6 +1,6 @@
 {
   "name": "@nextcloud/upload",
-  "version": "1.9.1",
+  "version": "1.10.0",
   "description": "Nextcloud file upload client",
   "keywords": [
     "nextcloud",
@@ -36,6 +36,7 @@
   "scripts": {
     "build": "vite --mode production build",
     "build:doc": "typedoc --out dist/doc lib && touch dist/doc/.nojekyll",
+    "prerelease:format-changelog": "node build/format-changelog.mjs",
     "cypress": "cypress run --component",
     "cypress:gui": "cypress open --component",
     "dev": "vite --mode development build",
