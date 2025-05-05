@@ -4,6 +4,19 @@
 -->
 # Changelog
 
+## [v1.10.0](https://github.com/nextcloud-libraries/nextcloud-upload/tree/v1.10.0) \(2025-05-05\)
+
+### Added
+* feat(Uploader): Enable chunked upload for public shares if supported [\#1705](https://github.com/nextcloud-libraries/nextcloud-upload/pull/1705) \([provokateurin](https://github.com/provokateurin)\)
+
+### Fixed
+* fix(i18n): Corrected plural for multi. plural languages [\#1733](https://github.com/nextcloud-libraries/nextcloud-upload/pull/1733) \([rakekniven](https://github.com/rakekniven)\)
+
+### Changed
+* chore(i18n): Improved grammar [\#1672](https://github.com/nextcloud-libraries/nextcloud-upload/pull/1672) \([rakekniven](https://github.com/rakekniven)\)
+* chore(deps): Bump axios to 1.9.0
+* Updated translations
+
 ## [v1.9.1](https://github.com/nextcloud-libraries/nextcloud-upload/tree/v1.9.1) \(2025-03-20\)
 
 ### Fixed
