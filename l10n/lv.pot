@@ -36,7 +36,7 @@ msgstr[2] "{count} nesaderīgas datnes {dirname}"
 msgid "{seconds} seconds left"
 msgid_plural "{seconds} seconds left"
 msgstr[0] "Atlikušas {seconds} sekundes"
-msgstr[1] "Aatlikusi {seconds} sekunde"
+msgstr[1] "Atlikusi {seconds} sekunde"
 msgstr[2] "Atlikušas {seconds} sekundes"
 
 #. TRANSLATORS time has the format 00:00:00
@@ -122,11 +122,14 @@ msgstr "Atlasīt visas jaunās datnes"
 msgid "Skip"
 msgstr "Izlaist"
 
-msgid "Skip this file"
+msgid "Skip {count} file"
 msgid_plural "Skip {count} files"
 msgstr[0] "Izlaist {count} datņu"
-msgstr[1] "Izlaist šo datni"
+msgstr[1] "Izlaist {count} datni"
 msgstr[2] "Izlaist {count} datnes"
+
+msgid "Skip this file"
+msgstr "Izlaist šo datni"
 
 msgid "Unknown size"
 msgstr "Nezināms izmērs"
