@@ -1,33 +1,52 @@
 # 
 # Translators:
-# John Molakvoæ <skjnldsv@protonmail.com>, 2023
-# Tung DangQuang, 2023
+# Joas Schilling, 2024
+# nhatCreA, 2025
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Tung DangQuang, 2023\n"
+"Last-Translator: nhatCreA, 2025\n"
 "Language-Team: Vietnamese (https://app.transifex.com/nextcloud/teams/64236/vi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: vi\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
+msgid "\"{segment}\" is a forbidden file or folder name."
+msgstr "\"{segment}\" là tên thư mục bị cấm đặt."
+
+msgid "\"{segment}\" is a forbidden file type."
+msgstr "\"{segment}\" là loại tệp bị cấm."
+
+msgid "\"{segment}\" is not allowed inside a file or folder name."
+msgstr "\"{segment}\" không được phép đặt trong tên tệp hoặc thư mục."
+
 msgid "{count} file conflict"
 msgid_plural "{count} files conflict"
-msgstr[0] "{count} Tập tin xung đột"
+msgstr[0] "{count} tệp tin xung đột"
 
 msgid "{count} file conflict in {dirname}"
 msgid_plural "{count} file conflicts in {dirname}"
-msgstr[0] "{count} tập tin lỗi trong {dirname}"
+msgstr[0] "\"{count}\" tệp tin lỗi ở thư mục \"{dirname}\""
 
 msgid "{seconds} seconds left"
-msgstr "Còn {second} giây"
+msgid_plural "{seconds} seconds left"
+msgstr[0] "{seconds} giây trước"
 
 #. TRANSLATORS time has the format 00:00:00
 msgid "{time} left"
-msgstr "Còn lại {time}"
+msgstr "{time} trước"
 
 msgid "a few seconds left"
-msgstr "Còn lại một vài giây"
+msgstr "vài giây trước"
+
+msgid "assembling"
+msgstr "đang cấu trúc"
+
+msgid "Cancel"
+msgstr "Huỷ"
+
+msgid "Cancel the entire operation"
+msgstr "Huỷ toàn bộ thao tác"
 
 msgid "Cancel uploads"
 msgstr "Huỷ tải lên"
@@ -35,18 +54,31 @@ msgstr "Huỷ tải lên"
 msgid "Continue"
 msgstr "Tiếp Tục"
 
+msgid "Create new"
+msgstr "Tạo mới"
+
 msgid "estimating time left"
-msgstr "Thời gian còn lại dự kiến"
+msgstr "ước tính thời gian còn lại"
 
 msgid "Existing version"
-msgstr "Phiên Bản Hiện Tại"
+msgstr "Phiên bản hiện tại"
+
+msgid "Failed to assemble the chunks together"
+msgstr "Không thể assemble các chunks lại với nhau"
+
+msgid "Failed to upload the file"
+msgstr "Tải lên tệp tin thất bại"
+
+msgid "Filenames must not end with \"{segment}\"."
+msgstr "Tên tập tin không được kết thúc bằng \"{segment}\"."
 
 msgid ""
-"If you select both versions, the copied file will have a number added to its"
-" name."
-msgstr ""
-"Nếu bạn chọn cả hai phiên bản, tệp được sao chép sẽ có thêm một số vào tên "
-"của nó."
+"If you select both versions, the incoming file will have a number added to "
+"its name."
+msgstr "Nếu bạn chọn cả hai, tệp tin đến sẽ có thêm một chữ số vào tên."
+
+msgid "Invalid filename"
+msgstr "Tên tệp tin không hợp lệ"
 
 msgid "Last modified date unknown"
 msgstr "Ngày sửa dổi lần cuối không xác định"
@@ -54,42 +86,89 @@ msgstr "Ngày sửa dổi lần cuối không xác định"
 msgid "New"
 msgstr "Tạo Mới"
 
+msgid "New filename"
+msgstr "Tên tệp tin mới"
+
 msgid "New version"
-msgstr "Phiên Bản Mới"
+msgstr "Phiên bản mới"
 
 msgid "paused"
 msgstr "đã tạm dừng"
 
 msgid "Preview image"
-msgstr "Xem Trước Ảnh"
+msgstr "Xem trước ảnh"
+
+msgid "Rename"
+msgstr "Đổi tên"
 
 msgid "Select all checkboxes"
-msgstr "Chọn tất cả hộp checkbox"
+msgstr "Chọn tất cả"
 
 msgid "Select all existing files"
-msgstr "Chọn tất cả các tập tin có sẵn"
+msgstr "Chọn tất cả các tập tin đang tồn tại"
 
 msgid "Select all new files"
 msgstr "Chọn tất cả các tập tin mới"
 
-msgid "Skip this file"
+msgid "Skip"
+msgstr "Bỏ qua"
+
+msgid "Skip {count} file"
 msgid_plural "Skip {count} files"
-msgstr[0] "Bỏ Qua {count} tập tin"
+msgstr[0] "Bỏ qua {count} tệp"
+
+msgid "Skip this file"
+msgstr "Bỏ qua tệp này"
 
 msgid "Unknown size"
 msgstr "Không rõ dung lượng"
 
-msgid "Upload cancelled"
-msgstr "Dừng Tải Lên"
+msgid "Upload"
+msgstr "Tải Lên"
 
 msgid "Upload files"
-msgstr "Tập tin tải lên"
+msgstr "Tải lên tệp tin"
+
+msgid "Upload folders"
+msgstr "Tải lên thư mục"
+
+msgid "Upload from device"
+msgstr "Tải lên từ thiết bị"
+
+msgid "Upload has been cancelled"
+msgstr "Tải lên đã bị huỷ"
+
+msgid "Upload has been skipped"
+msgstr "Tải lên đã bỏ qua"
+
+msgid "Upload of \"{folder}\" has been skipped"
+msgstr "Tải lên \"{folder}\" đã bị bỏ qua"
 
 msgid "Upload progress"
-msgstr "Đang Tải Lên"
+msgstr "Tiến trình tải lên"
+
+msgid ""
+"When an incoming folder is selected, any conflicting files within it will "
+"also be overwritten."
+msgstr ""
+"Khi bạn chọn một thư mục để đưa vào, bất kỳ tệp nào trong đó gây xung đột "
+"cũng sẽ bị ghi đè."
+
+msgid ""
+"When an incoming folder is selected, the content is written into the "
+"existing folder and a recursive conflict resolution is performed."
+msgstr ""
+"Khi chọn một thư mục để đưa vào, nội dung sẽ được ghi vào thư mục hiện có, "
+"và hệ thống sẽ tự động giải quyết các xung đột một cách chi tiết và cẩn "
+"thận."
 
 msgid "Which files do you want to keep?"
-msgstr "Bạn muốn giữ tập tin nào?"
+msgstr "Bạn muốn giữ tệp nào?"
+
+msgid ""
+"You can either rename the file, skip this file or cancel the whole "
+"operation."
+msgstr "Bạn có thể đổi tên tệp, bỏ qua tệp này, hoặc hủy toàn bộ thao tác."
 
 msgid "You need to select at least one version of each file to continue."
-msgstr "Bạn cần chọn ít nhất một phiên bản tập tin mới có thể tiếp tục"
+msgstr "Bạn cần chọn ít nhất một phiên bản cho mỗi tệp để tiếp tục."
