@@ -70,7 +70,7 @@ msgid "Existing version"
 msgstr "Vorhandene Version"
 
 msgid "Failed to assemble the chunks together"
-msgstr "Das Zusammenfügen der Teile ist fehlgeschlagen"
+msgstr "Die Teile konnten nicht zusammengefügt werden"
 
 msgid "Failed to upload the file"
 msgstr "Die Datei konnte nicht hochgeladen werden"
