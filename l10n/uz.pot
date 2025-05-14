@@ -114,9 +114,12 @@ msgstr "Barcha yangi fayllarni tanlang"
 msgid "Skip"
 msgstr "Oʻtkazib yuborish"
 
-msgid "Skip this file"
+msgid "Skip {count} file"
 msgid_plural "Skip {count} files"
 msgstr[0] "Oʻtkazib yuborish {count} fayllarini"
+
+msgid "Skip this file"
+msgstr "Oʻtkazib yuborish ushbu faylni"
 
 msgid "Unknown size"
 msgstr "Noma'lum o'lcham"
