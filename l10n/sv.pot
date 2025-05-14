@@ -118,10 +118,13 @@ msgstr "Välj alla nya filer"
 msgid "Skip"
 msgstr "Hoppa över"
 
-msgid "Skip this file"
+msgid "Skip {count} file"
 msgid_plural "Skip {count} files"
-msgstr[0] "Hoppa över denna fil"
+msgstr[0] "Hoppa över {count} fil"
 msgstr[1] "Hoppa över {count} filer"
+
+msgid "Skip this file"
+msgstr "Hoppa över denna fil"
 
 msgid "Unknown size"
 msgstr "Okänd storlek"
