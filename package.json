@@ -67,7 +67,7 @@
     "typescript-event-target": "^1.1.1"
   },
   "devDependencies": {
-    "@codecov/vite-plugin": "^1.9.0",
+    "@codecov/vite-plugin": "^1.9.1",
     "@cypress/vue2": "^2.1.1",
     "@nextcloud/eslint-config": "^8.4.2",
     "@nextcloud/vite-config": "^1.5.2",
