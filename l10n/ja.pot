@@ -4,12 +4,12 @@
 # kojima.imamura, 2024
 # Takafumi AKAMATSU, 2024
 # devi, 2024
-# kshimohata, 2024
-# test test, 2025
+# あいうえお, 2025
+# kshimohata, 2025
 # 
 msgid ""
 msgstr ""
-"Last-Translator: test test, 2025\n"
+"Last-Translator: kshimohata, 2025\n"
 "Language-Team: Japanese (Japan) (https://app.transifex.com/nextcloud/teams/64236/ja_JP/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: ja_JP\n"
@@ -67,11 +67,11 @@ msgstr "概算残り時間"
 msgid "Existing version"
 msgstr "既存バージョン"
 
-msgid "Failed assembling the chunks together"
-msgstr "チャンクを一緒に組み立てるのに失敗しました。"
+msgid "Failed to assemble the chunks together"
+msgstr "チャンクの組み立てに失敗しました"
 
-msgid "Failed uploading the file"
-msgstr "ファイルのアップロードに失敗しました。"
+msgid "Failed to upload the file"
+msgstr "ファイルのアップロードに失敗しました"
 
 msgid "Filenames must not end with \"{segment}\"."
 msgstr "ファイル名の末尾に \"{segment}\" を付けることはできません。"
@@ -117,9 +117,12 @@ msgstr "すべての新規ファイルを選択"
 msgid "Skip"
 msgstr "スキップ"
 
-msgid "Skip this file"
+msgid "Skip {count} file"
 msgid_plural "Skip {count} files"
 msgstr[0] "{count} 個のファイルをスキップする"
+
+msgid "Skip this file"
+msgstr "このファイルをスキップする"
 
 msgid "Unknown size"
 msgstr "サイズ不明"
