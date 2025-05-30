@@ -70,7 +70,7 @@ msgid "Failed to assemble the chunks together"
 msgstr "Αποτυχία συναρμολόγησης των κομματιών"
 
 msgid "Failed to upload the file"
-msgstr "Αποτυχία φόρτωσης του αρχείου"
+msgstr "Αποτυχία μεταφόρτωσης του αρχείου"
 
 msgid "Filenames must not end with \"{segment}\"."
 msgstr "Τα ονόματα αρχείων δεν πρέπει να τελειώνουν με \"{segment}\"."
