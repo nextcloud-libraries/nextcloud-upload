@@ -66,11 +66,11 @@ msgstr "εκτίμηση του χρόνου που απομένει"
 msgid "Existing version"
 msgstr "Υπάρχουσα έκδοση"
 
-msgid "Failed assembling the chunks together"
-msgstr "Αποτυχία συναρμολόγησης των τμημάτων"
+msgid "Failed to assemble the chunks together"
+msgstr "Αποτυχία συναρμολόγησης των κομματιών"
 
-msgid "Failed uploading the file"
-msgstr "Αποτυχία μεταφόρτωσης του αρχείου"
+msgid "Failed to upload the file"
+msgstr "Αποτυχία φόρτωσης του αρχείου"
 
 msgid "Filenames must not end with \"{segment}\"."
 msgstr "Τα ονόματα αρχείων δεν πρέπει να τελειώνουν με \"{segment}\"."
@@ -118,10 +118,13 @@ msgstr "Επιλογή όλων των νέων αρχείων"
 msgid "Skip"
 msgstr "Παράλειψη"
 
-msgid "Skip this file"
+msgid "Skip {count} file"
 msgid_plural "Skip {count} files"
-msgstr[0] "Παράλειψη αυτού του αρχείου"
+msgstr[0] "Παράλειψη {count} αρχείου"
 msgstr[1] "Παράλειψη {count} αρχείων"
+
+msgid "Skip this file"
+msgstr "Παραλείψτε αυτό το αρχείο"
 
 msgid "Unknown size"
 msgstr "Άγνωστο μέγεθος"
