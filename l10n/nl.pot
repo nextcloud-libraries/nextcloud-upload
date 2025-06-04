@@ -1,36 +1,183 @@
 # 
 # Translators:
-# Rico <rico-schwab@hotmail.com>, 2023
+# Joas Schilling, 2024
+# Joris deLeeuw, 2025
+# Stephan Paternotte <stephan@paternottes.net>, 2025
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Rico <rico-schwab@hotmail.com>, 2023\n"
+"Last-Translator: Stephan Paternotte <stephan@paternottes.net>, 2025\n"
 "Language-Team: Dutch (https://app.transifex.com/nextcloud/teams/64236/nl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: nl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgid "{seconds} seconds left"
-msgstr "Nog {seconds} seconden"
+msgid "\"{segment}\" is a forbidden file or folder name."
+msgstr "\"{segment}\" is een verboden bestands- of mapnaam."
 
-#. time has the format 00:00:00
+msgid "\"{segment}\" is a forbidden file type."
+msgstr "\"{segment}\" is een verboden bestandstype."
+
+msgid "\"{segment}\" is not allowed inside a file or folder name."
+msgstr "\"{segment}\" is niet toegestaan in een bestand of mapnaam."
+
+msgid "{count} file conflict"
+msgid_plural "{count} files conflict"
+msgstr[0] "{count} bestandsconflict"
+msgstr[1] "{count} bestanden conflicteren"
+
+msgid "{count} file conflict in {dirname}"
+msgid_plural "{count} file conflicts in {dirname}"
+msgstr[0] "{count} bestandsconflict in {dirname}"
+msgstr[1] "{count} bestandenconflicten in {dirname}"
+
+msgid "{seconds} seconds left"
+msgid_plural "{seconds} seconds left"
+msgstr[0] "{seconds} seconde resterend"
+msgstr[1] "{seconds} seconden resterend"
+
+#. TRANSLATORS time has the format 00:00:00
 msgid "{time} left"
-msgstr "{seconds} over"
+msgstr "{time} resterend"
 
 msgid "a few seconds left"
-msgstr "Nog een paar seconden"
+msgstr "Nog een paar seconden over"
 
-msgid "Add"
-msgstr "Voeg toe"
+msgid "assembling"
+msgstr "samenstellen"
+
+msgid "Cancel"
+msgstr "Annuleren"
+
+msgid "Cancel the entire operation"
+msgstr "De hele bewerking annuleren"
 
 msgid "Cancel uploads"
-msgstr "Uploads annuleren"
+msgstr "Uploaden annuleren"
+
+msgid "Continue"
+msgstr "Doorgaan"
+
+msgid "Create new"
+msgstr "Nieuw aanmaken"
 
 msgid "estimating time left"
-msgstr "Schatting van de resterende tijd"
+msgstr "resterende tijd schatten"
+
+msgid "Existing version"
+msgstr "Bestaande versie"
+
+msgid "Failed to assemble the chunks together"
+msgstr "Kon de stukken niet samenvoegen"
+
+msgid "Failed to upload the file"
+msgstr "Het uploaden van het bestand is mislukt"
+
+msgid "Filenames must not end with \"{segment}\"."
+msgstr "Bestandsnamen mogen niet eindigen met \"{segment}\"."
+
+msgid ""
+"If you select both versions, the incoming file will have a number added to "
+"its name."
+msgstr ""
+"Als je beide versies selecteert, krijgt het binnenkomende bestand een nummer"
+" toegevoegd aan de naam."
+
+msgid "Invalid filename"
+msgstr "Ongeldige bestandsnaam"
+
+msgid "Last modified date unknown"
+msgstr "Laatst gewijzigde datum onbekend"
+
+msgid "New"
+msgstr "Nieuw"
+
+msgid "New filename"
+msgstr "Nieuwe bestandsnaam"
+
+msgid "New version"
+msgstr "Nieuwe versie"
 
 msgid "paused"
-msgstr "Gepauzeerd"
+msgstr "gepauzeerd"
+
+msgid "Preview image"
+msgstr "Voorbeeldweergave"
+
+msgid "Rename"
+msgstr "Hernoemen"
+
+msgid "Select all checkboxes"
+msgstr "Alle opties selecteren"
+
+msgid "Select all existing files"
+msgstr "Alle bestanden selecteren"
+
+msgid "Select all new files"
+msgstr "Alle nieuwe bestanden selecteren"
+
+msgid "Skip"
+msgstr "Overslaan"
+
+msgid "Skip {count} file"
+msgid_plural "Skip {count} files"
+msgstr[0] "{count} bestand overslaan"
+msgstr[1] "{count} bestanden overslaan"
+
+msgid "Skip this file"
+msgstr "Dit bestand overslaan"
+
+msgid "Unknown size"
+msgstr "Onbekende grootte"
+
+msgid "Upload"
+msgstr "Uploaden"
 
 msgid "Upload files"
 msgstr "Upload bestanden"
+
+msgid "Upload folders"
+msgstr "Mappen uploaden"
+
+msgid "Upload from device"
+msgstr "Uploaden vanaf apparaat"
+
+msgid "Upload has been cancelled"
+msgstr "Upload is geanulleerd"
+
+msgid "Upload has been skipped"
+msgstr "Upload is overgeslagen"
+
+msgid "Upload of \"{folder}\" has been skipped"
+msgstr "Upload van \"{folder}\" is overgeslagen"
+
+msgid "Upload progress"
+msgstr "Uploadvoortgang"
+
+msgid ""
+"When an incoming folder is selected, any conflicting files within it will "
+"also be overwritten."
+msgstr ""
+"Wanneer een inkomende map is geselecteerd, worden alle conflicterende "
+"bestanden daarin ook overschreven."
+
+msgid ""
+"When an incoming folder is selected, the content is written into the "
+"existing folder and a recursive conflict resolution is performed."
+msgstr ""
+"Wanneer een inkomende map is geselecteerd, wordt de inhoud in de bestaande "
+"map geschreven en wordt er een recursieve conflictoplossing uitgevoerd."
+
+msgid "Which files do you want to keep?"
+msgstr "Welke bestanden wil je behouden?"
+
+msgid ""
+"You can either rename the file, skip this file or cancel the whole "
+"operation."
+msgstr ""
+"Je kunt het bestand ofwel hernoemen, dit bestand overslaan of de hele "
+"bewerking annuleren."
+
+msgid "You need to select at least one version of each file to continue."
+msgstr ""
+"Je moet minstens één versie van elk bestand selecteren om door te gaan."
