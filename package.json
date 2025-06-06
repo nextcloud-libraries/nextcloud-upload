@@ -85,7 +85,7 @@
     "typedoc": "^0.28.5",
     "typescript": "^5.8.3",
     "vite": "^6.3.5",
-    "vitest": "^3.2.0",
+    "vitest": "^3.2.2",
     "vue-material-design-icons": "^5.3.1",
     "webdav": "^5.8.0"
   },
