@@ -6,10 +6,11 @@
 # Jérôme HERBINET, 2024
 # acazenave, 2024
 # Lisa Cintosh, 2025
+# Ldm Public <ldmpub@gmail.com>, 2025
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Lisa Cintosh, 2025\n"
+"Last-Translator: Ldm Public <ldmpub@gmail.com>, 2025\n"
 "Language-Team: French (https://app.transifex.com/nextcloud/teams/64236/fr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: fr\n"
@@ -126,11 +127,14 @@ msgstr "Sélectionner tous les nouveaux fichiers"
 msgid "Skip"
 msgstr "Ignorer"
 
-msgid "Skip this file"
+msgid "Skip {count} file"
 msgid_plural "Skip {count} files"
-msgstr[0] "Ignorer ce fichier"
-msgstr[1] "Ignorer {count} fichiers"
-msgstr[2] "Ignorer {count} fichiers"
+msgstr[0] "{count} fichier ignoré"
+msgstr[1] "{count} fichiers ignorés"
+msgstr[2] "{count}fichiers ignorés"
+
+msgid "Skip this file"
+msgstr "Ignorer ce fichier"
 
 msgid "Unknown size"
 msgstr "Taille inconnue"
