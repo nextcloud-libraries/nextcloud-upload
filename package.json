@@ -74,12 +74,14 @@
     "@nextcloud/paths": "^2.2.1",
     "@nextcloud/router": "^3.0.0",
     "@nextcloud/sharing": "^0.2.4",
+    "@nextcloud/vue": "^8.0.0",
     "axios": "^1.10.0",
     "axios-retry": "^4.5.0",
     "crypto-browserify": "^3.12.1",
     "p-cancelable": "^4.0.1",
     "p-queue": "^8.1.0",
-    "typescript-event-target": "^1.1.1"
+    "typescript-event-target": "^1.1.1",
+    "vue": "^2.7.16"
   },
   "devDependencies": {
     "@codecov/vite-plugin": "^1.9.1",
@@ -103,10 +105,6 @@
     "vitest": "^3.2.0",
     "vue-material-design-icons": "^5.3.1",
     "webdav": "^5.8.0"
-  },
-  "peerDependencies": {
-    "@nextcloud/vue": "^8.0.0",
-    "vue": "^2.7.16"
   },
   "engines": {
     "node": "^20.0.0",
