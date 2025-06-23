@@ -4,13 +4,13 @@
  */
 
 import type { Node } from '@nextcloud/files'
-import type { IDirectory } from '../../core/utils/fileTree.ts'
+import type { IDirectory } from '../../core/core.ts'
 
 import { showInfo, showWarning } from '@nextcloud/dialogs'
 import { getUniqueName, InvalidFilenameError, validateFilename } from '@nextcloud/files'
 import { basename } from '@nextcloud/paths'
 
-import { getConflicts } from '../../core/utils/conflicts.ts'
+import { getConflicts } from '../../core/core.ts'
 import { openConflictPicker } from '../openConflictPicker.ts'
 import { showInvalidFilenameDialog } from './dialog.ts'
 import { t } from '../../shared/utils/l10n.ts'

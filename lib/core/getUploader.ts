@@ -5,7 +5,7 @@
 
 import { isPublicShare } from '@nextcloud/sharing/public'
 
-import { Uploader } from './uploader/uploader.ts'
+import { Uploader } from './uploader/index.ts'
 
 /**
  * Get the global Uploader instance.
