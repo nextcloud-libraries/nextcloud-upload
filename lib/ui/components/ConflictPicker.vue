@@ -103,7 +103,7 @@
 <script lang="ts">
 import type { Node } from '@nextcloud/files'
 import type { PropType } from 'vue'
-import type { ConflictResolutionResult } from '../../index.ts'
+import type { ConflictResolutionResult } from '../openConflictPicker.ts'
 
 import { defineComponent } from 'vue'
 import { showError } from '@nextcloud/dialogs'
