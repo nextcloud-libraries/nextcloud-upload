@@ -183,7 +183,7 @@ import { getUploader } from '../../index.ts'
 import { UploaderStatus } from '../../core/uploader/uploader.ts'
 import { Status as UploadStatus } from '../../core/upload.ts'
 import { t } from '../../shared/utils/l10n.ts'
-import { uploadConflictHandler } from '../../utils/conflicts.ts'
+import { uploadConflictHandler } from '../utils/uploadConflictHandler.ts'
 import logger from '../../shared/utils/logger.ts'
 
 export default defineComponent({

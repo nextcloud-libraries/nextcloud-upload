@@ -12,7 +12,8 @@ import { Uploader } from './core/uploader/uploader.ts'
 import UploadPicker from './ui/components/UploadPicker.vue'
 
 export type { IDirectory, Directory } from './core/utils/fileTree.ts'
-export { getConflicts, hasConflict, uploadConflictHandler } from './utils/conflicts'
+export { getConflicts, hasConflict } from './core/utils/conflicts.ts'
+export { uploadConflictHandler } from './ui/utils/uploadConflictHandler.ts'
 export { Upload, Status as UploadStatus } from './core/upload.ts'
 export * from './core/uploader'
 
