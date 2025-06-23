@@ -25,7 +25,7 @@ import type { ComponentPublicInstance, PropType } from 'vue'
 
 import { InvalidFilenameError, InvalidFilenameErrorReason } from '@nextcloud/files'
 import { defineComponent } from 'vue'
-import { t } from '../utils/l10n'
+import { t } from '../../shared/utils/l10n.ts'
 import NcDialog from '@nextcloud/vue/dist/Components/NcDialog.js'
 import NcTextField from '@nextcloud/vue/dist/Components/NcTextField.js'
 import NcNoteCard from '@nextcloud/vue/dist/Components/NcNoteCard.js'

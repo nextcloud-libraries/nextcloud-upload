@@ -20,10 +20,10 @@ import { UploadCancelledError } from '../errors/UploadCancelledError.ts'
 import { getChunk, initChunkWorkspace, uploadData } from '../utils/upload.ts'
 import { getMaxChunksSize } from '../utils/config.ts'
 import { Status as UploadStatus, Upload } from '../upload.ts'
-import { isFileSystemFileEntry } from '../utils/filesystem.ts'
+import { isFileSystemFileEntry } from '../../shared/utils/filesystem.ts'
 import { Directory } from '../utils/fileTree.ts'
-import { t } from '../utils/l10n.ts'
-import logger from '../utils/logger.ts'
+import { t } from '../../shared/utils/l10n.ts'
+import logger from '../../shared/utils/logger.ts'
 import { Eta } from './eta.ts'
 
 export enum UploaderStatus {

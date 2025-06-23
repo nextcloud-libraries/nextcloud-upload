@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 import { expect, test, vi } from 'vitest'
-import logger from '../../lib/utils/logger'
+import logger from '../../lib/shared/utils/logger.ts'
 
 // Just ensure correct app is set, rest is up to that library to test
 test('logger', () => {

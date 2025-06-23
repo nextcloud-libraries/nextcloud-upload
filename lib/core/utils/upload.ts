@@ -9,7 +9,7 @@ import axios from '@nextcloud/axios'
 import axiosRetry, { exponentialDelay, isNetworkOrIdempotentRequestError } from 'axios-retry'
 import { getSharingToken } from '@nextcloud/sharing/public'
 
-import logger from './logger'
+import logger from '../../shared/utils/logger.ts'
 
 axiosRetry(axios, { retries: 0 })
 

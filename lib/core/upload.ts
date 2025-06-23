@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 import type { AxiosResponse } from 'axios'
-import { getMaxChunksSize } from './utils/config.js'
+import { getMaxChunksSize } from './utils/config.ts'
 
 export enum Status {
 	INITIALIZED = 0,

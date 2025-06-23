@@ -8,13 +8,13 @@ import type { AsyncComponent } from 'vue'
 import { isPublicShare } from '@nextcloud/sharing/public'
 import Vue, { defineAsyncComponent } from 'vue'
 
-import { Uploader } from './uploader/uploader'
-import UploadPicker from './components/UploadPicker.vue'
+import { Uploader } from './core/uploader/uploader.ts'
+import UploadPicker from './ui/components/UploadPicker.vue'
 
-export type { IDirectory, Directory } from './utils/fileTree'
+export type { IDirectory, Directory } from './core/utils/fileTree.ts'
 export { getConflicts, hasConflict, uploadConflictHandler } from './utils/conflicts'
-export { Upload, Status as UploadStatus } from './upload'
-export * from './uploader/index.ts'
+export { Upload, Status as UploadStatus } from './core/upload.ts'
+export * from './core/uploader'
 
 export type ConflictResolutionResult<T extends File|FileSystemEntry|Node> = {
 	selected: T[],
@@ -77,7 +77,7 @@ export async function openConflictPicker<T extends File|FileSystemEntry|Node>(
 	content: Node[],
 	options?: ConflictPickerOptions,
 ): Promise<ConflictResolutionResult<T>> {
-	const ConflictPicker = defineAsyncComponent(() => import('./components/ConflictPicker.vue')) as AsyncComponent
+	const ConflictPicker = defineAsyncComponent(() => import('./ui/components/ConflictPicker.vue')) as AsyncComponent
 	return new Promise((resolve, reject) => {
 		const picker = new Vue({
 			name: 'ConflictPickerRoot',

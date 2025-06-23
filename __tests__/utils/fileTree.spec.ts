@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 import { describe, expect, it } from 'vitest'
-import { Directory } from '../../lib/utils/fileTree.ts'
+import { Directory } from '../../lib/core/utils/fileTree.ts'
 
 describe('file tree utils', () => {
 	it('Can create a directory', () => {

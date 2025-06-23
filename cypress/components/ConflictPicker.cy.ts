@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 import { File as NcFile } from '@nextcloud/files'
-import ConflictPicker from '../../lib/components/ConflictPicker.vue'
+import ConflictPicker from '../../lib/ui/components/ConflictPicker.vue'
 
 describe('ConflictPicker rendering', { testIsolation: true }, () => {
 	let image: File

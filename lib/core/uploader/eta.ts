@@ -4,7 +4,7 @@
  */
 
 import { TypedEventTarget } from 'typescript-event-target'
-import { n, t } from '../utils/l10n.ts'
+import { n, t } from '../../shared/utils/l10n.ts'
 import { formatFileSize } from '@nextcloud/files'
 
 export enum EtaStatus {

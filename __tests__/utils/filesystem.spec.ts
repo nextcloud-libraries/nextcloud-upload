@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 import { beforeAll, describe, expect, test } from 'vitest'
-import { isFileSystemDirectoryEntry, isFileSystemEntry, isFileSystemFileEntry } from '../../lib/utils/filesystem'
+import { isFileSystemDirectoryEntry, isFileSystemEntry, isFileSystemFileEntry } from '../../lib/shared/utils/filesystem.ts'
 
 describe('File and Directory API helpers', () => {
 	describe('Without browser support', () => {

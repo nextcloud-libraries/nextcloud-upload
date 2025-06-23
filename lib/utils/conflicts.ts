@@ -4,16 +4,16 @@
  */
 
 import type { Node } from '@nextcloud/files'
-import type { IDirectory } from '../utils/fileTree.ts'
+import type { IDirectory } from '../core/utils/fileTree.ts'
 
 import { showInfo, showWarning } from '@nextcloud/dialogs'
 import { getUniqueName, InvalidFilenameError, validateFilename } from '@nextcloud/files'
 import { basename } from '@nextcloud/paths'
 
 import { openConflictPicker } from '../index.ts'
-import { showInvalidFilenameDialog } from './dialog.ts'
-import { t } from './l10n.ts'
-import logger from './logger.ts'
+import { showInvalidFilenameDialog } from '../ui/utils/dialog.ts'
+import { t } from '../shared/utils/l10n.ts'
+import logger from '../shared/utils/logger.ts'
 
 /**
  * Check if there is a conflict between two sets of files

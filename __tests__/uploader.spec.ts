@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 import { beforeAll, beforeEach, describe, expect, it, test, vi } from 'vitest'
-import { Uploader } from '../lib/uploader'
+import { Uploader } from '../lib/core/uploader'
 import * as nextcloudAuth from '@nextcloud/auth'
 import * as nextcloudFiles from '@nextcloud/files'
 

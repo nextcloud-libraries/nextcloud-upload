@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 import { describe, expect, test } from 'vitest'
-import { getMaxChunksSize } from '../../lib/utils/config.js'
+import { getMaxChunksSize } from '../../lib/core/utils/config.ts'
 
 describe('Max chunk size tests', () => {
 	test('Returning valid config', () => {

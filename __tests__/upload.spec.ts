@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 import { describe, expect, test, vi } from 'vitest'
-import { Status, Upload } from '../lib/upload.js'
+import { Status, Upload } from '../lib/core/upload.ts'
 
 describe('Constructor checks', () => {
 	test('Classic upload', () => {

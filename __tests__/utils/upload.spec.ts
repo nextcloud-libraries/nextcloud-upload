@@ -7,7 +7,7 @@ import type { Mock } from 'vitest'
 import { describe, expect, test, vi } from 'vitest'
 import axios from '@nextcloud/axios'
 
-import { getChunk, initChunkWorkspace, uploadData } from '../../lib/utils/upload.js'
+import { getChunk, initChunkWorkspace, uploadData } from '../../lib/core/utils/upload.ts'
 
 const axiosMock: Mock<typeof axios> | typeof axios = axios
 

@@ -7,7 +7,7 @@
  */
 
 import { basename } from '@nextcloud/paths'
-import { isFileSystemDirectoryEntry, isFileSystemFileEntry } from './filesystem.ts'
+import { isFileSystemDirectoryEntry, isFileSystemFileEntry } from '../../shared/utils/filesystem.ts'
 
 /**
  * This is a helper class to allow building a file tree for uploading
