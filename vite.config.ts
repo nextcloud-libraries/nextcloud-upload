@@ -27,6 +27,9 @@ const translations = readdirSync('./l10n')
 export default defineConfig((env) => {
 	return createLibConfig({
 		index: 'lib/index.ts',
+		core: 'lib/core/core.ts',
+		components: 'lib/components/components.ts',
+		ui: 'lib/ui/ui.ts',
 	}, {
 		libraryFormats: ['es', 'cjs'],
 		nodeExternalsOptions: {
