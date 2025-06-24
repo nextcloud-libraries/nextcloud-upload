@@ -1,36 +1,185 @@
 # 
 # Translators:
-# Manuela Silva <mmsrs@sky.com>, 2022
+# Joas Schilling, 2024
+# guilherme ferreira, 2025
+# artur25 <arturdiogo1997@hotmail.com>, 2025
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Manuela Silva <mmsrs@sky.com>, 2022\n"
-"Language-Team: Portuguese (Portugal) (https://www.transifex.com/nextcloud/teams/64236/pt_PT/)\n"
+"Last-Translator: artur25 <arturdiogo1997@hotmail.com>, 2025\n"
+"Language-Team: Portuguese (Portugal) (https://app.transifex.com/nextcloud/teams/64236/pt_PT/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: pt_PT\n"
 "Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
-msgid "{seconds} seconds left"
-msgstr "faltam {seconds} segundo(s)"
+msgid "\"{segment}\" is a forbidden file or folder name."
+msgstr "\"{segment}\" é um Nome de arquivo ou pasta proibido."
 
-#. time has the format 00:00:00
+msgid "\"{segment}\" is a forbidden file type."
+msgstr "\"{segment}\" é um tipo de ficheiro proibido."
+
+msgid "\"{segment}\" is not allowed inside a file or folder name."
+msgstr "\"{segment}\" não é permitido num nome de ficheiro ou pasta."
+
+msgid "{count} file conflict"
+msgid_plural "{count} files conflict"
+msgstr[0] "Conflito em {count} ficheiro"
+msgstr[1] "Conflito em {count} ficheiros"
+msgstr[2] "Conflito em {count} ficheiros"
+
+msgid "{count} file conflict in {dirname}"
+msgid_plural "{count} file conflicts in {dirname}"
+msgstr[0] "{count} conflito de ficheiro em {dirname}"
+msgstr[1] "{count} conflitos de ficheiro em {dirname}"
+msgstr[2] "{count} conflitos de ficheiro em {dirname}"
+
+msgid "{seconds} seconds left"
+msgid_plural "{seconds} seconds left"
+msgstr[0] "Falta {seconds} segundo"
+msgstr[1] "Faltam {seconds} segundos"
+msgstr[2] "Faltam {seconds} segundos"
+
+#. TRANSLATORS time has the format 00:00:00
 msgid "{time} left"
 msgstr "faltam {time}"
 
 msgid "a few seconds left"
 msgstr "faltam uns segundos"
 
-msgid "Add"
-msgstr "Adicionar"
+msgid "assembling"
+msgstr "montagem"
+
+msgid "Cancel"
+msgstr "Cancelar"
+
+msgid "Cancel the entire operation"
+msgstr "Cancelar a operação inteira"
 
 msgid "Cancel uploads"
 msgstr "Cancelar envios"
 
+msgid "Continue"
+msgstr "Continuar"
+
+msgid "Create new"
+msgstr "Criar novo"
+
 msgid "estimating time left"
 msgstr "tempo em falta estimado"
+
+msgid "Existing version"
+msgstr "Versão existente"
+
+msgid "Failed to assemble the chunks together"
+msgstr "Falha ao juntar os fragmentos"
+
+msgid "Failed to upload the file"
+msgstr "Falha ao carregar o ficheiro"
+
+msgid "Filenames must not end with \"{segment}\"."
+msgstr "Os nomes de ficheiro não podem terminar em \"{segment}\"."
+
+msgid ""
+"If you select both versions, the incoming file will have a number added to "
+"its name."
+msgstr ""
+"Se selecionar ambas as versões, será adicionado um número ao nome do "
+"ficheiro recebido."
+
+msgid "Invalid filename"
+msgstr "Nome de ficheiro inválido"
+
+msgid "Last modified date unknown"
+msgstr "Data da última modificação desconhecida"
+
+msgid "New"
+msgstr "Novo"
+
+msgid "New filename"
+msgstr "Novo nome de ficheiro"
+
+msgid "New version"
+msgstr "Nova versão"
 
 msgid "paused"
 msgstr "pausado"
 
+msgid "Preview image"
+msgstr "Pré-visualizar imagem"
+
+msgid "Rename"
+msgstr "Renomear"
+
+msgid "Select all checkboxes"
+msgstr "Selecionar todas as caixas de verificação"
+
+msgid "Select all existing files"
+msgstr "Selecionar todos os ficheiros existentes"
+
+msgid "Select all new files"
+msgstr "Selecionar todos os ficheiros novos"
+
+msgid "Skip"
+msgstr "Ignorar"
+
+msgid "Skip {count} file"
+msgid_plural "Skip {count} files"
+msgstr[0] "Ignorar {count} ficheiro"
+msgstr[1] "Ignorar {count} ficheiros"
+msgstr[2] "Ignorar {count} ficheiros"
+
+msgid "Skip this file"
+msgstr "Ignorar este ficheiro"
+
+msgid "Unknown size"
+msgstr "Tamanho desconhecido"
+
+msgid "Upload"
+msgstr "Carregar"
+
 msgid "Upload files"
 msgstr "Enviar ficheiros"
+
+msgid "Upload folders"
+msgstr "Carregar pastas"
+
+msgid "Upload from device"
+msgstr "Carregar a partir do dispositivo"
+
+msgid "Upload has been cancelled"
+msgstr "O carregamento foi cancelado"
+
+msgid "Upload has been skipped"
+msgstr "O carregamento foi ignorado"
+
+msgid "Upload of \"{folder}\" has been skipped"
+msgstr "O carregamento da pasta \"{folder}\" foi ignorado"
+
+msgid "Upload progress"
+msgstr "Progresso do carregamento"
+
+msgid ""
+"When an incoming folder is selected, any conflicting files within it will "
+"also be overwritten."
+msgstr ""
+"Ao selecionar uma pasta recebida, quaisquer ficheiros em conflito no seu "
+"interior também serão sobrescritos."
+
+msgid ""
+"When an incoming folder is selected, the content is written into the "
+"existing folder and a recursive conflict resolution is performed."
+msgstr ""
+"Ao selecionar uma pasta recebida, o conteúdo é escrito na pasta existente e "
+"é efetuada uma resolução de conflitos recursiva."
+
+msgid "Which files do you want to keep?"
+msgstr "Quais ficheiros pretende manter?"
+
+msgid ""
+"You can either rename the file, skip this file or cancel the whole "
+"operation."
+msgstr "Pode renomear o ficheiro, ignorá-lo ou cancelar toda a operação."
+
+msgid "You need to select at least one version of each file to continue."
+msgstr ""
+"Precisa de selecionar pelo menos uma versão de cada ficheiro para continuar."
