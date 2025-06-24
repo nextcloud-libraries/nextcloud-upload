@@ -4,6 +4,5 @@
  */
 
 export type { ConflictResolutionResult, ConflictPickerOptions } from './openConflictPicker.ts'
-export { default as UploadPicker } from './components/UploadPicker.vue'
 export { openConflictPicker } from './openConflictPicker.ts'
 export { uploadConflictHandler } from './utils/uploadConflictHandler.ts'
