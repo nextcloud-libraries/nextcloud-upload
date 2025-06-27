@@ -11,7 +11,7 @@ import { getUniqueName, InvalidFilenameError, validateFilename } from '@nextclou
 import { basename } from '@nextcloud/paths'
 
 import { getConflicts } from '../../utils/conflicts.ts'
-import { openConflictPicker } from '../../index.ts'
+import { openConflictPicker } from '../openConflictPicker.ts'
 import { showInvalidFilenameDialog } from './dialog.ts'
 import { t } from '../../utils/l10n.ts'
 import logger from '../../utils/logger.ts'
