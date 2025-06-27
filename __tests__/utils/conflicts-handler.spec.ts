@@ -12,7 +12,7 @@ const openConflictPicker = vi.hoisted(() => vi.fn())
 const showInvalidFilenameDialog = vi.hoisted(() => vi.fn())
 
 vi.mock('../../lib/index.ts', () => ({ openConflictPicker }))
-vi.mock('../../lib/utils/dialog.ts', () => ({ showInvalidFilenameDialog }))
+vi.mock('../../lib/dialogs/utils/dialog.ts', () => ({ showInvalidFilenameDialog }))
 vi.mock('@nextcloud/files', async (getModule) => {
 	const original = await getModule()
 	return {

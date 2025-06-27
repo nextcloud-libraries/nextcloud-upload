@@ -77,7 +77,7 @@ export async function openConflictPicker<T extends File|FileSystemEntry|Node>(
 	content: Node[],
 	options?: ConflictPickerOptions,
 ): Promise<ConflictResolutionResult<T>> {
-	const ConflictPicker = defineAsyncComponent(() => import('./components/ConflictPicker.vue')) as AsyncComponent
+	const ConflictPicker = defineAsyncComponent(() => import('./dialogs/components/ConflictPicker.vue')) as AsyncComponent
 	return new Promise((resolve, reject) => {
 		const picker = new Vue({
 			name: 'ConflictPickerRoot',

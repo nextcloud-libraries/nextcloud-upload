@@ -87,8 +87,8 @@ import FolderSvg from 'vue-material-design-icons/Folder.vue'
 import NcDateTime from '@nextcloud/vue/dist/Components/NcDateTime.js'
 import NcCheckboxRadioSwitch from '@nextcloud/vue/dist/Components/NcCheckboxRadioSwitch.js'
 
-import { isFileSystemEntry, isFileSystemFileEntry } from '../utils/filesystem'
-import { t } from '../utils/l10n.ts'
+import { isFileSystemEntry, isFileSystemFileEntry } from '../../utils/filesystem.ts'
+import { t } from '../../utils/l10n.ts'
 
 const PREVIEW_SIZE = 64
 

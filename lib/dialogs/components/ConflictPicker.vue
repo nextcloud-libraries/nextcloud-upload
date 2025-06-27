@@ -103,7 +103,7 @@
 <script lang="ts">
 import type { Node } from '@nextcloud/files'
 import type { PropType } from 'vue'
-import type { ConflictResolutionResult } from '../index.ts'
+import type { ConflictResolutionResult } from '../../index.ts'
 
 import { defineComponent } from 'vue'
 import { showError } from '@nextcloud/dialogs'
@@ -115,9 +115,9 @@ import NcCheckboxRadioSwitch from '@nextcloud/vue/dist/Components/NcCheckboxRadi
 import NcDialog from '@nextcloud/vue/dist/Components/NcDialog.js'
 import NcButton from '@nextcloud/vue/dist/Components/NcButton.js'
 
-import { isFileSystemEntry } from '../utils/filesystem.ts'
-import { n, t } from '../utils/l10n.ts'
-import logger from '../utils/logger.ts'
+import { isFileSystemEntry } from '../../utils/filesystem.ts'
+import { n, t } from '../../utils/l10n.ts'
+import logger from '../../utils/logger.ts'
 import NodesPicker from './NodesPicker.vue'
 
 export type NodesPickerRef = InstanceType<typeof NodesPicker>
