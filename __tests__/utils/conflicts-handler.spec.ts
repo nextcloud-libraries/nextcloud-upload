@@ -4,7 +4,7 @@
  */
 
 import { describe, expect, it, vi, beforeEach } from 'vitest'
-import { uploadConflictHandler } from '../../lib/utils/conflicts.ts'
+import { uploadConflictHandler } from '../../lib/dialogs/utils/uploadConflictHandler.ts'
 import { InvalidFilenameError, InvalidFilenameErrorReason, File as NcFile } from '@nextcloud/files'
 
 const validateFilename = vi.hoisted(() => vi.fn(() => true))
