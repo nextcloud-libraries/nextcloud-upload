@@ -179,7 +179,7 @@ import IconFolderUpload from 'vue-material-design-icons/FolderUpload.vue'
 import IconPlus from 'vue-material-design-icons/Plus.vue'
 import IconUpload from 'vue-material-design-icons/Upload.vue'
 
-import { getUploader } from '../../index.ts'
+import { getUploader } from '../../getUploader.ts'
 import { UploaderStatus } from '../../uploader/uploader.ts'
 import { Status as UploadStatus } from '../../upload.ts'
 import { t } from '../../utils/l10n.ts'
