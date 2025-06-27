@@ -4,15 +4,15 @@
  */
 
 import { describe, expect, it, vi, beforeEach } from 'vitest'
-import { uploadConflictHandler } from '../../lib/utils/conflicts.ts'
+import { uploadConflictHandler } from '../../lib/dialogs/utils/uploadConflictHandler.ts'
 import { InvalidFilenameError, InvalidFilenameErrorReason, File as NcFile } from '@nextcloud/files'
 
 const validateFilename = vi.hoisted(() => vi.fn(() => true))
 const openConflictPicker = vi.hoisted(() => vi.fn())
 const showInvalidFilenameDialog = vi.hoisted(() => vi.fn())
 
-vi.mock('../../lib/index.ts', () => ({ openConflictPicker }))
-vi.mock('../../lib/utils/dialog.ts', () => ({ showInvalidFilenameDialog }))
+vi.mock('../../lib/dialogs/openConflictPicker.ts', () => ({ openConflictPicker }))
+vi.mock('../../lib/dialogs/utils/dialog.ts', () => ({ showInvalidFilenameDialog }))
 vi.mock('@nextcloud/files', async (getModule) => {
 	const original = await getModule()
 	return {

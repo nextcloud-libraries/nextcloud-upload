@@ -159,7 +159,7 @@
 <script lang="ts">
 import type { Entry, Node } from '@nextcloud/files'
 import type { PropType } from 'vue'
-import type { Upload } from '../upload.ts'
+import type { Upload } from '../../upload.ts'
 
 import { defineComponent } from 'vue'
 import { Folder, NewMenuEntryCategory, getNewFileMenuEntries } from '@nextcloud/files'
@@ -179,12 +179,12 @@ import IconFolderUpload from 'vue-material-design-icons/FolderUpload.vue'
 import IconPlus from 'vue-material-design-icons/Plus.vue'
 import IconUpload from 'vue-material-design-icons/Upload.vue'
 
-import { getUploader } from '../index.ts'
-import { UploaderStatus } from '../uploader/uploader.ts'
-import { Status as UploadStatus } from '../upload.ts'
-import { t } from '../utils/l10n.ts'
-import { uploadConflictHandler } from '../utils/conflicts.ts'
-import logger from '../utils/logger.ts'
+import { getUploader } from '../../getUploader.ts'
+import { UploaderStatus } from '../../uploader/uploader.ts'
+import { Status as UploadStatus } from '../../upload.ts'
+import { t } from '../../utils/l10n.ts'
+import { uploadConflictHandler } from '../../dialogs/utils/uploadConflictHandler.ts'
+import logger from '../../utils/logger.ts'
 
 export default defineComponent({
 	name: 'UploadPicker',
