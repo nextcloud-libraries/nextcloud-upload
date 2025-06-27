@@ -9,7 +9,7 @@ import { isPublicShare } from '@nextcloud/sharing/public'
 import Vue, { defineAsyncComponent } from 'vue'
 
 import { Uploader } from './uploader/uploader'
-import UploadPicker from './components/UploadPicker.vue'
+import UploadPicker from './vue/components/UploadPicker.vue'
 
 export type { IDirectory, Directory } from './utils/fileTree'
 export { getConflicts, hasConflict, uploadConflictHandler } from './utils/conflicts'
