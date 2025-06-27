@@ -4,6 +4,14 @@
 -->
 # Changelog
 
+## [v2.0.0-rc.0](https://github.com/nextcloud-libraries/nextcloud-upload/tree/next) \(UNRELEASED\)
+
+### 💥 BREAKING CHANGES
+
+This library is now a pure uploading API library and no longer contains Vue-related functions and components.
+- `UploadPicker` Vue component will be available in `@nextcloud/vue`
+- `openConflictPicker` and `uploadConflictHandler` will be available in `@nextcloud/dialogs`
+
 ## [v1.10.0](https://github.com/nextcloud-libraries/nextcloud-upload/tree/v1.10.0) \(2025-05-05\)
 
 ### Added

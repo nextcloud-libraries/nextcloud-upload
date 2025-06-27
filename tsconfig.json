@@ -1,14 +1,22 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
-  "extends": "@vue/tsconfig/tsconfig.json",
   "compilerOptions": {
     "allowImportingTsExtensions": true,
     "allowSyntheticDefaultImports": true,
     "declaration": true,
-    "esModuleInterop": true,
     "emitDeclarationOnly": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "ESNext",
     "moduleResolution": "Bundler",
     "noEmit": false,
+    "noImplicitThis": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "target": "ESNext",
+    "useDefineForClassFields": true,
+    "verbatimModuleSyntax": true,
     "lib": ["DOM", "ESNext"],
     "outDir": "./dist",
     "rootDir": "lib/",
@@ -21,8 +29,5 @@
     "build",
     "dist",
     "node_modules"
-  ],
-  "vueCompilerOptions": {
-    "target": 2.7
-  }
+  ]
 }

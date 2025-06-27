@@ -10,10 +10,3 @@ export { getUploader, upload } from './getUploader.ts'
 export { Upload, Status as UploadStatus } from './upload.ts'
 export { Uploader, UploaderStatus, EtaStatus, } from './uploader/index.ts'
 export { getConflicts, hasConflict } from './utils/conflicts.ts'
-
-export type { ConflictResolutionResult, ConflictPickerOptions } from './dialogs/openConflictPicker.ts'
-
-export { openConflictPicker } from './dialogs/openConflictPicker.ts'
-export { uploadConflictHandler } from './dialogs/utils/uploadConflictHandler.ts'
-
-export { default as UploadPicker } from './vue/components/UploadPicker.vue'
