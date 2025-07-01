@@ -29,13 +29,6 @@ export default defineConfig((env) => {
 		index: 'lib/index.ts',
 	}, {
 		libraryFormats: ['es', 'cjs'],
-		nodeExternalsOptions: {
-			// for subpath imports like '@nextcloud/l10n/gettext'
-			include: [/^@nextcloud\//],
-			// we should externalize vue SFC dependencies
-			exclude: [/^vue-material-design-icons\//],
-		},
-		inlineCSS: true,
 
 		replace: {
 			__TRANSLATIONS__: JSON.stringify(translations),
