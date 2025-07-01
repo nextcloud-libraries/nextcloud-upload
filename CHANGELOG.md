@@ -4,7 +4,7 @@
 -->
 # Changelog
 
-## [v2.0.0-rc.0](https://github.com/nextcloud-libraries/nextcloud-upload/tree/next) \(UNRELEASED\)
+## [v2.0.0-rc.0](https://github.com/nextcloud-libraries/nextcloud-upload/tree/v2.0.0-rc.0) \(2025-07-01\)
 
 ### 💥 BREAKING CHANGES
 
