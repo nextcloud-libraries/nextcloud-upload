@@ -3,10 +3,13 @@
 # Joas Schilling, 2024
 # Francesco Sercia, 2024
 # albanobattistella <albanobattistella@gmail.com>, 2024
+# Lorenzo Taiocchi, 2025
+# esseti kappa, 2025
+# Roberto Resoli, 2025
 # 
 msgid ""
 msgstr ""
-"Last-Translator: albanobattistella <albanobattistella@gmail.com>, 2024\n"
+"Last-Translator: Roberto Resoli, 2025\n"
 "Language-Team: Italian (https://app.transifex.com/nextcloud/teams/64236/it/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: it\n"
@@ -34,7 +37,10 @@ msgstr[1] "{count} file in conflitto in {dirname}"
 msgstr[2] "{count} file in conflitto in {dirname}"
 
 msgid "{seconds} seconds left"
-msgstr "{seconds} secondi rimanenti "
+msgid_plural "{seconds} seconds left"
+msgstr[0] "{seconds} secondo rimanente "
+msgstr[1] "{seconds} secondi rimanenti "
+msgstr[2] "{seconds} secondi rimanenti "
 
 #. TRANSLATORS time has the format 00:00:00
 msgid "{time} left"
@@ -42,6 +48,9 @@ msgstr "{time} rimanente"
 
 msgid "a few seconds left"
 msgstr "alcuni secondi rimanenti"
+
+msgid "assembling"
+msgstr "assemblaggio"
 
 msgid "Cancel"
 msgstr "Annulla"
@@ -63,6 +72,12 @@ msgstr "calcolo il tempo rimanente"
 
 msgid "Existing version"
 msgstr "Versione esistente"
+
+msgid "Failed to assemble the chunks together"
+msgstr "Impossibile unire i pezzi"
+
+msgid "Failed to upload the file"
+msgstr "Impossibile caricare il file"
 
 msgid "Filenames must not end with \"{segment}\"."
 msgstr "I nomi dei file non devono terminare con \"{segment}\"."
@@ -110,11 +125,14 @@ msgstr "Seleziona tutti i nuovi file"
 msgid "Skip"
 msgstr "Salta"
 
-msgid "Skip this file"
+msgid "Skip {count} file"
 msgid_plural "Skip {count} files"
-msgstr[0] "Salta questo file"
+msgstr[0] "Sata {count} file"
 msgstr[1] "Salta {count} file"
 msgstr[2] "Salta {count} file"
+
+msgid "Skip this file"
+msgstr "Salta questo file"
 
 msgid "Unknown size"
 msgstr "Dimensione sconosciuta"
