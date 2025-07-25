@@ -50,7 +50,7 @@
 				data-cy-upload-picker-menu-entry="upload-folder"
 				@click="onTriggerPick(true)">
 				<template #icon>
-					<IconFolderUpload style="color: var(--color-primary-element)" :size="20" />
+					<IconFolderUpload :size="20" />
 				</template>
 				{{ t('Upload folders') }}
 			</NcActionButton>
