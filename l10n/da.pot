@@ -3,10 +3,11 @@
 # Joas Schilling, 2024
 # Rasmus Rosendahl-Kaa, 2024
 # Martin Bonde <Martin@maboni.dk>, 2025
+# Finn Sommer <kontakt@finnsommer.dk>, 2025
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Martin Bonde <Martin@maboni.dk>, 2025\n"
+"Last-Translator: Finn Sommer <kontakt@finnsommer.dk>, 2025\n"
 "Language-Team: Danish (https://app.transifex.com/nextcloud/teams/64236/da/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: da\n"
@@ -119,10 +120,13 @@ msgstr "Vælg alle nye filer"
 msgid "Skip"
 msgstr "Spring over"
 
-msgid "Skip this file"
+msgid "Skip {count} file"
 msgid_plural "Skip {count} files"
-msgstr[0] "Spring denne fil over"
-msgstr[1] "Spring {count} filer over"
+msgstr[0] "Spring {count} fil over"
+msgstr[1] "Spring {count} fil over"
+
+msgid "Skip this file"
+msgstr "Spring denne fil over"
 
 msgid "Unknown size"
 msgstr "Ukendt størrelse"
