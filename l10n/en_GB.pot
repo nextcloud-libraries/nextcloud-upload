@@ -66,11 +66,11 @@ msgstr "estimating time left"
 msgid "Existing version"
 msgstr "Existing version"
 
-msgid "Failed assembling the chunks together"
-msgstr "Failed assembling the chunks together"
+msgid "Failed to assemble the chunks together"
+msgstr "Failed to assemble the chunks together"
 
-msgid "Failed uploading the file"
-msgstr "Failed uploading the file"
+msgid "Failed to upload the file"
+msgstr "Failed to upload the file"
 
 msgid "Filenames must not end with \"{segment}\"."
 msgstr "Filenames must not end with \"{segment}\"."
@@ -118,10 +118,13 @@ msgstr "Select all new files"
 msgid "Skip"
 msgstr "Skip"
 
-msgid "Skip this file"
+msgid "Skip {count} file"
 msgid_plural "Skip {count} files"
-msgstr[0] "Skip this file"
+msgstr[0] "Skip {count} file"
 msgstr[1] "Skip {count} files"
+
+msgid "Skip this file"
+msgstr "Skip this file"
 
 msgid "Unknown size"
 msgstr "Unknown size"
