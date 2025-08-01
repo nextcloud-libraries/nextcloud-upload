@@ -2,18 +2,25 @@
 # Translators:
 # Joas Schilling, 2024
 # FranciscoFJ <dev-ooo@satel-sa.com>, 2024
-# Julio C. Ortega, 2024
+# Julio C. Ortega, 2025
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Julio C. Ortega, 2024\n"
+"Last-Translator: Julio C. Ortega, 2025\n"
 "Language-Team: Spanish (https://app.transifex.com/nextcloud/teams/64236/es/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: es\n"
 "Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
-msgid "\"{filename}\" contains invalid characters, how do you want to continue?"
-msgstr "\"{filename}\" contiene caracteres inválidos, ¿cómo desea continuar?"
+msgid "\"{segment}\" is a forbidden file or folder name."
+msgstr "\"{segment}\" es un nombre de archivo o carpeta no permitido."
+
+msgid "\"{segment}\" is a forbidden file type."
+msgstr "\"{segment}\" es un tipo de archivo no permitido."
+
+msgid "\"{segment}\" is not allowed inside a file or folder name."
+msgstr ""
+"\"{segment}\" no está permitido dentro del nombre de un archivo o carpeta."
 
 msgid "{count} file conflict"
 msgid_plural "{count} files conflict"
@@ -28,7 +35,10 @@ msgstr[1] "{count} conflictos de archivo en {dirname}"
 msgstr[2] "{count} conflictos de archivo en {dirname}"
 
 msgid "{seconds} seconds left"
-msgstr "{seconds} segundos restantes"
+msgid_plural "{seconds} seconds left"
+msgstr[0] "queda {seconds} segundo"
+msgstr[1] "quedan {seconds} segundos"
+msgstr[2] "quedan {seconds} segundos"
 
 #. TRANSLATORS time has the format 00:00:00
 msgid "{time} left"
@@ -36,6 +46,9 @@ msgstr "{time} restante"
 
 msgid "a few seconds left"
 msgstr "quedan unos segundos"
+
+msgid "assembling"
+msgstr "ensamblando"
 
 msgid "Cancel"
 msgstr "Cancelar"
@@ -58,6 +71,15 @@ msgstr "estimando tiempo restante"
 msgid "Existing version"
 msgstr "Versión existente"
 
+msgid "Failed to assemble the chunks together"
+msgstr "Fallo al ensamblar todas las partes juntas"
+
+msgid "Failed to upload the file"
+msgstr "Fallo al cargar el archivo"
+
+msgid "Filenames must not end with \"{segment}\"."
+msgstr "Los nombres de archivo no deben terminar en \"{segment}\"."
+
 msgid ""
 "If you select both versions, the incoming file will have a number added to "
 "its name."
@@ -65,7 +87,7 @@ msgstr ""
 "Si selecciona ambas versionas, el archivo entrante le será agregado un "
 "número a su nombre."
 
-msgid "Invalid file name"
+msgid "Invalid filename"
 msgstr "Nombre de archivo inválido"
 
 msgid "Last modified date unknown"
@@ -73,6 +95,9 @@ msgstr "Última fecha de modificación desconocida"
 
 msgid "New"
 msgstr "Nuevo"
+
+msgid "New filename"
+msgstr "Nuevo nombre de archivo"
 
 msgid "New version"
 msgstr "Nueva versión"
@@ -98,14 +123,20 @@ msgstr "Seleccionar todos los archivos nuevos"
 msgid "Skip"
 msgstr "Saltar"
 
-msgid "Skip this file"
+msgid "Skip {count} file"
 msgid_plural "Skip {count} files"
-msgstr[0] "Saltar este archivo"
-msgstr[1] "Saltar {count} archivos"
-msgstr[2] "Saltar {count} archivos"
+msgstr[0] "Omitir {count} archivo"
+msgstr[1] "Omitir {count} archivos"
+msgstr[2] "Omitir {count} archivos"
+
+msgid "Skip this file"
+msgstr "Omitir este archivo"
 
 msgid "Unknown size"
 msgstr "Tamaño desconocido"
+
+msgid "Upload"
+msgstr "Cargar"
 
 msgid "Upload files"
 msgstr "Subir archivos"
@@ -118,6 +149,12 @@ msgstr "Subir desde dispositivo"
 
 msgid "Upload has been cancelled"
 msgstr "La subida ha sido cancelada"
+
+msgid "Upload has been skipped"
+msgstr "La carga fue omitida"
+
+msgid "Upload of \"{folder}\" has been skipped"
+msgstr "La carga de \"{folder}\" ha sido omitida"
 
 msgid "Upload progress"
 msgstr "Progreso de la subida"
@@ -138,6 +175,12 @@ msgstr ""
 
 msgid "Which files do you want to keep?"
 msgstr "¿Qué archivos desea conservar?"
+
+msgid ""
+"You can either rename the file, skip this file or cancel the whole "
+"operation."
+msgstr ""
+"Puede o bien, renombrar el archivo, omitirlo, o, cancelar toda la operación."
 
 msgid "You need to select at least one version of each file to continue."
 msgstr "Debe seleccionar al menos una versión de cada archivo para continuar."
