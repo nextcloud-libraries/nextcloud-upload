@@ -26,7 +26,7 @@
 
 		<NcActions v-else
 			:aria-label="buttonLabel"
-			:menu-name="noLabel ? '' : buttonLabel"
+			:menu-name="noLabel ? undefined : buttonLabel"
 			:open.sync="openedMenu"
 			:type="primary ? 'primary' : 'secondary'">
 			<template #icon>
