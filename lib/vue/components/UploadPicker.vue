@@ -26,7 +26,7 @@
 
 		<NcActions v-else
 			:aria-label="buttonLabel"
-			:menu-name="buttonLabel"
+			:menu-name="noLabel ? undefined : buttonLabel"
 			:open.sync="openedMenu"
 			:type="primary ? 'primary' : 'secondary'">
 			<template #icon>
@@ -221,6 +221,14 @@ export default defineComponent({
 		 * Allow to disable the "new"-menu for this UploadPicker instance
 		 */
 		noMenu: {
+			type: Boolean,
+			default: false,
+		},
+
+		/**
+		 * Allow to disable the button label
+		 */
+		noLabel: {
 			type: Boolean,
 			default: false,
 		},
