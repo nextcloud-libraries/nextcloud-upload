@@ -63,11 +63,11 @@ msgstr "估計剩餘時間"
 msgid "Existing version"
 msgstr "既有版本"
 
-msgid "Failed assembling the chunks together"
-msgstr "組裝這些部分時失敗"
+msgid "Failed to assemble the chunks together"
+msgstr "無法組裝這些部分"
 
-msgid "Failed uploading the file"
-msgstr "上傳文件失敗"
+msgid "Failed to upload the file"
+msgstr "無法上傳檔案"
 
 msgid "Filenames must not end with \"{segment}\"."
 msgstr "檔案名不得以 \"{segment}\" 結尾。"
@@ -113,9 +113,12 @@ msgstr "選取所有新檔案"
 msgid "Skip"
 msgstr "跳過"
 
-msgid "Skip this file"
+msgid "Skip {count} file"
 msgid_plural "Skip {count} files"
 msgstr[0] "略過 {count} 個檔案"
+
+msgid "Skip this file"
+msgstr "略過這個檔案"
 
 msgid "Unknown size"
 msgstr "大小不詳"
