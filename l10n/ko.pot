@@ -20,7 +20,7 @@ msgid "\"{segment}\" is a forbidden file type."
 msgstr "\"{segment}\"은(는) 금지된 파일 형식입니다."
 
 msgid "\"{segment}\" is not allowed inside a file or folder name."
-msgstr "파일이나 폴더 이름에 \"{segment}\"(을)를 사용할 수 없습니다."
+msgstr "파일이나 폴더 이름에 \"{segment}\"을(를) 사용할 수 없습니다."
 
 msgid "{count} file conflict"
 msgid_plural "{count} files conflict"
