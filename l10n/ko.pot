@@ -17,7 +17,7 @@ msgid "\"{segment}\" is a forbidden file or folder name."
 msgstr "\"{segment}\"은(는) 금지된 파일 및 폴더 이름입니다."
 
 msgid "\"{segment}\" is a forbidden file type."
-msgstr "\"{segment}\"(은)는 금지된 파일 형식입니다."
+msgstr "\"{segment}\"은(는) 금지된 파일 형식입니다."
 
 msgid "\"{segment}\" is not allowed inside a file or folder name."
 msgstr "파일이나 폴더 이름에 \"{segment}\"(을)를 사용할 수 없습니다."
