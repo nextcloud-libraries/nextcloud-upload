@@ -157,7 +157,7 @@ msgstr "들어오는 폴더를 선택했다면, 충돌하는 내부 파일들은
 msgid ""
 "When an incoming folder is selected, the content is written into the "
 "existing folder and a recursive conflict resolution is performed."
-msgstr "들어오는 폴더를 선택했다면 내용물이 그 기존 폴더 안에 작성되고, 전체적으로 충돌 해결을 수행합니다."
+msgstr "들어오는 폴더가 선택되면, 그 안의 콘텐츠가 기존 폴더에 기록되고 재귀적 충돌 해결이 수행됩니다."
 
 msgid "Which files do you want to keep?"
 msgstr "어떤 파일을 보존하시겠습니까?"
