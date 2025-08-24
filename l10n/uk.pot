@@ -18,8 +18,7 @@ msgid "\"{segment}\" is a forbidden file type."
 msgstr "\"{segment}\" недозволений тип файлу."
 
 msgid "\"{segment}\" is not allowed inside a file or folder name."
-msgstr ""
-"\"{segment}\" не дозволене сполучення символів в назві файлу або каталогу."
+msgstr "\"{segment}\" недозволене сполучення символів в назві файлу або каталогу."
 
 msgid "{count} file conflict"
 msgid_plural "{count} files conflict"
