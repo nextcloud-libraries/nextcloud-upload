@@ -44,7 +44,7 @@ msgid "a few seconds left"
 msgstr "残り数秒"
 
 msgid "assembling"
-msgstr "結合中"
+msgstr "処理中"
 
 msgid "Cancel"
 msgstr "キャンセル"
