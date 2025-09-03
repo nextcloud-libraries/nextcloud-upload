@@ -1,11 +1,11 @@
 # 
 # Translators:
 # Joas Schilling, 2024
-# Иван Пешић, 2024
+# Иван Пешић, 2025
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Иван Пешић, 2024\n"
+"Last-Translator: Иван Пешић, 2025\n"
 "Language-Team: Serbian (https://app.transifex.com/nextcloud/teams/64236/sr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: sr\n"
@@ -33,7 +33,10 @@ msgstr[1] "{count} фајл конфликта у {dirname}"
 msgstr[2] "{count} фајл конфликта у {dirname}"
 
 msgid "{seconds} seconds left"
-msgstr "преостало је {seconds} секунди"
+msgid_plural "{seconds} seconds left"
+msgstr[0] "преостало је {seconds} секунда"
+msgstr[1] "преостало је {seconds} секунде"
+msgstr[2] "преостало је {seconds} секунди"
 
 #. TRANSLATORS time has the format 00:00:00
 msgid "{time} left"
@@ -41,6 +44,9 @@ msgstr "{time} преостало"
 
 msgid "a few seconds left"
 msgstr "преостало је неколико секунди"
+
+msgid "assembling"
+msgstr "састављање"
 
 msgid "Cancel"
 msgstr "Откажи"
@@ -62,6 +68,12 @@ msgstr "процена преосталог времена"
 
 msgid "Existing version"
 msgstr "Постојећа верзија"
+
+msgid "Failed to assemble the chunks together"
+msgstr "Није успело састављање делова"
+
+msgid "Failed to upload the file"
+msgstr "Није успело отпремање фајла"
 
 msgid "Filenames must not end with \"{segment}\"."
 msgstr "Имена фајлова не смеју да се завршавају на „{segment}”."
@@ -107,11 +119,14 @@ msgstr "Изабери све нове фајлове"
 msgid "Skip"
 msgstr "Прескочи"
 
-msgid "Skip this file"
+msgid "Skip {count} file"
 msgid_plural "Skip {count} files"
-msgstr[0] "Прескочи овај фајл"
+msgstr[0] "Прескочи {count} фајл"
 msgstr[1] "Прескочи {count} фајла"
 msgstr[2] "Прескочи {count} фајлова"
+
+msgid "Skip this file"
+msgstr "Прескочи овај фајл"
 
 msgid "Unknown size"
 msgstr "Непозната величина"
