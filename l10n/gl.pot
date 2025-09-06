@@ -67,10 +67,10 @@ msgstr "calculando canto tempo falta"
 msgid "Existing version"
 msgstr "Versión existente"
 
-msgid "Failed assembling the chunks together"
+msgid "Failed to assemble the chunks together"
 msgstr "Produciuse un fallo ao ensamblar os anacos"
 
-msgid "Failed uploading the file"
+msgid "Failed to upload the file"
 msgstr "Produciuse un fallo ao enviar o ficheiro"
 
 msgid "Filenames must not end with \"{segment}\"."
@@ -119,10 +119,13 @@ msgstr "Seleccionar todos os ficheiros novos"
 msgid "Skip"
 msgstr "Omitir"
 
-msgid "Skip this file"
+msgid "Skip {count} file"
 msgid_plural "Skip {count} files"
-msgstr[0] "Omita este ficheiro"
+msgstr[0] "Omitir {count} ficheiro"
 msgstr[1] "Omitir {count} ficheiros"
+
+msgid "Skip this file"
+msgstr "Omitir este ficheiro"
 
 msgid "Unknown size"
 msgstr "Tamaño descoñecido"
