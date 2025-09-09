@@ -96,7 +96,7 @@ msgid "Invalid filename"
 msgstr "Nom de fichier invalide"
 
 msgid "Last modified date unknown"
-msgstr "Date de la dernière modification est inconnue"
+msgstr "Date de la dernière modification inconnue"
 
 msgid "New"
 msgstr "Nouveau"
