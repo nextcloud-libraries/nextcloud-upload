@@ -185,7 +185,7 @@ msgid ""
 "You can either rename the file, skip this file or cancel the whole "
 "operation."
 msgstr ""
-"Vous pouvez soit renommer le fichier, soit ignorer le fichier soit annuler "
+"Vous pouvez soit renommer le fichier, soit ignorer le fichier, soit annuler "
 "toute l'opération."
 
 msgid "You need to select at least one version of each file to continue."
