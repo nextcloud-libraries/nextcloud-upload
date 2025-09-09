@@ -132,7 +132,7 @@ msgid "Skip {count} file"
 msgid_plural "Skip {count} files"
 msgstr[0] "{count} fichier ignoré"
 msgstr[1] "{count} fichiers ignorés"
-msgstr[2] "{count}fichiers ignorés"
+msgstr[2] "{count} fichiers ignorés"
 
 msgid "Skip this file"
 msgstr "Ignorer ce fichier"
