@@ -83,7 +83,7 @@ msgid "Failed to upload the file"
 msgstr "Échec de téléversement du fichier"
 
 msgid "Filenames must not end with \"{segment}\"."
-msgstr "Le nom des fichiers ne doit pas finir par \"{segment}\"."
+msgstr "Les noms des fichiers ne doivent pas terminer par \"{segment}\"."
 
 msgid ""
 "If you select both versions, the incoming file will have a number added to "
