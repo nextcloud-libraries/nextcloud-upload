@@ -7,10 +7,11 @@
 # acazenave, 2024
 # Lisa Cintosh, 2025
 # Ldm Public <ldmpub@gmail.com>, 2025
+# Caro Leviia, 2025
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Ldm Public <ldmpub@gmail.com>, 2025\n"
+"Last-Translator: Caro Leviia, 2025\n"
 "Language-Team: French (https://app.transifex.com/nextcloud/teams/64236/fr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: fr\n"
@@ -58,7 +59,7 @@ msgid "Cancel"
 msgstr "Annuler"
 
 msgid "Cancel the entire operation"
-msgstr "Annuler l'opération entière"
+msgstr "Annuler toute l'opération"
 
 msgid "Cancel uploads"
 msgstr "Annuler les téléversements"
@@ -79,23 +80,23 @@ msgid "Failed to assemble the chunks together"
 msgstr "Échec de l'assemblage des morceaux"
 
 msgid "Failed to upload the file"
-msgstr "Échec du téléversement du fichier"
+msgstr "Échec de téléversement du fichier"
 
 msgid "Filenames must not end with \"{segment}\"."
-msgstr "Le nom des fichiers ne doit pas finir par \"{segment}\"."
+msgstr "Les noms des fichiers ne doivent pas terminer par \"{segment}\"."
 
 msgid ""
 "If you select both versions, the incoming file will have a number added to "
 "its name."
 msgstr ""
-"Si vous sélectionnez les deux versions, le nouveau fichier aura un nombre "
-"ajouté à son nom."
+"Si vous sélectionnez les deux versions, un numéro sera ajouté au nom du "
+"fichier entrant."
 
 msgid "Invalid filename"
 msgstr "Nom de fichier invalide"
 
 msgid "Last modified date unknown"
-msgstr "Date de la dernière modification est inconnue"
+msgstr "Date de la dernière modification inconnue"
 
 msgid "New"
 msgstr "Nouveau"
@@ -131,7 +132,7 @@ msgid "Skip {count} file"
 msgid_plural "Skip {count} files"
 msgstr[0] "{count} fichier ignoré"
 msgstr[1] "{count} fichiers ignorés"
-msgstr[2] "{count}fichiers ignorés"
+msgstr[2] "{count} fichiers ignorés"
 
 msgid "Skip this file"
 msgstr "Ignorer ce fichier"
@@ -184,7 +185,7 @@ msgid ""
 "You can either rename the file, skip this file or cancel the whole "
 "operation."
 msgstr ""
-"Vous pouvez soit renommer le fichier, soit ignorer le fichier soit annuler "
+"Vous pouvez soit renommer le fichier, soit ignorer le fichier, soit annuler "
 "toute l'opération."
 
 msgid "You need to select at least one version of each file to continue."
