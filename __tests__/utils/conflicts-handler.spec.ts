@@ -16,7 +16,8 @@ vi.mock('../../lib/dialogs/utils/dialog.ts', () => ({ showInvalidFilenameDialog 
 vi.mock('@nextcloud/files', async (getModule) => {
 	const original = await getModule()
 	return {
-		...original as any,
+		// @ts-expect-error inferred types
+		...original,
 		validateFilename,
 	}
 })
@@ -49,7 +50,7 @@ describe('uploadConflictHandler', () => {
 	it('conflicts on files - select new', async () => {
 		callback.mockImplementationOnce(async () => [
 			ncFile1,
-			ncFile2
+			ncFile2,
 		])
 		openConflictPicker.mockImplementationOnce(() => ({
 			selected: [file1, file2],
@@ -66,7 +67,7 @@ describe('uploadConflictHandler', () => {
 	it('conflicts on files - select one new', async () => {
 		callback.mockImplementationOnce(async () => [
 			ncFile1,
-			ncFile2
+			ncFile2,
 		])
 		openConflictPicker.mockImplementationOnce(() => ({
 			selected: [file1],
