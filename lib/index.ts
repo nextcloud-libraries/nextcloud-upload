@@ -8,7 +8,7 @@ export type { IDirectory, Directory } from './utils/fileTree.ts'
 
 export { getUploader, upload } from './getUploader.ts'
 export { Upload, Status as UploadStatus } from './upload.ts'
-export { Uploader, UploaderStatus, EtaStatus, } from './uploader/index.ts'
+export { Uploader, UploaderStatus, EtaStatus } from './uploader/index.ts'
 export { getConflicts, hasConflict } from './utils/conflicts.ts'
 
 export type { ConflictResolutionResult, ConflictPickerOptions } from './dialogs/openConflictPicker.ts'
