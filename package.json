@@ -58,7 +58,7 @@
     "@nextcloud/logger": "^3.0.2",
     "@nextcloud/paths": "^2.2.1",
     "@nextcloud/router": "^3.0.0",
-    "@nextcloud/sharing": "^0.2.4",
+    "@nextcloud/sharing": "^0.3.0",
     "axios": "^1.11.0",
     "axios-retry": "^4.5.0",
     "crypto-browserify": "^3.12.1",
