@@ -82,7 +82,7 @@
     "gettext-extractor": "^3.8.0",
     "gettext-parser": "^8.0.0",
     "jsdom": "^26.1.0",
-    "typedoc": "^0.28.12",
+    "typedoc": "^0.28.13",
     "typescript": "^5.9.2",
     "vite": "^6.3.6",
     "vitest": "^3.2.0",
