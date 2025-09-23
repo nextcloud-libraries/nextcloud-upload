@@ -2,17 +2,18 @@
 # Translators:
 # Joas Schilling, 2024
 # Efstathios Iosifidis <iefstathios@gmail.com>, 2025
+# Γιάννος, 2025
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Efstathios Iosifidis <iefstathios@gmail.com>, 2025\n"
+"Last-Translator: Γιάννος, 2025\n"
 "Language-Team: Greek (https://app.transifex.com/nextcloud/teams/64236/el/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: el\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "\"{segment}\" is a forbidden file or folder name."
-msgstr "Το \"{segment}\" είναι απαγορευμένο όνομα αρχείου ή φακέλου."
+msgstr "\"{segment}\" είναι απαγορευμένο όνομα αρχείου ή φακέλου."
 
 msgid "\"{segment}\" is a forbidden file type."
 msgstr "Το \"{segment}\" είναι απαγορευμένος τύπος αρχείου."
