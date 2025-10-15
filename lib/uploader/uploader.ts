@@ -493,7 +493,7 @@ export class Uploader {
 				logger.debug('Initializing chunked upload', { file, upload })
 
 				// Let's initialize a chunk upload
-				const tempUrl = await initChunkWorkspace(encodedDestinationFile, retries, this._isPublic)
+				const tempUrl = await initChunkWorkspace(encodedDestinationFile, retries, this._isPublic, this._customHeaders)
 				const chunksQueue: Array<Promise<void>> = []
 
 				// Generate chunks array

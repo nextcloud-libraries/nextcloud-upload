@@ -75,6 +75,7 @@ describe('Initialize chunks upload temporary workspace', () => {
 				retries: 5,
 				retryDelay: expect.any(Function),
 			},
+      headers: {},
 		})
 	})
 
