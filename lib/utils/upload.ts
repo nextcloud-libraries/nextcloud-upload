@@ -116,8 +116,9 @@ export const getChunk = function(file: File, start: number, length: number): Pro
  * @param destinationFile The file name after finishing the chunked upload
  * @param retries number of retries
  * @param isPublic whether this upload is in a public share or not
+ * @param customHeaders Custom HTTP headers used when creating the workspace (e.g. X-NC-Nickname for file drops)
  */
-export const initChunkWorkspace = async function(destinationFile: string | undefined = undefined, retries: number = 5, isPublic: boolean = false): Promise<string> {
+export const initChunkWorkspace = async function(destinationFile: string | undefined = undefined, retries: number = 5, isPublic: boolean = false, customHeaders: Record<string, string> = {}): Promise<string> {
 	let chunksWorkspace: string
 	if (isPublic) {
 		chunksWorkspace = `${getBaseUrl()}/public.php/dav/uploads/${getSharingToken()}`
@@ -128,7 +129,10 @@ export const initChunkWorkspace = async function(destinationFile: string | undef
 	const hash = [...Array(16)].map(() => Math.floor(Math.random() * 16).toString(16)).join('')
 	const tempWorkspace = `web-file-upload-${hash}`
 	const url = `${chunksWorkspace}/${tempWorkspace}`
-	const headers = destinationFile ? { Destination: destinationFile } : undefined
+	const headers = customHeaders
+	if (destinationFile) {
+		headers.Destination = destinationFile
+	}
 
 	await axios.request({
 		method: 'MKCOL',
