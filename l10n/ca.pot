@@ -59,7 +59,7 @@ msgid "Continue"
 msgstr "Continuar"
 
 msgid "Create new"
-msgstr "Crear nou"
+msgstr "Crea nou"
 
 msgid "estimating time left"
 msgstr "s’està estimant el temps restant"
