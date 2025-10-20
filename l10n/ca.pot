@@ -149,7 +149,7 @@ msgid "Upload has been skipped"
 msgstr "S'ha omès la pujada"
 
 msgid "Upload of \"{folder}\" has been skipped"
-msgstr "S'ha omès la càrrega de \"{folder}\""
+msgstr "S'ha omès la pujada de \"{folder}\""
 
 msgid "Upload progress"
 msgstr "Procés de càrrega"
