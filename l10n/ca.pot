@@ -152,7 +152,7 @@ msgid "Upload of \"{folder}\" has been skipped"
 msgstr "S'ha omès la pujada de \"{folder}\""
 
 msgid "Upload progress"
-msgstr "Procés de càrrega"
+msgstr "Procés de pujada"
 
 msgid ""
 "When an incoming folder is selected, any conflicting files within it will "
