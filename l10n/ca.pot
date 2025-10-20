@@ -1,37 +1,182 @@
 # 
 # Translators:
-# Marc Riera <marcriera@softcatala.org>, 2022
-# Toni Hermoso Pulido <toniher@softcatala.cat>, 2022
+# Joas Schilling, 2024
+# v v <e670006006@gmail.com>, 2025
+# Leandro Navarro <leandro@pangea.org>, 2025
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Toni Hermoso Pulido <toniher@softcatala.cat>, 2022\n"
-"Language-Team: Catalan (https://www.transifex.com/nextcloud/teams/64236/ca/)\n"
+"Last-Translator: Leandro Navarro <leandro@pangea.org>, 2025\n"
+"Language-Team: Catalan (https://app.transifex.com/nextcloud/teams/64236/ca/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: ca\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgid "{seconds} seconds left"
-msgstr "Queden {seconds} segons"
+msgid "\"{segment}\" is a forbidden file or folder name."
+msgstr "\"{segment}\" és un nom de fitxer o carpeta prohibit."
 
-#. time has the format 00:00:00
+msgid "\"{segment}\" is a forbidden file type."
+msgstr "\"{segment}\" és un tipus de fitxer prohibit."
+
+msgid "\"{segment}\" is not allowed inside a file or folder name."
+msgstr "\"{segment}\" no és permès dins del nom de fitxer o carpeta."
+
+msgid "{count} file conflict"
+msgid_plural "{count} files conflict"
+msgstr[0] "{count}fitxer en conflicte"
+msgstr[1] "{count} fitxer en conflicte"
+
+msgid "{count} file conflict in {dirname}"
+msgid_plural "{count} file conflicts in {dirname}"
+msgstr[0] "{count} conflicte de fitxers a {dirname}"
+msgstr[1] "{count} conflictes de fitxers a {dirname}"
+
+msgid "{seconds} seconds left"
+msgid_plural "{seconds} seconds left"
+msgstr[0] "{seconds} segon restant"
+msgstr[1] "{seconds} segons restants"
+
+#. TRANSLATORS time has the format 00:00:00
 msgid "{time} left"
 msgstr "Queden {time}"
 
 msgid "a few seconds left"
-msgstr "Queden uns segons"
+msgstr "queden uns segons"
 
-msgid "Add"
-msgstr "Afegeix"
+msgid "assembling"
+msgstr "assemblatge"
+
+msgid "Cancel"
+msgstr "Cancel·lar"
+
+msgid "Cancel the entire operation"
+msgstr "Cancel·lar l'operació sencera"
 
 msgid "Cancel uploads"
 msgstr "Cancel·la les pujades"
 
+msgid "Continue"
+msgstr "Continuar"
+
+msgid "Create new"
+msgstr "Crear nou"
+
 msgid "estimating time left"
-msgstr "S'està estimant el temps restant"
+msgstr "s’està estimant el temps restant"
+
+msgid "Existing version"
+msgstr "Existing version"
+
+msgid "Failed to assemble the chunks together"
+msgstr "No s'han pogut acoblar els trossos"
+
+msgid "Failed to upload the file"
+msgstr "No s'ha pogut pujar el fitxer"
+
+msgid "Filenames must not end with \"{segment}\"."
+msgstr "Els noms de fitxer no han d'acabar en \"{segment}\"."
+
+msgid ""
+"If you select both versions, the incoming file will have a number added to "
+"its name."
+msgstr ""
+"Si seleccioneu les dues versions, el fitxer entrant tindrà un número afegit "
+"al seu nom."
+
+msgid "Invalid filename"
+msgstr "Nom de fitxer no vàlid"
+
+msgid "Last modified date unknown"
+msgstr "Data de la darrera modificació desconeguda"
+
+msgid "New"
+msgstr "Nou"
+
+msgid "New filename"
+msgstr "Nou nom de fitxer"
+
+msgid "New version"
+msgstr "Nova versió"
 
 msgid "paused"
-msgstr "En pausa"
+msgstr "en pausa"
+
+msgid "Preview image"
+msgstr "Imatge de vista prèvia"
+
+msgid "Rename"
+msgstr "Canviar el nom"
+
+msgid "Select all checkboxes"
+msgstr "Seleccioneu totes les caselles de selecció"
+
+msgid "Select all existing files"
+msgstr "Seleccionar tots els fitxers existents"
+
+msgid "Select all new files"
+msgstr "Selecionar tots el fitxers nous"
+
+msgid "Skip"
+msgstr "Saltar"
+
+msgid "Skip {count} file"
+msgid_plural "Skip {count} files"
+msgstr[0] "Omet {count} fitxer"
+msgstr[1] "Omet {count} fitxers"
+
+msgid "Skip this file"
+msgstr "Omet aquest fitxer"
+
+msgid "Unknown size"
+msgstr "Mida desconeguda"
+
+msgid "Upload"
+msgstr "Pujar"
 
 msgid "Upload files"
 msgstr "Puja els fitxers"
+
+msgid "Upload folders"
+msgstr "Pujar les carpetes"
+
+msgid "Upload from device"
+msgstr "Carrega des del dispositiu"
+
+msgid "Upload has been cancelled"
+msgstr "La càrrega s'ha cancel·lat"
+
+msgid "Upload has been skipped"
+msgstr "S'ha omès la pujada"
+
+msgid "Upload of \"{folder}\" has been skipped"
+msgstr "S'ha omès la càrrega de \"{folder}\""
+
+msgid "Upload progress"
+msgstr "Procés de càrrega"
+
+msgid ""
+"When an incoming folder is selected, any conflicting files within it will "
+"also be overwritten."
+msgstr ""
+"Quan es selecciona una carpeta d'entrada, també es sobreescriuran els arxius"
+" en conflicte dins d'ella."
+
+msgid ""
+"When an incoming folder is selected, the content is written into the "
+"existing folder and a recursive conflict resolution is performed."
+msgstr ""
+"Quan es selecciona una carpeta d'entrada, el contingut s'escriu a la carpeta"
+" existent i es realitza una resolució recursiva de conflictes."
+
+msgid "Which files do you want to keep?"
+msgstr "Quins fitxers vols conservar?"
+
+msgid ""
+"You can either rename the file, skip this file or cancel the whole "
+"operation."
+msgstr ""
+"Podeu canviar el nom del fitxer, saltar aquest fitxer o cancel·lar tota "
+"l'operació."
+
+msgid "You need to select at least one version of each file to continue."
+msgstr "Heu de seleccionar almenys una versió de cada fitxer per continuar."
