@@ -114,7 +114,7 @@ msgid "Select all existing files"
 msgstr "Seleccioneu tots els fitxers existents"
 
 msgid "Select all new files"
-msgstr "Selecionar tots el fitxers nous"
+msgstr "Selecioneu tots el fitxers nous"
 
 msgid "Skip"
 msgstr "Saltar"
