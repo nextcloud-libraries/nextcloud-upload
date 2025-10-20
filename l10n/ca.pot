@@ -140,10 +140,10 @@ msgid "Upload folders"
 msgstr "Pujar les carpetes"
 
 msgid "Upload from device"
-msgstr "Carrega des del dispositiu"
+msgstr "Pujada des del dispositiu"
 
 msgid "Upload has been cancelled"
-msgstr "La càrrega s'ha cancel·lat"
+msgstr "La pujada s'ha cancel·lat"
 
 msgid "Upload has been skipped"
 msgstr "S'ha omès la pujada"
