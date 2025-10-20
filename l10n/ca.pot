@@ -111,7 +111,7 @@ msgid "Select all checkboxes"
 msgstr "Seleccioneu totes les caselles de selecció"
 
 msgid "Select all existing files"
-msgstr "Seleccionar tots els fitxers existents"
+msgstr "Selecciona tots els fitxers existents"
 
 msgid "Select all new files"
 msgstr "Selecionar tots el fitxers nous"
