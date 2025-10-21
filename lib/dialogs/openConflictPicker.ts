@@ -4,9 +4,7 @@
  */
 
 import type { Node } from '@nextcloud/files'
-import type { AsyncComponent } from 'vue'
-
-import Vue, { defineAsyncComponent } from 'vue'
+import { createApp, defineAsyncComponent, h } from 'vue'
 
 export type ConflictResolutionResult<T extends File|FileSystemEntry|Node> = {
     selected: T[],
@@ -36,10 +34,12 @@ export async function openConflictPicker<T extends File|FileSystemEntry|Node>(
 	options?: ConflictPickerOptions,
 ): Promise<ConflictResolutionResult<T>> {
 	const ConflictPicker = defineAsyncComponent(() => import('./components/ConflictPicker.vue')) as AsyncComponent
+	const container = document.createElement('div')
+
 	return new Promise((resolve, reject) => {
-		const picker = new Vue({
+		const picker = createApp({
 			name: 'ConflictPickerRoot',
-			render: (h) => h(ConflictPicker, {
+			render: () => h(ConflictPicker, {
 				props: {
 					dirname,
 					conflicts,
@@ -52,23 +52,23 @@ export async function openConflictPicker<T extends File|FileSystemEntry|Node>(
 						resolve(results)
 
 						// Destroy the component
-						picker.$destroy()
-						picker.$el?.parentNode?.removeChild(picker.$el)
+						picker.unmount()
+						document.body?.removeChild(container)
 					},
 					cancel(error?: Error) {
 						// Reject the promise
 						reject(error ?? new Error('Canceled'))
 
 						// Destroy the component
-						picker.$destroy()
-						picker.$el?.parentNode?.removeChild(picker.$el)
+						picker.unmount()
+						document.body?.removeChild(container)
 					},
 				},
 			}),
 		})
 
 		// Mount the component
-		picker.$mount()
-		document.body.appendChild(picker.$el)
+		document.body.appendChild(container)
+		picker.mount(container)
 	})
 }

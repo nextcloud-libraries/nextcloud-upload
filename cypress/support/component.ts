@@ -25,7 +25,7 @@ import './commands'
 // eslint-disable-next-line n/no-extraneous-import
 import 'core-js/stable/index.js'
 
-import { mount } from '@cypress/vue2'
+import { mount } from '@cypress/vue'
 
 // @ts-expect-error Mock window so this is an internal property
 window._oc_capabilities = { files: {} }
