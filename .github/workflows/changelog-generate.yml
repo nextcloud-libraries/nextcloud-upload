@@ -62,7 +62,7 @@ jobs:
         if: contains(steps.last_version.outputs.tag_name, steps.future_version.outputs.version) == false
 
       - name: Upload changelog
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         if: contains(steps.last_version.outputs.tag_name, steps.future_version.outputs.version) == false
         with:
           name: Changelog
