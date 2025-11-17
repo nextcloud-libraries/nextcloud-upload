@@ -73,7 +73,7 @@
     "blob-polyfill": "^9.0.20240710",
     "gettext-extractor": "^3.8.0",
     "gettext-parser": "^8.0.0",
-    "jsdom": "^26.1.0",
+    "jsdom": "^27.2.0",
     "typedoc": "^0.28.14",
     "typescript": "^5.9.3",
     "vite": "^6.3.5",
