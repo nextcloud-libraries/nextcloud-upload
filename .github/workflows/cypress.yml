@@ -1,6 +1,6 @@
 # This workflow is provided via the organization template repository
 #
-# https://github.com/nextcloud/.github
+# https://github.com/nextcloud-libraries/.github
 # https://docs.github.com/en/actions/learn-github-actions/sharing-workflows-with-your-organization
 #
 # SPDX-FileCopyrightText: 2023-2024 Nextcloud GmbH and Nextcloud contributors
@@ -31,9 +31,6 @@ permissions:
 jobs:
   init:
     runs-on: ubuntu-latest
-    outputs:
-      nodeVersion: ${{ steps.versions.outputs.nodeVersion }}
-      npmVersion: ${{ steps.versions.outputs.npmVersion }}
 
     env:
       PUPPETEER_SKIP_DOWNLOAD: true
@@ -54,26 +51,23 @@ jobs:
         id: check_composer
         uses: andstor/file-existence-action@076e0072799f4942c8bc574a82233e1e4d13e9d6 # v3.0.0
         with:
-          files: "composer.json"
+          files: 'composer.json'
 
       - name: Install composer dependencies
         if: steps.check_composer.outputs.files_exists == 'true'
         run: composer install --no-dev
 
-      - name: Read package.json node and npm engines version
-        uses: skjnldsv/read-package-engines-version-actions@06d6baf7d8f41934ab630e97d9e6c0bc9c9ac5e4 # v3
+      - name: Read package.json
+        uses: nextcloud-libraries/parse-package-engines-action@122ae05d4257008180a514e1ddeb0c1b9d094bdd # v0.1.0
         id: versions
-        with:
-          fallbackNode: "^20"
-          fallbackNpm: "^10"
 
-      - name: Set up node ${{ steps.versions.outputs.nodeVersion }}
+      - name: Set up node
         uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903 # v6.0.0
         with:
-          node-version: ${{ steps.versions.outputs.nodeVersion }}
+          node-version: ${{ steps.versions.outputs.node-version }}
 
-      - name: Set up npm ${{ steps.versions.outputs.npmVersion }}
-        run: npm i -g 'npm@${{ steps.versions.outputs.npmVersion }}'
+      - name: Set up npm
+        run: npm i -g 'npm@${{ steps.versions.outputs.package-manager-version }}'
 
       - name: Install node dependencies & build app
         run: |
@@ -81,7 +75,7 @@ jobs:
           TESTING=true npm run build --if-present
 
       - name: Save context
-        uses: buildjet/cache/save@v4
+        uses: buildjet/cache/save@3e70d19e31d6a8030aeddf6ed8dbe601f94d09f4 # v4.0.2
         with:
           key: cypress-context-${{ github.run_id }}
           path: ./
@@ -101,22 +95,26 @@ jobs:
 
     steps:
       - name: Restore context
-        uses: buildjet/cache/restore@v4
+        uses: buildjet/cache/restore@3e70d19e31d6a8030aeddf6ed8dbe601f94d09f4 # v4.0.2
         with:
           fail-on-cache-miss: true
           key: cypress-context-${{ github.run_id }}
           path: ./
 
-      - name: Set up node ${{ needs.init.outputs.nodeVersion }}
+      - name: Read package.json
+        uses: nextcloud-libraries/parse-package-engines-action@122ae05d4257008180a514e1ddeb0c1b9d094bdd # v0.1.0
+        id: versions
+
+      - name: Set up node
         uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903 # v6.0.0
         with:
-          node-version: ${{ needs.init.outputs.nodeVersion }}
+          node-version: ${{ steps.versions.outputs.node-version }}
 
-      - name: Set up npm ${{ needs.init.outputs.npmVersion }}
-        run: npm i -g 'npm@${{ needs.init.outputs.npmVersion }}'
+      - name: Set up npm
+        run: npm i -g 'npm@${{ steps.versions.outputs.package-manager-version }}'
 
       - name: Run ${{ startsWith(matrix.containers, 'component') && 'component' || 'E2E' }} cypress tests
-        uses: cypress-io/github-action@e65cba2e7319696fc0fdc4d5a319b737aec4ba1c # v6.10.3
+        uses: cypress-io/github-action@7ef72e250a9e564efb4ed4c2433971ada4cc38b4 # v6.10.4
         with:
           record: ${{ secrets.CYPRESS_RECORD_KEY && true }}
           parallel: ${{ secrets.CYPRESS_RECORD_KEY && true }}
