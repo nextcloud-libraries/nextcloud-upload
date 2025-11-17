@@ -12,6 +12,18 @@ This library is now a pure uploading API library and no longer contains Vue-rela
 - `UploadPicker` Vue component will be available in `@nextcloud/vue`
 - `openConflictPicker` and `uploadConflictHandler` will be available in `@nextcloud/dialogs`
 
+## [v1.11.0](https://github.com/nextcloud-libraries/nextcloud-upload/tree/v1.11.0) \(2025-09-10\)
+### Added
+* feat(button): Added option to not have label on New button [\#1831](https://github.com/nextcloud-libraries/nextcloud-upload/pull/1831) \([joj0r](https://github.com/joj0r)\)
+
+### Fixed
+* fix(UploadPicker): upload folders icon color [\#1822](https://github.com/nextcloud-libraries/nextcloud-upload/pull/1822) \([skjnldsv](https://github.com/skjnldsv)\)
+
+### Changed
+* refactor: split `vue` and `dialogs` sub modules to prepare for library splitting [\#1816](https://github.com/nextcloud-libraries/nextcloud-upload/pull/1816) \([ShGKme](https://github.com/ShGKme)\)
+* chore(package.json): update engines and add devEngines [\#1820](https://github.com/nextcloud-libraries/nextcloud-upload/pull/1820) \([ShGKme](https://github.com/ShGKme)\)
+* Updated translations
+
 ## [v1.10.0](https://github.com/nextcloud-libraries/nextcloud-upload/tree/v1.10.0) \(2025-05-05\)
 
 ### Added
