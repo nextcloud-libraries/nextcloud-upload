@@ -1,11 +1,12 @@
 # 
 # Translators:
 # Joas Schilling, 2024
-# Gloryandel, 2024
+# gloryandel, 2024
+# DWXXX, 2025
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Gloryandel, 2024\n"
+"Last-Translator: DWXXX, 2025\n"
 "Language-Team: Chinese (China) (https://app.transifex.com/nextcloud/teams/64236/zh_CN/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: zh_CN\n"
@@ -29,7 +30,8 @@ msgid_plural "{count} file conflicts in {dirname}"
 msgstr[0] "在{dirname}目录下有{count}个文件冲突"
 
 msgid "{seconds} seconds left"
-msgstr "剩余 {seconds} 秒"
+msgid_plural "{seconds} seconds left"
+msgstr[0] "剩余{seconds} 秒"
 
 #. TRANSLATORS time has the format 00:00:00
 msgid "{time} left"
@@ -37,6 +39,9 @@ msgstr "剩余 {time}"
 
 msgid "a few seconds left"
 msgstr "还剩几秒"
+
+msgid "assembling"
+msgstr "聚合"
 
 msgid "Cancel"
 msgstr "取消"
@@ -58,6 +63,12 @@ msgstr "估计剩余时间"
 
 msgid "Existing version"
 msgstr "服务端版本"
+
+msgid "Failed to assemble the chunks together"
+msgstr "组合区块失败"
+
+msgid "Failed to upload the file"
+msgstr "上传文件失败"
 
 msgid "Filenames must not end with \"{segment}\"."
 msgstr "文件名不得以 \"{segment}\" 结尾。"
@@ -103,9 +114,12 @@ msgstr "保留所有上传版本"
 msgid "Skip"
 msgstr "跳过"
 
-msgid "Skip this file"
+msgid "Skip {count} file"
 msgid_plural "Skip {count} files"
-msgstr[0] "跳过{count}个文件"
+msgstr[0] "跳过 {count} 文件"
+
+msgid "Skip this file"
+msgstr "跳过此文件"
 
 msgid "Unknown size"
 msgstr "文件大小未知"
