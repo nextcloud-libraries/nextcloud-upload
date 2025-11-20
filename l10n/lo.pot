@@ -1,35 +1,172 @@
 # 
 # Translators:
-# Transifex Bot <>, 2022
+# bone NI, 2025
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Transifex Bot <>, 2022\n"
-"Language-Team: Lao (https://www.transifex.com/nextcloud/teams/64236/lo/)\n"
+"Last-Translator: bone NI, 2025\n"
+"Language-Team: Lao (https://app.transifex.com/nextcloud/teams/64236/lo/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: lo\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-msgid "{estimate} seconds left"
-msgstr ""
+msgid "\"{segment}\" is a forbidden file or folder name."
+msgstr "\"{segment}\" ແມ່ນຊື່ໄຟລ໌ ຫຼື ໂຟລເດີທີ່ບໍ່ອະນຸຍາດ."
 
-msgid "{hours} hours and {minutes} minutes left"
-msgstr ""
+msgid "\"{segment}\" is a forbidden file type."
+msgstr "\"{segment}\" ແມ່ນປະເພດໄຟລ໌ທີ່ບໍ່ອະນຸຍາດ."
 
-msgid "{minutes} minutes left"
-msgstr ""
+msgid "\"{segment}\" is not allowed inside a file or folder name."
+msgstr "ບໍ່ອະນຸຍາດໃຫ້ມີ \"{segment}\" ຢູ່​ໃນຊື່ໄຟລ໌ ຫຼື ໂຟລເດີ."
+
+msgid "{count} file conflict"
+msgid_plural "{count} files conflict"
+msgstr[0] "ໄຟລ໌ຊ້ຳກັນ {count} ລາຍການ"
+
+msgid "{count} file conflict in {dirname}"
+msgid_plural "{count} file conflicts in {dirname}"
+msgstr[0] "ໄຟລ໌ຊ້ຳກັນ {count} ລາຍການ ໃນ {dirname}"
+
+msgid "{seconds} seconds left"
+msgid_plural "{seconds} seconds left"
+msgstr[0] "ເຫຼືອເວລາ {seconds} ວິນາທີ"
+
+#. TRANSLATORS time has the format 00:00:00
+msgid "{time} left"
+msgstr "ເຫຼືອເວລາ {time}"
 
 msgid "a few seconds left"
-msgstr ""
+msgstr "ເຫຼືອເວລາອີກບໍ່ດົນ"
 
-msgid "Add"
-msgstr ""
+msgid "assembling"
+msgstr "ກຳລັງຮວບຮວມ"
+
+msgid "Cancel"
+msgstr "ຍົກເລີກ"
+
+msgid "Cancel the entire operation"
+msgstr "ຍົກເລີກການດຳເນີນການທັງໝົດ"
 
 msgid "Cancel uploads"
-msgstr ""
+msgstr "ຍົກເລີກການອັບໂຫຼດ"
+
+msgid "Continue"
+msgstr "ດຳເນີນການຕໍ່"
+
+msgid "Create new"
+msgstr "ສ້າງໃໝ່"
 
 msgid "estimating time left"
-msgstr ""
+msgstr "ກຳລັງຄາດຄະເນເວລາທີ່ເຫຼືອ"
+
+msgid "Existing version"
+msgstr "ສະບັບທີ່ມີຢູ່ແລ້ວ"
+
+msgid "Failed to assemble the chunks together"
+msgstr "ການຮວບຮວມສ່ວນຕ່າງໆເຂົ້າກັນບໍ່ສຳເລັດ"
+
+msgid "Failed to upload the file"
+msgstr "ອັບໂຫຼດໄຟລ໌ບໍ່ສຳເລັດ"
+
+msgid "Filenames must not end with \"{segment}\"."
+msgstr "ຊື່ໄຟລ໌ຕ້ອງບໍ່ລົງທ້າຍດ້ວຍ \"{segment}\"."
+
+msgid ""
+"If you select both versions, the incoming file will have a number added to "
+"its name."
+msgstr "ຖ້າທ່ານເລືອກທັງສອງສະບັບ, ໄຟລ໌ທີ່ເຂົ້າມາໃໝ່ຈະຖືກເພີ່ມຕົວເລກໃສ່ທ້າຍຊື່."
+
+msgid "Invalid filename"
+msgstr "ຊື່ໄຟລ໌ບໍ່ຖືກຕ້ອງ"
+
+msgid "Last modified date unknown"
+msgstr "ບໍ່ຊາບວັນທີແກ້ໄຂຫຼ້າສຸດ"
+
+msgid "New"
+msgstr "ໃໝ່"
+
+msgid "New filename"
+msgstr "ຊື່ໄຟລ໌ໃໝ່"
+
+msgid "New version"
+msgstr "ສະບັບໃໝ່"
 
 msgid "paused"
+msgstr "ຢຸດຊົ່ວຄາວ"
+
+msgid "Preview image"
+msgstr "ເບິ່ງຕົວຢ່າງຮູບ"
+
+msgid "Rename"
+msgstr "ປ່ຽນຊື່"
+
+msgid "Select all checkboxes"
+msgstr "ເລືອກທຸກຊ່ອງໝາຍຕິກ"
+
+msgid "Select all existing files"
+msgstr "ເລືອກໄຟລ໌ທີ່ມີຢູ່ແລ້ວທັງໝົດ"
+
+msgid "Select all new files"
+msgstr "ເລືອກໄຟລ໌ໃໝ່ທັງໝົດ"
+
+msgid "Skip"
+msgstr "ຂ້າມ"
+
+msgid "Skip {count} file"
+msgid_plural "Skip {count} files"
+msgstr[0] "ຂ້າມ {count} ໄຟລ໌"
+
+msgid "Skip this file"
+msgstr "ຂ້າມໄຟລ໌ນີ້"
+
+msgid "Unknown size"
+msgstr "ບໍ່ຊາບຂະໜາດ"
+
+msgid "Upload"
+msgstr "ອັບໂຫຼດ"
+
+msgid "Upload files"
+msgstr "ອັບໂຫຼດໄຟລ໌"
+
+msgid "Upload folders"
+msgstr "ອັບໂຫຼດໂຟລເດີ"
+
+msgid "Upload from device"
+msgstr "ອັບໂຫຼດຈາກອຸປະກອນ"
+
+msgid "Upload has been cancelled"
+msgstr "ການອັບໂຫຼດໄດ້ຖືກຍົກເລີກແລ້ວ"
+
+msgid "Upload has been skipped"
+msgstr "ການອັບໂຫຼດໄດ້ຖືກຂ້າມໄປແລ້ວ"
+
+msgid "Upload of \"{folder}\" has been skipped"
+msgstr "ການອັບໂຫຼດ \"{folder}\" ໄດ້ຖືກຂ້າມໄປແລ້ວ"
+
+msgid "Upload progress"
+msgstr "ຄວາມຄືບໜ້າການອັບໂຫຼດ"
+
+msgid ""
+"When an incoming folder is selected, any conflicting files within it will "
+"also be overwritten."
 msgstr ""
+"ເມື່ອເລືອກໂຟລເດີທີ່ເຂົ້າມາໃໝ່, "
+"ໄຟລ໌ໃດໆທີ່ຊ້ຳກັນຢູ່ພາຍໃນກໍຈະຖືກຂຽນທັບເຊັ່ນກັນ."
+
+msgid ""
+"When an incoming folder is selected, the content is written into the "
+"existing folder and a recursive conflict resolution is performed."
+msgstr ""
+"ເມື່ອເລືອກໂຟລເດີທີ່ເຂົ້າມາໃໝ່, ເນື້ອຫາຈະຖືກຂຽນລົງໃນໂຟລເດີທີ່ມີຢູ່ແລ້ວ ແລະ "
+"ຈະມີການແກ້ໄຂໄຟລ໌ທີ່ຊ້ຳກັນແບບຕໍ່ເນື່ອງໃນໂຟລເດີຍ່ອຍ."
+
+msgid "Which files do you want to keep?"
+msgstr "ທ່ານຕ້ອງການເກັບໄຟລ໌ໃດໄວ້?"
+
+msgid ""
+"You can either rename the file, skip this file or cancel the whole "
+"operation."
+msgstr "ທ່ານສາມາດປ່ຽນຊື່ໄຟລ໌, ຂ້າມໄຟລ໌ນີ້ ຫຼື ຍົກເລີກການດຳເນີນການທັງໝົດ."
+
+msgid "You need to select at least one version of each file to continue."
+msgstr "ທ່ານຈຳເປັນຕ້ອງເລືອກຢ່າງໜ້ອຍໜຶ່ງສະບັບຂອງແຕ່ລະໄຟລ໌ເພື່ອດຳເນີນການຕໍ່."
