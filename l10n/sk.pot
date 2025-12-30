@@ -1,11 +1,12 @@
 # 
 # Translators:
 # Jozef Gaal <preklady@mayday.sk>, 2024
-# Tomas Rusnak <linkermail@gmail.com>, 2024
+# Linker Linker <linkermail@gmail.com>, 2024
+# Anton Krajcik <vawaver@gmail.com>, 2025
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Tomas Rusnak <linkermail@gmail.com>, 2024\n"
+"Last-Translator: Anton Krajcik <vawaver@gmail.com>, 2025\n"
 "Language-Team: Slovak (Slovakia) (https://app.transifex.com/nextcloud/teams/64236/sk_SK/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: sk_SK\n"
@@ -35,7 +36,11 @@ msgstr[2] "{count} súborových konfliktov v {dirname}"
 msgstr[3] "{count} súborových konfliktov v {dirname}"
 
 msgid "{seconds} seconds left"
-msgstr "{seconds} sekúnd zostáva"
+msgid_plural "{seconds} seconds left"
+msgstr[0] "{seconds} sekunda zostáva"
+msgstr[1] "{seconds} sekúnd zostáva"
+msgstr[2] "{seconds} sekúnd zostáva"
+msgstr[3] "{seconds} sekundy zostávajú"
 
 #. TRANSLATORS time has the format 00:00:00
 msgid "{time} left"
@@ -43,6 +48,9 @@ msgstr "{time} zostáva"
 
 msgid "a few seconds left"
 msgstr "zostáva niekoľko sekúnd"
+
+msgid "assembling"
+msgstr "zhromažďovanie"
 
 msgid "Cancel"
 msgstr "Zrušiť"
@@ -64,6 +72,12 @@ msgstr "odhadovanie zostávajúceho času"
 
 msgid "Existing version"
 msgstr "Existujúca verzia"
+
+msgid "Failed to assemble the chunks together"
+msgstr "Nepodarilo sa dať časti dohromady."
+
+msgid "Failed to upload the file"
+msgstr "Nepodarilo sa nahrať súbor"
 
 msgid "Filenames must not end with \"{segment}\"."
 msgstr "Názvy súborov nesmú končiť znakom \"{segment}\"."
@@ -110,12 +124,15 @@ msgstr "Vybrať všetky nové súbory"
 msgid "Skip"
 msgstr "Preskočiť"
 
-msgid "Skip this file"
+msgid "Skip {count} file"
 msgid_plural "Skip {count} files"
-msgstr[0] "Preskočiť tento súbor"
-msgstr[1] "Preskočiť {count} súbory"
+msgstr[0] "Preskočiť {count} súbor"
+msgstr[1] "Preskočiť {count} súborov"
 msgstr[2] "Preskočiť {count} súborov"
-msgstr[3] "Preskočiť {count} súborov"
+msgstr[3] "Preskočiť {count} súbory"
+
+msgid "Skip this file"
+msgstr "Preskočiť tento súbor"
 
 msgid "Unknown size"
 msgstr "Neznáma veľkosť"
