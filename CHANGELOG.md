@@ -4,6 +4,18 @@
 -->
 # Changelog
 
+## [v1.11.1](https://github.com/nextcloud-libraries/nextcloud-upload/tree/v1.11.1) \(2026-01-14\)
+
+### Fixed
+
+* fix(Uploader): Pass on customHeaders when creating chunked upload workspace [\#1901](https://github.com/nextcloud-libraries/nextcloud-upload/pull/1901) \([provokateurin](https://github.com/provokateurin)\)
+* fix(uploader): queue is not empty when everything is skipped [\#2002](https://github.com/nextcloud-libraries/nextcloud-upload/pull/2002) \([ShGKme](https://github.com/ShGKme)\)
+
+### Changed
+
+* Updates for project Nextcloud upload library [\#1878](https://github.com/nextcloud-libraries/nextcloud-upload/pull/1878), [\#1904](https://github.com/nextcloud-libraries/nextcloud-upload/pull/1904), [\#1956](https://github.com/nextcloud-libraries/nextcloud-upload/pull/1956), [\#1957](https://github.com/nextcloud-libraries/nextcloud-upload/pull/1957), [\#2001](https://github.com/nextcloud-libraries/nextcloud-upload/pull/2001) \([transifex-integration[bot]](https://github.com/transifex-integration[bot])\)
+* chore: bump node and npm version [\#1944](https://github.com/nextcloud-libraries/nextcloud-upload/pull/1944) \([ShGKme](https://github.com/ShGKme)\)
+
 ## [v1.11.0](https://github.com/nextcloud-libraries/nextcloud-upload/tree/v1.11.0) \(2025-09-10\)
 ### Added
 * feat(button): Added option to not have label on New button [\#1831](https://github.com/nextcloud-libraries/nextcloud-upload/pull/1831) \([joj0r](https://github.com/joj0r)\)
