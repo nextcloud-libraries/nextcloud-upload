@@ -326,6 +326,10 @@ export class Uploader {
 					reject(error)
 				}
 			} finally {
+				// Upload queue is cleared when all the uploading jobs are done
+				// Meta upload unlike real uploading does not create a job
+				// Removing it manually here to make sure it is remove even when no uploading happened and there was nothing to finish
+				this._uploadQueue.splice(this._uploadQueue.indexOf(upload), 1)
 				this._notifyAll(upload)
 				this.updateStats()
 			}

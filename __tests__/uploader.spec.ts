@@ -122,4 +122,19 @@ describe('Uploader', () => {
 			expect(() => { uploader.destination = newDestination as unknown as nextcloudFiles.Folder }).toThrowError(/invalid destination/i)
 		})
 	})
+
+	describe('batchUpload', () => {
+		test('No upload when skipping all in conflict picker', async () => {
+			const uploader = new Uploader()
+			await uploader.batchUpload('/', [new File([], 'file.txt')], () => Promise.resolve([]))
+			vi.spyOn(uploader, 'upload')
+			expect(uploader.upload).not.toHaveBeenCalled()
+		})
+
+		test('Empty queue when skipping all in conflict picker', async () => {
+			const uploader = new Uploader()
+			await uploader.batchUpload('/', [new File([], 'file.txt')], () => Promise.resolve([]))
+			expect(uploader.queue).toHaveLength(0)
+		})
+	})
 })
