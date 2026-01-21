@@ -5,7 +5,7 @@
 
 import type { InvalidFilenameError } from '@nextcloud/files'
 
-import { spawnDialog } from '@nextcloud/dialogs'
+import { spawnDialog } from '@nextcloud/vue/functions/dialog'
 import { validateFilename } from '@nextcloud/files'
 import { defineAsyncComponent } from 'vue'
 
