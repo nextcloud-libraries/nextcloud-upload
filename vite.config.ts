@@ -2,8 +2,8 @@
  * SPDX-FileCopyrightText: 2023 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
+
 import { createLibConfig } from '@nextcloud/vite-config'
-import { codecovVitePlugin } from '@codecov/vite-plugin'
 
 import { readdirSync, readFileSync } from 'fs'
 import { po as poParser } from 'gettext-parser'
@@ -42,17 +42,6 @@ export default defineConfig((env) => {
 		},
 		DTSPluginOptions: {
 			rollupTypes: env.mode === 'production',
-		},
-
-		config: {
-			plugins: [
-				// Put the Codecov vite plugin after all other plugins
-				codecovVitePlugin({
-					enableBundleAnalysis: process.env.CODECOV_TOKEN !== undefined,
-					bundleName: '@nextcloud/upload',
-					uploadToken: process.env.CODECOV_TOKEN,
-				}),
-			],
 		},
 	})(env)
 }) as UserConfigFn
