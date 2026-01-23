@@ -187,4 +187,4 @@ msgstr ""
 "È possibile rinominare il file, ignorarlo o annullare l'intera operazione."
 
 msgid "You need to select at least one version of each file to continue."
-msgstr "Devi selezionare almeno una versione di ogni file per continuare"
+msgstr "Devi selezionare almeno una versione di ogni file per continuare."
