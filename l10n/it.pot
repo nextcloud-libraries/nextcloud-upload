@@ -106,7 +106,7 @@ msgid "New version"
 msgstr "Nuova versione"
 
 msgid "paused"
-msgstr "pausa"
+msgstr "in pausa"
 
 msgid "Preview image"
 msgstr "Anteprima immagine"
