@@ -151,7 +151,7 @@ msgid "Upload from device"
 msgstr "Carica dal dispositivo"
 
 msgid "Upload has been cancelled"
-msgstr "Caricamento annullato"
+msgstr "Il caricamento è stato annullato"
 
 msgid "Upload has been skipped"
 msgstr "Il caricamento è stato saltato"
