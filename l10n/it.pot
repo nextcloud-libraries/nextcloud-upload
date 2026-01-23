@@ -6,10 +6,11 @@
 # Lorenzo Taiocchi, 2025
 # esseti kappa, 2025
 # Roberto Resoli, 2025
+# Vincenzo Reale <vinx.reale@gmail.com>, 2026
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Roberto Resoli, 2025\n"
+"Last-Translator: Vincenzo Reale <vinx.reale@gmail.com>, 2026\n"
 "Language-Team: Italian (https://app.transifex.com/nextcloud/teams/64236/it/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: it\n"
@@ -127,7 +128,7 @@ msgstr "Salta"
 
 msgid "Skip {count} file"
 msgid_plural "Skip {count} files"
-msgstr[0] "Sata {count} file"
+msgstr[0] "Salta {count} file"
 msgstr[1] "Salta {count} file"
 msgstr[2] "Salta {count} file"
 
