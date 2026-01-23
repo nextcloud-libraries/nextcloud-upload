@@ -167,7 +167,7 @@ msgid ""
 "also be overwritten."
 msgstr ""
 "Quando si seleziona una cartella in arrivo, anche tutti i file in conflitto "
-"al suo interno verranno sovrascritti."
+"al suo interno saranno sovrascritti."
 
 msgid ""
 "When an incoming folder is selected, the content is written into the "
