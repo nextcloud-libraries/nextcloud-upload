@@ -145,7 +145,7 @@ msgid "Upload files"
 msgstr "Carica i file"
 
 msgid "Upload folders"
-msgstr "Carica cartelle"
+msgstr "Carica le cartelle"
 
 msgid "Upload from device"
 msgstr "Carica dal dispositivo"
@@ -160,7 +160,7 @@ msgid "Upload of \"{folder}\" has been skipped"
 msgstr "Il caricamento di \"{folder}\" è stato saltato"
 
 msgid "Upload progress"
-msgstr "Progresso del caricamento"
+msgstr "Avanzamento del caricamento"
 
 msgid ""
 "When an incoming folder is selected, any conflicting files within it will "
