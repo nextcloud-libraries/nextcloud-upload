@@ -6,10 +6,11 @@
 # Lorenzo Taiocchi, 2025
 # esseti kappa, 2025
 # Roberto Resoli, 2025
+# Vincenzo Reale <vinx.reale@gmail.com>, 2026
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Roberto Resoli, 2025\n"
+"Last-Translator: Vincenzo Reale <vinx.reale@gmail.com>, 2026\n"
 "Language-Team: Italian (https://app.transifex.com/nextcloud/teams/64236/it/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: it\n"
@@ -105,7 +106,7 @@ msgid "New version"
 msgstr "Nuova versione"
 
 msgid "paused"
-msgstr "pausa"
+msgstr "in pausa"
 
 msgid "Preview image"
 msgstr "Anteprima immagine"
@@ -127,7 +128,7 @@ msgstr "Salta"
 
 msgid "Skip {count} file"
 msgid_plural "Skip {count} files"
-msgstr[0] "Sata {count} file"
+msgstr[0] "Salta {count} file"
 msgstr[1] "Salta {count} file"
 msgstr[2] "Salta {count} file"
 
@@ -144,13 +145,13 @@ msgid "Upload files"
 msgstr "Carica i file"
 
 msgid "Upload folders"
-msgstr "Carica cartelle"
+msgstr "Carica le cartelle"
 
 msgid "Upload from device"
 msgstr "Carica dal dispositivo"
 
 msgid "Upload has been cancelled"
-msgstr "Caricamento annullato"
+msgstr "Il caricamento è stato annullato"
 
 msgid "Upload has been skipped"
 msgstr "Il caricamento è stato saltato"
@@ -159,14 +160,14 @@ msgid "Upload of \"{folder}\" has been skipped"
 msgstr "Il caricamento di \"{folder}\" è stato saltato"
 
 msgid "Upload progress"
-msgstr "Progresso del caricamento"
+msgstr "Avanzamento del caricamento"
 
 msgid ""
 "When an incoming folder is selected, any conflicting files within it will "
 "also be overwritten."
 msgstr ""
 "Quando si seleziona una cartella in arrivo, anche tutti i file in conflitto "
-"al suo interno verranno sovrascritti."
+"al suo interno saranno sovrascritti."
 
 msgid ""
 "When an incoming folder is selected, the content is written into the "
@@ -186,4 +187,4 @@ msgstr ""
 "È possibile rinominare il file, ignorarlo o annullare l'intera operazione."
 
 msgid "You need to select at least one version of each file to continue."
-msgstr "Devi selezionare almeno una versione di ogni file per continuare"
+msgstr "Devi selezionare almeno una versione di ogni file per continuare."
