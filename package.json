@@ -78,7 +78,7 @@
     "blob-polyfill": "^9.0.20240710",
     "cypress": "^15.8.1",
     "cypress-file-upload": "^5.0.8",
-    "gettext-extractor": "^4.0.4",
+    "gettext-extractor": "^4.0.5",
     "gettext-parser": "^9.0.0",
     "jsdom": "^27.4.0",
     "typedoc": "^0.28.15",
