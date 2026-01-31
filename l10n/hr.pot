@@ -102,7 +102,7 @@ msgid "paused"
 msgstr "pauzirano"
 
 msgid "Preview image"
-msgstr "pauzirano"
+msgstr "Pregled slike"
 
 msgid "Rename"
 msgstr "Preimenuj"
