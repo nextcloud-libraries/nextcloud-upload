@@ -1,35 +1,184 @@
 # 
 # Translators:
-# Transifex Bot <>, 2022
+# Nenad Lazarić, 2026
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Transifex Bot <>, 2022\n"
-"Language-Team: Croatian (https://www.transifex.com/nextcloud/teams/64236/hr/)\n"
+"Last-Translator: Nenad Lazarić, 2026\n"
+"Language-Team: Croatian (https://app.transifex.com/nextcloud/teams/64236/hr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: hr\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
-msgid "{estimate} seconds left"
-msgstr ""
+msgid "\"{segment}\" is a forbidden file or folder name."
+msgstr "\"{segment}\" je zabranjeni naziv datoteke ili mape."
 
-msgid "{hours} hours and {minutes} minutes left"
-msgstr ""
+msgid "\"{segment}\" is a forbidden file type."
+msgstr "\"{segment}\" je zabranjena vrsta datoteke."
 
-msgid "{minutes} minutes left"
-msgstr ""
+msgid "\"{segment}\" is not allowed inside a file or folder name."
+msgstr "\"{segment}\" nije dozvoljen unutar naziva datoteke ili mape."
+
+msgid "{count} file conflict"
+msgid_plural "{count} files conflict"
+msgstr[0] "{count} datoteka u sukobu"
+msgstr[1] "{count} datoteke u sukobu"
+msgstr[2] "{count} datoteka u sukobu"
+
+msgid "{count} file conflict in {dirname}"
+msgid_plural "{count} file conflicts in {dirname}"
+msgstr[0] "{count} datoteka u sukobu u {dirname}"
+msgstr[1] "{count} datoteke u sukobu u {dirname}"
+msgstr[2] "{count} datoteka u sukobu u {dirname}"
+
+msgid "{seconds} seconds left"
+msgid_plural "{seconds} seconds left"
+msgstr[0] "preostala je {seconds} sekunda"
+msgstr[1] "preostalo je {seconds} sekunde"
+msgstr[2] "preostalo je {seconds} sekundi"
+
+#. TRANSLATORS time has the format 00:00:00
+msgid "{time} left"
+msgstr "{time} preostalo"
 
 msgid "a few seconds left"
-msgstr ""
+msgstr "preostalo je još nekoliko sekundi"
 
-msgid "Add"
-msgstr ""
+msgid "assembling"
+msgstr "sastavljanje"
+
+msgid "Cancel"
+msgstr "Otkaži"
+
+msgid "Cancel the entire operation"
+msgstr "Otkaži cijelu operaciju"
 
 msgid "Cancel uploads"
-msgstr ""
+msgstr "Otkaži učitavanja"
+
+msgid "Continue"
+msgstr "Nastavi"
+
+msgid "Create new"
+msgstr "Stvori novi"
 
 msgid "estimating time left"
+msgstr "procjena preostalog vremena"
+
+msgid "Existing version"
+msgstr "Postojeća verzija"
+
+msgid "Failed to assemble the chunks together"
+msgstr "Neuspjelo spajanje dijelova zajedno"
+
+msgid "Failed to upload the file"
+msgstr "Neuspjelo učitavanje datoteke"
+
+msgid "Filenames must not end with \"{segment}\"."
+msgstr "Nazivi datoteka ne smiju završavati s \"{segment}\"."
+
+msgid ""
+"If you select both versions, the incoming file will have a number added to "
+"its name."
 msgstr ""
+"Ako odaberete obje verzije, dolaznoj datoteci bit će dodan broj u nazivu."
+
+msgid "Invalid filename"
+msgstr "Neispravan naziv datoteke"
+
+msgid "Last modified date unknown"
+msgstr "Datum zadnje izmjene nije poznat"
+
+msgid "New"
+msgstr "Novi"
+
+msgid "New filename"
+msgstr "Novi naziv datoteke"
+
+msgid "New version"
+msgstr "Nova verzija"
 
 msgid "paused"
+msgstr "pauzirano"
+
+msgid "Preview image"
+msgstr "Pregled slike"
+
+msgid "Rename"
+msgstr "Preimenuj"
+
+msgid "Select all checkboxes"
+msgstr "Odaberi sve potvrdne okvire"
+
+msgid "Select all existing files"
+msgstr "Odaberi sve postojeće datoteke"
+
+msgid "Select all new files"
+msgstr "Odaberi sve nove datoteke"
+
+msgid "Skip"
+msgstr "Preskoči"
+
+msgid "Skip {count} file"
+msgid_plural "Skip {count} files"
+msgstr[0] "Preskoči {count} datoteku"
+msgstr[1] "Preskoči {count} datoteke"
+msgstr[2] "Preskoči {count} datoteka"
+
+msgid "Skip this file"
+msgstr "Preskoči ovu datoteku"
+
+msgid "Unknown size"
+msgstr "Nepoznata veličina"
+
+msgid "Upload"
+msgstr "Učitaj"
+
+msgid "Upload files"
+msgstr "Učitaj datoteke"
+
+msgid "Upload folders"
+msgstr "Učitaj mape"
+
+msgid "Upload from device"
+msgstr "Učitaj s uređaja"
+
+msgid "Upload has been cancelled"
+msgstr "Učitavanje je otkazano"
+
+msgid "Upload has been skipped"
+msgstr "Učitavanje je preskočeno"
+
+msgid "Upload of \"{folder}\" has been skipped"
+msgstr "Učitavanje \"{folder}\" je preskočeno"
+
+msgid "Upload progress"
+msgstr "Napredak učitavanja"
+
+msgid ""
+"When an incoming folder is selected, any conflicting files within it will "
+"also be overwritten."
 msgstr ""
+"Kada je odabrana dolazna mapa, sve datoteke u njoj koje su u sukobu također "
+"će biti prepisane."
+
+msgid ""
+"When an incoming folder is selected, the content is written into the "
+"existing folder and a recursive conflict resolution is performed."
+msgstr ""
+"Kada je odabrana dolazna mapa, sadržaj se upisuje u postojeću mapu i provodi"
+" se rekurzivno rješavanje sukoba."
+
+msgid "Which files do you want to keep?"
+msgstr "Koje datoteke želite zadržati?"
+
+msgid ""
+"You can either rename the file, skip this file or cancel the whole "
+"operation."
+msgstr ""
+"Možete preimenovati datoteku, preskočiti ovu datoteku ili otkazati cijelu "
+"radnju."
+
+msgid "You need to select at least one version of each file to continue."
+msgstr ""
+"Morate odabrati barem jednu verziju svake datoteke kako biste nastavili."
