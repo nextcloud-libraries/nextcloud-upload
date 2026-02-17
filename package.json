@@ -73,7 +73,7 @@
     "@nextcloud/vue": "^8.35.0",
     "@tsconfig/cypress": "^1.0.5",
     "@types/node": "^25.0.3",
-    "@vitest/coverage-v8": "^4.0.17",
+    "@vitest/coverage-v8": "^4.0.18",
     "@vue/tsconfig": "^0.5.1",
     "blob-polyfill": "^9.0.20240710",
     "cypress": "^15.8.1",
