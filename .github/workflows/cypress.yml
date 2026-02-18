@@ -114,7 +114,7 @@ jobs:
         run: npm i -g 'npm@${{ steps.versions.outputs.package-manager-version }}'
 
       - name: Run ${{ startsWith(matrix.containers, 'component') && 'component' || 'E2E' }} cypress tests
-        uses: cypress-io/github-action@0f330ebf0d60f87608ed72f1d6232e5644aa3171 # v7.1.1
+        uses: cypress-io/github-action@e44ee0fa67251ab7e2d854d85b3a466577f47d14 # v7.1.3
         with:
           record: ${{ secrets.CYPRESS_RECORD_KEY && true }}
           parallel: ${{ secrets.CYPRESS_RECORD_KEY && true }}
