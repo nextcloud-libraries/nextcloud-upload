@@ -1,36 +1,182 @@
-# 
 # Translators:
-# BATKHUYAG Ganbold, 2023
+# Joas Schilling, 2024
+# Bilguuntei Demberel, 2026
 # 
 msgid ""
 msgstr ""
-"Last-Translator: BATKHUYAG Ganbold, 2023\n"
+"Last-Translator: Bilguuntei Demberel, 2026\n"
 "Language-Team: Mongolian (https://app.transifex.com/nextcloud/teams/64236/mn/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: mn\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgid "{seconds} seconds left"
-msgstr "{seconds} секунд үлдсэн"
+msgid "\"{segment}\" is a forbidden file or folder name."
+msgstr "\"{segment}\" нь хориотой файл эсвэл хавтасны нэр юм."
 
-#. time has the format 00:00:00
+msgid "\"{segment}\" is a forbidden file type."
+msgstr "\"{segment}\" нь хориотой файлын төрөл юм."
+
+msgid "\"{segment}\" is not allowed inside a file or folder name."
+msgstr "\"{segment}\" нь файл эсвэл хавтасны нэрэнд зөвшөөрөгдөхгүй."
+
+msgid "{count} file conflict"
+msgid_plural "{count} files conflict"
+msgstr[0] "{count} файлын зөрчил"
+msgstr[1] "{count} файлын зөрчил"
+
+msgid "{count} file conflict in {dirname}"
+msgid_plural "{count} file conflicts in {dirname}"
+msgstr[0] "{dirname} дотор {count} файлын зөрчил"
+msgstr[1] "{dirname} дотор {count} файлын зөрчил"
+
+msgid "{seconds} seconds left"
+msgid_plural "{seconds} seconds left"
+msgstr[0] "{seconds} секунд үлдсэн"
+msgstr[1] "{seconds} секунд үлдсэн"
+
+#. TRANSLATORS time has the format 00:00:00
 msgid "{time} left"
 msgstr "{time} үлдсэн"
 
 msgid "a few seconds left"
 msgstr "хэдхэн секунд үлдсэн"
 
-msgid "Add"
-msgstr "Нэмэх"
+msgid "assembling"
+msgstr "нэгтгэж байна"
+
+msgid "Cancel"
+msgstr "Цуцлах"
+
+msgid "Cancel the entire operation"
+msgstr "Бүх үйлдлийг цуцлах"
 
 msgid "Cancel uploads"
-msgstr "Илгээлтийг цуцлах"
+msgstr "Байршуулалтыг цуцлах"
+
+msgid "Continue"
+msgstr "Үргэлжлүүлэх"
+
+msgid "Create new"
+msgstr "Шинээр үүсгэх"
 
 msgid "estimating time left"
 msgstr "Үлдсэн хугацааг тооцоолж байна"
 
+msgid "Existing version"
+msgstr "Одоо байгаа хувилбар"
+
+msgid "Failed to assemble the chunks together"
+msgstr "Хэсгүүдийг нэгтгэж чадсангүй"
+
+msgid "Failed to upload the file"
+msgstr "Файлыг байршуулж чадсангүй"
+
+msgid "Filenames must not end with \"{segment}\"."
+msgstr "Файлын нэр \"{segment}\"-ээр төгсөж болохгүй."
+
+msgid ""
+"If you select both versions, the incoming file will have a number added to "
+"its name."
+msgstr ""
+"Хэрэв та хоёр хувилбарыг хоёуланг нь сонговол ирж буй файлын нэрэнд дугаар "
+"нэмэгдэнэ."
+
+msgid "Invalid filename"
+msgstr "Буруу файлын нэр"
+
+msgid "Last modified date unknown"
+msgstr "Сүүлд өөрчилсөн огноо тодорхойгүй"
+
+msgid "New"
+msgstr "Шинэ"
+
+msgid "New filename"
+msgstr "Шинэ файлын нэр"
+
+msgid "New version"
+msgstr "Шинэ хувилбар"
+
 msgid "paused"
 msgstr "түр зогсоосон"
 
+msgid "Preview image"
+msgstr "Зургийг урьдчилан харах"
+
+msgid "Rename"
+msgstr "Нэр солих"
+
+msgid "Select all checkboxes"
+msgstr "Бүгдийг сонгох"
+
+msgid "Select all existing files"
+msgstr "Одоо байгаа бүх файлыг сонгох"
+
+msgid "Select all new files"
+msgstr "Бүх шинэ файлыг сонгох"
+
+msgid "Skip"
+msgstr "Алгасах"
+
+msgid "Skip {count} file"
+msgid_plural "Skip {count} files"
+msgstr[0] "{count} файлыг алгасах"
+msgstr[1] "{count} файлыг алгасах"
+
+msgid "Skip this file"
+msgstr "Энэ файлыг алгасах"
+
+msgid "Unknown size"
+msgstr "Тодорхойгүй хэмжээ"
+
+msgid "Upload"
+msgstr "Байршуулах"
+
 msgid "Upload files"
-msgstr "Файл илгээх"
+msgstr "Файл байршуулах"
+
+msgid "Upload folders"
+msgstr "Хавтас байршуулах"
+
+msgid "Upload from device"
+msgstr "Төхөөрөмжөөс байршуулах"
+
+msgid "Upload has been cancelled"
+msgstr "Байршуулалт цуцлагдлаа"
+
+msgid "Upload has been skipped"
+msgstr "Байршуулалт алгасагдлаа"
+
+msgid "Upload of \"{folder}\" has been skipped"
+msgstr "\"{folder}\" хавтасны байршуулалт алгасагдлаа"
+
+msgid "Upload progress"
+msgstr "Байршуулалтын явц"
+
+msgid ""
+"When an incoming folder is selected, any conflicting files within it will "
+"also be overwritten."
+msgstr ""
+"Ирж буй хавтсыг сонговол дотор нь байгаа зөрчилтэй файлууд мөн дарж "
+"бичигдэнэ."
+
+msgid ""
+"When an incoming folder is selected, the content is written into the "
+"existing folder and a recursive conflict resolution is performed."
+msgstr ""
+"Ирж буй хавтсыг сонговол агуулга нь одоо байгаа хавтас руу бичигдэж зөрчлийг"
+" давталттайгаар шийдвэрлэнэ."
+
+msgid "Which files do you want to keep?"
+msgstr "Аль файлуудыг хадгалахыг хүсэж байна вэ?"
+
+msgid ""
+"You can either rename the file, skip this file or cancel the whole "
+"operation."
+msgstr ""
+"Та файлын нэрийг солих, энэ файлыг алгасах эсвэл бүх үйлдлийг цуцлах "
+"боломжтой."
+
+msgid "You need to select at least one version of each file to continue."
+msgstr ""
+"Үргэлжлүүлэхийн тулд файл бүрийн дор хаяж нэг хувилбарыг сонгох "
+"шаардлагатай."
