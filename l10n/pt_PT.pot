@@ -1,19 +1,19 @@
-# 
 # Translators:
 # Joas Schilling, 2024
 # guilherme ferreira, 2025
 # artur25 <arturdiogo1997@hotmail.com>, 2025
+# Sara Pestana, 2026
 # 
 msgid ""
 msgstr ""
-"Last-Translator: artur25 <arturdiogo1997@hotmail.com>, 2025\n"
+"Last-Translator: Sara Pestana, 2026\n"
 "Language-Team: Portuguese (Portugal) (https://app.transifex.com/nextcloud/teams/64236/pt_PT/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: pt_PT\n"
 "Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 msgid "\"{segment}\" is a forbidden file or folder name."
-msgstr "\"{segment}\" é um Nome de arquivo ou pasta proibido."
+msgstr "\"{segment}\" é um nome de arquivo ou pasta proibido."
 
 msgid "\"{segment}\" is a forbidden file type."
 msgstr "\"{segment}\" é um tipo de ficheiro proibido."
