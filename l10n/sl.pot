@@ -1,12 +1,12 @@
-# 
 # Translators:
 # Joas Schilling, 2024
 # Jan Kraljič <jan.kraljic@patware.eu>, 2024
 # Simon Bogina, 2024
+# Bostjan Laba, 2026
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Simon Bogina, 2024\n"
+"Last-Translator: Bostjan Laba, 2026\n"
 "Language-Team: Slovenian (https://app.transifex.com/nextcloud/teams/64236/sl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: sl\n"
@@ -36,7 +36,11 @@ msgstr[2] "{count} datotek je v konfiktu v {dirname}"
 msgstr[3] "{count} konfliktov datotek v {dirname}"
 
 msgid "{seconds} seconds left"
-msgstr "še {seconds} sekund"
+msgid_plural "{seconds} seconds left"
+msgstr[0] "Preostala{seconds} sekunda"
+msgstr[1] "Preostalo {seconds} sekundi"
+msgstr[2] "Preostalo {seconds}sekund"
+msgstr[3] "Preostalo{seconds} sekund"
 
 #. TRANSLATORS time has the format 00:00:00
 msgid "{time} left"
@@ -44,6 +48,9 @@ msgstr "še {time}"
 
 msgid "a few seconds left"
 msgstr "še nekaj sekund"
+
+msgid "assembling"
+msgstr "združevanje"
 
 msgid "Cancel"
 msgstr "Prekliči"
@@ -65,6 +72,12 @@ msgstr "ocenjujem čas do konca"
 
 msgid "Existing version"
 msgstr "Obstoječa različica"
+
+msgid "Failed to assemble the chunks together"
+msgstr "Združevanje delov neuspešno"
+
+msgid "Failed to upload the file"
+msgstr "Nalaganje datoteke neuspešno"
 
 msgid "Filenames must not end with \"{segment}\"."
 msgstr "Imena datotek se ne smejo končati s \"{segment}\"."
@@ -112,12 +125,15 @@ msgstr "Označi vse nove datoteke"
 msgid "Skip"
 msgstr "Preskoči"
 
-msgid "Skip this file"
+msgid "Skip {count} file"
 msgid_plural "Skip {count} files"
-msgstr[0] "Preskoči  datoteko"
-msgstr[1] "Preskoči {count} datoteki"
-msgstr[2] "Preskoči {count} datotek"
-msgstr[3] "Preskoči {count} datotek"
+msgstr[0] "Preskoči {count} datoteko"
+msgstr[1] "Preskoči {count}datoteki"
+msgstr[2] "Preskoči{count} datotek"
+msgstr[3] "Prekoči {count} datotek"
+
+msgid "Skip this file"
+msgstr "Preskoči to datoteko"
 
 msgid "Unknown size"
 msgstr "Neznana velikost"
