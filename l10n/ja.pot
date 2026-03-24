@@ -32,7 +32,7 @@ msgstr[0] "{dirname} で {count} 個のファイルが競合しています"
 
 msgid "{seconds} seconds left"
 msgid_plural "{seconds} seconds left"
-msgstr[0] "およそ残り{seconds}秒"
+msgstr[0] "残り{seconds}秒"
 
 #. TRANSLATORS time has the format 00:00:00
 msgid "{time} left"
