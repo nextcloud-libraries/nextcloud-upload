@@ -43,7 +43,7 @@ jobs:
           exit 1
 
       - name: Checkout app
-        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           persist-credentials: false
 
@@ -57,17 +57,10 @@ jobs:
         if: steps.check_composer.outputs.files_exists == 'true'
         run: composer install --no-dev
 
-      - name: Read package.json
-        uses: nextcloud-libraries/parse-package-engines-action@122ae05d4257008180a514e1ddeb0c1b9d094bdd # v0.1.0
-        id: versions
-
       - name: Set up node
         uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6.2.0
         with:
-          node-version: ${{ steps.versions.outputs.node-version }}
-
-      - name: Set up npm
-        run: npm i -g 'npm@${{ steps.versions.outputs.package-manager-version }}'
+          node-version-file: 'package.json'
 
       - name: Install node dependencies & build app
         run: |
@@ -114,16 +107,16 @@ jobs:
         run: npm i -g 'npm@${{ steps.versions.outputs.package-manager-version }}'
 
       - name: Run ${{ startsWith(matrix.containers, 'component') && 'component' || 'E2E' }} cypress tests
-        uses: cypress-io/github-action@0f330ebf0d60f87608ed72f1d6232e5644aa3171 # v7.1.1
+        uses: cypress-io/github-action@e44ee0fa67251ab7e2d854d85b3a466577f47d14 # v7.1.3
         with:
-          record: ${{ secrets.CYPRESS_RECORD_KEY && true }}
-          parallel: ${{ secrets.CYPRESS_RECORD_KEY && true }}
+          record: ${{ secrets.CYPRESS_RECORD_KEY && true }} # zizmor: ignore[secrets-outside-env]
+          parallel: ${{ secrets.CYPRESS_RECORD_KEY && true }} # zizmor: ignore[secrets-outside-env]
           # cypress run type
           component: ${{ startsWith(matrix.containers, 'component') }}
           group: ${{ secrets.CYPRESS_RECORD_KEY && env.CYPRESS_GROUP }}
           # cypress env
-          ci-build-id: ${{ secrets.CYPRESS_RECORD_KEY && env.CYPRESS_BUILD_ID }}
-          tag: ${{ secrets.CYPRESS_RECORD_KEY && github.event_name }}
+          ci-build-id: ${{ secrets.CYPRESS_RECORD_KEY && env.CYPRESS_BUILD_ID }} # zizmor: ignore[secrets-outside-env]
+          tag: ${{ secrets.CYPRESS_RECORD_KEY && github.event_name }} # zizmor: ignore[secrets-outside-env]
         env:
           # Needs to be prefixed with CYPRESS_
           CYPRESS_BRANCH: ${{ env.BRANCH }}
@@ -132,12 +125,12 @@ jobs:
           # Needed for some specific code workarounds
           TESTING: true
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }} # zizmor: ignore[secrets-outside-env]
           CYPRESS_BUILD_ID: ${{ github.sha }}-${{ github.run_number }}
           CYPRESS_GROUP: Run ${{ startsWith(matrix.containers, 'component') && 'component' || 'E2E' }}
 
       - name: Upload snapshots
-        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
+        uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7.0.0
         if: always()
         with:
           name: snapshots_${{ matrix.containers }}
