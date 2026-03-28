@@ -1,15 +1,13 @@
-# 
 # Translators:
 # Joas Schilling, 2024
 # Takafumi AKAMATSU, 2024
 # devi, 2024
-# 貴宝, 2025
 # kshimohata, 2025
-# kojima.imamura, 2025
+# kojima.imamura, 2026
 # 
 msgid ""
 msgstr ""
-"Last-Translator: kojima.imamura, 2025\n"
+"Last-Translator: kojima.imamura, 2026\n"
 "Language-Team: Japanese (Japan) (https://app.transifex.com/nextcloud/teams/64236/ja_JP/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: ja_JP\n"
@@ -34,7 +32,7 @@ msgstr[0] "{dirname} で {count} 個のファイルが競合しています"
 
 msgid "{seconds} seconds left"
 msgid_plural "{seconds} seconds left"
-msgstr[0] "残り{seconds}"
+msgstr[0] "残り{seconds}秒"
 
 #. TRANSLATORS time has the format 00:00:00
 msgid "{time} left"
