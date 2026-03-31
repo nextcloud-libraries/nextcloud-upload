@@ -76,7 +76,7 @@
     "@vitest/coverage-v8": "^4.0.17",
     "@vue/tsconfig": "^0.5.1",
     "blob-polyfill": "^9.0.20240710",
-    "cypress": "^15.8.1",
+    "cypress": "^15.9.0",
     "cypress-file-upload": "^5.0.8",
     "gettext-extractor": "^4.0.4",
     "gettext-parser": "^9.0.0",
