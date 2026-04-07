@@ -1,37 +1,40 @@
-# 
 # Translators:
 # Joas Schilling, 2024
 # Gyuris Gellért <jobel@ujevangelizacio.hu>, 2024
+# János Schrempf <schrempf.janos@gmail.com>, 2025
+# Balázs Meskó <meskobalazs@mailbox.org>, 2026
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Gyuris Gellért <jobel@ujevangelizacio.hu>, 2024\n"
+"Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>, 2026\n"
 "Language-Team: Hungarian (Hungary) (https://app.transifex.com/nextcloud/teams/64236/hu_HU/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: hu_HU\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "\"{segment}\" is a forbidden file or folder name."
-msgstr "Tiltott fájl- vagy mappanév: „{segment}\"."
+msgstr "A(z) „{segment}” tiltott név vagy mappanév."
 
 msgid "\"{segment}\" is a forbidden file type."
-msgstr "Tiltott fájltípus: „{segment}\"."
+msgstr "A(z) „{segment}” tiltott fájltípus."
 
 msgid "\"{segment}\" is not allowed inside a file or folder name."
-msgstr "Nem megengedett egy fájl- vagy mappanévben: „{segment}\"."
+msgstr "A(z) „{segment}” nem engedélyezett fájl- vagy mappanévben."
 
 msgid "{count} file conflict"
 msgid_plural "{count} files conflict"
-msgstr[0] "{count}fájlt érintő konfliktus"
-msgstr[1] "{count} fájlt érintő konfliktus"
+msgstr[0] "{count} fájlütközés"
+msgstr[1] "{count} fájlütközés"
 
 msgid "{count} file conflict in {dirname}"
 msgid_plural "{count} file conflicts in {dirname}"
-msgstr[0] "{count} fájlt érintő konfliktus a mappában: {dirname}"
-msgstr[1] "{count}fájlt érintő konfliktus a mappában: {dirname}"
+msgstr[0] "{count} fájlütközés a mappában: {dirname}"
+msgstr[1] "{count} fájlütközés a mappában: {dirname}"
 
 msgid "{seconds} seconds left"
-msgstr "{} másodperc van hátra"
+msgid_plural "{seconds} seconds left"
+msgstr[0] "{seconds} másodperc van hátra"
+msgstr[1] "{seconds} másodperc van hátra"
 
 #. TRANSLATORS time has the format 00:00:00
 msgid "{time} left"
@@ -39,6 +42,9 @@ msgstr "{time} van hátra"
 
 msgid "a few seconds left"
 msgstr "pár másodperc van hátra"
+
+msgid "assembling"
+msgstr "összeállítás"
 
 msgid "Cancel"
 msgstr "Mégse"
@@ -59,7 +65,13 @@ msgid "estimating time left"
 msgstr "hátralévő idő becslése"
 
 msgid "Existing version"
-msgstr "Jelenlegi változat"
+msgstr "Jelenlegi verzió"
+
+msgid "Failed to assemble the chunks together"
+msgstr "Nem sikerült a darabok összeállítása"
+
+msgid "Failed to upload the file"
+msgstr "Nem sikerült feltölteni a fájlt"
 
 msgid "Filenames must not end with \"{segment}\"."
 msgstr "Fájlnevek nem végződhetnek erre: „{segment}”."
@@ -95,21 +107,24 @@ msgid "Rename"
 msgstr "Átnevezés"
 
 msgid "Select all checkboxes"
-msgstr "Minden jelölőnégyzet kijelölése"
+msgstr "Összes jelölőnégyzet kijelölése"
 
 msgid "Select all existing files"
-msgstr "Minden jelenlegi fájl kijelölése"
+msgstr "Összes jelenlegi fájl kijelölése"
 
 msgid "Select all new files"
-msgstr "Minden új fájl kijelölése"
+msgstr "Összes új fájl kijelölése"
 
 msgid "Skip"
 msgstr "Kihagyás"
 
-msgid "Skip this file"
+msgid "Skip {count} file"
 msgid_plural "Skip {count} files"
-msgstr[0] "Ezen fájl kihagyása"
-msgstr[1] "{count}fájl kihagyása"
+msgstr[0] "{count} fájl kihagyása"
+msgstr[1] "{count} fájl kihagyása"
+
+msgid "Skip this file"
+msgstr "Ezen fájl kihagyása"
 
 msgid "Unknown size"
 msgstr "Ismeretlen méret"
@@ -127,13 +142,13 @@ msgid "Upload from device"
 msgstr "Feltöltés eszközről"
 
 msgid "Upload has been cancelled"
-msgstr "Feltöltés meg lett szakítva"
+msgstr "A feltöltés meg lett szakítva"
 
 msgid "Upload has been skipped"
-msgstr "Feltöltés át lett ugorva"
+msgstr "A feltöltés át lett ugorva"
 
 msgid "Upload of \"{folder}\" has been skipped"
-msgstr "„{folder}” feltöltése át lett ugorva"
+msgstr "A(z) „{folder}” feltöltése át lett ugorva"
 
 msgid "Upload progress"
 msgstr "Feltöltési folyamat"
@@ -142,26 +157,26 @@ msgid ""
 "When an incoming folder is selected, any conflicting files within it will "
 "also be overwritten."
 msgstr ""
-"Ha egy bejövő mappa van kiválasztva, a mappában lévő ütköző fájlok is "
-"felülírásra kerülnek."
+"Ha egy bejövő mappa van kijelölve, a mappában lévő ütköző fájlok is felül "
+"lesznek írva."
 
 msgid ""
 "When an incoming folder is selected, the content is written into the "
 "existing folder and a recursive conflict resolution is performed."
 msgstr ""
-"Ha egy bejövő mappa van kiválasztva, a tartalom a meglévő mappába íródik és "
-"rekurzív konfliktusfeloldás történik."
+"Ha egy bejövő mappa van kijelölve, akkor a tartalom a meglévő mappába lesz "
+"írva, és rekurzív ütközéskezelés lesz végezve."
 
 msgid "Which files do you want to keep?"
-msgstr "Mely fájlokat kívánja megtartani?"
+msgstr "Mely fájlokat akarja megtartani?"
 
 msgid ""
 "You can either rename the file, skip this file or cancel the whole "
 "operation."
 msgstr ""
-"Átnevezheti a fájlt, kihagyhatja ezt a fájlt, vagy törölheti az egész "
+"Átnevezheti a fájlt, kihagyhatja ezt a fájlt, vagy megszakíthatja az egész "
 "műveletet."
 
 msgid "You need to select at least one version of each file to continue."
 msgstr ""
-"A folytatáshoz minden fájlból legalább egy verziót ki kell választani."
+"A folytatáshoz az összes fájlnak legalább egy verzióját ki kell választania."
