@@ -82,7 +82,7 @@
     "gettext-parser": "^9.0.2",
     "jsdom": "^27.4.0",
     "typedoc": "^0.28.18",
-    "typescript": "^5.9.3",
+    "typescript": "^6.0.2",
     "vite": "^7.3.2",
     "vitest": "^4.0.17",
     "vue-material-design-icons": "^5.3.1",
