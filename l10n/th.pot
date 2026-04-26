@@ -1,36 +1,172 @@
-# 
 # Translators:
-# Phongpanot Phairat <ppnplus@protonmail.com>, 2022
+# Joas Schilling, 2024
+# ACHN SYPS <achn.syps@gmail.com>, 2026
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Phongpanot Phairat <ppnplus@protonmail.com>, 2022\n"
-"Language-Team: Thai (Thailand) (https://www.transifex.com/nextcloud/teams/64236/th_TH/)\n"
+"Last-Translator: ACHN SYPS <achn.syps@gmail.com>, 2026\n"
+"Language-Team: Thai (Thailand) (https://app.transifex.com/nextcloud/teams/64236/th_TH/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: th_TH\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-msgid "{seconds} seconds left"
-msgstr "เหลืออีก {seconds} วินาที"
+msgid "\"{segment}\" is a forbidden file or folder name."
+msgstr "\"{segment}\" เป็นชื่อไฟล์หรือโฟลเดอร์ที่ไม่ได้รับอนุญาต"
 
-#. time has the format 00:00:00
+msgid "\"{segment}\" is a forbidden file type."
+msgstr "\"{segment}\" เป็นประเภทไฟล์ที่ต้องห้าม"
+
+msgid "\"{segment}\" is not allowed inside a file or folder name."
+msgstr "\"{segment}\" ไม่อนุญาตให้ใช้ภายในชื่อไฟล์หรือโฟลเดอร์"
+
+msgid "{count} file conflict"
+msgid_plural "{count} files conflict"
+msgstr[0] "{count} ไฟล์ขัดแย้งกัน"
+
+msgid "{count} file conflict in {dirname}"
+msgid_plural "{count} file conflicts in {dirname}"
+msgstr[0] "{count} ไฟล์ขัดแย้งของใน {dirname}"
+
+msgid "{seconds} seconds left"
+msgid_plural "{seconds} seconds left"
+msgstr[0] "{seconds} วินาทีเหลือ"
+
+#. TRANSLATORS time has the format 00:00:00
 msgid "{time} left"
 msgstr "เหลืออีก {time}"
 
 msgid "a few seconds left"
 msgstr "เหลืออีกไม่กี่วินาที"
 
-msgid "Add"
-msgstr "เพิ่ม"
+msgid "assembling"
+msgstr "รวบรวม"
+
+msgid "Cancel"
+msgstr "ยกเลิก"
+
+msgid "Cancel the entire operation"
+msgstr "ยกเลิกการดำเนินการทั้งหมด"
 
 msgid "Cancel uploads"
 msgstr "ยกเลิกการอัปโหลด"
 
+msgid "Continue"
+msgstr "ดำเนินการต่อ"
+
+msgid "Create new"
+msgstr "สร้างใหม่"
+
 msgid "estimating time left"
 msgstr "กำลังคำนวณเวลาที่เหลือ"
+
+msgid "Existing version"
+msgstr "เวอร์ชันที่มีอยู่"
+
+msgid "Failed to assemble the chunks together"
+msgstr "ไม่สามารถประกอบชิ้นส่วนเข้าด้วยกันได้"
+
+msgid "Failed to upload the file"
+msgstr "ไม่สามารถอัปโหลดไฟล์ได้"
+
+msgid "Filenames must not end with \"{segment}\"."
+msgstr "ชื่อไฟล์ต้องไม่ลงท้ายด้วย \"{segment}\""
+
+msgid ""
+"If you select both versions, the incoming file will have a number added to "
+"its name."
+msgstr "หากคุณเลือกทั้งสองเวอร์ชัน ไฟล์ขาเข้าจะมีหมายเลขต่อท้ายชื่อไฟล์"
+
+msgid "Invalid filename"
+msgstr "ชื่อไฟล์ไม่ถูกต้อง"
+
+msgid "Last modified date unknown"
+msgstr "ไม่ทราบวันที่แก้ไขล่าสุด"
+
+msgid "New"
+msgstr "ใหม่"
+
+msgid "New filename"
+msgstr "ชื่อไฟล์ใหม่"
+
+msgid "New version"
+msgstr "เวอร์ชันใหม่"
 
 msgid "paused"
 msgstr "หยุดชั่วคราว"
 
+msgid "Preview image"
+msgstr "ภาพตัวอย่าง"
+
+msgid "Rename"
+msgstr "เปลี่ยนชื่อ"
+
+msgid "Select all checkboxes"
+msgstr "ทำเครื่องหมายเลือกช่องทั้งหมด"
+
+msgid "Select all existing files"
+msgstr "เลือกไฟล์ที่มีอยู่ทั้งหมด"
+
+msgid "Select all new files"
+msgstr "เลือกไฟล์ใหม่ทั้งหมด"
+
+msgid "Skip"
+msgstr "ข้าม"
+
+msgid "Skip {count} file"
+msgid_plural "Skip {count} files"
+msgstr[0] "ข้าม {count} ไฟล์"
+
+msgid "Skip this file"
+msgstr "ข้ามไฟล์นี้"
+
+msgid "Unknown size"
+msgstr "ไม่ทราบขนาด"
+
+msgid "Upload"
+msgstr "อัปโหลด"
+
 msgid "Upload files"
 msgstr "อัปโหลดไฟล์"
+
+msgid "Upload folders"
+msgstr "อัปโหลดโฟลเดอร์"
+
+msgid "Upload from device"
+msgstr "อัปโหลดจากอุปกรณ์"
+
+msgid "Upload has been cancelled"
+msgstr "การอัปโหลดถูกยกเลิก"
+
+msgid "Upload has been skipped"
+msgstr "การอัปโหลดถูกข้าม"
+
+msgid "Upload of \"{folder}\" has been skipped"
+msgstr "อัปโหลด \"{folder}\" ถูกข้ามไป"
+
+msgid "Upload progress"
+msgstr "กำลังอัปโหลด"
+
+msgid ""
+"When an incoming folder is selected, any conflicting files within it will "
+"also be overwritten."
+msgstr ""
+"เมื่อเลือกโฟลเดอร์ขาเข้าแล้ว ไฟล์ใดๆ "
+"ที่มีข้อขัดแย้งภายในโฟลเดอร์นั้นก็จะถูกเขียนทับไปด้วย"
+
+msgid ""
+"When an incoming folder is selected, the content is written into the "
+"existing folder and a recursive conflict resolution is performed."
+msgstr ""
+"เมื่อเลือกโฟลเดอร์ขาเข้า เนื้อหาจะถูกเขียนลงในโฟลเดอร์ที่มีอยู่แล้ว "
+"และจะดำเนินการแก้ไขข้อขัดแย้งแบบวนซ้ำ"
+
+msgid "Which files do you want to keep?"
+msgstr "คุณต้องการเก็บไฟล์ใดบ้าง?"
+
+msgid ""
+"You can either rename the file, skip this file or cancel the whole "
+"operation."
+msgstr "คุณสามารถเปลี่ยนชื่อไฟล์ ข้ามไฟล์นี้ หรือยกเลิกการดำเนินการทั้งหมดได้"
+
+msgid "You need to select at least one version of each file to continue."
+msgstr "คุณต้องเลือกไฟล์อย่างน้อยหนึ่งเวอร์ชันเพื่อดำเนินการต่อ"
