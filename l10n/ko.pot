@@ -138,10 +138,10 @@ msgid "Upload from device"
 msgstr "장치에서 업로드"
 
 msgid "Upload has been cancelled"
-msgstr "업로드가 취소되었습니다."
+msgstr "업로드가 취소되었습니다"
 
 msgid "Upload has been skipped"
-msgstr "업로드를 건너뛰었습니다."
+msgstr "업로드를 건너뛰었습니다"
 
 msgid "Upload of \"{folder}\" has been skipped"
 msgstr "\"{folder}\" 업로드를 건너뛰었습니다."
