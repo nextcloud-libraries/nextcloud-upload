@@ -72,7 +72,7 @@ msgid "Failed to upload the file"
 msgstr "파일 업로드 실패"
 
 msgid "Filenames must not end with \"{segment}\"."
-msgstr "파일 이름은 \"{segment}\"(으)로 끝나야 합니다."
+msgstr "파일 이름은 '{segment}'(으)로 끝날 수 없습니다."
 
 msgid ""
 "If you select both versions, the incoming file will have a number added to "
