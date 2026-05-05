@@ -48,7 +48,7 @@ msgid "Cancel"
 msgstr "취소"
 
 msgid "Cancel the entire operation"
-msgstr "전체 작업을 취소"
+msgstr "전체 작업 취소"
 
 msgid "Cancel uploads"
 msgstr "업로드 취소"
