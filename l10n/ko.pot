@@ -66,10 +66,10 @@ msgid "Existing version"
 msgstr "현재 버전"
 
 msgid "Failed to assemble the chunks together"
-msgstr "조각을 정리하는 데 실패함"
+msgstr "조각 정리 실패"
 
 msgid "Failed to upload the file"
-msgstr "파일을 업로드하는 데 실패"
+msgstr "파일 업로드 실패"
 
 msgid "Filenames must not end with \"{segment}\"."
 msgstr "파일 이름은 \"{segment}\"(으)로 끝나야 합니다."
