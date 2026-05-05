@@ -164,7 +164,7 @@ msgstr "어떤 파일들을 유지하시겠습니까?"
 msgid ""
 "You can either rename the file, skip this file or cancel the whole "
 "operation."
-msgstr "파일 이름을 바꾸거나, 이 파일을 건너뛰거나 모든 작업을 취소할 수 있습니다."
+msgstr "파일 이름을 바꾸거나, 이 파일을 건너뛰거나, 혹은 모든 작업을 취소할 수도 있습니다."
 
 msgid "You need to select at least one version of each file to continue."
 msgstr "계속하기 위해서는 한 파일에 최소 하나의 버전을 선택해야 합니다."
