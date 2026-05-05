@@ -144,7 +144,7 @@ msgid "Upload has been skipped"
 msgstr "업로드를 건너뛰었습니다"
 
 msgid "Upload of \"{folder}\" has been skipped"
-msgstr "\"{folder}\" 업로드를 건너뛰었습니다."
+msgstr "'{folder}' 업로드를 건너뛰었습니다."
 
 msgid "Upload progress"
 msgstr "업로드 진행도"
