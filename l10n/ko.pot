@@ -60,7 +60,7 @@ msgid "Create new"
 msgstr "새로 만들기"
 
 msgid "estimating time left"
-msgstr "남은 시간 계산"
+msgstr "남은 시간 계산 중"
 
 msgid "Existing version"
 msgstr "현재 버전"
