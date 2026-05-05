@@ -2,7 +2,6 @@
 # Joas Schilling, 2024
 # shin2012 <shin2013@gmail.com>, 2025
 # 이상오, 2025
-# 보헤민, 2025
 # Hyeongjun Son, 2026
 # 
 msgid ""
@@ -157,10 +156,10 @@ msgstr "새 폴더를 선택할 경우, 해당 폴더 내의 충돌 파일들도
 msgid ""
 "When an incoming folder is selected, the content is written into the "
 "existing folder and a recursive conflict resolution is performed."
-msgstr "들어오는 폴더가 선택되면, 그 안의 콘텐츠가 기존 폴더에 기록되고 재귀적 충돌 해결이 수행됩니다."
+msgstr "새 폴더를 선택할 경우 내용물이 기존 폴더에 기록되며 재귀적 충돌 해결이 수행됩니다."
 
 msgid "Which files do you want to keep?"
-msgstr "어떤 파일을 보존하시겠습니까?"
+msgstr "어떤 파일들을 유지하시겠습니까?"
 
 msgid ""
 "You can either rename the file, skip this file or cancel the whole "
