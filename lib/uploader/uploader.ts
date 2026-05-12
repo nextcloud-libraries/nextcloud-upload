@@ -599,6 +599,11 @@ export class Uploader {
 							upload.status = UploadStatus.CANCELLED
 							reject(new UploadCancelledError(error))
 						} else {
+							// Attach response to the upload object
+							if ((error as AxiosError)?.response) {
+								upload.response = (error as AxiosError).response as AxiosResponse
+							}
+
 							upload.status = UploadStatus.FAILED
 							reject(t('Failed to assemble the chunks together'))
 						}
