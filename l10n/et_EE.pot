@@ -137,7 +137,7 @@ msgid "Upload folders"
 msgstr "Laadi kaustad üles"
 
 msgid "Upload from device"
-msgstr "Laadi üles seadmest"
+msgstr "Laadi seadmest üles"
 
 msgid "Upload has been cancelled"
 msgstr "Üleslaadimine on katkestatud"
