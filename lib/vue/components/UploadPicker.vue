@@ -175,7 +175,7 @@ import NcIconSvgWrapper from '@nextcloud/vue/dist/Components/NcIconSvgWrapper.js
 import NcProgressBar from '@nextcloud/vue/dist/Components/NcProgressBar.js'
 
 import IconCancel from 'vue-material-design-icons/Cancel.vue'
-import IconFolderUpload from 'vue-material-design-icons/FolderUpload.vue'
+import IconFolderUpload from 'vue-material-design-icons/FolderUploadOutline.vue'
 import IconPlus from 'vue-material-design-icons/Plus.vue'
 import IconUpload from 'vue-material-design-icons/TrayArrowUp.vue'
 
