@@ -66,7 +66,7 @@ describe('Uploader', () => {
 			const uploader = new Uploader()
 			uploader.setCustomHeader('X-NC-Nickname', 'jane')
 			expect(uploader.customHeaders).toEqual({ 'X-NC-Nickname': 'jane' })
-			uploader.deleteCustomerHeader('X-NC-Nickname')
+			uploader.deleteCustomHeader('X-NC-Nickname')
 			expect(uploader.customHeaders).toEqual({})
 		})
 
@@ -74,7 +74,7 @@ describe('Uploader', () => {
 			const uploader = new Uploader()
 			uploader.setCustomHeader('X-NC-Nickname', 'jane')
 			expect(uploader.customHeaders).toEqual({ 'X-NC-Nickname': 'jane' })
-			uploader.deleteCustomerHeader('X-NC-Nickname')
+			uploader.deleteCustomHeader('X-NC-Nickname')
 			expect(uploader.customHeaders).toEqual({})
 		})
 
