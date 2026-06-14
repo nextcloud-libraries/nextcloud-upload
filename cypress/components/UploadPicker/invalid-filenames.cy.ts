@@ -26,10 +26,22 @@ const resetDocument = () => {
 
 describe('UploadPicker: invalid filenames (legacy prop)', { testIsolation: true }, () => {
 
+	afterEach(() => resetDocument())
+
 	// Cypress shares the module state between tests, we need to reset it
 	// ref: https://github.com/cypress-io/cypress/issues/25441
 	beforeEach(() => {
 		getUploader(false, true)
+
+		// The forbiddenCharacters prop is deprecated and no longer functional,
+		// validation is now driven by server capabilities exclusively.
+		// @ts-expect-error This is a private variable but we need to mock it
+		window._oc_capabilities = {
+			files: {
+				forbidden_filename_characters: ['$', '#', '~', '&'],
+			},
+		}
+
 		// Intercept single upload
 		cy.intercept('PUT', '/remote.php/dav/files/*/*', (req) => {
 			req.reply({
@@ -38,8 +50,6 @@ describe('UploadPicker: invalid filenames (legacy prop)', { testIsolation: true 
 			})
 		}).as('upload')
 	})
-
-	afterEach(() => resetDocument())
 
 	it('Fails a file if forbidden character', () => {
 		// Make sure we reset the destination
@@ -52,7 +62,6 @@ describe('UploadPicker: invalid filenames (legacy prop)', { testIsolation: true 
 				permissions: Permission.ALL,
 				root: '/files/user',
 			}),
-			forbiddenCharacters: ['$', '#', '~', '&'],
 		}
 
 		// Mount picker
@@ -105,13 +114,10 @@ describe('UploadPicker: invalid filenames (legacy prop)', { testIsolation: true 
 				permissions: Permission.ALL,
 				root: '/files/user',
 			}),
-			forbiddenCharacters: ['$', '#', '~', '&'],
 		}
 
 		// Mount picker
 		cy.mount(UploadPicker, { propsData }).as('uploadPicker')
-
-		cy.wait(4000)
 
 		// Label is displayed before upload
 		cy.get('[data-cy-upload-picker]').contains('New').should('be.visible')
@@ -448,7 +454,7 @@ describe('UploadPicker: invalid filenames (server capabilities)', { testIsolatio
 			.should('be.disabled')
 
 		cy.contains('[role="dialog"]', 'Invalid filename')
-			.find('input')
+			.find('.input-field__input')
 			.should('have.value', 'invalid: image.jpg')
 			.type('{selectAll}now-valid.jpg')
 
