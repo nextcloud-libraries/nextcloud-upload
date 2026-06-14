@@ -149,7 +149,7 @@ describe('UploadPicker: invalid filenames (legacy prop)', { testIsolation: true 
 	})
 })
 
-describe.only('UploadPicker: invalid filenames (server capabilities)', { testIsolation: true }, () => {
+describe('UploadPicker: invalid filenames (server capabilities)', { testIsolation: true }, () => {
 
 	afterEach(() => resetDocument())
 
