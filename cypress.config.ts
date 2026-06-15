@@ -22,6 +22,13 @@ export default defineConfig({
 	// faster video processing
 	videoCompression: false,
 
+	// Retry on CI to handle Vite dev server race conditions
+	// where modules aren't ready when Cypress tries to load them
+	retries: {
+		runMode: 2,
+		openMode: 0,
+	},
+
 	component: {
 		devServer: {
 			framework: 'vue',

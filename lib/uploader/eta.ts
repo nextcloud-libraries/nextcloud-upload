@@ -52,7 +52,7 @@ export class Eta extends TypedEventTarget<EtaEventsMap> {
 	 * Cutoff time for the low pass filter of the ETA.
 	 * A higher value will consider more history information for calculation,
 	 * and thus suppress spikes of the speed,
-	 * but will make the overall resposiveness slower.
+	 * but will make the overall responsiveness slower.
 	 */
 	private _cutoffTime = 2.5
 
@@ -107,7 +107,7 @@ export class Eta extends TypedEventTarget<EtaEventsMap> {
 			this._speed = Math.round(filtered / this._elapsedTime)
 		} else if (this._speed === -1 && this._elapsedTime > deltaTime) {
 			// special case when uploading with high speed
-			// it could be that the upload is finished before we reach the curoff time
+			// it could be that the upload is finished before we reach the cutoff time
 			// so we already give an estimation
 			const remaining = this._total - done
 			const eta = remaining / (done / this._elapsedTime)
