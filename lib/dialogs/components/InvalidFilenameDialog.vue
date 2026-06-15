@@ -16,7 +16,8 @@
 			:error="!isValidName"
 			:helper-text="validationError"
 			:label="t('New filename')"
-			:value.sync="newName" />
+			:value.sync="newName"
+			@input="newName = $event.target.value" />
 	</NcDialog>
 </template>
 

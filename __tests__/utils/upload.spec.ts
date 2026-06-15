@@ -232,7 +232,7 @@ describe('Upload data', () => {
 		const onUploadProgress = vi.fn()
 		vi.spyOn(controller, 'abort')
 
-		// Cancel after 200ms
+		// Cancel after 400ms
 		setTimeout(() => controller.abort(), 400)
 		try {
 			await uploadData(url, data, { signal: controller.signal, onUploadProgress })

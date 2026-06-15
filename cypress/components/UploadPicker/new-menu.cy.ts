@@ -150,7 +150,7 @@ describe('UploadPicker: "new"-menu', () => {
 				})
 		})
 
-		it.only('Changes the context', () => {
+		it('Changes the context', () => {
 			// Mount picker
 			cy.mount(UploadPicker, { propsData }).then(({ component }) => {
 				const instance = component as InstanceType<typeof UploadPicker>

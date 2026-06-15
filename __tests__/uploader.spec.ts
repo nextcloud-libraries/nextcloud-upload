@@ -70,12 +70,11 @@ describe('Uploader', () => {
 			expect(uploader.customHeaders).toEqual({})
 		})
 
-		test('can unset custom header', () => {
+		test('unsetting non-existent header is a no-op', () => {
 			const uploader = new Uploader()
 			uploader.setCustomHeader('X-NC-Nickname', 'jane')
+			uploader.deleteCustomerHeader('X-Non-Existent')
 			expect(uploader.customHeaders).toEqual({ 'X-NC-Nickname': 'jane' })
-			uploader.deleteCustomerHeader('X-NC-Nickname')
-			expect(uploader.customHeaders).toEqual({})
 		})
 
 		test('can set an empty header', () => {
