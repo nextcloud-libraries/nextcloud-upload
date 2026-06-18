@@ -15,6 +15,13 @@ axiosRetry(axios, { retries: 0 })
 
 type UploadData = Blob | (() => Promise<Blob>)
 
+/**
+ * Helpers for direct and chunked file uploads.
+ *
+ * This module contains utilities for preparing upload blobs, creating
+ * temporary chunk upload workspaces, and sending upload requests with
+ * retry handling.
+ */
 interface UploadDataOptions {
 	/** Abort signal for the upload request. */
 	signal: AbortSignal
