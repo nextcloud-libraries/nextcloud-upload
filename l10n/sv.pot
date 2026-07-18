@@ -1,24 +1,24 @@
-# 
 # Translators:
 # Joas Schilling, 2024
 # Magnus Höglund, 2025
+# Jonatan Nyberg, 2026
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Magnus Höglund, 2025\n"
+"Last-Translator: Jonatan Nyberg, 2026\n"
 "Language-Team: Swedish (https://app.transifex.com/nextcloud/teams/64236/sv/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: sv\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "\"{segment}\" is a forbidden file or folder name."
-msgstr "\"{segment}\" är ett förbjudet fil- eller mappnamn."
+msgstr "\"{segment}\" får inte användas som fil- eller mappnamn."
 
 msgid "\"{segment}\" is a forbidden file type."
-msgstr "\"{segment}\" är en förbjuden filtyp."
+msgstr "\"{segment}\" är en otillåten filtyp."
 
 msgid "\"{segment}\" is not allowed inside a file or folder name."
-msgstr "\"{segment}\" är inte tillåtet i ett fil- eller mappnamn."
+msgstr "\"{segment}\" får inte ingå i ett fil- eller mappnamn."
 
 msgid "{count} file conflict"
 msgid_plural "{count} files conflict"
@@ -32,24 +32,24 @@ msgstr[1] "{count} filkonflikter i {dirname}"
 
 msgid "{seconds} seconds left"
 msgid_plural "{seconds} seconds left"
-msgstr[0] "{seconds} sekunder kvar"
+msgstr[0] "{seconds} sekund kvar"
 msgstr[1] "{seconds} sekunder kvar"
 
 #. TRANSLATORS time has the format 00:00:00
 msgid "{time} left"
-msgstr "{time} kvarstår"
+msgstr "{time} kvar"
 
 msgid "a few seconds left"
 msgstr "några sekunder kvar"
 
 msgid "assembling"
-msgstr "Sammanställer"
+msgstr "sammanfogar"
 
 msgid "Cancel"
 msgstr "Avbryt"
 
 msgid "Cancel the entire operation"
-msgstr "Avbryt hela operationen"
+msgstr "Avbryt hela åtgärden"
 
 msgid "Cancel uploads"
 msgstr "Avbryt uppladdningar"
@@ -61,16 +61,16 @@ msgid "Create new"
 msgstr "Skapa ny"
 
 msgid "estimating time left"
-msgstr "uppskattar kvarstående tid"
+msgstr "beräknar återstående tid"
 
 msgid "Existing version"
-msgstr "Nuvarande version"
+msgstr "Befintlig version"
 
 msgid "Failed to assemble the chunks together"
-msgstr "Misslyckades med att sammanställa delarna"
+msgstr "Det gick inte att sammanfoga delarna"
 
 msgid "Failed to upload the file"
-msgstr "Kunde inte ladda upp filen"
+msgstr "Det gick inte att ladda upp filen"
 
 msgid "Filenames must not end with \"{segment}\"."
 msgstr "Filnamn får inte sluta med \"{segment}\"."
@@ -79,14 +79,14 @@ msgid ""
 "If you select both versions, the incoming file will have a number added to "
 "its name."
 msgstr ""
-"Om du väljer båda versionerna kommer den inkommande filen att läggas till "
-"ett nummer i namnet."
+"Om du väljer båda versionerna läggs ett nummer till i namnet på den "
+"inkommande filen."
 
 msgid "Invalid filename"
 msgstr "Ogiltigt filnamn"
 
 msgid "Last modified date unknown"
-msgstr "Senaste ändringsdatum okänt"
+msgstr "Datumet för den senaste ändringen är okänt"
 
 msgid "New"
 msgstr "Ny"
@@ -101,7 +101,7 @@ msgid "paused"
 msgstr "pausad"
 
 msgid "Preview image"
-msgstr "Förhandsgranska bild"
+msgstr "Förhandsgranskningsbild"
 
 msgid "Rename"
 msgstr "Byt namn"
@@ -110,10 +110,10 @@ msgid "Select all checkboxes"
 msgstr "Markera alla kryssrutor"
 
 msgid "Select all existing files"
-msgstr "Välj alla befintliga filer"
+msgstr "Markera alla befintliga filer"
 
 msgid "Select all new files"
-msgstr "Välj alla nya filer"
+msgstr "Markera alla nya filer"
 
 msgid "Skip"
 msgstr "Hoppa över"
@@ -124,7 +124,7 @@ msgstr[0] "Hoppa över {count} fil"
 msgstr[1] "Hoppa över {count} filer"
 
 msgid "Skip this file"
-msgstr "Hoppa över denna fil"
+msgstr "Hoppa över den här filen"
 
 msgid "Unknown size"
 msgstr "Okänd storlek"
@@ -139,7 +139,7 @@ msgid "Upload folders"
 msgstr "Ladda upp mappar"
 
 msgid "Upload from device"
-msgstr "Ladda upp från enhet"
+msgstr "Ladda upp från enheten"
 
 msgid "Upload has been cancelled"
 msgstr "Uppladdningen har avbrutits"
@@ -157,14 +157,15 @@ msgid ""
 "When an incoming folder is selected, any conflicting files within it will "
 "also be overwritten."
 msgstr ""
-"När en inkommande mapp väljs skrivs även alla konfliktande filer i den över."
+"När en inkommande mapp väljs skrivs även alla filer med konflikter i den "
+"över."
 
 msgid ""
 "When an incoming folder is selected, the content is written into the "
 "existing folder and a recursive conflict resolution is performed."
 msgstr ""
 "När en inkommande mapp väljs skrivs innehållet in i den befintliga mappen "
-"och en rekursiv konfliktlösning utförs."
+"och konflikterna löses rekursivt."
 
 msgid "Which files do you want to keep?"
 msgstr "Vilka filer vill du behålla?"
@@ -173,8 +174,8 @@ msgid ""
 "You can either rename the file, skip this file or cancel the whole "
 "operation."
 msgstr ""
-"Du kan antingen byta namn på filen, hoppa över den här filen eller avbryta "
-"hela operationen."
+"Du kan antingen byta namn på filen, hoppa över den eller avbryta hela "
+"åtgärden."
 
 msgid "You need to select at least one version of each file to continue."
-msgstr "Du måste välja minst en version av varje fil för att fortsätta."
+msgstr "Du måste välja minst en version av varje fil för att kunna fortsätta."
