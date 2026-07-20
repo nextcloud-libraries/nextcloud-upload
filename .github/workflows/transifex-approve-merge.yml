@@ -13,7 +13,7 @@ jobs:
 
     steps:
       # Github actions bot approve
-      - uses: hmarr/auto-approve-action@v3
+      - uses: hmarr/auto-approve-action@v4
         with:
           github-token: ${{ secrets.COMMAND_BOT_PAT }}
 
