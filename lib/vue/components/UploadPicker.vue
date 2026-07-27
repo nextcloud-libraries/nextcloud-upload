@@ -150,6 +150,8 @@
 			:accept="accept?.join?.(', ')"
 			:multiple="multiple"
 			class="hidden-visually"
+			tabindex="-1"
+			aria-hidden="true"
 			data-cy-upload-picker-input
 			type="file"
 			@change="onPick">
