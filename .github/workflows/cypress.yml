@@ -107,7 +107,7 @@ jobs:
         run: npm i -g 'npm@${{ steps.versions.outputs.package-manager-version }}'
 
       - name: Run ${{ startsWith(matrix.containers, 'component') && 'component' || 'E2E' }} cypress tests
-        uses: cypress-io/github-action@783cb3f07983868532cabaedaa1e6c00ff4786a8 # v7.1.9
+        uses: cypress-io/github-action@fa4a118725a8f001170d49631ea89e5d66fee626 # v7.4.1
         with:
           record: ${{ secrets.CYPRESS_RECORD_KEY && true }} # zizmor: ignore[secrets-outside-env]
           parallel: ${{ secrets.CYPRESS_RECORD_KEY && true }} # zizmor: ignore[secrets-outside-env]
