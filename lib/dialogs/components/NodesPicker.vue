@@ -6,71 +6,54 @@
 	<fieldset class="node-picker__wrapper" :data-cy-conflict-picker-fieldset="existing.basename">
 		<legend>{{ existing.basename }}</legend>
 
-		<!-- Incoming file -->
-		<NcCheckboxRadioSwitch :checked="isChecked(incoming, newSelected)"
-			:required="!isEnoughSelected"
-			:data-cy-conflict-picker-input-incoming="existing.basename"
-			@update:checked="onUpdateIncomingChecked">
-			<span class="node-picker node-picker--incoming">
-				<!-- Icon or preview -->
-				<template v-if="!incomingPreview">
-					<FolderSvg v-if="isFolder(incoming)" class="node-picker__icon" :size="48" />
-					<FileSvg v-else class="node-picker__icon" :size="48" />
-				</template>
-				<img v-else
-					class="node-picker__preview"
-					:src="incomingPreview"
-					:alt="t('Preview image')"
-					loading="lazy">
-
-				<!-- Description -->
-				<span class="node-picker__desc">
-					<span class="node-picker__name">{{ t('New version') }}</span>
-					<NcDateTime v-if="incomingLastModified"
-						:timestamp="incomingLastModified"
-						:relative-time="false"
-						:format="{ timeStyle: 'short', dateStyle: 'medium' }"
-						class="node-picker__mtime" />
-					<span v-else class="node-picker__mtime">
-						{{ t('Last modified date unknown') }}
-					</span>
-					<span class="node-picker__size">{{ incomingSize }}</span>
-				</span>
-			</span>
-		</NcCheckboxRadioSwitch>
-
 		<!-- Existing file -->
-		<NcCheckboxRadioSwitch :checked="isChecked(existing, oldSelected)"
+		<NcCheckboxRadioSwitch v-if="!isSingle"
+			:checked="isChecked(existing, oldSelected)"
 			:required="!isEnoughSelected"
 			:data-cy-conflict-picker-input-existing="existing.basename"
 			@update:checked="onUpdateExistingChecked">
-			<span class="node-picker node-picker--existing">
-				<!-- Icon or preview -->
-				<template v-if="!existingPreview">
-					<FolderSvg v-if="isFolder(existing)" class="node-picker__icon" :size="48" />
-					<FileSvg v-else class="node-picker__icon" :size="48" />
-				</template>
-				<img v-else
-					class="node-picker__preview"
-					:src="existingPreview"
-					:alt="t('Preview image')"
-					loading="lazy">
-
-				<!-- Description -->
-				<span class="node-picker__desc">
-					<span class="node-picker__name">{{ t('Existing version') }}</span>
-					<NcDateTime v-if="existingLastModified"
-						:timestamp="existingLastModified"
-						:relative-time="false"
-						:format="{ timeStyle: 'short', dateStyle: 'medium' }"
-						class="node-picker__mtime" />
-					<span v-else class="node-picker__mtime">
-						{{ t('Last modified date unknown') }}
-					</span>
-					<span class="node-picker__size">{{ size(existing) }}</span>
-				</span>
-			</span>
+			<NodePickerCard :preview="existingPreview"
+				:mtime="existingLastModified"
+				:size="existingSize"
+				:is-folder="isFolder(existing)"
+				:label="t('Existing version')"
+				:bold-date="existingNewer"
+				:bold-size="existingLarger" />
 		</NcCheckboxRadioSwitch>
+		<NodePickerCard v-else
+			:preview="existingPreview"
+			:mtime="existingLastModified"
+			:size="existingSize"
+			:is-folder="isFolder(existing)"
+			:label="t('Existing version')"
+			:bold-date="existingNewer"
+			:bold-size="existingLarger" />
+
+		<!-- Points from the existing to the new version -->
+		<ArrowRight class="node-picker__arrow" :size="20" />
+
+		<!-- Incoming file -->
+		<NcCheckboxRadioSwitch v-if="!isSingle"
+			:checked="isChecked(incoming, newSelected)"
+			:required="!isEnoughSelected"
+			:data-cy-conflict-picker-input-incoming="existing.basename"
+			@update:checked="onUpdateIncomingChecked">
+			<NodePickerCard :preview="incomingPreview"
+				:mtime="incomingLastModified"
+				:size="incomingSize"
+				:is-folder="isFolder(incoming)"
+				:label="t('New version')"
+				:bold-date="incomingNewer"
+				:bold-size="incomingLarger" />
+		</NcCheckboxRadioSwitch>
+		<NodePickerCard v-else
+			:preview="incomingPreview"
+			:mtime="incomingLastModified"
+			:size="incomingSize"
+			:is-folder="isFolder(incoming)"
+			:label="t('New version')"
+			:bold-date="incomingNewer"
+			:bold-size="incomingLarger" />
 	</fieldset>
 </template>
 
@@ -79,16 +62,15 @@ import type { Node } from '@nextcloud/files'
 import type { PropType } from 'vue'
 
 import { defineComponent } from 'vue'
-import { formatFileSize, FileType } from '@nextcloud/files'
+import { FileType } from '@nextcloud/files'
 import { generateUrl } from '@nextcloud/router'
 
-import FileSvg from 'vue-material-design-icons/File.vue'
-import FolderSvg from 'vue-material-design-icons/Folder.vue'
-import NcDateTime from '@nextcloud/vue/dist/Components/NcDateTime.js'
+import ArrowRight from 'vue-material-design-icons/ArrowRight.vue'
 import NcCheckboxRadioSwitch from '@nextcloud/vue/dist/Components/NcCheckboxRadioSwitch.js'
 
 import { isFileSystemEntry, isFileSystemFileEntry } from '../../utils/filesystem.ts'
 import { t } from '../../utils/l10n.ts'
+import NodePickerCard from './NodePickerCard.vue'
 
 const PREVIEW_SIZE = 64
 
@@ -96,10 +78,9 @@ export default defineComponent({
 	name: 'NodesPicker',
 
 	components: {
-		FileSvg,
-		FolderSvg,
+		ArrowRight,
 		NcCheckboxRadioSwitch,
-		NcDateTime,
+		NodePickerCard,
 	},
 
 	props: {
@@ -118,6 +99,15 @@ export default defineComponent({
 		oldSelected: {
 			type: Array as PropType<Node[]>,
 			required: true,
+		},
+
+		/**
+		 * Single file mode: show both versions without checkboxes.
+		 * The parent offers "Keep both" and "Replace" buttons instead.
+		 */
+		isSingle: {
+			type: Boolean,
+			default: false,
 		},
 	},
 
@@ -155,11 +145,8 @@ export default defineComponent({
 			return this.lastModified(this.incomingFile)
 		},
 
-		incomingSize(): string {
-			if (!this.incomingFile) {
-				return t('Unknown size')
-			}
-			return this.size(this.incomingFile)
+		incomingSize(): number | null {
+			return this.incomingFile?.size ?? null
 		},
 
 		existingPreview() {
@@ -168,6 +155,24 @@ export default defineComponent({
 
 		existingLastModified() {
 			return this.lastModified(this.existing)
+		},
+
+		existingSize(): number | null {
+			return this.existing.size ?? null
+		},
+
+		// Highlight the more recent date and the bigger size to ease comparison
+		incomingNewer(): boolean {
+			return this.isBigger(this.incomingLastModified?.getTime(), this.existingLastModified?.getTime())
+		},
+		existingNewer(): boolean {
+			return this.isBigger(this.existingLastModified?.getTime(), this.incomingLastModified?.getTime())
+		},
+		incomingLarger(): boolean {
+			return this.isBigger(this.incomingSize, this.existingSize)
+		},
+		existingLarger(): boolean {
+			return this.isBigger(this.existingSize, this.incomingSize)
 		},
 	},
 
@@ -194,17 +199,23 @@ export default defineComponent({
 	},
 
 	methods: {
+		/**
+		 * Both values need to be known, otherwise there is nothing to compare.
+		 * @param value the value to highlight if it is the bigger one
+		 * @param other the value to compare against
+		 */
+		isBigger(value?: number | null, other?: number | null): boolean {
+			if (!value || !other) {
+				return false
+			}
+			return value > other
+		},
+
 		lastModified(node: File|Node): Date | null {
 			const lastModified = node instanceof File
 				? new Date(node.lastModified)
 				: node.mtime
 			return lastModified ?? null
-		},
-		size(node: File|Node): string {
-			if (node.size) {
-				return formatFileSize(node.size, true)
-			}
-			return t('Unknown size')
 		},
 		previewUrl(node: File|Node) {
 			if (node instanceof File) {
@@ -301,8 +312,6 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-$height: 64px;
-
 .node-picker__wrapper {
 	// last fieldset does not have a border
 	&:not(:last-of-type) {
@@ -310,39 +319,13 @@ $height: 64px;
 	}
 }
 
-.node-picker {
-	display: flex;
-	align-items: center;
-	height: $height;
+.node-picker__arrow {
+	justify-self: center;
+	color: var(--color-text-maxcontrast);
+}
 
-	&__icon, &__preview {
-		height: $height;
-		width: $height;
-		margin: 0 var(--secondary-margin);
-		display: block;
-		flex: 0 0 $height;
-	}
-
-	&__icon {
-		color: var(--color-text-maxcontrast);
-
-		&.folder-icon {
-			color: var(--color-primary-element);
-		}
-	}
-
-	&__preview {
-		overflow: hidden;
-		border-radius: calc(var(--border-radius) * 2);
-		object-fit: cover;
-	}
-
-	&__desc {
-		display: flex;
-		flex-direction: column;
-		span {
-			white-space: nowrap;
-		}
-	}
+// The arrow points from the existing to the new version
+[dir="rtl"] .node-picker__arrow {
+	transform: scaleX(-1);
 }
 </style>
