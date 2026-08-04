@@ -15,13 +15,15 @@
 		<div class="conflict-picker__header">
 			<!-- Description -->
 			<p id="conflict-picker-description" class="conflict-picker__description">
-				{{ t('Which files do you want to keep?') }}<br>
-				{{ t('If you select both versions, the incoming file will have a number added to its name.') }}<br>
+				{{ descriptionParts.before }}<strong>{{ folderName }}</strong>{{ descriptionParts.after }}<br>
+				<template v-if="!isSingle">
+					{{ t('Existing files and folders will be deleted if not selected. If both are chosen, they will be renamed.') }}<br>
+				</template>
 				<template v-if="recursiveUpload">
-					{{ t('When an incoming folder is selected, the content is written into the existing folder and a recursive conflict resolution is performed.') }}
+					{{ t('When a new folder is selected, the content is written into the existing folder and a recursive conflict resolution is performed.') }}
 				</template>
 				<template v-else>
-					{{ t('When an incoming folder is selected, any conflicting files within it will also be overwritten.') }}
+					{{ t('When a new folder is selected, any conflicting files within it will also be overwritten.') }}
 				</template>
 			</p>
 		</div>
@@ -32,20 +34,21 @@
 			aria-labelledby="conflict-picker-description"
 			data-cy-conflict-picker-form
 			@submit.prevent.stop="onSubmit">
-			<!-- Select all checkboxes -->
-			<fieldset class="conflict-picker__all" data-cy-conflict-picker-fieldset="all">
+			<!-- Column headings, the select all checkboxes are only useful with multiple files -->
+			<fieldset v-if="!isSingle" class="conflict-picker__all" data-cy-conflict-picker-fieldset="all">
 				<legend class="hidden-visually">
 					{{ t('Select all checkboxes') }}
 				</legend>
-				<NcCheckboxRadioSwitch v-bind="selectAllNewBind"
-					data-cy-conflict-picker-input-incoming="all"
-					@update:checked="onSelectAllNew">
-					{{ t('Select all new files') }}
-				</NcCheckboxRadioSwitch>
 				<NcCheckboxRadioSwitch v-bind="selectAllOldBind"
 					data-cy-conflict-picker-input-existing="all"
 					@update:checked="onSelectAllOld">
-					{{ t('Select all existing files') }}
+					{{ t('Existing files') }}
+				</NcCheckboxRadioSwitch>
+				<span />
+				<NcCheckboxRadioSwitch v-bind="selectAllNewBind"
+					data-cy-conflict-picker-input-incoming="all"
+					@update:checked="onSelectAllNew">
+					{{ t('New files') }}
 				</NcCheckboxRadioSwitch>
 			</fieldset>
 
@@ -55,6 +58,7 @@
 				:key="node.fileid"
 				:incoming="conflicts[index]"
 				:existing="files[index]"
+				:is-single="isSingle"
 				:new-selected.sync="newSelected"
 				:old-selected.sync="oldSelected" />
 		</form>
@@ -67,35 +71,48 @@
 				data-cy-conflict-picker-cancel
 				type="tertiary"
 				@click="onCancel">
-				<template #icon>
-					<Close :size="20" />
-				</template>
 				{{ t('Cancel') }}
 			</NcButton>
 
 			<!-- Align right -->
 			<span class="dialog__actions-separator" />
 
-			<NcButton :aria-label="skipButtonLabel"
-				data-cy-conflict-picker-skip
-				@click="onSkip">
-				<template #icon>
-					<Close :size="20" />
-				</template>
-				{{ skipButtonLabel }}
-			</NcButton>
-			<NcButton :aria-label="t('Continue')"
-				:class="{ 'button-vue--disabled': !isEnoughSelected}"
-				:title="isEnoughSelected ? '' : blockedTitle"
-				data-cy-conflict-picker-submit
-				native-type="submit"
-				type="primary"
-				@click.stop.prevent="onSubmit">
-				<template #icon>
-					<ArrowRight :size="20" />
-				</template>
-				{{ t('Continue') }}
-			</NcButton>
+			<!-- Single file: keep both versions or replace the existing one -->
+			<template v-if="isSingle">
+				<NcButton :aria-label="t('Keep both')"
+					data-cy-conflict-picker-keep-both
+					type="secondary"
+					@click="onKeepBoth">
+					{{ t('Keep both') }}
+				</NcButton>
+				<NcButton :aria-label="t('Replace')"
+					data-cy-conflict-picker-submit
+					type="primary"
+					@click="onReplace">
+					{{ t('Replace') }}
+				</NcButton>
+			</template>
+
+			<!-- Multiple files: skip them all or continue with the selection -->
+			<template v-else>
+				<NcButton :aria-label="skipButtonLabel"
+					data-cy-conflict-picker-skip
+					@click="onSkip">
+					{{ skipButtonLabel }}
+				</NcButton>
+				<NcButton :aria-label="t('Continue')"
+					:class="{ 'button-vue--disabled': !isEnoughSelected}"
+					:title="isEnoughSelected ? '' : blockedTitle"
+					data-cy-conflict-picker-submit
+					native-type="submit"
+					type="primary"
+					@click.stop.prevent="onSubmit">
+					<template #icon>
+						<ArrowRight :size="20" />
+					</template>
+					{{ t('Continue') }}
+				</NcButton>
+			</template>
 		</template>
 	</NcDialog>
 </template>
@@ -108,9 +125,9 @@ import type { ConflictResolutionResult } from '../openConflictPicker.ts'
 import { defineComponent } from 'vue'
 import { showError } from '@nextcloud/dialogs'
 import { getUniqueName } from '@nextcloud/files'
+import { basename } from '@nextcloud/paths'
 
 import ArrowRight from 'vue-material-design-icons/ArrowRight.vue'
-import Close from 'vue-material-design-icons/Close.vue'
 import NcCheckboxRadioSwitch from '@nextcloud/vue/dist/Components/NcCheckboxRadioSwitch.js'
 import NcDialog from '@nextcloud/vue/dist/Components/NcDialog.js'
 import NcButton from '@nextcloud/vue/dist/Components/NcButton.js'
@@ -127,7 +144,6 @@ export default defineComponent({
 
 	components: {
 		ArrowRight,
-		Close,
 		NcButton,
 		NcCheckboxRadioSwitch,
 		NcDialog,
@@ -135,7 +151,7 @@ export default defineComponent({
 	},
 
 	props: {
-		/** Directory/context file name */
+		/** Directory with the conflicts, its name is shown in the description */
 		dirname: {
 			type: String,
 			default: '',
@@ -184,19 +200,35 @@ export default defineComponent({
 
 	computed: {
 		name() {
-			if (this?.dirname?.trim?.() !== '') {
-				return n('{count} file conflict in {dirname}', '{count} file conflicts in {dirname}', this.conflicts.length, {
-					count: this.conflicts.length,
-					dirname: this.dirname,
-				})
-			}
-			return n('{count} file conflict', '{count} files conflict', this.conflicts.length, { count: this.conflicts.length })
+			return this.isSingle
+				? t('Select file to keep')
+				: t('Select files to keep')
 		},
 
+		/**
+		 * A single conflict does not need checkboxes,
+		 * "Keep both" and "Replace" cover both options.
+		 */
+		isSingle(): boolean {
+			return this.conflicts.length === 1
+		},
+
+		// Only the folder name, the root folder is called "All files" in the Files app
+		folderName(): string {
+			return basename(this.dirname ?? '') || t('All files')
+		},
+
+		// Split on the placeholder so the folder name can be shown in bold
+		descriptionParts(): { before: string, after: string } {
+			const message = this.isSingle
+				? t('An item with the same name already exists in {dirname}.')
+				: t('Items with the same name already exist in {dirname}, select which to keep.')
+			const [before, after = ''] = message.split('{dirname}')
+			return { before, after }
+		},
+
+		// Only shown for multiple conflicts, a single one is handled by "Keep both"/"Replace"
 		skipButtonLabel() {
-			if (this.conflicts.length === 1) {
-				return t('Skip this file')
-			}
 			return n('Skip {count} file', 'Skip {count} files', this.conflicts.length, { count: this.conflicts.length })
 		},
 
@@ -276,6 +308,9 @@ export default defineComponent({
 			throw error
 		}
 
+		// Preselect the new files so the user can continue right away
+		this.newSelected = this.conflicts
+
 		// Successful initialisation
 		logger.debug('ConflictPicker initialised', { files: this.files, conflicts: this.conflicts, content: this.content })
 	},
@@ -293,6 +328,24 @@ export default defineComponent({
 				selected: [],
 				renamed: [],
 			} as ConflictResolutionResult<File>)
+		},
+
+		/**
+		 * Single file: only keep the new file, the existing one is overwritten.
+		 */
+		onReplace() {
+			this.newSelected = this.conflicts
+			this.oldSelected = []
+			this.onSubmit()
+		},
+
+		/**
+		 * Single file: keep both, so the new file is uploaded under a new name.
+		 */
+		onKeepBoth() {
+			this.newSelected = this.conflicts
+			this.oldSelected = this.files
+			this.onSubmit()
 		},
 
 		onSubmit() {
@@ -405,6 +458,8 @@ export default defineComponent({
 .conflict-picker {
 	--margin: 36px;
 	--secondary-margin: 18px;
+	// shared width of the middle arrow column, so headings and entries line up
+	--arrow-column: 44px;
 
 	&__header {
 		position: sticky;
@@ -425,16 +480,20 @@ export default defineComponent({
 
 	fieldset {
 		display: grid;
+		align-items: center;
 		width: 100%;
 		margin-top: calc(var(--secondary-margin) * 1.5);
 		padding-bottom: var(--secondary-margin);
-		grid-template-columns: 1fr 1fr;
+		grid-template-columns: 1fr var(--arrow-column) 1fr;
 
 		:deep(legend) {
 			display: flex;
 			align-items: center;
+			grid-column: 1 / -1;
 			width: 100%;
 			margin-bottom: calc(var(--secondary-margin) / 2);
+			// The legend names the file both versions belong to
+			font-weight: bold;
 		}
 
 		&.conflict-picker__all {
@@ -466,6 +525,8 @@ export default defineComponent({
 	:deep(.dialog__actions) {
 		width: auto;
 		margin-inline: 12px;
+		// Match the 24px the buttons have on the sides
+		margin-block-end: calc(var(--default-grid-baseline) * 6);
 		span.dialog__actions-separator {
 			margin-left: auto;
 		}
@@ -486,6 +547,11 @@ export default defineComponent({
 			&.conflict-picker__all {
 				position: static;
 			}
+		}
+
+		// The versions are stacked, so an arrow pointing right makes no sense
+		:deep(.node-picker__arrow) {
+			display: none;
 		}
 	}
 }
