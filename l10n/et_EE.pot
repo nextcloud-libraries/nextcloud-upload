@@ -19,16 +19,6 @@ msgstr "„{segment}“ on keelatud failitüüp."
 msgid "\"{segment}\" is not allowed inside a file or folder name."
 msgstr "„{segment}“ pole faili- või kausta nimes lubatud."
 
-msgid "{count} file conflict"
-msgid_plural "{count} files conflict"
-msgstr[0] "{count} fail on vastuolus"
-msgstr[1] "{count} faili on vastuolus"
-
-msgid "{count} file conflict in {dirname}"
-msgid_plural "{count} file conflicts in {dirname}"
-msgstr[0] "{count} fail on vastuolus „{dirname}“ kaustas"
-msgstr[1] "{count} faili on vastuolus „{dirname}“ kaustas"
-
 msgid "{seconds} seconds left"
 msgid_plural "{seconds} seconds left"
 msgstr[0] "jäänud {seconds} sekund"
@@ -40,6 +30,12 @@ msgstr "aega jäänud {time} "
 
 msgid "a few seconds left"
 msgstr "jäänud mõni sekund"
+
+msgid "All files"
+msgstr "Kõik failid"
+
+msgid "An item with the same name already exists in {dirname}."
+msgstr "„{dirname}“ kaustas juba on olemas sama nimega objekt."
 
 msgid "assembling"
 msgstr "koostamisel"
@@ -62,6 +58,16 @@ msgstr "Loo uus"
 msgid "estimating time left"
 msgstr "hinnanguline järelejäänud aeg"
 
+msgid "Existing files"
+msgstr "Olemasolevad failid"
+
+msgid ""
+"Existing files and folders will be deleted if not selected. If both are "
+"chosen, they will be renamed."
+msgstr ""
+"Kui nad just pole valitud, siis olemasolevad failid ja kaustad kustutatakse."
+" Kui mõlemad on valitud, siis nende nimed muutuvad."
+
 msgid "Existing version"
 msgstr "Olemasolev versioon"
 
@@ -74,14 +80,17 @@ msgstr "Faili üleslaadimine ei õnnestunud"
 msgid "Filenames must not end with \"{segment}\"."
 msgstr "Failinime lõpus ei tohi olla „{segment}“."
 
-msgid ""
-"If you select both versions, the incoming file will have a number added to "
-"its name."
-msgstr ""
-"Kui sa valid mõlemad versioonid, lisatakse kopeeritud faili nimele number."
-
 msgid "Invalid filename"
 msgstr "Vigane failinimi"
+
+msgid ""
+"Items with the same name already exist in {dirname}, select which to keep."
+msgstr ""
+"„{dirname}“ kaustas juba on olemas sama nimega objekte, vali mida tahad "
+"neist säilitada."
+
+msgid "Keep both"
+msgstr "Säilita mõlemad"
 
 msgid "Last modified date unknown"
 msgstr "Viimase muutmise kuupäev pole teada"
@@ -92,26 +101,29 @@ msgstr "Uus"
 msgid "New filename"
 msgstr "Uus failinimi"
 
+msgid "New files"
+msgstr "Uued failid"
+
 msgid "New version"
 msgstr "Uus versioon"
 
 msgid "paused"
 msgstr "pausil"
 
-msgid "Preview image"
-msgstr "Vaata pildi eelvaadet"
-
 msgid "Rename"
 msgstr "Muuda nime"
+
+msgid "Replace"
+msgstr "Asenda"
 
 msgid "Select all checkboxes"
 msgstr "Vali kõik märkeruudud"
 
-msgid "Select all existing files"
-msgstr "Vali kõik olemasolevad failid"
+msgid "Select file to keep"
+msgstr "Vali säilitatav fail"
 
-msgid "Select all new files"
-msgstr "Vali kõik uued failid"
+msgid "Select files to keep"
+msgstr "Vali säilitatavad failid"
 
 msgid "Skip"
 msgstr "Jäta vahele"
@@ -120,9 +132,6 @@ msgid "Skip {count} file"
 msgid_plural "Skip {count} files"
 msgstr[0] "Jäta vahele {count} fail"
 msgstr[1] "Jäta vahele {count} faili"
-
-msgid "Skip this file"
-msgstr "Jäta see fail vahele"
 
 msgid "Unknown size"
 msgstr "Tundmatu suurus"
@@ -152,21 +161,18 @@ msgid "Upload progress"
 msgstr "Üleslaadimise edenemine"
 
 msgid ""
-"When an incoming folder is selected, any conflicting files within it will "
-"also be overwritten."
+"When a new folder is selected, any conflicting files within it will also be "
+"overwritten."
 msgstr ""
-"Kui saabuvate failide kaust on valitud, siis seal asuvad vastuoluliste "
-"nimedega failid kirjutatakse samuti üle."
+"Kui uus kaust on valitud, siis seal asuvad vastuoluliste nimedega failid "
+"kirjutatakse samuti üle."
 
 msgid ""
-"When an incoming folder is selected, the content is written into the "
-"existing folder and a recursive conflict resolution is performed."
+"When a new folder is selected, the content is written into the existing "
+"folder and a recursive conflict resolution is performed."
 msgstr ""
-"Kui saabuvate failide kaust on valitud, siis sisu kirjutatakse "
-"olemasolevasse kausta ja käivitatakse rekursiivne vastuolude haldus."
-
-msgid "Which files do you want to keep?"
-msgstr "Milliseid faile soovid säilitada?"
+"Kui uus kaust on valitud, siis sisu kirjutatakse olemasolevasse kausta ja "
+"käivitatakse rekursiivne vastuolude haldus."
 
 msgid ""
 "You can either rename the file, skip this file or cancel the whole "
