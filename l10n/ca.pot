@@ -1,12 +1,12 @@
-# 
 # Translators:
 # Joas Schilling, 2024
 # v v <e670006006@gmail.com>, 2025
 # Leandro Navarro <leandro@pangea.org>, 2025
+# Communia Coop, 2026
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Leandro Navarro <leandro@pangea.org>, 2025\n"
+"Last-Translator: Communia Coop, 2026\n"
 "Language-Team: Catalan (https://app.transifex.com/nextcloud/teams/64236/ca/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: ca\n"
@@ -21,16 +21,6 @@ msgstr "\"{segment}\" és un tipus de fitxer prohibit."
 msgid "\"{segment}\" is not allowed inside a file or folder name."
 msgstr "\"{segment}\" no és permès dins del nom de fitxer o carpeta."
 
-msgid "{count} file conflict"
-msgid_plural "{count} files conflict"
-msgstr[0] "{count}fitxer en conflicte"
-msgstr[1] "{count} fitxer en conflicte"
-
-msgid "{count} file conflict in {dirname}"
-msgid_plural "{count} file conflicts in {dirname}"
-msgstr[0] "{count} conflicte de fitxers a {dirname}"
-msgstr[1] "{count} conflictes de fitxers a {dirname}"
-
 msgid "{seconds} seconds left"
 msgid_plural "{seconds} seconds left"
 msgstr[0] "{seconds} segon restant"
@@ -42,6 +32,12 @@ msgstr "Queden {time}"
 
 msgid "a few seconds left"
 msgstr "queden uns segons"
+
+msgid "All files"
+msgstr "Tots els fitxers"
+
+msgid "An item with the same name already exists in {dirname}."
+msgstr "Un element amb el mateix nom ja existeix a {dirname}."
 
 msgid "assembling"
 msgstr "assemblatge"
@@ -64,6 +60,16 @@ msgstr "Crea nou"
 msgid "estimating time left"
 msgstr "s’està estimant el temps restant"
 
+msgid "Existing files"
+msgstr "Fitxers existents"
+
+msgid ""
+"Existing files and folders will be deleted if not selected. If both are "
+"chosen, they will be renamed."
+msgstr ""
+"Els fitxers i carpetes existents s'eliminaran si no se seleccionen. Si tots "
+"dos són escollits, canviaran el nom."
+
 msgid "Existing version"
 msgstr "Existing version"
 
@@ -76,15 +82,17 @@ msgstr "No s'ha pogut pujar el fitxer"
 msgid "Filenames must not end with \"{segment}\"."
 msgstr "Els noms de fitxer no han d'acabar en \"{segment}\"."
 
-msgid ""
-"If you select both versions, the incoming file will have a number added to "
-"its name."
-msgstr ""
-"Si seleccioneu les dues versions, el fitxer entrant tindrà un número afegit "
-"al seu nom."
-
 msgid "Invalid filename"
 msgstr "Nom de fitxer no vàlid"
+
+msgid ""
+"Items with the same name already exist in {dirname}, select which to keep."
+msgstr ""
+"Els elements amb el mateix nom ja existeixen a {dirname}, selecciona quins "
+"conservar."
+
+msgid "Keep both"
+msgstr "Mantenir ambdós"
 
 msgid "Last modified date unknown"
 msgstr "Data de la darrera modificació desconeguda"
@@ -95,26 +103,29 @@ msgstr "Nou"
 msgid "New filename"
 msgstr "Nou nom de fitxer"
 
+msgid "New files"
+msgstr "Fitxers nous"
+
 msgid "New version"
 msgstr "Nova versió"
 
 msgid "paused"
 msgstr "en pausa"
 
-msgid "Preview image"
-msgstr "Imatge de vista prèvia"
-
 msgid "Rename"
 msgstr "Canviar el nom"
+
+msgid "Replace"
+msgstr "Substitueix"
 
 msgid "Select all checkboxes"
 msgstr "Seleccioneu totes les caselles de selecció"
 
-msgid "Select all existing files"
-msgstr "Seleccioneu tots els fitxers existents"
+msgid "Select file to keep"
+msgstr "Selecciona el fitxer a conservar"
 
-msgid "Select all new files"
-msgstr "Seleccioneu tots el fitxers nous"
+msgid "Select files to keep"
+msgstr "Selecciona els fitxers a conservar"
 
 msgid "Skip"
 msgstr "Saltar"
@@ -123,9 +134,6 @@ msgid "Skip {count} file"
 msgid_plural "Skip {count} files"
 msgstr[0] "Omet {count} fitxer"
 msgstr[1] "Omet {count} fitxers"
-
-msgid "Skip this file"
-msgstr "Omet aquest fitxer"
 
 msgid "Unknown size"
 msgstr "Mida desconeguda"
@@ -155,21 +163,18 @@ msgid "Upload progress"
 msgstr "Procés de pujada"
 
 msgid ""
-"When an incoming folder is selected, any conflicting files within it will "
-"also be overwritten."
+"When a new folder is selected, any conflicting files within it will also be "
+"overwritten."
 msgstr ""
-"Quan es selecciona una carpeta d'entrada, també es sobreescriuran els "
-"fitxers en conflicte dins d'ella."
+"Quan se selecciona una nova carpeta, també es sobreescriuran els fitxers en "
+"conflicte dins d'ella."
 
 msgid ""
-"When an incoming folder is selected, the content is written into the "
-"existing folder and a recursive conflict resolution is performed."
+"When a new folder is selected, the content is written into the existing "
+"folder and a recursive conflict resolution is performed."
 msgstr ""
-"Quan es selecciona una carpeta d'entrada, el contingut s'escriu a la carpeta"
-" existent i es realitza una resolució recursiva de conflictes."
-
-msgid "Which files do you want to keep?"
-msgstr "Quins fitxers vols conservar?"
+"Quan se selecciona una nova carpeta, el contingut s'escriu a la carpeta "
+"existent i es realitza una resolució recursiva de conflictes."
 
 msgid ""
 "You can either rename the file, skip this file or cancel the whole "
