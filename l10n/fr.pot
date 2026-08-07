@@ -1,17 +1,16 @@
-# 
 # Translators:
 # Joas Schilling, 2024
-# Benoit Pruneau, 2024
+# 208d9eb321757f3a38fdaa69b7b9e31b_3b9055c, 2024
 # JEEEEEEEEEEEEEEEEEEEEEED, 2024
 # Jérôme HERBINET, 2024
 # acazenave, 2024
 # Lisa Cintosh, 2025
-# Ldm Public <ldmpub@gmail.com>, 2025
 # Caro Leviia, 2025
+# Xavier, 2026
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Caro Leviia, 2025\n"
+"Last-Translator: Xavier, 2026\n"
 "Language-Team: French (https://app.transifex.com/nextcloud/teams/64236/fr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: fr\n"
@@ -27,18 +26,6 @@ msgid "\"{segment}\" is not allowed inside a file or folder name."
 msgstr ""
 "\"{segment}\" n'est pas autorisé dans le nom d'un fichier ou d'un dossier."
 
-msgid "{count} file conflict"
-msgid_plural "{count} files conflict"
-msgstr[0] "{count} fichier en conflit"
-msgstr[1] "{count} fichiers en conflit"
-msgstr[2] "{count} fichiers en conflit"
-
-msgid "{count} file conflict in {dirname}"
-msgid_plural "{count} file conflicts in {dirname}"
-msgstr[0] "{count} fichier en conflit dans {dirname}"
-msgstr[1] "{count} fichiers en conflit dans {dirname}"
-msgstr[2] "{count} fichiers en conflit dans {dirname}"
-
 msgid "{seconds} seconds left"
 msgid_plural "{seconds} seconds left"
 msgstr[0] "{seconds} seconde restante"
@@ -51,6 +38,12 @@ msgstr "{time} restant"
 
 msgid "a few seconds left"
 msgstr "quelques secondes restantes"
+
+msgid "All files"
+msgstr "Tous les fichiers"
+
+msgid "An item with the same name already exists in {dirname}."
+msgstr "Un élément avec le même nom existe déjà dans {dirname}."
 
 msgid "assembling"
 msgstr "assemblage"
@@ -73,6 +66,16 @@ msgstr "Créer un nouveau"
 msgid "estimating time left"
 msgstr "estimation du temps restant"
 
+msgid "Existing files"
+msgstr "Fichiers existants"
+
+msgid ""
+"Existing files and folders will be deleted if not selected. If both are "
+"chosen, they will be renamed."
+msgstr ""
+"Les fichiers et dossiers existants seront supprimés s'ils ne sont pas "
+"sélectionnés. Si les deux sont choisis, ils seront renommés."
+
 msgid "Existing version"
 msgstr "Version existante"
 
@@ -85,15 +88,17 @@ msgstr "Échec de téléversement du fichier"
 msgid "Filenames must not end with \"{segment}\"."
 msgstr "Les noms des fichiers ne doivent pas terminer par \"{segment}\"."
 
-msgid ""
-"If you select both versions, the incoming file will have a number added to "
-"its name."
-msgstr ""
-"Si vous sélectionnez les deux versions, un numéro sera ajouté au nom du "
-"fichier entrant."
-
 msgid "Invalid filename"
 msgstr "Nom de fichier invalide"
+
+msgid ""
+"Items with the same name already exist in {dirname}, select which to keep."
+msgstr ""
+"Des éléments avec des noms identiques existent déjà dans {dirname}, "
+"sélectionnez ceux à garder."
+
+msgid "Keep both"
+msgstr "Garder les deux"
 
 msgid "Last modified date unknown"
 msgstr "Date de la dernière modification inconnue"
@@ -104,26 +109,29 @@ msgstr "Nouveau"
 msgid "New filename"
 msgstr "Nouveau nom de fichier"
 
+msgid "New files"
+msgstr "Nouveaux fichiers"
+
 msgid "New version"
 msgstr "Nouvelle version"
 
 msgid "paused"
 msgstr "en pause"
 
-msgid "Preview image"
-msgstr "Aperçu de l'image"
-
 msgid "Rename"
 msgstr "Renommer"
+
+msgid "Replace"
+msgstr "Remplacer"
 
 msgid "Select all checkboxes"
 msgstr "Sélectionner toutes les cases à cocher"
 
-msgid "Select all existing files"
-msgstr "Sélectionner tous les fichiers existants"
+msgid "Select file to keep"
+msgstr "Sélectionner le fichier à garder"
 
-msgid "Select all new files"
-msgstr "Sélectionner tous les nouveaux fichiers"
+msgid "Select files to keep"
+msgstr "Sélectionner les fichiers à garder"
 
 msgid "Skip"
 msgstr "Ignorer"
@@ -133,9 +141,6 @@ msgid_plural "Skip {count} files"
 msgstr[0] "{count} fichier ignoré"
 msgstr[1] "{count} fichiers ignorés"
 msgstr[2] "{count} fichiers ignorés"
-
-msgid "Skip this file"
-msgstr "Ignorer ce fichier"
 
 msgid "Unknown size"
 msgstr "Taille inconnue"
@@ -165,21 +170,18 @@ msgid "Upload progress"
 msgstr "Progression du téléversement"
 
 msgid ""
-"When an incoming folder is selected, any conflicting files within it will "
-"also be overwritten."
+"When a new folder is selected, any conflicting files within it will also be "
+"overwritten."
 msgstr ""
-"Lorsqu'un dossier entrant est sélectionné, tous les fichiers en conflit "
+"Lorsqu'un nouveau dossier est sélectionné, tous les fichiers en conflit "
 "qu'il contient seront également écrasés."
 
 msgid ""
-"When an incoming folder is selected, the content is written into the "
-"existing folder and a recursive conflict resolution is performed."
+"When a new folder is selected, the content is written into the existing "
+"folder and a recursive conflict resolution is performed."
 msgstr ""
-"Lorsqu'un dossier entrant est sélectionné, le contenu est ajouté dans le "
+"Lorsqu'un nouveau dossier est sélectionné, le contenu est écrit dans le "
 "dossier existant et une résolution récursive des conflits est effectuée."
-
-msgid "Which files do you want to keep?"
-msgstr "Quels fichiers souhaitez-vous conserver ?"
 
 msgid ""
 "You can either rename the file, skip this file or cancel the whole "
