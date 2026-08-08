@@ -1,10 +1,9 @@
-# 
 # Translators:
-# Aindriú Mac Giolla Eoin, 2025
+# Aindriú Mac Giolla Eoin, 2026
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Aindriú Mac Giolla Eoin, 2025\n"
+"Last-Translator: Aindriú Mac Giolla Eoin, 2026\n"
 "Language-Team: Irish (https://app.transifex.com/nextcloud/teams/64236/ga/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: ga\n"
@@ -18,22 +17,6 @@ msgstr "Is cineál comhaid toirmiscthe é \"{segment}\"."
 
 msgid "\"{segment}\" is not allowed inside a file or folder name."
 msgstr "Ní cheadaítear \"{segment}\" taobh istigh d'ainm comhaid nó fillteáin."
-
-msgid "{count} file conflict"
-msgid_plural "{count} files conflict"
-msgstr[0] "{count} coimhlint comhaid"
-msgstr[1] "{count} coimhlintí comhaid"
-msgstr[2] "{count} coimhlintí comhaid"
-msgstr[3] "{count} coimhlintí comhaid"
-msgstr[4] "{count} coimhlintí comhaid"
-
-msgid "{count} file conflict in {dirname}"
-msgid_plural "{count} file conflicts in {dirname}"
-msgstr[0] "{count} coimhlint comhaid i {dirname}"
-msgstr[1] "{count} coimhlintí comhaid i {dirname}"
-msgstr[2] "{count} coimhlintí comhaid i {dirname}"
-msgstr[3] "{count} coimhlintí comhaid i {dirname}"
-msgstr[4] "{count} coimhlintí comhaid i {dirname}"
 
 msgid "{seconds} seconds left"
 msgid_plural "{seconds} seconds left"
@@ -49,6 +32,12 @@ msgstr "{time} fágtha"
 
 msgid "a few seconds left"
 msgstr "cúpla soicind fágtha"
+
+msgid "All files"
+msgstr "Gach comhad"
+
+msgid "An item with the same name already exists in {dirname}."
+msgstr "Tá mír leis an ainm céanna ann cheana féin i {dirname}."
 
 msgid "assembling"
 msgstr "ag cur le chéile"
@@ -71,6 +60,16 @@ msgstr "Cruthaigh nua"
 msgid "estimating time left"
 msgstr "ag déanamh meastachán ar an am atá fágtha"
 
+msgid "Existing files"
+msgstr "Comhaid atá ann cheana"
+
+msgid ""
+"Existing files and folders will be deleted if not selected. If both are "
+"chosen, they will be renamed."
+msgstr ""
+"Scriosfar comhaid agus fillteáin atá ann cheana mura roghnaítear iad. Má "
+"roghnaítear an dá cheann, athainmneofar iad."
+
 msgid "Existing version"
 msgstr "Leagan láithreach "
 
@@ -83,15 +82,17 @@ msgstr "Theip ar uaslódáil an chomhaid"
 msgid "Filenames must not end with \"{segment}\"."
 msgstr "Níor cheart go gcríochnaíonn comhaid chomhad le \"{segment}\"."
 
-msgid ""
-"If you select both versions, the incoming file will have a number added to "
-"its name."
-msgstr ""
-"Má roghnaíonn tú an dá leagan, cuirfear uimhir leis an ainm a thagann "
-"isteach."
-
 msgid "Invalid filename"
 msgstr "Ainm comhaid neamhbhailí"
+
+msgid ""
+"Items with the same name already exist in {dirname}, select which to keep."
+msgstr ""
+"Tá míreanna leis an ainm céanna ann cheana féin i {dirname}, roghnaigh cé "
+"acu is mian leat a choinneáil."
+
+msgid "Keep both"
+msgstr "Coinnigh an dá cheann"
 
 msgid "Last modified date unknown"
 msgstr "Dáta modhnaithe is déanaí anaithnid"
@@ -102,26 +103,29 @@ msgstr "Nua"
 msgid "New filename"
 msgstr "Ainm comhaid nua"
 
+msgid "New files"
+msgstr "Comhaid nua"
+
 msgid "New version"
 msgstr "Leagan nua"
 
 msgid "paused"
 msgstr "sos"
 
-msgid "Preview image"
-msgstr "Íomhá réamhamharc"
-
 msgid "Rename"
 msgstr "Athainmnigh"
+
+msgid "Replace"
+msgstr "Athsholáthair"
 
 msgid "Select all checkboxes"
 msgstr "Roghnaigh gach ticbhosca"
 
-msgid "Select all existing files"
-msgstr "Roghnaigh gach comhad atá ann cheana féin"
+msgid "Select file to keep"
+msgstr "Roghnaigh comhad le coinneáil"
 
-msgid "Select all new files"
-msgstr "Roghnaigh gach comhad nua"
+msgid "Select files to keep"
+msgstr "Roghnaigh comhaid le coinneáil"
 
 msgid "Skip"
 msgstr "Scipeáil"
@@ -133,9 +137,6 @@ msgstr[1] "Léim thar {count} comhad"
 msgstr[2] "Léim thar {count} comhad"
 msgstr[3] "Léim thar {count} comhad"
 msgstr[4] "Léim thar {count} comhad"
-
-msgid "Skip this file"
-msgstr "Seachain an comhad seo"
 
 msgid "Unknown size"
 msgstr "Méid anaithnid"
@@ -165,21 +166,19 @@ msgid "Upload progress"
 msgstr "Uaslódáil dul chun cinn"
 
 msgid ""
-"When an incoming folder is selected, any conflicting files within it will "
-"also be overwritten."
+"When a new folder is selected, any conflicting files within it will also be "
+"overwritten."
 msgstr ""
-"Nuair a roghnaítear fillteán isteach, déanfar aon chomhad contrártha "
-"laistigh de a fhorscríobh freisin."
+"Nuair a roghnaítear fillteán nua, déanfar aon chomhaid contrártha ann a "
+"athscríobh freisin."
 
 msgid ""
-"When an incoming folder is selected, the content is written into the "
-"existing folder and a recursive conflict resolution is performed."
+"When a new folder is selected, the content is written into the existing "
+"folder and a recursive conflict resolution is performed."
 msgstr ""
-"Nuair a roghnaítear fillteán isteach, scríobhtar an t-ábhar isteach san "
-"fhillteán atá ann cheana agus déantar réiteach coinbhleachta athchúrsach."
-
-msgid "Which files do you want to keep?"
-msgstr "Cé na comhaid ar mhaith leat a choinneáil?"
+"Nuair a roghnaítear fillteán nua, scríobhtar an t-ábhar isteach san "
+"fhillteán atá ann cheana féin agus déantar réiteach coinbhleachta "
+"athchúrsach."
 
 msgid ""
 "You can either rename the file, skip this file or cancel the whole "
