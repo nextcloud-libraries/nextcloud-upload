@@ -1,11 +1,10 @@
-# 
 # Translators:
 # Joas Schilling, 2024
-# O St, 2025
+# O St, 2026
 # 
 msgid ""
 msgstr ""
-"Last-Translator: O St, 2025\n"
+"Last-Translator: O St, 2026\n"
 "Language-Team: Ukrainian (https://app.transifex.com/nextcloud/teams/64236/uk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: uk\n"
@@ -20,20 +19,6 @@ msgstr "\"{segment}\" недозволений тип файлу."
 msgid "\"{segment}\" is not allowed inside a file or folder name."
 msgstr "\"{segment}\" недозволене сполучення символів в назві файлу або каталогу."
 
-msgid "{count} file conflict"
-msgid_plural "{count} files conflict"
-msgstr[0] "{count} конфліктний файл"
-msgstr[1] "{count} конфліктних файли"
-msgstr[2] "{count} конфліктних файлів"
-msgstr[3] "{count} конфліктних файлів"
-
-msgid "{count} file conflict in {dirname}"
-msgid_plural "{count} file conflicts in {dirname}"
-msgstr[0] "{count} конфліктний файл у каталозі {dirname}"
-msgstr[1] "{count} конфліктних файли у каталозі {dirname}"
-msgstr[2] "{count} конфліктних файлів у каталозі {dirname}"
-msgstr[3] "{count} конфліктних файлів у каталозі {dirname}"
-
 msgid "{seconds} seconds left"
 msgid_plural "{seconds} seconds left"
 msgstr[0] "{seconds} секунда залишилася"
@@ -47,6 +32,12 @@ msgstr "Залишилося {time}"
 
 msgid "a few seconds left"
 msgstr "залишилося кілька секунд"
+
+msgid "All files"
+msgstr "Всі файли"
+
+msgid "An item with the same name already exists in {dirname}."
+msgstr "Об'єкт з таким ім'ям присутній у {dirname}."
 
 msgid "assembling"
 msgstr "збірка"
@@ -69,6 +60,16 @@ msgstr "Створити новий"
 msgid "estimating time left"
 msgstr "оцінка часу, що залишився"
 
+msgid "Existing files"
+msgstr "Присутні файли"
+
+msgid ""
+"Existing files and folders will be deleted if not selected. If both are "
+"chosen, they will be renamed."
+msgstr ""
+"Присутні файли та каталоги буде вилучено, якщо не вибрано. Якщо вибрано "
+"обидва, то їх буде перейменовано."
+
 msgid "Existing version"
 msgstr "Присутня версія"
 
@@ -81,14 +82,17 @@ msgstr "Не вдалося завантажити файл"
 msgid "Filenames must not end with \"{segment}\"."
 msgstr "Ім'я файлів не можуть закінчуватися на \"{segment}\"."
 
-msgid ""
-"If you select both versions, the incoming file will have a number added to "
-"its name."
-msgstr ""
-"Якщо буде вибрано обидві версії, до імени вхідного файлу було додано цифру."
-
 msgid "Invalid filename"
 msgstr "Недійсне ім'я файлу"
+
+msgid ""
+"Items with the same name already exist in {dirname}, select which to keep."
+msgstr ""
+"Об'єкти з тотожнім ім'ям присутні у {dirname}, виберіть, які потрібно "
+"зберегти."
+
+msgid "Keep both"
+msgstr "Зберегти обидва"
 
 msgid "Last modified date unknown"
 msgstr "Дата останньої зміни невідома"
@@ -99,26 +103,29 @@ msgstr "Нове"
 msgid "New filename"
 msgstr "Нове ім'я файлу"
 
+msgid "New files"
+msgstr "Нові файли"
+
 msgid "New version"
 msgstr "Нова версія"
 
 msgid "paused"
 msgstr "призупинено"
 
-msgid "Preview image"
-msgstr "Попередній перегляд"
-
 msgid "Rename"
 msgstr "Перейменувати"
+
+msgid "Replace"
+msgstr "Замінити"
 
 msgid "Select all checkboxes"
 msgstr "Вибрати все"
 
-msgid "Select all existing files"
-msgstr "Вибрати усі присутні файли"
+msgid "Select file to keep"
+msgstr "Виберіть файл, який потрібно зберегти"
 
-msgid "Select all new files"
-msgstr "Вибрати усі нові файли"
+msgid "Select files to keep"
+msgstr "Виберіть файли, які потрібно зберегти"
 
 msgid "Skip"
 msgstr "Пропустити"
@@ -129,9 +136,6 @@ msgstr[0] "Пропустити {count} файл"
 msgstr[1] "Пропустити {count} файли"
 msgstr[2] "Пропустити {count} файлів"
 msgstr[3] "Пропустити {count} файлів"
-
-msgid "Skip this file"
-msgstr "Пропустити цей файл"
 
 msgid "Unknown size"
 msgstr "Невідомий розмір"
@@ -161,21 +165,17 @@ msgid "Upload progress"
 msgstr "Поступ завантаження"
 
 msgid ""
-"When an incoming folder is selected, any conflicting files within it will "
-"also be overwritten."
+"When a new folder is selected, any conflicting files within it will also be "
+"overwritten."
 msgstr ""
-"Усі конфліктні файли у вибраному каталозі призначення буде перезаписано "
-"поверх."
+"Якщо вибрано новий каталог, всі файли з конфліктами буде також перезаписано."
 
 msgid ""
-"When an incoming folder is selected, the content is written into the "
-"existing folder and a recursive conflict resolution is performed."
+"When a new folder is selected, the content is written into the existing "
+"folder and a recursive conflict resolution is performed."
 msgstr ""
-"Якщо буде вибрано вхідний каталог, вміст буде записано до наявного каталогу "
-"та вирішено конфлікти у відповідних файлах каталогу та підкаталогів."
-
-msgid "Which files do you want to keep?"
-msgstr "Які файли залишити?"
+"Якщо вибрано новий каталог, всі об'єкти буде записано до цього каталогу, "
+"застосовано рекурсивне розв'язання конфліктів."
 
 msgid ""
 "You can either rename the file, skip this file or cancel the whole "
