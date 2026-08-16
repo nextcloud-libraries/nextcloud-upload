@@ -180,7 +180,7 @@ msgid ""
 "You can either rename the file, skip this file or cancel the whole "
 "operation."
 msgstr ""
-"Je kunt het bestand ofwel hernoemen, dit bestand overslaan of de hele "
+"Je kunt het bestand een andere naam geven, dit bestand overslaan of de hele "
 "bewerking annuleren."
 
 msgid "You need to select at least one version of each file to continue."
