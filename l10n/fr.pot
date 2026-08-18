@@ -2,15 +2,15 @@
 # Joas Schilling, 2024
 # 208d9eb321757f3a38fdaa69b7b9e31b_3b9055c, 2024
 # JEEEEEEEEEEEEEEEEEEEEEED, 2024
-# Jérôme HERBINET, 2024
 # acazenave, 2024
 # Lisa Cintosh, 2025
 # Caro Leviia, 2025
 # Xavier, 2026
+# Jérôme HERBINET, 2026
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Xavier, 2026\n"
+"Last-Translator: Jérôme HERBINET, 2026\n"
 "Language-Team: French (https://app.transifex.com/nextcloud/teams/64236/fr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: fr\n"
@@ -138,9 +138,9 @@ msgstr "Ignorer"
 
 msgid "Skip {count} file"
 msgid_plural "Skip {count} files"
-msgstr[0] "{count} fichier ignoré"
-msgstr[1] "{count} fichiers ignorés"
-msgstr[2] "{count} fichiers ignorés"
+msgstr[0] "Ignorer {count} fichier"
+msgstr[1] "Ignorer ces {count} fichiers"
+msgstr[2] "Ignorer ces {count} fichiers"
 
 msgid "Unknown size"
 msgstr "Taille inconnue"
