@@ -4,6 +4,23 @@
 -->
 # Changelog
 
+## [v1.12.0](https://github.com/nextcloud-libraries/nextcloud-upload/tree/v1.12.0) \(2026-09-02\)
+
+### Added
+
+* Simplify the file conflict dialog [\#2151](https://github.com/nextcloud-libraries/nextcloud-upload/pull/2151) \([jancborchardt](https://github.com/jancborchardt)\)
+
+### Fixed
+
+* fix: add response to upload when assembling chunks [\#2092](https://github.com/nextcloud-libraries/nextcloud-upload/pull/2092) \([Antreesy](https://github.com/Antreesy)\)
+* fix: InvalidFilenameDialog value binding, test exclusions, and CI flakes [\#2107](https://github.com/nextcloud-libraries/nextcloud-upload/pull/2107) \([skjnldsv](https://github.com/skjnldsv)\)
+
+### Changed
+
+* Update upload icon, use outlined variant for upload-folder [\#2099](https://github.com/nextcloud-libraries/nextcloud-upload/pull/2099) \([AndyScherzinger](https://github.com/AndyScherzinger)\)
+* fix: prevent file upload input from receiving keyboard tab focus [\#2138](https://github.com/nextcloud-libraries/nextcloud-upload/pull/2138) \([kristian-zendato](https://github.com/kristian-zendato)\)
+* Updates for project Nextcloud upload library [\#2021](https://github.com/nextcloud-libraries/nextcloud-upload/pull/2021), [\#2024](https://github.com/nextcloud-libraries/nextcloud-upload/pull/2024), [\#2031](https://github.com/nextcloud-libraries/nextcloud-upload/pull/2031), [\#2033](https://github.com/nextcloud-libraries/nextcloud-upload/pull/2033), [\#2049](https://github.com/nextcloud-libraries/nextcloud-upload/pull/2049), [\#2058](https://github.com/nextcloud-libraries/nextcloud-upload/pull/2058), [\#2086](https://github.com/nextcloud-libraries/nextcloud-upload/pull/2086), [\#2154](https://github.com/nextcloud-libraries/nextcloud-upload/pull/2154), [\#2155](https://github.com/nextcloud-libraries/nextcloud-upload/pull/2155), [\#2156](https://github.com/nextcloud-libraries/nextcloud-upload/pull/2156), [\#2157](https://github.com/nextcloud-libraries/nextcloud-upload/pull/2157), [\#2158](https://github.com/nextcloud-libraries/nextcloud-upload/pull/2158), [\#2160](https://github.com/nextcloud-libraries/nextcloud-upload/pull/2160), [\#2164](https://github.com/nextcloud-libraries/nextcloud-upload/pull/2164), [\#2166](https://github.com/nextcloud-libraries/nextcloud-upload/pull/2166), [\#2172](https://github.com/nextcloud-libraries/nextcloud-upload/pull/2172), [\#2176](https://github.com/nextcloud-libraries/nextcloud-upload/pull/2176) \([transifex-integration[bot]](https://github.com/transifex-integration[bot])\)
+
 ## [v1.11.1](https://github.com/nextcloud-libraries/nextcloud-upload/tree/v1.11.1) \(2026-01-14\)
 
 ### Fixed
