@@ -107,15 +107,26 @@
 			</template>
 		</NcActions>
 
+		<!-- Stable live region (do not remount — SRs announce text changes on an existing node). -->
+		<div class="hidden-visually"
+			role="status"
+			aria-live="polite"
+			aria-atomic="true"
+			data-cy-upload-picker-status>
+			{{ statusMessage }}
+		</div>
+
 		<!-- Progressbar and status -->
 		<div v-show="isUploading" class="upload-picker__progress">
 			<NcProgressBar :aria-label="t('Upload progress')"
 				:aria-describedby="progressTimeId"
+				:aria-valuetext="progressValueText"
 				data-cy-upload-picker-progress
 				:error="hasFailure"
 				:value="uploadManager.eta.progress"
 				size="medium" />
-			<p :id="progressTimeId" data-cy-upload-picker-progress-label>
+			<p :id="progressTimeId"
+				data-cy-upload-picker-progress-label>
 				<span v-if="isPaused">
 					{{ t('paused') }}
 				</span>
@@ -164,7 +175,7 @@ import type { PropType } from 'vue'
 import type { Upload } from '../../upload.ts'
 
 import { defineComponent } from 'vue'
-import { Folder, NewMenuEntryCategory, getNewFileMenuEntries } from '@nextcloud/files'
+import { Folder, NewMenuEntryCategory, formatFileSize, getNewFileMenuEntries } from '@nextcloud/files'
 // @ts-expect-error missing types
 import { useHotKey } from '@nextcloud/vue/dist/Composables/useHotKey.js'
 
@@ -184,7 +195,7 @@ import IconUpload from 'vue-material-design-icons/TrayArrowUp.vue'
 import { getUploader } from '../../getUploader.ts'
 import { UploaderStatus } from '../../uploader/uploader.ts'
 import { Status as UploadStatus } from '../../upload.ts'
-import { t } from '../../utils/l10n.ts'
+import { n, t } from '../../utils/l10n.ts'
 import { uploadConflictHandler } from '../../dialogs/utils/uploadConflictHandler.ts'
 import logger from '../../utils/logger.ts'
 
@@ -273,6 +284,7 @@ export default defineComponent({
 
 	setup() {
 		return {
+			n,
 			t,
 
 			// non reactive data / properties
@@ -285,6 +297,15 @@ export default defineComponent({
 			newFileMenuEntries: [] as Entry[],
 			openedMenu: false,
 			uploadManager: getUploader(),
+			/**
+			 * Bumps when the upload queue changes so computed state re-evaluates
+			 * (Uploader queue mutations are not always tracked by Vue).
+			 */
+			queueRevision: 0,
+			/** Last progress percentage committed to the live region */
+			lastAnnouncedProgress: -1,
+			/** Live-region message for start / progress / completion */
+			statusMessage: '',
 		}
 	},
 
@@ -310,6 +331,8 @@ export default defineComponent({
 		},
 
 		queue(): Upload[] {
+			// Depend on queueRevision so Vue re-reads the uploader queue after mutations
+			void this.queueRevision
 			return this.uploadManager.queue as Upload[]
 		},
 
@@ -319,8 +342,16 @@ export default defineComponent({
 		isAssembling(): boolean {
 			return this.queue.some((upload: Upload) => upload.status === UploadStatus.ASSEMBLING)
 		},
+		/**
+		 * True while uploads are actively in progress.
+		 * Finished / failed / cancelled items do not keep the progress UI visible.
+		 */
 		isUploading(): boolean {
-			return this.queue.some((upload: Upload) => upload.status !== UploadStatus.CANCELLED)
+			return this.queue.some((upload: Upload) => [
+				UploadStatus.INITIALIZED,
+				UploadStatus.UPLOADING,
+				UploadStatus.ASSEMBLING,
+			].includes(upload.status))
 		},
 		isOnlyAssembling(): boolean {
 			return this.isAssembling
@@ -342,6 +373,23 @@ export default defineComponent({
 
 		haveMenu(): boolean {
 			return !((this.noMenu || this.newFileMenuEntries.length === 0) && !this.canUploadFolders)
+		},
+
+		/**
+		 * Human-readable progress value for the progressbar (name / role / value).
+		 */
+		progressValueText(): string {
+			const progress = Math.round(this.uploadManager.eta.progress)
+			const totalSize = this.queue
+				.filter((upload: Upload) => upload.size > 0)
+				.reduce((sum: number, upload: Upload) => sum + upload.size, 0)
+			if (totalSize > 0) {
+				return t('Upload progress: {progress}%, total size {size}', {
+					progress,
+					size: formatFileSize(totalSize),
+				})
+			}
+			return t('Upload progress: {progress}%', { progress })
 		},
 	},
 
@@ -374,8 +422,11 @@ export default defineComponent({
 			this.setDestination(this.destination)
 		}
 
-		// Update data on upload progress
+		// Update data on upload progress / completion
 		this.uploadManager.addNotifier(this.onUploadCompletion)
+		// Eta fires `update` from Uploader.updateStats() on every upload progress callback
+		this.uploadManager.eta.addEventListener('update', this.onEtaUpdate)
+		this.uploadManager.eta.addEventListener('reset', this.onEtaReset)
 
 		// Register hotkeys
 		useHotKey('u', this.onKeyDown, {
@@ -392,6 +443,11 @@ export default defineComponent({
 		logger.debug('UploadPicker initialised')
 	},
 
+	beforeDestroy() {
+		this.uploadManager.eta.removeEventListener('update', this.onEtaUpdate)
+		this.uploadManager.eta.removeEventListener('reset', this.onEtaReset)
+	},
+
 	methods: {
 		etaTimeAndSpeed(): string {
 			const speed = this.uploadManager.eta.speedReadable
@@ -401,6 +457,100 @@ export default defineComponent({
 			return this.uploadManager.eta.timeReadable
 		},
 
+		/**
+		 * Update the status live region (same DOM node, new text).
+		 *
+		 * @param message Message to announce
+		 */
+		commitStatusMessage(message: string) {
+			if (message === this.statusMessage) {
+				return
+			}
+			this.statusMessage = message
+		},
+
+		/**
+		 * Announce upload start for the selected device files (name + size).
+		 * @param files Files chosen in the file picker
+		 */
+		announceUploadStart(files: File[]) {
+			const totalSize = files.reduce((sum, file) => sum + file.size, 0)
+			const sizeLabel = totalSize > 0 ? formatFileSize(totalSize) : ''
+
+			let message = t('Upload started')
+			if (files.length === 1) {
+				message = sizeLabel
+					? t('Upload started: {name} ({size})', { name: files[0].name, size: sizeLabel })
+					: t('Upload started: {name}', { name: files[0].name })
+			} else if (files.length > 1) {
+				message = sizeLabel
+					? n('Upload started: {count} file ({size})', 'Upload started: {count} files ({size})', files.length, { count: files.length, size: sizeLabel })
+					: n('Upload started: {count} file', 'Upload started: {count} files', files.length, { count: files.length })
+			}
+			this.lastAnnouncedProgress = -1
+			this.commitStatusMessage(message)
+		},
+
+		announceUploadProgress() {
+			const progress = Math.round(this.uploadManager.eta.progress)
+			if (progress <= 0 || progress === this.lastAnnouncedProgress) {
+				return
+			}
+
+			// First tick, each new 25% step, or 100%
+			const crossedBucket = this.lastAnnouncedProgress < 0
+				|| progress >= 100
+				|| Math.floor(progress / 25) > Math.floor(this.lastAnnouncedProgress / 25)
+			if (!crossedBucket) {
+				return
+			}
+
+			this.lastAnnouncedProgress = progress
+			const totalSize = this.queue
+				.filter((upload: Upload) => upload.size > 0)
+				.reduce((sum: number, upload: Upload) => sum + upload.size, 0)
+			const message = totalSize > 0
+				? t('Upload progress: {progress}%, total size {size}', {
+					progress,
+					size: formatFileSize(totalSize),
+				})
+				: t('Upload progress: {progress}%', { progress })
+
+			this.commitStatusMessage(message)
+		},
+
+		announceUploadFinished(uploads: Upload[]) {
+			const finished = uploads.filter((upload) => upload.status === UploadStatus.FINISHED && upload.size > 0)
+			let message = t('Upload finished')
+			if (finished.length === 1) {
+				message = t('Upload of "{name}" finished', { name: finished[0].file.name })
+			} else if (finished.length > 1) {
+				message = n(
+					'Upload finished: {count} file uploaded',
+					'Upload finished: {count} files uploaded',
+					finished.length,
+					{ count: finished.length },
+				)
+			} else if (uploads.length === 0) {
+				message = t('Upload has been skipped')
+			}
+			this.commitStatusMessage(message)
+			this.lastAnnouncedProgress = -1
+		},
+
+		onEtaUpdate() {
+			this.queueRevision++
+			if (!this.isPaused) {
+				this.announceUploadProgress()
+			}
+		},
+
+		onEtaReset() {
+			this.queueRevision++
+			if (!this.isUploading) {
+				this.lastAnnouncedProgress = -1
+			}
+		},
 		/**
 		 * Handle clicking a new-menu entry
 		 * @param entry The entry that was clicked
@@ -440,13 +590,17 @@ export default defineComponent({
 		async onPick() {
 			const input = this.$refs.input as HTMLInputElement
 			const files = input.files ? Array.from(input.files) : []
+			this.announceUploadStart(files)
 
 			try {
-				await this.uploadManager
+				const uploads = await this.uploadManager
 					.batchUpload('', files, uploadConflictHandler(this.getContent))
+				this.announceUploadFinished(uploads)
 			} catch (error) {
 				logger.debug('Error while uploading', { error })
+				this.commitStatusMessage(t('Upload has been cancelled'))
 			} finally {
+				this.queueRevision++
 				this.resetForm()
 			}
 		},
@@ -463,6 +617,8 @@ export default defineComponent({
 			this.uploadManager.queue.forEach((upload: Upload) => {
 				upload.cancel()
 			})
+			this.commitStatusMessage(t('Upload has been cancelled'))
+			this.queueRevision++
 			this.resetForm()
 		},
 
@@ -479,6 +635,7 @@ export default defineComponent({
 		},
 
 		onUploadCompletion(upload: Upload) {
+			this.queueRevision++
 			if (upload.status === UploadStatus.FAILED) {
 				this.$emit('failed', upload)
 			} else {
