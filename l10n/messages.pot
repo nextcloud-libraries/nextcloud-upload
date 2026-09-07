@@ -127,6 +127,14 @@ msgstr ""
 msgid "Upload files"
 msgstr ""
 
+msgid "Upload finished"
+msgstr ""
+
+msgid "Upload finished: {count} file uploaded"
+msgid_plural "Upload finished: {count} files uploaded"
+msgstr[0] ""
+msgstr[1] ""
+
 msgid "Upload folders"
 msgstr ""
 
@@ -142,7 +150,35 @@ msgstr ""
 msgid "Upload of \"{folder}\" has been skipped"
 msgstr ""
 
+msgid "Upload of \"{name}\" finished"
+msgstr ""
+
 msgid "Upload progress"
+msgstr ""
+
+msgid "Upload progress: {progress}%"
+msgstr ""
+
+msgid "Upload progress: {progress}%, total size {size}"
+msgstr ""
+
+msgid "Upload started"
+msgstr ""
+
+msgid "Upload started: {count} file"
+msgid_plural "Upload started: {count} files"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Upload started: {count} file ({size})"
+msgid_plural "Upload started: {count} files ({size})"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Upload started: {name}"
+msgstr ""
+
+msgid "Upload started: {name} ({size})"
 msgstr ""
 
 msgid "When a new folder is selected, any conflicting files within it will also be overwritten."
