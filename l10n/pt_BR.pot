@@ -146,6 +146,15 @@ msgstr "Fazer upload"
 msgid "Upload files"
 msgstr "Fazer upload de arquivos"
 
+msgid "Upload finished"
+msgstr "Upload concluído"
+
+msgid "Upload finished: {count} file uploaded"
+msgid_plural "Upload finished: {count} files uploaded"
+msgstr[0] "Upload concluído: Foi carregado {count} arquivo"
+msgstr[1] "Upload concluído: Foram carregados {count} de arquivos"
+msgstr[2] "Upload concluído: Foram carregados {count} arquivos"
+
 msgid "Upload folders"
 msgstr "Fazer upload de pastas"
 
@@ -161,8 +170,38 @@ msgstr "O upload foi pulado"
 msgid "Upload of \"{folder}\" has been skipped"
 msgstr "O upload de \"{folder}\" foi pulado"
 
+msgid "Upload of \"{name}\" finished"
+msgstr "Upload de “{name}” concluído"
+
 msgid "Upload progress"
 msgstr "Progresso de upload"
+
+msgid "Upload progress: {progress}%"
+msgstr "Progresso do upload: {progress}%"
+
+msgid "Upload progress: {progress}%, total size {size}"
+msgstr "Progresso do upload: {progress}%, tamanho total: {size}"
+
+msgid "Upload started"
+msgstr "Upload iniciado "
+
+msgid "Upload started: {count} file"
+msgid_plural "Upload started: {count} files"
+msgstr[0] "Upload iniciado: {count} arquivo"
+msgstr[1] "Upload iniciado: {count} de arquivos"
+msgstr[2] "Upload iniciado: {count} arquivos"
+
+msgid "Upload started: {count} file ({size})"
+msgid_plural "Upload started: {count} files ({size})"
+msgstr[0] "Upload iniciado: {count} arquivo ({size})"
+msgstr[1] "Upload iniciado: {count} de arquivos ({size})"
+msgstr[2] "Upload iniciado: {count} arquivos ({size})"
+
+msgid "Upload started: {name}"
+msgstr "Upload iniciado: {name}"
+
+msgid "Upload started: {name} ({size})"
+msgstr "Upload iniciado: {name} ({size})"
 
 msgid ""
 "When a new folder is selected, any conflicting files within it will also be "
