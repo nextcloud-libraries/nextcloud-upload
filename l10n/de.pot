@@ -145,6 +145,14 @@ msgstr "Hochladen"
 msgid "Upload files"
 msgstr "Dateien hochladen"
 
+msgid "Upload finished"
+msgstr "Hochladen abgeschlossen"
+
+msgid "Upload finished: {count} file uploaded"
+msgid_plural "Upload finished: {count} files uploaded"
+msgstr[0] "Hochladen abgeschlossen: {count} Datei wurde hochgeladen"
+msgstr[1] "Hochladen abgeschlossen: {count} Dateien wurden hochgeladen"
+
 msgid "Upload folders"
 msgstr "Ordner hochladen"
 
@@ -160,8 +168,36 @@ msgstr "Das Hochladen wurde übersprungen"
 msgid "Upload of \"{folder}\" has been skipped"
 msgstr "Das Hochladen von \"{folder}\" wurde übersprungen"
 
+msgid "Upload of \"{name}\" finished"
+msgstr "Hochladen von \"{name}\" fertiggestellt"
+
 msgid "Upload progress"
 msgstr "Fortschritt beim Hochladen"
+
+msgid "Upload progress: {progress}%"
+msgstr "Fortschritt beim Hochladen: {progress}%"
+
+msgid "Upload progress: {progress}%, total size {size}"
+msgstr "Fortschritt beim Hochladen: {progress}%, Gesamtgröße {size}"
+
+msgid "Upload started"
+msgstr "Hochladen gestartet"
+
+msgid "Upload started: {count} file"
+msgid_plural "Upload started: {count} files"
+msgstr[0] "Hochladen gestartet: {count} Datei"
+msgstr[1] "Hochladen gestartet: {count} Dateien"
+
+msgid "Upload started: {count} file ({size})"
+msgid_plural "Upload started: {count} files ({size})"
+msgstr[0] "Hochladen gestartet: {count} Datei ({size})"
+msgstr[1] "Hochladen gestartet: {count} Dateien ({size})"
+
+msgid "Upload started: {name}"
+msgstr "Hochladen gestartet: {name}"
+
+msgid "Upload started: {name} ({size})"
+msgstr "Hochladen gestartet: {name} ({size})"
 
 msgid ""
 "When a new folder is selected, any conflicting files within it will also be "
