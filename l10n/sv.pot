@@ -143,6 +143,14 @@ msgstr "Ladda upp"
 msgid "Upload files"
 msgstr "Ladda upp filer"
 
+msgid "Upload finished"
+msgstr "Uppladdningen är klar"
+
+msgid "Upload finished: {count} file uploaded"
+msgid_plural "Upload finished: {count} files uploaded"
+msgstr[0] "Uppladdningen är klar: {count} fil uppladdad"
+msgstr[1] "Uppladdningen är klar: {count} filer uppladdade"
+
 msgid "Upload folders"
 msgstr "Ladda upp mappar"
 
@@ -158,8 +166,36 @@ msgstr "Uppladdningen har hoppats över"
 msgid "Upload of \"{folder}\" has been skipped"
 msgstr "Uppladdningen av \"{folder}\" har hoppats över"
 
+msgid "Upload of \"{name}\" finished"
+msgstr "Uppladdningen av \"{name}\" är klar"
+
 msgid "Upload progress"
 msgstr "Uppladdningsförlopp"
+
+msgid "Upload progress: {progress}%"
+msgstr "Uppladdningens förlopp: {progress} %"
+
+msgid "Upload progress: {progress}%, total size {size}"
+msgstr "Uppladdningens förlopp: {progress} %, total storlek {size}"
+
+msgid "Upload started"
+msgstr "Uppladdningen har startat"
+
+msgid "Upload started: {count} file"
+msgid_plural "Upload started: {count} files"
+msgstr[0] "Uppladdningen har startat: {count} fil"
+msgstr[1] "Uppladdningen har startat: {count} filer"
+
+msgid "Upload started: {count} file ({size})"
+msgid_plural "Upload started: {count} files ({size})"
+msgstr[0] "Uppladdningen har startat: {count} fil ({size})"
+msgstr[1] "Uppladdningen har startat: {count} filer ({size})"
+
+msgid "Upload started: {name}"
+msgstr "Uppladdningen har startat: {name}"
+
+msgid "Upload started: {name} ({size})"
+msgstr "Uppladdningen har startat: {name} ({size})"
 
 msgid ""
 "When a new folder is selected, any conflicting files within it will also be "
