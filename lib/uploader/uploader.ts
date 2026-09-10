@@ -146,7 +146,7 @@ export class Uploader {
 	 * Unset a custom header
 	 * @param name The header to unset
 	 */
-	deleteCustomerHeader(name: string): void {
+	deleteCustomHeader(name: string): void {
 		delete this._customHeaders[name]
 	}
 
