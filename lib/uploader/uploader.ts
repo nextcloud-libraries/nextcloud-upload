@@ -295,10 +295,14 @@ export class Uploader {
 		}
 
 		return new PCancelable(async (resolve, reject, onCancel) => {
+			// `getUploader()` returns a shared uploader instance whose destination
+			// can change while this batch awaits conflict resolution or queued work.
+			// Keep this batch bound to the root that was active when it started.
+			const root = this.root
 			const rootFolder = new Directory('')
 			await rootFolder.addChildren(files)
 			// create a meta upload to ensure all ongoing child requests are listed
-			const target = `${this.root.replace(/\/$/, '')}/${destination.replace(/^\//, '')}`
+			const target = `${root.replace(/\/$/, '')}/${destination.replace(/^\//, '')}`
 			const upload = new Upload(target, false, 0, rootFolder)
 			upload.status = UploadStatus.UPLOADING
 			this._uploadQueue.push(upload)
@@ -306,9 +310,9 @@ export class Uploader {
 			logger.debug('Starting new batch upload', { target })
 			try {
 				// setup client with root and custom header
-				const client = davGetClient(this.root, this._customHeaders)
+				const client = davGetClient(root, this._customHeaders)
 				// Create the promise for the virtual root directory
-				const promise = this.uploadDirectory(destination, rootFolder, callback, client)
+				const promise = this.uploadDirectory(destination, rootFolder, callback, client, root)
 				// Make sure to cancel it when requested
 				onCancel(() => promise.cancel())
 				// await the uploads and resolve with "finished" status
@@ -342,9 +346,9 @@ export class Uploader {
 	 * @param directory The directory to create
 	 * @param client The cached WebDAV client
 	 */
-	private createDirectory(destination: string, directory: Directory, client: WebDAVClient): PCancelable<Upload> {
+	private createDirectory(destination: string, directory: Directory, client: WebDAVClient, root: string): PCancelable<Upload> {
 		const folderPath = normalize(`${destination}/${directory.name}`).replace(/\/$/, '')
-		const rootPath = `${this.root.replace(/\/$/, '')}/${folderPath.replace(/^\//, '')}`
+		const rootPath = `${root.replace(/\/$/, '')}/${folderPath.replace(/^\//, '')}`
 
 		if (!directory.name) {
 			throw new Error('Can not create empty directory')
@@ -396,6 +400,8 @@ export class Uploader {
 		callback: (nodes: Array<File|Directory>, currentPath: string) => Promise<Array<File|Directory>|false>,
 		// client as parameter to cache it for performance
 		client: WebDAVClient,
+		// Captured by batchUpload so recursive work cannot read a later destination.
+		root: string,
 	): PCancelable<Upload[]> {
 		const folderPath = normalize(`${destination}/${directory.name}`).replace(/\/$/, '')
 
@@ -428,16 +434,16 @@ export class Uploader {
 				if (directory.name) {
 					// If not the virtual root we need to create the directory first before uploading
 					// Make sure the promise is listed in the final result
-					uploads.push(this.createDirectory(destination, directory, client) as PCancelable<Upload>)
+					uploads.push(this.createDirectory(destination, directory, client, root) as PCancelable<Upload>)
 					// Ensure the directory is created before uploading / creating children
 					await uploads.at(-1)
 				}
 
 				for (const node of selectedForUpload) {
 					if (node instanceof Directory) {
-						directories.push(this.uploadDirectory(folderPath, node, callback, client))
+						directories.push(this.uploadDirectory(folderPath, node, callback, client, root))
 					} else {
-						uploads.push(this.upload(`${folderPath}/${node.name}`, node))
+						uploads.push(this.upload(`${folderPath}/${node.name}`, node, root))
 					}
 				}
 

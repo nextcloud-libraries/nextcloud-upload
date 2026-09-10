@@ -135,5 +135,51 @@ describe('Uploader', () => {
 			await uploader.batchUpload('/', [new File([], 'file.txt')], () => Promise.resolve([]))
 			expect(uploader.queue).toHaveLength(0)
 		})
+
+		test('keeps the initial destination when it changes during conflict resolution', async () => {
+			const uploader = new Uploader()
+			const initialRoot = uploader.root
+			const file = new File([], 'file.txt')
+
+			let startConflictResolution!: () => void
+			const conflictResolutionStarted = new Promise<void>((resolve) => {
+				startConflictResolution = resolve
+			})
+
+			let finishConflictResolution!: () => void
+			const conflictResolutionFinished = new Promise<void>((resolve) => {
+				finishConflictResolution = resolve
+			})
+
+			// Avoid a real HTTP upload. The third argument is what protects the
+			// queued file from the shared uploader's later destination change.
+			const upload = vi.spyOn(uploader, 'upload')
+				.mockResolvedValue({} as Awaited<ReturnType<Uploader['upload']>>)
+
+			const batch = uploader.batchUpload('/', [file], async (nodes) => {
+				startConflictResolution()
+				await conflictResolutionFinished
+				return nodes
+			})
+
+			// batchUpload has captured its original root but is paused in its
+			// asynchronous conflict callback, simulating navigation during upload.
+			await conflictResolutionStarted
+			uploader.destination = new nextcloudFiles.Folder({
+				owner: 'test',
+				source: 'http://cloud.example.com/remote.php/dav/files/test/other-folder',
+				root: '/files/test',
+			})
+
+			finishConflictResolution()
+			await batch
+
+			expect(upload).toHaveBeenCalledTimes(1)
+			expect(upload).toHaveBeenCalledWith(
+				expect.any(String),
+				file,
+				initialRoot,
+			)
+		})
 	})
 })
