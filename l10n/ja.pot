@@ -4,10 +4,11 @@
 # devi, 2024
 # kshimohata, 2025
 # kojima.imamura, 2026
+# Katsuhiro Shimohata, 2026
 # 
 msgid ""
 msgstr ""
-"Last-Translator: kojima.imamura, 2026\n"
+"Last-Translator: Katsuhiro Shimohata, 2026\n"
 "Language-Team: Japanese (Japan) (https://app.transifex.com/nextcloud/teams/64236/ja_JP/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: ja_JP\n"
@@ -22,14 +23,6 @@ msgstr "\"{segment}\" は禁止されているファイルタイプです。"
 msgid "\"{segment}\" is not allowed inside a file or folder name."
 msgstr "ファイルまたはフォルダ名に \"{segment}\" を含めることはできません。"
 
-msgid "{count} file conflict"
-msgid_plural "{count} files conflict"
-msgstr[0] "{count} ファイル数の競合"
-
-msgid "{count} file conflict in {dirname}"
-msgid_plural "{count} file conflicts in {dirname}"
-msgstr[0] "{dirname} で {count} 個のファイルが競合しています"
-
 msgid "{seconds} seconds left"
 msgid_plural "{seconds} seconds left"
 msgstr[0] "残り{seconds}秒"
@@ -40,6 +33,12 @@ msgstr "残り {time}"
 
 msgid "a few seconds left"
 msgstr "残り数秒"
+
+msgid "All files"
+msgstr "全てのファイル"
+
+msgid "An item with the same name already exists in {dirname}."
+msgstr "{dirname} には、同じ名前のアイテムがすでに存在します。"
 
 msgid "assembling"
 msgstr "処理中"
@@ -62,6 +61,14 @@ msgstr "新規作成"
 msgid "estimating time left"
 msgstr "概算残り時間"
 
+msgid "Existing files"
+msgstr "既存のファイル"
+
+msgid ""
+"Existing files and folders will be deleted if not selected. If both are "
+"chosen, they will be renamed."
+msgstr "既存のファイルとフォルダは、選択されていない場合、削除されます。両方を選択した場合は、名前が変更されます。"
+
 msgid "Existing version"
 msgstr "既存バージョン"
 
@@ -74,13 +81,15 @@ msgstr "ファイルのアップロードに失敗しました"
 msgid "Filenames must not end with \"{segment}\"."
 msgstr "ファイル名の末尾に \"{segment}\" を付けることはできません。"
 
-msgid ""
-"If you select both versions, the incoming file will have a number added to "
-"its name."
-msgstr "両方のバージョンを選択した場合、受信ファイルの名前に数字が追加されます。"
-
 msgid "Invalid filename"
 msgstr "無効なファイル名"
+
+msgid ""
+"Items with the same name already exist in {dirname}, select which to keep."
+msgstr "{dirname} には同じ名前の項目がすでに存在します。どちらを残すか選択してください。"
+
+msgid "Keep both"
+msgstr "両方とも残す"
 
 msgid "Last modified date unknown"
 msgstr "最終更新日不明"
@@ -91,26 +100,29 @@ msgstr "新規作成"
 msgid "New filename"
 msgstr "新しいファイル名"
 
+msgid "New files"
+msgstr "新しいファイル"
+
 msgid "New version"
 msgstr "新しいバージョン"
 
 msgid "paused"
 msgstr "一時停止中"
 
-msgid "Preview image"
-msgstr "プレビュー画像"
-
 msgid "Rename"
 msgstr "名前を変更"
+
+msgid "Replace"
+msgstr "入れ替える"
 
 msgid "Select all checkboxes"
 msgstr "すべて選択"
 
-msgid "Select all existing files"
-msgstr "すべての既存ファイルを選択"
+msgid "Select file to keep"
+msgstr "保存するファイルを選択してください"
 
-msgid "Select all new files"
-msgstr "すべての新規ファイルを選択"
+msgid "Select files to keep"
+msgstr "残すファイルを選択してください"
 
 msgid "Skip"
 msgstr "スキップ"
@@ -118,9 +130,6 @@ msgstr "スキップ"
 msgid "Skip {count} file"
 msgid_plural "Skip {count} files"
 msgstr[0] "{count} 個のファイルをスキップする"
-
-msgid "Skip this file"
-msgstr "このファイルをスキップする"
 
 msgid "Unknown size"
 msgstr "サイズ不明"
@@ -130,6 +139,13 @@ msgstr "アップロード"
 
 msgid "Upload files"
 msgstr "ファイルをアップロード"
+
+msgid "Upload finished"
+msgstr "アップロードが完了しました"
+
+msgid "Upload finished: {count} file uploaded"
+msgid_plural "Upload finished: {count} files uploaded"
+msgstr[0] "アップロード完了：{count}個のファイルがアップロードされました"
 
 msgid "Upload folders"
 msgstr "フォルダのアップロード"
@@ -146,21 +162,44 @@ msgstr "アップロードがスキップされました"
 msgid "Upload of \"{folder}\" has been skipped"
 msgstr "\"{folder}\" のアップロードがスキップされました"
 
+msgid "Upload of \"{name}\" finished"
+msgstr "\"{name}\"のアップロードが完了しました"
+
 msgid "Upload progress"
 msgstr "アップロード進行状況"
 
-msgid ""
-"When an incoming folder is selected, any conflicting files within it will "
-"also be overwritten."
-msgstr "受信フォルダが選択されると、その中の競合するファイルもすべて上書きされます。"
+msgid "Upload progress: {progress}%"
+msgstr "アップロードの進捗状況：{progress}%"
+
+msgid "Upload progress: {progress}%, total size {size}"
+msgstr "アップロードの進捗状況：{progress}%、合計サイズ {size}"
+
+msgid "Upload started"
+msgstr "アップロードが開始されました"
+
+msgid "Upload started: {count} file"
+msgid_plural "Upload started: {count} files"
+msgstr[0] "アップロード開始：{count} ファイル"
+
+msgid "Upload started: {count} file ({size})"
+msgid_plural "Upload started: {count} files ({size})"
+msgstr[0] "アップロード開始：{count} ファイル（{size}）"
+
+msgid "Upload started: {name}"
+msgstr "アップロード開始：{name}"
+
+msgid "Upload started: {name} ({size})"
+msgstr "アップロード開始：{name} ({size})"
 
 msgid ""
-"When an incoming folder is selected, the content is written into the "
-"existing folder and a recursive conflict resolution is performed."
-msgstr "受信フォルダが選択されると、その内容は既存のフォルダに書き込まれ、再帰的な競合解決が行われます。"
+"When a new folder is selected, any conflicting files within it will also be "
+"overwritten."
+msgstr "新しいフォルダーが選択されると、そのフォルダー内にある競合するファイルもすべて上書きされます。"
 
-msgid "Which files do you want to keep?"
-msgstr "どのファイルを保持しますか？"
+msgid ""
+"When a new folder is selected, the content is written into the existing "
+"folder and a recursive conflict resolution is performed."
+msgstr "新しいフォルダーが選択されると、その内容が既存のフォルダーに書き込まれ、再帰的な競合解決が行われます。"
 
 msgid ""
 "You can either rename the file, skip this file or cancel the whole "
