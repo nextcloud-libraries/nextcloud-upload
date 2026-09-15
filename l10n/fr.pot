@@ -2,29 +2,30 @@
 # Joas Schilling, 2024
 # 208d9eb321757f3a38fdaa69b7b9e31b_3b9055c, 2024
 # JEEEEEEEEEEEEEEEEEEEEEED, 2024
+# Jérôme HERBINET, 2024
 # acazenave, 2024
 # Lisa Cintosh, 2025
 # Caro Leviia, 2025
-# Jérôme HERBINET, 2026
 # Xavier, 2026
+# Yohan HARROCH, 2026
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Xavier, 2026\n"
+"Last-Translator: Yohan HARROCH, 2026\n"
 "Language-Team: French (https://app.transifex.com/nextcloud/teams/64236/fr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: fr\n"
 "Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 msgid "\"{segment}\" is a forbidden file or folder name."
-msgstr "\"{segment}\" est un nom de fichier ou de dossier interdit."
+msgstr "« {segment} » est un nom de fichier ou de dossier interdit."
 
 msgid "\"{segment}\" is a forbidden file type."
-msgstr "\"{segment}\" est un type de fichier interdit."
+msgstr "« {segment} » est un type de fichier interdit."
 
 msgid "\"{segment}\" is not allowed inside a file or folder name."
 msgstr ""
-"\"{segment}\" n'est pas autorisé dans le nom d'un fichier ou d'un dossier."
+"« {segment} » n’est pas autorisé dans un nom de fichier ou de dossier."
 
 msgid "{seconds} seconds left"
 msgid_plural "{seconds} seconds left"
@@ -61,7 +62,7 @@ msgid "Continue"
 msgstr "Continuer"
 
 msgid "Create new"
-msgstr "Créer un nouveau"
+msgstr "Créer"
 
 msgid "estimating time left"
 msgstr "estimation du temps restant"
@@ -73,20 +74,21 @@ msgid ""
 "Existing files and folders will be deleted if not selected. If both are "
 "chosen, they will be renamed."
 msgstr ""
-"Les fichiers et dossiers existants seront supprimés s'ils ne sont pas "
-"sélectionnés. Si les deux sont choisis, ils seront renommés."
+"Les fichiers et dossiers existants seront supprimés s’ils ne sont pas "
+"sélectionnés. Si les deux éléments sont sélectionnés, le nouvel élément sera"
+" renommé."
 
 msgid "Existing version"
 msgstr "Version existante"
 
 msgid "Failed to assemble the chunks together"
-msgstr "Échec de l'assemblage des morceaux"
+msgstr "Échec de l’assemblage des fragments"
 
 msgid "Failed to upload the file"
-msgstr "Échec de téléversement du fichier"
+msgstr "Échec du téléversement du fichier"
 
 msgid "Filenames must not end with \"{segment}\"."
-msgstr "Les noms des fichiers ne doivent pas terminer par \"{segment}\"."
+msgstr "Les noms de fichiers ne doivent pas se terminer par « {segment} »."
 
 msgid "Invalid filename"
 msgstr "Nom de fichier invalide"
@@ -94,14 +96,14 @@ msgstr "Nom de fichier invalide"
 msgid ""
 "Items with the same name already exist in {dirname}, select which to keep."
 msgstr ""
-"Des éléments avec des noms identiques existent déjà dans {dirname}, "
-"sélectionnez ceux à garder."
+"Des éléments portant le même nom existent déjà dans {dirname}. Sélectionnez "
+"ceux à garder."
 
 msgid "Keep both"
 msgstr "Garder les deux"
 
 msgid "Last modified date unknown"
-msgstr "Date de la dernière modification inconnue"
+msgstr "Date de dernière modification : inconnue"
 
 msgid "New"
 msgstr "Nouveau"
@@ -139,8 +141,8 @@ msgstr "Ignorer"
 msgid "Skip {count} file"
 msgid_plural "Skip {count} files"
 msgstr[0] "Ignorer {count} fichier"
-msgstr[1] "Ignorer ces {count} fichiers"
-msgstr[2] "Ignorer ces {count} fichiers"
+msgstr[1] "Ignorer {count} fichiers"
+msgstr[2] "Ignorer {count} fichiers"
 
 msgid "Unknown size"
 msgstr "Taille inconnue"
@@ -173,7 +175,7 @@ msgid "Upload has been skipped"
 msgstr "Le téléversement a été ignoré"
 
 msgid "Upload of \"{folder}\" has been skipped"
-msgstr "Le téléversement de \"{folder}\" a été ignoré"
+msgstr "Le téléversement de « {folder} » a été ignoré"
 
 msgid "Upload of \"{name}\" finished"
 msgstr "Téléversement de « {name} » terminé"
@@ -219,15 +221,14 @@ msgid ""
 "When a new folder is selected, the content is written into the existing "
 "folder and a recursive conflict resolution is performed."
 msgstr ""
-"Lorsqu'un nouveau dossier est sélectionné, le contenu est écrit dans le "
-"dossier existant et une résolution récursive des conflits est effectuée."
+"Lorsqu’un nouveau dossier est sélectionné, son contenu est ajouté au dossier"
+" existant et les conflits sont résolus de manière récursive."
 
 msgid ""
 "You can either rename the file, skip this file or cancel the whole "
 "operation."
 msgstr ""
-"Vous pouvez soit renommer le fichier, soit ignorer le fichier, soit annuler "
-"toute l'opération."
+"Vous pouvez renommer le fichier, l’ignorer ou annuler toute l’opération."
 
 msgid "You need to select at least one version of each file to continue."
 msgstr ""
