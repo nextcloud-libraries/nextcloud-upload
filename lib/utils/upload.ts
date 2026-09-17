@@ -15,111 +15,135 @@ axiosRetry(axios, { retries: 0 })
 
 type UploadData = Blob | (() => Promise<Blob>)
 
+/**
+ * Helpers for direct and chunked file uploads.
+ *
+ * This module contains utilities for preparing upload blobs, creating
+ * temporary chunk upload workspaces, and sending upload requests with
+ * retry handling.
+ */
 interface UploadDataOptions {
-	/** The abort signal */
+	/** Abort signal for the upload request. */
 	signal: AbortSignal
-	/** Upload progress event callback */
+	/** Callback for upload progress events. */
 	onUploadProgress?: (event: AxiosProgressEvent) => void
-	/** Request retry callback (e.g. network error of previous try) */
+	/** Callback invoked before a failed upload request is retried. */
 	onUploadRetry?: () => void
-	/** The final destination file (for chunked uploads) */
+	/** Final destination file path, used for chunked uploads. */
 	destinationFile?: string
-	/** Additional headers */
-	headers?: Record<string, string|number>
-	/** Number of retries */
+	/** Additional request headers. */
+	headers?: Record<string, string | number>
+	/** Number of retry attempts. */
 	retries?: number,
 }
 
 /**
- * Upload some data to a given path
- * @param url the url to upload to
- * @param uploadData the data to upload
- * @param uploadOptions upload options
+ * Upload data to the given URL.
+ *
+ * @param url The target upload URL.
+ * @param uploadData The data to upload, or a lazy function that resolves to it.
+ * @param uploadOptions Upload configuration.
  */
 export async function uploadData(
 	url: string,
 	uploadData: UploadData,
 	uploadOptions: UploadDataOptions,
 ): Promise<AxiosResponse> {
-	const options = {
-		headers: {},
-		onUploadProgress: () => {},
-		onUploadRetry: () => {},
-		retries: 5,
-		...uploadOptions,
-	}
+	const headers: Record<string, string | number> = { ...(uploadOptions.headers ?? {}) }
+	const onUploadProgress = uploadOptions.onUploadProgress ?? (() => {})
+	const onUploadRetry = uploadOptions.onUploadRetry ?? (() => {})
+	const retries = uploadOptions.retries ?? 5
 
 	let data: Blob
 
-	// If the upload data is a blob, we can directly use it
-	// Otherwise, we need to wait for the promise to resolve
+	// If the upload data is already a Blob, use it directly.
+	// Otherwise resolve it lazily when the upload starts.
 	if (uploadData instanceof Blob) {
 		data = uploadData
 	} else {
 		data = await uploadData()
 	}
 
-	// Helps the server to know what to do with the file afterwards (e.g. chunked upload)
-	if (options.destinationFile) {
-		options.headers.Destination = options.destinationFile
+	// Help the server decide what to do with the uploaded file afterwards
+	// (for example, when finalizing a chunked upload).
+	if (uploadOptions.destinationFile) {
+		headers['Destination'] = uploadOptions.destinationFile
 	}
 
-	// If no content type is set, we default to octet-stream
-	if (!options.headers['Content-Type']) {
-		options.headers['Content-Type'] = 'application/octet-stream'
+	// Default to binary data if no content type was provided.
+	if (!headers['Content-Type']) {
+		headers['Content-Type'] = 'application/octet-stream'
 	}
 
 	return await axios.request({
 		method: 'PUT',
 		url,
 		data,
-		signal: options.signal,
-		onUploadProgress: options.onUploadProgress,
-		headers: options.headers,
+		signal: uploadOptions.signal,
+		onUploadProgress,
+		headers,
 		'axios-retry': {
-			retries: options.retries,
-			retryDelay: (retryCount: number, error: AxiosError) => exponentialDelay(retryCount, error, 1000),
+			retries,
+			retryDelay: (retryCount: number, error: AxiosError) =>
+				exponentialDelay(retryCount, error, 1000),
 			retryCondition(error: AxiosError): boolean {
-				// Do not retry on insufficient storage - this is permanent
-				if (error.status === 507) {
+				const status = error.status
+
+				// Insufficient storage is permanent, so do not retry.
+				if (status === 507) {
 					return false
 				}
-				// Do a retry on locked error as this is often just some preview generation
-				if (error.status === 423) {
+
+				// Locked is often temporary, for example due to preview generation.
+				if (status === 423) {
 					return true
 				}
-				// Otherwise fallback to default behavior
+
+				// Otherwise fall back to the default retry behavior.
 				return isNetworkOrIdempotentRequestError(error)
 			},
-			onRetry: options.onUploadRetry,
+			onRetry: onUploadRetry,
 		},
 	})
 }
 
 /**
- * Get chunk of the file.
- * Doing this on the fly give us a big performance boost and proper garbage collection
- * @param file File to upload
- * @param start Offset to start upload
- * @param length Size of chunk to upload
+ * Get a file chunk.
+ *
+ * Creating chunk blobs on demand improves performance and garbage collection.
+ *
+ * @param file File to upload.
+ * @@param start Offset at which to start the chunk.
+ * @param length Size of the chunk.
  */
 export const getChunk = function(file: File, start: number, length: number): Promise<Blob> {
-	if (start === 0 && file.size <= length) {
-		return Promise.resolve(new Blob([file], { type: file.type || 'application/octet-stream' }))
+	const endOffset = start + length
+	const isWholeFile = start === 0 && file.size <= length
+	const contentType = isWholeFile ? (file.type || 'application/octet-stream') : 'application/octet-stream'
+
+	if (isWholeFile) {
+		return Promise.resolve(new Blob([file], { type: contentType }))
 	}
 
-	return Promise.resolve(new Blob([file.slice(start, start + length)], { type: 'application/octet-stream' }))
+	return Promise.resolve(new Blob([file.slice(start, endOffset)], { type: contentType }))
 }
 
 /**
- * Create a temporary upload workspace to upload the chunks to
- * @param destinationFile The file name after finishing the chunked upload
- * @param retries number of retries
- * @param isPublic whether this upload is in a public share or not
- * @param customHeaders Custom HTTP headers used when creating the workspace (e.g. X-NC-Nickname for file drops)
+ * Create a temporary server-side upload workspace for chunk uploads.
+ *
+ * @param destinationFile Final file name when the chunked upload is completed.
+ * @param retries Number of retry attempts.
+ * @param isPublic Whether the upload is for a public share.
+ * @param customHeaders Additional headers used when creating the workspace (for example `X-NC-Nickname` for file drops).
  */
-export const initChunkWorkspace = async function(destinationFile: string | undefined = undefined, retries: number = 5, isPublic: boolean = false, customHeaders: Record<string, string> = {}): Promise<string> {
+export const initChunkWorkspace = async function(
+	destinationFile?: string,
+	retries: number = 5,
+	isPublic: boolean = false,
+	customHeaders: Record<string, string> = {},
+): Promise<string> {
 	let chunksWorkspace: string
+
 	if (isPublic) {
 		chunksWorkspace = `${getBaseUrl()}/public.php/dav/uploads/${getSharingToken()}`
 	} else {
@@ -129,9 +153,10 @@ export const initChunkWorkspace = async function(destinationFile: string | undef
 	const hash = [...Array(16)].map(() => Math.floor(Math.random() * 16).toString(16)).join('')
 	const tempWorkspace = `web-file-upload-${hash}`
 	const url = `${chunksWorkspace}/${tempWorkspace}`
-	const headers = customHeaders
+	const headers = { ...customHeaders }
+
 	if (destinationFile) {
-		headers.Destination = destinationFile
+		headers['Destination'] = destinationFile
 	}
 
 	await axios.request({
@@ -140,7 +165,8 @@ export const initChunkWorkspace = async function(destinationFile: string | undef
 		headers,
 		'axios-retry': {
 			retries,
-			retryDelay: (retryCount: number, error: AxiosError) => exponentialDelay(retryCount, error, 1000),
+			retryDelay: (retryCount: number, error: AxiosError) =>
+				exponentialDelay(retryCount, error, 1000),
 		},
 	})
 
