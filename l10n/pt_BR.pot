@@ -183,7 +183,7 @@ msgid "Upload progress: {progress}%, total size {size}"
 msgstr "Progresso do upload: {progress}%, tamanho total: {size}"
 
 msgid "Upload started"
-msgstr "Upload iniciado "
+msgstr "Upload iniciado"
 
 msgid "Upload started: {count} file"
 msgid_plural "Upload started: {count} files"

@@ -141,6 +141,14 @@ msgstr "Yükle"
 msgid "Upload files"
 msgstr "Dosyaları yükle"
 
+msgid "Upload finished"
+msgstr "Yükleme tamamlandı"
+
+msgid "Upload finished: {count} file uploaded"
+msgid_plural "Upload finished: {count} files uploaded"
+msgstr[0] "Yükleme tamamlandı: {count} dosya yüklendi"
+msgstr[1] "Yükleme tamamlandı: {count} dosya yüklendi"
+
 msgid "Upload folders"
 msgstr "Klasörleri yükle"
 
@@ -156,8 +164,36 @@ msgstr "Yükleme atlandı"
 msgid "Upload of \"{folder}\" has been skipped"
 msgstr "\"{folder}\" klasörünün yüklenmesi atlandı"
 
+msgid "Upload of \"{name}\" finished"
+msgstr "\"{name}\" yüklemesi tamamlandı"
+
 msgid "Upload progress"
 msgstr "Yükleme ilerlemesi"
+
+msgid "Upload progress: {progress}%"
+msgstr "Yükleniyor: %{progress}"
+
+msgid "Upload progress: {progress}%, total size {size}"
+msgstr "Yükleniyor: %{progress}, toplam boyut {size}"
+
+msgid "Upload started"
+msgstr "Yükleme başlatıldı"
+
+msgid "Upload started: {count} file"
+msgid_plural "Upload started: {count} files"
+msgstr[0] "Yükleme başlatıldı: {count} dosya"
+msgstr[1] "Yükleme başlatıldı: {count} dosya"
+
+msgid "Upload started: {count} file ({size})"
+msgid_plural "Upload started: {count} files ({size})"
+msgstr[0] "Yükleme başlatıldı: {count} dosya ({size})"
+msgstr[1] "Yükleme başlatıldı: {count} dosya ({size})"
+
+msgid "Upload started: {name}"
+msgstr "Yükleme başlatıldı: {name}"
+
+msgid "Upload started: {name} ({size})"
+msgstr "Yükleme başlatıldı: {name} ({size})"
 
 msgid ""
 "When a new folder is selected, any conflicting files within it will also be "

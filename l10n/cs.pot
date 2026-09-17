@@ -1,14 +1,13 @@
-# 
 # Translators:
 # Joas Schilling, 2024
 # Michal Šmahel <ceskyDJ@seznam.cz>, 2024
 # Martin Hankovec, 2024
 # Appukonrad <appukonrad@gmail.com>, 2024
-# Pavel Borecki <pavel.borecki@gmail.com>, 2025
+# Pavel Borecki <pavel.borecki@gmail.com>, 2026
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Pavel Borecki <pavel.borecki@gmail.com>, 2025\n"
+"Last-Translator: Pavel Borecki <pavel.borecki@gmail.com>, 2026\n"
 "Language-Team: Czech (Czech Republic) (https://app.transifex.com/nextcloud/teams/64236/cs_CZ/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: cs_CZ\n"
@@ -23,20 +22,6 @@ msgstr "„{segment}“ není povoleného typu souboru."
 msgid "\"{segment}\" is not allowed inside a file or folder name."
 msgstr "„{segment}“ není povoleno použít v rámci názvu souboru či složky."
 
-msgid "{count} file conflict"
-msgid_plural "{count} files conflict"
-msgstr[0] "{count} kolize souborů"
-msgstr[1] "{count} kolize souborů"
-msgstr[2] "{count} kolizí souborů"
-msgstr[3] "{count} kolize souborů"
-
-msgid "{count} file conflict in {dirname}"
-msgid_plural "{count} file conflicts in {dirname}"
-msgstr[0] "{count} kolize souboru v {dirname}"
-msgstr[1] "{count} kolize souboru v {dirname}"
-msgstr[2] "{count} kolizí souborů v {dirname}"
-msgstr[3] "{count} kolize souboru v {dirname}"
-
 msgid "{seconds} seconds left"
 msgid_plural "{seconds} seconds left"
 msgstr[0] "zbývá {seconds}"
@@ -50,6 +35,12 @@ msgstr "zbývá {time}"
 
 msgid "a few seconds left"
 msgstr "zbývá několik sekund"
+
+msgid "All files"
+msgstr "Všechny soubory"
+
+msgid "An item with the same name already exists in {dirname}."
+msgstr "Stejně nazvaná položka už existuje v {dirname}."
 
 msgid "assembling"
 msgstr "sestavování"
@@ -72,6 +63,16 @@ msgstr "Vytvořit nový"
 msgid "estimating time left"
 msgstr "odhaduje se zbývající čas"
 
+msgid "Existing files"
+msgstr "Existující soubory"
+
+msgid ""
+"Existing files and folders will be deleted if not selected. If both are "
+"chosen, they will be renamed."
+msgstr ""
+"Pokud nebudou vybrány, existující soubory a složky budou smazány. Pokud jsou"
+" oboje vybrány, budou přejmenovány."
+
 msgid "Existing version"
 msgstr "Existující verze"
 
@@ -84,14 +85,16 @@ msgstr "Soubor se nepodařilo nahrát"
 msgid "Filenames must not end with \"{segment}\"."
 msgstr "Názvy souborů nemohou končit na „{segment}“."
 
-msgid ""
-"If you select both versions, the incoming file will have a number added to "
-"its name."
-msgstr ""
-"Pokud vyberete obě verze, příchozí soubor bude mít ke jménu přidánu číslici."
-
 msgid "Invalid filename"
 msgstr "Neplatný název souboru"
+
+msgid ""
+"Items with the same name already exist in {dirname}, select which to keep."
+msgstr ""
+"Stejně nazvané položky už existují v {dirname} – vyberte, které ponechat."
+
+msgid "Keep both"
+msgstr "Ponechat obojí"
 
 msgid "Last modified date unknown"
 msgstr "Neznámé datum poslední úpravy"
@@ -102,26 +105,29 @@ msgstr "Nové"
 msgid "New filename"
 msgstr "Nový název souboru"
 
+msgid "New files"
+msgstr "Nové soubory"
+
 msgid "New version"
 msgstr "Nová verze"
 
 msgid "paused"
 msgstr "pozastaveno"
 
-msgid "Preview image"
-msgstr "Náhled obrázku"
-
 msgid "Rename"
 msgstr "Přejmenovat"
+
+msgid "Replace"
+msgstr "Nahradit"
 
 msgid "Select all checkboxes"
 msgstr "Označit všechny zaškrtávací kolonky"
 
-msgid "Select all existing files"
-msgstr "Vybrat veškeré stávající soubory"
+msgid "Select file to keep"
+msgstr "Vyberte soubor, který ponechat"
 
-msgid "Select all new files"
-msgstr "Vybrat veškeré nové soubory"
+msgid "Select files to keep"
+msgstr "Vyberte soubory, které ponechat"
 
 msgid "Skip"
 msgstr "Přeskočit"
@@ -133,9 +139,6 @@ msgstr[1] "Přeskočit {count} soubory"
 msgstr[2] "Přeskočit {count} souborů"
 msgstr[3] "Přeskočit {count} soubory"
 
-msgid "Skip this file"
-msgstr "Přeskočit tento soubor"
-
 msgid "Unknown size"
 msgstr "Neznámá velikost"
 
@@ -144,6 +147,16 @@ msgstr "Nahrát"
 
 msgid "Upload files"
 msgstr "Nahrát soubory"
+
+msgid "Upload finished"
+msgstr "Nahrávání dokončeno"
+
+msgid "Upload finished: {count} file uploaded"
+msgid_plural "Upload finished: {count} files uploaded"
+msgstr[0] "Nahrání dokončeno: {count} soubor nahrán"
+msgstr[1] "Nahrání dokončeno: {count} soubory nahrány"
+msgstr[2] "Nahrání dokončeno: {count} souborů nahráno"
+msgstr[3] "Nahrání dokončeno: {count} soubory nahrány"
 
 msgid "Upload folders"
 msgstr "Nahrát složky"
@@ -160,25 +173,53 @@ msgstr "Nahrání bylo přeskočeno"
 msgid "Upload of \"{folder}\" has been skipped"
 msgstr "Nahrání „{folder}“ bylo přeskočeno"
 
+msgid "Upload of \"{name}\" finished"
+msgstr "Nahrání „{name}“ dokončeno"
+
 msgid "Upload progress"
 msgstr "Postup v nahrávání"
 
-msgid ""
-"When an incoming folder is selected, any conflicting files within it will "
-"also be overwritten."
-msgstr ""
-"Po výběru příchozí složky budou rovněž přepsány všechny v ní obsažené "
-"konfliktní soubory"
+msgid "Upload progress: {progress}%"
+msgstr "Postup v nahrávání: {progress}% "
+
+msgid "Upload progress: {progress}%, total size {size}"
+msgstr "Postup v nahrávání: {progress}%, celková velikost {size}"
+
+msgid "Upload started"
+msgstr "Nahrávání zahájeno"
+
+msgid "Upload started: {count} file"
+msgid_plural "Upload started: {count} files"
+msgstr[0] "Nahrávání zahájeno: {count} soubor"
+msgstr[1] "Nahrávání zahájeno: {count} soubory"
+msgstr[2] "Nahrávání zahájeno: {count} souborů"
+msgstr[3] "Nahrávání zahájeno: {count} soubory"
+
+msgid "Upload started: {count} file ({size})"
+msgid_plural "Upload started: {count} files ({size})"
+msgstr[0] "Nahrávání zahájeno: {count} soubor ({size})"
+msgstr[1] "Nahrávání zahájeno: {count} soubory ({size})"
+msgstr[2] "Nahrávání zahájeno: {count} souborů ({size})"
+msgstr[3] "Nahrávání zahájeno: {count} soubory ({size})"
+
+msgid "Upload started: {name}"
+msgstr "Nahrávání zahájeno: {name}"
+
+msgid "Upload started: {name} ({size})"
+msgstr "Nahrávání zahájeno: {name} ({size})"
 
 msgid ""
-"When an incoming folder is selected, the content is written into the "
-"existing folder and a recursive conflict resolution is performed."
+"When a new folder is selected, any conflicting files within it will also be "
+"overwritten."
 msgstr ""
-"Když je vybrána příchozí složka, obsah je zapsán do existující složky a je "
+"Po výběru nové složky budou přepsány také jakékoli kolidující soubory."
+
+msgid ""
+"When a new folder is selected, the content is written into the existing "
+"folder and a recursive conflict resolution is performed."
+msgstr ""
+"Když je vybrána nová složka, obsah je zapsán do existující složky a je "
 "provedeno rekurzivní řešení kolizí."
-
-msgid "Which files do you want to keep?"
-msgstr "Které soubory si přejete ponechat?"
 
 msgid ""
 "You can either rename the file, skip this file or cancel the whole "

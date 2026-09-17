@@ -1,13 +1,13 @@
-# 
 # Translators:
 # Joas Schilling, 2024
 # Rasmus Rosendahl-Kaa, 2024
 # Martin Bonde <Martin@maboni.dk>, 2025
 # Finn Sommer <kontakt@finnsommer.dk>, 2025
+# Jørgen Hertz Thygesen, 2026
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Finn Sommer <kontakt@finnsommer.dk>, 2025\n"
+"Last-Translator: Jørgen Hertz Thygesen, 2026\n"
 "Language-Team: Danish (https://app.transifex.com/nextcloud/teams/64236/da/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: da\n"
@@ -22,16 +22,6 @@ msgstr "\"{segment}\" er en forbudt filtype."
 msgid "\"{segment}\" is not allowed inside a file or folder name."
 msgstr "\"{segment}\" er ikke tilladt i et fil- eller mappenavn."
 
-msgid "{count} file conflict"
-msgid_plural "{count} files conflict"
-msgstr[0] "{count} fil konflikt"
-msgstr[1] "{count} filer i konflikt"
-
-msgid "{count} file conflict in {dirname}"
-msgid_plural "{count} file conflicts in {dirname}"
-msgstr[0] "{count} fil konflikt i {dirname}"
-msgstr[1] "{count} filer i konflikt i {dirname}"
-
 msgid "{seconds} seconds left"
 msgid_plural "{seconds} seconds left"
 msgstr[0] "{sekunder} sekunder tilbage"
@@ -43,6 +33,12 @@ msgstr "{time} tilbage"
 
 msgid "a few seconds left"
 msgstr "et par sekunder tilbage"
+
+msgid "All files"
+msgstr "Alle filer"
+
+msgid "An item with the same name already exists in {dirname}."
+msgstr "Et objekt med samme navn eksisterer allerede i {dirname}"
 
 msgid "assembling"
 msgstr "samling"
@@ -65,6 +61,16 @@ msgstr "Opret ny"
 msgid "estimating time left"
 msgstr "estimering af resterende tid"
 
+msgid "Existing files"
+msgstr "Eksisterende filer"
+
+msgid ""
+"Existing files and folders will be deleted if not selected. If both are "
+"chosen, they will be renamed."
+msgstr ""
+"Eksisterende filer og mapper bliver slettet, medmindre dette vælges. Hvis "
+"begge vælges, bliver de omdøbt."
+
 msgid "Existing version"
 msgstr "Eksisterende version"
 
@@ -77,15 +83,17 @@ msgstr "Kunne ikke uploade filen"
 msgid "Filenames must not end with \"{segment}\"."
 msgstr "Filnavne må ikke slutte med \"{segment}\"."
 
-msgid ""
-"If you select both versions, the incoming file will have a number added to "
-"its name."
-msgstr ""
-"Hvis du vælger begge versioner, vil den indkommende fil have et nummer "
-"tilføjet til sit navn."
-
 msgid "Invalid filename"
 msgstr "Ugyldigt filnavn"
+
+msgid ""
+"Items with the same name already exist in {dirname}, select which to keep."
+msgstr ""
+"Objekter med samme navn findes allerede i {dirname}, vælg hvilken der skal "
+"blive tilbage."
+
+msgid "Keep both"
+msgstr "Behold begge"
 
 msgid "Last modified date unknown"
 msgstr "Sidste modifikationsdato ukendt"
@@ -96,26 +104,29 @@ msgstr "Ny"
 msgid "New filename"
 msgstr "Nyt filnavn"
 
+msgid "New files"
+msgstr "Nye filer"
+
 msgid "New version"
 msgstr "Ny version"
 
 msgid "paused"
 msgstr "pauset"
 
-msgid "Preview image"
-msgstr "Forhåndsvisning af billede"
-
 msgid "Rename"
 msgstr "Omdøb"
+
+msgid "Replace"
+msgstr "Erstat"
 
 msgid "Select all checkboxes"
 msgstr "Vælg alle felter"
 
-msgid "Select all existing files"
-msgstr "Vælg alle eksisterende filer"
+msgid "Select file to keep"
+msgstr "Vælg fil, der skal beholdes"
 
-msgid "Select all new files"
-msgstr "Vælg alle nye filer"
+msgid "Select files to keep"
+msgstr "Vælg filer, der skal beholdes"
 
 msgid "Skip"
 msgstr "Spring over"
@@ -125,9 +136,6 @@ msgid_plural "Skip {count} files"
 msgstr[0] "Spring {count} fil over"
 msgstr[1] "Spring {count} fil over"
 
-msgid "Skip this file"
-msgstr "Spring denne fil over"
-
 msgid "Unknown size"
 msgstr "Ukendt størrelse"
 
@@ -136,6 +144,14 @@ msgstr "Upload"
 
 msgid "Upload files"
 msgstr "Upload filer"
+
+msgid "Upload finished"
+msgstr "Upload færdig"
+
+msgid "Upload finished: {count} file uploaded"
+msgid_plural "Upload finished: {count} files uploaded"
+msgstr[0] "Overførsel færdig. {count} filer overført."
+msgstr[1] "Upload færdig. {count} overført"
 
 msgid "Upload folders"
 msgstr "Upload mapper"
@@ -152,25 +168,51 @@ msgstr "Upload er blevet sprunget over"
 msgid "Upload of \"{folder}\" has been skipped"
 msgstr "Upload af \"{folder}\" er blevet sprunget over"
 
+msgid "Upload of \"{name}\" finished"
+msgstr "Upload af \"{name} \" klar"
+
 msgid "Upload progress"
 msgstr "Upload fremskridt"
 
-msgid ""
-"When an incoming folder is selected, any conflicting files within it will "
-"also be overwritten."
-msgstr ""
-"Når en indgående mappe er valgt, vil alle modstridende filer i den også "
-"blive overskrevet."
+msgid "Upload progress: {progress}%"
+msgstr "Upload fremgang: {progress}%"
+
+msgid "Upload progress: {progress}%, total size {size}"
+msgstr "Upload fremskridt: {progress}%, total størrelse {size}"
+
+msgid "Upload started"
+msgstr "Upload startet"
+
+msgid "Upload started: {count} file"
+msgid_plural "Upload started: {count} files"
+msgstr[0] "Upload startet: {count} filer"
+msgstr[1] "Upload startet: {count} filer"
+
+msgid "Upload started: {count} file ({size})"
+msgid_plural "Upload started: {count} files ({size})"
+msgstr[0] "Upload startet: {count} fil ({size})"
+msgstr[1] "Upload startet: {count} filer ({size})"
+
+msgid "Upload started: {name}"
+msgstr "Upload begyndt: {name}"
+
+msgid "Upload started: {name} ({size})"
+msgstr "Upload begyndt: {name} ({size})"
 
 msgid ""
-"When an incoming folder is selected, the content is written into the "
-"existing folder and a recursive conflict resolution is performed."
+"When a new folder is selected, any conflicting files within it will also be "
+"overwritten."
 msgstr ""
-"Når en indkommende mappe er valgt, vil dens indhold blive skrevet ind i den "
-"eksisterende mappe og en rekursiv konfliktløsning udføres."
+"Når en ny mappe vælges, vil sammenfaldende filer deri blive overskrevet."
 
-msgid "Which files do you want to keep?"
-msgstr "Hvilke filer ønsker du at beholde?"
+msgid ""
+"When a new folder is selected, the content is written into the existing "
+"folder and a recursive conflict resolution is performed."
+msgstr ""
+"When a new folder is selected, the content is written into the existing "
+"folder and a recursive conflict resolution is performed. Når en ny mappe "
+"vælges, bliver indholdet skrevet i den eksisterende mappe og rekursive "
+"konflikter bliver afklaret."
 
 msgid ""
 "You can either rename the file, skip this file or cancel the whole "
