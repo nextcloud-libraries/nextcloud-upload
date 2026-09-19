@@ -147,6 +147,17 @@ msgstr "Uaslódáil"
 msgid "Upload files"
 msgstr "Uaslódáil comhaid"
 
+msgid "Upload finished"
+msgstr "Uaslódáil críochnaithe"
+
+msgid "Upload finished: {count} file uploaded"
+msgid_plural "Upload finished: {count} files uploaded"
+msgstr[0] "Críochnaíodh an t-uaslódáil: uaslódáladh {count} comhad"
+msgstr[1] "Críochnaíodh an t-uaslódáil: uaslódáladh {count} comhad"
+msgstr[2] "Críochnaíodh an t-uaslódáil: uaslódáladh {count} comhad"
+msgstr[3] "Críochnaíodh an t-uaslódáil: uaslódáladh {count} comhad"
+msgstr[4] "Críochnaíodh an t-uaslódáil: uaslódáladh {count} comhad"
+
 msgid "Upload folders"
 msgstr "Uaslódáil fillteáin"
 
@@ -162,8 +173,42 @@ msgstr "Léiríodh an uaslódáil"
 msgid "Upload of \"{folder}\" has been skipped"
 msgstr "Léiríodh an uaslódáil \"{folder}\"."
 
+msgid "Upload of \"{name}\" finished"
+msgstr "Críochnaíodh uaslódáil \"{name}\""
+
 msgid "Upload progress"
 msgstr "Uaslódáil dul chun cinn"
+
+msgid "Upload progress: {progress}%"
+msgstr "Dul chun cinn an uaslódála: {progress}%"
+
+msgid "Upload progress: {progress}%, total size {size}"
+msgstr "Dul chun cinn an uaslódála: {progress}%, méid iomlán {size}"
+
+msgid "Upload started"
+msgstr "Tosaíodh an t-uaslódáil"
+
+msgid "Upload started: {count} file"
+msgid_plural "Upload started: {count} files"
+msgstr[0] "Uaslódáil tosaithe: {count} comhad"
+msgstr[1] "Uaslódáil tosaithe: {count} comhad"
+msgstr[2] "Uaslódáil tosaithe: {count} comhad"
+msgstr[3] "Uaslódáil tosaithe: {count} comhad"
+msgstr[4] "Uaslódáil tosaithe: {count} comhad"
+
+msgid "Upload started: {count} file ({size})"
+msgid_plural "Upload started: {count} files ({size})"
+msgstr[0] "Uaslódáil tosaithe: {count} comhad ({size})"
+msgstr[1] "Uaslódáil tosaithe: {count} comhad ({size})"
+msgstr[2] "Uaslódáil tosaithe: {count} comhad ({size})"
+msgstr[3] "Uaslódáil tosaithe: {count} comhad ({size})"
+msgstr[4] "Uaslódáil tosaithe: {count} comhad ({size})"
+
+msgid "Upload started: {name}"
+msgstr "Uaslódáil tosaithe: {name}"
+
+msgid "Upload started: {name} ({size})"
+msgstr "Uaslódáil tosaithe: {name} ({size})"
 
 msgid ""
 "When a new folder is selected, any conflicting files within it will also be "
