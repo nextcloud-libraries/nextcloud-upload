@@ -7,7 +7,6 @@ import { createLibConfig } from '@nextcloud/vite-config'
 
 import { readdirSync, readFileSync } from 'fs'
 import { po as poParser } from 'gettext-parser'
-// eslint-disable-next-line n/no-extraneous-import
 import { defineConfig, type UserConfigFn } from 'vite'
 
 const translations = readdirSync('./l10n')
@@ -28,7 +27,7 @@ export default defineConfig((env) => {
 	return createLibConfig({
 		index: 'lib/index.ts',
 	}, {
-		libraryFormats: ['es', 'cjs'],
+		libraryFormats: process.env.BUILD_STEP === 'CJS' ? ['cjs'] : ['es'],
 		nodeExternalsOptions: {
 			// for subpath imports like '@nextcloud/l10n/gettext'
 			include: [/^@nextcloud\//],
@@ -40,8 +39,14 @@ export default defineConfig((env) => {
 		replace: {
 			__TRANSLATIONS__: JSON.stringify(translations),
 		},
-		DTSPluginOptions: {
-			rollupTypes: env.mode === 'production',
+		DtsPluginOptions: process.env.BUILD_STEP === 'CJS' ? false : {
+			vue: true,
+			parallel: false,
 		},
+		config: {
+			build: {
+				emptyOutDir: process.env.BUILD_STEP !== 'CJS',
+			}
+		}
 	})(env)
 }) as UserConfigFn
