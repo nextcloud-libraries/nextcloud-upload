@@ -597,6 +597,7 @@ export class Uploader {
 					} catch (error) {
 						if (isCancel(error) || error instanceof UploadCancelledError) {
 							upload.status = UploadStatus.CANCELLED
+							logger.debug('Upload cancelled by user', { error, upload })
 							reject(new UploadCancelledError(error))
 						} else {
 							// Attach response to the upload object
@@ -605,6 +606,7 @@ export class Uploader {
 							}
 
 							upload.status = UploadStatus.FAILED
+							logger.error('Upload failed', { error, upload })
 							reject(t('Failed to assemble the chunks together'))
 						}
 						// Cleaning up temp directory
@@ -659,6 +661,7 @@ export class Uploader {
 					} catch (error) {
 						if (isCancel(error) || error instanceof UploadCancelledError) {
 							upload.status = UploadStatus.CANCELLED
+							logger.debug('Upload cancelled by user', { error, upload })
 							reject(new UploadCancelledError(error))
 							return
 						}
