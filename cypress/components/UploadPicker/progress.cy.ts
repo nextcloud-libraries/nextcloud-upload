@@ -98,14 +98,35 @@ describe('UploadPicker: progress handling', () => {
 			// start the uploader
 			.then(() => getUploader().start())
 
-		// See the upload has started
+		// See the upload has started and the speed is shown as there is enough space (long ETA)
 		cy.get('@progressLabel', { timeout: 10000 })
 			.should((el) => expect(el.text()).to.match(/\d+(\.\d+)?\s?KB∕s/))
-			// increase speed to 1MiB/s
-			.then(() => throttleUpload(1024 * 1024))
+	})
+
+	it('has upload speed information as title for short ETA', () => {
+		cy.get('@input').attachFile({
+			// file of 1.5 MiB
+			fileContent: new Blob([new ArrayBuffer(1.5 * 1024 * 1024)]),
+			fileName: 'file.txt',
+			mimeType: 'text/plain',
+			encoding: 'utf8',
+			lastModified: new Date().getTime(),
+		})
+
+		cy.intercept('PUT', '/remote.php/dav/files/user/file.txt', { statusCode: 201 })
+
+		// 128 KB/s - changing the throttling during an ongoing request has no effect,
+		// so we need to throttle to a speed where we get a short ETA from the beginning.
+		throttleUpload(128 * 1024)
+
+		cy.get('@progressLabel')
+			.should('contain.text', 'paused')
+			// start the uploader
+			.then(() => getUploader().start())
+
 		cy.get('@progressLabel')
 			.children('span')
-			.first({ timeout: 9000 })
+			.first({ timeout: 10000 })
 			.should((el) => {
 				expect(el.text().trim()).to.equal('a few seconds left')
 				expect(el.attr('title')).to.match(/\d+(\.\d+)?\s?KB∕s/)
