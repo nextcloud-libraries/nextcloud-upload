@@ -92,7 +92,7 @@
     "vitest": "^5.0.2",
     "vue-material-design-icons": "^5.3.1",
     "vue-tsc": "^3.3.11",
-    "webdav": "^5.10.0"
+    "webdav": "^5.11.0"
   },
   "overrides": {
     "@vitejs/plugin-vue": {
