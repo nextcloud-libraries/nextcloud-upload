@@ -45,7 +45,7 @@
     "l10n:extract": "node build/extract-l10n.js",
     "lint": "eslint --ext .js,.ts,.vue .",
     "lint:fix": "eslint --ext .js,.ts,.vue --fix .",
-    "test": "vitest run",
+    "test": "TZ=UTC LANG=en_US vitest run",
     "test:coverage": "vitest run --coverage",
     "test:watch": "vitest watch",
     "watch": "vite --mode development build --watch"
