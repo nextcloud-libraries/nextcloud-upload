@@ -226,11 +226,16 @@ export class Uploader {
 
 		// If already paused keep it that way
 		if (this._queueStatus !== UploaderStatus.PAUSED) {
-			const pending = this._uploadQueue.find(({ status }) => [UploadStatus.INITIALIZED, UploadStatus.UPLOADING, UploadStatus.ASSEMBLING].includes(status))
+			const pending = this._uploadQueue.find(({ status }) =>
+				[
+					UploadStatus.INITIALIZED,
+					UploadStatus.UPLOADING,
+					UploadStatus.ASSEMBLING,
+				].includes(status))
 			if (this._jobQueue.size > 0 || pending) {
 				this._queueStatus = UploaderStatus.UPLOADING
 			} else {
-				this.eta.reset()
+				this._eta.reset()
 				this._queueStatus = UploaderStatus.IDLE
 			}
 		}
@@ -520,6 +525,10 @@ export class Uploader {
 								destinationFile: encodedDestinationFile,
 								retries,
 								onUploadProgress: ({ bytes }) => {
+									if ([UploadStatus.ASSEMBLING, UploadStatus.CANCELLED, UploadStatus.FAILED, UploadStatus.FINISHED].includes(upload.status)) {
+										return
+									}
+
 									// Only count 90% of bytes as the request is not yet processed by server
 									// we set the remaining 10% when the request finished (server responded).
 									const progressBytes = bytes * 0.9
@@ -528,6 +537,10 @@ export class Uploader {
 									this.updateStats()
 								},
 								onUploadRetry: () => {
+									if ([UploadStatus.ASSEMBLING, UploadStatus.CANCELLED, UploadStatus.FAILED, UploadStatus.FINISHED].includes(upload.status)) {
+										return
+									}
+
 									// Current try failed, so reset the stats for this chunk
 									// meaning remove the uploaded chunk bytes from stats
 									upload.uploaded -= chunkBytes
@@ -544,6 +557,10 @@ export class Uploader {
 						)
 							// Update upload progress on chunk completion
 							.then(() => {
+								if ([UploadStatus.ASSEMBLING, UploadStatus.CANCELLED, UploadStatus.FAILED, UploadStatus.FINISHED].includes(upload.status)) {
+									return
+								}
+
 								// request fully done so we uploaded the full chunk
 								// we first remove the intermediate chunkBytes from progress events
 								// and then add the real full size
@@ -632,12 +649,20 @@ export class Uploader {
 							{
 								signal: upload.signal,
 								onUploadProgress: ({ bytes }) => {
+									if ([UploadStatus.ASSEMBLING, UploadStatus.CANCELLED, UploadStatus.FAILED, UploadStatus.FINISHED].includes(upload.status)) {
+										return
+									}
+	
 									// As this is only the sent bytes not the processed ones we only count 90%.
 									// When the upload is finished (server acknowledged the upload) the remaining 10% will be correctly set.
 									upload.uploaded += bytes * 0.9
 									this.updateStats()
 								},
 								onUploadRetry: () => {
+									if ([UploadStatus.ASSEMBLING, UploadStatus.CANCELLED, UploadStatus.FAILED, UploadStatus.FINISHED].includes(upload.status)) {
+										return
+									}
+
 									upload.uploaded = 0
 									this.updateStats()
 								},
