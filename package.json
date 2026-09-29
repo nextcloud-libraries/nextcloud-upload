@@ -75,7 +75,7 @@
     "@nextcloud/vue": "^8.41.0",
     "@tsconfig/cypress": "^1.0.5",
     "@types/gettext-parser": "^9.0.0",
-    "@types/node": "^26.6.2",
+    "@types/node": "^26.6.3",
     "@vitejs/plugin-vue": "npm:@vitejs/plugin-vue2@>=2.3.4",
     "@vitest/coverage-v8": "^5.0.2",
     "@vue/tsconfig": "^0.5.1",
