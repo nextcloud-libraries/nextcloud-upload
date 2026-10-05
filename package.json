@@ -80,7 +80,7 @@
     "@vitest/coverage-v8": "^5.0.2",
     "@vue/tsconfig": "^0.5.1",
     "blob-polyfill": "^9.0.20240710",
-    "cypress": "^16.1.0",
+    "cypress": "^16.1.1",
     "cypress-file-upload": "^5.0.8",
     "esbuild": "^0.28.2",
     "gettext-extractor": "^4.0.6",
