@@ -78,7 +78,7 @@
     "@types/node": "^26.6.2",
     "@vitejs/plugin-vue": "npm:@vitejs/plugin-vue2@>=2.3.4",
     "@vitest/coverage-v8": "^5.0.2",
-    "@vue/tsconfig": "^0.5.1",
+    "@vue/tsconfig": "^0.9.1",
     "blob-polyfill": "^9.0.20240710",
     "cypress": "^16.1.0",
     "cypress-file-upload": "^5.0.8",
