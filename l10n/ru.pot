@@ -105,7 +105,7 @@ msgid "Last modified date unknown"
 msgstr "Дата последнего изменения неизвестна"
 
 msgid "New"
-msgstr "Новый"
+msgstr "Создать"
 
 msgid "New filename"
 msgstr "Новое имя файла"
