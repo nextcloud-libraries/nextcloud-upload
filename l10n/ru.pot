@@ -1,4 +1,3 @@
-# 
 # Translators:
 # Joas Schilling, 2024
 # Влад, 2024
@@ -7,37 +6,25 @@
 # Maksim Sukharev, 2024
 # Александр, 2025
 # Igor Orlov, 2025
+# NGC206, 2026
+# Alex <kekcuha@gmail.com>, 2026
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Igor Orlov, 2025\n"
+"Last-Translator: Alex <kekcuha@gmail.com>, 2026\n"
 "Language-Team: Russian (https://app.transifex.com/nextcloud/teams/64236/ru/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: ru\n"
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
 
 msgid "\"{segment}\" is a forbidden file or folder name."
-msgstr "«{segment}» — это запрещенное имя файла или папки."
+msgstr "«{segment}» — запрещённое имя файла или папки."
 
 msgid "\"{segment}\" is a forbidden file type."
-msgstr "«{segment}» — это запрещенный тип файла."
+msgstr "«{segment}» — запрещённый тип файла."
 
 msgid "\"{segment}\" is not allowed inside a file or folder name."
-msgstr "«{segment}» не допускается в имени файла или папки."
-
-msgid "{count} file conflict"
-msgid_plural "{count} files conflict"
-msgstr[0] "конфликт {count} файла"
-msgstr[1] "конфликт {count} файлов"
-msgstr[2] "конфликт {count} файлов"
-msgstr[3] "конфликт {count} файлов"
-
-msgid "{count} file conflict in {dirname}"
-msgid_plural "{count} file conflicts in {dirname}"
-msgstr[0] "конфликт {count} файла в «{dirname}»"
-msgstr[1] "конфликт {count} файлов в «{dirname}»"
-msgstr[2] "конфликт {count} файлов в «{dirname}»"
-msgstr[3] "конфликт {count} файлов в «{dirname}»"
+msgstr "«{segment}» нельзя использовать в имени файла или папки."
 
 msgid "{seconds} seconds left"
 msgid_plural "{seconds} seconds left"
@@ -52,6 +39,12 @@ msgstr "осталось {time}"
 
 msgid "a few seconds left"
 msgstr "осталось несколько секунд"
+
+msgid "All files"
+msgstr "Все файлы"
+
+msgid "An item with the same name already exists in {dirname}."
+msgstr "Объект с таким именем уже существует в {dirname}."
 
 msgid "assembling"
 msgstr "сборка"
@@ -74,26 +67,39 @@ msgstr "Создать новое"
 msgid "estimating time left"
 msgstr "оценка оставшегося времени"
 
+msgid "Existing files"
+msgstr "Существующие файлы"
+
+msgid ""
+"Existing files and folders will be deleted if not selected. If both are "
+"chosen, they will be renamed."
+msgstr ""
+"Невыбранные существующие файлы и папки будут удалены. Если выбрать и то, и "
+"другое, они будут переименованы."
+
 msgid "Existing version"
 msgstr "Текущая версия"
 
 msgid "Failed to assemble the chunks together"
-msgstr "Не удалось собрать части вместе"
+msgstr "Не удалось собрать файл из частей"
 
 msgid "Failed to upload the file"
 msgstr "Не удалось загрузить файл"
 
 msgid "Filenames must not end with \"{segment}\"."
-msgstr "Имена файлов не должны заканчиваться на «{segment}»"
-
-msgid ""
-"If you select both versions, the incoming file will have a number added to "
-"its name."
-msgstr ""
-"Если вы выберете обе версии, к имени входящего файла будет добавлен номер."
+msgstr "Имена файлов не должны заканчиваться на «{segment}»."
 
 msgid "Invalid filename"
-msgstr "Неверное имя файла"
+msgstr "Недопустимое имя файла"
+
+msgid ""
+"Items with the same name already exist in {dirname}, select which to keep."
+msgstr ""
+"Объекты с такими же именами уже существуют в {dirname}. Выберите, какие "
+"сохранить."
+
+msgid "Keep both"
+msgstr "Сохранить оба"
 
 msgid "Last modified date unknown"
 msgstr "Дата последнего изменения неизвестна"
@@ -104,26 +110,29 @@ msgstr "Новый"
 msgid "New filename"
 msgstr "Новое имя файла"
 
+msgid "New files"
+msgstr "Новые файлы"
+
 msgid "New version"
 msgstr "Новая версия"
 
 msgid "paused"
 msgstr "приостановлено"
 
-msgid "Preview image"
-msgstr "Предварительный просмотр"
-
 msgid "Rename"
 msgstr "Переименовать"
+
+msgid "Replace"
+msgstr "Заменить"
 
 msgid "Select all checkboxes"
 msgstr "Выбрать все"
 
-msgid "Select all existing files"
-msgstr "Выбрать все существующие файлы"
+msgid "Select file to keep"
+msgstr "Выберите, какой из файлов сохранить"
 
-msgid "Select all new files"
-msgstr "Выбрать все новые файлы"
+msgid "Select files to keep"
+msgstr "Выберите, какие файлы сохранить"
 
 msgid "Skip"
 msgstr "Пропустить"
@@ -135,9 +144,6 @@ msgstr[1] "Пропустить {count} файла"
 msgstr[2] "Пропустить {count} файлов"
 msgstr[3] "Пропустить {count} файлов"
 
-msgid "Skip this file"
-msgstr "Пропустить этот файл"
-
 msgid "Unknown size"
 msgstr "Неизвестный размер"
 
@@ -147,6 +153,16 @@ msgstr "Загрузить"
 msgid "Upload files"
 msgstr "Загрузить файлы"
 
+msgid "Upload finished"
+msgstr "Загрузка завершена"
+
+msgid "Upload finished: {count} file uploaded"
+msgid_plural "Upload finished: {count} files uploaded"
+msgstr[0] "Загрузка завершена: загружен {count} файл"
+msgstr[1] "Загрузка завершена: загружено {count} файла"
+msgstr[2] "Загрузка завершена: загружено {count} файлов"
+msgstr[3] "Загрузка завершена: загружено {count} файла"
+
 msgid "Upload folders"
 msgstr "Загрузить папки"
 
@@ -154,41 +170,66 @@ msgid "Upload from device"
 msgstr "Загрузить с устройства"
 
 msgid "Upload has been cancelled"
-msgstr "Загрузка была отменена"
+msgstr "Загрузка отменена"
 
 msgid "Upload has been skipped"
-msgstr "Загрузка была пропущена"
+msgstr "Загрузка пропущена"
 
 msgid "Upload of \"{folder}\" has been skipped"
-msgstr "Загрузка «{folder}» была пропущена"
+msgstr "Загрузка «{folder}» пропущена"
+
+msgid "Upload of \"{name}\" finished"
+msgstr "Загрузка «{name}» завершена"
 
 msgid "Upload progress"
-msgstr "Прогресс загрузки"
+msgstr "Ход загрузки"
+
+msgid "Upload progress: {progress}%"
+msgstr "Ход загрузки: {progress}%"
+
+msgid "Upload progress: {progress}%, total size {size}"
+msgstr "Ход загрузки: {progress}%, общий размер {size}"
+
+msgid "Upload started"
+msgstr "Загрузка началась"
+
+msgid "Upload started: {count} file"
+msgid_plural "Upload started: {count} files"
+msgstr[0] "Начата загрузка {count} файла"
+msgstr[1] "Начата загрузка {count} файлов"
+msgstr[2] "Начата загрузка {count} файлов"
+msgstr[3] "Начата загрузка {count} файла"
+
+msgid "Upload started: {count} file ({size})"
+msgid_plural "Upload started: {count} files ({size})"
+msgstr[0] "Начата загрузка {count} файла ({size})"
+msgstr[1] "Начата загрузка {count} файлов ({size})"
+msgstr[2] "Начата загрузка {count} файлов ({size})"
+msgstr[3] "Начата загрузка {count} файла ({size})"
+
+msgid "Upload started: {name}"
+msgstr "Начата загрузка «{name}»"
+
+msgid "Upload started: {name} ({size})"
+msgstr "Начата загрузка «{name}» ({size})"
 
 msgid ""
-"When an incoming folder is selected, any conflicting files within it will "
-"also be overwritten."
+"When a new folder is selected, any conflicting files within it will also be "
+"overwritten."
 msgstr ""
-"Когда выбрана входящая папка, все конфликтующие файлы в ней также будут "
-"перезаписаны."
+"Если выбрать новую папку, конфликтующие файлы в ней тоже будут перезаписаны."
 
 msgid ""
-"When an incoming folder is selected, the content is written into the "
-"existing folder and a recursive conflict resolution is performed."
+"When a new folder is selected, the content is written into the existing "
+"folder and a recursive conflict resolution is performed."
 msgstr ""
-"Когда выбрана входящая папка, содержимое записывается в существующую папку и"
-" выполняется рекурсивное разрешение конфликтов."
-
-msgid "Which files do you want to keep?"
-msgstr "Какие файлы вы хотите сохранить?"
+"Если выбрать новую папку, её содержимое будет записано в существующую, а "
+"конфликты будут устранены рекурсивно."
 
 msgid ""
 "You can either rename the file, skip this file or cancel the whole "
 "operation."
-msgstr ""
-"Вы можете переименовать файл, пропустить этот файл или отменить всю "
-"операцию."
+msgstr "Переименуйте файл, пропустите его или отмените всю операцию."
 
 msgid "You need to select at least one version of each file to continue."
-msgstr ""
-"Для продолжения вам нужно выбрать по крайней мере одну версию каждого файла."
+msgstr "Чтобы продолжить, выберите хотя бы одну версию каждого файла."
