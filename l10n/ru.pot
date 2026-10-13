@@ -224,7 +224,7 @@ msgid ""
 "folder and a recursive conflict resolution is performed."
 msgstr ""
 "Если выбрать новую папку, её содержимое будет записано в существующую, а "
-"конфликты будут устранены рекурсивно."
+"конфликты будут разрешены рекурсивно."
 
 msgid ""
 "You can either rename the file, skip this file or cancel the whole "
