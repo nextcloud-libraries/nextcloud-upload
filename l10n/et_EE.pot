@@ -142,6 +142,14 @@ msgstr "Laadi üles"
 msgid "Upload files"
 msgstr "Laadi failid üles"
 
+msgid "Upload finished"
+msgstr "Üleslaadimine on lõppenud"
+
+msgid "Upload finished: {count} file uploaded"
+msgid_plural "Upload finished: {count} files uploaded"
+msgstr[0] "Üleslaadimine on lõppenud: {count} fail on laaditud üles"
+msgstr[1] "Üleslaadimine on lõppenud: {count} faili on laaditud üles"
+
 msgid "Upload folders"
 msgstr "Laadi kaustad üles"
 
@@ -157,8 +165,36 @@ msgstr "Üleslaadimine on vahele jäetud"
 msgid "Upload of \"{folder}\" has been skipped"
 msgstr "„{folder}“ kausta üleslaadimine on vahele jäetud"
 
+msgid "Upload of \"{name}\" finished"
+msgstr "„{name}“ faili üleslaadimine on lõppenud"
+
 msgid "Upload progress"
 msgstr "Üleslaadimise edenemine"
+
+msgid "Upload progress: {progress}%"
+msgstr "Üleslaadimise edenemine: {progress}%"
+
+msgid "Upload progress: {progress}%, total size {size}"
+msgstr "Üleslaadimise edenemine: {progress}% kogumahust {size}"
+
+msgid "Upload started"
+msgstr "Üleslaadimine algas"
+
+msgid "Upload started: {count} file"
+msgid_plural "Upload started: {count} files"
+msgstr[0] "Üleslaadimine algas: {count} fail"
+msgstr[1] "Üleslaadimine algas: {count} faili"
+
+msgid "Upload started: {count} file ({size})"
+msgid_plural "Upload started: {count} files ({size})"
+msgstr[0] "Üleslaadimine algas: {count} fail ({size})"
+msgstr[1] "Üleslaadimine algas: {count} faili ({size})"
+
+msgid "Upload started: {name}"
+msgstr "Üleslaadimine algas: {name}"
+
+msgid "Upload started: {name} ({size})"
+msgstr "Üleslaadimine algas: {name} ({size})"
 
 msgid ""
 "When a new folder is selected, any conflicting files within it will also be "
