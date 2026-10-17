@@ -55,10 +55,12 @@ jobs:
 
       - name: Install composer dependencies
         if: steps.check_composer.outputs.files_exists == 'true'
-        run: composer install --no-dev
+        uses: ramsey/composer-install@65e4f84970763564f46a70b8a54b90d033b3bdda # 4.0.0
+        with:
+          composer-options: '--no-dev'
 
       - name: Set up node
-        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version-file: 'package.json'
 
@@ -68,7 +70,7 @@ jobs:
           TESTING=true npm run build --if-present
 
       - name: Save context
-        uses: buildjet/cache/save@3e70d19e31d6a8030aeddf6ed8dbe601f94d09f4 # v4.0.2
+        uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           key: cypress-context-${{ github.run_id }}
           path: ./
@@ -88,18 +90,18 @@ jobs:
 
     steps:
       - name: Restore context
-        uses: buildjet/cache/restore@3e70d19e31d6a8030aeddf6ed8dbe601f94d09f4 # v4.0.2
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           fail-on-cache-miss: true
           key: cypress-context-${{ github.run_id }}
           path: ./
 
       - name: Read package.json
-        uses: nextcloud-libraries/parse-package-engines-action@122ae05d4257008180a514e1ddeb0c1b9d094bdd # v0.1.0
+        uses: nextcloud-libraries/parse-package-engines-action@39fcc545a815c353dd0a3fd8fd2ef6e59fd02b92 # v0.2.0
         id: versions
 
       - name: Set up node
-        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version: ${{ steps.versions.outputs.node-version }}
 
@@ -107,16 +109,16 @@ jobs:
         run: npm i -g 'npm@${{ steps.versions.outputs.package-manager-version }}'
 
       - name: Run ${{ startsWith(matrix.containers, 'component') && 'component' || 'E2E' }} cypress tests
-        uses: cypress-io/github-action@01e3b659a495b41649cdd0aa82e1d1624e26520b # v7.4.4
+        uses: cypress-io/github-action@c541a95ea92d9239347a2355f2e895cd4b3f8060 # v7.4.6
         with:
-          record: ${{ secrets.CYPRESS_RECORD_KEY && true }} # zizmor: ignore[secrets-outside-env]
-          parallel: ${{ secrets.CYPRESS_RECORD_KEY && true }} # zizmor: ignore[secrets-outside-env]
+          record: ${{ secrets.CYPRESS_RECORD_KEY && true }}
+          parallel: ${{ secrets.CYPRESS_RECORD_KEY && true }}
           # cypress run type
           component: ${{ startsWith(matrix.containers, 'component') }}
           group: ${{ secrets.CYPRESS_RECORD_KEY && env.CYPRESS_GROUP }}
           # cypress env
-          ci-build-id: ${{ secrets.CYPRESS_RECORD_KEY && env.CYPRESS_BUILD_ID }} # zizmor: ignore[secrets-outside-env]
-          tag: ${{ secrets.CYPRESS_RECORD_KEY && github.event_name }} # zizmor: ignore[secrets-outside-env]
+          ci-build-id: ${{ secrets.CYPRESS_RECORD_KEY && env.CYPRESS_BUILD_ID }}
+          tag: ${{ secrets.CYPRESS_RECORD_KEY && github.event_name }}
         env:
           # Needs to be prefixed with CYPRESS_
           CYPRESS_BRANCH: ${{ env.BRANCH }}
@@ -125,7 +127,7 @@ jobs:
           # Needed for some specific code workarounds
           TESTING: true
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }} # zizmor: ignore[secrets-outside-env]
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           CYPRESS_BUILD_ID: ${{ github.sha }}-${{ github.run_number }}
           CYPRESS_GROUP: Run ${{ startsWith(matrix.containers, 'component') && 'component' || 'E2E' }}
 
