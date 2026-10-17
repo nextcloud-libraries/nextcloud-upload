@@ -35,6 +35,7 @@ jobs:
         uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version: ${{ steps.versions.outputs.node-version }}
+          package-manager-cache: false
 
       - name: Set up npm
         run: npm i -g 'npm@${{ steps.versions.outputs.package-manager-version }}'
