@@ -309,8 +309,10 @@ export class Uploader {
 
 			logger.debug('Starting new batch upload', { target })
 			try {
-				// setup client with root and custom header
-				const client = davGetClient(root, this._customHeaders)
+				// setup client with the encoded root (like `upload`), as `#` or `?` would otherwise
+				// start the URL fragment / query; the client encodes the relative folder paths itself
+				const { origin } = new URL(root)
+				const client = davGetClient(origin + encodePath(root.slice(origin.length)), this._customHeaders)
 				// Create the promise for the virtual root directory
 				const promise = this.uploadDirectory(destination, rootFolder, callback, client, root)
 				// Make sure to cancel it when requested
