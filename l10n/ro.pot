@@ -136,7 +136,7 @@ msgstr[1] "Sari peste {count} fișiere"
 msgstr[2] "Sari peste {count} de fișiere"
 
 msgid "Unknown size"
-msgstr "Mărime necunoscută"
+msgstr "Dimensiune necunoscută"
 
 msgid "Upload"
 msgstr "Încarcă"
@@ -178,7 +178,7 @@ msgid "Upload progress: {progress}%"
 msgstr "Progresul încărcării: {progress}%"
 
 msgid "Upload progress: {progress}%, total size {size}"
-msgstr "Progresul încărcării: {progress}%, mărime totală {size}"
+msgstr "Progresul încărcării: {progress}%, dimensiune totală {size}"
 
 msgid "Upload started"
 msgstr "Încărcare începută"
