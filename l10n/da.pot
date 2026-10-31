@@ -120,13 +120,13 @@ msgid "Replace"
 msgstr "Erstat"
 
 msgid "Select all checkboxes"
-msgstr "Vælg alle felter"
+msgstr "Vælg alle afkrydsningsfelter"
 
 msgid "Select file to keep"
-msgstr "Vælg fil, der skal beholdes"
+msgstr "Vælg den fil, der skal beholdes"
 
 msgid "Select files to keep"
-msgstr "Vælg filer, der skal beholdes"
+msgstr "Vælg de filer, der skal beholdes"
 
 msgid "Skip"
 msgstr "Spring over"
