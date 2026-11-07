@@ -1,12 +1,13 @@
-# 
 # Translators:
 # Joas Schilling, 2024
 # Piotr Strebski <strebski@gmail.com>, 2024
 # Valdnet, 2025
+# Wojciech Anuszczyk, 2026
+# Bartosz Keller, 2026
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Valdnet, 2025\n"
+"Last-Translator: Bartosz Keller, 2026\n"
 "Language-Team: Polish (https://app.transifex.com/nextcloud/teams/64236/pl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: pl\n"
@@ -21,22 +22,12 @@ msgstr "\"{segment}\" jest zabronionym typem pliku."
 msgid "\"{segment}\" is not allowed inside a file or folder name."
 msgstr "Znak \"{segment}\" nie jest dozwolony w nazwie pliku lub katalogu."
 
-msgid "{count} file conflict"
-msgid_plural "{count} files conflict"
-msgstr[0] "konflikt 1 pliku"
-msgstr[1] "{count} konfliktów plików"
-msgstr[2] "{count} konfliktów plików"
-msgstr[3] "{count} konfliktów plików"
-
-msgid "{count} file conflict in {dirname}"
-msgid_plural "{count} file conflicts in {dirname}"
-msgstr[0] "{count} konfliktowy plik w {dirname}"
-msgstr[1] "{count} konfliktowych plików w {dirname}"
-msgstr[2] "{count} konfliktowych plików w {dirname}"
-msgstr[3] "{count} konfliktowych plików w {dirname}"
-
 msgid "{seconds} seconds left"
-msgstr "Pozostało {seconds} sekund"
+msgid_plural "{seconds} seconds left"
+msgstr[0] "{seconds} sekunda została"
+msgstr[1] "{seconds} sekundy zostały"
+msgstr[2] "{seconds} sekund zostało"
+msgstr[3] "{seconds} sekund zostało"
 
 #. TRANSLATORS time has the format 00:00:00
 msgid "{time} left"
@@ -44,6 +35,15 @@ msgstr "Pozostało {time}"
 
 msgid "a few seconds left"
 msgstr "Pozostało kilka sekund"
+
+msgid "All files"
+msgstr "Wszystkie pliki"
+
+msgid "An item with the same name already exists in {dirname}."
+msgstr "Plik o tej samej nazwie już istnieje w {dirname}."
+
+msgid "assembling"
+msgstr "składanie"
 
 msgid "Cancel"
 msgstr "Anuluj"
@@ -63,21 +63,39 @@ msgstr "Utwórz nowe"
 msgid "estimating time left"
 msgstr "Szacowanie pozostałego czasu"
 
+msgid "Existing files"
+msgstr "Istniejące pliki"
+
+msgid ""
+"Existing files and folders will be deleted if not selected. If both are "
+"chosen, they will be renamed."
+msgstr ""
+"Istniejące pliki i katalogi zostaną usunięte, jeśli nie zostaną zaznaczone. "
+"Jeśli wybrano oba, zostaną im nadane nowe nazwy."
+
 msgid "Existing version"
 msgstr "Istniejąca wersja"
+
+msgid "Failed to assemble the chunks together"
+msgstr "Nie udało się połączyć fragmentów."
+
+msgid "Failed to upload the file"
+msgstr "Dodawanie pliku nieudane"
 
 msgid "Filenames must not end with \"{segment}\"."
 msgstr "Nazwy plików nie mogą kończyć się na \"{segment}\"."
 
-msgid ""
-"If you select both versions, the incoming file will have a number added to "
-"its name."
-msgstr ""
-"Jeśli wybierzesz obie wersje, do nazwy pliku przychodzącego zostanie dodany "
-"numer."
-
 msgid "Invalid filename"
 msgstr "Nieprawidłowa nazwa pliku"
+
+msgid ""
+"Items with the same name already exist in {dirname}, select which to keep."
+msgstr ""
+"Pliki o tej samej nazwie już istnieją w {dirname}. Wybierz, które chcesz "
+"zachować."
+
+msgid "Keep both"
+msgstr "Zachowaj oba"
 
 msgid "Last modified date unknown"
 msgstr "Nieznana data ostatniej modyfikacji"
@@ -88,34 +106,37 @@ msgstr "Nowy"
 msgid "New filename"
 msgstr "Nowa nazwa pliku"
 
+msgid "New files"
+msgstr "Nowe pliki"
+
 msgid "New version"
 msgstr "Nowa wersja"
 
 msgid "paused"
 msgstr "Wstrzymane"
 
-msgid "Preview image"
-msgstr "Podgląd obrazu"
-
 msgid "Rename"
 msgstr "Zmiana nazwy"
+
+msgid "Replace"
+msgstr "Zastąp"
 
 msgid "Select all checkboxes"
 msgstr "Zaznacz wszystkie pola wyboru"
 
-msgid "Select all existing files"
-msgstr "Zaznacz wszystkie istniejące pliki"
+msgid "Select file to keep"
+msgstr "Wybierz plik, aby zachować"
 
-msgid "Select all new files"
-msgstr "Zaznacz wszystkie nowe pliki"
+msgid "Select files to keep"
+msgstr "Wybierz pliki, aby zachować"
 
 msgid "Skip"
 msgstr "Pomiń"
 
-msgid "Skip this file"
+msgid "Skip {count} file"
 msgid_plural "Skip {count} files"
-msgstr[0] "Pomiń 1 plik"
-msgstr[1] "Pomiń {count} plików"
+msgstr[0] "Pomiń {count} plik"
+msgstr[1] "Pomiń {count} pliki"
 msgstr[2] "Pomiń {count} plików"
 msgstr[3] "Pomiń {count} plików"
 
@@ -127,6 +148,16 @@ msgstr "Wyślij"
 
 msgid "Upload files"
 msgstr "Wyślij pliki"
+
+msgid "Upload finished"
+msgstr "Prześlij ukończone"
+
+msgid "Upload finished: {count} file uploaded"
+msgid_plural "Upload finished: {count} files uploaded"
+msgstr[0] "Przesyłanie ukończone: {count} plik przesłany"
+msgstr[1] "Przesyłanie ukończone: {count} pliki przesłane"
+msgstr[2] "Przesyłanie ukończone: {count} plików przesłane"
+msgstr[3] "Przesyłanie ukończone: {count} plików przesłane"
 
 msgid "Upload folders"
 msgstr "Wyślij katalogi"
@@ -143,25 +174,54 @@ msgstr "Wysyłanie zostało pominięte"
 msgid "Upload of \"{folder}\" has been skipped"
 msgstr "Wysyłanie \"{folder}\" zostało pominięte"
 
+msgid "Upload of \"{name}\" finished"
+msgstr "Przesyłanie \"{name}\" ukończone"
+
 msgid "Upload progress"
 msgstr "Postęp wysyłania"
 
-msgid ""
-"When an incoming folder is selected, any conflicting files within it will "
-"also be overwritten."
-msgstr ""
-"Po wybraniu katalogu przychodzącego wszelkie znajdujące się w nim pliki "
-"powodujące konflikt również zostaną nadpisane."
+msgid "Upload progress: {progress}%"
+msgstr "Postęp przesyłania: {progress}%"
+
+msgid "Upload progress: {progress}%, total size {size}"
+msgstr "Postęp przesyłania: {progress}%, całkowity rozmiar {size}"
+
+msgid "Upload started"
+msgstr "Przesyłanie rozpoczęte"
+
+msgid "Upload started: {count} file"
+msgid_plural "Upload started: {count} files"
+msgstr[0] "Przesyłanie rozpoczęte: {count} plik"
+msgstr[1] "Przesyłanie rozpoczęte: {count} pliki"
+msgstr[2] "Przesyłanie rozpoczęte: {count} plików"
+msgstr[3] "Przesyłanie rozpoczęte: {count} plików"
+
+msgid "Upload started: {count} file ({size})"
+msgid_plural "Upload started: {count} files ({size})"
+msgstr[0] "Przesyłanie rozpoczęte: {count} plik ({size})"
+msgstr[1] "Przesyłanie rozpoczęte: {count} pliki ({size})"
+msgstr[2] "Przesyłanie rozpoczęte: {count} plików ({size})"
+msgstr[3] "Przesyłanie rozpoczęte: {count} plików ({size})"
+
+msgid "Upload started: {name}"
+msgstr "Przesyłanie rozpoczęte: {name}"
+
+msgid "Upload started: {name} ({size})"
+msgstr "Przesyłanie rozpoczęte: {name} ({size})"
 
 msgid ""
-"When an incoming folder is selected, the content is written into the "
-"existing folder and a recursive conflict resolution is performed."
+"When a new folder is selected, any conflicting files within it will also be "
+"overwritten."
 msgstr ""
-"Po wybraniu katalogu przychodzącego zawartość jest zapisywana w istniejącym "
-"katalogu i przeprowadzane jest rekursywne rozwiązywanie konfliktów."
+"Po wybraniu nowego katalogu wszystkie znajdujące się w nim pliki powodujące "
+"konflikt również zostaną nadpisane."
 
-msgid "Which files do you want to keep?"
-msgstr "Które pliki chcesz zachować?"
+msgid ""
+"When a new folder is selected, the content is written into the existing "
+"folder and a recursive conflict resolution is performed."
+msgstr ""
+"Po wybraniu nowego katalogu jego zawartość trafi do istniejącego katalogu, a"
+" konflikty zostaną rozwiązane rekurencyjnie."
 
 msgid ""
 "You can either rename the file, skip this file or cancel the whole "
