@@ -146,6 +146,16 @@ msgstr "Завантажити"
 msgid "Upload files"
 msgstr "Завантажити файли"
 
+msgid "Upload finished"
+msgstr "Завантаження завершено"
+
+msgid "Upload finished: {count} file uploaded"
+msgid_plural "Upload finished: {count} files uploaded"
+msgstr[0] "Завантаження завершено: {count} файл завантажено"
+msgstr[1] "Завантаження завершено: {count} файли завантажено"
+msgstr[2] "Завантаження завершено: {count} файлів завантажено"
+msgstr[3] "Завантаження завершено: {count} файлів завантажено"
+
 msgid "Upload folders"
 msgstr "Завантажити каталоги"
 
@@ -161,8 +171,40 @@ msgstr "Завантаження пропущено"
 msgid "Upload of \"{folder}\" has been skipped"
 msgstr "Завантаження \"{folder}\" пропущено"
 
+msgid "Upload of \"{name}\" finished"
+msgstr "Завантаження \"{name}\" завершено "
+
 msgid "Upload progress"
 msgstr "Поступ завантаження"
+
+msgid "Upload progress: {progress}%"
+msgstr "Триває завантаження: {progress}%"
+
+msgid "Upload progress: {progress}%, total size {size}"
+msgstr "Триває завантаження: {progress}%, загальний розмір {size}"
+
+msgid "Upload started"
+msgstr "Завантаження розпочато"
+
+msgid "Upload started: {count} file"
+msgid_plural "Upload started: {count} files"
+msgstr[0] "Завантаження розпочато: {count} файл"
+msgstr[1] "Завантаження розпочато: {count} файли"
+msgstr[2] "Завантаження розпочато: {count} файлів"
+msgstr[3] "Завантаження розпочато: {count} файлів"
+
+msgid "Upload started: {count} file ({size})"
+msgid_plural "Upload started: {count} files ({size})"
+msgstr[0] "Завантаження розпочато: {count} файл ({size})"
+msgstr[1] "Завантаження розпочато: {count} файли ({size})"
+msgstr[2] "Завантаження розпочато: {count} файлів ({size})"
+msgstr[3] "Завантаження розпочато: {count} файлів ({size})"
+
+msgid "Upload started: {name}"
+msgstr "Завантаження розпочато: {name}"
+
+msgid "Upload started: {name} ({size})"
+msgstr "Завантаження розпочато: {name} ({size})"
 
 msgid ""
 "When a new folder is selected, any conflicting files within it will also be "

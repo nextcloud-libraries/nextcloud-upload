@@ -1,11 +1,10 @@
-# 
 # Translators:
 # Joas Schilling, 2024
-# Сашко Тодоров <sasetodorov@gmail.com>, 2025
+# Сашко Тодоров <sasetodorov@gmail.com>, 2026
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Сашко Тодоров <sasetodorov@gmail.com>, 2025\n"
+"Last-Translator: Сашко Тодоров <sasetodorov@gmail.com>, 2026\n"
 "Language-Team: Macedonian (https://app.transifex.com/nextcloud/teams/64236/mk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: mk\n"
@@ -20,16 +19,6 @@ msgstr "\"{segment}\" е забранет вид на датотека."
 msgid "\"{segment}\" is not allowed inside a file or folder name."
 msgstr "\"{segment}\" не е дозволено во името датотека или папка."
 
-msgid "{count} file conflict"
-msgid_plural "{count} files conflict"
-msgstr[0] "{count} конфликт со датотека"
-msgstr[1] "{count} конфликти со датотеки"
-
-msgid "{count} file conflict in {dirname}"
-msgid_plural "{count} file conflicts in {dirname}"
-msgstr[0] "{count} конфликт со датотека во {dirname}"
-msgstr[1] "{count} конфликти на датотеки во {dirname}"
-
 msgid "{seconds} seconds left"
 msgid_plural "{seconds} seconds left"
 msgstr[0] "уште {seconds} секунда"
@@ -41,6 +30,12 @@ msgstr "преостанува {time}"
 
 msgid "a few seconds left"
 msgstr "уште неколку секунди"
+
+msgid "All files"
+msgstr "Сите датотеки"
+
+msgid "An item with the same name already exists in {dirname}."
+msgstr "Ставка со истото име веќе постои во {dirname}."
 
 msgid "assembling"
 msgstr "склопување"
@@ -63,6 +58,16 @@ msgstr "Креирај нова"
 msgid "estimating time left"
 msgstr "приближно преостанато време"
 
+msgid "Existing files"
+msgstr "Постоечки датотеки"
+
+msgid ""
+"Existing files and folders will be deleted if not selected. If both are "
+"chosen, they will be renamed."
+msgstr ""
+"Постоечките датотеки и папки ќе се избришат ако не се избрани. Ако двете се "
+"избрани, тие ќе бидат преименвани."
+
 msgid "Existing version"
 msgstr "Постоечка верзија"
 
@@ -75,15 +80,16 @@ msgstr "Неуспешно прикачување на датотека"
 msgid "Filenames must not end with \"{segment}\"."
 msgstr "Имињата на датотеките не смеат да завршуваат со \"{segment}\"."
 
-msgid ""
-"If you select both versions, the incoming file will have a number added to "
-"its name."
-msgstr ""
-"Ако ги изберете двете верзии, на новата датотека ќе ѝ биде додаден број на "
-"името."
-
 msgid "Invalid filename"
 msgstr "Невалидно име на датотека"
+
+msgid ""
+"Items with the same name already exist in {dirname}, select which to keep."
+msgstr ""
+"Ставка со истото име веќе постои во {dirname}, избери која да се зачува."
+
+msgid "Keep both"
+msgstr "Зачувај ги двете"
 
 msgid "Last modified date unknown"
 msgstr "Непознат датумот на последната измена"
@@ -94,26 +100,29 @@ msgstr "Нова"
 msgid "New filename"
 msgstr "Ново име на датотека"
 
+msgid "New files"
+msgstr "Нови датотеки"
+
 msgid "New version"
 msgstr "Нова верзија"
 
 msgid "paused"
 msgstr "паузирано"
 
-msgid "Preview image"
-msgstr "Преглед на слика"
-
 msgid "Rename"
 msgstr "Преименувај"
+
+msgid "Replace"
+msgstr "Преклопи"
 
 msgid "Select all checkboxes"
 msgstr "Означи ги сите полиња"
 
-msgid "Select all existing files"
-msgstr "Избери ги сите постоечки датотеки"
+msgid "Select file to keep"
+msgstr "Избери датотека за зачувување"
 
-msgid "Select all new files"
-msgstr "Избери ги сите нови датотеки"
+msgid "Select files to keep"
+msgstr "Избери датотеки за зачувување"
 
 msgid "Skip"
 msgstr "Прескокни"
@@ -123,9 +132,6 @@ msgid_plural "Skip {count} files"
 msgstr[0] "Прескокни {count} датотека"
 msgstr[1] "Прескокни {count} датотеки"
 
-msgid "Skip this file"
-msgstr "Прескокни ја оваа датотека"
-
 msgid "Unknown size"
 msgstr "Непозната големина"
 
@@ -134,6 +140,14 @@ msgstr "Прикачи"
 
 msgid "Upload files"
 msgstr "Прикачување датотеки"
+
+msgid "Upload finished"
+msgstr "Прикачувањето заврши"
+
+msgid "Upload finished: {count} file uploaded"
+msgid_plural "Upload finished: {count} files uploaded"
+msgstr[0] "Прикачувањето заврши: {count}датотека е прикачена"
+msgstr[1] "Прикачувањето заврши: {count} датотеки се прикачени"
 
 msgid "Upload folders"
 msgstr "Прикачи папки"
@@ -150,25 +164,50 @@ msgstr "Прикачувањето е прескокнато"
 msgid "Upload of \"{folder}\" has been skipped"
 msgstr "Прикачувањето на \"{folder}\" е прескокнато"
 
+msgid "Upload of \"{name}\" finished"
+msgstr "Прикачувањето на \"{name}\" заврши"
+
 msgid "Upload progress"
 msgstr "Прогрес на прикачување"
 
-msgid ""
-"When an incoming folder is selected, any conflicting files within it will "
-"also be overwritten."
-msgstr ""
-"Кога ќе се избере дојдовна папка, сите конфликтни датотеки во неа исто така "
-"ќе бидат пребришани."
+msgid "Upload progress: {progress}%"
+msgstr "Прогрес на прикачување: {progress}%"
+
+msgid "Upload progress: {progress}%, total size {size}"
+msgstr "Прогрес на прикачување: {progress}%, вкупна големина {size}"
+
+msgid "Upload started"
+msgstr "Прикачувањето започна"
+
+msgid "Upload started: {count} file"
+msgid_plural "Upload started: {count} files"
+msgstr[0] "Прикачувањето започна: {count}датотека се прикачува"
+msgstr[1] "Прикачувањето започна: {count} датотеки се прикачуваат"
+
+msgid "Upload started: {count} file ({size})"
+msgid_plural "Upload started: {count} files ({size})"
+msgstr[0] "Прикачувањето започна: {count}датотека се прикачува ({size})"
+msgstr[1] "Прикачувањето започна: {count} датотеки се прикачуваат ({size})"
+
+msgid "Upload started: {name}"
+msgstr "Прикачувањето започна: {name}"
+
+msgid "Upload started: {name} ({size})"
+msgstr "Прикачувањето започна: {name} ({size})"
 
 msgid ""
-"When an incoming folder is selected, the content is written into the "
-"existing folder and a recursive conflict resolution is performed."
+"When a new folder is selected, any conflicting files within it will also be "
+"overwritten."
 msgstr ""
-"Кога ќе се избере дојдовна папка, содржината се запишува во постоечката "
-"папка и се извршува рекурзивно решавање на конфликтот."
+"Кога ќе се избере нова папка, сите конфликтни датотеки во неа исто така ќе "
+"бидат преклопени."
 
-msgid "Which files do you want to keep?"
-msgstr "Кој датотеки сакате да ги зачвате?"
+msgid ""
+"When a new folder is selected, the content is written into the existing "
+"folder and a recursive conflict resolution is performed."
+msgstr ""
+"Кога ќе се избере нова папка, содржината се запишува во постоечката папка и "
+"се извршува рекурзивно решавање на конфликтот."
 
 msgid ""
 "You can either rename the file, skip this file or cancel the whole "
