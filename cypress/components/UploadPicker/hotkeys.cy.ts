@@ -43,6 +43,27 @@ describe('UploadPicker: hotkeys testing', () => {
 		cy.get('[role="menu"]').should('be.visible')
 	})
 
+	it('opens the upload menu when pressing shift+u on a Latin keyboard layout', () => {
+		cy.mount(UploadPicker, { propsData })
+
+		cy.get('[data-cy-upload-picker] [data-cy-upload-picker-input]').should('exist')
+		cy.get('[role="menu"]').should('not.exist')
+
+		cy.get('body').trigger('keydown', { key: 'U', code: 'KeyU', shiftKey: true, eventConstructor: 'KeyboardEvent' })
+		cy.get('[role="menu"]').should('be.visible')
+	})
+
+	it('opens the upload menu when pressing shift+u on a non-Latin keyboard layout', () => {
+		cy.mount(UploadPicker, { propsData })
+
+		cy.get('[data-cy-upload-picker] [data-cy-upload-picker-input]').should('exist')
+		cy.get('[role="menu"]').should('not.exist')
+
+		// Russian layout: the physical "U" key produces "Г"
+		cy.get('body').trigger('keydown', { key: 'Г', code: 'KeyU', shiftKey: true, eventConstructor: 'KeyboardEvent' })
+		cy.get('[role="menu"]').should('be.visible')
+	})
+
 	it('closes the upload menu when pressing escape', () => {
 		cy.mount(UploadPicker, { propsData })
 			.then(({ component }) => {
