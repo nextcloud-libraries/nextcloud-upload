@@ -1,36 +1,225 @@
-# 
 # Translators:
-# Mădălin Vasiliu <contact@madalinvasiliu.com>, 2022
+# Joas Schilling, 2024
+# Ștefan Chelban, 2026
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Mădălin Vasiliu <contact@madalinvasiliu.com>, 2022\n"
-"Language-Team: Romanian (https://www.transifex.com/nextcloud/teams/64236/ro/)\n"
+"Last-Translator: Ștefan Chelban, 2026\n"
+"Language-Team: Romanian (https://app.transifex.com/nextcloud/teams/64236/ro/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: ro\n"
 "Plural-Forms: nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?2:1));\n"
 
-msgid "{seconds} seconds left"
-msgstr "{seconds} secunde rămase"
+msgid "\"{segment}\" is a forbidden file or folder name."
+msgstr "„{segment}” este un nume de fișier sau dosar interzis."
 
-#. time has the format 00:00:00
+msgid "\"{segment}\" is a forbidden file type."
+msgstr "„{segment}” este un tip de fișier interzis."
+
+msgid "\"{segment}\" is not allowed inside a file or folder name."
+msgstr "„{segment}” nu este permis în numele unui fișier sau dosar."
+
+msgid "{seconds} seconds left"
+msgid_plural "{seconds} seconds left"
+msgstr[0] "a mai rămas {seconds} secundă"
+msgstr[1] "au mai rămas {seconds} secunde"
+msgstr[2] "au mai rămas {seconds} de secunde"
+
+#. TRANSLATORS time has the format 00:00:00
 msgid "{time} left"
-msgstr "{time} rămas"
+msgstr "Timp rămas: {time}"
 
 msgid "a few seconds left"
-msgstr "câteva secunde rămase"
+msgstr "au mai rămas câteva secunde"
 
-msgid "Add"
-msgstr "Adaugă"
+msgid "All files"
+msgstr "Toate fișierele"
+
+msgid "An item with the same name already exists in {dirname}."
+msgstr "În {dirname} există deja un element cu același nume."
+
+msgid "assembling"
+msgstr "se asamblează"
+
+msgid "Cancel"
+msgstr "Anulează"
+
+msgid "Cancel the entire operation"
+msgstr "Anulează toată operațiunea"
 
 msgid "Cancel uploads"
-msgstr "Anulați încărcările"
+msgstr "Anulează încărcările"
+
+msgid "Continue"
+msgstr "Continuă"
+
+msgid "Create new"
+msgstr "Creează"
 
 msgid "estimating time left"
-msgstr "estimarea timpului rămas"
+msgstr "se estimează timpul rămas"
+
+msgid "Existing files"
+msgstr "Fișiere existente"
+
+msgid ""
+"Existing files and folders will be deleted if not selected. If both are "
+"chosen, they will be renamed."
+msgstr ""
+"Fișierele și dosarele existente care nu sunt selectate vor fi șterse. Dacă "
+"le alegi pe amândouă, vor fi redenumite."
+
+msgid "Existing version"
+msgstr "Versiunea existentă"
+
+msgid "Failed to assemble the chunks together"
+msgstr "Fragmentele nu au putut fi asamblate"
+
+msgid "Failed to upload the file"
+msgstr "Fișierul nu a putut fi încărcat"
+
+msgid "Filenames must not end with \"{segment}\"."
+msgstr "Numele fișierelor nu trebuie să se termine cu „{segment}”."
+
+msgid "Invalid filename"
+msgstr "Nume de fișier nevalid"
+
+msgid ""
+"Items with the same name already exist in {dirname}, select which to keep."
+msgstr ""
+"În {dirname} există deja elemente cu același nume. Selectează-le pe cele pe "
+"care vrei să le păstrezi."
+
+msgid "Keep both"
+msgstr "Păstrează-le pe amândouă"
+
+msgid "Last modified date unknown"
+msgstr "Data ultimei modificări este necunoscută"
+
+msgid "New"
+msgstr "Nou"
+
+msgid "New filename"
+msgstr "Nume nou de fișier"
+
+msgid "New files"
+msgstr "Fișiere noi"
+
+msgid "New version"
+msgstr "Versiunea nouă"
 
 msgid "paused"
-msgstr "pus pe pauză"
+msgstr "în pauză"
+
+msgid "Rename"
+msgstr "Redenumește"
+
+msgid "Replace"
+msgstr "Înlocuiește"
+
+msgid "Select all checkboxes"
+msgstr "Bifează toate casetele"
+
+msgid "Select file to keep"
+msgstr "Selectează fișierul de păstrat"
+
+msgid "Select files to keep"
+msgstr "Selectează fișierele de păstrat"
+
+msgid "Skip"
+msgstr "Sari peste"
+
+msgid "Skip {count} file"
+msgid_plural "Skip {count} files"
+msgstr[0] "Sari peste {count} fișier"
+msgstr[1] "Sari peste {count} fișiere"
+msgstr[2] "Sari peste {count} de fișiere"
+
+msgid "Unknown size"
+msgstr "Dimensiune necunoscută"
+
+msgid "Upload"
+msgstr "Încarcă"
 
 msgid "Upload files"
 msgstr "Încarcă fișiere"
+
+msgid "Upload finished"
+msgstr "Încărcare finalizată"
+
+msgid "Upload finished: {count} file uploaded"
+msgid_plural "Upload finished: {count} files uploaded"
+msgstr[0] "Încărcare finalizată: {count} fișier încărcat"
+msgstr[1] "Încărcare finalizată: {count} fișiere încărcate"
+msgstr[2] "Încărcare finalizată: {count} de fișiere încărcate"
+
+msgid "Upload folders"
+msgstr "Încarcă dosare"
+
+msgid "Upload from device"
+msgstr "Încarcă de pe dispozitiv"
+
+msgid "Upload has been cancelled"
+msgstr "Încărcarea a fost anulată"
+
+msgid "Upload has been skipped"
+msgstr "Încărcarea a fost omisă"
+
+msgid "Upload of \"{folder}\" has been skipped"
+msgstr "Încărcarea dosarului „{folder}” a fost omisă"
+
+msgid "Upload of \"{name}\" finished"
+msgstr "Încărcarea „{name}” s-a finalizat"
+
+msgid "Upload progress"
+msgstr "Progresul încărcării"
+
+msgid "Upload progress: {progress}%"
+msgstr "Progresul încărcării: {progress}%"
+
+msgid "Upload progress: {progress}%, total size {size}"
+msgstr "Progresul încărcării: {progress}%, dimensiune totală {size}"
+
+msgid "Upload started"
+msgstr "Încărcare începută"
+
+msgid "Upload started: {count} file"
+msgid_plural "Upload started: {count} files"
+msgstr[0] "Încărcare începută: {count} fișier"
+msgstr[1] "Încărcare începută: {count} fișiere"
+msgstr[2] "Încărcare începută: {count} de fișiere"
+
+msgid "Upload started: {count} file ({size})"
+msgid_plural "Upload started: {count} files ({size})"
+msgstr[0] "Încărcare începută: {count} fișier ({size})"
+msgstr[1] "Încărcare începută: {count} fișiere ({size})"
+msgstr[2] "Încărcare începută: {count} de fișiere ({size})"
+
+msgid "Upload started: {name}"
+msgstr "Încărcare începută: {name}"
+
+msgid "Upload started: {name} ({size})"
+msgstr "Încărcare începută: {name} ({size})"
+
+msgid ""
+"When a new folder is selected, any conflicting files within it will also be "
+"overwritten."
+msgstr ""
+"Dacă selectezi dosarul nou, fișierele din el aflate în conflict vor fi și "
+"ele suprascrise."
+
+msgid ""
+"When a new folder is selected, the content is written into the existing "
+"folder and a recursive conflict resolution is performed."
+msgstr ""
+"Dacă selectezi dosarul nou, conținutul lui este scris în dosarul existent, "
+"iar conflictele sunt rezolvate recursiv."
+
+msgid ""
+"You can either rename the file, skip this file or cancel the whole "
+"operation."
+msgstr ""
+"Poți redenumi fișierul, poți sări peste el sau poți anula toată operațiunea."
+
+msgid "You need to select at least one version of each file to continue."
+msgstr "Pentru a continua, selectează cel puțin o versiune a fiecărui fișier."

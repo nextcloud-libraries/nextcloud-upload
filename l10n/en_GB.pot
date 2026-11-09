@@ -1,11 +1,10 @@
-# 
 # Translators:
 # Joas Schilling, 2024
-# Andi Chandler <andi@gowling.com>, 2025
+# Andi Chandler <andi@gowling.com>, 2026
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Andi Chandler <andi@gowling.com>, 2025\n"
+"Last-Translator: Andi Chandler <andi@gowling.com>, 2026\n"
 "Language-Team: English (United Kingdom) (https://app.transifex.com/nextcloud/teams/64236/en_GB/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: en_GB\n"
@@ -20,16 +19,6 @@ msgstr "\"{segment}\" is a forbidden file type."
 msgid "\"{segment}\" is not allowed inside a file or folder name."
 msgstr "\"{segment}\" is not allowed inside a file or folder name."
 
-msgid "{count} file conflict"
-msgid_plural "{count} files conflict"
-msgstr[0] "{count} file conflict"
-msgstr[1] "{count} files conflict"
-
-msgid "{count} file conflict in {dirname}"
-msgid_plural "{count} file conflicts in {dirname}"
-msgstr[0] "{count} file conflict in {dirname}"
-msgstr[1] "{count} file conflicts in {dirname}"
-
 msgid "{seconds} seconds left"
 msgid_plural "{seconds} seconds left"
 msgstr[0] "{seconds} seconds left"
@@ -41,6 +30,12 @@ msgstr "{time} left"
 
 msgid "a few seconds left"
 msgstr "a few seconds left"
+
+msgid "All files"
+msgstr "All files"
+
+msgid "An item with the same name already exists in {dirname}."
+msgstr "An item with the same name already exists in {dirname}."
 
 msgid "assembling"
 msgstr "assembling"
@@ -63,6 +58,16 @@ msgstr "Create new"
 msgid "estimating time left"
 msgstr "estimating time left"
 
+msgid "Existing files"
+msgstr "Existing files"
+
+msgid ""
+"Existing files and folders will be deleted if not selected. If both are "
+"chosen, they will be renamed."
+msgstr ""
+"Existing files and folders will be deleted if not selected. If both are "
+"chosen, they will be renamed."
+
 msgid "Existing version"
 msgstr "Existing version"
 
@@ -75,15 +80,16 @@ msgstr "Failed to upload the file"
 msgid "Filenames must not end with \"{segment}\"."
 msgstr "Filenames must not end with \"{segment}\"."
 
-msgid ""
-"If you select both versions, the incoming file will have a number added to "
-"its name."
-msgstr ""
-"If you select both versions, the incoming file will have a number added to "
-"its name."
-
 msgid "Invalid filename"
 msgstr "Invalid filename"
+
+msgid ""
+"Items with the same name already exist in {dirname}, select which to keep."
+msgstr ""
+"Items with the same name already exist in {dirname}, select which to keep."
+
+msgid "Keep both"
+msgstr "Keep both"
 
 msgid "Last modified date unknown"
 msgstr "Last modified date unknown"
@@ -94,26 +100,29 @@ msgstr "New"
 msgid "New filename"
 msgstr "New filename"
 
+msgid "New files"
+msgstr "New files"
+
 msgid "New version"
 msgstr "New version"
 
 msgid "paused"
 msgstr "paused"
 
-msgid "Preview image"
-msgstr "Preview image"
-
 msgid "Rename"
 msgstr "Rename"
+
+msgid "Replace"
+msgstr "Replace"
 
 msgid "Select all checkboxes"
 msgstr "Select all checkboxes"
 
-msgid "Select all existing files"
-msgstr "Select all existing files"
+msgid "Select file to keep"
+msgstr "Select file to keep"
 
-msgid "Select all new files"
-msgstr "Select all new files"
+msgid "Select files to keep"
+msgstr "Select files to keep"
 
 msgid "Skip"
 msgstr "Skip"
@@ -123,9 +132,6 @@ msgid_plural "Skip {count} files"
 msgstr[0] "Skip {count} file"
 msgstr[1] "Skip {count} files"
 
-msgid "Skip this file"
-msgstr "Skip this file"
-
 msgid "Unknown size"
 msgstr "Unknown size"
 
@@ -134,6 +140,14 @@ msgstr "Upload"
 
 msgid "Upload files"
 msgstr "Upload files"
+
+msgid "Upload finished"
+msgstr "Upload finished"
+
+msgid "Upload finished: {count} file uploaded"
+msgid_plural "Upload finished: {count} files uploaded"
+msgstr[0] "Upload finished: {count} file uploaded"
+msgstr[1] "Upload finished: {count} files uploaded"
 
 msgid "Upload folders"
 msgstr "Upload folders"
@@ -150,25 +164,50 @@ msgstr "Upload has been skipped"
 msgid "Upload of \"{folder}\" has been skipped"
 msgstr "Upload of \"{folder}\" has been skipped"
 
+msgid "Upload of \"{name}\" finished"
+msgstr "Upload of \"{name}\" finished"
+
 msgid "Upload progress"
 msgstr "Upload progress"
 
-msgid ""
-"When an incoming folder is selected, any conflicting files within it will "
-"also be overwritten."
-msgstr ""
-"When an incoming folder is selected, any conflicting files within it will "
-"also be overwritten."
+msgid "Upload progress: {progress}%"
+msgstr "Upload progress: {progress}%"
+
+msgid "Upload progress: {progress}%, total size {size}"
+msgstr "Upload progress: {progress}%, total size {size}"
+
+msgid "Upload started"
+msgstr "Upload started"
+
+msgid "Upload started: {count} file"
+msgid_plural "Upload started: {count} files"
+msgstr[0] "Upload started: {count} file"
+msgstr[1] "Upload started: {count} files"
+
+msgid "Upload started: {count} file ({size})"
+msgid_plural "Upload started: {count} files ({size})"
+msgstr[0] "Upload started: {count} file ({size})"
+msgstr[1] "Upload started: {count} files ({size})"
+
+msgid "Upload started: {name}"
+msgstr "Upload started: {name}"
+
+msgid "Upload started: {name} ({size})"
+msgstr "Upload started: {name} ({size})"
 
 msgid ""
-"When an incoming folder is selected, the content is written into the "
-"existing folder and a recursive conflict resolution is performed."
+"When a new folder is selected, any conflicting files within it will also be "
+"overwritten."
 msgstr ""
-"When an incoming folder is selected, the content is written into the "
-"existing folder and a recursive conflict resolution is performed."
+"When a new folder is selected, any conflicting files within it will also be "
+"overwritten."
 
-msgid "Which files do you want to keep?"
-msgstr "Which files do you want to keep?"
+msgid ""
+"When a new folder is selected, the content is written into the existing "
+"folder and a recursive conflict resolution is performed."
+msgstr ""
+"When a new folder is selected, the content is written into the existing "
+"folder and a recursive conflict resolution is performed."
 
 msgid ""
 "You can either rename the file, skip this file or cancel the whole "
