@@ -2,8 +2,9 @@
  * SPDX-FileCopyrightText: 2024 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
-import { beforeAll, beforeEach, describe, expect, it, test, vi } from 'vitest'
+import { afterEach, beforeAll, beforeEach, describe, expect, it, test, vi } from 'vitest'
 import { Uploader } from '../lib/uploader'
+import axios from '@nextcloud/axios'
 import * as nextcloudAuth from '@nextcloud/auth'
 import * as nextcloudFiles from '@nextcloud/files'
 
@@ -180,6 +181,197 @@ describe('Uploader', () => {
 				file,
 				initialRoot,
 			)
+		})
+
+		describe('special characters in the destination', () => {
+			const base = 'http://cloud.example.com/remote.php/dav/files/test'
+			const mkcolUrls: string[] = []
+			let putUrls: string[]
+			let mkcolStatus: number
+			let hangMkcol: boolean
+
+			/**
+			 * Create an uploader with the given (decoded) root
+			 * @param source decoded root URL
+			 */
+			function uploaderFor(source: string): Uploader {
+				const uploader = new Uploader()
+				uploader.destination = new nextcloudFiles.Folder({
+					owner: 'test',
+					source,
+					root: '/files/test',
+				})
+				return uploader
+			}
+
+			/**
+			 * Create a file inside a folder structure
+			 * @param relativePath path relative to the picked root, including the file name
+			 */
+			function fileAt(relativePath: string): File {
+				const file = new File(['x'], 'file.txt')
+				Object.defineProperty(file, 'webkitRelativePath', { value: relativePath })
+				return file
+			}
+
+			beforeEach(() => {
+				mkcolUrls.length = 0
+				putUrls = []
+				mkcolStatus = 201
+				hangMkcol = false
+				// davGetClient() patches webdav to call the global fetch
+				vi.stubGlobal('fetch', vi.fn(async (url: string, options: { method: string, signal?: AbortSignal }) => {
+					if (options.method === 'MKCOL') {
+						mkcolUrls.push(url)
+						if (hangMkcol) {
+							await new Promise((_resolve, reject) => {
+								options.signal?.addEventListener('abort', () => reject(new DOMException('Aborted', 'AbortError')))
+							})
+						}
+					}
+					return new Response(null, { status: mkcolStatus })
+				}))
+				vi.spyOn(axios, 'request').mockImplementation(async (config) => {
+					putUrls.push(config.url as string)
+					return {} as never
+				})
+			})
+
+			afterEach(() => {
+				vi.unstubAllGlobals()
+				vi.mocked(axios.request).mockRestore()
+			})
+
+			test.each([
+				['plain control', '/plain', '/plain'],
+				['hash', '/#test', '/%23test'],
+				['hash in the middle', '/a#b', '/a%23b'],
+				['question mark', '/q?x', '/q%3Fx'],
+				['nested hash', '/#test/child', '/%23test/child'],
+				['percent sign', '/100% done #1', '/100%25%20done%20%231'],
+				['spaces and non-ASCII', '/é 日本', '/%C3%A9%20%E6%97%A5%E6%9C%AC'],
+				['plus, ampersand and semicolon', '/a+b&c;d', '/a%2Bb%26c%3Bd'],
+				['literal %2F and %23 text', '/a%2Fb%23c', '/a%252Fb%2523c'],
+				['already percent-encoded looking name', '/a%20b', '/a%2520b'],
+			])('%s', async (_name, decodedPath, encodedPath) => {
+				const uploader = new Uploader()
+				uploader.destination = new nextcloudFiles.Folder({
+					owner: 'test',
+					source: `${base}${decodedPath}`,
+					root: '/files/test',
+				})
+
+				const file = new File(['x'], 'file.txt')
+				Object.defineProperty(file, 'webkitRelativePath', { value: 'picked/file.txt' })
+
+				const notified: string[] = []
+				uploader.addNotifier((upload) => notified.push(upload.source))
+
+				const uploads = await uploader.batchUpload('/', [file])
+
+				expect(mkcolUrls).toEqual([`${base}${encodedPath}/picked/`])
+				expect(putUrls).toEqual([`${base}${encodedPath}/picked/file.txt`])
+
+				// Decoded values stay untouched for upload sources and events
+				const sources = uploads.map((upload) => upload.source)
+				expect(sources).toContain(`${base}${decodedPath}/picked`)
+				expect(sources).toContain(`${base}${decodedPath}/picked/file.txt`)
+				expect(notified).toContain(`${base}${decodedPath}/`)
+				expect(notified).toContain(`${base}${decodedPath}/picked`)
+			})
+
+			test('special characters in child directory names', async () => {
+				const uploader = new Uploader()
+				const file = new File(['x'], 'file.txt')
+				Object.defineProperty(file, 'webkitRelativePath', { value: '#d/100% x/file.txt' })
+
+				const uploads = await uploader.batchUpload('/', [file])
+
+				expect(mkcolUrls).toEqual([`${base}/%23d/`, `${base}/%23d/100%25%20x/`])
+				expect(putUrls).toEqual([`${base}/%23d/100%25%20x/file.txt`])
+
+				const sources = uploads.map((upload) => upload.source)
+				expect(sources).toContain(`${base}/#d`)
+				expect(sources).toContain(`${base}/#d/100% x`)
+				expect(sources).toContain(`${base}/#d/100% x/file.txt`)
+			})
+
+			test.each([
+				['spaces and non-ASCII', 'é 日本', '%C3%A9%20%E6%97%A5%E6%9C%AC'],
+				['plus, ampersand and semicolon', 'a+b&c;d', 'a%2Bb%26c%3Bd'],
+				['literal %2F and %23 text', 'a%2Fb%23c', 'a%252Fb%2523c'],
+				['already percent-encoded looking name', 'a%20b', 'a%2520b'],
+			])('folder name with %s', async (_name, decoded, encoded) => {
+				const uploads = await uploaderFor(base).batchUpload('/', [fileAt(`${decoded}/file.txt`)])
+
+				expect(mkcolUrls).toEqual([`${base}/${encoded}/`])
+				expect(putUrls).toEqual([`${base}/${encoded}/file.txt`])
+				expect(uploads.map((upload) => upload.source)).toContain(`${base}/${decoded}`)
+			})
+
+			test('trailing slash on the root', async () => {
+				const uploads = await uploaderFor(`${base}/#test/`).batchUpload('/', [fileAt('picked/file.txt')])
+
+				expect(mkcolUrls).toEqual([`${base}/%23test/picked/`])
+				expect(putUrls).toEqual([`${base}/%23test/picked/file.txt`])
+				expect(uploads.map((upload) => upload.source)).toContain(`${base}/#test/picked`)
+			})
+
+			test('explicit non-default port', async () => {
+				const portBase = 'http://cloud.example.com:8080/remote.php/dav/files/test'
+				const uploads = await uploaderFor(`${portBase}/#test`).batchUpload('/', [fileAt('picked/file.txt')])
+
+				expect(mkcolUrls).toEqual([`${portBase}/%23test/picked/`])
+				expect(putUrls).toEqual([`${portBase}/%23test/picked/file.txt`])
+				expect(uploads.map((upload) => upload.source)).toContain(`${portBase}/#test/picked`)
+			})
+
+			test('hash only in a parent segment of the root with a destination', async () => {
+				const uploads = await uploaderFor(`${base}/#parent`).batchUpload('/child', [fileAt('picked/file.txt')])
+
+				expect(mkcolUrls).toEqual([`${base}/%23parent/child/picked/`])
+				expect(putUrls).toEqual([`${base}/%23parent/child/picked/file.txt`])
+				expect(uploads.map((upload) => upload.source)).toContain(`${base}/#parent/child/picked`)
+			})
+
+			test('existing directory (405) is ignored and uploads continue', async () => {
+				mkcolStatus = 405
+				const uploads = await uploaderFor(`${base}/#test`).batchUpload('/', [fileAt('picked/file.txt')])
+
+				expect(mkcolUrls).toEqual([`${base}/%23test/picked/`])
+				expect(putUrls).toEqual([`${base}/%23test/picked/file.txt`])
+				expect(uploads).toHaveLength(2)
+			})
+
+			test('cancelling mid-batch rejects (p-cancelable CancelError) and uploads nothing', async () => {
+				hangMkcol = true
+				const batch = uploaderFor(`${base}/#test`).batchUpload('/', [fileAt('picked/file.txt')])
+
+				await vi.waitFor(() => expect(mkcolUrls).toHaveLength(1))
+				batch.cancel()
+
+				// The outer PCancelable rejects itself with its own CancelError
+				await expect(batch).rejects.toMatchObject({ name: 'CancelError' })
+				expect(putUrls).toEqual([])
+			})
+
+			test('special characters in a public share root', async () => {
+				const publicBase = 'http://cloud.example.com/public.php/dav/files'
+				const uploader = new Uploader(true)
+				uploader.destination = new nextcloudFiles.Folder({
+					owner: 'anonymous',
+					source: `${publicBase}/tok#en`,
+					root: '/files/tok#en',
+				})
+				const file = new File(['x'], 'file.txt')
+				Object.defineProperty(file, 'webkitRelativePath', { value: 'picked/file.txt' })
+
+				const uploads = await uploader.batchUpload('/', [file])
+
+				expect(mkcolUrls).toEqual([`${publicBase}/tok%23en/picked/`])
+				expect(putUrls).toEqual([`${publicBase}/tok%23en/picked/file.txt`])
+				expect(uploads.map((upload) => upload.source)).toContain(`${publicBase}/tok#en/picked`)
+			})
 		})
 	})
 })
