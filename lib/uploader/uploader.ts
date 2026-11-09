@@ -509,7 +509,25 @@ export class Uploader {
 				logger.debug('Initializing chunked upload', { file, upload })
 
 				// Let's initialize a chunk upload
-				const tempUrl = await initChunkWorkspace(encodedDestinationFile, retries, this._isPublic, this._customHeaders)
+				let tempUrl: string
+				try {
+					tempUrl = await initChunkWorkspace(encodedDestinationFile, retries, this._isPublic, this._customHeaders)
+				} catch (error) {
+					if ((error as AxiosError)?.response) {
+						upload.response = (error as AxiosError).response as AxiosResponse
+					}
+
+					upload.status = UploadStatus.FAILED
+					logger.error(`Failed to initialize the chunked upload of ${file.name}`, { error, file, upload })
+					reject(t('Failed to upload the file'))
+
+					this._notifyAll(upload)
+					this.updateStats()
+					this._jobQueue.onIdle()
+						.then(() => this.reset())
+					return upload
+				}
+
 				const chunksQueue: Array<Promise<void>> = []
 
 				// Generate chunks array
@@ -575,18 +593,23 @@ export class Uploader {
 								this.updateStats()
 							})
 							.catch((error) => {
-								if (error?.response?.status === 507) {
-									logger.error('Upload failed, not enough space on the server or quota exceeded. Cancelling the remaining chunks', { error, upload })
-									upload.cancel()
-									upload.status = UploadStatus.FAILED
+								if (isCancel(error)) {
 									throw error
 								}
 
-								if (!isCancel(error)) {
+								if (error?.response?.status === 507) {
+									logger.error('Upload failed, not enough space on the server or quota exceeded. Cancelling the remaining chunks', { error, upload })
+								} else {
 									logger.error(`Chunk ${chunk + 1} ${bufferStart} - ${bufferEnd} uploading failed`, { error, upload })
-									upload.cancel()
-									upload.status = UploadStatus.FAILED
 								}
+
+								// Attach the response here, as the assembly request might only see
+								// the cancellation errors of the remaining chunks.
+								if (error?.response) {
+									upload.response = error.response
+								}
+								upload.cancel()
+								upload.status = UploadStatus.FAILED
 								throw error
 							})
 					}
@@ -619,7 +642,8 @@ export class Uploader {
 						logger.debug(`Successfully uploaded ${file.name}`, { file, upload })
 						resolve(upload)
 					} catch (error) {
-						if (isCancel(error) || error instanceof UploadCancelledError) {
+						// A failed chunk cancels the remaining chunks, so their cancellation is not a user cancellation
+						if (upload.status !== UploadStatus.FAILED && (isCancel(error) || error instanceof UploadCancelledError)) {
 							upload.status = UploadStatus.CANCELLED
 							reject(new UploadCancelledError(error))
 						} else {

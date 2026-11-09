@@ -2,8 +2,15 @@
  * SPDX-FileCopyrightText: 2024 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
+import type { AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from 'axios'
+import type { Upload } from '../lib/upload'
+
 import { afterEach, beforeAll, beforeEach, describe, expect, it, test, vi } from 'vitest'
+import { AxiosError, CanceledError } from 'axios'
 import { Uploader } from '../lib/uploader'
+import { Status as UploadStatus } from '../lib/upload'
+import { UploadCancelledError } from '../lib/errors/UploadCancelledError'
+import { getMaxChunksSize } from '../lib/utils/config'
 import axios from '@nextcloud/axios'
 import * as nextcloudAuth from '@nextcloud/auth'
 import * as nextcloudFiles from '@nextcloud/files'
@@ -13,6 +20,10 @@ vi.mock('@nextcloud/auth')
 vi.mock('@nextcloud/files', async (getModule) => {
 	const original: typeof nextcloudFiles = await getModule()
 	return { ...original }
+})
+vi.mock('../lib/utils/config', async (getModule) => {
+	const original: typeof import('../lib/utils/config') = await getModule()
+	return { ...original, getMaxChunksSize: vi.fn(original.getMaxChunksSize) }
 })
 
 beforeAll(() => {
@@ -372,6 +383,82 @@ describe('Uploader', () => {
 				expect(putUrls).toEqual([`${publicBase}/tok%23en/picked/file.txt`])
 				expect(uploads.map((upload) => upload.source)).toContain(`${publicBase}/tok#en/picked`)
 			})
+		})
+	})
+
+	describe('upload failures', () => {
+		/**
+		 * Create the error axios rejects with for a 507 Insufficient Storage response
+		 * @param config the request config
+		 */
+		function insufficientStorage(config: AxiosRequestConfig): AxiosError {
+			const response = {
+				status: 507,
+				statusText: 'Insufficient Storage',
+				headers: {},
+				data: '',
+				config,
+			} as AxiosResponse
+			return new AxiosError('Request failed with status code 507', AxiosError.ERR_BAD_RESPONSE, config as InternalAxiosRequestConfig, null, response)
+		}
+
+		/**
+		 * Upload a file and wait until the upload has settled
+		 * @param file the file to upload
+		 */
+		async function uploadAndWait(file: File): Promise<{ upload: Upload, error: unknown }> {
+			const uploader = new Uploader()
+			const notified: Upload[] = []
+			uploader.addNotifier((upload) => notified.push(upload))
+
+			const error = await uploader.upload('/file.txt', file).then(() => undefined, (error) => error)
+			expect(notified).toHaveLength(1)
+			return { upload: notified[0]!, error }
+		}
+
+		afterEach(() => {
+			vi.mocked(axios.request).mockRestore()
+			vi.mocked(getMaxChunksSize).mockReset()
+		})
+
+		test.each([1, 3])('chunked upload keeps the response if chunk %d fails while the other chunks are cancelled', async (failingChunk) => {
+			// 7 chunks of 1 byte each, so more chunks than parallel requests
+			vi.mocked(getMaxChunksSize).mockReturnValue(1)
+			vi.spyOn(axios, 'request').mockImplementation(async (config) => {
+				if (config.method === 'PUT') {
+					if (config.url!.endsWith(`/${failingChunk}`)) {
+						throw insufficientStorage(config)
+					}
+					// All other chunks are pending until the upload gets cancelled
+					const signal = config.signal as AbortSignal
+					if (!signal.aborted) {
+						await new Promise((resolve) => signal.addEventListener('abort', resolve))
+					}
+					throw new CanceledError()
+				}
+				return {} as never
+			})
+
+			const { upload, error } = await uploadAndWait(new File(['1234567'], 'file.txt'))
+			expect(error).not.toBeInstanceOf(UploadCancelledError)
+			expect(upload.status).toBe(UploadStatus.FAILED)
+			expect(upload.response?.status).toBe(507)
+		})
+
+		test('chunked upload fails with the response if the upload workspace cannot be created', async () => {
+			vi.mocked(getMaxChunksSize).mockReturnValue(1)
+			vi.spyOn(axios, 'request').mockImplementation(async (config) => {
+				if (config.method === 'MKCOL') {
+					throw insufficientStorage(config)
+				}
+				return {} as never
+			})
+
+			const { upload, error } = await uploadAndWait(new File(['1234567'], 'file.txt'))
+			expect(error).toBeDefined()
+			expect(upload.status).toBe(UploadStatus.FAILED)
+			expect(upload.response?.status).toBe(507)
+			expect(vi.mocked(axios.request).mock.calls.map(([config]) => config.method)).toEqual(['MKCOL'])
 		})
 	})
 })
