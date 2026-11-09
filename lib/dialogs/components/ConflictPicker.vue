@@ -23,7 +23,7 @@
 					{{ t('When a new folder is selected, the content is written into the existing folder and a recursive conflict resolution is performed.') }}
 				</template>
 				<template v-else>
-					{{ t('When a new folder is selected, any conflicting files within it will also be overwritten.') }}
+					{{ t('When a new folder is selected, any files within the existing folder will be overwritten, including non-conflicting files.') }}
 				</template>
 			</p>
 		</div>
