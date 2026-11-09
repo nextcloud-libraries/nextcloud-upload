@@ -8,8 +8,7 @@ import type { IDirectory } from '../utils/fileTree.ts'
 
 import { getCurrentUser } from '@nextcloud/auth'
 import { FileType, Folder, Permission, davGetClient, davRemoteURL, davRootPath } from '@nextcloud/files'
-import { encodePath } from '@nextcloud/paths'
-import { normalize } from 'path'
+import { encodePath, normalize } from '@nextcloud/paths'
 import { getCapabilities } from '@nextcloud/capabilities'
 
 import axios, { isCancel } from '@nextcloud/axios'
