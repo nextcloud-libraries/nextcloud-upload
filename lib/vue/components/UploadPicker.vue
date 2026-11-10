@@ -429,13 +429,13 @@ export default defineComponent({
 		this.uploadManager.eta.addEventListener('reset', this.onEtaReset)
 
 		// Register hotkeys
-		useHotKey('u', this.onKeyDown, {
+		useHotKey('u', this.onOpenMenuHotKey, {
 			stop: true,
 			prevent: true,
 			shift: true,
 		})
 
-		useHotKey('Escape', this.onKeyDown, {
+		useHotKey('Escape', this.onCloseMenuHotKey, {
 			stop: true,
 			prevent: true,
 		})
@@ -643,22 +643,21 @@ export default defineComponent({
 			}
 		},
 
-		onKeyDown(event: KeyboardEvent) {
-			// Shift + u opens the menu
-			if (event.key === 'u') {
-				// If we have a menu, open it
-				if (this.haveMenu) {
-					this.openedMenu = true
-					return
-				}
-
-				// Otherwise, trigger the default action
-				this.onTriggerPick()
+		/**
+		 * Open the menu, or trigger the default action if there is no menu.
+		 * The key itself is already matched by `useHotKey`, which also handles non-Latin keyboard layouts.
+		 */
+		onOpenMenuHotKey() {
+			if (this.haveMenu) {
+				this.openedMenu = true
+				return
 			}
 
-			if (event.key === 'Escape' && this.openedMenu) {
-				this.openedMenu = false
-			}
+			this.onTriggerPick()
+		},
+
+		onCloseMenuHotKey() {
+			this.openedMenu = false
 		},
 	},
 })
