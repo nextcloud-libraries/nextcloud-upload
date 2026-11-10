@@ -10,6 +10,14 @@
 
 Nextcloud upload helpers for Nextcloud apps 
 
+> [!IMPORTANT]
+> `@nextcloud/upload` is in maintenance now, so this library will only get bug fixes but no new features.
+> We will keep it working with Nextcloud up to 36 and provide bug fixes until end of 2027.
+> Starting with 2028 this library will be in life-support where we only will provide important security fixes.
+>
+> Instead please use either the API directly, provided by the `@nextcloud/files` library or the `NcUploadPicker` component provided by `@nextcloud/vue`.
+
+
 ## Usage
 📘 [API documentation](https://nextcloud-libraries.github.io/nextcloud-upload)
 
