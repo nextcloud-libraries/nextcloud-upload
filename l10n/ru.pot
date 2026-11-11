@@ -185,10 +185,10 @@ msgid "Upload progress"
 msgstr "Ход загрузки"
 
 msgid "Upload progress: {progress}%"
-msgstr "Ход загрузки: {progress}%"
+msgstr "Ход загрузки: {progress} %"
 
 msgid "Upload progress: {progress}%, total size {size}"
-msgstr "Ход загрузки: {progress}%, общий размер {size}"
+msgstr "Ход загрузки: {progress} %, общий размер {size}"
 
 msgid "Upload started"
 msgstr "Загрузка началась"
