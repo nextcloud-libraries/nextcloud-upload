@@ -84,7 +84,7 @@
     "cypress-file-upload": "^5.0.8",
     "esbuild": "^0.28.2",
     "gettext-extractor": "^4.0.6",
-    "gettext-parser": "^9.1.1",
+    "gettext-parser": "^10.0.0",
     "jsdom": "^31.0.0",
     "typedoc": "^0.28.20",
     "typescript": "^6.0.3",
