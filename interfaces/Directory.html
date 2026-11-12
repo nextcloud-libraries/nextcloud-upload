@@ -22,7 +22,7 @@ It allows to create virtual directories</p>
 <ul class="tsd-hierarchy">
 <li class="tsd-hierarchy-item"><span class="tsd-hierarchy-target">Directory</span></li></ul></li></ul></section><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/nextcloud-libraries/nextcloud-upload/blob/3707b8b78ad2d07665e01fb7cd67a915c69fec08/lib/utils/fileTree.ts#L16">lib/utils/fileTree.ts:16</a></li></ul></aside>
+<li>Defined in <a href="https://github.com/nextcloud-libraries/nextcloud-upload/blob/8da48500de4e7d1c30fcb416ae58086b8b6e3a2c/lib/utils/fileTree.ts#L16">lib/utils/fileTree.ts:16</a></li></ul></aside>
 <section class="tsd-panel-group tsd-index-group">
 <section class="tsd-panel tsd-index-panel">
 <details class="tsd-index-content tsd-accordion" open><summary class="tsd-accordion-summary tsd-index-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>
@@ -58,12 +58,12 @@ It allows to create virtual directories</p>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external">
 <h3 class="tsd-anchor-link" id="name"><code class="tsd-tag">Readonly</code><span>name</span><a href="#name" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">name</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-<div class="tsd-comment tsd-typography"><p>The <strong><code>name</code></strong> read-only property of the File interface returns the name of the file represented by a File object.</p>
+<div class="tsd-comment tsd-typography"><p>The <strong><code>name</code></strong> read-only property of the File interface returns the name of the file represented by a File object. For security reasons, the path is excluded from this property.</p>
 <p><a href="https://developer.mozilla.org/docs/Web/API/File/name">MDN Reference</a></p>
 </div><aside class="tsd-sources">
 <p>Inherited from File.name</p>
 <ul>
-<li>Defined in node_modules/typescript/lib/lib.dom.d.ts:11620</li></ul></aside></section>
+<li>Defined in node_modules/typescript/lib/lib.dom.d.ts:14431</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external">
 <h3 class="tsd-anchor-link" id="type"><code class="tsd-tag">Readonly</code><span>type</span><a href="#type" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">type</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
@@ -72,7 +72,7 @@ It allows to create virtual directories</p>
 </div><aside class="tsd-sources">
 <p>Inherited from File.type</p>
 <ul>
-<li>Defined in node_modules/typescript/lib/lib.dom.d.ts:4403</li></ul></aside></section></section></details>
+<li>Defined in node_modules/typescript/lib/lib.dom.d.ts:5050</li></ul></aside></section></section></details>
 <details class="tsd-panel-group tsd-member-group tsd-accordion" open><summary class="tsd-accordion-summary" data-key="section-Accessors"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>
 <h2 class="tsd-anchor-link" id="accessors-1">Accessors<a href="#accessors-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h2></summary>
 <section>
@@ -84,20 +84,20 @@ It allows to create virtual directories</p>
 <div class="tsd-description">
 <h4 class="tsd-returns-title">Returns (<a href="" class="tsd-signature-type tsd-kind-interface">Directory</a> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">File</span>)<span class="tsd-signature-symbol">[]</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/nextcloud-libraries/nextcloud-upload/blob/3707b8b78ad2d07665e01fb7cd67a915c69fec08/lib/utils/fileTree.ts#L42">lib/utils/fileTree.ts:42</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/nextcloud-libraries/nextcloud-upload/blob/8da48500de4e7d1c30fcb416ae58086b8b6e3a2c/lib/utils/fileTree.ts#L42">lib/utils/fileTree.ts:42</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="lastmodified"><span>last<wbr/>Modified</span><a href="#lastmodified" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
 <li>
 <div class="tsd-signature" id="lastmodifiedlastmodified"><span class="tsd-signature-keyword">get</span> <span class="tsd-kind-get-signature">lastModified</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 <div class="tsd-description">
-<div class="tsd-comment tsd-typography"><p>The <strong><code>lastModified</code></strong> read-only property of the File interface provides the last modified date of the file as the number of milliseconds since the Unix epoch (January 1, 1970 at midnight).</p>
+<div class="tsd-comment tsd-typography"><p>The <strong><code>lastModified</code></strong> read-only property of the File interface provides the last modified date of the file as the number of milliseconds since the Unix epoch (January 1, 1970 at midnight). Files without a known last modified date return the current date.</p>
 <p><a href="https://developer.mozilla.org/docs/Web/API/File/lastModified">MDN Reference</a></p>
 </div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4><aside class="tsd-sources">
 <p>Overrides File.lastModified</p>
 <ul>
-<li>Defined in <a href="https://github.com/nextcloud-libraries/nextcloud-upload/blob/3707b8b78ad2d07665e01fb7cd67a915c69fec08/lib/utils/fileTree.ts#L33">lib/utils/fileTree.ts:33</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/nextcloud-libraries/nextcloud-upload/blob/8da48500de4e7d1c30fcb416ae58086b8b6e3a2c/lib/utils/fileTree.ts#L33">lib/utils/fileTree.ts:33</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="originalname"><span>original<wbr/>Name</span><a href="#originalname" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -106,7 +106,7 @@ It allows to create virtual directories</p>
 <div class="tsd-description">
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/nextcloud-libraries/nextcloud-upload/blob/3707b8b78ad2d07665e01fb7cd67a915c69fec08/lib/utils/fileTree.ts#L38">lib/utils/fileTree.ts:38</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/nextcloud-libraries/nextcloud-upload/blob/8da48500de4e7d1c30fcb416ae58086b8b6e3a2c/lib/utils/fileTree.ts#L38">lib/utils/fileTree.ts:38</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="size"><span>size</span><a href="#size" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -119,20 +119,20 @@ It allows to create virtual directories</p>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4><aside class="tsd-sources">
 <p>Overrides File.size</p>
 <ul>
-<li>Defined in <a href="https://github.com/nextcloud-libraries/nextcloud-upload/blob/3707b8b78ad2d07665e01fb7cd67a915c69fec08/lib/utils/fileTree.ts#L29">lib/utils/fileTree.ts:29</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/nextcloud-libraries/nextcloud-upload/blob/8da48500de4e7d1c30fcb416ae58086b8b6e3a2c/lib/utils/fileTree.ts#L29">lib/utils/fileTree.ts:29</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="webkitrelativepath"><span>webkit<wbr/>Relative<wbr/>Path</span><a href="#webkitrelativepath" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
 <li>
 <div class="tsd-signature" id="webkitrelativepathwebkitrelativepath"><span class="tsd-signature-keyword">get</span> <span class="tsd-kind-get-signature">webkitRelativePath</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 <div class="tsd-description">
-<div class="tsd-comment tsd-typography"><p>The <strong><code>webkitRelativePath</code></strong> read-only property of the File interface contains a string which specifies the file's path relative to the directory selected by the user in an input element with its <code>webkitdirectory</code> attribute set.</p>
+<div class="tsd-comment tsd-typography"><p>The <strong><code>webkitRelativePath</code></strong> read-only property of the File interface contains a string which specifies the file's path relative to the directory selected by the user in an <input> element with its webkitdirectory attribute set.</p>
 <p><a href="https://developer.mozilla.org/docs/Web/API/File/webkitRelativePath">MDN Reference</a></p>
 </div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4><aside class="tsd-sources">
 <p>Overrides File.webkitRelativePath</p>
 <ul>
-<li>Defined in <a href="https://github.com/nextcloud-libraries/nextcloud-upload/blob/3707b8b78ad2d07665e01fb7cd67a915c69fec08/lib/utils/fileTree.ts#L46">lib/utils/fileTree.ts:46</a></li></ul></aside></div></li></ul></section></section></details>
+<li>Defined in <a href="https://github.com/nextcloud-libraries/nextcloud-upload/blob/8da48500de4e7d1c30fcb416ae58086b8b6e3a2c/lib/utils/fileTree.ts#L46">lib/utils/fileTree.ts:46</a></li></ul></aside></div></li></ul></section></section></details>
 <details class="tsd-panel-group tsd-member-group tsd-accordion" open><summary class="tsd-accordion-summary" data-key="section-Methods"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>
 <h2 class="tsd-anchor-link" id="methods-1">Methods<a href="#methods-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h2></summary>
 <section>
@@ -153,7 +153,7 @@ If it is a nested child the parents will be created if not already exist.</p>
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/nextcloud-libraries/nextcloud-upload/blob/3707b8b78ad2d07665e01fb7cd67a915c69fec08/lib/utils/fileTree.ts#L69">lib/utils/fileTree.ts:69</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/nextcloud-libraries/nextcloud-upload/blob/8da48500de4e7d1c30fcb416ae58086b8b6e3a2c/lib/utils/fileTree.ts#L69">lib/utils/fileTree.ts:69</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="addchildren"><span>add<wbr/>Children</span><a href="#addchildren" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -170,7 +170,7 @@ If it is a nested child the parents will be created if not already exist.</p>
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/nextcloud-libraries/nextcloud-upload/blob/3707b8b78ad2d07665e01fb7cd67a915c69fec08/lib/utils/fileTree.ts#L58">lib/utils/fileTree.ts:58</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/nextcloud-libraries/nextcloud-upload/blob/8da48500de4e7d1c30fcb416ae58086b8b6e3a2c/lib/utils/fileTree.ts#L58">lib/utils/fileTree.ts:58</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external">
 <h3 class="tsd-anchor-link" id="arraybuffer"><span>array<wbr/>Buffer</span><a href="#arraybuffer" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-inherited tsd-is-external">
@@ -183,7 +183,7 @@ If it is a nested child the parents will be created if not already exist.</p>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">ArrayBuffer</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
 <p>Inherited from File.arrayBuffer</p>
 <ul>
-<li>Defined in node_modules/typescript/lib/lib.dom.d.ts:4409</li></ul></aside></div></li></ul></section>
+<li>Defined in node_modules/typescript/lib/lib.dom.d.ts:5056</li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external">
 <h3 class="tsd-anchor-link" id="bytes"><span>bytes</span><a href="#bytes" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-inherited tsd-is-external">
@@ -196,7 +196,7 @@ If it is a nested child the parents will be created if not already exist.</p>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Uint8Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">ArrayBuffer</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
 <p>Inherited from File.bytes</p>
 <ul>
-<li>Defined in node_modules/typescript/lib/lib.dom.d.ts:4415</li></ul></aside></div></li></ul></section>
+<li>Defined in node_modules/typescript/lib/lib.dom.d.ts:5062</li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="getchild"><span>get<wbr/>Child</span><a href="#getchild" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures">
@@ -209,14 +209,14 @@ If it is a nested child the parents will be created if not already exist.</p>
 <li><span><span class="tsd-kind-parameter">name</span>: <span class="tsd-signature-type">string</span></span></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="" class="tsd-signature-type tsd-kind-interface">Directory</a> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">File</span> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-type">null</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/nextcloud-libraries/nextcloud-upload/blob/3707b8b78ad2d07665e01fb7cd67a915c69fec08/lib/utils/fileTree.ts#L50">lib/utils/fileTree.ts:50</a></li></ul></aside></div></li></ul></section>
+<li>Defined in <a href="https://github.com/nextcloud-libraries/nextcloud-upload/blob/8da48500de4e7d1c30fcb416ae58086b8b6e3a2c/lib/utils/fileTree.ts#L50">lib/utils/fileTree.ts:50</a></li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external">
 <h3 class="tsd-anchor-link" id="slice"><span>slice</span><a href="#slice" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-inherited tsd-is-external">
 <li class="tsd-is-inherited tsd-is-external">
 <div class="tsd-signature tsd-anchor-link" id="slice-1"><span class="tsd-kind-call-signature">slice</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">start</span><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">,</span> <span class="tsd-kind-parameter">end</span><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">,</span> <span class="tsd-kind-parameter">contentType</span><span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Blob</span><a href="#slice-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
 <div class="tsd-description">
-<div class="tsd-comment tsd-typography"><p>The <strong><code>slice()</code></strong> method of the Blob interface creates and returns a new <code>Blob</code> object which contains data from a subset of the blob on which it's called.</p>
+<div class="tsd-comment tsd-typography"><p>The <strong><code>slice()</code></strong> method of the Blob interface creates and returns a new Blob object which contains data from a subset of the blob on which it's called.</p>
 <p><a href="https://developer.mozilla.org/docs/Web/API/Blob/slice">MDN Reference</a></p>
 </div>
 <div class="tsd-parameters">
@@ -228,33 +228,33 @@ If it is a nested child the parents will be created if not already exist.</p>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Blob</span></h4><aside class="tsd-sources">
 <p>Inherited from File.slice</p>
 <ul>
-<li>Defined in node_modules/typescript/lib/lib.dom.d.ts:4421</li></ul></aside></div></li></ul></section>
+<li>Defined in node_modules/typescript/lib/lib.dom.d.ts:5068</li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external">
 <h3 class="tsd-anchor-link" id="stream"><span>stream</span><a href="#stream" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-inherited tsd-is-external">
 <li class="tsd-is-inherited tsd-is-external">
 <div class="tsd-signature tsd-anchor-link" id="stream-1"><span class="tsd-kind-call-signature">stream</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ReadableStream</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Uint8Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">ArrayBuffer</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><a href="#stream-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
 <div class="tsd-description">
-<div class="tsd-comment tsd-typography"><p>The <strong><code>stream()</code></strong> method of the Blob interface returns a ReadableStream which upon reading returns the data contained within the <code>Blob</code>.</p>
+<div class="tsd-comment tsd-typography"><p>The <strong><code>stream()</code></strong> method of the Blob interface returns a ReadableStream which upon reading returns the data contained within the Blob.</p>
 <p><a href="https://developer.mozilla.org/docs/Web/API/Blob/stream">MDN Reference</a></p>
 </div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">ReadableStream</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Uint8Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">ArrayBuffer</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
 <p>Inherited from File.stream</p>
 <ul>
-<li>Defined in node_modules/typescript/lib/lib.dom.d.ts:4427</li></ul></aside></div></li></ul></section>
+<li>Defined in node_modules/typescript/lib/lib.dom.d.ts:5074</li></ul></aside></div></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-inherited tsd-is-external">
 <h3 class="tsd-anchor-link" id="text"><span>text</span><a href="#text" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-inherited tsd-is-external">
 <li class="tsd-is-inherited tsd-is-external">
 <div class="tsd-signature tsd-anchor-link" id="text-1"><span class="tsd-kind-call-signature">text</span><span class="tsd-signature-symbol">()</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span><a href="#text-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
 <div class="tsd-description">
-<div class="tsd-comment tsd-typography"><p>The <strong><code>text()</code></strong> method of the string containing the contents of the blob, interpreted as UTF-8.</p>
+<div class="tsd-comment tsd-typography"><p>The <strong><code>text()</code></strong> method of the Blob interface returns a Promise that resolves with a string containing the contents of the blob, interpreted as UTF-8.</p>
 <p><a href="https://developer.mozilla.org/docs/Web/API/Blob/text">MDN Reference</a></p>
 </div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
 <p>Inherited from File.text</p>
 <ul>
-<li>Defined in node_modules/typescript/lib/lib.dom.d.ts:4433</li></ul></aside></div></li></ul></section></section></details></div>
+<li>Defined in node_modules/typescript/lib/lib.dom.d.ts:5080</li></ul></aside></div></li></ul></section></section></details></div>
 <div class="col-sidebar">
 <div class="page-menu">
 <div class="tsd-navigation settings">
