@@ -4,6 +4,31 @@
 -->
 # Changelog
 
+## [v1.13.0](https://github.com/nextcloud-libraries/nextcloud-upload/tree/v1.13.0) \(2026-11-12\)
+### 🗒 Notes
+`@nextcloud/upload` is in maintenance now.
+This library will only get bug fixes but no new features. We will keep it working with Nextcloud up to 36 and provide bug fixes until end of 2027.
+Starting with 2028 this library will be in life-support where we only will provide important security fixes.
+
+Instead please use either the API directly, provided by the `@nextcloud/files` library or the `NcUploadPicker` component provided by `@nextcloud/vue`.
+
+### 🐛 Fixed bugs
+* fix(uploader): rename deleteCustomerHeader to deleteCustomHeader [\#2106](https://github.com/nextcloud-libraries/nextcloud-upload/pull/2106) \([skjnldsv](https://github.com/skjnldsv)\)
+* fix(uploader): preserve batch upload destination across navigation [\#2128](https://github.com/nextcloud-libraries/nextcloud-upload/pull/2128) \([joshtrichards](https://github.com/joshtrichards)\)
+* fix(conflicts): make overwrite warning more clear [\#2246](https://github.com/nextcloud-libraries/nextcloud-upload/pull/2246) \([susnux](https://github.com/susnux)\)
+* fix: add some more logging when doing chunked-uploads [\#2205](https://github.com/nextcloud-libraries/nextcloud-upload/pull/2205) \([susnux](https://github.com/susnux)\)
+* fix(UploadPicker): make the Shift+U hotkey work with any keyboard layout [\#2245](https://github.com/nextcloud-libraries/nextcloud-upload/pull/2245) \([susnux](https://github.com/susnux)\)
+* fix(uploader): keep the server response of failed chunked uploads [\#2247](https://github.com/nextcloud-libraries/nextcloud-upload/pull/2247) \([susnux](https://github.com/susnux)\)
+* fix: upload status announcement [\#2171](https://github.com/nextcloud-libraries/nextcloud-upload/pull/2171) \([kristian-zendato](https://github.com/kristian-zendato)\)
+* fix(uploader): encode the root of the batch upload WebDAV client [\#2236](https://github.com/nextcloud-libraries/nextcloud-upload/pull/2236) \([solracsf](https://github.com/solracsf)\)
+* fix(upload): harden upload progress and terminal-state handling [\#2117](https://github.com/nextcloud-libraries/nextcloud-upload/pull/2117) \([joshtrichards](https://github.com/joshtrichards)\)
+
+### Changed
+* Updated translations
+* Updated dependencies
+* chore: mark this package as deprecated \([\#2248](https://github.com/nextcloud-libraries/nextcloud-upload/pull/2248)\)
+
+
 ## [v1.12.0](https://github.com/nextcloud-libraries/nextcloud-upload/tree/v1.12.0) \(2026-09-02\)
 
 ### Added
