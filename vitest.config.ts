@@ -4,8 +4,8 @@
  */
 
 import { createLibConfig } from '@nextcloud/vite-config'
-import { translations } from './build/translations'
-import { defineConfig } from 'vitest/config'
+import { translations } from './build/translations.ts'
+import { configDefaults, defineConfig } from 'vitest/config'
 
 export default createLibConfig({
 	index: 'lib/index.ts',
@@ -31,6 +31,8 @@ export default createLibConfig({
 				},
 			},
 			setupFiles: '__tests__/setup.ts',
+			// do not pick up tests from git worktrees created by Claude Code
+			exclude: [...configDefaults.exclude, '.claude/**'],
 			coverage: {
 				include: ['lib/**'],
 				// This makes no sense to test

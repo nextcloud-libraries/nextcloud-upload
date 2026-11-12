@@ -65,7 +65,7 @@
     "axios-retry": "^4.5.0",
     "crypto-browserify": "^3.12.1",
     "p-cancelable": "^5.0.0",
-    "p-queue": "^9.3.5",
+    "p-queue": "^10.0.0",
     "typescript-event-target": "^1.1.2"
   },
   "devDependencies": {
