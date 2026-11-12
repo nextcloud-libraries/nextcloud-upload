@@ -1,16 +1,12 @@
-# To get started with Dependabot version updates, you'll need to specify which
-# package ecosystems to update and where the package manifests are located.
-# Please see the documentation for all configuration options:
-# https://help.github.com/github/administering-a-repository/configuration-options-for-dependency-updates
-#
 # SPDX-FileCopyrightText: 2022 Nextcloud GmbH and Nextcloud contributors
 # SPDX-License-Identifier: AGPL-3.0-or-later
+
 version: 2
 updates:
 - package-ecosystem: npm
   directory: /
   schedule:
-    interval: daily
+    interval: weekly
     timezone: Europe/Paris
   open-pull-requests-limit: 10
   versioning-strategy: increase
@@ -20,11 +16,15 @@ updates:
   commit-message:
     prefix: "chore"
     include: "scope"
+  ignore:
+      - dependency-name: "*"
+        # ignore all major updates
+        update-types: ["version-update:semver-major"]
 
 - package-ecosystem: github-actions
   directory: /
   schedule:
-    interval: daily
+    interval: weekly
     timezone: Europe/Paris
   open-pull-requests-limit: 10
   labels:
