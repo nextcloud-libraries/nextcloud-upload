@@ -192,9 +192,9 @@ msgid "Upload started: {name} ({size})"
 msgstr "アップロード開始：{name} ({size})"
 
 msgid ""
-"When a new folder is selected, any conflicting files within it will also be "
-"overwritten."
-msgstr "新しいフォルダーが選択されると、そのフォルダー内にある競合するファイルもすべて上書きされます。"
+"When a new folder is selected, any files within the existing folder will be "
+"overwritten, including non-conflicting files."
+msgstr "新しいフォルダを選択すると、既存のフォルダ内にあるファイルは、競合しないファイルも含めてすべて上書きされます。"
 
 msgid ""
 "When a new folder is selected, the content is written into the existing "
